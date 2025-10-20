@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Base64 Encoder &amp; Decoder · Dev Utility Hub</title>
+    <meta
+      name="description"
+      content="Encode or decode text with Base64 directly in your browser."
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="base64">
+    <header class="topbar">
+      <h1>Base64 Encoder &amp; Decoder</h1>
+      <nav class="topbar-nav">
+        <a href="../index.html">Home</a>
+        <a href="./json.html">JSON</a>
+        <a href="./color.html">Color</a>
+      </nav>
+    </header>
+
+    <main class="page single">
+      <section class="card">
+        <div class="card-header">
+          <h2>Convert between Base64 and plain text.</h2>
+          <p>Runs offline using built-in browser APIs. No data leaves the page.</p>
+        </div>
+        <div class="card-body two-column">
+          <div class="input-group">
+            <label for="base64-input">Input</label>
+            <textarea
+              id="base64-input"
+              placeholder="Paste plain text or Base64 here..."
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="input-group">
+            <label for="base64-output">Output</label>
+            <textarea
+              id="base64-output"
+              placeholder="Result appears here..."
+              spellcheck="false"
+              readonly
+            ></textarea>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button id="btn-encode" class="primary">Encode</button>
+          <button id="btn-decode">Decode</button>
+          <button id="btn-swap">Swap</button>
+          <span id="base64-status" role="status" aria-live="polite"></span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>© <span id="year"></span> Dev Utility Hub.</p>
+      <p>
+        Shortcut tips:
+        <kbd>Ctrl</kbd>+<kbd>B</kbd> Base64 |
+        <kbd>Ctrl</kbd>+<kbd>J</kbd> JSON |
+        <kbd>Ctrl</kbd>+<kbd>K</kbd> Color |
+        <kbd>Ctrl</kbd>+<kbd>H</kbd> Home
+      </p>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

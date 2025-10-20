@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Utility Hub</title>
+    <meta
+      name="description"
+      content="Fast developer tools for everyday tasks: Base64 encoder, JSON formatter, and a handy color picker."
+    />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body class="landing" data-page="landing">
+    <header class="topbar">
+      <h1>Dev Utility Hub</h1>
+      <nav class="topbar-nav">
+        <a href="./tools/base64.html">Base64</a>
+        <a href="./tools/json.html">JSON</a>
+        <a href="./tools/color.html">Color</a>
+      </nav>
+    </header>
+
+    <main class="landing-content">
+      <section class="hero">
+        <h2>Developer utilities without the extra noise.</h2>
+        <p>
+          Pick a focused tool, finish the task, and get back to building.
+          Everything runs locally in your browser.
+        </p>
+        <div class="hero-actions">
+          <a class="primary" href="./tools/base64.html">Open Base64 Tool</a>
+          <a class="secondary" href="./tools/json.html">Format JSON</a>
+        </div>
+      </section>
+
+      <section class="tool-grid">
+        <article class="tool-card">
+          <h3>Base64 Encoder &amp; Decoder</h3>
+          <p>Convert strings between plain text and Base64 with swap support.</p>
+          <a href="./tools/base64.html" class="tool-link">Go to Base64</a>
+        </article>
+        <article class="tool-card">
+          <h3>JSON Formatter</h3>
+          <p>Pretty-print or minify JSON payloads and copy results instantly.</p>
+          <a href="./tools/json.html" class="tool-link">Go to JSON</a>
+        </article>
+        <article class="tool-card">
+          <h3>Color Picker</h3>
+          <p>Grab HEX/RGB values with a live preview for your next UI tweak.</p>
+          <a href="./tools/color.html" class="tool-link">Go to Color</a>
+        </article>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>© <span id="year"></span> Dev Utility Hub. Built for developers, by you.</p>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>

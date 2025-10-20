@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON Formatter · Dev Utility Hub</title>
+    <meta
+      name="description"
+      content="Pretty-print or minify JSON payloads with instant validation."
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="json">
+    <header class="topbar">
+      <h1>JSON Formatter</h1>
+      <nav class="topbar-nav">
+        <a href="../index.html">Home</a>
+        <a href="./base64.html">Base64</a>
+        <a href="./color.html">Color</a>
+      </nav>
+    </header>
+
+    <main class="page single">
+      <section class="card">
+        <div class="card-header">
+          <h2>Validate and reformat JSON in seconds.</h2>
+          <p>Supports pretty-print, minify, and quick copy to your clipboard.</p>
+        </div>
+        <div class="card-body one-column">
+          <div class="input-group">
+            <label for="json-input">JSON Input</label>
+            <textarea
+              id="json-input"
+              placeholder='Paste JSON, e.g. {"hello": "world"}'
+              spellcheck="false"
+            ></textarea>
+          </div>
+          <div class="input-group">
+            <label for="json-output">Formatted Output</label>
+            <textarea
+              id="json-output"
+              placeholder="Formatted result appears here..."
+              spellcheck="false"
+              readonly
+            ></textarea>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button id="btn-json-format" class="primary">Format</button>
+          <button id="btn-json-minify">Minify</button>
+          <button id="btn-json-copy">Copy Output</button>
+          <span id="json-status" role="status" aria-live="polite"></span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>© <span id="year"></span> Dev Utility Hub.</p>
+      <p>
+        Shortcut tips:
+        <kbd>Ctrl</kbd>+<kbd>B</kbd> Base64 |
+        <kbd>Ctrl</kbd>+<kbd>J</kbd> JSON |
+        <kbd>Ctrl</kbd>+<kbd>K</kbd> Color |
+        <kbd>Ctrl</kbd>+<kbd>H</kbd> Home
+      </p>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>

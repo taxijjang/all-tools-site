@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Picker · Dev Utility Hub</title>
+    <meta
+      name="description"
+      content="Pick a color and copy HEX/RGB values with a live preview."
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+  </head>
+  <body data-page="color">
+    <header class="topbar">
+      <h1>Color Picker</h1>
+      <nav class="topbar-nav">
+        <a href="../index.html">Home</a>
+        <a href="./base64.html">Base64</a>
+        <a href="./json.html">JSON</a>
+      </nav>
+    </header>
+
+    <main class="page single">
+      <section class="card">
+        <div class="card-header">
+          <h2>Grab HEX and RGB codes instantly.</h2>
+          <p>Ideal for quick palette checks, branding tweaks, and design QA.</p>
+        </div>
+        <div class="card-body color-grid">
+          <label class="color-picker">
+            <span>Pick a color</span>
+            <input type="color" id="color-picker-input" value="#4f46e5" />
+          </label>
+          <div class="color-display" id="color-display"></div>
+          <div class="color-values">
+            <div>
+              <span class="value-label">HEX</span>
+              <code id="color-hex">#4f46e5</code>
+            </div>
+            <div>
+              <span class="value-label">RGB</span>
+              <code id="color-rgb">79, 70, 229</code>
+            </div>
+            <button id="btn-color-copy">Copy HEX</button>
+            <span id="color-status" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>© <span id="year"></span> Dev Utility Hub.</p>
+      <p>
+        Shortcut tips:
+        <kbd>Ctrl</kbd>+<kbd>B</kbd> Base64 |
+        <kbd>Ctrl</kbd>+<kbd>J</kbd> JSON |
+        <kbd>Ctrl</kbd>+<kbd>K</kbd> Color |
+        <kbd>Ctrl</kbd>+<kbd>H</kbd> Home
+      </p>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+  </body>
+</html>
