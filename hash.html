@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>해시 계산기</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="SHA-1/256/384/512 해시를 계산하고 HEX/Base64 출력을 제공합니다."
+    />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="layout layout--dev" data-tool="hash">
+    <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
+      <div>
+        <ins
+          class="adsbygoogle ad-rail__slot"
+          style="display: block"
+          data-ad-format="fluid"
+          data-ad-layout-key="-bb+85+2h-1m-4u"
+          data-ad-client="ca-pub-4324902308911757"
+          data-ad-slot="9966144067"
+        ></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <p class="ad-rail__note">Google 제공 광고</p>
+      </div>
+    </aside>
+
+    <div class="page page--dev">
+      <div class="page-controls">
+        <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+        <div class="locale-switcher">
+          <select id="localeSelect" aria-label="Language">
+            <option value="ko" data-i18n="common.languageKorean">한국어</option>
+            <option value="en" data-i18n="common.languageEnglish">English</option>
+          </select>
+        </div>
+      </div>
+      <header class="page-header">
+        <a class="back-link" href="/index.html" data-i18n="common.back">← 도구 목록으로</a>
+        <h1 data-i18n="hash.title">해시 계산기</h1>
+        <p data-i18n="hash.description">
+          브라우저 내부 WebCrypto로 SHA 계열 해시를 계산합니다. 입력은 공유되지 않습니다.
+        </p>
+        <div class="page-actions">
+          <button type="button" class="ghost" data-share-state data-i18n="common.shareState">상태 공유</button>
+        </div>
+      </header>
+
+      <main class="tool">
+        <section class="tool__panel tool__panel--stack">
+          <label for="hashInput" data-i18n="hash.input">입력 문자열</label>
+          <textarea
+            id="hashInput"
+            rows="4"
+            placeholder="stateless tools"
+            data-i18n="hash.placeholder"
+            data-i18n-attr="placeholder"
+            data-persist="input"
+          ></textarea>
+          <div class="field-row">
+            <label for="hashAlgorithm" data-i18n="hash.algorithm">알고리즘</label>
+            <select id="hashAlgorithm" data-persist="algorithm">
+              <option value="SHA-256">SHA-256</option>
+              <option value="SHA-1">SHA-1</option>
+              <option value="SHA-384">SHA-384</option>
+              <option value="SHA-512">SHA-512</option>
+            </select>
+          </div>
+          <div class="option-row">
+            <label class="field-row">
+              <input id="hashUppercase" type="checkbox" data-persist="uppercase" />
+              <span data-i18n="hash.uppercase">HEX 대문자 출력</span>
+            </label>
+          </div>
+          <div class="toolbar">
+            <button id="hashComputeBtn" type="button" class="primary" data-i18n="hash.compute">해시 계산</button>
+            <button id="hashClearBtn" type="button" class="ghost" data-i18n="common.clear">지우기</button>
+          </div>
+        </section>
+
+        <section class="tool__panel tool__panel--stack">
+          <div class="panel-header">
+            <label for="hashHex" data-i18n="hash.hex">HEX</label>
+            <button type="button" data-copy="hashHex" data-i18n="common.copy">복사</button>
+          </div>
+          <textarea id="hashHex" rows="3" readonly></textarea>
+        </section>
+
+        <section class="tool__panel tool__panel--stack">
+          <div class="panel-header">
+            <label for="hashBase64" data-i18n="hash.base64">Base64</label>
+            <button type="button" data-copy="hashBase64" data-i18n="common.copy">복사</button>
+          </div>
+          <textarea id="hashBase64" rows="3" readonly></textarea>
+        </section>
+      </main>
+      <p id="hashMessage" class="message" role="status" aria-live="polite"></p>
+
+      <footer class="footer footer--dev">
+        <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
+      </footer>
+    </div>
+
+    <aside class="ad-rail ad-rail--right" aria-label="우측 광고">
+      <div>
+        <ins
+          class="adsbygoogle ad-rail__slot"
+          style="display: block"
+          data-ad-format="fluid"
+          data-ad-layout-key="-bb+85+2h-1m-4u"
+          data-ad-client="ca-pub-4324902308911757"
+          data-ad-slot="9966144067"
+        ></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <p class="ad-rail__note">Google 제공 광고</p>
+      </div>
+    </aside>
+    <script type="module" src="/src/site.js"></script>
+    <script type="module" src="/src/hash.js"></script>
+  </body>
+</html>

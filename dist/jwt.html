@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>JWT Inspector</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="JWT 헤더와 페이로드를 즉시 디코딩하고 exp/nbf 같은 클레임을 점검하세요."
+    />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" crossorigin src="/assets/jwt-CDrUd_0g.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/site-CsER6EX2.js">
+    <link rel="stylesheet" crossorigin href="/assets/site-Cc7lLh90.css">
+  </head>
+  <body class="layout layout--dev" data-tool="jwt">
+    <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
+      <div>
+        <ins
+          class="adsbygoogle ad-rail__slot"
+          style="display: block"
+          data-ad-format="fluid"
+          data-ad-layout-key="-bb+85+2h-1m-4u"
+          data-ad-client="ca-pub-4324902308911757"
+          data-ad-slot="9966144067"
+        ></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <p class="ad-rail__note">Google 제공 광고</p>
+      </div>
+    </aside>
+
+    <div class="page page--dev">
+      <div class="page-controls">
+        <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+        <div class="locale-switcher">
+          <select id="localeSelect" aria-label="Language">
+            <option value="ko" data-i18n="common.languageKorean">한국어</option>
+            <option value="en" data-i18n="common.languageEnglish">English</option>
+          </select>
+        </div>
+      </div>
+      <header class="page-header">
+        <a class="back-link" href="/index.html" data-i18n="common.back">← 도구 목록으로</a>
+        <h1 data-i18n="jwt.title">JWT Inspector</h1>
+        <p data-i18n="jwt.description">
+          JWT 헤더·페이로드를 확인하고 exp/nbf 등 만료 클레임을 점검하세요. 서명 검증은 지원하지 않습니다.
+        </p>
+        <div class="page-actions">
+          <button type="button" class="ghost" data-share-state data-i18n="common.shareState">상태 공유</button>
+        </div>
+      </header>
+
+      <main class="tool">
+        <section class="tool__panel tool__panel--stack">
+          <label for="jwtInput" data-i18n="jwt.input">JWT 토큰</label>
+          <textarea
+            id="jwtInput"
+            rows="6"
+            spellcheck="false"
+            placeholder="eyJhbGciOi..."
+            data-i18n="jwt.placeholder"
+            data-i18n-attr="placeholder"
+            data-persist="jwt"
+          ></textarea>
+          <div class="toolbar">
+            <button id="decodeJwtBtn" type="button" class="primary" data-i18n="jwt.action.decode">디코드</button>
+            <button id="jwtClearBtn" type="button" class="ghost" data-i18n="common.clear">지우기</button>
+            <button id="jwtSampleBtn" type="button" class="ghost" data-i18n="common.sample">샘플</button>
+          </div>
+          <p id="jwtMeta" class="panel-subtitle"></p>
+        </section>
+
+        <section class="tool__panel tool__panel--stack">
+          <div class="panel-header">
+            <h2 data-i18n="jwt.output.header">헤더</h2>
+            <button type="button" data-copy="jwtHeader" data-i18n="common.copy">복사</button>
+          </div>
+          <pre id="jwtHeader" class="code-block"></pre>
+        </section>
+
+        <section class="tool__panel tool__panel--stack">
+          <div class="panel-header">
+            <h2 data-i18n="jwt.output.payload">페이로드</h2>
+            <button type="button" data-copy="jwtPayload" data-i18n="common.copy">복사</button>
+          </div>
+          <pre id="jwtPayload" class="code-block"></pre>
+        </section>
+
+        <section class="tool__panel tool__panel--stack">
+          <div class="panel-header">
+            <div>
+              <h2 data-i18n="common.snippetTitle">CLI · 코드 스니펫</h2>
+              <p class="panel-subtitle" data-i18n="common.snippetSubtitle">Node.js · shell</p>
+            </div>
+            <button type="button" data-copy="jwtSnippet" data-i18n="common.copy">복사</button>
+          </div>
+          <pre id="jwtSnippet" class="code-block"></pre>
+        </section>
+      </main>
+      <p id="jwtMessage" class="message" role="status" aria-live="polite"></p>
+
+      <footer class="footer footer--dev">
+        <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
+      </footer>
+    </div>
+
+    <aside class="ad-rail ad-rail--right" aria-label="우측 광고">
+      <div>
+        <ins
+          class="adsbygoogle ad-rail__slot"
+          style="display: block"
+          data-ad-format="fluid"
+          data-ad-layout-key="-bb+85+2h-1m-4u"
+          data-ad-client="ca-pub-4324902308911757"
+          data-ad-slot="9966144067"
+        ></ins>
+        <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <p class="ad-rail__note">Google 제공 광고</p>
+      </div>
+    </aside>
+  </body>
+</html>

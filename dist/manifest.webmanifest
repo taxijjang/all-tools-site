@@ -1,0 +1,16 @@
+{
+  "name": "Stateless Dev Tools",
+  "short_name": "DevTools",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#020817",
+  "background_color": "#020817",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
+}
