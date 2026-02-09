@@ -2,20 +2,32 @@
   font-family: "JetBrains Mono", "Pretendard", "Noto Sans KR", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   line-height: 1.6;
 
-  /* Deep Blue / Slate Theme (Default Dark) */
-  --bg-body: #020817;
-  --bg-page: radial-gradient(circle at top left, #0f172a 0%, #020617 45%, #010414 100%);
-  --text-main: #e2e8f0;
+  /* True Dark / Deep Void Theme */
+  --bg-body: #030712;
+  /* Gray-950 */
+  --bg-page: radial-gradient(circle at 50% -20%, #1e293b 0%, #020617 45%, #000000 100%);
+  --text-main: #f8fafc;
+  /* Slate-50 */
   --text-muted: #94a3b8;
+  /* Slate-400 */
   --primary: #38bdf8;
-  --primary-dark: #0284c7;
+  /* Sky-400 */
+  --primary-dark: #0ea5e9;
+  /* Sky-500 */
   --border: #1e293b;
+  /* Slate-800 */
   --surface: #0f172a;
-  --surface-alt: #162036;
-  --surface-muted: #111827;
-  --error: #f87171;
-  --success: #34d399;
-  --shadow-color: rgb(0 0 0 / 0.35);
+  /* Slate-900 */
+  --surface-alt: #1e293b;
+  /* Slate-800 */
+  --surface-muted: #020617;
+  /* Slate-950 */
+  --error: #fca5a5;
+  /* Red-300 */
+  --success: #6ee7b7;
+  /* Emerald-300 */
+  --shadow-color: rgb(0 0 0 / 0.5);
+  /* Stronger shadows */
 
   /* Code Syntax Colors */
   --token-key: #fbbf24;
