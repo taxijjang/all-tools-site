@@ -6,7 +6,8 @@
   /* True Dark / Deep Void Theme */
   --bg-body: #030712;
   /* Gray-950 */
-  --bg-page: radial-gradient(circle at 50% -20%, #1e293b 0%, #020617 45%, #000000 100%);
+  --bg-page: #030712;
+  /* Solid Dark, no gradient to avoid confusion or rendering issues */
   --text-main: #f8fafc;
   /* Slate-50 */
   --text-muted: #94a3b8;
@@ -66,38 +67,19 @@
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
-  background: var(--bg-page);
-  min-height: 100vh;
+  padding: 0;
+  background-color: var(--bg-body);
+  /* Critical fix for white background */
   color: var(--text-main);
+  min-height: 100vh;
+}
+
+body {
+  background: var(--bg-page);
   transition: background 0.3s ease, color 0.3s ease;
-}
-
-.i18n-pending body {
-  visibility: hidden;
-}
-
-.layout--dev {
-  background: none;
-}
-
-.layout {
-  min-height: 100vh;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem;
-  background: inherit;
-}
-
-.page {
-  min-height: 100vh;
-  padding: 1.5rem;
-  max-width: 720px;
-  margin: 0 auto;
-  color: inherit;
 }
 
 /* --- Header & Navigation --- */
