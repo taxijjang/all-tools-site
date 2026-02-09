@@ -66,7 +66,8 @@ dom.input.addEventListener('input', update);
 
 dom.presets.forEach(btn => {
     btn.addEventListener('click', (e) => {
-        e.preventDefault(); // Stop any weird default behaviors
+        e.preventDefault();
+        e.stopImmediatePropagation(); // Ensure only one handler runs
         const presetValue = btn.dataset.preset;
         console.log('Preset clicked:', presetValue); // Debug
 
