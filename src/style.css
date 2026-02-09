@@ -82,6 +82,14 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+.layout {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* --- Header & Navigation --- */
 .page-controls {
   display: flex;
