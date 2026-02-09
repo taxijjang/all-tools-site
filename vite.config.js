@@ -12,6 +12,7 @@ export default defineConfig({
         jwt: resolve(__dirname, 'jwt.html'),
         url: resolve(__dirname, 'url.html'),
         hash: resolve(__dirname, 'hash.html'),
+        cron: resolve(__dirname, 'cron.html'),
       },
     },
   },
