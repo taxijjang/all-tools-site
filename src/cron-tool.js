@@ -65,8 +65,16 @@ function update() {
 dom.input.addEventListener('input', update);
 
 dom.presets.forEach(btn => {
-    btn.addEventListener('click', () => {
-        dom.input.value = btn.dataset.preset;
+    btn.addEventListener('click', (e) => {
+        e.preventDefault(); // Stop any weird default behaviors
+        const presetValue = btn.dataset.preset;
+        console.log('Preset clicked:', presetValue); // Debug
+
+        // Force reset value to avoid any appending weirdness
+        dom.input.value = '';
+        dom.input.value = presetValue;
+
+        // Dispatch input event for reactivity
         dom.input.dispatchEvent(new Event('input', { bubbles: true }));
     });
 });
