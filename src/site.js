@@ -104,6 +104,15 @@ function setupGlobalNavigation() {
     badge.innerHTML = '🔒 Secure & Client-side';
     header.appendChild(badge);
   }
+
+  // 4. Inject Google AdSense
+  if (!document.querySelector('script[src*="adsbygoogle"]')) {
+    const adScript = document.createElement('script');
+    adScript.async = true;
+    adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757";
+    adScript.crossOrigin = "anonymous";
+    document.head.appendChild(adScript);
+  }
 }
 
 // --- PWA Installation ---
