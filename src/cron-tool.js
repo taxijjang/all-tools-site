@@ -1,5 +1,5 @@
 import cronstrue from 'cronstrue/i18n';
-import parser from 'cron-parser';
+import { parseExpression } from 'cron-parser';
 import { onLocaleChange } from './i18n.js';
 
 const dom = {
@@ -25,7 +25,7 @@ function update() {
         dom.input.classList.remove('error');
 
         // 2. Next Runs
-        const interval = parser.parseExpression(expression);
+        const interval = parseExpression(expression);
         dom.nextList.innerHTML = '';
 
         // Generate next 5 dates
