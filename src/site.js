@@ -1,14 +1,156 @@
 import { bindLocaleSwitcher, initI18n } from './i18n.js';
 import './style.css';
 
+// --- State & DOM Elements ---
 const root = document.body;
 const currentLocale = initI18n({ root });
+let persistElements = [];
 
-const localeSelect = document.getElementById('localeSelect');
-bindLocaleSwitcher(localeSelect, { root });
+// --- Theme Management ---
+function initTheme() {
+  const saved = localStorage.getItem('stateless-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const theme = saved || (prefersDark ? 'dark' : 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+  updateThemeIcon(theme);
+}
 
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('stateless-theme', next);
+  updateThemeIcon(next);
+}
+
+function updateThemeIcon(theme) {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  // Simple emoji icon swapping
+  btn.textContent = theme === 'light' ? '☀️' : '🌙';
+  btn.setAttribute('aria-label', theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+}
+
+// --- Navigation & Header Injection ---
+function setupGlobalNavigation() {
+  const controls = document.querySelector('.page-controls');
+  if (!controls) return;
+
+  // 1. Tool Switcher (Quick Jump)
+  const tools = [
+    { value: '/', label: 'Home' },
+    { value: '/uuid.html', label: 'UUID' },
+    { value: '/base64.html', label: 'Base64' },
+    { value: '/json.html', label: 'JSON' },
+    { value: '/jwt.html', label: 'JWT' },
+    { value: '/cron.html', label: 'Cron' },
+    { value: '/url.html', label: 'URL' },
+    { value: '/hash.html', label: 'Hash' },
+  ];
+
+  const switcherContainer = document.createElement('div');
+  switcherContainer.className = 'tool-switcher';
+
+  const select = document.createElement('select');
+  select.ariaLabel = 'Switch Tool';
+  select.onchange = (e) => {
+    if (e.target.value) window.location.href = e.target.value;
+  };
+
+  const currentPath = window.location.pathname;
+  tools.forEach(tool => {
+    const option = document.createElement('option');
+    option.value = tool.value;
+    option.textContent = tool.label;
+    if (currentPath.endsWith(tool.value) || (tool.value === '/' && currentPath.endsWith('index.html'))) {
+      option.selected = true;
+    }
+    select.appendChild(option);
+  });
+
+  switcherContainer.appendChild(select);
+
+  // Insert Tool Switcher at the beginning
+  controls.insertBefore(switcherContainer, controls.firstChild);
+
+  // 2. Theme Toggle
+  const themeBtn = document.createElement('button');
+  themeBtn.id = 'themeToggle';
+  themeBtn.className = 'theme-toggle';
+  themeBtn.type = 'button';
+  themeBtn.onclick = toggleTheme;
+
+  // Insert Toggle after tool switcher (before locale)
+  controls.insertBefore(themeBtn, controls.children[1]);
+
+  // 3. PWA Install Button
+  const installBtn = document.createElement('button');
+  installBtn.id = 'pwaInstallBtn';
+  installBtn.className = 'pwa-install-btn';
+  installBtn.type = 'button';
+  installBtn.innerHTML = '⬇️ App';
+  installBtn.onclick = installPWA;
+  controls.insertBefore(installBtn, controls.firstChild); // First item
+
+  // Initialize icon state
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  updateThemeIcon(currentTheme);
+
+  // Inject Trust Badge
+  const header = document.querySelector('.page-header h1, .hero h1');
+  if (header) {
+    const badge = document.createElement('span');
+    badge.className = 'trust-badge';
+    badge.innerHTML = '🔒 Secure & Client-side';
+    header.appendChild(badge);
+  }
+}
+
+// --- PWA Installation ---
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const btn = document.getElementById('pwaInstallBtn');
+  if (btn) btn.style.display = 'inline-flex';
+});
+
+async function installPWA() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  if (outcome === 'accepted') {
+    deferredPrompt = null;
+    const btn = document.getElementById('pwaInstallBtn');
+    if (btn) btn.style.display = 'none';
+  }
+}
+
+// --- Toast Notification System ---
+export function showToast(message, type = 'success') {
+  let container = document.querySelector('.toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'toast-container';
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = `toast toast--${type}`;
+  toast.textContent = message;
+
+  container.appendChild(toast);
+
+  // Auto remove
+  setTimeout(() => {
+    toast.classList.add('hiding');
+    toast.addEventListener('animationend', () => toast.remove());
+  }, 2500);
+}
+
+// --- Persistence & State Sharing ---
 const toolNamespace = document.body.dataset.tool || 'global';
-const persistElements = Array.from(document.querySelectorAll('[data-persist]'));
 
 function storageKey(field) {
   return `stateless:${toolNamespace}:${field}`;
@@ -53,7 +195,9 @@ function applyHashState() {
 }
 
 function hydratePersistentFields() {
+  persistElements = Array.from(document.querySelectorAll('[data-persist]'));
   const fromHash = applyHashState();
+
   persistElements.forEach((el) => {
     const key = el.dataset.persist;
     if (!fromHash) {
@@ -74,7 +218,9 @@ function hydratePersistentFields() {
   });
 }
 
-function setupShareButtons() {
+// --- Clipboard & Sharing ---
+function setupActions() {
+  // Share State
   document.querySelectorAll('[data-share-state]').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const state = {};
@@ -86,19 +232,45 @@ function setupShareButtons() {
         const shareUrl = new URL(window.location.href);
         shareUrl.hash = `state=${encoded}`;
         await navigator.clipboard.writeText(shareUrl.toString());
-        btn.dataset.shareStatus = 'copied';
-        setTimeout(() => {
-          btn.dataset.shareStatus = '';
-        }, 1500);
+        showToast('URL copied to clipboard!', 'success');
       } catch (err) {
         console.error('Failed to copy share URL', err);
+        showToast('Failed to copy URL', 'error');
+      }
+    });
+  });
+
+  // Generic Copy Buttons
+  document.querySelectorAll('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const targetId = btn.dataset.copy;
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      const text = target.value || target.textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Copied to clipboard!');
+      } catch (err) {
+        showToast('Failed to copy', 'error');
       }
     });
   });
 }
 
-hydratePersistentFields();
-setupShareButtons();
+// --- Initialization ---
+initTheme();
+
+window.addEventListener('DOMContentLoaded', () => {
+  const localeSelect = document.getElementById('localeSelect');
+  if (localeSelect) {
+    bindLocaleSwitcher(localeSelect, { root });
+  }
+
+  setupGlobalNavigation();
+  hydratePersistentFields();
+  setupActions();
+});
 
 if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
   window.addEventListener('load', () => {
@@ -110,4 +282,5 @@ if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
 
 window.statelessTools = {
   locale: currentLocale,
+  showToast,
 };

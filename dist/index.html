@@ -1,135 +1,128 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <title>도구 모음 | UUID · Base64 웹 유틸</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="브라우저에서 바로 UUID 변환과 Base64 인코딩/디코딩을 수행하는 가벼운 도구 모음입니다."
-    />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <script>
-      (function () {
-        var supported = ['ko', 'en'];
-        function pickLocale() {
-          try {
-            var stored = localStorage.getItem('stateless-tools-locale');
-            if (stored && supported.indexOf(stored) !== -1) {
-              return stored;
-            }
-          } catch (err) {}
-          var lang = (navigator.language || '').slice(0, 2);
-          if (supported.indexOf(lang) !== -1) {
-            return lang;
+
+<head>
+  <meta charset="utf-8" />
+  <title>도구 모음 | UUID · Base64 웹 유틸</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="브라우저에서 바로 UUID 변환과 Base64 인코딩/디코딩을 수행하는 가벼운 도구 모음입니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="도구 모음 | UUID · Base64 웹 유틸" />
+  <meta property="og:description" content="브라우저에서 바로 UUID 변환과 Base64 인코딩/디코딩을 수행하는 가벼운 도구 모음입니다." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script>
+    (function () {
+      var supported = ['ko', 'en'];
+      function pickLocale() {
+        try {
+          var stored = localStorage.getItem('stateless-tools-locale');
+          if (stored && supported.indexOf(stored) !== -1) {
+            return stored;
           }
-          return 'ko';
+        } catch (err) { }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
         }
-        var locale = pickLocale();
-        document.documentElement.setAttribute('lang', locale);
-        document.documentElement.classList.add('i18n-pending');
-        window.__preferredLocale = locale;
-      })();
-    </script>
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" crossorigin src="/assets/site-CsER6EX2.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/site-Cc7lLh90.css">
-  </head>
-  <body class="layout" data-tool="home">
-    <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
-      <div>
-        <ins
-          class="adsbygoogle ad-rail__slot"
-          style="display: block"
-          data-ad-format="fluid"
-          data-ad-layout-key="-bb+85+2h-1m-4u"
-          data-ad-client="ca-pub-4324902308911757"
-          data-ad-slot="9966144067"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <p class="ad-rail__note">Google 제공 광고</p>
-      </div>
-    </aside>
+        return 'ko';
+      }
+      var locale = pickLocale();
+      document.documentElement.setAttribute('lang', locale);
+      document.documentElement.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
+    crossorigin="anonymous"></script>
+  <script type="module" crossorigin src="/assets/site-Cz0KE-SU.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-Bx0EmCle.css">
+</head>
 
-    <div class="page page--home">
-      <div class="page-controls">
-        <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
-        <div class="locale-switcher">
-          <select id="localeSelect" aria-label="Language">
-            <option value="ko" data-i18n="common.languageKorean">한국어</option>
-            <option value="en" data-i18n="common.languageEnglish">English</option>
-          </select>
-        </div>
-      </div>
-      <header class="hero">
-        <p class="eyebrow" data-i18n="home.eyebrow">stateless dev tools</p>
-        <h1 data-i18n="home.title">브라우저 네이티브 유틸 모음</h1>
-        <p data-i18n="home.description">
-          터미널 대신 탭 하나로 디버깅하세요. 모든 변환은 클라이언트 메모리에서만 실행됩니다.
-        </p>
-      </header>
-
-      <main class="card-grid">
-        <a class="card" href="/uuid.html">
-          <h2 data-i18n="home.card.uuid.title">UUID 변환기</h2>
-          <p data-i18n="home.card.uuid.desc">랜덤 UUID 생성, hex(binary16) 변환 및 복구 기능 제공.</p>
-          <span class="pill">/uuid.html</span>
-        </a>
-        <a class="card" href="/base64.html">
-          <h2 data-i18n="home.card.base64.title">Base64 인코더</h2>
-          <p data-i18n="home.card.base64.desc">문자열↔Base64, URL-safe, 공백 제거 옵션까지 한번에.</p>
-          <span class="pill">/base64.html</span>
-        </a>
-        <a class="card" href="/json.html">
-          <h2 data-i18n="home.card.json.title">JSON Viewer</h2>
-          <p data-i18n="home.card.json.desc">JSON을 즉시 검증하고 포맷/압축/복사하는 개발자용 뷰어.</p>
-          <span class="pill">/json.html</span>
-        </a>
-        <a class="card" href="/jwt.html">
-          <h2 data-i18n="home.card.jwt.title">JWT Inspector</h2>
-          <p data-i18n="home.card.jwt.desc">헤더·페이로드를 검증하고 만료 시간까지 빠르게 확인하세요.</p>
-          <span class="pill">/jwt.html</span>
-        </a>
-        <a class="card" href="/url.html">
-          <h2 data-i18n="home.card.url.title">URL 인코더</h2>
-          <p data-i18n="home.card.url.desc">URL 인코딩/디코딩과 쿼리 파라미터 확인을 한번에.</p>
-          <span class="pill">/url.html</span>
-        </a>
-        <a class="card" href="/hash.html">
-          <h2 data-i18n="home.card.hash.title">해시 계산기</h2>
-          <p data-i18n="home.card.hash.desc">SHA-1/256/512 해시와 HEX/BASE64 출력을 제공합니다.</p>
-          <span class="pill">/hash.html</span>
-        </a>
-      </main>
-
-      <footer class="footer">
-        <small data-i18n="common.footerHome">
-          © 2025 stateless tools · Cloudflare Pages 배포용 정적 사이트
-        </small>
-      </footer>
+<body class="layout" data-tool="home">
+  <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
+    <div>
+      <ins class="adsbygoogle ad-rail__slot" style="display: block" data-ad-format="fluid"
+        data-ad-layout-key="-bb+85+2h-1m-4u" data-ad-client="ca-pub-4324902308911757" data-ad-slot="9966144067"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <p class="ad-rail__note">Google 제공 광고</p>
     </div>
+  </aside>
 
-    <aside class="ad-rail ad-rail--right" aria-label="우측 광고">
-      <div>
-        <ins
-          class="adsbygoogle ad-rail__slot"
-          style="display: block"
-          data-ad-format="fluid"
-          data-ad-layout-key="-bb+85+2h-1m-4u"
-          data-ad-client="ca-pub-4324902308911757"
-          data-ad-slot="9966144067"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <p class="ad-rail__note">Google 제공 광고</p>
+  <div class="page page--home">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
       </div>
-    </aside>
-  </body>
+    </div>
+    <header class="hero">
+      <p class="eyebrow" data-i18n="home.eyebrow">stateless dev tools</p>
+      <h1 data-i18n="home.title">브라우저 네이티브 유틸 모음</h1>
+      <p data-i18n="home.description">
+        터미널 대신 탭 하나로 디버깅하세요. 모든 변환은 클라이언트 메모리에서만 실행됩니다.
+      </p>
+    </header>
+
+    <main class="card-grid">
+      <a class="card" href="/uuid.html">
+        <h2 data-i18n="home.card.uuid.title">UUID 변환기</h2>
+        <p data-i18n="home.card.uuid.desc">랜덤 UUID 생성, hex(binary16) 변환 및 복구 기능 제공.</p>
+        <span class="pill">/uuid.html</span>
+      </a>
+      <a class="card" href="/base64.html">
+        <h2 data-i18n="home.card.base64.title">Base64 인코더</h2>
+        <p data-i18n="home.card.base64.desc">문자열↔Base64, URL-safe, 공백 제거 옵션까지 한번에.</p>
+        <span class="pill">/base64.html</span>
+      </a>
+      <a class="card" href="/json.html">
+        <h2 data-i18n="home.card.json.title">JSON Viewer</h2>
+        <p data-i18n="home.card.json.desc">JSON을 즉시 검증하고 포맷/압축/복사하는 개발자용 뷰어.</p>
+        <span class="pill">/json.html</span>
+      </a>
+      <a class="card" href="/jwt.html">
+        <h2 data-i18n="home.card.jwt.title">JWT Inspector</h2>
+        <p data-i18n="home.card.jwt.desc">헤더·페이로드를 검증하고 만료 시간까지 빠르게 확인하세요.</p>
+        <span class="pill">/jwt.html</span>
+      </a>
+      <a class="card" href="/cron.html">
+        <h2 data-i18n="home.card.cron.title">Cron 계산기</h2>
+        <p data-i18n="home.card.cron.desc">Cron 식을 해석하고 다음 실행 시간을 미리 확인하세요.</p>
+        <span class="pill">/cron.html</span>
+      </a>
+      <a class="card" href="/url.html">
+        <h2 data-i18n="home.card.url.title">URL 인코더</h2>
+        <p data-i18n="home.card.url.desc">URL 인코딩/디코딩과 쿼리 파라미터 확인을 한번에.</p>
+        <span class="pill">/url.html</span>
+      </a>
+      <a class="card" href="/hash.html">
+        <h2 data-i18n="home.card.hash.title">해시 계산기</h2>
+        <p data-i18n="home.card.hash.desc">SHA-1/256/512 해시와 HEX/BASE64 출력을 제공합니다.</p>
+        <span class="pill">/hash.html</span>
+      </a>
+    </main>
+
+    <footer class="footer">
+      <small data-i18n="common.footerHome">
+        © 2025 stateless tools · Cloudflare Pages 배포용 정적 사이트
+      </small>
+    </footer>
+  </div>
+
+  <aside class="ad-rail ad-rail--right" aria-label="우측 광고">
+    <div>
+      <ins class="adsbygoogle ad-rail__slot" style="display: block" data-ad-format="fluid"
+        data-ad-layout-key="-bb+85+2h-1m-4u" data-ad-client="ca-pub-4324902308911757" data-ad-slot="9966144067"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <p class="ad-rail__note">Google 제공 광고</p>
+    </div>
+  </aside>
+</body>
+
 </html>

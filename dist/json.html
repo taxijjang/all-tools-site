@@ -1,165 +1,140 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <title>JSON 뷰어 · 포매터</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="JSON을 검증·포매팅·압축하고 빠르게 복사할 수 있는 브라우저 기반 개발자 툴."
-    />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <script>
-      (function () {
-        var supported = ['ko', 'en'];
-        function pickLocale() {
-          try {
-            var stored = localStorage.getItem('stateless-tools-locale');
-            if (stored && supported.indexOf(stored) !== -1) {
-              return stored;
-            }
-          } catch (err) {}
-          var lang = (navigator.language || '').slice(0, 2);
-          if (supported.indexOf(lang) !== -1) {
-            return lang;
+
+<head>
+  <meta charset="utf-8" />
+  <title>JSON 뷰어 · 포매터</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="JSON을 검증·포매팅·압축하고 빠르게 복사할 수 있는 브라우저 기반 개발자 툴." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="JSON 뷰어 · 포매터" />
+  <meta property="og:description" content="JSON을 검증·포매팅·압축하고 빠르게 복사할 수 있는 브라우저 기반 개발자 툴." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script>
+    (function () {
+      var supported = ['ko', 'en'];
+      function pickLocale() {
+        try {
+          var stored = localStorage.getItem('stateless-tools-locale');
+          if (stored && supported.indexOf(stored) !== -1) {
+            return stored;
           }
-          return 'ko';
+        } catch (err) { }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
         }
-        var locale = pickLocale();
-        document.documentElement.setAttribute('lang', locale);
-        document.documentElement.classList.add('i18n-pending');
-        window.__preferredLocale = locale;
-      })();
-    </script>
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
-      crossorigin="anonymous"
-    ></script>
-    <script type="module" crossorigin src="/assets/json-BuUvCANV.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/site-CsER6EX2.js">
-    <link rel="stylesheet" crossorigin href="/assets/site-Cc7lLh90.css">
-  </head>
-  <body class="layout layout--dev" data-tool="json">
-    <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
-      <div>
-        <ins
-          class="adsbygoogle ad-rail__slot"
-          style="display: block"
-          data-ad-format="fluid"
-          data-ad-layout-key="-bb+85+2h-1m-4u"
-          data-ad-client="ca-pub-4324902308911757"
-          data-ad-slot="9966144067"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <p class="ad-rail__note">Google 제공 광고</p>
-      </div>
-    </aside>
+        return 'ko';
+      }
+      var locale = pickLocale();
+      document.documentElement.setAttribute('lang', locale);
+      document.documentElement.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
+    crossorigin="anonymous"></script>
+  <script type="module" crossorigin src="/assets/json-BE2uy3Za.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Cz0KE-SU.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Bx0EmCle.css">
+</head>
 
-    <div class="page page--dev">
-      <div class="page-controls">
-        <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
-        <div class="locale-switcher">
-          <select id="localeSelect" aria-label="Language">
-            <option value="ko" data-i18n="common.languageKorean">한국어</option>
-            <option value="en" data-i18n="common.languageEnglish">English</option>
-          </select>
-        </div>
-      </div>
-      <header class="page-header">
-        <a class="back-link" href="/index.html" data-i18n="common.back">← 도구 목록으로</a>
-        <h1 data-i18n="json.title">JSON Viewer</h1>
-        <p data-i18n="json.description">
-          실행 중인 서비스 설정을 점검하듯 JSON을 검증하고, 포맷/압축/복사하세요.
-        </p>
-        <div class="page-actions">
-          <button type="button" class="ghost" data-share-state data-i18n="common.shareState">상태 공유</button>
-        </div>
-      </header>
-
-      <main class="tool tool--columns">
-        <section class="tool__panel tool__panel--stack">
-          <label for="jsonInput" data-i18n="json.input">입력 JSON</label>
-          <textarea
-            id="jsonInput"
-            rows="14"
-            spellcheck="false"
-            placeholder='{"hello":"world"}'
-            data-i18n="json.placeholder"
-            data-i18n-attr="placeholder"
-            data-persist="input"
-          ></textarea>
-
-          <div class="toolbar">
-            <button id="formatBtn" type="button" class="primary" data-i18n="json.format">포맷</button>
-            <button id="minifyBtn" type="button" data-i18n="json.minify">압축</button>
-            <button id="clearBtn" type="button" class="ghost" data-i18n="common.clear">지우기</button>
-            <button id="sampleBtn" type="button" class="ghost" data-i18n="common.sample">샘플</button>
-          </div>
-
-          <label for="jsonSearch" data-i18n="json.searchLabel">키/값 검색</label>
-          <input
-            id="jsonSearch"
-            type="text"
-            placeholder="user.id"
-            data-i18n="json.searchPlaceholder"
-            data-i18n-attr="placeholder"
-            data-persist="search"
-          />
-        </section>
-
-        <section class="tool__panel tool__panel--stack">
-          <div class="panel-header">
-            <div>
-              <label for="jsonOutput" data-i18n="json.output">출력</label>
-              <p id="jsonMeta" class="panel-subtitle" data-i18n="json.meta.empty">입력 없음</p>
-            </div>
-            <div class="panel-actions">
-              <button id="copyJsonBtn" type="button" data-copy="jsonOutput" data-i18n="common.copy">복사</button>
-            </div>
-          </div>
-          <textarea id="jsonOutput" rows="10" readonly spellcheck="false"></textarea>
-
-          <div class="json-views">
-            <section>
-              <h3 data-i18n="json.highlightTitle">하이라이트</h3>
-              <pre id="jsonHighlight" class="code-block" aria-live="polite"></pre>
-            </section>
-            <section>
-              <div class="panel-header">
-                <h3 data-i18n="json.treeTitle">트리 뷰</h3>
-                <button id="collapseTreeBtn" type="button" class="ghost" data-i18n="json.treeCollapse">모두 접기</button>
-              </div>
-              <div id="jsonTree" class="json-tree"></div>
-            </section>
-          </div>
-        </section>
-      </main>
-
-      <p id="jsonMessage" class="message" role="status" aria-live="polite"></p>
-
-      <footer class="footer footer--dev">
-        <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
-      </footer>
+<body class="layout layout--dev" data-tool="json">
+  <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
+    <div>
+      <ins class="adsbygoogle ad-rail__slot" style="display: block" data-ad-format="fluid"
+        data-ad-layout-key="-bb+85+2h-1m-4u" data-ad-client="ca-pub-4324902308911757" data-ad-slot="9966144067"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <p class="ad-rail__note">Google 제공 광고</p>
     </div>
+  </aside>
 
-    <aside class="ad-rail ad-rail--right" aria-label="우측 광고">
-      <div>
-        <ins
-          class="adsbygoogle ad-rail__slot"
-          style="display: block"
-          data-ad-format="fluid"
-          data-ad-layout-key="-bb+85+2h-1m-4u"
-          data-ad-client="ca-pub-4324902308911757"
-          data-ad-slot="9966144067"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <p class="ad-rail__note">Google 제공 광고</p>
+  <div class="page page--dev">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
       </div>
-    </aside>
-  </body>
+    </div>
+    <header class="page-header">
+      <a class="back-link" href="/index.html" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="json.title">JSON Viewer</h1>
+      <p data-i18n="json.description">
+        실행 중인 서비스 설정을 점검하듯 JSON을 검증하고, 포맷/압축/복사하세요.
+      </p>
+      <div class="page-actions">
+        <button type="button" class="ghost" data-share-state data-i18n="common.shareState">상태 공유</button>
+      </div>
+    </header>
+
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack">
+        <label for="jsonInput" data-i18n="json.input">입력 JSON</label>
+        <textarea id="jsonInput" rows="14" spellcheck="false" placeholder='{"hello":"world"}'
+          data-i18n="json.placeholder" data-i18n-attr="placeholder" data-persist="input"></textarea>
+
+        <div class="toolbar">
+          <button id="formatBtn" type="button" class="primary" data-i18n="json.format">포맷</button>
+          <button id="minifyBtn" type="button" data-i18n="json.minify">압축</button>
+          <button id="clearBtn" type="button" class="ghost" data-i18n="common.clear">지우기</button>
+          <button id="sampleBtn" type="button" class="ghost" data-i18n="common.sample">샘플</button>
+        </div>
+
+        <label for="jsonSearch" data-i18n="json.searchLabel">키/값 검색</label>
+        <input id="jsonSearch" type="text" placeholder="user.id" data-i18n="json.searchPlaceholder"
+          data-i18n-attr="placeholder" data-persist="search" />
+      </section>
+
+      <section class="tool__panel tool__panel--stack">
+        <div class="panel-header">
+          <div>
+            <label for="jsonOutput" data-i18n="json.output">출력</label>
+            <p id="jsonMeta" class="panel-subtitle" data-i18n="json.meta.empty">입력 없음</p>
+          </div>
+          <div class="panel-actions">
+            <button id="copyJsonBtn" type="button" data-copy="jsonOutput" data-i18n="common.copy">복사</button>
+          </div>
+        </div>
+        <textarea id="jsonOutput" rows="10" readonly spellcheck="false"></textarea>
+
+        <div class="json-views">
+          <section>
+            <h3 data-i18n="json.highlightTitle">하이라이트</h3>
+            <pre id="jsonHighlight" class="code-block" aria-live="polite"></pre>
+          </section>
+          <section>
+            <div class="panel-header">
+              <h3 data-i18n="json.treeTitle">트리 뷰</h3>
+              <button id="collapseTreeBtn" type="button" class="ghost" data-i18n="json.treeCollapse">모두 접기</button>
+            </div>
+            <div id="jsonTree" class="json-tree"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <p id="jsonMessage" class="message" role="status" aria-live="polite"></p>
+
+    <footer class="footer footer--dev">
+      <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
+    </footer>
+  </div>
+
+  <aside class="ad-rail ad-rail--right" aria-label="우측 광고">
+    <div>
+      <ins class="adsbygoogle ad-rail__slot" style="display: block" data-ad-format="fluid"
+        data-ad-layout-key="-bb+85+2h-1m-4u" data-ad-client="ca-pub-4324902308911757" data-ad-slot="9966144067"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <p class="ad-rail__note">Google 제공 광고</p>
+    </div>
+  </aside>
+</body>
+
 </html>

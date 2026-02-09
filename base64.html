@@ -1,94 +1,81 @@
 <!doctype html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <title>Base64 인코더</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="문자열 ↔ Base64 변환, URL-safe, 공백 제거 옵션을 지원하는 브라우저 전용 도구."
-    />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <script>
-      (function () {
-        var supported = ['ko', 'en'];
-        function pickLocale() {
-          try {
-            var stored = localStorage.getItem('stateless-tools-locale');
-            if (stored && supported.indexOf(stored) !== -1) {
-              return stored;
-            }
-          } catch (err) {}
-          var lang = (navigator.language || '').slice(0, 2);
-          if (supported.indexOf(lang) !== -1) {
-            return lang;
+
+<head>
+  <meta charset="utf-8" />
+  <title>Base64 인코더</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="문자열 ↔ Base64 변환, URL-safe, 공백 제거 옵션을 지원하는 브라우저 전용 도구." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Base64 인코더" />
+  <meta property="og:description" content="문자열 ↔ Base64 변환, URL-safe, 공백 제거 옵션을 지원하는 브라우저 전용 도구." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script>
+    (function () {
+      var supported = ['ko', 'en'];
+      function pickLocale() {
+        try {
+          var stored = localStorage.getItem('stateless-tools-locale');
+          if (stored && supported.indexOf(stored) !== -1) {
+            return stored;
           }
-          return 'ko';
+        } catch (err) { }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
         }
-        var locale = pickLocale();
-        document.documentElement.setAttribute('lang', locale);
-        document.documentElement.classList.add('i18n-pending');
-        window.__preferredLocale = locale;
-      })();
-    </script>
-    <link rel="stylesheet" href="/src/style.css" />
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body class="layout layout--dev" data-tool="base64">
-    <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
-      <div>
-        <ins
-          class="adsbygoogle ad-rail__slot"
-          style="display: block"
-          data-ad-format="fluid"
-          data-ad-layout-key="-bb+85+2h-1m-4u"
-          data-ad-client="ca-pub-4324902308911757"
-          data-ad-slot="9966144067"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <p class="ad-rail__note">Google 제공 광고</p>
-      </div>
-    </aside>
+        return 'ko';
+      }
+      var locale = pickLocale();
+      document.documentElement.setAttribute('lang', locale);
+      document.documentElement.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
+    crossorigin="anonymous"></script>
+</head>
 
-    <div class="page page--dev">
-      <div class="page-controls">
-        <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
-        <div class="locale-switcher">
-          <select id="localeSelect" aria-label="Language">
-            <option value="ko" data-i18n="common.languageKorean">한국어</option>
-            <option value="en" data-i18n="common.languageEnglish">English</option>
-          </select>
-        </div>
-      </div>
-      <header class="page-header">
-        <a class="back-link" href="/index.html" data-i18n="common.back">← 도구 목록으로</a>
-        <h1 data-i18n="base64.title">Base64 인코더</h1>
-        <p data-i18n="base64.description">
-          텍스트와 Base64 사이를 즉시 변환하고 URL-safe/공백 제거 옵션을 적용하세요.
-        </p>
-        <div class="page-actions">
-          <button type="button" class="ghost" data-share-state data-i18n="common.shareState">상태 공유</button>
-        </div>
-      </header>
+<body class="layout layout--dev" data-tool="base64">
+  <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
+    <div>
+      <ins class="adsbygoogle ad-rail__slot" style="display: block" data-ad-format="fluid"
+        data-ad-layout-key="-bb+85+2h-1m-4u" data-ad-client="ca-pub-4324902308911757" data-ad-slot="9966144067"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <p class="ad-rail__note">Google 제공 광고</p>
+    </div>
+  </aside>
 
-      <main class="tool">
-        <section class="tool__panel">
+  <div class="page page--dev">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <a class="back-link" href="/index.html" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="base64.title">Base64 인코더</h1>
+      <p data-i18n="base64.description">
+        텍스트와 Base64 사이를 즉시 변환하고 URL-safe/공백 제거 옵션을 적용하세요.
+      </p>
+      <div class="page-actions">
+        <button type="button" class="ghost" data-share-state data-i18n="common.shareState">상태 공유</button>
+      </div>
+    </header>
+
+    <main class="tool">
+      <section class="tool__panel">
         <h2 data-i18n="base64.encode.title">문자열 → Base64</h2>
         <label for="plainInput" data-i18n="base64.encode.input">문자열 입력</label>
-        <textarea
-          id="plainInput"
-          rows="4"
-          placeholder="예: 안녕하세요"
-          data-i18n="base64.encode.placeholder"
-          data-i18n-attr="placeholder"
-          data-persist="plain"
-        ></textarea>
+        <textarea id="plainInput" rows="4" placeholder="예: 안녕하세요" data-i18n="base64.encode.placeholder"
+          data-i18n-attr="placeholder" data-persist="plain"></textarea>
 
         <div class="option-row">
           <label class="field-row">
@@ -106,20 +93,14 @@
         </div>
       </section>
 
-        <section class="tool__panel">
-          <h2 data-i18n="base64.decode.title">Base64 → 문자열</h2>
-          <label for="base64Input" data-i18n="base64.decode.input">Base64 입력</label>
-          <textarea
-            id="base64Input"
-            rows="4"
-            placeholder="예: 7JWI64WV7ZWY7IS47JqU"
-            data-i18n="base64.decode.placeholder"
-            data-i18n-attr="placeholder"
-            data-persist="base64"
-          ></textarea>
+      <section class="tool__panel">
+        <h2 data-i18n="base64.decode.title">Base64 → 문자열</h2>
+        <label for="base64Input" data-i18n="base64.decode.input">Base64 입력</label>
+        <textarea id="base64Input" rows="4" placeholder="예: 7JWI64WV7ZWY7IS47JqU" data-i18n="base64.decode.placeholder"
+          data-i18n-attr="placeholder" data-persist="base64"></textarea>
 
-          <div class="option-row">
-            <label class="field-row">
+        <div class="option-row">
+          <label class="field-row">
             <input id="stripWhitespace" type="checkbox" checked data-persist="stripWhitespace" />
             <span data-i18n="base64.decode.strip">공백 제거</span>
           </label>
@@ -138,21 +119,15 @@
         </div>
       </section>
 
-        <p id="base64Message" class="message" role="status" aria-live="polite"></p>
+      <p id="base64Message" class="message" role="status" aria-live="polite"></p>
 
       <section class="tool__panel tool__panel--stack">
         <h2 data-i18n="base64.file.title">파일 → Base64</h2>
         <p class="panel-subtitle" data-i18n="base64.file.helper">파일을 선택하면 즉시 Base64로 변환됩니다.</p>
         <input id="fileInput" type="file" />
         <div class="field-row">
-          <input
-            id="downloadFileName"
-            type="text"
-            placeholder="decoded.bin"
-            data-i18n="base64.file.downloadPlaceholder"
-            data-i18n-attr="placeholder"
-            data-persist="downloadName"
-          />
+          <input id="downloadFileName" type="text" placeholder="decoded.bin" data-i18n="base64.file.downloadPlaceholder"
+            data-i18n-attr="placeholder" data-persist="downloadName" />
           <button id="downloadFileBtn" type="button" data-i18n="base64.file.downloadBtn">Base64 → 파일</button>
         </div>
       </section>
@@ -167,33 +142,28 @@
         </div>
         <pre id="base64Snippet" class="code-block"></pre>
       </section>
-      </main>
+    </main>
 
-      <footer class="footer">
-        <small data-i18n="common.footerBase64">
-          © 2025 stateless tools · 모든 변환은 브라우저에서만 처리되며 파일/쿠키를 서버로 전송하지
-          않습니다.
-        </small>
-      </footer>
+    <footer class="footer">
+      <small data-i18n="common.footerBase64">
+        © 2025 stateless tools · 모든 변환은 브라우저에서만 처리되며 파일/쿠키를 서버로 전송하지
+        않습니다.
+      </small>
+    </footer>
+  </div>
+
+  <aside class="ad-rail ad-rail--right" aria-label="우측 광고">
+    <div>
+      <ins class="adsbygoogle ad-rail__slot" style="display: block" data-ad-format="fluid"
+        data-ad-layout-key="-bb+85+2h-1m-4u" data-ad-client="ca-pub-4324902308911757" data-ad-slot="9966144067"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <p class="ad-rail__note">Google 제공 광고</p>
     </div>
+  </aside>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/base64.js"></script>
+</body>
 
-    <aside class="ad-rail ad-rail--right" aria-label="우측 광고">
-      <div>
-        <ins
-          class="adsbygoogle ad-rail__slot"
-          style="display: block"
-          data-ad-format="fluid"
-          data-ad-layout-key="-bb+85+2h-1m-4u"
-          data-ad-client="ca-pub-4324902308911757"
-          data-ad-slot="9966144067"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <p class="ad-rail__note">Google 제공 광고</p>
-      </div>
-    </aside>
-    <script type="module" src="/src/site.js"></script>
-    <script type="module" src="/src/base64.js"></script>
-  </body>
 </html>
