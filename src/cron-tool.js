@@ -1,6 +1,5 @@
 import cronstrue from 'cronstrue/i18n';
-// Switch to CDN for reliable ESM support without build config headaches
-import { parseExpression } from 'https://esm.sh/cron-parser@4.9.0';
+import parser from 'cron-parser';
 import { onLocaleChange } from './i18n.js';
 
 const dom = {
@@ -26,7 +25,7 @@ function update() {
         dom.input.classList.remove('error');
 
         // 2. Next Runs
-        const interval = parseExpression(expression);
+        const interval = parser.parseExpression(expression);
         dom.nextList.innerHTML = '';
 
         // Generate next 5 dates
