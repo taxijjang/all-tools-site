@@ -46,6 +46,7 @@ function setupGlobalNavigation() {
     { value: '/cron', label: 'Cron' },
     { value: '/url', label: 'URL' },
     { value: '/hash', label: 'Hash' },
+    { value: '/timestamp', label: 'Timestamp' },
   ];
 
   const switcherContainer = document.createElement('div');

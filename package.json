@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "cron-parser": "^5.5.0",
-    "cronstrue": "^3.11.0"
+    "cronstrue": "^3.11.0",
+    "luxon": "^3.7.2"
   }
 }
