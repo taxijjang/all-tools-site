@@ -39,13 +39,13 @@ function setupGlobalNavigation() {
   // 1. Tool Switcher (Quick Jump)
   const tools = [
     { value: '/', label: 'Home' },
-    { value: '/uuid.html', label: 'UUID' },
-    { value: '/base64.html', label: 'Base64' },
-    { value: '/json.html', label: 'JSON' },
-    { value: '/jwt.html', label: 'JWT' },
-    { value: '/cron.html', label: 'Cron' },
-    { value: '/url.html', label: 'URL' },
-    { value: '/hash.html', label: 'Hash' },
+    { value: '/uuid', label: 'UUID' },
+    { value: '/base64', label: 'Base64' },
+    { value: '/json', label: 'JSON' },
+    { value: '/jwt', label: 'JWT' },
+    { value: '/cron', label: 'Cron' },
+    { value: '/url', label: 'URL' },
+    { value: '/hash', label: 'Hash' },
   ];
 
   const switcherContainer = document.createElement('div');
@@ -57,12 +57,15 @@ function setupGlobalNavigation() {
     if (e.target.value) window.location.href = e.target.value;
   };
 
-  const currentPath = window.location.pathname;
+  const currentPath = window.location.pathname.replace(/\/$/, ''); // Remove trailing slash
   tools.forEach(tool => {
     const option = document.createElement('option');
     option.value = tool.value;
     option.textContent = tool.label;
-    if (currentPath.endsWith(tool.value) || (tool.value === '/' && currentPath.endsWith('index.html'))) {
+    // Match logic: strict match or handling index.html specially if needed,
+    // but usually currentPath will be '/uuid' or '/uuid.html'.
+    // We try to match with or without .html to be safe.
+    if (currentPath === tool.value || currentPath === tool.value + '.html' || (tool.value === '/' && (currentPath === '' || currentPath === '/index.html'))) {
       option.selected = true;
     }
     select.appendChild(option);
