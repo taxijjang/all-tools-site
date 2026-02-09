@@ -50,6 +50,7 @@ function update() {
         dom.snippet.textContent = `${expression} /path/to/command`;
 
     } catch (err) {
+        console.error('Cron update error:', err); // Debug
         if (expression.length > 0) {
             dom.explanation.textContent = currentLocale === 'ko' ? '유효하지 않은 Cron 표현식입니다.' : 'Invalid cron expression';
             dom.explanation.className = 'cron-explanation error';
