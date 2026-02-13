@@ -1,5 +1,6 @@
 import './style.css';
 import { t } from './i18n.js';
+import { toDataURL } from 'qrcode';
 
 const dom = {
   text: document.getElementById('qrText'),
@@ -17,7 +18,7 @@ function setMessage(text, error = false) {
   dom.message.classList.toggle('message--error', error);
 }
 
-function generateQr() {
+async function generateQr() {
   const text = dom.text.value.trim();
   const size = Number(dom.size.value || 256);
 
@@ -26,25 +27,15 @@ function generateQr() {
     return;
   }
 
-  if (!window.QRCode || !window.QRCode.toDataURL) {
-    setMessage(t('qr.error.lib'), true);
-    return;
+  try {
+    const url = await toDataURL(text, { width: size, margin: 1, errorCorrectionLevel: 'M' });
+    dom.image.src = url;
+    dom.image.hidden = false;
+    dom.download.disabled = false;
+    setMessage(t('qr.success.generated'));
+  } catch {
+    setMessage(t('qr.error.generate'), true);
   }
-
-  window.QRCode.toDataURL(
-    text,
-    { width: size, margin: 1, errorCorrectionLevel: 'M' },
-    (err, url) => {
-      if (err) {
-        setMessage(t('qr.error.generate'), true);
-        return;
-      }
-      dom.image.src = url;
-      dom.image.hidden = false;
-      dom.download.disabled = false;
-      setMessage(t('qr.success.generated'));
-    },
-  );
 }
 
 async function scanQrFromFile(file) {

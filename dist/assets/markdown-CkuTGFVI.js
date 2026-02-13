@@ -1,4 +1,4 @@
-import{t as d}from"./site-LBKiOaGe.js";const e={input:document.getElementById("mdInput"),preview:document.getElementById("mdPreview"),render:document.getElementById("mdRenderBtn"),clear:document.getElementById("mdClearBtn"),sample:document.getElementById("mdSampleBtn"),html:document.getElementById("mdHtml"),message:document.getElementById("mdMessage")},o=`# Markdown Preview
+import{t as d}from"./site-BuVIgym6.js";const e={input:document.getElementById("mdInput"),preview:document.getElementById("mdPreview"),render:document.getElementById("mdRenderBtn"),clear:document.getElementById("mdClearBtn"),sample:document.getElementById("mdSampleBtn"),html:document.getElementById("mdHtml"),message:document.getElementById("mdMessage")},o=`# Markdown Preview
 
 - Fast draft writing
 - Check code blocks
