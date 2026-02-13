@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   file: document.getElementById('fhFile'),
@@ -21,7 +22,7 @@ function toHex(buffer) {
 async function runHash() {
   const file = dom.file.files?.[0];
   if (!file) {
-    setMessage('파일을 선택하세요.', true);
+    setMessage(t('filehash.error.file'), true);
     return;
   }
 
@@ -30,9 +31,9 @@ async function runHash() {
     const algo = dom.algo.value;
     const digest = await crypto.subtle.digest(algo, data);
     dom.output.value = toHex(digest);
-    setMessage(`${algo} 계산 완료 (${file.name})`);
+    setMessage(t('filehash.success', { algorithm: algo, name: file.name }));
   } catch {
-    setMessage('해시 계산 실패', true);
+    setMessage(t('filehash.error.run'), true);
   }
 }
 
@@ -42,6 +43,6 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || '');
-    setMessage('복사했습니다.');
+    setMessage(t('common.copySuccess'));
   });
 });

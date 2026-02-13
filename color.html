@@ -15,18 +15,34 @@
 </head>
 <body class="layout layout--dev" data-tool="color">
   <div class="page page--dev">
-    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
-    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>색상 도구</h1><p>HEX/RGB/HSL 변환과 대비 비율 체크.</p></header>
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="color.title">색상 도구</h1>
+      <p data-i18n="color.description">HEX/RGB/HSL 변환과 대비 비율 체크.</p>
+    </header>
     <main class="tool tool--columns">
-      <section class="tool__panel tool__panel--stack"><label for="colorPicker">색상 선택</label><input id="colorPicker" type="color" value="#0ea5e9" /><div id="colorSwatch" class="color-swatch"></div></section>
       <section class="tool__panel tool__panel--stack">
-        <div class="panel-header"><label for="colorHex">HEX</label><button data-copy="colorHex" type="button">복사</button></div><input id="colorHex" type="text" readonly />
-        <div class="panel-header"><label for="colorRgb">RGB</label><button data-copy="colorRgb" type="button">복사</button></div><input id="colorRgb" type="text" readonly />
-        <div class="panel-header"><label for="colorHsl">HSL</label><button data-copy="colorHsl" type="button">복사</button></div><input id="colorHsl" type="text" readonly />
-        <label for="colorContrast">대비 비율</label><input id="colorContrast" type="text" readonly />
+        <label for="colorPicker" data-i18n="color.pick">색상 선택</label>
+        <input id="colorPicker" type="color" value="#0ea5e9" />
+        <div id="colorSwatch" class="color-swatch"></div>
+      </section>
+      <section class="tool__panel tool__panel--stack">
+        <div class="panel-header"><label for="colorHex">HEX</label><button data-copy="colorHex" type="button" data-i18n="common.copy">복사</button></div><input id="colorHex" type="text" readonly />
+        <div class="panel-header"><label for="colorRgb">RGB</label><button data-copy="colorRgb" type="button" data-i18n="common.copy">복사</button></div><input id="colorRgb" type="text" readonly />
+        <div class="panel-header"><label for="colorHsl">HSL</label><button data-copy="colorHsl" type="button" data-i18n="common.copy">복사</button></div><input id="colorHsl" type="text" readonly />
+        <label for="colorContrast" data-i18n="color.contrast">대비 비율</label><input id="colorContrast" type="text" readonly />
       </section>
     </main>
-    <p id="colorMessage" class="message"></p>
+    <p id="colorMessage" class="message" role="status" aria-live="polite"></p>
   </div>
   <script type="module" src="/src/site.js"></script>
   <script type="module" src="/src/color.js"></script>

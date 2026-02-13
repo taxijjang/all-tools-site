@@ -11,26 +11,56 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/diff-DgQLzp1h.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-C_lPCQRL.js">
+  <script type="module" crossorigin src="/assets/diff-bLM_zWBi.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-LBKiOaGe.js">
   <link rel="stylesheet" crossorigin href="/assets/site-o3ofvBZe.css">
 </head>
 <body class="layout layout--dev" data-tool="diff">
   <div class="page page--dev">
-    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
-    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>텍스트 Diff</h1><p>라인 단위로 변경사항을 비교합니다.</p></header>
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="diff.title">텍스트 Diff</h1>
+      <p data-i18n="diff.description">라인 단위로 변경사항을 비교합니다.</p>
+    </header>
     <main class="tool tool--columns">
-      <section class="tool__panel tool__panel--stack"><label for="diffLeft">원본</label><textarea id="diffLeft" rows="12" data-persist="left">line1
+      <section class="tool__panel tool__panel--stack">
+        <label for="diffLeft" data-i18n="diff.left">원본</label>
+        <textarea id="diffLeft" rows="12" data-persist="left">line1
 line2
-line3</textarea></section>
-      <section class="tool__panel tool__panel--stack"><label for="diffRight">수정본</label><textarea id="diffRight" rows="12" data-persist="right">line1
+line3</textarea>
+      </section>
+      <section class="tool__panel tool__panel--stack">
+        <label for="diffRight" data-i18n="diff.right">수정본</label>
+        <textarea id="diffRight" rows="12" data-persist="right">line1
 line2 changed
 line3
-line4</textarea></section>
+line4</textarea>
+      </section>
     </main>
-    <div class="toolbar"><button id="diffCompareBtn" class="primary" type="button">비교</button><button id="diffClearBtn" type="button">지우기</button></div>
-    <section class="tool__panel tool__panel--stack"><label>결과</label><div id="diffOutput" class="diff-output"></div></section>
-    <section class="tool__panel tool__panel--stack"><div class="panel-header"><label for="diffUnified">Unified Diff</label><button type="button" data-copy="diffUnified">복사</button></div><textarea id="diffUnified" rows="8" readonly></textarea></section>
+    <div class="toolbar">
+      <button id="diffCompareBtn" class="primary" type="button" data-i18n="diff.compare">비교</button>
+      <button id="diffClearBtn" type="button" data-i18n="common.clear">지우기</button>
+    </div>
+    <section class="tool__panel tool__panel--stack">
+      <label data-i18n="diff.result">결과</label>
+      <div id="diffOutput" class="diff-output"></div>
+    </section>
+    <section class="tool__panel tool__panel--stack">
+      <div class="panel-header">
+        <label for="diffUnified" data-i18n="diff.unified">Unified Diff</label>
+        <button type="button" data-copy="diffUnified" data-i18n="common.copy">복사</button>
+      </div>
+      <textarea id="diffUnified" rows="8" readonly></textarea>
+    </section>
     <p id="diffMessage" class="message" role="status" aria-live="polite"></p>
   </div>
 </body>

@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   file: document.getElementById('ibFile'),
@@ -26,7 +27,7 @@ function readAsDataUrl(file) {
 async function encodeFile() {
   const file = dom.file.files?.[0];
   if (!file) {
-    setMessage('이미지를 선택하세요.', true);
+    setMessage(t('imagebase64.error.file'), true);
     return;
   }
   try {
@@ -34,9 +35,9 @@ async function encodeFile() {
     dom.output.value = dataUrl;
     dom.preview.src = dataUrl;
     dom.preview.hidden = false;
-    setMessage('Base64 변환 완료.');
+    setMessage(t('imagebase64.success.encode'));
   } catch {
-    setMessage('변환 실패', true);
+    setMessage(t('imagebase64.error.encode'), true);
   }
 }
 
@@ -44,7 +45,7 @@ function decodeToFile() {
   const value = dom.output.value.trim();
   const match = value.match(/^data:(.+);base64,(.+)$/);
   if (!match) {
-    setMessage('유효한 data URL 형식이 아닙니다.', true);
+    setMessage(t('imagebase64.error.format'), true);
     return;
   }
 
@@ -60,7 +61,7 @@ function decodeToFile() {
   a.download = `decoded.${(mime.split('/')[1] || 'bin').split(';')[0]}`;
   a.click();
   URL.revokeObjectURL(url);
-  setMessage('파일 저장 완료.');
+  setMessage(t('imagebase64.success.decode'));
 }
 
 dom.encode.addEventListener('click', encodeFile);
@@ -70,6 +71,6 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || '');
-    setMessage('복사했습니다.');
+    setMessage(t('common.copySuccess'));
   });
 });

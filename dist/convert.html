@@ -11,24 +11,57 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/convert-DGBY5moD.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-C_lPCQRL.js">
+  <script type="module" crossorigin src="/assets/convert-Bfj0xClb.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-LBKiOaGe.js">
   <link rel="stylesheet" crossorigin href="/assets/site-o3ofvBZe.css">
 </head>
 <body class="layout layout--dev" data-tool="convert">
   <div class="page page--dev">
-    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
-    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>단위 변환기</h1><p>길이/무게/온도 변환.</p></header>
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="convert.title">단위 변환기</h1>
+      <p data-i18n="convert.description">길이/무게/온도 변환.</p>
+    </header>
     <main class="tool tool--columns">
       <section class="tool__panel tool__panel--stack">
-        <label for="cvCategory">카테고리</label><select id="cvCategory"><option value="length">길이</option><option value="weight">무게</option><option value="temp">온도</option></select>
-        <label for="cvInput">입력 값</label><input id="cvInput" type="number" value="1" data-persist="input" />
-        <div class="tool-grid-3"><div><label for="cvFrom">From</label><select id="cvFrom"></select></div><div><label for="cvTo">To</label><select id="cvTo"></select></div><div class="toolbar"><button id="cvSwapBtn" type="button">교환</button></div></div>
-        <div class="toolbar"><button id="cvConvertBtn" class="primary" type="button">변환</button></div>
-        <label for="cvOutput">결과</label><input id="cvOutput" type="text" readonly />
+        <label for="cvCategory" data-i18n="convert.category">카테고리</label>
+        <select id="cvCategory">
+          <option value="length" data-i18n="convert.category.length">길이</option>
+          <option value="weight" data-i18n="convert.category.weight">무게</option>
+          <option value="temp" data-i18n="convert.category.temp">온도</option>
+        </select>
+        <label for="cvInput" data-i18n="convert.input">입력 값</label>
+        <input id="cvInput" type="number" value="1" data-persist="input" />
+        <div class="tool-grid-3">
+          <div>
+            <label for="cvFrom" data-i18n="convert.from">From</label>
+            <select id="cvFrom"></select>
+          </div>
+          <div>
+            <label for="cvTo" data-i18n="convert.to">To</label>
+            <select id="cvTo"></select>
+          </div>
+          <div class="toolbar">
+            <button id="cvSwapBtn" type="button" data-i18n="convert.swap">교환</button>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button id="cvConvertBtn" class="primary" type="button" data-i18n="convert.run">변환</button>
+        </div>
+        <label for="cvOutput" data-i18n="convert.output">결과</label>
+        <input id="cvOutput" type="text" readonly />
       </section>
     </main>
-    <p id="cvMessage" class="message"></p>
+    <p id="cvMessage" class="message" role="status" aria-live="polite"></p>
   </div>
 </body>
 </html>

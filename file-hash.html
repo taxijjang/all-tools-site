@@ -15,10 +15,42 @@
 </head>
 <body class="layout layout--dev" data-tool="file-hash">
   <div class="page page--dev">
-    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
-    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>파일 해시 계산기</h1><p>업로드 파일의 SHA 해시 계산.</p></header>
-    <main class="tool tool--columns"><section class="tool__panel tool__panel--stack"><label for="fhFile">파일</label><input id="fhFile" type="file" /><label for="fhAlgo">알고리즘</label><select id="fhAlgo"><option>SHA-256</option><option>SHA-1</option><option>SHA-384</option><option>SHA-512</option></select><div class="toolbar"><button id="fhRunBtn" class="primary" type="button">계산</button></div><div class="panel-header"><label for="fhOutput">HEX</label><button data-copy="fhOutput" type="button">복사</button></div><textarea id="fhOutput" rows="6" readonly></textarea></section></main>
-    <p id="fhMessage" class="message"></p>
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="filehash.title">파일 해시 계산기</h1>
+      <p data-i18n="filehash.description">업로드 파일의 SHA 해시 계산.</p>
+    </header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack">
+        <label for="fhFile" data-i18n="filehash.file">파일</label>
+        <input id="fhFile" type="file" />
+        <label for="fhAlgo" data-i18n="filehash.algorithm">알고리즘</label>
+        <select id="fhAlgo">
+          <option>SHA-256</option>
+          <option>SHA-1</option>
+          <option>SHA-384</option>
+          <option>SHA-512</option>
+        </select>
+        <div class="toolbar">
+          <button id="fhRunBtn" class="primary" type="button" data-i18n="filehash.run">계산</button>
+        </div>
+        <div class="panel-header">
+          <label for="fhOutput">HEX</label>
+          <button data-copy="fhOutput" type="button" data-i18n="common.copy">복사</button>
+        </div>
+        <textarea id="fhOutput" rows="6" readonly></textarea>
+      </section>
+    </main>
+    <p id="fhMessage" class="message" role="status" aria-live="polite"></p>
   </div>
   <script type="module" src="/src/site.js"></script>
   <script type="module" src="/src/file-hash.js"></script>

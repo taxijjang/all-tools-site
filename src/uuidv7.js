@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   count: document.getElementById('u7Count'),
@@ -49,7 +50,7 @@ function run() {
   const out = [];
   for (let i = 0; i < count; i += 1) out.push(generateUuidV7());
   dom.output.value = out.join('\n');
-  setMessage(`UUID v7 ${count}개 생성 완료.`);
+  setMessage(t('uuidv7.success.generated', { count }));
 }
 
 dom.generate.addEventListener('click', run);
@@ -58,7 +59,7 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || '');
-    setMessage('복사했습니다.');
+    setMessage(t('common.copySuccess'));
   });
 });
 

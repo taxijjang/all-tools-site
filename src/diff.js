@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   left: document.getElementById('diffLeft'),
@@ -71,24 +72,24 @@ function render() {
 
   for (const op of ops) {
     if (op.type === 'same') {
-      html += `<div class=\"diff-line\"><span class=\"diff-tag diff-tag-same\"> </span>${esc(op.text)}</div>`;
+      html += `<div class="diff-line"><span class="diff-tag diff-tag-same"> </span>${esc(op.text)}</div>`;
       unified += ` ${op.text}\n`;
     }
     if (op.type === 'add') {
       changed += 1;
-      html += `<div class=\"diff-line diff-add\"><span class=\"diff-tag\">+</span>${esc(op.text)}</div>`;
+      html += `<div class="diff-line diff-add"><span class="diff-tag">+</span>${esc(op.text)}</div>`;
       unified += `+${op.text}\n`;
     }
     if (op.type === 'del') {
       changed += 1;
-      html += `<div class=\"diff-line diff-del\"><span class=\"diff-tag\">-</span>${esc(op.text)}</div>`;
+      html += `<div class="diff-line diff-del"><span class="diff-tag">-</span>${esc(op.text)}</div>`;
       unified += `-${op.text}\n`;
     }
   }
 
   dom.output.innerHTML = html;
   dom.unified.value = unified.trimEnd();
-  setMessage(changed ? `변경 라인 ${changed}개` : '차이가 없습니다.');
+  setMessage(changed ? t('diff.result.changed', { count: changed }) : t('diff.result.same'));
 }
 
 dom.compare.addEventListener('click', render);
@@ -105,7 +106,7 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || target.textContent || '');
-    setMessage('복사했습니다.');
+    setMessage(t('common.copySuccess'));
   });
 });
 

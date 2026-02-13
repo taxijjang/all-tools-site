@@ -15,10 +15,32 @@
 </head>
 <body class="layout layout--dev" data-tool="uuidv7">
   <div class="page page--dev">
-    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
-    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>UUID v7 생성기</h1><p>시간순 정렬 가능한 UUID v7 생성.</p></header>
-    <main class="tool"><section class="tool__panel tool__panel--stack"><label for="u7Count">생성 개수</label><input id="u7Count" type="number" min="1" max="100" value="10" data-persist="count" /><div class="toolbar"><button id="u7GenerateBtn" class="primary" type="button">생성</button><button data-copy="u7Output" type="button">복사</button></div><textarea id="u7Output" rows="12" readonly></textarea></section></main>
-    <p id="u7Message" class="message"></p>
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="uuidv7.title">UUID v7 생성기</h1>
+      <p data-i18n="uuidv7.description">시간순 정렬 가능한 UUID v7 생성.</p>
+    </header>
+    <main class="tool">
+      <section class="tool__panel tool__panel--stack">
+        <label for="u7Count" data-i18n="uuidv7.count">생성 개수</label>
+        <input id="u7Count" type="number" min="1" max="100" value="10" data-persist="count" />
+        <div class="toolbar">
+          <button id="u7GenerateBtn" class="primary" type="button" data-i18n="uuidv7.generate">생성</button>
+          <button data-copy="u7Output" type="button" data-i18n="common.copy">복사</button>
+        </div>
+        <textarea id="u7Output" rows="12" readonly></textarea>
+      </section>
+    </main>
+    <p id="u7Message" class="message" role="status" aria-live="polite"></p>
   </div>
   <script type="module" src="/src/site.js"></script>
   <script type="module" src="/src/uuidv7.js"></script>

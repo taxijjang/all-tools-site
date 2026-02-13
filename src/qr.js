@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   text: document.getElementById('qrText'),
@@ -21,12 +22,12 @@ function generateQr() {
   const size = Number(dom.size.value || 256);
 
   if (!text) {
-    setMessage('텍스트를 입력하세요.', true);
+    setMessage(t('qr.error.empty'), true);
     return;
   }
 
   if (!window.QRCode || !window.QRCode.toDataURL) {
-    setMessage('QR 라이브러리를 불러오지 못했습니다.', true);
+    setMessage(t('qr.error.lib'), true);
     return;
   }
 
@@ -35,20 +36,20 @@ function generateQr() {
     { width: size, margin: 1, errorCorrectionLevel: 'M' },
     (err, url) => {
       if (err) {
-        setMessage('QR 생성에 실패했습니다.', true);
+        setMessage(t('qr.error.generate'), true);
         return;
       }
       dom.image.src = url;
       dom.image.hidden = false;
       dom.download.disabled = false;
-      setMessage('QR 코드를 생성했습니다.');
+      setMessage(t('qr.success.generated'));
     },
   );
 }
 
 async function scanQrFromFile(file) {
   if (!('BarcodeDetector' in window)) {
-    setMessage('이 브라우저는 QR 스캔을 지원하지 않습니다.', true);
+    setMessage(t('qr.error.unsupported'), true);
     return;
   }
 
@@ -59,14 +60,14 @@ async function scanQrFromFile(file) {
 
     if (!results.length) {
       dom.scanOutput.value = '';
-      setMessage('QR 코드를 찾지 못했습니다.', true);
+      setMessage(t('qr.error.notFound'), true);
       return;
     }
 
     dom.scanOutput.value = results.map((r) => r.rawValue || '').join('\n');
-    setMessage('QR 스캔 완료.');
+    setMessage(t('qr.success.scanned'));
   } catch {
-    setMessage('QR 스캔 처리 중 오류가 발생했습니다.', true);
+    setMessage(t('qr.error.scan'), true);
   }
 }
 

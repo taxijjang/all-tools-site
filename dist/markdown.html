@@ -12,19 +12,47 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script type="module" crossorigin src="/assets/markdown-Dl_3K0nv.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-C_lPCQRL.js">
+  <script type="module" crossorigin src="/assets/markdown-CHL8WWI9.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-LBKiOaGe.js">
   <link rel="stylesheet" crossorigin href="/assets/site-o3ofvBZe.css">
 </head>
 <body class="layout layout--dev" data-tool="markdown">
   <div class="page page--dev">
-    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
-    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>Markdown 미리보기</h1><p>문서 초안 작성과 HTML 확인용.</p></header>
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="markdown.title">Markdown 미리보기</h1>
+      <p data-i18n="markdown.description">문서 초안 작성과 HTML 확인용.</p>
+    </header>
     <main class="tool tool--columns">
-      <section class="tool__panel tool__panel--stack"><label for="mdInput">Markdown</label><textarea id="mdInput" rows="14" data-persist="input"></textarea><div class="toolbar"><button id="mdRenderBtn" class="primary" type="button">렌더</button><button id="mdSampleBtn" type="button">샘플</button><button id="mdClearBtn" type="button">지우기</button></div></section>
-      <section class="tool__panel tool__panel--stack"><label>미리보기</label><div id="mdPreview" class="markdown-preview"></div><div class="panel-header"><label for="mdHtml">HTML</label><button data-copy="mdHtml" type="button">복사</button></div><textarea id="mdHtml" rows="8" readonly></textarea></section>
+      <section class="tool__panel tool__panel--stack">
+        <label for="mdInput" data-i18n="markdown.input">Markdown</label>
+        <textarea id="mdInput" rows="14" data-persist="input"></textarea>
+        <div class="toolbar">
+          <button id="mdRenderBtn" class="primary" type="button" data-i18n="markdown.render">렌더</button>
+          <button id="mdSampleBtn" type="button" data-i18n="common.sample">샘플</button>
+          <button id="mdClearBtn" type="button" data-i18n="common.clear">지우기</button>
+        </div>
+      </section>
+      <section class="tool__panel tool__panel--stack">
+        <label data-i18n="markdown.preview">미리보기</label>
+        <div id="mdPreview" class="markdown-preview"></div>
+        <div class="panel-header">
+          <label for="mdHtml">HTML</label>
+          <button data-copy="mdHtml" type="button" data-i18n="common.copy">복사</button>
+        </div>
+        <textarea id="mdHtml" rows="8" readonly></textarea>
+      </section>
     </main>
-    <p id="mdMessage" class="message"></p>
+    <p id="mdMessage" class="message" role="status" aria-live="polite"></p>
   </div>
 </body>
 </html>

@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   picker: document.getElementById('colorPicker'),
@@ -80,12 +81,12 @@ function update() {
     const black = { r: 0, g: 0, b: 0 };
     const cw = contrastRatio(rgb, white);
     const cb = contrastRatio(rgb, black);
-    dom.contrast.value = `vs White: ${cw} / vs Black: ${cb}`;
+    dom.contrast.value = t('color.contrast.value', { white: cw, black: cb });
 
     dom.swatch.style.background = hex;
-    setMessage('색상 값 변환 완료.');
+    setMessage(t('color.success'));
   } catch {
-    setMessage('색상 파싱 오류', true);
+    setMessage(t('color.error.parse'), true);
   }
 }
 
@@ -96,7 +97,7 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || '');
-    setMessage('복사했습니다.');
+    setMessage(t('common.copySuccess'));
   });
 });
 

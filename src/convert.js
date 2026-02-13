@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   category: document.getElementById('cvCategory'),
@@ -40,8 +41,8 @@ function getUnitOptions(category) {
 function repopulateUnits() {
   const category = dom.category.value;
   const options = getUnitOptions(category);
-  dom.from.innerHTML = options.map((u) => `<option value=\"${u}\">${u}</option>`).join('');
-  dom.to.innerHTML = options.map((u) => `<option value=\"${u}\">${u}</option>`).join('');
+  dom.from.innerHTML = options.map((u) => `<option value="${u}">${u}</option>`).join('');
+  dom.to.innerHTML = options.map((u) => `<option value="${u}">${u}</option>`).join('');
   if (options[1]) dom.to.value = options[1];
 }
 
@@ -59,7 +60,7 @@ function convertTemp(value, from, to) {
 function convert() {
   const value = Number(dom.input.value);
   if (Number.isNaN(value)) {
-    setMessage('숫자를 입력하세요.', true);
+    setMessage(t('convert.error.nan'), true);
     return;
   }
 
@@ -76,7 +77,7 @@ function convert() {
   }
 
   dom.output.value = String(result);
-  setMessage('변환 완료.');
+  setMessage(t('convert.success'));
 }
 
 repopulateUnits();
