@@ -85,8 +85,10 @@ body {
 .layout {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  max-width: 100%;
+  gap: 1rem;
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 0 0.75rem;
   overflow-x: hidden;
 }
 
@@ -166,7 +168,7 @@ body {
 }
 
 .page--dev {
-  max-width: 1040px;
+  max-width: 1360px;
 }
 
 .hero {
@@ -259,7 +261,7 @@ body {
 }
 
 .ad-rail {
-  flex: 0 0 260px;
+  flex: 0 0 220px;
   display: flex;
   justify-content: center;
   padding-top: 1.5rem;
@@ -315,8 +317,14 @@ body {
 
 .tool--columns {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 1.5rem;
+}
+
+@media (min-width: 1440px) {
+  .page--dev {
+    max-width: 1480px;
+  }
 }
 
 .tool__panel--stack {
