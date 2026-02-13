@@ -464,18 +464,13 @@ body {
   }
 }
 
-/* On tool pages, prioritize workspace over dual side rails. */
-body[data-tool]:not([data-tool="home"]) .ad-rail--left {
-  display: none;
-}
-
 body[data-tool]:not([data-tool="home"]) .page--dev {
-  width: min(1560px, calc(100vw - 280px));
+  width: min(1560px, calc(100vw - 520px));
 }
 
 @media (min-width: 1700px) {
   body[data-tool]:not([data-tool="home"]) .page--dev {
-    width: min(1660px, calc(100vw - 300px));
+    width: min(1660px, calc(100vw - 560px));
   }
 }
 
