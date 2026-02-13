@@ -86,7 +86,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  max-width: 1760px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 0.75rem;
   overflow-x: hidden;
@@ -169,6 +169,7 @@ body {
 
 .page--dev {
   max-width: 1360px;
+  width: min(1500px, calc(100vw - 520px));
 }
 
 .hero {
@@ -324,6 +325,21 @@ body {
 @media (min-width: 1440px) {
   .page--dev {
     max-width: 1480px;
+  }
+}
+
+/* On tool pages, prioritize workspace over dual side rails. */
+body[data-tool]:not([data-tool="home"]) .ad-rail--left {
+  display: none;
+}
+
+body[data-tool]:not([data-tool="home"]) .page--dev {
+  width: min(1560px, calc(100vw - 280px));
+}
+
+@media (min-width: 1700px) {
+  body[data-tool]:not([data-tool="home"]) .page--dev {
+    width: min(1660px, calc(100vw - 300px));
   }
 }
 
