@@ -389,6 +389,10 @@ button:active {
   align-items: center;
 }
 
+.field-row--label-only {
+  justify-content: space-between;
+}
+
 .field-row textarea,
 .field-row input {
   flex: 1;
@@ -400,6 +404,20 @@ button:active {
   margin: 0.5rem 0;
   flex-wrap: wrap;
   font-size: 0.9rem;
+}
+
+.badge-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .message {

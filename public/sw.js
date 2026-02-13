@@ -1,4 +1,4 @@
-const CACHE_NAME = 'stateless-tools-v4-20260209';
+const CACHE_NAME = 'stateless-tools-v5-20260213';
 const ASSETS = [
   '/',
   '/index.html',
@@ -6,8 +6,11 @@ const ASSETS = [
   '/base64.html',
   '/json.html',
   '/jwt.html',
+  '/cron.html',
   '/url.html',
   '/hash.html',
+  '/timestamp.html',
+  '/password.html',
   '/manifest.webmanifest',
   '/icon.svg',
 ];

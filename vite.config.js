@@ -13,6 +13,8 @@ export default defineConfig({
         url: resolve(__dirname, 'url.html'),
         hash: resolve(__dirname, 'hash.html'),
         cron: resolve(__dirname, 'cron.html'),
+        timestamp: resolve(__dirname, 'timestamp.html'),
+        password: resolve(__dirname, 'password.html'),
       },
     },
   },
