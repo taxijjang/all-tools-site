@@ -1,4 +1,4 @@
-import{t as n}from"./site-vVKJrrBg.js";const u=document.getElementById("urlInput"),a=document.getElementById("urlOutput"),l=document.getElementById("urlParams"),h=document.getElementById("urlMessage"),g=document.getElementById("urlSnippet");function r(e,t=!1){h.textContent=e,h.classList.toggle("message--error",t)}function m(e){if(!g)return;const t=e||u.value||"https://example.dev?q=hello world",o=["// Node.js",`const encoded = encodeURIComponent(${JSON.stringify(t)});`,"","# shell",`python3 - <<'PY'
+import{t as n}from"./site-iL5_zn86.js";const u=document.getElementById("urlInput"),a=document.getElementById("urlOutput"),l=document.getElementById("urlParams"),h=document.getElementById("urlMessage"),g=document.getElementById("urlSnippet");function r(e,t=!1){h.textContent=e,h.classList.toggle("message--error",t)}function m(e){if(!g)return;const t=e||u.value||"https://example.dev?q=hello world",o=["// Node.js",`const encoded = encodeURIComponent(${JSON.stringify(t)});`,"","# shell",`python3 - <<'PY'
 import urllib.parse
 print(urllib.parse.quote(${JSON.stringify(t)}))
 PY`].join(`

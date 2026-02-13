@@ -1,6 +1,6 @@
 import cronstrue from 'cronstrue/i18n';
-import { parseExpression } from 'cron-parser';
-import { onLocaleChange } from './i18n.js';
+import CronExpressionParser from 'cron-parser';
+import { onLocaleChange, t } from './i18n.js';
 
 const dom = {
     input: document.getElementById('cronInput'),
@@ -12,20 +12,67 @@ const dom = {
 };
 
 let currentLocale = document.documentElement.lang || 'ko';
+const LOCALE_MAP = {
+    ko: 'ko',
+    en: 'en',
+};
+
+const CRON_NICKNAMES = {
+    '@yearly': '0 0 1 1 *',
+    '@annually': '0 0 1 1 *',
+    '@monthly': '0 0 1 * *',
+    '@weekly': '0 0 * * 0',
+    '@daily': '0 0 * * *',
+    '@hourly': '0 * * * *',
+};
+
+function getCronstrueLocale() {
+    return LOCALE_MAP[currentLocale] || 'en';
+}
+
+function normalizeExpression(value) {
+    const lower = value.toLowerCase();
+    return CRON_NICKNAMES[lower] || value;
+}
+
+function renderEmpty() {
+    dom.explanation.textContent = t('cron.empty');
+    dom.explanation.className = 'cron-explanation';
+    dom.nextList.innerHTML = '';
+    dom.snippet.textContent = '# cron expression';
+    dom.message.textContent = '';
+    dom.input.classList.remove('error');
+}
+
+function renderInvalid(message) {
+    dom.explanation.textContent = t('cron.error.invalid');
+    dom.explanation.className = 'cron-explanation error';
+    dom.input.classList.add('error');
+    dom.nextList.innerHTML = '';
+    dom.snippet.textContent = '# Invalid cron expression';
+    dom.message.textContent = t('cron.error.details', { message });
+    dom.message.classList.add('message--error');
+}
 
 function update() {
     const expression = dom.input.value.trim();
-    if (!expression) return;
+    if (!expression) {
+        renderEmpty();
+        return;
+    }
 
     try {
+        const normalized = normalizeExpression(expression);
         // 1. Human Readable Description
-        const desc = cronstrue.toString(expression, { locale: currentLocale });
+        const desc = cronstrue.toString(normalized, { locale: getCronstrueLocale() });
         dom.explanation.textContent = desc;
         dom.explanation.className = 'cron-explanation'; // reset error class
         dom.input.classList.remove('error');
+        dom.message.textContent = '';
+        dom.message.classList.remove('message--error');
 
         // 2. Next Runs
-        const interval = parseExpression(expression);
+        const interval = CronExpressionParser.parse(normalized);
         dom.nextList.innerHTML = '';
 
         // Generate next 5 dates
@@ -47,17 +94,10 @@ function update() {
         }
 
         // 3. Snippet
-        dom.snippet.textContent = `${expression} /path/to/command`;
+        dom.snippet.textContent = `${normalized} /path/to/command`;
 
     } catch (err) {
-        console.error('Cron update error:', err); // Debug
-        if (expression.length > 0) {
-            dom.explanation.textContent = currentLocale === 'ko' ? '유효하지 않은 Cron 표현식입니다.' : 'Invalid cron expression';
-            dom.explanation.className = 'cron-explanation error';
-            dom.input.classList.add('error');
-        }
-        dom.nextList.innerHTML = '';
-        dom.snippet.textContent = '# Invalid cron expression';
+        renderInvalid(err?.message || 'Invalid cron expression');
     }
 }
 
@@ -67,16 +107,8 @@ dom.input.addEventListener('input', update);
 dom.presets.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        e.stopImmediatePropagation(); // Ensure only one handler runs
-        const presetValue = btn.dataset.preset;
-        console.log('Preset clicked:', presetValue); // Debug
-
-        // Force reset value to avoid any appending weirdness
-        dom.input.value = '';
-        dom.input.value = presetValue;
-
-        // Dispatch input event for reactivity
-        dom.input.dispatchEvent(new Event('input', { bubbles: true }));
+        dom.input.value = btn.dataset.preset;
+        update();
     });
 });
 
