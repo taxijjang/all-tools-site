@@ -3,14 +3,14 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>해시 계산기</title>
+  <title>Regex Tester</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="SHA-1/256/384/512 해시를 계산하고 HEX/Base64 출력을 제공합니다." />
+  <meta name="description" content="정규식을 브라우저에서 즉시 테스트하고 매치 위치를 확인하세요." />
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="해시 계산기" />
-  <meta property="og:description" content="SHA-1/256/384/512 해시를 계산하고 HEX/Base64 출력을 제공합니다." />
+  <meta property="og:title" content="Regex Tester" />
+  <meta property="og:description" content="정규식 패턴/플래그를 테스트하고 매치 결과를 바로 확인하세요." />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
     crossorigin="anonymous"></script>
@@ -18,17 +18,17 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/hash-BscADoTZ.js"></script>
+  <script type="module" crossorigin src="/assets/regex-D4sns3qi.js"></script>
   <link rel="modulepreload" crossorigin href="/assets/site-vVKJrrBg.js">
   <link rel="stylesheet" crossorigin href="/assets/site-Ht-Nijmc.css">
 </head>
 
-<body class="layout layout--dev" data-tool="hash">
+<body class="layout layout--dev" data-tool="regex">
   <aside class="ad-rail ad-rail--left" aria-label="좌측 광고">
     <div>
       <ins class="adsbygoogle ad-rail__slot" style="display: block" data-ad-format="fluid"
@@ -52,58 +52,47 @@
     </div>
     <header class="page-header">
       <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
-      <h1 data-i18n="hash.title">해시 계산기</h1>
-      <p data-i18n="hash.description">
-        브라우저 내부 WebCrypto로 SHA 계열 해시를 계산합니다. 입력은 공유되지 않습니다.
-      </p>
+      <h1 data-i18n="regex.title">Regex Tester</h1>
+      <p data-i18n="regex.description">패턴과 플래그를 입력해서 매치 결과를 즉시 검증하세요.</p>
       <div class="page-actions">
         <button type="button" class="ghost" data-share-state data-i18n="common.shareState">상태 공유</button>
       </div>
     </header>
 
-    <main class="tool">
+    <main class="tool tool--columns">
       <section class="tool__panel tool__panel--stack">
-        <label for="hashInput" data-i18n="hash.input">입력 문자열</label>
-        <textarea id="hashInput" rows="4" placeholder="stateless tools" data-i18n="hash.placeholder"
-          data-i18n-attr="placeholder" data-persist="input"></textarea>
-        <div class="field-row">
-          <label for="hashAlgorithm" data-i18n="hash.algorithm">알고리즘</label>
-          <select id="hashAlgorithm" data-persist="algorithm">
-            <option value="SHA-256">SHA-256</option>
-            <option value="SHA-1">SHA-1</option>
-            <option value="SHA-384">SHA-384</option>
-            <option value="SHA-512">SHA-512</option>
-          </select>
-        </div>
-        <div class="option-row">
-          <label class="field-row">
-            <input id="hashUppercase" type="checkbox" data-persist="uppercase" />
-            <span data-i18n="hash.uppercase">HEX 대문자 출력</span>
-          </label>
-        </div>
+        <label for="rePattern" data-i18n="regex.pattern">패턴</label>
+        <input id="rePattern" type="text" placeholder="\\b\\w+@\\w+\\.\\w+\\b" data-i18n="regex.pattern.placeholder"
+          data-i18n-attr="placeholder" data-persist="pattern" />
+
+        <label for="reFlags" data-i18n="regex.flags">플래그</label>
+        <input id="reFlags" type="text" value="g" placeholder="gim" data-persist="flags" />
+
+        <label for="reInput" data-i18n="regex.input">테스트 텍스트</label>
+        <textarea id="reInput" rows="10" data-persist="input"></textarea>
+
         <div class="toolbar">
-          <button id="hashComputeBtn" type="button" class="primary" data-i18n="hash.compute">해시 계산</button>
-          <button id="hashClearBtn" type="button" class="ghost" data-i18n="common.clear">지우기</button>
+          <button id="reTestBtn" type="button" class="primary" data-i18n="regex.test">테스트</button>
+          <button id="reSampleBtn" type="button" class="ghost" data-i18n="common.sample">샘플</button>
+          <button id="reClearBtn" type="button" class="ghost" data-i18n="common.clear">지우기</button>
         </div>
       </section>
 
       <section class="tool__panel tool__panel--stack">
         <div class="panel-header">
-          <label for="hashHex" data-i18n="hash.hex">HEX</label>
-          <button type="button" data-copy="hashHex" data-i18n="common.copy">복사</button>
+          <label data-i18n="regex.output">하이라이트 결과</label>
         </div>
-        <textarea id="hashHex" rows="3" readonly></textarea>
-      </section>
+        <pre id="reResult" class="code-block"></pre>
 
-      <section class="tool__panel tool__panel--stack">
         <div class="panel-header">
-          <label for="hashBase64" data-i18n="hash.base64">Base64</label>
-          <button type="button" data-copy="hashBase64" data-i18n="common.copy">복사</button>
+          <label for="reMatches" data-i18n="regex.matches">매치 목록</label>
+          <button type="button" data-copy="reMatches" data-i18n="common.copy">복사</button>
         </div>
-        <textarea id="hashBase64" rows="3" readonly></textarea>
+        <textarea id="reMatches" rows="8" readonly></textarea>
       </section>
     </main>
-    <p id="hashMessage" class="message" role="status" aria-live="polite"></p>
+
+    <p id="reMessage" class="message" role="status" aria-live="polite"></p>
 
     <footer class="footer footer--dev">
       <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>

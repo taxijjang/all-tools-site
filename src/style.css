@@ -538,6 +538,13 @@ button:active {
   padding: 0.1rem 0.25rem;
 }
 
+.re-hit {
+  background: rgb(250 204 21 / 0.3);
+  color: inherit;
+  border-radius: 0.2rem;
+  padding: 0.05rem 0.12rem;
+}
+
 .param-table {
   border: 1px solid var(--border);
   border-radius: 0.75rem;

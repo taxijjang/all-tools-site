@@ -48,6 +48,7 @@ function setupGlobalNavigation() {
     { value: '/hash', label: 'Hash' },
     { value: '/timestamp', label: 'Timestamp' },
     { value: '/password', label: 'Password' },
+    { value: '/regex', label: 'Regex' },
   ];
 
   const switcherContainer = document.createElement('div');

@@ -15,6 +15,7 @@ export default defineConfig({
         cron: resolve(__dirname, 'cron.html'),
         timestamp: resolve(__dirname, 'timestamp.html'),
         password: resolve(__dirname, 'password.html'),
+        regex: resolve(__dirname, 'regex.html'),
       },
     },
   },
