@@ -5,24 +5,10 @@ const input = document.getElementById('urlInput');
 const output = document.getElementById('urlOutput');
 const paramsContainer = document.getElementById('urlParams');
 const messageEl = document.getElementById('urlMessage');
-const snippetEl = document.getElementById('urlSnippet');
 
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
   messageEl.classList.toggle('message--error', isError);
-}
-
-function updateSnippet(value) {
-  if (!snippetEl) return;
-  const sample = value || input.value || 'https://example.dev?q=hello world';
-  const snippet = [
-    '// Node.js',
-    `const encoded = encodeURIComponent(${JSON.stringify(sample)});`,
-    '',
-    '# shell',
-    `python3 - <<'PY'\nimport urllib.parse\nprint(urllib.parse.quote(${JSON.stringify(sample)}))\nPY`,
-  ].join('\n');
-  snippetEl.textContent = snippet;
 }
 
 function renderParams(value) {
@@ -67,7 +53,6 @@ function encodeValue() {
     output.value = encoded;
     renderParams(value);
     showMessage(t('url.success.encode'));
-    updateSnippet(encoded);
   } catch (err) {
     showMessage(t('url.error.encode'), true);
   }
@@ -84,7 +69,6 @@ function decodeValue() {
     output.value = decoded;
     renderParams(decoded);
     showMessage(t('url.success.decode'));
-    updateSnippet(decoded);
   } catch (err) {
     showMessage(t('url.error.decode'), true);
   }
@@ -110,5 +94,3 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
       .catch(() => showMessage(t('common.copyFail'), true));
   });
 });
-
-updateSnippet();

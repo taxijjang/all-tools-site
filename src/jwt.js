@@ -6,7 +6,6 @@ const headerEl = document.getElementById('jwtHeader');
 const payloadEl = document.getElementById('jwtPayload');
 const messageEl = document.getElementById('jwtMessage');
 const metaEl = document.getElementById('jwtMeta');
-const snippetEl = document.getElementById('jwtSnippet');
 
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
@@ -51,19 +50,6 @@ function describeClaims(payload) {
   metaEl.textContent = parts.join(' · ');
 }
 
-function updateSnippet(token) {
-  if (!snippetEl) return;
-  const snippet = [
-    '// Node.js',
-    "import jwt from 'jsonwebtoken';",
-    `const decoded = jwt.decode(${JSON.stringify(token)});`,
-    '',
-    '# shell (jq)',
-    `echo ${token ? `"${token}"` : '$TOKEN'} | cut -d'.' -f2 | base64 --decode | jq`,
-  ].join('\n');
-  snippetEl.textContent = snippet;
-}
-
 function decodeJwt() {
   try {
     const token = jwtInput.value.trim();
@@ -82,7 +68,6 @@ function decodeJwt() {
     payloadEl.textContent = prettyPrint(payload);
     describeClaims(payload);
     showMessage(t('jwt.success'));
-    updateSnippet(token);
   } catch (err) {
     showMessage(t('jwt.error.decode'), true);
   }

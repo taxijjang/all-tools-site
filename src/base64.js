@@ -12,7 +12,6 @@ const base64Message = document.getElementById('base64Message');
 const fileInput = document.getElementById('fileInput');
 const downloadFileBtn = document.getElementById('downloadFileBtn');
 const downloadFileName = document.getElementById('downloadFileName');
-const snippetEl = document.getElementById('base64Snippet');
 
 function showMessage(text, isError = false) {
   base64Message.textContent = text;
@@ -100,29 +99,6 @@ function sanitizeBase64(value) {
   return input;
 }
 
-function shellEscape(text) {
-  if (!text) return "''";
-  return `'${text.replace(/'/g, `'\\''`)}'`;
-}
-
-function updateSnippet() {
-  if (!snippetEl) return;
-  const sample = plainInput.value || 'console.log(\"hello tools\");';
-  const encoded = base64Output.value || utf8ToBase64(sample);
-  const snippet = [
-    '// Node.js',
-    `const text = ${JSON.stringify(sample)};`,
-    "const encoded = Buffer.from(text, 'utf8').toString('base64');",
-    '',
-    '# shell',
-    `printf %s ${shellEscape(sample)} | base64`,
-    '',
-    '# Result',
-    encoded,
-  ].join('\n');
-  snippetEl.textContent = snippet;
-}
-
 document.querySelectorAll('button[data-copy]').forEach((btn) => {
   btn.addEventListener('click', () => copyValue(btn.dataset.copy));
 });
@@ -132,7 +108,6 @@ document.getElementById('encodeBtn').addEventListener('click', () => {
     const base64 = utf8ToBase64(plainInput.value || '');
     base64Output.value = urlSafeEncode.checked ? toUrlSafe(base64) : base64;
     showMessage(t('messages.base64.encodeSuccess'));
-    updateSnippet();
   } catch (err) {
     showMessage(t('messages.base64.encodeError'), true);
   }
@@ -143,7 +118,6 @@ document.getElementById('decodeBtn').addEventListener('click', () => {
     const input = sanitizeBase64(base64Input.value);
     plainOutput.value = base64ToUtf8(input);
     showMessage(t('messages.base64.decodeSuccess'));
-    updateSnippet();
   } catch (err) {
     showMessage(t('messages.base64.decodeError'), true);
   }
@@ -161,7 +135,6 @@ fileInput?.addEventListener('change', async () => {
     base64Output.value = base64;
     plainInput.value = '';
     showMessage(t('messages.base64.fileEncoded', { name: file.name }));
-    updateSnippet();
   } catch (err) {
     showMessage(t('messages.base64.fileError'), true);
   } finally {
@@ -183,5 +156,3 @@ downloadFileBtn?.addEventListener('click', () => {
     showMessage(t('messages.base64.fileError'), true);
   }
 });
-
-updateSnippet();

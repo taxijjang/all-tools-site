@@ -6,7 +6,6 @@ const dom = {
     input: document.getElementById('cronInput'),
     explanation: document.getElementById('cronExplanation'),
     nextList: document.getElementById('nextRunList'),
-    snippet: document.getElementById('cronSnippet'),
     message: document.getElementById('cronMessage'),
     presets: document.querySelectorAll('[data-preset]'),
 };
@@ -39,7 +38,6 @@ function renderEmpty() {
     dom.explanation.textContent = t('cron.empty');
     dom.explanation.className = 'cron-explanation';
     dom.nextList.innerHTML = '';
-    dom.snippet.textContent = '# cron expression';
     dom.message.textContent = '';
     dom.input.classList.remove('error');
 }
@@ -49,7 +47,6 @@ function renderInvalid(message) {
     dom.explanation.className = 'cron-explanation error';
     dom.input.classList.add('error');
     dom.nextList.innerHTML = '';
-    dom.snippet.textContent = '# Invalid cron expression';
     dom.message.textContent = t('cron.error.details', { message });
     dom.message.classList.add('message--error');
 }
@@ -92,9 +89,6 @@ function update() {
             });
             dom.nextList.appendChild(li);
         }
-
-        // 3. Snippet
-        dom.snippet.textContent = `${normalized} /path/to/command`;
 
     } catch (err) {
         renderInvalid(err?.message || 'Invalid cron expression');

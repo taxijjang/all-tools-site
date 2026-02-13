@@ -12,7 +12,6 @@ const uuidVersionSelect = document.getElementById('uuidVersion');
 const bulkCountInput = document.getElementById('bulkCount');
 const bulkOutput = document.getElementById('bulkOutput');
 const bulkGenerateBtn = document.getElementById('bulkGenerateBtn');
-const snippetEl = document.getElementById('uuidSnippet');
 
 const ULID_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
 
@@ -78,28 +77,10 @@ function generateIdentifier() {
   return crypto.randomUUID();
 }
 
-function updateSnippet() {
-  if (!snippetEl) return;
-  const current = randomUuidInput.value || generateIdentifier();
-  const snippet = [
-    '// Node.js',
-    "import { randomUUID } from 'node:crypto';",
-    'const id = randomUUID();',
-    '',
-    '# shell',
-    'uuidgen',
-    '',
-    '# Current',
-    current,
-  ].join('\n');
-  snippetEl.textContent = snippet;
-}
-
 generateBtn.addEventListener('click', () => {
   const value = generateIdentifier();
   randomUuidInput.value = value;
   showMessage(t('messages.uuid.randomGenerated'));
-  updateSnippet();
 });
 
 document.querySelectorAll('button[data-copy]').forEach((btn) => {
@@ -136,4 +117,3 @@ bulkGenerateBtn?.addEventListener('click', () => {
 
 // 초기 UUID 준비
 randomUuidInput.value = generateIdentifier();
-updateSnippet();
