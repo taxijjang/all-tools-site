@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   base: document.getElementById('qbBaseUrl'),
@@ -14,7 +15,7 @@ function row(key = '', value = '') {
   div.className = 'tool-grid-3';
   div.innerHTML = `<input type=\"text\" class=\"qb-key\" placeholder=\"key\" value=\"${key}\" />
     <input type=\"text\" class=\"qb-value\" placeholder=\"value\" value=\"${value}\" />
-    <button type=\"button\" class=\"ghost qb-remove\">삭제</button>`;
+    <button type=\"button\" class=\"ghost qb-remove\">${t('query.remove')}</button>`;
   div.querySelector('.qb-remove').addEventListener('click', () => div.remove());
   return div;
 }
@@ -35,9 +36,9 @@ function build() {
     });
     url.search = params.toString();
     dom.output.value = url.toString();
-    setMessage('URL 생성 완료.');
+    setMessage(t('query.success'));
   } catch {
-    setMessage('기본 URL 형식이 잘못되었습니다.', true);
+    setMessage(t('query.error.base'), true);
   }
 }
 
@@ -49,7 +50,7 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || '');
-    setMessage('복사했습니다.');
+    setMessage(t('common.copySuccess'));
   });
 });
 

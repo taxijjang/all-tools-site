@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   refresh: document.getElementById('iuRefreshBtn'),
@@ -25,10 +26,10 @@ async function refresh() {
     const res = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
     const data = await res.json();
     dom.ip.value = data.ip || 'unavailable';
-    setMessage('정보 갱신 완료.');
+    setMessage(t('ipua.success'));
   } catch {
     dom.ip.value = 'unavailable';
-    setMessage('IP 조회 실패(네트워크/CORS).', true);
+    setMessage(t('ipua.error.ip'), true);
   }
 }
 
@@ -37,7 +38,7 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || '');
-    setMessage('복사했습니다.');
+    setMessage(t('common.copySuccess'));
   });
 });
 

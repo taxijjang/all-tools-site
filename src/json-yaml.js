@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   input: document.getElementById('jyInput'),
@@ -19,9 +20,9 @@ function toYaml() {
     const obj = JSON.parse(dom.input.value);
     if (!window.jsyaml) throw new Error('js-yaml not loaded');
     dom.output.value = window.jsyaml.dump(obj, { lineWidth: 120 });
-    setMessage('JSON → YAML 변환 완료.');
+    setMessage(t('jsonyaml.success.toYaml'));
   } catch (e) {
-    setMessage(`변환 실패: ${e.message}`, true);
+    setMessage(t('jsonyaml.error', { message: e.message }), true);
   }
 }
 
@@ -30,9 +31,9 @@ function toJson() {
     if (!window.jsyaml) throw new Error('js-yaml not loaded');
     const obj = window.jsyaml.load(dom.input.value);
     dom.output.value = JSON.stringify(obj, null, 2);
-    setMessage('YAML → JSON 변환 완료.');
+    setMessage(t('jsonyaml.success.toJson'));
   } catch (e) {
-    setMessage(`변환 실패: ${e.message}`, true);
+    setMessage(t('jsonyaml.error', { message: e.message }), true);
   }
 }
 
@@ -49,6 +50,6 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || '');
-    setMessage('복사했습니다.');
+    setMessage(t('common.copySuccess'));
   });
 });

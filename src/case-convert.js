@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   input: document.getElementById('ccInput'),
@@ -14,12 +15,7 @@ const dom = {
 };
 
 function wordsOf(input) {
-  return input
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/[_\-]+/g, ' ')
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean);
+  return input.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/[_\-]+/g, ' ').trim().split(/\s+/).filter(Boolean);
 }
 
 function cap(s) {
@@ -29,7 +25,7 @@ function cap(s) {
 function run() {
   const words = wordsOf(dom.input.value);
   if (!words.length) {
-    dom.message.textContent = '텍스트를 입력하세요.';
+    dom.message.textContent = t('case.error.empty');
     dom.message.classList.add('message--error');
     return;
   }
@@ -41,7 +37,7 @@ function run() {
   dom.kebab.value = low.join('-');
   dom.upper.value = dom.input.value.toUpperCase();
   dom.lower.value = dom.input.value.toLowerCase();
-  dom.message.textContent = '변환 완료.';
+  dom.message.textContent = t('case.success');
   dom.message.classList.remove('message--error');
 }
 
@@ -57,7 +53,7 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
     const target = document.getElementById(btn.dataset.copy);
     if (!target) return;
     await navigator.clipboard.writeText(target.value || '');
-    dom.message.textContent = '복사했습니다.';
+    dom.message.textContent = t('common.copySuccess');
   });
 });
 

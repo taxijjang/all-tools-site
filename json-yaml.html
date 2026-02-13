@@ -1,9 +1,33 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8" /><title>JSON ↔ YAML 변환기</title><meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="description" content="JSON과 YAML을 양방향으로 변환합니다." />
-<meta name="google-adsense-account" content="ca-pub-4324902308911757" /><meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
-<link rel="manifest" href="/manifest.webmanifest" /><link rel="stylesheet" href="/src/style.css" />
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-<script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
-</head><body class="layout layout--dev" data-tool="json-yaml"><div class="page page--dev"><div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div><header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>JSON ↔ YAML 변환기</h1><p>운영 설정 파일 변환에 자주 쓰는 포맷 도구.</p></header><main class="tool tool--columns"><section class="tool__panel tool__panel--stack"><label for="jyInput">입력</label><textarea id="jyInput" rows="14" data-persist="input">{"name":"all-tools","env":"prod"}</textarea><div class="toolbar"><button id="jyToYamlBtn" class="primary" type="button">JSON → YAML</button><button id="jyToJsonBtn" type="button">YAML → JSON</button><button id="jyClearBtn" type="button">지우기</button></div></section><section class="tool__panel tool__panel--stack"><div class="panel-header"><label for="jyOutput">출력</label><button type="button" data-copy="jyOutput">복사</button></div><textarea id="jyOutput" rows="14" readonly></textarea></section></main><p id="jyMessage" class="message"></p></div><script type="module" src="/src/site.js"></script><script type="module" src="/src/json-yaml.js"></script></body></html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>JSON ↔ YAML 변환기</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="JSON과 YAML을 양방향으로 변환합니다." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+</head>
+<body class="layout layout--dev" data-tool="json-yaml">
+  <div class="page page--dev">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher"><select id="localeSelect" aria-label="Language"><option value="ko" data-i18n="common.languageKorean">한국어</option><option value="en" data-i18n="common.languageEnglish">English</option></select></div>
+    </div>
+    <header class="page-header"><a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a><h1 data-i18n="jsonyaml.title">JSON ↔ YAML 변환기</h1><p data-i18n="jsonyaml.description">운영 설정 파일 변환에 자주 쓰는 포맷 도구.</p></header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack"><label for="jyInput" data-i18n="jsonyaml.input">입력</label><textarea id="jyInput" rows="14" data-persist="input">{"name":"all-tools","env":"prod"}</textarea><div class="toolbar"><button id="jyToYamlBtn" class="primary" type="button" data-i18n="jsonyaml.toYaml">JSON → YAML</button><button id="jyToJsonBtn" type="button" data-i18n="jsonyaml.toJson">YAML → JSON</button><button id="jyClearBtn" type="button" data-i18n="common.clear">지우기</button></div></section>
+      <section class="tool__panel tool__panel--stack"><div class="panel-header"><label for="jyOutput" data-i18n="jsonyaml.output">출력</label><button type="button" data-copy="jyOutput" data-i18n="common.copy">복사</button></div><textarea id="jyOutput" rows="14" readonly></textarea></section>
+    </main>
+    <p id="jyMessage" class="message"></p>
+  </div>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/json-yaml.js"></script>
+</body>
+</html>
