@@ -133,6 +133,48 @@ function setupGlobalNavigation() {
   }
 }
 
+function createAdRail(side) {
+  const rail = document.createElement('aside');
+  rail.className = `ad-rail ad-rail--${side}`;
+  rail.setAttribute('aria-label', side === 'left' ? '좌측 광고' : '우측 광고');
+
+  const wrap = document.createElement('div');
+  const slot = document.createElement('ins');
+  slot.className = 'adsbygoogle ad-rail__slot';
+  slot.style.display = 'block';
+  slot.dataset.adFormat = 'fluid';
+  slot.dataset.adLayoutKey = '-bb+85+2h-1m-4u';
+  slot.dataset.adClient = 'ca-pub-4324902308911757';
+  slot.dataset.adSlot = '9966144067';
+
+  const note = document.createElement('p');
+  note.className = 'ad-rail__note';
+  note.textContent = 'Google 제공 광고';
+
+  wrap.appendChild(slot);
+  wrap.appendChild(note);
+  rail.appendChild(wrap);
+  return rail;
+}
+
+function injectDesktopAdRails() {
+  if (window.matchMedia('(max-width: 1180px)').matches) return;
+  const page = document.querySelector('.page');
+  if (!page || document.querySelector('.ad-rail')) return;
+
+  const left = createAdRail('left');
+  const right = createAdRail('right');
+  page.before(left);
+  page.after(right);
+
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (err) {
+    console.warn('Ad rail init failed', err);
+  }
+}
+
 // --- PWA Installation ---
 let deferredPrompt;
 
@@ -295,6 +337,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   setupGlobalNavigation();
+  injectDesktopAdRails();
   hydratePersistentFields();
   setupActions();
 });

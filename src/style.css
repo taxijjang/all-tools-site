@@ -696,33 +696,11 @@ button:active {
 @media (max-width: 1180px) {
   .layout {
     flex-direction: column;
-    /* Stack layout on mobile */
     padding: 0;
   }
 
   .ad-rail {
-    display: flex;
-    /* Show ads! */
-    width: 100%;
-    flex: 0 0 auto;
-    padding: 1rem;
-    background: var(--surface-muted);
-    justify-content: center;
-    order: 10;
-    /* Move to bottom */
-  }
-
-  .ad-rail--left {
     display: none;
-    /* Hide one rail to avoid clutter, keep bottom one */
-  }
-
-  .ad-rail--right .ad-rail__slot {
-    width: 100%;
-    max-width: 320px;
-    /* Standard mobile ad width */
-    height: 100px;
-    /* Fixed height for mobile banner */
   }
 
   .page {
