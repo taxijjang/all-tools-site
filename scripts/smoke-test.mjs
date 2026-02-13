@@ -33,12 +33,9 @@ const ROUTES = [
   '/pdf-toolkit',
   '/image-optimize',
   '/ocr',
-  '/csv-tools',
   '/seo-check',
   '/utm-builder',
-  '/qr-advanced',
   '/text-cleaner',
-  '/jwt-verify',
   '/api-tester',
 ];
 

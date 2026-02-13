@@ -78,6 +78,17 @@
         <pre id="jwtPayload" class="code-block"></pre>
       </section>
 
+      <section class="tool__panel tool__panel--stack">
+        <h2>JWKS 서명 검증</h2>
+        <label for="jwtJwksUrl">JWKS URL</label>
+        <input id="jwtJwksUrl" type="url" placeholder="https://example.com/.well-known/jwks.json" data-persist="jwksUrl" />
+        <div class="toolbar">
+          <button id="jwtVerifyBtn" type="button" class="primary">서명 검증</button>
+        </div>
+        <label for="jwtVerifyOutput">검증 결과</label>
+        <textarea id="jwtVerifyOutput" rows="8" readonly></textarea>
+      </section>
+
     </main>
     <p id="jwtMessage" class="message" role="status" aria-live="polite"></p>
 

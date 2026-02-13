@@ -3,7 +3,13 @@ import { t } from './i18n.js';
 import { toDataURL } from 'qrcode';
 
 const dom = {
+  type: document.getElementById('qrType'),
+  textFields: document.getElementById('qrTextFields'),
   text: document.getElementById('qrText'),
+  wifiFields: document.getElementById('qrWifiFields'),
+  wifiSsid: document.getElementById('qrWifiSsid'),
+  wifiPass: document.getElementById('qrWifiPass'),
+  wifiSec: document.getElementById('qrWifiSec'),
   size: document.getElementById('qrSize'),
   generate: document.getElementById('qrGenerateBtn'),
   image: document.getElementById('qrImage'),
@@ -18,8 +24,24 @@ function setMessage(text, error = false) {
   dom.message.classList.toggle('message--error', error);
 }
 
+function buildPayload() {
+  if (dom.type.value === 'wifi') {
+    const ssid = dom.wifiSsid.value.trim();
+    const pass = dom.wifiPass.value.trim();
+    if (!ssid) return '';
+    return `WIFI:T:${dom.wifiSec.value};S:${ssid};P:${pass};;`;
+  }
+  return dom.text.value.trim();
+}
+
+function syncTypeUi() {
+  const wifiMode = dom.type.value === 'wifi';
+  dom.wifiFields.hidden = !wifiMode;
+  dom.textFields.hidden = wifiMode;
+}
+
 async function generateQr() {
-  const text = dom.text.value.trim();
+  const text = buildPayload();
   const size = Number(dom.size.value || 256);
 
   if (!text) {
@@ -63,6 +85,10 @@ async function scanQrFromFile(file) {
 }
 
 dom.generate.addEventListener('click', generateQr);
+dom.type.addEventListener('change', () => {
+  syncTypeUi();
+  generateQr();
+});
 dom.download.addEventListener('click', () => {
   if (!dom.image.src) return;
   const a = document.createElement('a');
@@ -76,4 +102,5 @@ dom.scanFile.addEventListener('change', async (e) => {
   await scanQrFromFile(file);
 });
 
+syncTypeUi();
 generateQr();

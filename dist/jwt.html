@@ -23,8 +23,8 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/jwt-W3jT3Vps.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-3xrs3AWN.js">
+  <script type="module" crossorigin src="/assets/jwt-DMj7BfQU.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CaX0jgUv.js">
   <link rel="stylesheet" crossorigin href="/assets/site-CAUQ4cOr.css">
 </head>
 
@@ -78,6 +78,17 @@
           <button type="button" data-copy="jwtPayload" data-i18n="common.copy">복사</button>
         </div>
         <pre id="jwtPayload" class="code-block"></pre>
+      </section>
+
+      <section class="tool__panel tool__panel--stack">
+        <h2>JWKS 서명 검증</h2>
+        <label for="jwtJwksUrl">JWKS URL</label>
+        <input id="jwtJwksUrl" type="url" placeholder="https://example.com/.well-known/jwks.json" data-persist="jwksUrl" />
+        <div class="toolbar">
+          <button id="jwtVerifyBtn" type="button" class="primary">서명 검증</button>
+        </div>
+        <label for="jwtVerifyOutput">검증 결과</label>
+        <textarea id="jwtVerifyOutput" rows="8" readonly></textarea>
       </section>
 
     </main>

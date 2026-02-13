@@ -31,8 +31,33 @@
     </header>
     <main class="tool tool--columns">
       <section class="tool__panel tool__panel--stack">
-        <label for="qrText" data-i18n="qr.input">텍스트/URL</label>
-        <textarea id="qrText" rows="5" data-persist="text">https://all-tools-site.pages.dev</textarea>
+        <label for="qrType">타입</label>
+        <select id="qrType" data-persist="type">
+          <option value="text">텍스트/URL</option>
+          <option value="wifi">Wi-Fi</option>
+        </select>
+        <div id="qrTextFields" class="tool__panel--stack" style="gap:.35rem;">
+          <label for="qrText" data-i18n="qr.input">텍스트/URL</label>
+          <textarea id="qrText" rows="5" data-persist="text">https://all-tools-site.pages.dev</textarea>
+        </div>
+        <div id="qrWifiFields" class="tool-grid-3" hidden>
+          <div>
+            <label for="qrWifiSsid">SSID</label>
+            <input id="qrWifiSsid" type="text" data-persist="wifiSsid" />
+          </div>
+          <div>
+            <label for="qrWifiPass">비밀번호</label>
+            <input id="qrWifiPass" type="text" data-persist="wifiPass" />
+          </div>
+          <div>
+            <label for="qrWifiSec">보안</label>
+            <select id="qrWifiSec" data-persist="wifiSec">
+              <option value="WPA">WPA/WPA2</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">없음</option>
+            </select>
+          </div>
+        </div>
         <label for="qrSize" data-i18n="qr.size">크기(px)</label>
         <input id="qrSize" type="number" min="128" max="1024" value="256" data-persist="size" />
         <div class="toolbar">
