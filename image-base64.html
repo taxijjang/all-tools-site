@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>이미지 Base64 변환</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="이미지 파일을 Base64(data URL)로 변환하고 다시 파일로 저장하세요." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
+</head>
+<body class="layout layout--dev" data-tool="image-base64">
+  <div class="page page--dev">
+    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
+    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>이미지 Base64 변환</h1><p>이미지 ↔ data URL 변환.</p></header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack"><label for="ibFile">이미지 파일</label><input id="ibFile" type="file" accept="image/*" /><div class="toolbar"><button id="ibEncodeBtn" class="primary" type="button">Base64 변환</button><button id="ibDecodeBtn" type="button">파일로 저장</button></div><img id="ibPreview" class="preview-image" alt="preview" hidden /></section>
+      <section class="tool__panel tool__panel--stack"><div class="panel-header"><label for="ibOutput">data URL</label><button data-copy="ibOutput" type="button">복사</button></div><textarea id="ibOutput" rows="12"></textarea></section>
+    </main>
+    <p id="ibMessage" class="message"></p>
+  </div>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/image-base64.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>Markdown 미리보기</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Markdown을 실시간 렌더링하고 HTML을 복사하세요." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="layout layout--dev" data-tool="markdown">
+  <div class="page page--dev">
+    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
+    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>Markdown 미리보기</h1><p>문서 초안 작성과 HTML 확인용.</p></header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack"><label for="mdInput">Markdown</label><textarea id="mdInput" rows="14" data-persist="input"></textarea><div class="toolbar"><button id="mdRenderBtn" class="primary" type="button">렌더</button><button id="mdSampleBtn" type="button">샘플</button><button id="mdClearBtn" type="button">지우기</button></div></section>
+      <section class="tool__panel tool__panel--stack"><label>미리보기</label><div id="mdPreview" class="markdown-preview"></div><div class="panel-header"><label for="mdHtml">HTML</label><button data-copy="mdHtml" type="button">복사</button></div><textarea id="mdHtml" rows="8" readonly></textarea></section>
+    </main>
+    <p id="mdMessage" class="message"></p>
+  </div>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/markdown.js"></script>
+</body>
+</html>

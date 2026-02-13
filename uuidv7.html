@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>UUID v7 생성기</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="정렬 가능한 UUID v7을 생성하세요." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
+</head>
+<body class="layout layout--dev" data-tool="uuidv7">
+  <div class="page page--dev">
+    <div class="page-controls"><label class="sr-only" for="localeSelect">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
+    <header class="page-header"><a class="back-link" href="/">← 도구 목록으로</a><h1>UUID v7 생성기</h1><p>시간순 정렬 가능한 UUID v7 생성.</p></header>
+    <main class="tool"><section class="tool__panel tool__panel--stack"><label for="u7Count">생성 개수</label><input id="u7Count" type="number" min="1" max="100" value="10" data-persist="count" /><div class="toolbar"><button id="u7GenerateBtn" class="primary" type="button">생성</button><button data-copy="u7Output" type="button">복사</button></div><textarea id="u7Output" rows="12" readonly></textarea></section></main>
+    <p id="u7Message" class="message"></p>
+  </div>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/uuidv7.js"></script>
+</body>
+</html>

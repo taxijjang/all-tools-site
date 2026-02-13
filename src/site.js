@@ -49,6 +49,14 @@ function setupGlobalNavigation() {
     { value: '/timestamp', label: 'Timestamp' },
     { value: '/password', label: 'Password' },
     { value: '/regex', label: 'Regex' },
+    { value: '/qr', label: 'QR' },
+    { value: '/diff', label: 'Diff' },
+    { value: '/color', label: 'Color' },
+    { value: '/markdown', label: 'Markdown' },
+    { value: '/convert', label: 'Convert' },
+    { value: '/file-hash', label: 'File Hash' },
+    { value: '/image-base64', label: 'Image Base64' },
+    { value: '/uuidv7', label: 'UUID v7' },
   ];
 
   const switcherContainer = document.createElement('div');

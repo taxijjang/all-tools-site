@@ -760,3 +760,66 @@ button:active {
   margin-right: 0.75rem;
   font-weight: bold;
 }
+
+.preview-image {
+  max-width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 0.5rem;
+}
+
+.diff-output {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+  padding: 0.5rem;
+  max-height: 360px;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.diff-line {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.15rem 0.3rem;
+}
+
+.diff-tag {
+  min-width: 1rem;
+  color: var(--text-muted);
+}
+
+.diff-tag-same {
+  opacity: 0.45;
+}
+
+.diff-add {
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.diff-del {
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.color-swatch {
+  width: 100%;
+  height: 120px;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+}
+
+.markdown-preview {
+  min-height: 200px;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.9rem;
+  background: var(--surface);
+}
+
+.tool-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.6rem;
+  align-items: end;
+}
