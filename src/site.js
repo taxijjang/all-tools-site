@@ -57,6 +57,10 @@ function setupGlobalNavigation() {
     { value: '/file-hash', label: 'File Hash' },
     { value: '/image-base64', label: 'Image Base64' },
     { value: '/uuidv7', label: 'UUID v7' },
+    { value: '/case-convert', label: 'Case' },
+    { value: '/json-yaml', label: 'JSON YAML' },
+    { value: '/query-builder', label: 'Query Builder' },
+    { value: '/ip-ua', label: 'IP / UA' },
   ];
 
   const switcherContainer = document.createElement('div');

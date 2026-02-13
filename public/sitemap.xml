@@ -114,4 +114,28 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://all-tools-site.pages.dev/case-convert</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://all-tools-site.pages.dev/json-yaml</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://all-tools-site.pages.dev/query-builder</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://all-tools-site.pages.dev/ip-ua</loc>
+    <lastmod>2026-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

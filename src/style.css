@@ -849,3 +849,9 @@ button:active {
   gap: 0.6rem;
   align-items: end;
 }
+
+@media (max-width: 760px) {
+  .tool-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
