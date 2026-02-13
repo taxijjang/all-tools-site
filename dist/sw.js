@@ -1,4 +1,4 @@
-const CACHE_NAME = 'stateless-tools-v1';
+const CACHE_NAME = 'stateless-tools-v4-20260209';
 const ASSETS = [
   '/',
   '/index.html',
