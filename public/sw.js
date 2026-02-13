@@ -1,4 +1,4 @@
-const CACHE_NAME = 'stateless-tools-v10-20260213';
+const CACHE_NAME = 'stateless-tools-v11-20260213';
 const ASSETS = [
   '/',
   '/index.html',
@@ -24,9 +24,11 @@ const ASSETS = [
   '/json-yaml.html',
   '/query-builder.html',
   '/ip-ua.html',
+  '/ip-cidr.html',
   '/pdf-toolkit.html',
   '/image-optimize.html',
   '/ocr.html',
+  '/text-stats.html',
   '/seo-check.html',
   '/utm-builder.html',
   '/text-cleaner.html',

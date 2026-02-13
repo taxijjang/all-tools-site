@@ -61,6 +61,8 @@ function setupGlobalNavigation() {
     { value: '/json-yaml', label: 'JSON YAML' },
     { value: '/query-builder', label: 'Query Builder' },
     { value: '/ip-ua', label: 'IP / UA' },
+    { value: '/ip-cidr', label: 'IP/CIDR' },
+    { value: '/text-stats', label: 'Text Stats' },
     { value: '/pdf-toolkit', label: 'PDF Toolkit' },
     { value: '/image-optimize', label: 'Image Optimize' },
     { value: '/ocr', label: 'OCR' },

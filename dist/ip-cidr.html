@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>IP/CIDR 계산기</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="IPv4 주소와 CIDR 프리픽스로 네트워크, 브로드캐스트, 사용 가능한 IP 범위를 계산합니다." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/ipCidr-CCxllNY2.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CkTLYdsb.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-c7n5sZKu.css">
+</head>
+<body class="layout layout--dev" data-tool="ip-cidr">
+  <div class="page page--dev">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="ipCidr.title">IP/CIDR 계산기</h1>
+      <p data-i18n="ipCidr.description">IPv4/CIDR 입력으로 네트워크, 브로드캐스트, 호스트 수를 계산합니다.</p>
+    </header>
+
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack">
+        <label for="icIp" data-i18n="ipCidr.ip">IPv4 주소</label>
+        <input id="icIp" type="text" value="192.168.1.10" data-persist="ip" />
+        <label for="icPrefix" data-i18n="ipCidr.prefix">프리픽스 (CIDR)</label>
+        <input id="icPrefix" type="number" min="0" max="32" value="24" data-persist="prefix" />
+        <div class="toolbar">
+          <button id="icCalcBtn" class="primary" type="button" data-i18n="ipCidr.calculate">계산</button>
+          <button id="icCopyBtn" type="button" data-copy="icCidrOutput" data-i18n="ipCidr.copy">CIDR 문자열 복사</button>
+        </div>
+      </section>
+
+      <section class="tool__panel tool__panel--stack">
+        <label for="icCidrOutput" data-i18n="ipCidr.output">결과</label>
+        <input id="icCidrOutput" type="text" readonly value="192.168.1.0/24" />
+        <div class="tool-grid-3">
+          <div><label for="icNetwork" data-i18n="ipCidr.network">네트워크 주소</label><input id="icNetwork" type="text" readonly /></div>
+          <div><label for="icBroadcast" data-i18n="ipCidr.broadcast">브로드캐스트</label><input id="icBroadcast" type="text" readonly /></div>
+          <div><label for="icNetmask" data-i18n="ipCidr.netmask">넷마스크</label><input id="icNetmask" type="text" readonly /></div>
+          <div><label for="icWildcard" data-i18n="ipCidr.wildcard">와일드카드</label><input id="icWildcard" type="text" readonly /></div>
+          <div><label for="icUsable" data-i18n="ipCidr.usable">사용 가능 호스트</label><input id="icUsable" type="text" readonly /></div>
+          <div><label for="ipCidrClass" data-i18n="ipCidr.class">클래스/구간</label><input id="ipCidrClass" type="text" readonly /></div>
+          <div><label for="icFirst" data-i18n="ipCidr.firstHost">최초 사용 IP</label><input id="icFirst" type="text" readonly /></div>
+          <div><label for="icLast" data-i18n="ipCidr.lastHost">최종 사용 IP</label><input id="icLast" type="text" readonly /></div>
+          <div><label for="icTotal" data-i18n="ipCidr.total">총 주소 수</label><input id="icTotal" type="text" readonly /></div>
+        </div>
+        <div class="field-row">
+          <label><input id="icNetworkFlag" type="checkbox" disabled /> <span data-i18n="ipCidr.isNetwork">네트워크 주소</span></label>
+          <label><input id="icBroadcastFlag" type="checkbox" disabled /> <span data-i18n="ipCidr.isBroadcast">브로드캐스트 주소</span></label>
+        </div>
+      </section>
+    </main>
+
+    <p id="icMessage" class="message" role="status" aria-live="polite"></p>
+  </div>
+
+</body>
+</html>

@@ -30,6 +30,8 @@ const ROUTES = [
   '/json-yaml',
   '/query-builder',
   '/ip-ua',
+  '/ip-cidr',
+  '/text-stats',
   '/pdf-toolkit',
   '/image-optimize',
   '/ocr',

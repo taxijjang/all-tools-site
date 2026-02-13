@@ -8,24 +8,87 @@
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
-  <script type="module" crossorigin src="/assets/pdfToolkit-CGvKvmOj.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CaX0jgUv.js">
+  <script type="module" crossorigin src="/assets/pdfToolkit-Cqgv6D3C.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CkTLYdsb.js">
   <link rel="modulepreload" crossorigin href="/assets/_commonjsHelpers-BosuxZz1.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-CAUQ4cOr.css">
+  <link rel="stylesheet" crossorigin href="/assets/site-c7n5sZKu.css">
 </head>
 <body class="layout layout--dev" data-tool="pdf-toolkit">
   <div class="page page--dev">
     <div class="page-controls"><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
-    <header class="page-header"><a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a><h1>PDF 툴킷</h1><p>병합, 페이지 범위 추출, 워터마크.</p></header>
-    <main class="tool tool--columns">
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1 data-i18n="pdf.title">PDF 툴킷</h1>
+      <p data-i18n="pdf.description">PDF 병합, 범위 분할, 워터마크, 메타데이터 조회, 텍스트 추출을 지원합니다.</p>
+    </header>
+    <main class="tool tool--columns tool--pdf">
       <section class="tool__panel tool__panel--stack">
-        <label for="pdfFiles">PDF 파일</label><input id="pdfFiles" type="file" accept="application/pdf" multiple />
-        <div class="toolbar"><button id="pdfMergeBtn" class="primary" type="button">병합</button></div>
-        <div class="tool-grid-3"><div><label for="pdfFromPage">From</label><input id="pdfFromPage" type="number" value="1" min="1" /></div><div><label for="pdfToPage">To</label><input id="pdfToPage" type="number" value="1" min="1" /></div><div class="toolbar"><button id="pdfSplitBtn" type="button">범위 추출</button></div></div>
-        <label for="pdfWatermarkText">워터마크 텍스트</label><input id="pdfWatermarkText" type="text" value="CONFIDENTIAL" />
-        <div class="toolbar"><button id="pdfWatermarkBtn" type="button">워터마크</button><button id="pdfDownloadBtn" type="button" disabled>다운로드</button></div>
+        <div class="tool-block">
+          <h2 class="tool-block__title" data-i18n="pdf.mergeSection">병합</h2>
+          <p class="tool-block__subtitle" data-i18n="pdf.mergeDescription">PDF 파일을 여러 개 선택해 순서대로 하나로 합칩니다.</p>
+          <label for="pdfMergeFiles" data-i18n="pdf.mergeFiles">병합용 PDF 파일</label>
+          <div class="file-drop-zone" id="pdfMergeDropzone" data-drop-mode="merge">
+            <input id="pdfMergeFiles" class="file-drop-zone__input" type="file" accept="application/pdf" multiple />
+            <div class="file-drop-zone__inner">
+              <p class="file-drop-zone__title" data-i18n="pdf.dropHint">여기로 파일을 끌어다 놓으세요.</p>
+              <p class="file-drop-zone__help" data-i18n="pdf.mergeDropHint">또는 클릭해서 파일을 선택하세요.</p>
+            </div>
+            <div class="file-drop-zone__status-wrap">
+              <div id="pdfMergeFilesStatus" class="file-drop-zone__status" data-i18n="pdf.fileNone">선택된 파일이 없습니다.</div>
+              <button id="pdfMergeClearBtn" type="button" class="file-drop-zone__clear ghost" data-i18n="common.clear" disabled>지우기</button>
+            </div>
+          </div>
+          <button id="pdfMergeBtn" class="primary" type="button" data-i18n="pdf.mergeBtn">병합</button>
+        </div>
+
+        <div class="tool-block">
+          <h2 class="tool-block__title" data-i18n="pdf.singleSection">단일 PDF 처리</h2>
+          <p class="tool-block__subtitle" data-i18n="pdf.singleDescription">범위 추출, 워터마크, 메타데이터 조회, 텍스트 추출은 하나의 파일로 실행합니다.</p>
+          <label for="pdfSingleFile" data-i18n="pdf.file">PDF 파일</label>
+          <div class="file-drop-zone" id="pdfSingleDropzone" data-drop-mode="single">
+            <input id="pdfSingleFile" class="file-drop-zone__input" type="file" accept="application/pdf" />
+            <div class="file-drop-zone__inner">
+              <p class="file-drop-zone__title" data-i18n="pdf.dropHint">여기로 파일을 끌어다 놓으세요.</p>
+              <p class="file-drop-zone__help" data-i18n="pdf.singleDropHint">또는 클릭해서 파일을 선택하세요.</p>
+            </div>
+            <div class="file-drop-zone__status-wrap">
+              <div id="pdfSingleFileStatus" class="file-drop-zone__status" data-i18n="pdf.fileNone">선택된 파일이 없습니다.</div>
+              <button id="pdfSingleClearBtn" type="button" class="file-drop-zone__clear ghost" data-i18n="common.clear" disabled>지우기</button>
+            </div>
+          </div>
+
+          <div class="tool-grid-2">
+            <div>
+              <label for="pdfFromPage" data-i18n="pdf.fromPage">시작 페이지</label>
+              <input id="pdfFromPage" type="number" value="1" min="1" />
+            </div>
+            <div>
+              <label for="pdfToPage" data-i18n="pdf.toPage">종료 페이지</label>
+              <input id="pdfToPage" type="number" value="1" min="1" />
+            </div>
+          </div>
+
+          <label for="pdfWatermarkText" data-i18n="pdf.watermarkText">워터마크 텍스트</label>
+          <input id="pdfWatermarkText" type="text" value="CONFIDENTIAL" />
+
+          <div class="toolbar tool-toolbar--compact">
+            <button id="pdfSplitBtn" type="button" data-i18n="pdf.splitBtn">범위 추출</button>
+            <button id="pdfWatermarkBtn" type="button" data-i18n="pdf.watermarkBtn">워터마크</button>
+            <button id="pdfMetadataBtn" type="button" data-i18n="pdf.metadataBtn">메타데이터 조회</button>
+            <button id="pdfExtractTextBtn" type="button" data-i18n="pdf.extractTextBtn">텍스트 추출</button>
+          </div>
+        </div>
       </section>
-      <section class="tool__panel tool__panel--stack"><label for="pdfOutput">결과</label><textarea id="pdfOutput" rows="12" readonly></textarea></section>
+
+      <section class="tool__panel tool__panel--stack">
+        <div class="tool-block">
+          <div class="panel-header">
+            <label for="pdfOutput" data-i18n="pdf.output">결과</label>
+            <button id="pdfDownloadBtn" type="button" disabled data-i18n="pdf.downloadBtn">다운로드</button>
+          </div>
+          <textarea id="pdfOutput" rows="17" readonly></textarea>
+        </div>
+      </section>
     </main>
     <p id="pdfMessage" class="message"></p>
   </div>
