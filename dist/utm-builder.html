@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>UTM 빌더</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="UTM 파라미터 URL 생성과 짧은 코드 생성." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+  <script type="module" crossorigin src="/assets/utmBuilder-Bck-PRzr.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-3xrs3AWN.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-CAUQ4cOr.css">
+</head>
+<body class="layout layout--dev" data-tool="utm-builder">
+  <div class="page page--dev">
+    <div class="page-controls"><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
+    <header class="page-header"><a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a><h1>UTM 빌더</h1><p>캠페인 URL 생성 + short 코드 시뮬레이터.</p></header>
+    <main class="tool">
+      <section class="tool__panel tool__panel--stack">
+        <label for="utmBase">Base URL</label><input id="utmBase" type="url" value="https://all-tools-site.pages.dev" />
+        <div class="tool-grid-3"><div><label for="utmSource">utm_source</label><input id="utmSource" type="text" value="google" /></div><div><label for="utmMedium">utm_medium</label><input id="utmMedium" type="text" value="cpc" /></div><div><label for="utmCampaign">utm_campaign</label><input id="utmCampaign" type="text" value="spring_sale" /></div></div>
+        <div class="tool-grid-3"><div><label for="utmTerm">utm_term</label><input id="utmTerm" type="text" /></div><div><label for="utmContent">utm_content</label><input id="utmContent" type="text" /></div><div class="toolbar"><button id="utmBuildBtn" class="primary" type="button">URL 생성</button></div></div>
+        <label for="utmOutput">UTM URL</label><textarea id="utmOutput" rows="3" readonly></textarea>
+        <label for="utmShortOutput">짧은 URL(시뮬레이션)</label><input id="utmShortOutput" type="text" readonly />
+      </section>
+    </main>
+    <p id="utmMessage" class="message"></p>
+  </div>
+</body>
+</html>

@@ -61,6 +61,16 @@ function setupGlobalNavigation() {
     { value: '/json-yaml', label: 'JSON YAML' },
     { value: '/query-builder', label: 'Query Builder' },
     { value: '/ip-ua', label: 'IP / UA' },
+    { value: '/pdf-toolkit', label: 'PDF Toolkit' },
+    { value: '/image-optimize', label: 'Image Optimize' },
+    { value: '/ocr', label: 'OCR' },
+    { value: '/csv-tools', label: 'CSV Tools' },
+    { value: '/seo-check', label: 'SEO Check' },
+    { value: '/utm-builder', label: 'UTM Builder' },
+    { value: '/qr-advanced', label: 'QR Advanced' },
+    { value: '/text-cleaner', label: 'Text Cleaner' },
+    { value: '/jwt-verify', label: 'JWT Verify' },
+    { value: '/api-tester', label: 'API Tester' },
   ];
 
   const switcherContainer = document.createElement('div');

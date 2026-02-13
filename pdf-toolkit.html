@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>PDF 툴킷</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="PDF 병합, 페이지 추출, 워터마크 기능." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="pdf-toolkit">
+  <div class="page page--dev">
+    <div class="page-controls"><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
+    <header class="page-header"><a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a><h1>PDF 툴킷</h1><p>병합, 페이지 범위 추출, 워터마크.</p></header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack">
+        <label for="pdfFiles">PDF 파일</label><input id="pdfFiles" type="file" accept="application/pdf" multiple />
+        <div class="toolbar"><button id="pdfMergeBtn" class="primary" type="button">병합</button></div>
+        <div class="tool-grid-3"><div><label for="pdfFromPage">From</label><input id="pdfFromPage" type="number" value="1" min="1" /></div><div><label for="pdfToPage">To</label><input id="pdfToPage" type="number" value="1" min="1" /></div><div class="toolbar"><button id="pdfSplitBtn" type="button">범위 추출</button></div></div>
+        <label for="pdfWatermarkText">워터마크 텍스트</label><input id="pdfWatermarkText" type="text" value="CONFIDENTIAL" />
+        <div class="toolbar"><button id="pdfWatermarkBtn" type="button">워터마크</button><button id="pdfDownloadBtn" type="button" disabled>다운로드</button></div>
+      </section>
+      <section class="tool__panel tool__panel--stack"><label for="pdfOutput">결과</label><textarea id="pdfOutput" rows="12" readonly></textarea></section>
+    </main>
+    <p id="pdfMessage" class="message"></p>
+  </div>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/pdf-toolkit.js"></script>
+</body>
+</html>

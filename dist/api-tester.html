@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>API 테스터</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="간단한 HTTP 요청 테스트와 cURL 생성." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+  <script type="module" crossorigin src="/assets/apiTester-BiGuznxq.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-3xrs3AWN.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-CAUQ4cOr.css">
+</head>
+<body class="layout layout--dev" data-tool="api-tester">
+  <div class="page page--dev">
+    <div class="page-controls"><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
+    <header class="page-header"><a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a><h1>API 테스터</h1><p>GET/POST 요청 테스트 + cURL 변환.</p></header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack"><div class="tool-grid-3"><div><label for="apiMethod">Method</label><select id="apiMethod"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option></select></div><div style="grid-column: span 2;"><label for="apiUrl">URL</label><input id="apiUrl" type="url" placeholder="https://httpbin.org/get" /></div></div><label for="apiHeaders">Headers (Key: Value)</label><textarea id="apiHeaders" rows="4">Content-Type: application/json</textarea><label for="apiBody">Body</label><textarea id="apiBody" rows="6">{"hello":"world"}</textarea><div class="toolbar"><button id="apiSendBtn" class="primary" type="button">요청 전송</button></div><label for="apiCurl">cURL</label><textarea id="apiCurl" rows="3" readonly></textarea></section>
+      <section class="tool__panel tool__panel--stack"><label for="apiOutput">응답</label><textarea id="apiOutput" rows="16" readonly></textarea></section>
+    </main>
+    <p id="apiMessage" class="message"></p>
+  </div>
+</body>
+</html>

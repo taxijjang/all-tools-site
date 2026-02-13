@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>QR 고급 생성기</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Wi-Fi/일반 텍스트 QR을 빠르게 생성." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="qr-advanced">
+  <div class="page page--dev">
+    <div class="page-controls"><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
+    <header class="page-header"><a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a><h1>QR 고급 생성기</h1><p>텍스트/URL + Wi‑Fi QR 템플릿.</p></header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack">
+        <label for="qraType">타입</label><select id="qraType"><option value="text">텍스트/URL</option><option value="wifi">Wi‑Fi</option></select>
+        <label for="qraText">텍스트/URL</label><textarea id="qraText" rows="4">https://all-tools-site.pages.dev</textarea>
+        <div class="tool-grid-3"><div><label for="qraWifiSsid">SSID</label><input id="qraWifiSsid" type="text" /></div><div><label for="qraWifiPass">비밀번호</label><input id="qraWifiPass" type="text" /></div><div><label for="qraWifiSec">보안</label><select id="qraWifiSec"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">없음</option></select></div></div>
+        <div class="toolbar"><button id="qraGenerateBtn" class="primary" type="button">QR 생성</button></div>
+      </section>
+      <section class="tool__panel tool__panel--stack"><label>미리보기</label><img id="qraImage" class="preview-image" hidden /></section>
+    </main>
+    <p id="qraMessage" class="message"></p>
+  </div>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/qr-advanced.js"></script>
+</body>
+</html>

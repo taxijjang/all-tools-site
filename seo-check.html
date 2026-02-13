@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>SEO 퀵체크</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="메타 태그, OG, canonical 빠른 검사." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="seo-check">
+  <div class="page page--dev">
+    <div class="page-controls"><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
+    <header class="page-header"><a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a><h1>SEO 퀵체크</h1><p>URL 또는 HTML 소스로 메타 진단.</p></header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack"><label for="seoUrl">URL</label><input id="seoUrl" type="url" placeholder="https://example.com" /><label for="seoHtml">HTML 소스(선택)</label><textarea id="seoHtml" rows="10"></textarea><div class="toolbar"><button id="seoRunBtn" class="primary" type="button">점검</button></div></section>
+      <section class="tool__panel tool__panel--stack"><label for="seoOutput">결과</label><textarea id="seoOutput" rows="14" readonly></textarea></section>
+    </main>
+    <p id="seoMessage" class="message"></p>
+  </div>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/seo-check.js"></script>
+</body>
+</html>
