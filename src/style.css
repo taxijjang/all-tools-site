@@ -82,6 +82,12 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+.page {
+  width: 100%;
+  margin: 0 auto;
+  min-width: 0;
+}
+
 .layout {
   display: flex;
   justify-content: center;
@@ -95,6 +101,7 @@ body {
 /* --- Header & Navigation --- */
 .page-controls {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   gap: 0.75rem;
@@ -502,12 +509,15 @@ body {
 .page-actions {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 0.75rem;
 }
 
 .page-header h1 {
   margin-bottom: 0.25rem;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
 }
 
 .back-link {
@@ -529,6 +539,7 @@ body {
 .tool__panel {
   background: var(--surface-muted);
   padding: 1.5rem;
+  min-width: 0;
 }
 
 .tool--columns {
@@ -624,6 +635,7 @@ body {
 
 .file-drop-zone__status-wrap {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.55rem;
 }
@@ -828,10 +840,13 @@ button:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .panel-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
 }
 
@@ -982,6 +997,9 @@ button:active {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  max-width: min(92vw, 32rem);
+  white-space: normal;
+  text-align: center;
   animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   pointer-events: auto;
 }
@@ -1049,9 +1067,43 @@ button:active {
     display: none;
   }
 
-  .page {
+  .page,
+  .page--dev,
+  .page--home,
+  .page--content,
+  body[data-tool]:not([data-tool="home"]) .page--dev {
     margin: 0;
+    width: 100%;
     max-width: 100%;
+  }
+
+  .page {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .page-controls {
+    justify-content: space-between;
+  }
+
+  .utility-links {
+    margin-top: 0;
+  }
+
+  .tool--columns,
+  .tool--pdf,
+  .tool-grid-2,
+  .content-grid,
+  .content-columns,
+  .related-tools__grid,
+  .json-views {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-badge {
+    margin-left: 0;
+    margin-top: 0.5rem;
   }
 }
 
