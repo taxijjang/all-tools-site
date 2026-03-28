@@ -564,9 +564,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
 if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch((err) => {
-      console.warn('SW registration failed', err);
+    const hadController = Boolean(navigator.serviceWorker.controller);
+    let reloadedForUpdate = false;
+
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadController || reloadedForUpdate) return;
+      reloadedForUpdate = true;
+      window.location.reload();
     });
+
+    navigator.serviceWorker
+      .register('/sw.js', { updateViaCache: 'none' })
+      .then((registration) => registration.update())
+      .catch((err) => {
+        console.warn('SW registration failed', err);
+      });
   });
 }
 
