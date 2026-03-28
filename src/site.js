@@ -1,12 +1,12 @@
-import { bindLocaleSwitcher, initI18n, onLocaleChange } from './i18n.js';
+import { bindLocaleSwitcher, initI18n, onLocaleChange, revealI18n } from './i18n.js';
+import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './chrome-meta.js';
 import './style.css';
 
 // --- State & DOM Elements ---
 const root = document.body;
-const currentLocale = initI18n({ root });
+const currentLocale = initI18n({ root, reveal: false });
 let persistElements = [];
 const adsAllowed = document.body.dataset.allowAds === 'true';
-const contentPages = new Set(['learn', 'about', 'privacy', 'contact']);
 
 const chromeCopy = {
   ko: {
@@ -37,40 +37,9 @@ function getChromeCopy(locale = document.documentElement.getAttribute('lang')) {
   return chromeCopy[locale] || chromeCopy.en;
 }
 
-const NAV_TOOLS = [
-  { value: '/', label: 'Home' },
-  { value: '/uuid', label: 'UUID' },
-  { value: '/base64', label: 'Base64' },
-  { value: '/json', label: 'JSON' },
-  { value: '/jwt', label: 'JWT' },
-  { value: '/cron', label: 'Cron' },
-  { value: '/url', label: 'URL' },
-  { value: '/hash', label: 'Hash' },
-  { value: '/timestamp', label: 'Timestamp' },
-  { value: '/password', label: 'Password' },
-  { value: '/regex', label: 'Regex' },
-  { value: '/qr', label: 'QR' },
-  { value: '/diff', label: 'Diff' },
-  { value: '/color', label: 'Color' },
-  { value: '/markdown', label: 'Markdown' },
-  { value: '/convert', label: 'Convert' },
-  { value: '/file-hash', label: 'File Hash' },
-  { value: '/image-base64', label: 'Image Base64' },
-  { value: '/uuidv7', label: 'UUID v7' },
-  { value: '/case-convert', label: 'Case' },
-  { value: '/json-yaml', label: 'JSON YAML' },
-  { value: '/query-builder', label: 'Query Builder' },
-  { value: '/ip-ua', label: 'IP / UA' },
-  { value: '/ip-cidr', label: 'IP/CIDR' },
-  { value: '/text-stats', label: 'Text Stats' },
-  { value: '/pdf-toolkit', label: 'PDF Toolkit' },
-  { value: '/image-optimize', label: 'Image Optimize' },
-  { value: '/ocr', label: 'OCR' },
-  { value: '/seo-check', label: 'SEO Check' },
-  { value: '/utm-builder', label: 'UTM Builder' },
-  { value: '/text-cleaner', label: 'Text Cleaner' },
-  { value: '/api-tester', label: 'API Tester' },
-];
+function getToolLabel(tool, locale = document.documentElement.getAttribute('lang')) {
+  return tool?.labels?.[locale] || tool?.labels?.en || tool?.value || '';
+}
 
 const RELATED_TOOL_MAP = {
   uuid: ['/uuidv7', '/base64', '/json'],
@@ -136,7 +105,7 @@ function getRelatedTools(currentTool) {
 
 function injectRelatedToolsSection() {
   const currentTool = document.body.dataset.tool || 'global';
-  if (currentTool === 'home' || contentPages.has(currentTool)) return;
+  if (currentTool === 'home' || CONTENT_PAGES.has(currentTool)) return;
 
   const page = document.querySelector('.page');
   const footer = page?.querySelector('.footer');
@@ -162,7 +131,7 @@ function injectRelatedToolsSection() {
     link.href = tool.value;
     link.innerHTML = `
       <span class="related-tool-link__eyebrow">${tool.value}</span>
-      <strong class="related-tool-link__title">${tool.label}</strong>
+      <strong class="related-tool-link__title">${getToolLabel(tool)}</strong>
       <span class="related-tool-link__cta" data-related-cta>${copy.cta}</span>
     `;
     grid.appendChild(link);
@@ -201,82 +170,84 @@ function setupGlobalNavigation() {
   const controls = document.querySelector('.page-controls');
   if (!controls) return;
 
-  // 1. Tool Switcher (Quick Jump)
-  const tools = NAV_TOOLS;
   const currentTool = document.body.dataset.tool || 'global';
-  const anchor = controls.querySelector('label[for="localeSelect"]') || controls.firstChild;
+  const localeAnchor =
+    controls.querySelector('.locale-switcher') ||
+    controls.querySelector('label[for="localeSelect"]') ||
+    controls.firstChild;
 
-  if (!contentPages.has(currentTool)) {
-    const switcherContainer = document.createElement('div');
-    switcherContainer.className = 'tool-switcher';
+  let switcherContainer = controls.querySelector('.tool-switcher');
+  if (!CONTENT_PAGES.has(currentTool)) {
+    if (!switcherContainer) {
+      switcherContainer = document.createElement('div');
+      switcherContainer.className = 'tool-switcher';
+      switcherContainer.innerHTML = '<select id="toolSelect"></select>';
+      controls.insertBefore(switcherContainer, localeAnchor);
+    }
 
-    const select = document.createElement('select');
-    select.onchange = (e) => {
-      if (e.target.value) window.location.href = e.target.value;
-    };
-
-    const currentPath = window.location.pathname.replace(/\/$/, '');
-    tools.forEach((tool) => {
-      const option = document.createElement('option');
-      option.value = tool.value;
-      option.textContent = tool.label;
-      if (
-        currentPath === tool.value ||
-        currentPath === tool.value + '.html' ||
-        (tool.value === '/' && (currentPath === '' || currentPath === '/index.html'))
-      ) {
-        option.selected = true;
-      }
-      select.appendChild(option);
-    });
-
-    switcherContainer.appendChild(select);
-    controls.insertBefore(switcherContainer, anchor);
+    const select = switcherContainer.querySelector('select');
+    if (select) {
+      const currentPath = window.location.pathname.replace(/\/$/, '');
+      select.innerHTML = NAV_TOOLS.map((tool) => {
+        const selected =
+          currentPath === tool.value ||
+          currentPath === tool.value + '.html' ||
+          (tool.value === '/' && (currentPath === '' || currentPath === '/index.html'));
+        return `<option value="${tool.value}"${selected ? ' selected' : ''}>${getToolLabel(tool, 'ko')}</option>`;
+      }).join('');
+      select.onchange = (event) => {
+        if (event.target.value) {
+          window.location.href = event.target.value;
+        }
+      };
+    }
+  } else if (switcherContainer) {
+    switcherContainer.remove();
   }
 
-  const themeBtn = document.createElement('button');
-  themeBtn.id = 'themeToggle';
-  themeBtn.className = 'theme-toggle';
-  themeBtn.type = 'button';
+  let themeBtn = controls.querySelector('#themeToggle');
+  if (!themeBtn) {
+    themeBtn = document.createElement('button');
+    themeBtn.id = 'themeToggle';
+    themeBtn.className = 'theme-toggle';
+    themeBtn.type = 'button';
+    controls.insertBefore(themeBtn, localeAnchor);
+  }
   themeBtn.onclick = toggleTheme;
-  controls.insertBefore(themeBtn, anchor);
 
-  const installBtn = document.createElement('button');
-  installBtn.id = 'pwaInstallBtn';
-  installBtn.className = 'pwa-install-btn';
-  installBtn.type = 'button';
+  let installBtn = controls.querySelector('#pwaInstallBtn');
+  if (!installBtn) {
+    installBtn = document.createElement('button');
+    installBtn.id = 'pwaInstallBtn';
+    installBtn.className = 'pwa-install-btn';
+    installBtn.type = 'button';
+    controls.insertBefore(installBtn, controls.firstChild);
+  }
   installBtn.onclick = installPWA;
-  controls.insertBefore(installBtn, controls.firstChild);
 
-  const utilityLinks = document.createElement('nav');
-  utilityLinks.className = 'utility-links';
-  utilityLinks.setAttribute('aria-label', getChromeCopy().siteLinks);
-  [
-    { key: 'learn', href: '/learn' },
-    { key: 'about', href: '/about' },
-    { key: 'privacy', href: '/privacy' },
-    { key: 'contact', href: '/contact' },
-  ].forEach((link) => {
-    const anchorEl = document.createElement('a');
-    anchorEl.href = link.href;
-    anchorEl.dataset.chromeLink = link.key;
-    if (link.key === 'learn') {
-      anchorEl.dataset.fallbackLabel = 'Guides';
-    }
-    utilityLinks.appendChild(anchorEl);
-  });
-  controls.insertAdjacentElement('afterend', utilityLinks);
+  let utilityLinks = controls.querySelector('.utility-links');
+  if (!utilityLinks) {
+    utilityLinks = document.createElement('nav');
+    utilityLinks.className = 'utility-links';
+    utilityLinks.innerHTML = UTILITY_LINKS.map(
+      (link) => `<a href="${link.href}" data-chrome-link="${link.key}">${link.labels.ko}</a>`,
+    ).join('');
+    controls.appendChild(utilityLinks);
+  }
 
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
   updateThemeIcon(currentTheme);
 
   const header = document.querySelector('.page-header h1, .hero h1');
   if (header) {
-    const badge = document.createElement('span');
-    badge.className = 'trust-badge';
-    badge.innerHTML = '🔒';
-    badge.dataset.chromeBadge = 'trust';
-    header.appendChild(badge);
+    let badge = header.querySelector('.trust-badge');
+    if (!badge) {
+      badge = document.createElement('span');
+      badge.className = 'trust-badge';
+      badge.dataset.chromeBadge = 'trust';
+      badge.textContent = '🔒';
+      header.appendChild(badge);
+    }
   }
 
   if (adsAllowed && !document.querySelector('script[src*="adsbygoogle"]')) {
@@ -301,18 +272,23 @@ function updateChromeText(locale = document.documentElement.getAttribute('lang')
   const switcher = document.querySelector('.tool-switcher select');
   if (switcher) {
     switcher.setAttribute('aria-label', copy.switchTool);
+    Array.from(switcher.options).forEach((option) => {
+      const tool = NAV_TOOLS.find((item) => item.value === option.value);
+      if (tool) {
+        option.textContent = getToolLabel(tool, locale);
+      }
+    });
   }
 
-  const utilityLinks = document.querySelector('.utility-links');
+  const utilityLinks = document.querySelector('.page-controls .utility-links');
   if (utilityLinks) {
     utilityLinks.setAttribute('aria-label', copy.siteLinks);
   }
   document.querySelectorAll('[data-chrome-link]').forEach((link) => {
-    if (link.dataset.chromeLink === 'learn') {
-      link.textContent = locale === 'ko' ? '가이드' : 'Guides';
-      return;
+    const entry = UTILITY_LINKS.find((item) => item.key === link.dataset.chromeLink);
+    if (entry) {
+      link.textContent = entry.labels[locale] || entry.labels.en;
     }
-    link.textContent = copy[link.dataset.chromeLink] || link.dataset.fallbackLabel || link.dataset.chromeLink;
   });
 
   const relatedHeading = document.querySelector('[data-related-heading]');
@@ -396,7 +372,11 @@ window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
   const btn = document.getElementById('pwaInstallBtn');
-  if (btn) btn.style.display = 'inline-flex';
+  if (btn) {
+    btn.style.display = 'inline-flex';
+    btn.removeAttribute('aria-hidden');
+    btn.removeAttribute('tabindex');
+  }
 });
 
 async function installPWA() {
@@ -406,7 +386,11 @@ async function installPWA() {
   if (outcome === 'accepted') {
     deferredPrompt = null;
     const btn = document.getElementById('pwaInstallBtn');
-    if (btn) btn.style.display = 'none';
+    if (btn) {
+      btn.style.display = 'none';
+      btn.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('tabindex', '-1');
+    }
   }
 }
 
@@ -556,10 +540,12 @@ window.addEventListener('DOMContentLoaded', () => {
   onLocaleChange((locale) => {
     syncLocaleBlocks(locale);
     updateChromeText(locale);
+    window.statelessTools.locale = locale;
   });
   injectDesktopAdRails();
   hydratePersistentFields();
   setupActions();
+  revealI18n();
 });
 
 if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {

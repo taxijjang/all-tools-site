@@ -107,13 +107,20 @@ body {
   gap: 0.75rem;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  min-height: 5.5rem;
 }
 
 .utility-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem;
-  margin: -0.25rem 0 1.25rem;
+}
+
+.page-controls .utility-links {
+  order: 20;
+  flex-basis: 100%;
+  margin: 0.1rem 0 0.25rem;
+  min-height: 2.5rem;
 }
 
 .utility-links a {
@@ -1085,10 +1092,12 @@ button:active {
 @media (max-width: 720px) {
   .page-controls {
     justify-content: space-between;
+    min-height: 6.5rem;
   }
 
-  .utility-links {
+  .page-controls .utility-links {
     margin-top: 0;
+    min-height: 0;
   }
 
   .tool--columns,

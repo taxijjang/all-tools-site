@@ -9,9 +9,9 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/uuidv7-Cz-jyq0x.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CoW6E8JM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-wqiRk-Cy.css">
+  <script type="module" crossorigin src="/assets/uuidv7-E629E1Pi.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-oOQbUqPK.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-CrQBjnqN.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -54,6 +54,11 @@
   </script>
   <style data-client-boot>
     html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
       visibility: hidden;
     }
 
@@ -169,6 +174,53 @@
 <body class="layout layout--dev" data-tool="uuidv7" data-allow-ads="false">
   <div class="page page--dev">
     <div class="page-controls">
+
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">홈</option>
+          <option value="/uuid">UUID 변환기</option>
+          <option value="/base64">Base64 인코더</option>
+          <option value="/json">JSON 뷰어</option>
+          <option value="/jwt">JWT 검사기</option>
+          <option value="/cron">Cron 계산기</option>
+          <option value="/url">URL 인코더</option>
+          <option value="/hash">해시 계산기</option>
+          <option value="/timestamp">타임스탬프</option>
+          <option value="/password">비밀번호 생성기</option>
+          <option value="/regex">Regex 테스터</option>
+          <option value="/qr">QR 생성기</option>
+          <option value="/diff">텍스트 Diff</option>
+          <option value="/color">색상 도구</option>
+          <option value="/markdown">Markdown 미리보기</option>
+          <option value="/convert">단위 변환기</option>
+          <option value="/file-hash">파일 해시</option>
+          <option value="/image-base64">이미지 Base64</option>
+          <option value="/uuidv7" selected>UUID v7</option>
+          <option value="/case-convert">케이스 변환</option>
+          <option value="/json-yaml">JSON ↔ YAML</option>
+          <option value="/query-builder">쿼리 빌더</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr">IP/CIDR 계산기</option>
+          <option value="/text-stats">텍스트 통계</option>
+          <option value="/pdf-toolkit">PDF 툴킷</option>
+          <option value="/image-optimize">이미지 최적화</option>
+          <option value="/ocr">OCR 추출</option>
+          <option value="/seo-check">SEO 퀵체크</option>
+          <option value="/utm-builder">UTM 빌더</option>
+          <option value="/text-cleaner">텍스트 정리기</option>
+          <option value="/api-tester">API 테스터</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">가이드</a>
+        <a href="/about" data-chrome-link="about">소개</a>
+        <a href="/privacy" data-chrome-link="privacy">개인정보 처리</a>
+        <a href="/contact" data-chrome-link="contact">문의</a>
+      </nav>
       <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
       <div class="locale-switcher">
         <select id="localeSelect" aria-label="Language">
@@ -179,7 +231,7 @@
     </div>
     <header class="page-header">
       <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
-      <h1 data-i18n="uuidv7.title">UUID v7 생성기</h1>
+      <h1 data-i18n="uuidv7.title">UUID v7 생성기<span class="trust-badge" data-chrome-badge="trust">🔒 브라우저 내부 처리</span></h1>
       <p data-i18n="uuidv7.description">시간순 정렬 가능한 UUID v7 생성.</p>
     </header>
     <main class="tool">

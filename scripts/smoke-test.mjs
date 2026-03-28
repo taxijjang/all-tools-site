@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process';
 import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 
 const HOST = '127.0.0.1';
@@ -41,6 +42,8 @@ const ROUTES = [
   '/api-tester',
 ];
 
+const VITE_CLI = resolve('node_modules', 'vite', 'bin', 'vite.js');
+
 function fail(message) {
   console.error(`SMOKE FAIL: ${message}`);
   process.exit(1);
@@ -49,8 +52,11 @@ function fail(message) {
 async function waitForServer() {
   for (let i = 0; i < 50; i += 1) {
     try {
-      const res = await fetch(BASE, { redirect: 'manual' });
-      if (res.ok) return;
+      const [homeRes, probeRes] = await Promise.all([
+        fetch(BASE, { redirect: 'manual' }),
+        fetch(`${BASE}/uuid`, { redirect: 'manual' }),
+      ]);
+      if (homeRes.ok && probeRes.ok) return;
     } catch {
       // keep polling
     }
@@ -82,9 +88,8 @@ async function checkQrSource() {
 async function main() {
   await checkQrSource();
 
-  const preview = spawn('npm', ['run', 'preview', '--', '--host', HOST, '--port', String(PORT), '--strictPort'], {
+  const preview = spawn(process.execPath, [VITE_CLI, 'preview', '--host', HOST, '--port', String(PORT), '--strictPort'], {
     stdio: 'ignore',
-    shell: true,
   });
 
   try {

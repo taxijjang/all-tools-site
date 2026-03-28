@@ -1189,12 +1189,18 @@ export function setLocale(locale, { root = document } = {}) {
   listeners.forEach((cb) => cb(locale));
 }
 
-export function initI18n({ root = document } = {}) {
+export function initI18n({ root = document, reveal = true } = {}) {
   document.documentElement.setAttribute('lang', currentLocale);
   document.documentElement.setAttribute('data-preferred-locale', currentLocale);
   applyTranslations(root);
-  document.documentElement.classList.remove('i18n-pending');
+  if (reveal) {
+    document.documentElement.classList.remove('i18n-pending');
+  }
   return currentLocale;
+}
+
+export function revealI18n() {
+  document.documentElement.classList.remove('i18n-pending');
 }
 
 export function bindLocaleSwitcher(selectEl, { root = document } = {}) {

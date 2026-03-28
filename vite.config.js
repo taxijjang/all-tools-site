@@ -9,6 +9,7 @@ import {
   SITE_ORIGIN,
   SITE_SOCIALS,
 } from './src/seo-meta.js';
+import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './src/chrome-meta.js';
 
 const pageInputs = {
   main: resolve(__dirname, 'index.html'),
@@ -149,10 +150,64 @@ function buildClientBootStyle() {
       visibility: hidden;
     }
 
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
     html.i18n-pending[data-preferred-locale="en"] body {
       overflow: hidden;
     }
   </style>`;
+}
+
+function getToolIdFromPath(pathname) {
+  return pathname === '/' ? 'home' : pathname.replace(/^\//, '');
+}
+
+function buildChromeControls(pathname) {
+  const currentTool = getToolIdFromPath(pathname);
+  const isContentPage = CONTENT_PAGES.has(currentTool);
+  const currentPath = pathname === '/' ? '' : pathname;
+
+  const switcherMarkup = isContentPage
+    ? ''
+    : `
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+${NAV_TOOLS.map((tool) => {
+  const isSelected =
+    currentPath === tool.value ||
+    currentPath === `${tool.value}.html` ||
+    (tool.value === '/' && pathname === '/');
+  return `          <option value="${tool.value}"${isSelected ? ' selected' : ''}>${tool.labels.ko}</option>`;
+}).join('\n')}
+        </select>
+      </div>`;
+
+  const utilityMarkup = `
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+${UTILITY_LINKS.map((link) => `        <a href="${link.href}" data-chrome-link="${link.key}">${link.labels.ko}</a>`).join('\n')}
+      </nav>`;
+
+  return `
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
+${switcherMarkup}
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+${utilityMarkup}`;
+}
+
+function injectChromeShell(html, pathname) {
+  let nextHtml = html.replace(/<div class="page-controls">/i, (match) => `${match}\n${buildChromeControls(pathname)}`);
+
+  nextHtml = nextHtml.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/i, (match, attrs, text) => {
+    if (match.includes('trust-badge')) {
+      return match;
+    }
+    return `<h1${attrs}>${text}<span class="trust-badge" data-chrome-badge="trust">🔒 브라우저 내부 처리</span></h1>`;
+  });
+
+  return nextHtml;
 }
 
 function upsertBodyAttribute(html, attr, value) {
@@ -308,6 +363,7 @@ function seoMetadataPlugin() {
       ).replaceAll('</script>', '<\\/script>');
 
       let nextHtml = removeHeadArtifacts(html);
+      nextHtml = injectChromeShell(nextHtml, meta.path);
       nextHtml = nextHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(fullTitle)}</title>`);
       nextHtml = upsertBodyAttribute(nextHtml, 'data-allow-ads', meta.allowAds ? 'true' : 'false');
 
