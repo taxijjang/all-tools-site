@@ -1,5 +1,6 @@
 import { bindLocaleSwitcher, initI18n, onLocaleChange, revealI18n } from './i18n.js';
 import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './chrome-meta.js';
+import { HOME_DISCOVERY_COPY, HOME_FILTERS, HOME_WORKFLOWS, QUICK_START_META, TOOL_CATEGORY_MAP } from './ux-meta.js';
 import './style.css';
 
 // --- State & DOM Elements ---
@@ -39,6 +40,35 @@ function getChromeCopy(locale = document.documentElement.getAttribute('lang')) {
 
 function getToolLabel(tool, locale = document.documentElement.getAttribute('lang')) {
   return tool?.labels?.[locale] || tool?.labels?.en || tool?.value || '';
+}
+
+function getLocalizedValue(labels, locale = document.documentElement.getAttribute('lang')) {
+  return labels?.[locale] || labels?.en || '';
+}
+
+function applyTemplate(template, values = {}) {
+  return template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? '');
+}
+
+function escapeHtml(value = '') {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
+
+function getToolPath(href = '') {
+  try {
+    return new URL(href, window.location.origin).pathname;
+  } catch (err) {
+    return href;
+  }
+}
+
+function getCategoryLabel(categoryKey, locale = document.documentElement.getAttribute('lang')) {
+  const entry = HOME_FILTERS.find((filter) => filter.key === categoryKey);
+  return getLocalizedValue(entry?.labels, locale);
 }
 
 const RELATED_TOOL_MAP = {
@@ -138,6 +168,293 @@ function injectRelatedToolsSection() {
   });
 
   footer.before(section);
+}
+
+function setupHomeDiscovery() {
+  const grid = document.querySelector('[data-home-grid]');
+  const searchInput = document.querySelector('[data-home-search]');
+  const filtersHost = document.querySelector('[data-home-filters]');
+  const resultsEl = document.querySelector('[data-home-results]');
+  const workflowsHost = document.querySelector('[data-home-workflows]');
+  if (!grid || !searchInput || !filtersHost || !resultsEl || !workflowsHost) {
+    return () => {};
+  }
+
+  const cards = Array.from(grid.querySelectorAll('.card[href]'));
+  let activeFilter = 'all';
+
+  cards.forEach((card) => {
+    const path = getToolPath(card.getAttribute('href'));
+    card.dataset.category = TOOL_CATEGORY_MAP[path] || 'ops';
+
+    let meta = card.querySelector('.card__meta');
+    if (!meta) {
+      meta = document.createElement('span');
+      meta.className = 'card__meta';
+      const heading = card.querySelector('h2');
+      if (heading) {
+        card.insertBefore(meta, heading);
+      } else {
+        card.prepend(meta);
+      }
+    }
+  });
+
+  function renderWorkflowCards(locale) {
+    workflowsHost.innerHTML = HOME_WORKFLOWS.map((workflow) => {
+      const workflowCopy = workflow.labels[locale] || workflow.labels.en;
+      const links = workflow.links
+        .map(
+          (link) =>
+            `<a class="home-workflow__link" href="${link.href}">${escapeHtml(
+              getLocalizedValue(link.labels, locale),
+            )}</a>`,
+        )
+        .join('');
+
+      return `
+        <article class="home-workflow">
+          <p class="home-workflow__eyebrow">Workflow</p>
+          <h3>${escapeHtml(workflowCopy.title)}</h3>
+          <p>${escapeHtml(workflowCopy.description)}</p>
+          <div class="home-workflow__links">${links}</div>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function applyFilters(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+    const copy = HOME_DISCOVERY_COPY[locale] || HOME_DISCOVERY_COPY.en;
+    const rawQuery = searchInput.value.trim();
+    const query = rawQuery.toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const cardText = `${card.textContent || ''} ${card.getAttribute('href') || ''}`.toLowerCase();
+      const matchesFilter = activeFilter === 'all' || card.dataset.category === activeFilter;
+      const matchesQuery = !query || cardText.includes(query);
+      const isVisible = matchesFilter && matchesQuery;
+      card.hidden = !isVisible;
+      card.classList.toggle('card--hidden', !isVisible);
+      if (isVisible) {
+        visibleCount += 1;
+      }
+    });
+
+    let message = copy.resultsAll;
+    const filterLabel = activeFilter === 'all' ? '' : getCategoryLabel(activeFilter, locale);
+    if (query && activeFilter !== 'all') {
+      message = copy.resultsMixed;
+    } else if (query) {
+      message = copy.resultsSearch;
+    } else if (activeFilter !== 'all') {
+      message = copy.resultsFiltered;
+    }
+
+    if (visibleCount === 0) {
+      resultsEl.textContent = copy.resultsEmpty;
+      resultsEl.classList.add('is-empty');
+      return;
+    }
+
+    resultsEl.textContent = applyTemplate(message, {
+      count: String(visibleCount),
+      filter: filterLabel,
+      query: rawQuery,
+    });
+    resultsEl.classList.remove('is-empty');
+  }
+
+  function render(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+    const copy = HOME_DISCOVERY_COPY[locale] || HOME_DISCOVERY_COPY.en;
+
+    const kickerEl = document.querySelector('[data-home-kicker]');
+    const headingEl = document.querySelector('[data-home-heading]');
+    const leadEl = document.querySelector('[data-home-lead]');
+    const searchLabelEl = document.querySelector('[data-home-search-label]');
+    const catalogKickerEl = document.querySelector('[data-home-catalog-kicker]');
+    const catalogHeadingEl = document.querySelector('[data-home-catalog-heading]');
+    const catalogLinkEl = document.querySelector('[data-home-catalog-link]');
+
+    if (kickerEl) kickerEl.textContent = copy.kicker;
+    if (headingEl) headingEl.textContent = copy.heading;
+    if (leadEl) leadEl.textContent = copy.lead;
+    if (searchLabelEl) searchLabelEl.textContent = copy.searchLabel;
+    if (catalogKickerEl) catalogKickerEl.textContent = copy.catalogKicker;
+    if (catalogHeadingEl) catalogHeadingEl.textContent = copy.catalogHeading;
+    if (catalogLinkEl) catalogLinkEl.textContent = copy.catalogLink;
+    searchInput.placeholder = copy.searchPlaceholder;
+
+    cards.forEach((card) => {
+      const meta = card.querySelector('.card__meta');
+      if (meta) {
+        meta.textContent = getCategoryLabel(card.dataset.category, locale);
+      }
+    });
+
+    filtersHost.innerHTML = HOME_FILTERS.map((filter) => {
+      const isActive = filter.key === activeFilter;
+      return `
+        <button
+          type="button"
+          class="filter-chip${isActive ? ' is-active' : ''}"
+          data-filter-key="${filter.key}"
+          aria-pressed="${String(isActive)}"
+        >
+          ${escapeHtml(getLocalizedValue(filter.labels, locale))}
+        </button>
+      `;
+    }).join('');
+
+    filtersHost.querySelectorAll('[data-filter-key]').forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.filterKey || 'all';
+        render(locale);
+      });
+    });
+
+    renderWorkflowCards(locale);
+    applyFilters(locale);
+  }
+
+  searchInput.addEventListener('input', () => {
+    applyFilters(document.documentElement.getAttribute('lang') || currentLocale);
+  });
+
+  render();
+  return render;
+}
+
+function runQuickStartAction(actionKey) {
+  switch (actionKey) {
+    case 'uuid-generate': {
+      const mode = document.getElementById('uuidVersion');
+      if (mode) {
+        mode.value = 'v4';
+      }
+      document.getElementById('generateBtn')?.click();
+      document.getElementById('randomUuid')?.focus();
+      break;
+    }
+    case 'uuid-sample-hex': {
+      const source = document.getElementById('randomUuid');
+      const input = document.getElementById('uuidInput');
+      if (input) {
+        input.value = source?.value || '550e8400-e29b-41d4-a716-446655440000';
+      }
+      document.getElementById('uuidToHexBtn')?.click();
+      document.getElementById('hexOutput')?.focus();
+      break;
+    }
+    case 'base64-sample-encode': {
+      const input = document.getElementById('plainInput');
+      const urlSafe = document.getElementById('urlSafeEncode');
+      if (input) {
+        input.value = 'alice@example.com:open-sesame';
+      }
+      if (urlSafe) {
+        urlSafe.checked = false;
+      }
+      document.getElementById('encodeBtn')?.click();
+      document.getElementById('base64Output')?.focus();
+      break;
+    }
+    case 'base64-sample-decode': {
+      const input = document.getElementById('base64Input');
+      const stripWhitespace = document.getElementById('stripWhitespace');
+      const urlSafe = document.getElementById('urlSafeDecode');
+      if (input) {
+        input.value = 'dXNlcj1hbGljZSZyb2xlPWRldg==';
+      }
+      if (stripWhitespace) {
+        stripWhitespace.checked = true;
+      }
+      if (urlSafe) {
+        urlSafe.checked = false;
+      }
+      document.getElementById('decodeBtn')?.click();
+      document.getElementById('plainOutput')?.focus();
+      break;
+    }
+    case 'json-sample':
+      document.getElementById('sampleBtn')?.click();
+      document.getElementById('jsonInput')?.focus();
+      break;
+    case 'json-format':
+      document.getElementById('formatBtn')?.click();
+      document.getElementById('jsonOutput')?.focus();
+      break;
+    case 'jwt-sample':
+      document.getElementById('jwtSampleBtn')?.click();
+      document.getElementById('jwtInput')?.focus();
+      break;
+    case 'jwt-decode':
+      document.getElementById('decodeJwtBtn')?.click();
+      document.getElementById('jwtPayload')?.focus();
+      break;
+    case 'regex-sample':
+      document.getElementById('reSampleBtn')?.click();
+      document.getElementById('rePattern')?.focus();
+      break;
+    case 'regex-test':
+      document.getElementById('reTestBtn')?.click();
+      document.getElementById('reMatches')?.focus();
+      break;
+    default:
+      break;
+  }
+}
+
+function setupQuickStartPanel() {
+  const currentTool = document.body.dataset.tool || 'global';
+  const meta = QUICK_START_META[currentTool];
+  const header = document.querySelector('.page-header');
+  const main = document.querySelector('.tool');
+  if (!meta || !header || !main) {
+    return () => {};
+  }
+
+  let panel = document.querySelector('.quick-start');
+  if (!panel) {
+    panel = document.createElement('section');
+    panel.className = 'quick-start';
+    header.after(panel);
+  }
+
+  function render(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+    const copy = meta.copy[locale] || meta.copy.en;
+    const checks = copy.checks
+      .map((item) => `<li>${escapeHtml(item)}</li>`)
+      .join('');
+    const actions = meta.actions
+      .map((action) => {
+        const label = escapeHtml(getLocalizedValue(action.labels, locale));
+        if (action.kind === 'link') {
+          return `<a class="link-button" href="${action.href}">${label}</a>`;
+        }
+        return `<button type="button" class="link-button" data-quick-action="${action.key}">${label}</button>`;
+      })
+      .join('');
+
+    panel.innerHTML = `
+      <div class="quick-start__intro">
+        <p class="section-kicker">${escapeHtml(copy.kicker)}</p>
+        <h2 class="section-title">${escapeHtml(copy.title)}</h2>
+        <p class="section-lead">${escapeHtml(copy.lead)}</p>
+      </div>
+      <div class="quick-start__body">
+        <ul class="quick-start__checklist">${checks}</ul>
+        <div class="quick-start__actions">${actions}</div>
+      </div>
+    `;
+
+    panel.querySelectorAll('[data-quick-action]').forEach((button) => {
+      button.addEventListener('click', () => runQuickStartAction(button.dataset.quickAction));
+    });
+  }
+
+  render();
+  return render;
 }
 
 // --- Theme Management ---
@@ -535,11 +852,15 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   setupGlobalNavigation();
+  const refreshHomeDiscovery = setupHomeDiscovery();
+  const refreshQuickStart = setupQuickStartPanel();
   injectRelatedToolsSection();
   syncLocaleBlocks(currentLocale);
   onLocaleChange((locale) => {
     syncLocaleBlocks(locale);
     updateChromeText(locale);
+    refreshHomeDiscovery(locale);
+    refreshQuickStart(locale);
     window.statelessTools.locale = locale;
   });
   injectDesktopAdRails();
