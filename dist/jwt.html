@@ -3,17 +3,11 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>JWT Inspector</title>
+  <title>JWT Decoder and Inspector | Claims, Expiry, and JWKS Check | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="JWT 헤더와 페이로드를 즉시 디코딩하고 exp/nbf 같은 클레임을 점검하세요." />
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="JWT Inspector" />
-  <meta property="og:description" content="JWT 헤더와 페이로드를 즉시 디코딩하고 exp/nbf 같은 클레임을 점검하세요." />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
-    crossorigin="anonymous"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>
@@ -23,12 +17,117 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/jwt--X_7b2mT.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CLADHOD3.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-wJjbZCev.css">
+  <script type="module" crossorigin src="/assets/jwt-DgdPBqj_.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CQw5KMEk.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-LhrEa_LC.css">
+  <meta name="description" content="Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://all-tools-site.pages.dev/jwt" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="JWT Decoder and Inspector | Claims, Expiry, and JWKS Check" />
+  <meta property="og:description" content="Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser." />
+  <meta property="og:url" content="https://all-tools-site.pages.dev/jwt" />
+  <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="JWT Decoder and Inspector | Claims, Expiry, and JWKS Check" />
+  <meta name="twitter:description" content="Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser." />
+  <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://all-tools-site.pages.dev/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://all-tools-site.pages.dev/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "logo": "https://all-tools-site.pages.dev/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://all-tools-site.pages.dev/jwt#webpage",
+    "name": "JWT Decoder and Inspector | Claims, Expiry, and JWKS Check",
+    "url": "https://all-tools-site.pages.dev/jwt",
+    "description": "Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser.",
+    "isPartOf": {
+      "@id": "https://all-tools-site.pages.dev/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://all-tools-site.pages.dev/jwt#breadcrumb"
+    },
+    "primaryImageOfPage": "https://all-tools-site.pages.dev/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://all-tools-site.pages.dev/jwt#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://all-tools-site.pages.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "JWT Decoder and Inspector | Claims, Expiry, and JWKS Check",
+        "item": "https://all-tools-site.pages.dev/jwt"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://all-tools-site.pages.dev/jwt#app",
+    "name": "JWT Decoder and Inspector | Claims, Expiry, and JWKS Check",
+    "url": "https://all-tools-site.pages.dev/jwt",
+    "description": "Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://all-tools-site.pages.dev/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    }
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="jwt">
+<body class="layout layout--dev" data-tool="jwt" data-allow-ads="true">
 
   <div class="page page--dev">
     <div class="page-controls">
@@ -93,6 +192,86 @@
 
     </main>
     <p id="jwtMessage" class="message" role="status" aria-live="polite"></p>
+
+    <section class="content-stack">
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">JWT를 빠르게 점검할 때 보는 포인트</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>헤더의 알고리즘 확인</h3>
+              <p><code>alg</code> 값이 기대한 방식과 일치하는지 먼저 확인합니다. 운영 환경 문서와 다른 알고리즘이면 검증 실패의 원인이 될 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>만료 클레임 검토</h3>
+              <p><code>exp</code>, <code>nbf</code>, <code>iat</code>는 서버 시간 차이와 함께 봐야 합니다. 토큰 자체는 정상인데 시간 동기화 문제로 거부되는 경우도 자주 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>페이로드 민감도 점검</h3>
+              <p>JWT는 Base64URL로 인코딩된 값이라 내용이 숨겨지지 않습니다. 민감한 개인정보나 비밀 값을 담는 구조인지도 함께 확인하는 편이 좋습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">What to inspect first in a JWT</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Start with the header algorithm</h3>
+              <p>Check whether the <code>alg</code> value matches the algorithm your environment is supposed to use. A mismatch is a common source of failed verification.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review time-based claims</h3>
+              <p><code>exp</code>, <code>nbf</code>, and <code>iat</code> should be interpreted alongside server clock differences. Time drift often looks like a token issue at first.</p>
+            </article>
+            <article class="info-card">
+              <h3>Check payload sensitivity</h3>
+              <p>JWTs are only encoded, not encrypted. If the payload contains sensitive personal or secret values, the token design itself may need review.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Security Notes</p>
+          <h2 class="section-title">디코딩과 검증은 다릅니다</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>디코딩만으로 신뢰하면 안 됩니다</h3>
+              <p>토큰 내용을 읽을 수 있다는 것과, 그 토큰이 정상 발급되었다는 것은 다른 문제입니다. 신뢰 판단에는 반드시 서명 검증이 필요합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>JWKS URL 검증의 역할</h3>
+              <p>OIDC나 외부 인증 공급자를 쓰는 환경에서는 JWKS로 서명을 대조해야 실제로 해당 발급자가 만든 토큰인지 판단할 수 있습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>함께 보면 좋은 도구</h3>
+              <p>JWT 앞뒤로는 <a href="/json">JSON Viewer</a>로 구조를 확인하고, <a href="/base64">Base64 도구</a>로 관련 인코딩 값을 비교하거나, <a href="/api-tester">API 테스터</a>로 재현 요청을 보내는 흐름이 자주 이어집니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Security Notes</p>
+          <h2 class="section-title">Decoding is not the same as trust</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Readable does not mean valid</h3>
+              <p>Being able to decode a token only means you can inspect it. Trusting it still requires signature validation.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Why the JWKS step matters</h3>
+              <p>In OIDC and external identity-provider setups, JWKS verification helps confirm that the token actually came from the issuer you expect.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Useful companion tools</h3>
+              <p>JWT debugging often pairs well with <a href="/json">JSON Viewer</a>, the <a href="/base64">Base64 tool</a>, and <a href="/api-tester">API Tester</a> when you need to reproduce the full request flow.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
 
     <footer class="footer footer--dev">
       <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>

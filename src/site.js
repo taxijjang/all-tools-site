@@ -37,6 +37,140 @@ function getChromeCopy(locale = document.documentElement.getAttribute('lang')) {
   return chromeCopy[locale] || chromeCopy.en;
 }
 
+const NAV_TOOLS = [
+  { value: '/', label: 'Home' },
+  { value: '/uuid', label: 'UUID' },
+  { value: '/base64', label: 'Base64' },
+  { value: '/json', label: 'JSON' },
+  { value: '/jwt', label: 'JWT' },
+  { value: '/cron', label: 'Cron' },
+  { value: '/url', label: 'URL' },
+  { value: '/hash', label: 'Hash' },
+  { value: '/timestamp', label: 'Timestamp' },
+  { value: '/password', label: 'Password' },
+  { value: '/regex', label: 'Regex' },
+  { value: '/qr', label: 'QR' },
+  { value: '/diff', label: 'Diff' },
+  { value: '/color', label: 'Color' },
+  { value: '/markdown', label: 'Markdown' },
+  { value: '/convert', label: 'Convert' },
+  { value: '/file-hash', label: 'File Hash' },
+  { value: '/image-base64', label: 'Image Base64' },
+  { value: '/uuidv7', label: 'UUID v7' },
+  { value: '/case-convert', label: 'Case' },
+  { value: '/json-yaml', label: 'JSON YAML' },
+  { value: '/query-builder', label: 'Query Builder' },
+  { value: '/ip-ua', label: 'IP / UA' },
+  { value: '/ip-cidr', label: 'IP/CIDR' },
+  { value: '/text-stats', label: 'Text Stats' },
+  { value: '/pdf-toolkit', label: 'PDF Toolkit' },
+  { value: '/image-optimize', label: 'Image Optimize' },
+  { value: '/ocr', label: 'OCR' },
+  { value: '/seo-check', label: 'SEO Check' },
+  { value: '/utm-builder', label: 'UTM Builder' },
+  { value: '/text-cleaner', label: 'Text Cleaner' },
+  { value: '/api-tester', label: 'API Tester' },
+];
+
+const RELATED_TOOL_MAP = {
+  uuid: ['/uuidv7', '/base64', '/json'],
+  base64: ['/url', '/image-base64', '/json'],
+  json: ['/json-yaml', '/diff', '/api-tester'],
+  jwt: ['/base64', '/timestamp', '/api-tester'],
+  url: ['/query-builder', '/utm-builder', '/base64'],
+  hash: ['/file-hash', '/password', '/base64'],
+  cron: ['/timestamp', '/seo-check', '/api-tester'],
+  timestamp: ['/jwt', '/url', '/utm-builder'],
+  password: ['/hash', '/base64', '/regex'],
+  regex: ['/text-cleaner', '/diff', '/json'],
+  qr: ['/url', '/utm-builder', '/image-optimize'],
+  diff: ['/json', '/text-cleaner', '/markdown'],
+  color: ['/image-optimize', '/qr', '/seo-check'],
+  markdown: ['/text-cleaner', '/json', '/seo-check'],
+  convert: ['/timestamp', '/color', '/url'],
+  'file-hash': ['/hash', '/image-optimize', '/pdf-toolkit'],
+  'image-base64': ['/base64', '/image-optimize', '/ocr'],
+  uuidv7: ['/uuid', '/timestamp', '/json'],
+  'case-convert': ['/text-cleaner', '/json', '/query-builder'],
+  'json-yaml': ['/json', '/diff', '/api-tester'],
+  'query-builder': ['/url', '/utm-builder', '/seo-check'],
+  'ip-ua': ['/api-tester', '/seo-check', '/ip-cidr'],
+  'ip-cidr': ['/ip-ua', '/api-tester', '/seo-check'],
+  'text-stats': ['/text-cleaner', '/markdown', '/seo-check'],
+  'pdf-toolkit': ['/image-optimize', '/ocr', '/file-hash'],
+  'image-optimize': ['/ocr', '/pdf-toolkit', '/image-base64'],
+  ocr: ['/image-optimize', '/pdf-toolkit', '/text-cleaner'],
+  'seo-check': ['/utm-builder', '/query-builder', '/api-tester'],
+  'utm-builder': ['/query-builder', '/seo-check', '/url'],
+  'text-cleaner': ['/text-stats', '/markdown', '/diff'],
+  'api-tester': ['/json', '/seo-check', '/query-builder'],
+};
+
+function getRelatedCopy(locale = document.documentElement.getAttribute('lang')) {
+  if (locale === 'ko') {
+    return {
+      heading: '함께 쓰면 좋은 도구',
+      lead: '현재 작업과 이어지는 도구를 바로 열 수 있게 묶어뒀습니다.',
+      cta: '이 도구 열기',
+    };
+  }
+
+  return {
+    heading: 'Related tools for this workflow',
+    lead: 'Open the next utility that commonly pairs with the page you are using now.',
+    cta: 'Open tool',
+  };
+}
+
+function getRelatedTools(currentTool) {
+  const toolLookup = new Map(NAV_TOOLS.map((tool) => [tool.value, tool]));
+  const defaultPaths = ['/uuid', '/base64', '/json'];
+  const candidatePaths = RELATED_TOOL_MAP[currentTool] || defaultPaths;
+
+  return candidatePaths
+    .filter((path, index, list) => path !== `/${currentTool}` && list.indexOf(path) === index)
+    .map((path) => toolLookup.get(path))
+    .filter(Boolean)
+    .slice(0, 3);
+}
+
+function injectRelatedToolsSection() {
+  const currentTool = document.body.dataset.tool || 'global';
+  if (currentTool === 'home' || contentPages.has(currentTool)) return;
+
+  const page = document.querySelector('.page');
+  const footer = page?.querySelector('.footer');
+  if (!page || !footer || page.querySelector('.related-tools')) return;
+
+  const relatedTools = getRelatedTools(currentTool);
+  if (!relatedTools.length) return;
+
+  const copy = getRelatedCopy();
+  const section = document.createElement('section');
+  section.className = 'content-section related-tools';
+  section.innerHTML = `
+    <p class="section-kicker">Explore</p>
+    <h2 class="section-title" data-related-heading>${copy.heading}</h2>
+    <p class="section-lead" data-related-lead>${copy.lead}</p>
+    <div class="related-tools__grid"></div>
+  `;
+
+  const grid = section.querySelector('.related-tools__grid');
+  relatedTools.forEach((tool) => {
+    const link = document.createElement('a');
+    link.className = 'related-tool-link';
+    link.href = tool.value;
+    link.innerHTML = `
+      <span class="related-tool-link__eyebrow">${tool.value}</span>
+      <strong class="related-tool-link__title">${tool.label}</strong>
+      <span class="related-tool-link__cta" data-related-cta>${copy.cta}</span>
+    `;
+    grid.appendChild(link);
+  });
+
+  footer.before(section);
+}
+
 // --- Theme Management ---
 function initTheme() {
   const saved = localStorage.getItem('stateless-theme');
@@ -68,40 +202,7 @@ function setupGlobalNavigation() {
   if (!controls) return;
 
   // 1. Tool Switcher (Quick Jump)
-  const tools = [
-    { value: '/', label: 'Home' },
-    { value: '/uuid', label: 'UUID' },
-    { value: '/base64', label: 'Base64' },
-    { value: '/json', label: 'JSON' },
-    { value: '/jwt', label: 'JWT' },
-    { value: '/cron', label: 'Cron' },
-    { value: '/url', label: 'URL' },
-    { value: '/hash', label: 'Hash' },
-    { value: '/timestamp', label: 'Timestamp' },
-    { value: '/password', label: 'Password' },
-    { value: '/regex', label: 'Regex' },
-    { value: '/qr', label: 'QR' },
-    { value: '/diff', label: 'Diff' },
-    { value: '/color', label: 'Color' },
-    { value: '/markdown', label: 'Markdown' },
-    { value: '/convert', label: 'Convert' },
-    { value: '/file-hash', label: 'File Hash' },
-    { value: '/image-base64', label: 'Image Base64' },
-    { value: '/uuidv7', label: 'UUID v7' },
-    { value: '/case-convert', label: 'Case' },
-    { value: '/json-yaml', label: 'JSON YAML' },
-    { value: '/query-builder', label: 'Query Builder' },
-    { value: '/ip-ua', label: 'IP / UA' },
-    { value: '/ip-cidr', label: 'IP/CIDR' },
-    { value: '/text-stats', label: 'Text Stats' },
-    { value: '/pdf-toolkit', label: 'PDF Toolkit' },
-    { value: '/image-optimize', label: 'Image Optimize' },
-    { value: '/ocr', label: 'OCR' },
-    { value: '/seo-check', label: 'SEO Check' },
-    { value: '/utm-builder', label: 'UTM Builder' },
-    { value: '/text-cleaner', label: 'Text Cleaner' },
-    { value: '/api-tester', label: 'API Tester' },
-  ];
+  const tools = NAV_TOOLS;
   const currentTool = document.body.dataset.tool || 'global';
   const anchor = controls.querySelector('label[for="localeSelect"]') || controls.firstChild;
 
@@ -187,6 +288,7 @@ function setupGlobalNavigation() {
 
 function updateChromeText(locale = document.documentElement.getAttribute('lang')) {
   const copy = getChromeCopy(locale);
+  const relatedCopy = getRelatedCopy(locale);
   const installBtn = document.getElementById('pwaInstallBtn');
   if (installBtn) {
     installBtn.textContent = `⬇️ ${copy.installApp}`;
@@ -203,6 +305,20 @@ function updateChromeText(locale = document.documentElement.getAttribute('lang')
   }
   document.querySelectorAll('[data-chrome-link]').forEach((link) => {
     link.textContent = copy[link.dataset.chromeLink];
+  });
+
+  const relatedHeading = document.querySelector('[data-related-heading]');
+  if (relatedHeading) {
+    relatedHeading.textContent = relatedCopy.heading;
+  }
+
+  const relatedLead = document.querySelector('[data-related-lead]');
+  if (relatedLead) {
+    relatedLead.textContent = relatedCopy.lead;
+  }
+
+  document.querySelectorAll('[data-related-cta]').forEach((link) => {
+    link.textContent = relatedCopy.cta;
   });
 
   const badge = document.querySelector('[data-chrome-badge="trust"]');
@@ -427,6 +543,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   setupGlobalNavigation();
+  injectRelatedToolsSection();
   syncLocaleBlocks(currentLocale);
   onLocaleChange((locale) => {
     syncLocaleBlocks(locale);

@@ -2,12 +2,10 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>IP/CIDR 계산기</title>
+  <title>CIDR Calculator | IPv4 Subnet, Broadcast, Host Range | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="IPv4 주소와 CIDR 프리픽스로 네트워크, 브로드캐스트, 사용 가능한 IP 범위를 계산합니다." />
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -15,11 +13,115 @@
     gtag('js', new Date());
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/ipCidr-D395dk-z.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CLADHOD3.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-wJjbZCev.css">
+  <script type="module" crossorigin src="/assets/ipCidr-gKoaaB3U.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CQw5KMEk.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-LhrEa_LC.css">
+  <meta name="description" content="Calculate subnet masks, network ranges, broadcast addresses, and host counts from IPv4 CIDR blocks." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://all-tools-site.pages.dev/ip-cidr" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="CIDR Calculator | IPv4 Subnet, Broadcast, Host Range" />
+  <meta property="og:description" content="Calculate subnet masks, network ranges, broadcast addresses, and host counts from IPv4 CIDR blocks." />
+  <meta property="og:url" content="https://all-tools-site.pages.dev/ip-cidr" />
+  <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="CIDR Calculator | IPv4 Subnet, Broadcast, Host Range" />
+  <meta name="twitter:description" content="Calculate subnet masks, network ranges, broadcast addresses, and host counts from IPv4 CIDR blocks." />
+  <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://all-tools-site.pages.dev/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://all-tools-site.pages.dev/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "logo": "https://all-tools-site.pages.dev/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://all-tools-site.pages.dev/ip-cidr#webpage",
+    "name": "CIDR Calculator | IPv4 Subnet, Broadcast, Host Range",
+    "url": "https://all-tools-site.pages.dev/ip-cidr",
+    "description": "Calculate subnet masks, network ranges, broadcast addresses, and host counts from IPv4 CIDR blocks.",
+    "isPartOf": {
+      "@id": "https://all-tools-site.pages.dev/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://all-tools-site.pages.dev/ip-cidr#breadcrumb"
+    },
+    "primaryImageOfPage": "https://all-tools-site.pages.dev/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://all-tools-site.pages.dev/ip-cidr#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://all-tools-site.pages.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "CIDR Calculator | IPv4 Subnet, Broadcast, Host Range",
+        "item": "https://all-tools-site.pages.dev/ip-cidr"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://all-tools-site.pages.dev/ip-cidr#app",
+    "name": "CIDR Calculator | IPv4 Subnet, Broadcast, Host Range",
+    "url": "https://all-tools-site.pages.dev/ip-cidr",
+    "description": "Calculate subnet masks, network ranges, broadcast addresses, and host counts from IPv4 CIDR blocks.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://all-tools-site.pages.dev/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    }
+  }
+]
+  </script>
 </head>
-<body class="layout layout--dev" data-tool="ip-cidr">
+<body class="layout layout--dev" data-tool="ip-cidr" data-allow-ads="false">
   <div class="page page--dev">
     <div class="page-controls">
       <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>

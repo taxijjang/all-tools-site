@@ -80,6 +80,86 @@
     </main>
     <p id="urlMessage" class="message" role="status" aria-live="polite"></p>
 
+    <section class="content-stack">
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">URL 인코딩에서 자주 생기는 문제</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>전체 URL과 일부 파라미터를 구분하기</h3>
+              <p>전체 URL을 인코딩해야 하는지, 쿼리 값 한 조각만 인코딩해야 하는지 구분하지 않으면 결과가 쉽게 깨집니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>이중 인코딩</h3>
+              <p>이미 인코딩된 값을 다시 인코딩하면 <code>%2520</code> 같은 형태가 생기면서 서버나 리다이렉트 흐름에서 오류가 날 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>쿼리 값 검토</h3>
+              <p>인코딩 후에는 단순 문자열뿐 아니라 쿼리 파라미터 표를 함께 확인해 키와 값이 원하는 구조로 들어갔는지 보는 게 좋습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">Common URL encoding mistakes</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Know whether you are encoding the whole URL or one value</h3>
+              <p>A full URL and a single query parameter should not always be encoded the same way. Mixing those cases is a common source of broken links.</p>
+            </article>
+            <article class="info-card">
+              <h3>Double encoding</h3>
+              <p>Encoding an already encoded value can turn spaces into patterns like <code>%2520</code> and break callback or redirect logic.</p>
+            </article>
+            <article class="info-card">
+              <h3>Inspect the parsed query table</h3>
+              <p>After encoding or decoding, review the query parameter table so you can confirm the structure instead of trusting the raw string alone.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">이 도구가 특히 도움이 되는 상황</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>리다이렉트 URL 디버깅</h3>
+              <p>로그인 후 리다이렉트, OAuth callback, 결제 완료 URL처럼 파라미터가 길게 붙는 주소를 빠르게 검토할 수 있습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>마케팅 링크 검수</h3>
+              <p><a href="/utm-builder">UTM 빌더</a>에서 만든 링크를 다시 확인하거나, <a href="/query-builder">쿼리 빌더</a>로 정리한 값을 검증할 때 잘 맞습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>API 호출 재현</h3>
+              <p>요청 URL이 길거나 특수문자가 많을 때는 <a href="/api-tester">API 테스터</a>와 함께 보면 쿼리 인코딩 이슈를 찾기 쉽습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">Where this tool is most useful</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Redirect and callback debugging</h3>
+              <p>Helpful for reviewing login redirects, OAuth callbacks, and payment return URLs that carry long parameter chains.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Marketing link QA</h3>
+              <p>It pairs well with the <a href="/utm-builder">UTM Builder</a> and <a href="/query-builder">Query Builder</a> when campaign URLs need a final validation pass.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Reproducing API requests</h3>
+              <p>When a request URL is long or full of reserved characters, checking it alongside <a href="/api-tester">API Tester</a> makes encoding issues easier to isolate.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
     <footer class="footer footer--dev">
       <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
     </footer>

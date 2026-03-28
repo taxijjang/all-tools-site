@@ -82,6 +82,86 @@
 
     <p id="reMessage" class="message" role="status" aria-live="polite"></p>
 
+    <section class="content-stack">
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">정규식 테스트가 특히 도움 되는 작업</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>입력값 검증 규칙 점검</h3>
+              <p>이메일, 슬러그, 사번, 주문번호처럼 형식 제약이 있는 값을 프론트엔드나 백엔드에 넣기 전에 빠르게 시뮬레이션할 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>로그에서 ID 추출</h3>
+              <p>에러 로그나 API 응답에서 특정 토큰, UUID, 경로 조각만 뽑아내는 패턴을 만들 때 매치 결과를 눈으로 확인하기 좋습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>치환 전 안전 점검</h3>
+              <p>대량 치환이나 텍스트 정리 작업 전에 어떤 부분이 잡히는지 먼저 확인하면 실수로 과도하게 바뀌는 일을 줄일 수 있습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">Where a regex tester saves real time</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Validate input rules</h3>
+              <p>Test patterns for emails, slugs, employee IDs, or order references before you wire them into app validation logic.</p>
+            </article>
+            <article class="info-card">
+              <h3>Extract values from logs</h3>
+              <p>Build patterns that pull UUIDs, request IDs, paths, or token-like strings out of noisy incident logs.</p>
+            </article>
+            <article class="info-card">
+              <h3>Preview replacements safely</h3>
+              <p>Check what a pattern really matches before doing large-scale replacements or text cleanup in another tool or codebase.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Notes</p>
+          <h2 class="section-title">정규식에서 자주 막히는 부분</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3><code>g</code>, <code>i</code>, <code>m</code> 플래그는 무엇이 다른가요?</h3>
+              <p><code>g</code>는 전체 검색, <code>i</code>는 대소문자 무시, <code>m</code>은 여러 줄 기준 앵커 동작에 영향을 줍니다. 필요에 따라 조합해서 확인해야 합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>패턴 오류가 왜 자꾸 나나요?</h3>
+              <p>이스케이프 누락, 괄호 짝 불일치, 브라우저 자바스크립트 엔진이 지원하지 않는 문법 때문에 자주 발생합니다. 의심 구간을 작은 단위로 나눠 테스트하는 것이 빠릅니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>이 페이지는 어떤 정규식 엔진을 쓰나요?</h3>
+              <p>브라우저의 JavaScript 정규식 엔진을 기준으로 동작합니다. PCRE나 특정 서버 런타임과는 차이가 있을 수 있으니 배포 환경에서도 한 번 더 확인하는 것이 좋습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Notes</p>
+          <h2 class="section-title">Things that trip people up a lot</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>What do <code>g</code>, <code>i</code>, and <code>m</code> change?</h3>
+              <p><code>g</code> searches globally, <code>i</code> ignores case, and <code>m</code> changes how line anchors behave across multiple lines.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Why do regex syntax errors happen so often?</h3>
+              <p>Missing escapes, unbalanced groups, or unsupported syntax are the common causes. Testing a smaller fragment first is usually the fastest fix.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Which regex engine does this page use?</h3>
+              <p>It uses the browser JavaScript regex engine. That means behavior can differ from PCRE or some server runtimes, so production checks still matter.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
     <footer class="footer footer--dev">
       <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
     </footer>

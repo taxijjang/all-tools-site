@@ -2,17 +2,119 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>API 테스터</title>
+  <title>API Tester | HTTP Request Builder and cURL Export | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="간단한 HTTP 요청 테스트와 cURL 생성." />
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
-  <script type="module" crossorigin src="/assets/apiTester-Cwh3RNvj.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CLADHOD3.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-wJjbZCev.css">
+  <script type="module" crossorigin src="/assets/apiTester-DrDH6XcS.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CQw5KMEk.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-LhrEa_LC.css">
+  <meta name="description" content="Send HTTP requests, inspect responses, and export cURL commands for quick browser-based API testing." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://all-tools-site.pages.dev/api-tester" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="API Tester | HTTP Request Builder and cURL Export" />
+  <meta property="og:description" content="Send HTTP requests, inspect responses, and export cURL commands for quick browser-based API testing." />
+  <meta property="og:url" content="https://all-tools-site.pages.dev/api-tester" />
+  <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="API Tester | HTTP Request Builder and cURL Export" />
+  <meta name="twitter:description" content="Send HTTP requests, inspect responses, and export cURL commands for quick browser-based API testing." />
+  <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://all-tools-site.pages.dev/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://all-tools-site.pages.dev/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "logo": "https://all-tools-site.pages.dev/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://all-tools-site.pages.dev/api-tester#webpage",
+    "name": "API Tester | HTTP Request Builder and cURL Export",
+    "url": "https://all-tools-site.pages.dev/api-tester",
+    "description": "Send HTTP requests, inspect responses, and export cURL commands for quick browser-based API testing.",
+    "isPartOf": {
+      "@id": "https://all-tools-site.pages.dev/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://all-tools-site.pages.dev/api-tester#breadcrumb"
+    },
+    "primaryImageOfPage": "https://all-tools-site.pages.dev/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://all-tools-site.pages.dev/api-tester#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://all-tools-site.pages.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "API Tester | HTTP Request Builder and cURL Export",
+        "item": "https://all-tools-site.pages.dev/api-tester"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://all-tools-site.pages.dev/api-tester#app",
+    "name": "API Tester | HTTP Request Builder and cURL Export",
+    "url": "https://all-tools-site.pages.dev/api-tester",
+    "description": "Send HTTP requests, inspect responses, and export cURL commands for quick browser-based API testing.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://all-tools-site.pages.dev/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    }
+  }
+]
+  </script>
 </head>
-<body class="layout layout--dev" data-tool="api-tester">
+<body class="layout layout--dev" data-tool="api-tester" data-allow-ads="false">
   <div class="page page--dev">
     <div class="page-controls"><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label><div class="locale-switcher"><select id="localeSelect"><option value="ko">한국어</option><option value="en">English</option></select></div></div>
     <header class="page-header"><a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a><h1>API 테스터</h1><p>GET/POST 요청 테스트 + cURL 변환.</p></header>

@@ -92,6 +92,86 @@
     </main>
     <p id="jwtMessage" class="message" role="status" aria-live="polite"></p>
 
+    <section class="content-stack">
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">JWT를 빠르게 점검할 때 보는 포인트</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>헤더의 알고리즘 확인</h3>
+              <p><code>alg</code> 값이 기대한 방식과 일치하는지 먼저 확인합니다. 운영 환경 문서와 다른 알고리즘이면 검증 실패의 원인이 될 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>만료 클레임 검토</h3>
+              <p><code>exp</code>, <code>nbf</code>, <code>iat</code>는 서버 시간 차이와 함께 봐야 합니다. 토큰 자체는 정상인데 시간 동기화 문제로 거부되는 경우도 자주 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>페이로드 민감도 점검</h3>
+              <p>JWT는 Base64URL로 인코딩된 값이라 내용이 숨겨지지 않습니다. 민감한 개인정보나 비밀 값을 담는 구조인지도 함께 확인하는 편이 좋습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">What to inspect first in a JWT</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Start with the header algorithm</h3>
+              <p>Check whether the <code>alg</code> value matches the algorithm your environment is supposed to use. A mismatch is a common source of failed verification.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review time-based claims</h3>
+              <p><code>exp</code>, <code>nbf</code>, and <code>iat</code> should be interpreted alongside server clock differences. Time drift often looks like a token issue at first.</p>
+            </article>
+            <article class="info-card">
+              <h3>Check payload sensitivity</h3>
+              <p>JWTs are only encoded, not encrypted. If the payload contains sensitive personal or secret values, the token design itself may need review.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Security Notes</p>
+          <h2 class="section-title">디코딩과 검증은 다릅니다</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>디코딩만으로 신뢰하면 안 됩니다</h3>
+              <p>토큰 내용을 읽을 수 있다는 것과, 그 토큰이 정상 발급되었다는 것은 다른 문제입니다. 신뢰 판단에는 반드시 서명 검증이 필요합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>JWKS URL 검증의 역할</h3>
+              <p>OIDC나 외부 인증 공급자를 쓰는 환경에서는 JWKS로 서명을 대조해야 실제로 해당 발급자가 만든 토큰인지 판단할 수 있습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>함께 보면 좋은 도구</h3>
+              <p>JWT 앞뒤로는 <a href="/json">JSON Viewer</a>로 구조를 확인하고, <a href="/base64">Base64 도구</a>로 관련 인코딩 값을 비교하거나, <a href="/api-tester">API 테스터</a>로 재현 요청을 보내는 흐름이 자주 이어집니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Security Notes</p>
+          <h2 class="section-title">Decoding is not the same as trust</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Readable does not mean valid</h3>
+              <p>Being able to decode a token only means you can inspect it. Trusting it still requires signature validation.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Why the JWKS step matters</h3>
+              <p>In OIDC and external identity-provider setups, JWKS verification helps confirm that the token actually came from the issuer you expect.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Useful companion tools</h3>
+              <p>JWT debugging often pairs well with <a href="/json">JSON Viewer</a>, the <a href="/base64">Base64 tool</a>, and <a href="/api-tester">API Tester</a> when you need to reproduce the full request flow.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
     <footer class="footer footer--dev">
       <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
     </footer>
