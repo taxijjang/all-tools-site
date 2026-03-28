@@ -1,5 +1,5 @@
 import './style.css';
-import { t } from './i18n.js';
+import { onLocaleChange, t } from './i18n.js';
 import { importJWK, jwtVerify } from 'jose';
 
 const jwtInput = document.getElementById('jwtInput');
@@ -10,10 +10,37 @@ const metaEl = document.getElementById('jwtMeta');
 const jwksUrlEl = document.getElementById('jwtJwksUrl');
 const verifyBtn = document.getElementById('jwtVerifyBtn');
 const verifyOutputEl = document.getElementById('jwtVerifyOutput');
+const verifySectionEl = jwksUrlEl?.closest('section');
+
+const verifyCopy = {
+  ko: {
+    title: 'JWKS 서명 검증',
+    button: '서명 검증',
+    output: '검증 결과',
+  },
+  en: {
+    title: 'JWKS signature verification',
+    button: 'Verify signature',
+    output: 'Verification result',
+  },
+};
 
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
   messageEl.classList.toggle('message--error', isError);
+}
+
+function applyVerifyCopy(locale = document.documentElement.getAttribute('lang') || 'ko') {
+  const copy = verifyCopy[locale] || verifyCopy.en;
+  if (!verifySectionEl) return;
+
+  const titleEl = verifySectionEl.querySelector('h2');
+  const labels = verifySectionEl.querySelectorAll('label');
+  const outputLabelEl = Array.from(labels).find((label) => label.getAttribute('for') === 'jwtVerifyOutput');
+
+  if (titleEl) titleEl.textContent = copy.title;
+  if (verifyBtn) verifyBtn.textContent = copy.button;
+  if (outputLabelEl) outputLabelEl.textContent = copy.output;
 }
 
 function base64UrlDecode(segment) {
@@ -37,21 +64,25 @@ function describeClaims(payload) {
     metaEl.textContent = '';
     return;
   }
+
   const now = Math.floor(Date.now() / 1000);
   const exp = payload.exp;
   const nbf = payload.nbf;
   const parts = [];
+
   if (typeof exp === 'number') {
     const expired = exp < now;
     const date = new Date(exp * 1000).toISOString();
     parts.push(expired ? t('jwt.meta.expired', { date }) : t('jwt.meta.expires', { date }));
   }
+
   if (typeof nbf === 'number') {
     const active = nbf <= now;
     const date = new Date(nbf * 1000).toISOString();
     parts.push(active ? t('jwt.meta.nbfActive', { date }) : t('jwt.meta.nbfPending', { date }));
   }
-  metaEl.textContent = parts.join(' · ');
+
+  metaEl.textContent = parts.join(' | ');
 }
 
 function decodeJwt() {
@@ -61,18 +92,20 @@ function decodeJwt() {
       showMessage(t('jwt.error.empty'), true);
       return;
     }
+
     const parts = token.split('.');
     if (parts.length < 2) {
       showMessage(t('jwt.error.format'), true);
       return;
     }
+
     const header = JSON.parse(base64UrlDecode(parts[0]));
     const payload = JSON.parse(base64UrlDecode(parts[1]));
     headerEl.textContent = prettyPrint(header);
     payloadEl.textContent = prettyPrint(payload);
     describeClaims(payload);
     showMessage(t('jwt.success'));
-  } catch (err) {
+  } catch {
     showMessage(t('jwt.error.decode'), true);
   }
 }
@@ -91,7 +124,7 @@ async function verifyJwtSignature() {
     return;
   }
   if (!jwksUrl) {
-    showMessage('JWKS URL을 입력하세요.', true);
+    showMessage(t('jwt.verify.enterJwks'), true);
     return;
   }
 
@@ -99,8 +132,10 @@ async function verifyJwtSignature() {
     const header = decodeHeader(token);
     const res = await fetch(jwksUrl);
     const jwks = await res.json();
-    const key = (jwks.keys || []).find((k) => !header.kid || k.kid === header.kid);
-    if (!key) throw new Error('JWKS에 매칭되는 키가 없습니다.');
+    const key = (jwks.keys || []).find((candidate) => !header.kid || candidate.kid === header.kid);
+    if (!key) {
+      throw new Error(t('jwt.verify.noKey'));
+    }
 
     const cryptoKey = await importJWK(key, key.alg || header.alg || 'RS256');
     const verified = await jwtVerify(token, cryptoKey, {});
@@ -114,10 +149,10 @@ async function verifyJwtSignature() {
       null,
       2,
     );
-    showMessage('JWT 서명 검증 성공.');
-  } catch (err) {
+    showMessage(t('jwt.verify.success'));
+  } catch (error) {
     verifyOutputEl.value = '';
-    showMessage(`JWT 서명 검증 실패: ${err.message}`, true);
+    showMessage(t('jwt.verify.failed', { message: error.message }), true);
   }
 }
 
@@ -131,6 +166,9 @@ document.getElementById('jwtClearBtn').addEventListener('click', () => {
   verifyOutputEl.value = '';
   showMessage('');
 });
+
+applyVerifyCopy();
+onLocaleChange((locale) => applyVerifyCopy(locale));
 
 document.getElementById('jwtSampleBtn').addEventListener('click', () => {
   const sample =

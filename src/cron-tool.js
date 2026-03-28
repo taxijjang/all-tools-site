@@ -25,6 +25,21 @@ const CRON_NICKNAMES = {
     '@hourly': '0 * * * *',
 };
 
+const PRESET_LABELS = {
+    ko: {
+        '* * * * *': '매분',
+        '0 * * * *': '매시간',
+        '0 0 * * *': '매일 자정',
+        '0 9 * * 1': '매주 월 09:00',
+    },
+    en: {
+        '* * * * *': 'Every minute',
+        '0 * * * *': 'Every hour',
+        '0 0 * * *': 'Every day at midnight',
+        '0 9 * * 1': 'Every Monday 09:00',
+    },
+};
+
 function getCronstrueLocale() {
     return LOCALE_MAP[currentLocale] || 'en';
 }
@@ -49,6 +64,13 @@ function renderInvalid(message) {
     dom.nextList.innerHTML = '';
     dom.message.textContent = t('cron.error.details', { message });
     dom.message.classList.add('message--error');
+}
+
+function renderPresetLabels() {
+    const labels = PRESET_LABELS[currentLocale] || PRESET_LABELS.en;
+    dom.presets.forEach((btn) => {
+        btn.textContent = labels[btn.dataset.preset] || btn.dataset.preset;
+    });
 }
 
 function update() {
@@ -109,8 +131,10 @@ dom.presets.forEach(btn => {
 // Update on locale change
 onLocaleChange((newLocale) => {
     currentLocale = newLocale;
+    renderPresetLabels();
     update();
 });
 
 // Initial run
+renderPresetLabels();
 update();

@@ -12,9 +12,9 @@ const dom = {
   message: document.getElementById('jyMessage'),
 };
 
-function setMessage(text, err = false) {
+function setMessage(text, error = false) {
   dom.message.textContent = text;
-  dom.message.classList.toggle('message--error', err);
+  dom.message.classList.toggle('message--error', error);
 }
 
 function toYaml() {
@@ -23,8 +23,8 @@ function toYaml() {
     if (!window.jsyaml) throw new Error('js-yaml not loaded');
     dom.output.value = window.jsyaml.dump(obj, { lineWidth: 120 });
     setMessage(t('jsonyaml.success.toYaml'));
-  } catch (e) {
-    setMessage(t('jsonyaml.error', { message: e.message }), true);
+  } catch (error) {
+    setMessage(t('jsonyaml.error', { message: error.message }), true);
   }
 }
 
@@ -34,20 +34,20 @@ function toJson() {
     const obj = window.jsyaml.load(dom.input.value);
     dom.output.value = JSON.stringify(obj, null, 2);
     setMessage(t('jsonyaml.success.toJson'));
-  } catch (e) {
-    setMessage(t('jsonyaml.error', { message: e.message }), true);
+  } catch (error) {
+    setMessage(t('jsonyaml.error', { message: error.message }), true);
   }
 }
 
 function parseCsv(text) {
   const lines = text.split(/\r?\n/).filter(Boolean);
   if (!lines.length) return [];
-  const headers = lines[0].split(',').map((s) => s.trim());
+  const headers = lines[0].split(',').map((value) => value.trim());
   return lines.slice(1).map((line) => {
-    const values = line.split(',').map((s) => s.trim());
+    const values = line.split(',').map((value) => value.trim());
     const row = {};
-    headers.forEach((h, i) => {
-      row[h] = values[i] ?? '';
+    headers.forEach((header, index) => {
+      row[header] = values[index] ?? '';
     });
     return row;
   });
@@ -58,7 +58,7 @@ function toCsv(rows) {
   const headers = Object.keys(rows[0]);
   const out = [headers.join(',')];
   rows.forEach((row) => {
-    out.push(headers.map((h) => String(row[h] ?? '').replaceAll(',', ' ')).join(','));
+    out.push(headers.map((header) => String(row[header] ?? '').replaceAll(',', ' ')).join(','));
   });
   return out.join('\n');
 }
@@ -66,18 +66,18 @@ function toCsv(rows) {
 function csvToJson() {
   try {
     dom.output.value = JSON.stringify(parseCsv(dom.input.value), null, 2);
-    setMessage('CSV → JSON 변환 완료.');
-  } catch (e) {
-    setMessage(`변환 실패: ${e.message}`, true);
+    setMessage(t('jsonyaml.success.csvToJson'));
+  } catch (error) {
+    setMessage(t('jsonyaml.error', { message: error.message }), true);
   }
 }
 
 function jsonToCsv() {
   try {
     dom.output.value = toCsv(JSON.parse(dom.input.value));
-    setMessage('JSON → CSV 변환 완료.');
-  } catch (e) {
-    setMessage(`변환 실패: ${e.message}`, true);
+    setMessage(t('jsonyaml.success.jsonToCsv'));
+  } catch (error) {
+    setMessage(t('jsonyaml.error', { message: error.message }), true);
   }
 }
 

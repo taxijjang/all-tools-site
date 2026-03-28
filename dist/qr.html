@@ -6,11 +6,18 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
-  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/qr-CWnIxwDo.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CCq6hG_G.js">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/qr-Cm5JhLba.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-XTOL-PJr.js">
   <link rel="stylesheet" crossorigin href="/assets/site-wqiRk-Cy.css">
   <meta name="description" content="Create QR codes for text, URLs, or Wi-Fi credentials and decode uploaded QR images in the browser." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
@@ -128,48 +135,56 @@
         </select>
       </div>
     </div>
+
     <header class="page-header">
-      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <a class="back-link" href="/" data-i18n="common.back">도구 목록으로</a>
       <h1 data-i18n="qr.title">QR 생성기/스캐너</h1>
       <p data-i18n="qr.description">텍스트 입력으로 QR 생성, 이미지 업로드로 QR 스캔.</p>
     </header>
+
     <main class="tool tool--columns">
       <section class="tool__panel tool__panel--stack">
-        <label for="qrType">타입</label>
+        <label for="qrType" data-i18n="qr.type">타입</label>
         <select id="qrType" data-persist="type">
-          <option value="text">텍스트/URL</option>
-          <option value="wifi">Wi-Fi</option>
+          <option value="text" data-i18n="qr.type.text">텍스트/URL</option>
+          <option value="wifi" data-i18n="qr.type.wifi">Wi-Fi</option>
         </select>
-        <div id="qrTextFields" class="tool__panel--stack" style="gap:.35rem;">
+
+        <div id="qrTextFields" class="tool__panel--stack" style="gap: 0.35rem">
           <label for="qrText" data-i18n="qr.input">텍스트/URL</label>
           <textarea id="qrText" rows="5" data-persist="text">https://all-tools-site.pages.dev</textarea>
         </div>
+
         <div id="qrWifiFields" class="tool-grid-3" hidden>
           <div>
-            <label for="qrWifiSsid">SSID</label>
+            <label for="qrWifiSsid" data-i18n="qr.ssid">SSID</label>
             <input id="qrWifiSsid" type="text" data-persist="wifiSsid" />
           </div>
           <div>
-            <label for="qrWifiPass">비밀번호</label>
+            <label for="qrWifiPass" data-i18n="qr.password">비밀번호</label>
             <input id="qrWifiPass" type="text" data-persist="wifiPass" />
           </div>
           <div>
-            <label for="qrWifiSec">보안</label>
+            <label for="qrWifiSec" data-i18n="qr.security">보안</label>
             <select id="qrWifiSec" data-persist="wifiSec">
               <option value="WPA">WPA/WPA2</option>
               <option value="WEP">WEP</option>
-              <option value="nopass">없음</option>
+              <option value="nopass" data-i18n="qr.security.none">없음</option>
             </select>
           </div>
         </div>
+
         <label for="qrSize" data-i18n="qr.size">크기(px)</label>
         <input id="qrSize" type="number" min="128" max="1024" value="256" data-persist="size" />
+
         <div class="toolbar">
           <button id="qrGenerateBtn" class="primary" type="button" data-i18n="qr.generate">생성</button>
           <button id="qrDownloadBtn" type="button" disabled data-i18n="qr.download">PNG 다운로드</button>
         </div>
-        <img id="qrImage" class="preview-image" alt="qr" hidden />
+
+        <img id="qrImage" class="preview-image" alt="Generated QR code" hidden />
       </section>
+
       <section class="tool__panel tool__panel--stack">
         <label for="qrScanFile" data-i18n="qr.scanFile">이미지에서 스캔</label>
         <input id="qrScanFile" type="file" accept="image/*" />
@@ -177,7 +192,9 @@
         <textarea id="qrScanOutput" rows="8" readonly></textarea>
       </section>
     </main>
+
     <p id="qrMessage" class="message" role="status" aria-live="polite"></p>
-  </div>
+  </div>
+
 </body>
 </html>

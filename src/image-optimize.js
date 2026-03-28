@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   file: document.getElementById('imgOptFile'),
@@ -43,43 +44,49 @@ function loadImage(file) {
 async function run() {
   const file = dom.file.files?.[0];
   if (!file) {
-    setMessage('이미지를 선택하세요.', true);
+    setMessage(t('messages.imageOptimize.selectFile'), true);
     return;
   }
 
   const img = await loadImage(file);
-  const maxW = Math.max(200, Number(dom.maxWidth.value || img.width));
-  const scale = Math.min(1, maxW / img.width);
-  const w = Math.round(img.width * scale);
-  const h = Math.round(img.height * scale);
+  const maxWidth = Math.max(200, Number(dom.maxWidth.value || img.width));
+  const scale = Math.min(1, maxWidth / img.width);
+  const width = Math.round(img.width * scale);
+  const height = Math.round(img.height * scale);
 
   const canvas = document.createElement('canvas');
-  canvas.width = w;
-  canvas.height = h;
+  canvas.width = width;
+  canvas.height = height;
   const ctx = canvas.getContext('2d');
-  ctx.drawImage(img, 0, 0, w, h);
+  ctx.drawImage(img, 0, 0, width, height);
 
   const mime = dom.format.value;
   const quality = Math.min(1, Math.max(0.2, Number(dom.quality.value || 0.82)));
   const blob = await new Promise((resolve) => canvas.toBlob(resolve, mime, quality));
   outBlob = blob;
 
+  const reduction = Math.max(0, 100 - Math.round((blob.size / file.size) * 100));
   dom.before.value = `${img.width}x${img.height}, ${bytes(file.size)}`;
-  dom.after.value = `${w}x${h}, ${bytes(blob.size)} (${Math.max(0, 100 - Math.round((blob.size / file.size) * 100))}% 절감)`;
+  dom.after.value = `${width}x${height}, ${bytes(blob.size)} (${reduction}% ${t('messages.imageOptimize.reduced')})`;
   dom.preview.src = URL.createObjectURL(blob);
   dom.preview.hidden = false;
   dom.download.disabled = false;
-  setMessage('이미지 최적화 완료.');
+  setMessage(t('messages.imageOptimize.done'));
 }
 
-dom.run.addEventListener('click', () => run().catch(() => setMessage('이미지 최적화 실패.', true)));
+dom.run.addEventListener('click', () => {
+  run().catch(() => {
+    setMessage(t('messages.imageOptimize.failed'), true);
+  });
+});
+
 dom.download.addEventListener('click', () => {
   if (!outBlob) return;
   const ext = dom.format.value.split('/')[1] || 'bin';
-  const a = document.createElement('a');
+  const link = document.createElement('a');
   const url = URL.createObjectURL(outBlob);
-  a.href = url;
-  a.download = `optimized.${ext}`;
-  a.click();
+  link.href = url;
+  link.download = `optimized.${ext}`;
+  link.click();
   URL.revokeObjectURL(url);
 });

@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   input: document.getElementById('tcInput'),
@@ -29,8 +30,8 @@ function slugify(text) {
 
 function run() {
   let lines = dom.input.value.split(/\r?\n/);
-  if (dom.trim.checked) lines = lines.map((l) => l.trim());
-  if (dom.removeEmpty.checked) lines = lines.filter((l) => l.length > 0);
+  if (dom.trim.checked) lines = lines.map((line) => line.trim());
+  if (dom.removeEmpty.checked) lines = lines.filter((line) => line.length > 0);
   if (dom.dedupe.checked) lines = Array.from(new Set(lines));
   if (dom.sort.checked) lines = [...lines].sort((a, b) => a.localeCompare(b));
 
@@ -38,7 +39,7 @@ function run() {
   if (dom.slug.checked) out = slugify(out);
 
   dom.output.value = out;
-  setMessage('텍스트 정리 완료.');
+  setMessage(t('messages.textCleaner.done'));
 }
 
 dom.run.addEventListener('click', run);

@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   url: document.getElementById('seoUrl'),
@@ -25,14 +26,14 @@ function analyze(html) {
   const jsonLdCount = doc.querySelectorAll('script[type="application/ld+json"]').length;
 
   return [
-    `Title: ${title}`,
-    `Description: ${desc}`,
-    `H1: ${h1}`,
-    `Canonical: ${canonical}`,
-    `OG Title: ${ogTitle}`,
-    `OG Description: ${ogDesc}`,
-    `Robots: ${robots}`,
-    `JSON-LD blocks: ${jsonLdCount}`,
+    `${t('seo.report.title')}: ${title}`,
+    `${t('seo.report.description')}: ${desc}`,
+    `${t('seo.report.h1')}: ${h1}`,
+    `${t('seo.report.canonical')}: ${canonical}`,
+    `${t('seo.report.ogTitle')}: ${ogTitle}`,
+    `${t('seo.report.ogDescription')}: ${ogDesc}`,
+    `${t('seo.report.robots')}: ${robots}`,
+    `${t('seo.report.jsonLdBlocks')}: ${jsonLdCount}`,
   ].join('\n');
 }
 
@@ -45,18 +46,22 @@ async function run() {
       const res = await fetch(url);
       html = await res.text();
     } catch {
-      setMessage('URL 직접 조회 실패(CORS 가능성). HTML 소스를 붙여넣어 검사하세요.', true);
+      setMessage(t('messages.seo.fetchFailed'), true);
       return;
     }
   }
 
   if (!html) {
-    setMessage('URL 또는 HTML 소스를 입력하세요.', true);
+    setMessage(t('messages.seo.needInput'), true);
     return;
   }
 
   dom.output.value = analyze(html);
-  setMessage('SEO 점검 완료.');
+  setMessage(t('messages.seo.done'));
 }
 
-dom.run.addEventListener('click', () => run().catch(() => setMessage('SEO 점검 실패.', true)));
+dom.run.addEventListener('click', () => {
+  run().catch(() => {
+    setMessage(t('messages.seo.failed'), true);
+  });
+});

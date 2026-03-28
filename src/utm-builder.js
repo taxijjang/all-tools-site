@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   base: document.getElementById('utmBase'),
@@ -21,7 +22,10 @@ function setMessage(text, error = false) {
 async function shortCode(text) {
   const data = new TextEncoder().encode(text);
   const hash = await crypto.subtle.digest('SHA-256', data);
-  return Array.from(new Uint8Array(hash)).slice(0, 4).map((b) => b.toString(16).padStart(2, '0')).join('');
+  return Array.from(new Uint8Array(hash))
+    .slice(0, 4)
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 async function build() {
@@ -39,10 +43,14 @@ async function build() {
     dom.url.value = out;
     const code = await shortCode(out);
     dom.short.value = `https://all-tools-site.pages.dev/go/${code}`;
-    setMessage('UTM URL 생성 완료.');
+    setMessage(t('messages.utm.done'));
   } catch {
-    setMessage('기본 URL이 올바르지 않습니다.', true);
+    setMessage(t('messages.utm.invalidBase'), true);
   }
 }
 
-dom.build.addEventListener('click', () => build().catch(() => setMessage('생성 실패.', true)));
+dom.build.addEventListener('click', () => {
+  build().catch(() => {
+    setMessage(t('messages.utm.failed'), true);
+  });
+});

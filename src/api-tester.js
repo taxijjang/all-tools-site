@@ -1,4 +1,5 @@
 import './style.css';
+import { t } from './i18n.js';
 
 const dom = {
   method: document.getElementById('apiMethod'),
@@ -19,24 +20,26 @@ function setMessage(text, error = false) {
 function parseHeaders(text) {
   const out = {};
   text.split(/\r?\n/).forEach((line) => {
-    const [k, ...rest] = line.split(':');
-    if (!k || !rest.length) return;
-    out[k.trim()] = rest.join(':').trim();
+    const [key, ...rest] = line.split(':');
+    if (!key || !rest.length) return;
+    out[key.trim()] = rest.join(':').trim();
   });
   return out;
 }
 
 function buildCurl(method, url, headers, body) {
-  const h = Object.entries(headers).map(([k, v]) => `-H '${k}: ${v.replaceAll("'", "'\\''")}'`).join(' ');
-  const d = body ? `--data '${body.replaceAll("'", "'\\''")}'` : '';
-  return `curl -X ${method} ${h} ${d} '${url}'`.replace(/\s+/g, ' ').trim();
+  const headerArgs = Object.entries(headers)
+    .map(([key, value]) => `-H '${key}: ${value.replaceAll("'", "'\\''")}'`)
+    .join(' ');
+  const dataArg = body ? `--data '${body.replaceAll("'", "'\\''")}'` : '';
+  return `curl -X ${method} ${headerArgs} ${dataArg} '${url}'`.replace(/\s+/g, ' ').trim();
 }
 
 async function send() {
   const method = dom.method.value;
   const url = dom.url.value.trim();
   if (!url) {
-    setMessage('요청 URL을 입력하세요.', true);
+    setMessage(t('messages.api.urlRequired'), true);
     return;
   }
 
@@ -45,16 +48,29 @@ async function send() {
   dom.curl.value = buildCurl(method, url, headers, body);
 
   const init = { method, headers };
-  if (method !== 'GET' && method !== 'HEAD' && body) init.body = body;
+  if (method !== 'GET' && method !== 'HEAD' && body) {
+    init.body = body;
+  }
 
   const res = await fetch(url, init);
   const text = await res.text();
-  let pretty = text;
-  try { pretty = JSON.stringify(JSON.parse(text), null, 2); } catch {}
 
-  const headerLines = Array.from(res.headers.entries()).map(([k, v]) => `${k}: ${v}`).join('\n');
+  let pretty = text;
+  try {
+    pretty = JSON.stringify(JSON.parse(text), null, 2);
+  } catch {
+    // Keep the raw body when it is not JSON.
+  }
+
+  const headerLines = Array.from(res.headers.entries())
+    .map(([key, value]) => `${key}: ${value}`)
+    .join('\n');
   dom.output.value = `HTTP ${res.status} ${res.statusText}\n\n${headerLines}\n\n${pretty}`;
-  setMessage('API 요청 완료.');
+  setMessage(t('messages.api.done'));
 }
 
-dom.send.addEventListener('click', () => send().catch((e) => setMessage(`요청 실패: ${e.message}`, true)));
+dom.send.addEventListener('click', () => {
+  send().catch((error) => {
+    setMessage(t('messages.api.failed', { message: error.message }), true);
+  });
+});

@@ -4,11 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "node node_modules/vite/bin/vite.js",
+    "build": "node node_modules/vite/bin/vite.js build",
+    "preview": "node node_modules/vite/bin/vite.js preview",
     "test:smoke": "node scripts/smoke-test.mjs",
-    "verify": "npm run build && npm run test:smoke"
+    "audit:i18n": "node scripts/i18n-audit.mjs",
+    "audit:layout": "node scripts/layout-audit.mjs",
+    "verify": "npm run build && npm run test:smoke",
+    "verify:full": "npm run build && npm run test:smoke && npm run audit:i18n && npm run audit:layout"
   },
   "devDependencies": {
     "vite": "^5.0.12"
