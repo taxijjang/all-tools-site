@@ -4,6 +4,55 @@
   <meta charset="utf-8" />
   <meta http-equiv="refresh" content="0; url=/jwt" />
   <title>Moved | Stateless Tools</title>
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = pickLocale();
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
   <meta name="description" content="Moved" />
   <meta name="robots" content="noindex,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="taxijjang" />

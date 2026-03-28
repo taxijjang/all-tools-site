@@ -1184,12 +1184,14 @@ export function setLocale(locale, { root = document } = {}) {
   currentLocale = locale;
   safeStorage('set', 'stateless-tools-locale', locale);
   document.documentElement.setAttribute('lang', locale);
+  document.documentElement.setAttribute('data-preferred-locale', locale);
   applyTranslations(root);
   listeners.forEach((cb) => cb(locale));
 }
 
 export function initI18n({ root = document } = {}) {
   document.documentElement.setAttribute('lang', currentLocale);
+  document.documentElement.setAttribute('data-preferred-locale', currentLocale);
   applyTranslations(root);
   document.documentElement.classList.remove('i18n-pending');
   return currentLocale;

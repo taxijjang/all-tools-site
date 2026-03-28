@@ -8,28 +8,6 @@
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script>
-    (function () {
-      var supported = ['ko', 'en'];
-      function pickLocale() {
-        try {
-          var stored = localStorage.getItem('stateless-tools-locale');
-          if (stored && supported.indexOf(stored) !== -1) {
-            return stored;
-          }
-        } catch (err) { }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
-      }
-      var locale = pickLocale();
-      document.documentElement.setAttribute('lang', locale);
-      document.documentElement.classList.add('i18n-pending');
-      window.__preferredLocale = locale;
-    })();
-  </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -38,8 +16,57 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-XTOL-PJr.js"></script>
+  <script type="module" crossorigin src="/assets/site-CoW6E8JM.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-wqiRk-Cy.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = pickLocale();
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
   <meta name="description" content="Read practical guides for UUIDs, JWT debugging, Base64, URL encoding, and safe browser-based utility workflows." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="taxijjang" />
