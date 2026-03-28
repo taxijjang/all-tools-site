@@ -6,7 +6,7 @@ const root = document.body;
 const currentLocale = initI18n({ root });
 let persistElements = [];
 const adsAllowed = document.body.dataset.allowAds === 'true';
-const contentPages = new Set(['about', 'privacy', 'contact']);
+const contentPages = new Set(['learn', 'about', 'privacy', 'contact']);
 
 const chromeCopy = {
   ko: {
@@ -252,6 +252,7 @@ function setupGlobalNavigation() {
   utilityLinks.className = 'utility-links';
   utilityLinks.setAttribute('aria-label', getChromeCopy().siteLinks);
   [
+    { key: 'learn', href: '/learn' },
     { key: 'about', href: '/about' },
     { key: 'privacy', href: '/privacy' },
     { key: 'contact', href: '/contact' },
@@ -259,6 +260,9 @@ function setupGlobalNavigation() {
     const anchorEl = document.createElement('a');
     anchorEl.href = link.href;
     anchorEl.dataset.chromeLink = link.key;
+    if (link.key === 'learn') {
+      anchorEl.dataset.fallbackLabel = 'Guides';
+    }
     utilityLinks.appendChild(anchorEl);
   });
   controls.insertAdjacentElement('afterend', utilityLinks);
@@ -304,7 +308,11 @@ function updateChromeText(locale = document.documentElement.getAttribute('lang')
     utilityLinks.setAttribute('aria-label', copy.siteLinks);
   }
   document.querySelectorAll('[data-chrome-link]').forEach((link) => {
-    link.textContent = copy[link.dataset.chromeLink];
+    if (link.dataset.chromeLink === 'learn') {
+      link.textContent = locale === 'ko' ? '가이드' : 'Guides';
+      return;
+    }
+    link.textContent = copy[link.dataset.chromeLink] || link.dataset.fallbackLabel || link.dataset.chromeLink;
   });
 
   const relatedHeading = document.querySelector('[data-related-heading]');

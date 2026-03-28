@@ -12,6 +12,7 @@ import {
 
 const pageInputs = {
   main: resolve(__dirname, 'index.html'),
+  learn: resolve(__dirname, 'learn.html'),
   about: resolve(__dirname, 'about.html'),
   privacy: resolve(__dirname, 'privacy.html'),
   contact: resolve(__dirname, 'contact.html'),

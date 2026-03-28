@@ -1,7 +1,8 @@
-const CACHE_NAME = 'stateless-tools-v12-20260328';
+const CACHE_NAME = 'stateless-tools-v13-20260328';
 const ASSETS = [
   '/',
   '/index.html',
+  '/learn.html',
   '/about.html',
   '/privacy.html',
   '/contact.html',

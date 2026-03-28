@@ -11,10 +11,17 @@ export const PAGE_META = {
   index: {
     path: '/',
     kind: 'home',
-    allowAds: true,
     title: 'Developer Tools for UUID, Base64, JSON, JWT and More | Stateless Tools',
     description:
       'Free browser-based developer tools for UUID generation, Base64 encode/decode, JSON formatting, JWT inspection, URL utilities, hashing, and more.',
+  },
+  learn: {
+    path: '/learn',
+    kind: 'content',
+    allowAds: true,
+    title: 'Practical Utility Guides | UUID, JWT, Base64 and More',
+    description:
+      'Read practical guides for UUIDs, JWT debugging, Base64, URL encoding, and safe browser-based utility workflows.',
   },
   about: {
     path: '/about',
@@ -40,7 +47,6 @@ export const PAGE_META = {
   uuid: {
     path: '/uuid',
     kind: 'tool',
-    allowAds: true,
     title: 'UUID Generator and Converter | UUID v4, ULID, Hex(binary16)',
     description:
       'Generate UUID v4 or ULID values and convert UUIDs to and from hex(binary16) in your browser.',
@@ -49,7 +55,6 @@ export const PAGE_META = {
   base64: {
     path: '/base64',
     kind: 'tool',
-    allowAds: true,
     title: 'Base64 Encode Decode Tool | URL-Safe and File Conversion',
     description:
       'Encode and decode Base64 strings, handle URL-safe variants, strip whitespace, and convert files in the browser.',
@@ -58,7 +63,6 @@ export const PAGE_META = {
   json: {
     path: '/json',
     kind: 'tool',
-    allowAds: true,
     title: 'JSON Formatter and Validator | Pretty Print, Minify, Tree View',
     description:
       'Validate JSON, pretty-print or minify it, search keys and values, and inspect the result in a tree view.',
@@ -67,7 +71,6 @@ export const PAGE_META = {
   jwt: {
     path: '/jwt',
     kind: 'tool',
-    allowAds: true,
     title: 'JWT Decoder and Inspector | Claims, Expiry, and JWKS Check',
     description:
       'Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser.',
@@ -76,7 +79,6 @@ export const PAGE_META = {
   url: {
     path: '/url',
     kind: 'tool',
-    allowAds: true,
     title: 'URL Encoder Decoder | Query String Parser',
     description:
       'Encode or decode URLs, inspect query parameters, and verify URL-safe strings directly in the browser.',
@@ -85,7 +87,6 @@ export const PAGE_META = {
   hash: {
     path: '/hash',
     kind: 'tool',
-    allowAds: true,
     title: 'SHA Hash Generator | SHA-256, SHA-1, SHA-384, SHA-512',
     description:
       'Hash text with SHA algorithms in the browser and copy the result as hex or Base64.',
@@ -102,7 +103,6 @@ export const PAGE_META = {
   timestamp: {
     path: '/timestamp',
     kind: 'tool',
-    allowAds: true,
     title: 'Unix Timestamp Converter | Epoch to Date and Date to Epoch',
     description:
       'Convert Unix timestamps into readable dates and turn dates back into epoch seconds or milliseconds.',
@@ -111,7 +111,6 @@ export const PAGE_META = {
   password: {
     path: '/password',
     kind: 'tool',
-    allowAds: true,
     title: 'Password Generator | Secure Random Password Tool',
     description:
       'Generate strong random passwords with custom length and character sets, then review estimated strength.',
@@ -120,7 +119,6 @@ export const PAGE_META = {
   regex: {
     path: '/regex',
     kind: 'tool',
-    allowAds: true,
     title: 'Regex Tester | Match Groups, Flags, and Replacements',
     description:
       'Test regular expressions, inspect matches, and experiment with flags and replacement patterns.',
