@@ -119,6 +119,86 @@
 
     <p id="jsonMessage" class="message" role="status" aria-live="polite"></p>
 
+    <section class="content-stack">
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">JSON을 검토할 때 이 페이지를 어떻게 쓰면 좋은가요?</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>1. 포맷으로 구조 확인</h3>
+              <p>압축된 응답이나 긴 로그 조각을 붙여 넣은 뒤 먼저 포맷해 키 구조와 중첩 깊이를 파악합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>2. 검색으로 문제 지점 찾기</h3>
+              <p>특정 키, 사용자 ID, 상태값을 검색해 응답에서 필요한 필드를 빠르게 좁힐 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>3. 트리 뷰로 중첩 확인</h3>
+              <p>배열과 객체가 깊게 중첩된 응답은 트리 뷰가 훨씬 읽기 쉬워서 필드 위치를 설명하거나 캡처할 때 도움이 됩니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">A practical way to use this JSON page</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>1. Format first</h3>
+              <p>Start by pretty-printing compressed payloads or log fragments so the structure and nesting become obvious.</p>
+            </article>
+            <article class="info-card">
+              <h3>2. Search for the critical field</h3>
+              <p>Search helps narrow large payloads down to a user ID, status flag, or nested key without scanning the whole response manually.</p>
+            </article>
+            <article class="info-card">
+              <h3>3. Use the tree for depth</h3>
+              <p>The tree view is especially helpful when arrays and nested objects make plain formatted text harder to explain or screenshot.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 JSON 오류</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>따옴표 누락</h3>
+              <p>JSON은 키와 문자열 값을 큰따옴표로 감싸야 합니다. 자바스크립트 객체 문법과 헷갈려 작은따옴표나 무따옴표 키를 넣는 경우가 많습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>마지막 쉼표</h3>
+              <p>배열이나 객체의 마지막 항목 뒤 쉼표는 일부 도구에서는 허용돼도 JSON 표준에서는 오류가 됩니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>민감한 데이터 붙여넣기</h3>
+              <p>이 페이지는 브라우저 메모리에서 동작하지만, 실제 서비스 키나 개인정보가 포함된 원문은 조직 정책에 맞게 마스킹 후 검토하는 편이 안전합니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">JSON mistakes that show up all the time</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Missing double quotes</h3>
+              <p>JSON requires double quotes around keys and string values. JavaScript object syntax often causes confusion here.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Trailing commas</h3>
+              <p>A trailing comma may look harmless, but standard JSON parsers reject it in both arrays and objects.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Sensitive payloads</h3>
+              <p>This page runs in browser memory, but production secrets and personal data should still be masked before review when your internal policy requires it.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
     <footer class="footer footer--dev">
       <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
     </footer>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <title>개인정보 처리 | stateless tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="stateless tools에서 어떤 데이터를 브라우저 안에서 처리하고, 어떤 외부 서비스가 동작하는지 정리한 개인정보 안내 페이지." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="개인정보 처리 | stateless tools" />
+  <meta property="og:description" content="브라우저 내 처리, 분석 도구, 캐시와 쿠키에 대한 안내." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script>
+    (function () {
+      var supported = ['ko', 'en'];
+      function pickLocale() {
+        try {
+          var stored = localStorage.getItem('stateless-tools-locale');
+          if (stored && supported.indexOf(stored) !== -1) {
+            return stored;
+          }
+        } catch (err) { }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      var locale = pickLocale();
+      document.documentElement.setAttribute('lang', locale);
+      document.documentElement.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+</head>
+
+<body class="layout layout--dev" data-tool="privacy" data-allow-ads="false">
+
+  <div class="page page--dev page--content">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1>개인정보 처리 안내</h1>
+      <div data-locale-block="ko" lang="ko">
+        <p>이 사이트는 가능한 한 많은 처리를 브라우저 내부에서 끝내는 방향을 우선합니다. 아래 내용은 현재 페이지 기준 동작을 간단히 정리한 것입니다.</p>
+      </div>
+      <div data-locale-block="en" lang="en" hidden>
+        <p>This site tries to keep as much processing as possible inside the browser. The sections below summarize how the current pages handle data.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Summary</p>
+          <h2 class="section-title">핵심 요약</h2>
+          <ul class="content-list">
+            <li>UUID, Base64, JSON, 해시, 텍스트 변환 등 많은 도구는 브라우저 메모리에서 동작합니다.</li>
+            <li>계정 생성, 자체 회원 DB, 자체 결제 처리는 현재 제공하지 않습니다.</li>
+            <li>방문 통계 확인을 위해 Google Analytics가 동작할 수 있습니다.</li>
+            <li>서비스워커와 로컬 스토리지를 이용해 테마, 언어, 최근 입력 상태 일부를 브라우저에 저장할 수 있습니다.</li>
+          </ul>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Summary</p>
+          <h2 class="section-title">Key points</h2>
+          <ul class="content-list">
+            <li>Many tools, including UUID, Base64, JSON, hashing, and text helpers, run in browser memory.</li>
+            <li>The site does not currently provide its own account system, member database, or payment processing.</li>
+            <li>Google Analytics may run for basic traffic measurement.</li>
+            <li>Service worker cache and local storage may keep theme, locale, and some recent input state inside your browser.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Browser Processing</p>
+          <h2 class="section-title">입력 데이터는 어떻게 처리되나요?</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>텍스트 입력</h3>
+              <p>JSON, JWT, Base64, URL, 정규식, 텍스트 통계 같은 입력값은 기능 수행을 위해 브라우저 내부에서 처리됩니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>파일 입력</h3>
+              <p>PDF, 이미지, OCR, 파일 해시 기능은 파일을 읽어 브라우저에서 변환하거나 요약합니다. 단, 외부 라이브러리 동작 방식과 브라우저 환경은 함께 고려해야 합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>저장 상태</h3>
+              <p>언어 설정, 테마, 일부 입력 상태는 다시 방문했을 때 편의를 위해 localStorage에 저장될 수 있습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Browser Processing</p>
+          <h2 class="section-title">How input data is handled</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Text input</h3>
+              <p>Values used in JSON, JWT, Base64, URL, regex, and text-stat flows are processed in the browser to provide the tool output.</p>
+            </article>
+            <article class="info-card">
+              <h3>File input</h3>
+              <p>PDF, image, OCR, and file-hash features read files in the browser for conversion or inspection. Browser behavior and third-party libraries still matter.</p>
+            </article>
+            <article class="info-card">
+              <h3>Stored preferences</h3>
+              <p>Locale, theme, and some recent input state may be stored in local storage to make return visits smoother.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Third Parties</p>
+          <h2 class="section-title">외부 서비스</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Google Analytics</h3>
+              <p>사이트 이용 흐름과 페이지 조회를 확인하기 위해 Google Analytics가 로드될 수 있습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Google AdSense</h3>
+              <p>광고 기능을 사용하는 경우 Google AdSense가 광고 제공과 측정을 위해 관련 기술을 사용할 수 있습니다. 현재 광고 설정 여부는 페이지와 계정 설정에 따라 달라질 수 있습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>외부 라이브러리</h3>
+              <p>PDF, OCR, QR 같은 기능은 공개 라이브러리를 활용할 수 있으며, 세부 동작은 해당 브라우저와 라이브러리 버전에 영향을 받습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Third Parties</p>
+          <h2 class="section-title">Third-party services</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Google Analytics</h3>
+              <p>Google Analytics may load to measure traffic and basic page usage patterns.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Google AdSense</h3>
+              <p>When advertising is enabled, Google AdSense may use its own technologies for ad delivery and measurement. The exact behavior depends on page-level and account-level settings.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Open-source libraries</h3>
+              <p>Features such as PDF handling, OCR, and QR processing may rely on public libraries whose runtime behavior also depends on your browser environment.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Control</p>
+          <h2 class="section-title">내가 할 수 있는 조치</h2>
+          <ul class="content-list">
+            <li>브라우저 캐시와 서비스워커를 지우면 일부 오프라인 리소스와 저장 상태를 제거할 수 있습니다.</li>
+            <li>localStorage를 삭제하면 언어, 테마, 최근 입력 상태 저장값이 초기화됩니다.</li>
+            <li>민감한 데이터는 업로드 전 마스킹하거나 테스트용 샘플로 치환하는 것을 권장합니다.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/contact">문의하기</a>
+            <a class="link-button" href="https://github.com/taxijjang/all-tools-site" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Control</p>
+          <h2 class="section-title">What you can control</h2>
+          <ul class="content-list">
+            <li>Clearing browser cache and service workers removes cached offline resources and related stored state.</li>
+            <li>Deleting local storage resets saved locale, theme, and recent input values.</li>
+            <li>Sensitive payloads should be masked or replaced with test samples before pasting them into any browser tool.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/contact">Contact</a>
+            <a class="link-button" href="https://github.com/taxijjang/all-tools-site" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev">
+      <small>© 2025 stateless tools · privacy summary for current browser-based features</small>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/site.js"></script>
+</body>
+
+</html>

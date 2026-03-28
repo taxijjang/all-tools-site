@@ -1,10 +1,41 @@
-import { bindLocaleSwitcher, initI18n } from './i18n.js';
+import { bindLocaleSwitcher, initI18n, onLocaleChange } from './i18n.js';
 import './style.css';
 
 // --- State & DOM Elements ---
 const root = document.body;
 const currentLocale = initI18n({ root });
 let persistElements = [];
+const adsAllowed = document.body.dataset.allowAds === 'true';
+const contentPages = new Set(['about', 'privacy', 'contact']);
+
+const chromeCopy = {
+  ko: {
+    installApp: '앱 설치',
+    trustBadge: '브라우저 내부 처리',
+    switchTool: '도구 이동',
+    siteLinks: '사이트 링크',
+    about: '소개',
+    privacy: '개인정보 처리',
+    contact: '문의',
+    themeLight: '라이트 모드로 전환',
+    themeDark: '다크 모드로 전환',
+  },
+  en: {
+    installApp: 'Install App',
+    trustBadge: 'Browser-side processing',
+    switchTool: 'Switch tool',
+    siteLinks: 'Site links',
+    about: 'About',
+    privacy: 'Privacy',
+    contact: 'Contact',
+    themeLight: 'Switch to Light Mode',
+    themeDark: 'Switch to Dark Mode',
+  },
+};
+
+function getChromeCopy(locale = document.documentElement.getAttribute('lang')) {
+  return chromeCopy[locale] || chromeCopy.en;
+}
 
 // --- Theme Management ---
 function initTheme() {
@@ -26,9 +57,9 @@ function toggleTheme() {
 function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
-  // Simple emoji icon swapping
   btn.textContent = theme === 'light' ? '☀️' : '🌙';
-  btn.setAttribute('aria-label', theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+  const copy = getChromeCopy();
+  btn.setAttribute('aria-label', theme === 'light' ? copy.themeDark : copy.themeLight);
 }
 
 // --- Navigation & Header Injection ---
@@ -71,75 +102,124 @@ function setupGlobalNavigation() {
     { value: '/text-cleaner', label: 'Text Cleaner' },
     { value: '/api-tester', label: 'API Tester' },
   ];
+  const currentTool = document.body.dataset.tool || 'global';
+  const anchor = controls.querySelector('label[for="localeSelect"]') || controls.firstChild;
 
-  const switcherContainer = document.createElement('div');
-  switcherContainer.className = 'tool-switcher';
+  if (!contentPages.has(currentTool)) {
+    const switcherContainer = document.createElement('div');
+    switcherContainer.className = 'tool-switcher';
 
-  const select = document.createElement('select');
-  select.ariaLabel = 'Switch Tool';
-  select.onchange = (e) => {
-    if (e.target.value) window.location.href = e.target.value;
-  };
+    const select = document.createElement('select');
+    select.onchange = (e) => {
+      if (e.target.value) window.location.href = e.target.value;
+    };
 
-  const currentPath = window.location.pathname.replace(/\/$/, ''); // Remove trailing slash
-  tools.forEach(tool => {
-    const option = document.createElement('option');
-    option.value = tool.value;
-    option.textContent = tool.label;
-    // Match logic: strict match or handling index.html specially if needed,
-    // but usually currentPath will be '/uuid' or '/uuid.html'.
-    // We try to match with or without .html to be safe.
-    if (currentPath === tool.value || currentPath === tool.value + '.html' || (tool.value === '/' && (currentPath === '' || currentPath === '/index.html'))) {
-      option.selected = true;
-    }
-    select.appendChild(option);
-  });
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+    tools.forEach((tool) => {
+      const option = document.createElement('option');
+      option.value = tool.value;
+      option.textContent = tool.label;
+      if (
+        currentPath === tool.value ||
+        currentPath === tool.value + '.html' ||
+        (tool.value === '/' && (currentPath === '' || currentPath === '/index.html'))
+      ) {
+        option.selected = true;
+      }
+      select.appendChild(option);
+    });
 
-  switcherContainer.appendChild(select);
+    switcherContainer.appendChild(select);
+    controls.insertBefore(switcherContainer, anchor);
+  }
 
-  // Insert Tool Switcher at the beginning
-  controls.insertBefore(switcherContainer, controls.firstChild);
-
-  // 2. Theme Toggle
   const themeBtn = document.createElement('button');
   themeBtn.id = 'themeToggle';
   themeBtn.className = 'theme-toggle';
   themeBtn.type = 'button';
   themeBtn.onclick = toggleTheme;
+  controls.insertBefore(themeBtn, anchor);
 
-  // Insert Toggle after tool switcher (before locale)
-  controls.insertBefore(themeBtn, controls.children[1]);
-
-  // 3. PWA Install Button
   const installBtn = document.createElement('button');
   installBtn.id = 'pwaInstallBtn';
   installBtn.className = 'pwa-install-btn';
   installBtn.type = 'button';
-  installBtn.innerHTML = '⬇️ App';
   installBtn.onclick = installPWA;
-  controls.insertBefore(installBtn, controls.firstChild); // First item
+  controls.insertBefore(installBtn, controls.firstChild);
 
-  // Initialize icon state
+  const utilityLinks = document.createElement('nav');
+  utilityLinks.className = 'utility-links';
+  utilityLinks.setAttribute('aria-label', getChromeCopy().siteLinks);
+  [
+    { key: 'about', href: '/about' },
+    { key: 'privacy', href: '/privacy' },
+    { key: 'contact', href: '/contact' },
+  ].forEach((link) => {
+    const anchorEl = document.createElement('a');
+    anchorEl.href = link.href;
+    anchorEl.dataset.chromeLink = link.key;
+    utilityLinks.appendChild(anchorEl);
+  });
+  controls.insertAdjacentElement('afterend', utilityLinks);
+
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
   updateThemeIcon(currentTheme);
 
-  // Inject Trust Badge
   const header = document.querySelector('.page-header h1, .hero h1');
   if (header) {
     const badge = document.createElement('span');
     badge.className = 'trust-badge';
-    badge.innerHTML = '🔒 Secure & Client-side';
+    badge.innerHTML = '🔒';
+    badge.dataset.chromeBadge = 'trust';
     header.appendChild(badge);
   }
 
-  // 4. Inject Google AdSense
-  if (!document.querySelector('script[src*="adsbygoogle"]')) {
+  if (adsAllowed && !document.querySelector('script[src*="adsbygoogle"]')) {
     const adScript = document.createElement('script');
     adScript.async = true;
-    adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757";
-    adScript.crossOrigin = "anonymous";
+    adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757';
+    adScript.crossOrigin = 'anonymous';
     document.head.appendChild(adScript);
   }
+
+  updateChromeText();
+}
+
+function updateChromeText(locale = document.documentElement.getAttribute('lang')) {
+  const copy = getChromeCopy(locale);
+  const installBtn = document.getElementById('pwaInstallBtn');
+  if (installBtn) {
+    installBtn.textContent = `⬇️ ${copy.installApp}`;
+  }
+
+  const switcher = document.querySelector('.tool-switcher select');
+  if (switcher) {
+    switcher.setAttribute('aria-label', copy.switchTool);
+  }
+
+  const utilityLinks = document.querySelector('.utility-links');
+  if (utilityLinks) {
+    utilityLinks.setAttribute('aria-label', copy.siteLinks);
+  }
+  document.querySelectorAll('[data-chrome-link]').forEach((link) => {
+    link.textContent = copy[link.dataset.chromeLink];
+  });
+
+  const badge = document.querySelector('[data-chrome-badge="trust"]');
+  if (badge) {
+    badge.innerHTML = `🔒 ${copy.trustBadge}`;
+  }
+
+  const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+  updateThemeIcon(theme);
+}
+
+function syncLocaleBlocks(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+  document.querySelectorAll('[data-locale-block]').forEach((block) => {
+    const isActive = block.dataset.localeBlock === locale;
+    block.hidden = !isActive;
+    block.setAttribute('aria-hidden', String(!isActive));
+  });
 }
 
 function createAdRail(side) {
@@ -167,6 +247,7 @@ function createAdRail(side) {
 }
 
 function injectDesktopAdRails() {
+  if (!adsAllowed) return;
   if (window.matchMedia('(max-width: 1180px)').matches) return;
   const page = document.querySelector('.page');
   if (!page || document.querySelector('.ad-rail')) return;
@@ -346,6 +427,11 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   setupGlobalNavigation();
+  syncLocaleBlocks(currentLocale);
+  onLocaleChange((locale) => {
+    syncLocaleBlocks(locale);
+    updateChromeText(locale);
+  });
   injectDesktopAdRails();
   hydratePersistentFields();
   setupActions();

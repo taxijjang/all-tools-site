@@ -6,6 +6,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        about: resolve(__dirname, 'about.html'),
+        privacy: resolve(__dirname, 'privacy.html'),
+        contact: resolve(__dirname, 'contact.html'),
         uuid: resolve(__dirname, 'uuid.html'),
         base64: resolve(__dirname, 'base64.html'),
         json: resolve(__dirname, 'json.html'),

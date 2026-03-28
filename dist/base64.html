@@ -33,7 +33,7 @@
       document.documentElement.classList.add('i18n-pending');
       window.__preferredLocale = locale;
     })();
-  </script>
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
     crossorigin="anonymous"></script>
   <!-- Google tag (gtag.js) -->
@@ -45,9 +45,9 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/base64-DGc3rlbF.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CzAw_qQU.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-BDj8x1nO.css">
+  <script type="module" crossorigin src="/assets/base64-D-_ZvP6R.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CLADHOD3.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-wJjbZCev.css">
 </head>
 
 <body class="layout layout--dev" data-tool="base64">
@@ -137,13 +137,93 @@
 
     </main>
 
+    <section class="content-stack">
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">Base64를 쓸 때 가장 많이 헷갈리는 포인트</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Base64는 암호화가 아닙니다</h3>
+              <p>사람이 읽기 어렵게 보일 뿐, 누구나 다시 디코딩할 수 있는 인코딩 방식입니다. 비밀 정보 보호 용도로 쓰면 안 됩니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>URL-safe 옵션</h3>
+              <p><code>+</code>, <code>/</code>, <code>=</code> 문자가 문제 되는 URL 파라미터나 토큰 전달 상황에서는 URL-safe 형태가 더 안전합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>공백 정리</h3>
+              <p>이메일, 문서, 로그에서 복사한 Base64 값은 줄바꿈과 공백이 섞이기 쉬워서 디코딩 전에 정리 옵션을 켜두는 편이 좋습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">The Base64 details people most often trip over</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Base64 is not encryption</h3>
+              <p>It only changes representation. Anyone can decode it again, so it should never be treated as a security layer.</p>
+            </article>
+            <article class="info-card">
+              <h3>Why URL-safe matters</h3>
+              <p>When values travel through query strings, callbacks, or tokens, URL-safe output avoids reserved characters that often break transport.</p>
+            </article>
+            <article class="info-card">
+              <h3>Whitespace is a real issue</h3>
+              <p>Base64 copied from logs, documents, or emails often contains line breaks and spaces, which is why cleanup options help before decoding.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">이 페이지가 유용한 상황</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>API 요청 본문 확인</h3>
+              <p>이미지 data URL, 첨부파일 payload, JWT 일부 필드처럼 Base64가 포함된 응답을 빠르게 확인할 수 있습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>파일 내용을 브라우저에서 변환</h3>
+              <p>파일을 업로드하면 즉시 Base64로 바꿔서 복사할 수 있어, 테스트용 샘플 데이터나 임베드 문자열을 만들 때 편리합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>복호화 전 길이 증가 확인</h3>
+              <p>Base64는 원본보다 데이터가 커집니다. 본문 길이 제한이나 헤더 크기 제한이 있는 환경에서는 전송 전에 길이를 꼭 점검하세요.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">When this page is especially handy</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Inspect encoded API payloads</h3>
+              <p>Useful for response bodies, image data URLs, or embedded file fields that arrive in Base64 form.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Create quick file samples</h3>
+              <p>Dropping a file into the page gives you a copyable Base64 string without using a separate desktop tool.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Check transport overhead</h3>
+              <p>Base64 expands payload size, so it is worth checking before sending values through channels with strict limits.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
     <footer class="footer">
       <small data-i18n="common.footerBase64">
         © 2025 stateless tools · 모든 변환은 브라우저에서만 처리되며 파일/쿠키를 서버로 전송하지
         않습니다.
       </small>
     </footer>
-  </div>
+  </div>
 </body>
 
 </html>

@@ -33,7 +33,7 @@
       document.documentElement.classList.add('i18n-pending');
       window.__preferredLocale = locale;
     })();
-  </script>
+  </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757"
     crossorigin="anonymous"></script>
   <!-- Google tag (gtag.js) -->
@@ -45,9 +45,9 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/uuid-WSkPPtup.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CzAw_qQU.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-BDj8x1nO.css">
+  <script type="module" crossorigin src="/assets/uuid-DBve113B.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CLADHOD3.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-wJjbZCev.css">
 </head>
 
 <body class="layout layout--dev" data-tool="uuid">
@@ -134,10 +134,90 @@
 
     </main>
 
+    <section class="content-stack">
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">UUID 변환기가 필요한 대표 상황</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>로그 추적용 식별자 생성</h3>
+              <p>장애 분석이나 요청 추적용으로 임시 UUID를 빠르게 만들어 복사해야 할 때 바로 사용할 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>DB 저장 형식 점검</h3>
+              <p>문자열 UUID를 hex(binary16) 형태로 바꿔 저장 공간이나 이진 컬럼 사용 전략을 검토할 때 유용합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>레거시 값 복구</h3>
+              <p>32자리 hex 값만 남아 있는 데이터를 다시 표준 UUID 형식으로 복원해 사람이 읽기 쉬운 형태로 비교할 수 있습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">Common reasons to use this UUID converter</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Generate tracing IDs</h3>
+              <p>Create a fresh UUID quickly when you need a request, session, or incident reference while debugging.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review database storage formats</h3>
+              <p>Convert string UUIDs into hex(binary16) when comparing storage strategies for binary columns or compact transport formats.</p>
+            </article>
+            <article class="info-card">
+              <h3>Restore legacy values</h3>
+              <p>Turn raw 32-character hex values back into standard UUID form so they are easier to inspect and compare.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Notes</p>
+          <h2 class="section-title">실무에서 자주 묻는 점</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>hex(binary16)은 왜 쓰나요?</h3>
+              <p>하이픈이 포함된 UUID 문자열보다 더 짧고, 일부 데이터베이스에서는 이진 컬럼으로 저장할 때 인덱스나 저장 공간 측면에서 유리할 수 있습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>UUID v7이 더 나은가요?</h3>
+              <p>정렬 친화적인 식별자가 필요하면 별도의 <a href="/uuidv7">UUID v7 생성기</a>가 더 적합합니다. 이 페이지는 범용 UUID와 hex 상호 변환에 초점을 둡니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>입력값이 서버로 전송되나요?</h3>
+              <p>이 페이지의 UUID 생성과 형식 변환은 브라우저 안에서 수행됩니다. 민감한 값 검증 전에 브라우저 확장이나 외부 스크립트 정책은 별도로 점검하세요.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Notes</p>
+          <h2 class="section-title">Questions that come up in practice</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Why use hex(binary16)?</h3>
+              <p>It removes hyphens and can fit more naturally into compact binary storage strategies than a plain UUID string.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Should I use UUID v7 instead?</h3>
+              <p>If you need time-sortable identifiers, the dedicated <a href="/uuidv7">UUID v7 generator</a> is the better fit. This page is focused on conversion workflows.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Does this page upload UUIDs anywhere?</h3>
+              <p>Generation and conversion happen in the browser. You should still account for browser extensions or your own security policies when handling sensitive identifiers.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
     <footer class="footer">
       <small data-i18n="common.footerUuid">© 2025 stateless tools · Cloudflare Pages 배포용 정적 사이트</small>
     </footer>
-  </div>
+  </div>
 </body>
 
 </html>

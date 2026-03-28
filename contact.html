@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <title>문의 안내 | stateless tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="stateless tools의 오류 제보, 기능 요청, 협업 문의를 보낼 때 참고할 수 있는 연락 안내 페이지." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="문의 안내 | stateless tools" />
+  <meta property="og:description" content="오류 제보와 기능 요청을 보낼 때 필요한 정보와 공개 연락 채널을 정리했습니다." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script>
+    (function () {
+      var supported = ['ko', 'en'];
+      function pickLocale() {
+        try {
+          var stored = localStorage.getItem('stateless-tools-locale');
+          if (stored && supported.indexOf(stored) !== -1) {
+            return stored;
+          }
+        } catch (err) { }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      var locale = pickLocale();
+      document.documentElement.setAttribute('lang', locale);
+      document.documentElement.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+</head>
+
+<body class="layout layout--dev" data-tool="contact" data-allow-ads="false">
+
+  <div class="page page--dev page--content">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1>문의 안내</h1>
+      <div data-locale-block="ko" lang="ko">
+        <p>오류 제보, 기능 요청, 사용 경험 피드백은 공개된 경로로 보내주시면 확인하기 쉽습니다.</p>
+      </div>
+      <div data-locale-block="en" lang="en" hidden>
+        <p>Bug reports, feature requests, and usage feedback are easiest to review when they come through a public, trackable channel.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Channels</p>
+          <h2 class="section-title">권장 문의 경로</h2>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="https://github.com/taxijjang/all-tools-site/issues" target="_blank" rel="noopener noreferrer">GitHub Issue</a>
+            <a class="link-button" href="https://github.com/taxijjang/all-tools-site" target="_blank" rel="noopener noreferrer">GitHub 저장소</a>
+            <a class="link-button" href="https://taxijjang.tistory.com/" target="_blank" rel="noopener noreferrer">Tistory</a>
+          </div>
+          <p class="content-note">이슈 트래커를 쓸 수 없는 상황이라면, 저장소 링크나 블로그 경로를 통해 남길 수 있는 공개 메시지로 안내를 부탁드립니다.</p>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Channels</p>
+          <h2 class="section-title">Recommended contact routes</h2>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="https://github.com/taxijjang/all-tools-site/issues" target="_blank" rel="noopener noreferrer">GitHub Issue</a>
+            <a class="link-button" href="https://github.com/taxijjang/all-tools-site" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+            <a class="link-button" href="https://taxijjang.tistory.com/" target="_blank" rel="noopener noreferrer">Tistory</a>
+          </div>
+          <p class="content-note">If the issue tracker is unavailable, a public note through the repository or blog route is still better than a vague report with no reproduction details.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Bug Reports</p>
+          <h2 class="section-title">오류 제보에 있으면 좋은 정보</h2>
+          <ul class="content-list">
+            <li>문제가 발생한 페이지 주소와 도구 이름</li>
+            <li>입력 예시 또는 재현 가능한 최소 샘플</li>
+            <li>기대한 결과와 실제 결과</li>
+            <li>브라우저 종류와 버전, 모바일/데스크톱 여부</li>
+            <li>가능하다면 스크린샷이나 콘솔 오류 메시지</li>
+          </ul>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Bug Reports</p>
+          <h2 class="section-title">What helps in a bug report</h2>
+          <ul class="content-list">
+            <li>The tool page URL and the exact feature involved</li>
+            <li>A minimal reproducible input or sample</li>
+            <li>The expected result versus the actual result</li>
+            <li>Browser name/version and whether it happened on mobile or desktop</li>
+            <li>A screenshot or console error if available</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Requests</p>
+          <h2 class="section-title">기능 요청은 이렇게 보내주시면 좋습니다</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>어떤 문제를 줄이고 싶은지</h3>
+              <p>단순히 “도구 추가”보다, 어떤 반복 작업을 줄이고 싶은지 설명해 주시면 우선순위를 정하기 쉽습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>입력과 출력 형식</h3>
+              <p>예상 입력 예시와 원하는 결과 형식을 함께 적으면 실제 구현 가능성을 빠르게 판단할 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>브라우저 처리 가능 여부</h3>
+              <p>서버 없이 가능한 작업인지, 외부 API가 필요한 작업인지 알려주면 방향을 잡는 데 도움이 됩니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Requests</p>
+          <h2 class="section-title">What makes a feature request useful</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Describe the workflow pain</h3>
+              <p>“Add a tool” is less actionable than explaining which repetitive task you want to shorten.</p>
+            </article>
+            <article class="info-card">
+              <h3>Show expected input and output</h3>
+              <p>Concrete examples help determine scope and implementation feasibility much faster.</p>
+            </article>
+            <article class="info-card">
+              <h3>Note whether browser-only is possible</h3>
+              <p>It helps to know whether the feature can stay client-side or would depend on an external API.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev">
+      <small>© 2025 stateless tools · feedback and bug reporting guidance</small>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/site.js"></script>
+</body>
+
+</html>
