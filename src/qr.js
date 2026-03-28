@@ -1,6 +1,7 @@
 import './style.css';
 import { t } from './i18n.js';
 import { toDataURL } from 'qrcode';
+import jsQR from 'jsqr';
 
 const dom = {
   type: document.getElementById('qrType'),
@@ -40,6 +41,36 @@ function syncTypeUi() {
   dom.textFields.hidden = wifiMode;
 }
 
+function loadImageFile(file) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    const url = URL.createObjectURL(file);
+    image.onload = () => {
+      URL.revokeObjectURL(url);
+      resolve(image);
+    };
+    image.onerror = (error) => {
+      URL.revokeObjectURL(url);
+      reject(error);
+    };
+    image.src = url;
+  });
+}
+
+async function scanQrWithJsQr(file) {
+  const image = await loadImageFile(file);
+  const canvas = document.createElement('canvas');
+  canvas.width = image.naturalWidth || image.width;
+  canvas.height = image.naturalHeight || image.height;
+  const context = canvas.getContext('2d', { willReadFrequently: true });
+  context.drawImage(image, 0, 0, canvas.width, canvas.height);
+  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  const result = jsQR(imageData.data, canvas.width, canvas.height, {
+    inversionAttempts: 'attemptBoth',
+  });
+  return result?.data || '';
+}
+
 async function generateQr() {
   const text = buildPayload();
   const size = Number(dom.size.value || 256);
@@ -61,24 +92,32 @@ async function generateQr() {
 }
 
 async function scanQrFromFile(file) {
-  if (!('BarcodeDetector' in window)) {
-    setMessage(t('qr.error.unsupported'), true);
-    return;
-  }
-
   try {
-    const detector = new BarcodeDetector({ formats: ['qr_code'] });
-    const bitmap = await createImageBitmap(file);
-    const results = await detector.detect(bitmap);
+    if ('BarcodeDetector' in window) {
+      const detector = new BarcodeDetector({ formats: ['qr_code'] });
+      const bitmap = await createImageBitmap(file);
+      const results = await detector.detect(bitmap);
+      bitmap.close?.();
 
-    if (!results.length) {
-      dom.scanOutput.value = '';
-      setMessage(t('qr.error.notFound'), true);
+      if (results.length) {
+        dom.scanOutput.value = results.map((r) => r.rawValue || '').join('\n');
+        setMessage(t('qr.success.scanned'));
+        return;
+      }
+    }
+
+    const fallback = await scanQrWithJsQr(file);
+    if (fallback) {
+      dom.scanOutput.value = fallback;
+      setMessage(t('qr.success.scanned'));
       return;
     }
 
-    dom.scanOutput.value = results.map((r) => r.rawValue || '').join('\n');
-    setMessage(t('qr.success.scanned'));
+    dom.scanOutput.value = '';
+    setMessage(
+      'BarcodeDetector' in window ? t('qr.error.notFound') : t('qr.error.unsupported'),
+      true,
+    );
   } catch {
     setMessage(t('qr.error.scan'), true);
   }

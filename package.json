@@ -10,8 +10,9 @@
     "test:smoke": "node scripts/smoke-test.mjs",
     "audit:i18n": "node scripts/i18n-audit.mjs",
     "audit:layout": "node scripts/layout-audit.mjs",
+    "audit:uploads": "node scripts/upload-audit.mjs",
     "verify": "npm run build && npm run test:smoke",
-    "verify:full": "npm run build && npm run test:smoke && npm run audit:i18n && npm run audit:layout"
+    "verify:full": "npm run build && npm run test:smoke && npm run audit:i18n && npm run audit:layout && npm run audit:uploads"
   },
   "devDependencies": {
     "vite": "^5.0.12"
@@ -20,6 +21,7 @@
     "cron-parser": "^5.5.0",
     "cronstrue": "^3.11.0",
     "jose": "^6.1.3",
+    "jsqr": "^1.4.0",
     "luxon": "^3.7.2",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^4.8.69",

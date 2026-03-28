@@ -276,7 +276,7 @@ async function mergePdfs() {
   setPdfResult(
     blob,
     `merged-${Date.now()}.pdf`,
-    t('messages.pdf.mergeSummary', { count: files.length, pages: totalPages }),
+    t('messages.pdf.mergeSuccess', { count: files.length, pages: totalPages }),
     t('messages.pdf.mergeDone')
   );
 }

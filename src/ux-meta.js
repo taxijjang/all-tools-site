@@ -70,6 +70,51 @@ export const TOOL_CATEGORY_MAP = {
   '/file-hash': 'file',
 };
 
+export const FILE_PICKER_META = {
+  'base64:fileInput': {
+    hint: {
+      ko: '로컬 파일을 끌어다 놓으면 바로 Base64 문자열로 바꿉니다.',
+      en: 'Drop a local file to turn it into a copyable Base64 string right away.',
+    },
+    chips: ['ANY', 'BASE64'],
+  },
+  'file-hash:fhFile': {
+    hint: {
+      ko: '브라우저 안에서만 SHA 해시를 계산하므로 서버 업로드 없이 바로 확인할 수 있습니다.',
+      en: 'Compute a SHA hash in the browser without uploading the file to a server.',
+    },
+    chips: ['ANY', 'SHA'],
+  },
+  'image-base64:ibFile': {
+    hint: {
+      ko: 'PNG, JPG, WEBP, SVG 이미지를 data URL로 바꾸거나 다시 파일로 저장할 수 있습니다.',
+      en: 'Use PNG, JPG, WEBP, or SVG files and turn them into data URLs or back into files.',
+    },
+    chips: ['PNG', 'JPG', 'WEBP', 'SVG'],
+  },
+  'image-optimize:imgOptFile': {
+    hint: {
+      ko: '이미지를 올린 뒤 너비, 품질, 출력 포맷을 조절해 바로 최적화하세요.',
+      en: 'Upload an image, then tune width, quality, and output format before optimizing.',
+    },
+    chips: ['PNG', 'JPG', 'WEBP', 'SVG'],
+  },
+  'ocr:ocrFile': {
+    hint: {
+      ko: '스크린샷이나 스캔 이미지를 올려 한국어와 영어 텍스트를 추출하세요.',
+      en: 'Drop a screenshot or scan to extract Korean and English text.',
+    },
+    chips: ['PNG', 'JPG', 'WEBP', 'OCR'],
+  },
+  'qr:qrScanFile': {
+    hint: {
+      ko: 'QR 코드가 들어 있는 이미지 파일을 올리면 브라우저에서 바로 스캔합니다.',
+      en: 'Drop an image that contains a QR code and scan it directly in the browser.',
+    },
+    chips: ['PNG', 'JPG', 'WEBP', 'QR'],
+  },
+};
+
 export const HOME_DISCOVERY_COPY = {
   ko: {
     kicker: 'Quick Launch',

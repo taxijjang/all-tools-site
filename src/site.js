@@ -1,6 +1,13 @@
-import { bindLocaleSwitcher, initI18n, onLocaleChange, revealI18n } from './i18n.js';
+import { bindLocaleSwitcher, initI18n, onLocaleChange, revealI18n, t } from './i18n.js';
 import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './chrome-meta.js';
-import { HOME_DISCOVERY_COPY, HOME_FILTERS, HOME_WORKFLOWS, QUICK_START_META, TOOL_CATEGORY_MAP } from './ux-meta.js';
+import {
+  FILE_PICKER_META,
+  HOME_DISCOVERY_COPY,
+  HOME_FILTERS,
+  HOME_WORKFLOWS,
+  QUICK_START_META,
+  TOOL_CATEGORY_MAP,
+} from './ux-meta.js';
 import './style.css';
 
 // --- State & DOM Elements ---
@@ -69,6 +76,238 @@ function getToolPath(href = '') {
 function getCategoryLabel(categoryKey, locale = document.documentElement.getAttribute('lang')) {
   const entry = HOME_FILTERS.find((filter) => filter.key === categoryKey);
   return getLocalizedValue(entry?.labels, locale);
+}
+
+function formatBytesForUi(bytes, locale = document.documentElement.getAttribute('lang') || currentLocale) {
+  if (!Number.isFinite(bytes) || bytes < 0) {
+    return '0 B';
+  }
+
+  const units = ['B', 'KB', 'MB', 'GB'];
+  let value = bytes;
+  let unitIndex = 0;
+  while (value >= 1024 && unitIndex < units.length - 1) {
+    value /= 1024;
+    unitIndex += 1;
+  }
+
+  const maximumFractionDigits = unitIndex === 0 ? 0 : value >= 100 ? 0 : 1;
+  return `${new Intl.NumberFormat(locale, { maximumFractionDigits }).format(value)} ${units[unitIndex]}`;
+}
+
+function getFilePickerKey(input) {
+  const tool = document.body.dataset.tool || 'global';
+  return `${tool}:${input.id}`;
+}
+
+function getDefaultFileChips(input) {
+  const accept = input.getAttribute('accept') || '';
+  if (accept.includes('application/pdf')) {
+    return ['PDF'];
+  }
+  if (accept.includes('image/*')) {
+    return ['PNG', 'JPG', 'WEBP', 'SVG'];
+  }
+  return ['ANY'];
+}
+
+function getDefaultFileHint(input, locale = document.documentElement.getAttribute('lang') || currentLocale) {
+  const accept = input.getAttribute('accept') || '';
+  const multiple = input.hasAttribute('multiple');
+
+  if (accept.includes('application/pdf')) {
+    return multiple ? t('upload.hintPdfMany') : t('upload.hintPdfSingle');
+  }
+  if (accept.includes('image/*')) {
+    return t('upload.hintImage');
+  }
+  return t('upload.hintAny');
+}
+
+function setFileInputSelection(input, files) {
+  const dt = new DataTransfer();
+  Array.from(files || []).forEach((file) => dt.items.add(file));
+  input.files = dt.files;
+}
+
+function setupFilePickers() {
+  const inputs = Array.from(document.querySelectorAll('input[type="file"]')).filter(
+    (input) => !input.closest('.file-drop-zone'),
+  );
+  if (!inputs.length) {
+    return () => {};
+  }
+
+  const refreshers = [];
+
+  inputs.forEach((input) => {
+    if (!input.id) return;
+
+    const label = document.querySelector(`label[for="${input.id}"]`);
+    const meta = FILE_PICKER_META[getFilePickerKey(input)] || {};
+    let selectedFiles = [];
+    let wrapper = input.closest('.file-picker');
+
+    if (!wrapper) {
+      wrapper = document.createElement('div');
+      wrapper.className = 'file-picker';
+      wrapper.innerHTML = `
+        <div class="file-picker__surface">
+          <div class="file-picker__copy">
+            <p class="file-picker__eyebrow" data-file-picker-eyebrow></p>
+            <p class="file-picker__title" data-file-picker-title></p>
+            <p class="file-picker__hint" data-file-picker-hint></p>
+            <div class="file-picker__chips" data-file-picker-chips></div>
+          </div>
+          <div class="file-picker__actions">
+            <button type="button" class="primary file-picker__browse" data-file-picker-browse></button>
+            <button type="button" class="ghost file-picker__clear" data-file-picker-clear></button>
+          </div>
+          <div class="file-picker__footer">
+            <p class="file-picker__status" data-file-picker-status></p>
+            <ul class="file-picker__list" data-file-picker-list hidden></ul>
+          </div>
+        </div>
+      `;
+      input.replaceWith(wrapper);
+      wrapper.prepend(input);
+    }
+
+    input.classList.add('file-picker__input');
+    if (label) {
+      label.classList.add('sr-only');
+    }
+
+    const browseButton = wrapper.querySelector('[data-file-picker-browse]');
+    const clearButton = wrapper.querySelector('[data-file-picker-clear]');
+    const titleEl = wrapper.querySelector('[data-file-picker-title]');
+    const hintEl = wrapper.querySelector('[data-file-picker-hint]');
+    const eyebrowEl = wrapper.querySelector('[data-file-picker-eyebrow]');
+    const chipsEl = wrapper.querySelector('[data-file-picker-chips]');
+    const statusEl = wrapper.querySelector('[data-file-picker-status]');
+    const listEl = wrapper.querySelector('[data-file-picker-list]');
+
+    function render(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+      const files = selectedFiles;
+      const totalBytes = files.reduce((sum, file) => sum + (Number(file.size) || 0), 0);
+      const title = label?.textContent?.replace(/\s+/g, ' ').trim() || t('upload.titleDefault');
+      const hint = getLocalizedValue(meta.hint, locale) || getDefaultFileHint(input, locale);
+      const chips = meta.chips || getDefaultFileChips(input);
+
+      eyebrowEl.textContent = t('upload.eyebrow');
+      titleEl.textContent = title;
+      hintEl.textContent = hint;
+      browseButton.textContent = files.length ? t('upload.replace') : t('upload.choose');
+      clearButton.textContent = t('upload.clear');
+      clearButton.disabled = files.length === 0;
+
+      chipsEl.innerHTML = chips
+        .map((chip) => `<span class="file-picker__chip">${escapeHtml(String(chip))}</span>`)
+        .join('');
+
+      if (!files.length) {
+        statusEl.textContent = t('upload.none');
+        listEl.hidden = true;
+        listEl.innerHTML = '';
+        return;
+      }
+
+      if (files.length === 1) {
+        const file = files[0];
+        statusEl.textContent = t('upload.singleSummary', {
+          name: file.name,
+          size: formatBytesForUi(file.size, locale),
+        });
+      } else {
+        statusEl.textContent = t('upload.multiSummary', {
+          count: String(files.length),
+          size: formatBytesForUi(totalBytes, locale),
+        });
+      }
+
+      listEl.hidden = false;
+      listEl.innerHTML = files
+        .slice(0, 3)
+        .map(
+          (file) =>
+            `<li>${escapeHtml(file.name)} <span>${escapeHtml(
+              formatBytesForUi(file.size, locale),
+            )}</span></li>`,
+        )
+        .join('');
+
+      if (files.length > 3) {
+        const extra = document.createElement('li');
+        extra.textContent = t('upload.extraFiles', { count: String(files.length - 3) });
+        listEl.append(extra);
+      }
+    }
+
+    input.addEventListener(
+      'change',
+      () => {
+        selectedFiles = Array.from(input.files || []);
+      },
+      true,
+    );
+
+    input.addEventListener('change', () => {
+      render();
+    });
+
+    browseButton?.addEventListener('click', () => {
+      input.click();
+    });
+
+    clearButton?.addEventListener('click', () => {
+      selectedFiles = [];
+      input.value = '';
+      render();
+    });
+
+    wrapper.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('button')) {
+        return;
+      }
+      input.click();
+    });
+
+    ['dragenter', 'dragover'].forEach((type) => {
+      wrapper.addEventListener(type, (event) => {
+        event.preventDefault();
+        wrapper.classList.add('file-picker--active');
+      });
+    });
+
+    ['dragleave', 'dragend'].forEach((type) => {
+      wrapper.addEventListener(type, (event) => {
+        event.preventDefault();
+        if (!(event.currentTarget instanceof Element) || !event.currentTarget.contains(event.relatedTarget)) {
+          wrapper.classList.remove('file-picker--active');
+        }
+      });
+    });
+
+    wrapper.addEventListener('drop', (event) => {
+      event.preventDefault();
+      wrapper.classList.remove('file-picker--active');
+      const droppedFiles = Array.from(event.dataTransfer?.files || []);
+      if (!droppedFiles.length) {
+        return;
+      }
+      selectedFiles = input.hasAttribute('multiple') ? droppedFiles : droppedFiles.slice(0, 1);
+      setFileInputSelection(input, selectedFiles);
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+      render();
+    });
+
+    render();
+    refreshers.push(render);
+  });
+
+  return (locale = document.documentElement.getAttribute('lang') || currentLocale) => {
+    refreshers.forEach((refresh) => refresh(locale));
+  };
 }
 
 const RELATED_TOOL_MAP = {
@@ -851,6 +1090,7 @@ window.addEventListener('DOMContentLoaded', () => {
     bindLocaleSwitcher(localeSelect, { root });
   }
 
+  const refreshFilePickers = setupFilePickers();
   setupGlobalNavigation();
   const refreshHomeDiscovery = setupHomeDiscovery();
   const refreshQuickStart = setupQuickStartPanel();
@@ -859,6 +1099,7 @@ window.addEventListener('DOMContentLoaded', () => {
   onLocaleChange((locale) => {
     syncLocaleBlocks(locale);
     updateChromeText(locale);
+    refreshFilePickers(locale);
     refreshHomeDiscovery(locale);
     refreshQuickStart(locale);
     window.statelessTools.locale = locale;
