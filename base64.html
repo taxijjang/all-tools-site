@@ -3,14 +3,14 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Base64 인코더</title>
+  <title>Base64 디코딩 · 인코딩 도구</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="문자열 ↔ Base64 변환, URL-safe, 공백 제거 옵션을 지원하는 브라우저 전용 도구." />
+  <meta name="description" content="문자열과 파일을 Base64로 인코딩하거나 디코딩하고 URL-safe, 공백 제거 옵션까지 확인하는 브라우저 전용 도구." />
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Base64 인코더" />
-  <meta property="og:description" content="문자열 ↔ Base64 변환, URL-safe, 공백 제거 옵션을 지원하는 브라우저 전용 도구." />
+  <meta property="og:title" content="Base64 디코딩 · 인코딩 도구" />
+  <meta property="og:description" content="문자열과 파일을 Base64로 인코딩하거나 디코딩하고 URL-safe, 공백 제거 옵션까지 확인하는 브라우저 전용 도구." />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>
     (function () {
@@ -136,6 +136,54 @@
     </main>
 
     <section class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Overview</p>
+          <h2 class="section-title">Base64 인코딩과 디코딩을 한 화면에서 끝내세요</h2>
+          <p class="section-lead">
+            API 응답, data URL, 토큰 조각, 로그에 남은 Base64 문자열처럼 “지금 바로 풀어봐야 하는 값”을 빠르게 확인할 수 있게 만든 페이지입니다.
+            텍스트 변환과 파일 변환을 한 곳에 묶어서, 값 확인부터 재다운로드까지 끊김 없이 이어지도록 구성했습니다.
+          </p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>텍스트 ↔ Base64 왕복</h3>
+              <p>문자열을 즉시 인코딩하거나, 받은 Base64 값을 사람이 읽을 수 있는 텍스트로 되돌릴 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>파일 Base64 확인</h3>
+              <p>로컬 파일을 올려 바로 Base64로 바꾸고, 반대로 Base64 문자열을 다시 파일로 저장할 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>전송 이슈 점검</h3>
+              <p>URL-safe, 공백 제거 옵션으로 복사 과정에서 깨진 값인지, 전송 경로 문제인지 빠르게 분리해서 볼 수 있습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Overview</p>
+          <h2 class="section-title">Handle Base64 encoding and decoding in one place</h2>
+          <p class="section-lead">
+            This page is built for the moments when you need to inspect a value immediately: API payloads, data URLs,
+            token fragments, or Base64 strings copied from logs. Text conversion and file conversion live together so you can
+            decode, inspect, and export without switching tools.
+          </p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Round-trip text and Base64</h3>
+              <p>Encode plain text instantly or turn incoming Base64 back into readable text.</p>
+            </article>
+            <article class="info-card">
+              <h3>Inspect file payloads</h3>
+              <p>Drop a local file to convert it into Base64, then export Base64 back into a file when you need the original bytes again.</p>
+            </article>
+            <article class="info-card">
+              <h3>Debug transport issues</h3>
+              <p>Use URL-safe and whitespace cleanup options to tell the difference between a broken value and a broken delivery path.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
           <p class="section-kicker">Guide</p>
@@ -177,6 +225,157 @@
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">How To</p>
+          <h2 class="section-title">이 페이지를 가장 효율적으로 쓰는 방법</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>텍스트를 디코딩할 때</h3>
+              <ol class="content-list">
+                <li>받은 Base64 값을 아래 입력창에 붙여넣습니다.</li>
+                <li>로그나 문서에서 복사한 값이면 먼저 공백 제거를 켭니다.</li>
+                <li>URL-safe 문자 <code>-</code>, <code>_</code> 가 보이면 URL-safe 복구를 같이 켭니다.</li>
+                <li>디코딩 결과가 바로 읽히는지 확인한 뒤 복사하거나 다음 도구로 넘깁니다.</li>
+              </ol>
+            </article>
+            <article class="info-card">
+              <h3>파일을 Base64로 바꿀 때</h3>
+              <ol class="content-list">
+                <li>파일 업로드 박스에 로컬 파일을 올립니다.</li>
+                <li>필요하면 URL-safe 옵션을 켠 뒤 결과 문자열을 복사합니다.</li>
+                <li>테스트 payload, data URL 조각, API 샘플 본문에 그대로 붙여 넣어 확인합니다.</li>
+                <li>반대로 받은 Base64를 파일로 저장해야 하면 오른쪽 다운로드 이름을 정해 다시 저장합니다.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">How To</p>
+          <h2 class="section-title">The fastest way to use this page</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>When you need to decode text</h3>
+              <ol class="content-list">
+                <li>Paste the incoming Base64 value into the decode input.</li>
+                <li>Turn on whitespace cleanup if the value came from logs, docs, or email.</li>
+                <li>Enable URL-safe restore when you see <code>-</code> and <code>_</code> in the payload.</li>
+                <li>Inspect the readable output, then copy it or send it to the next tool.</li>
+              </ol>
+            </article>
+            <article class="info-card">
+              <h3>When you need Base64 from a file</h3>
+              <ol class="content-list">
+                <li>Drop a local file into the upload area.</li>
+                <li>Use URL-safe output only if the value will travel through URLs or tokens.</li>
+                <li>Copy the resulting string into test payloads, data URLs, or API fixtures.</li>
+                <li>When you receive Base64 back, set a filename and export the decoded bytes again.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Advanced Options</p>
+          <h2 class="section-title">옵션이 실제로 도움이 되는 상황</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>URL-safe 변환</h3>
+              <p>
+                일반 Base64의 <code>+</code>, <code>/</code>, <code>=</code> 문자가 URL 파라미터나 토큰 전송 과정에서 깨질 수 있을 때 사용합니다.
+                특히 콜백 URL, 쿼리스트링, 짧은 토큰 조합에서 유용합니다.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>공백 제거</h3>
+              <p>
+                여러 줄 Base64나 문서에서 줄바꿈과 공백이 섞인 값을 받을 때 켜두면 실패 원인을 바로 줄일 수 있습니다.
+                값 자체가 잘못된 건지, 복사 과정이 잘못된 건지 분리할 때 특히 효과적입니다.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>다운로드 파일명 지정</h3>
+              <p>
+                디코딩 결과를 파일로 저장할 때 적절한 이름과 확장자를 먼저 지정해두면 테스트 파일 관리가 쉬워집니다.
+                예: <code>avatar.png</code>, <code>payload.json</code>, <code>decoded.bin</code>.
+              </p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Advanced Options</p>
+          <h2 class="section-title">When each option actually helps</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>URL-safe output</h3>
+              <p>
+                Use this when standard Base64 characters such as <code>+</code>, <code>/</code>, and <code>=</code> are likely to break in query strings,
+                callback URLs, or compact tokens.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>Whitespace cleanup</h3>
+              <p>
+                Turn it on when the payload came from logs, docs, or multiline email content. It quickly tells you whether the value is invalid or the copy step is the real problem.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>Custom download filename</h3>
+              <p>
+                Naming the decoded result up front makes it easier to keep track of fixtures and test outputs, especially when you export many files in one debugging session.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">바로 감이 오는 간단한 예시</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>텍스트 인코딩 예시</h3>
+              <p>간단한 문자열을 Base64로 바꾸면 테스트용 payload를 만들 때 빠르게 재현할 수 있습니다.</p>
+              <pre class="code-block">Hello, world!
+
+→
+
+SGVsbG8sIHdvcmxkIQ==</pre>
+            </article>
+            <article class="info-card">
+              <h3>URL-safe 예시</h3>
+              <p>일반 Base64를 토큰이나 URL에 넣어야 할 때는 URL-safe 형태가 더 안전합니다.</p>
+              <pre class="code-block">standard: aGVsbG8rLz0=
+url-safe: aGVsbG8rLz0</pre>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Two quick examples that make the workflow obvious</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>Text encoding example</h3>
+              <p>Simple strings become easy test fixtures when you need a Base64 payload right now.</p>
+              <pre class="code-block">Hello, world!
+
+→
+
+SGVsbG8sIHdvcmxkIQ==</pre>
+            </article>
+            <article class="info-card">
+              <h3>URL-safe example</h3>
+              <p>When a Base64 value must travel inside a URL or token, the URL-safe variant avoids reserved characters.</p>
+              <pre class="code-block">standard: aGVsbG8rLz0=
+url-safe: aGVsbG8rLz0</pre>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
           <p class="section-kicker">Use Cases</p>
           <h2 class="section-title">이 페이지가 유용한 상황</h2>
           <div class="faq-list">
@@ -210,6 +409,63 @@
               <h3>Check transport overhead</h3>
               <p>Base64 expands payload size, so it is worth checking before sending values through channels with strict limits.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">FAQ</p>
+          <h2 class="section-title">Base64에서 자주 나오는 질문</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Base64는 보안용인가요?</h3>
+              <p>아니요. 표현 형식을 바꾸는 인코딩일 뿐이라 누구나 다시 디코딩할 수 있습니다. 민감한 데이터는 암호화와 별도로 관리해야 합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>왜 원본보다 길어지나요?</h3>
+              <p>Base64는 3바이트를 4문자로 바꾸는 구조라서 전송 가능한 문자 집합으로 바뀌는 대신 크기가 늘어납니다. 보통 약 33% 정도 커집니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>텍스트가 깨져 보이면 어떻게 하나요?</h3>
+              <p>입력값 자체가 잘못되었거나, 원래 값이 텍스트가 아니라 바이너리 파일일 수 있습니다. 그럴 때는 파일 저장 쪽으로 다시 확인하는 게 빠릅니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>어떤 도구랑 같이 쓰면 좋나요?</h3>
+              <p>URL에 실릴 값이면 URL 인코더, 이미지 data URL이면 이미지 Base64 변환기, API 응답 본문이면 JSON Viewer와 함께 쓰는 흐름이 가장 자연스럽습니다.</p>
+            </article>
+          </div>
+          <div class="cta-row">
+            <a class="link-button" href="/url">URL 도구 열기</a>
+            <a class="link-button" href="/image-base64">이미지 Base64 열기</a>
+            <a class="link-button" href="/json">JSON Viewer 열기</a>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">FAQ</p>
+          <h2 class="section-title">Common questions that come up with Base64</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Is Base64 a security layer?</h3>
+              <p>No. It changes representation, but anyone can decode it again. Sensitive data still needs real encryption and proper access control.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Why is the output longer than the original?</h3>
+              <p>Base64 turns every 3 bytes into 4 printable characters, which makes transport easier but increases size by roughly one third.</p>
+            </article>
+            <article class="faq-item">
+              <h3>What if the decoded text looks broken?</h3>
+              <p>The payload may be invalid, or it may not be text at all. In that case, exporting the value as a file is often the fastest way to inspect the real bytes.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Which tools pair well with this one?</h3>
+              <p>Use the URL tool for query-safe values, the Image Base64 page for data URLs, and JSON Viewer when the Base64 field sits inside an API response.</p>
+            </article>
+          </div>
+          <div class="cta-row">
+            <a class="link-button" href="/url">Open URL tool</a>
+            <a class="link-button" href="/image-base64">Open Image Base64</a>
+            <a class="link-button" href="/json">Open JSON Viewer</a>
           </div>
         </div>
       </section>
