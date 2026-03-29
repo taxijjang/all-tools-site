@@ -414,14 +414,145 @@ const RELATED_TOOL_MAP = {
   'api-tester': ['/json', '/seo-check', '/query-builder'],
 };
 
-const FEATURED_HOME_PATHS = new Set([
+const TOOL_LOOKUP = new Map(
+  NAV_TOOLS.filter((tool) => tool.value !== '/').map((tool) => [tool.value, tool]),
+);
+
+const POPULAR_HOME_PATHS = [
+  '/json',
   '/uuid',
   '/base64',
-  '/json',
   '/jwt',
   '/pdf-toolkit',
   '/image-optimize',
-]);
+  '/regex',
+  '/seo-check',
+];
+
+const FEATURED_HOME_PATHS = new Set(POPULAR_HOME_PATHS.slice(0, 6));
+const FAVORITES_STORAGE_KEY = 'stateless:home:favorites';
+const RECENTS_STORAGE_KEY = 'stateless:home:recent';
+const FAVORITES_LIMIT = 8;
+const RECENTS_LIMIT = 6;
+const libraryCopy = {
+  ko: {
+    accessKicker: 'Quick Return',
+    accessHeading: '다시 쓰는 도구를 더 빨리 여세요',
+    accessLead: '최근 사용, 즐겨찾기, 대표 도구를 한곳에 모아 다시 들어오기 쉽게 정리했습니다.',
+    favoritesTitle: '즐겨찾기',
+    favoritesLead: '고정해 둔 도구만 모아 다시 여세요.',
+    favoritesEmpty: '아직 고정한 도구가 없습니다. 도구 페이지에서 즐겨찾기 버튼을 누르면 여기에 모입니다.',
+    recentTitle: '최근 사용',
+    recentLead: '방금 열었던 도구로 빠르게 돌아가세요.',
+    recentEmpty: '최근 사용한 도구가 아직 없습니다.',
+    popularTitle: '자주 찾는 툴',
+    popularLead: '처음 들어와도 바로 쓰기 좋은 대표 도구를 먼저 모아뒀습니다.',
+    pinButton: '즐겨찾기 추가',
+    pinnedButton: '즐겨찾기됨',
+    pinShort: '고정',
+    pinnedShort: '고정됨',
+    addFavorite: '즐겨찾기에 추가',
+    removeFavorite: '즐겨찾기에서 제거',
+    countLabel: '{count}개',
+  },
+  en: {
+    accessKicker: 'Quick Return',
+    accessHeading: 'Get back to your tools faster',
+    accessLead: 'Keep recent tools, favorites, and go-to utilities in one place so you can jump back in without scanning the full catalog.',
+    favoritesTitle: 'Favorites',
+    favoritesLead: 'Open the tools you pinned on purpose.',
+    favoritesEmpty: 'No pinned tools yet. Use the favorite button on a tool page and it will show up here.',
+    recentTitle: 'Recent',
+    recentLead: 'Jump back into the tools you opened last.',
+    recentEmpty: 'No recent tool usage yet.',
+    popularTitle: 'Go-to tools',
+    popularLead: 'These are the strongest default starting points when you want to move fast.',
+    pinButton: 'Add to favorites',
+    pinnedButton: 'Favorited',
+    pinShort: 'Pin',
+    pinnedShort: 'Pinned',
+    addFavorite: 'Add to favorites',
+    removeFavorite: 'Remove from favorites',
+    countLabel: '{count} tools',
+  },
+};
+
+function getLibraryCopy(locale = document.documentElement.getAttribute('lang')) {
+  return libraryCopy[locale] || libraryCopy.en;
+}
+
+function normalizeToolPath(path = '') {
+  return TOOL_LOOKUP.has(path) ? path : null;
+}
+
+function readStoredToolPaths(key, limit) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .map((value) => normalizeToolPath(value))
+      .filter(Boolean)
+      .filter((value, index, list) => list.indexOf(value) === index)
+      .slice(0, limit);
+  } catch (error) {
+    return [];
+  }
+}
+
+function writeStoredToolPaths(key, paths, limit) {
+  const normalized = paths
+    .map((value) => normalizeToolPath(value))
+    .filter(Boolean)
+    .filter((value, index, list) => list.indexOf(value) === index)
+    .slice(0, limit);
+
+  try {
+    localStorage.setItem(key, JSON.stringify(normalized));
+  } catch (error) {
+    // ignore storage failures
+  }
+
+  return normalized;
+}
+
+function getFavoritePaths() {
+  return readStoredToolPaths(FAVORITES_STORAGE_KEY, FAVORITES_LIMIT);
+}
+
+function getRecentPaths() {
+  return readStoredToolPaths(RECENTS_STORAGE_KEY, RECENTS_LIMIT);
+}
+
+function isFavoritePath(path) {
+  return getFavoritePaths().includes(path);
+}
+
+function toggleFavoritePath(path) {
+  const normalized = normalizeToolPath(path);
+  if (!normalized) return false;
+
+  const favorites = getFavoritePaths();
+  const saved = !favorites.includes(normalized);
+  const next = saved
+    ? [normalized, ...favorites].slice(0, FAVORITES_LIMIT)
+    : favorites.filter((value) => value !== normalized);
+
+  writeStoredToolPaths(FAVORITES_STORAGE_KEY, next, FAVORITES_LIMIT);
+  return saved;
+}
+
+function recordRecentToolVisit(path = window.location.pathname) {
+  const normalized = normalizeToolPath(path);
+  if (!normalized) {
+    return;
+  }
+
+  const recents = getRecentPaths();
+  const next = [normalized, ...recents.filter((value) => value !== normalized)];
+  writeStoredToolPaths(RECENTS_STORAGE_KEY, next, RECENTS_LIMIT);
+}
 
 function getRelatedCopy(locale = document.documentElement.getAttribute('lang')) {
   if (locale === 'ko') {
@@ -440,13 +571,12 @@ function getRelatedCopy(locale = document.documentElement.getAttribute('lang')) 
 }
 
 function getRelatedTools(currentTool) {
-  const toolLookup = new Map(NAV_TOOLS.map((tool) => [tool.value, tool]));
   const defaultPaths = ['/uuid', '/base64', '/json'];
   const candidatePaths = RELATED_TOOL_MAP[currentTool] || defaultPaths;
 
   return candidatePaths
     .filter((path, index, list) => path !== `/${currentTool}` && list.indexOf(path) === index)
-    .map((path) => toolLookup.get(path))
+    .map((path) => TOOL_LOOKUP.get(path))
     .filter(Boolean)
     .slice(0, 3);
 }
@@ -493,6 +623,7 @@ function setupHomeDiscovery() {
   const searchInput = document.querySelector('[data-home-search]');
   const filtersHost = document.querySelector('[data-home-filters]');
   const resultsEl = document.querySelector('[data-home-results]');
+  const accessGrid = document.querySelector('[data-home-access-grid]');
   const spotlightsHost = document.querySelector('[data-home-spotlights]');
   const workflowsHost = document.querySelector('[data-home-workflows]');
   if (!grid || !searchInput || !filtersHost || !resultsEl || !workflowsHost) {
@@ -500,6 +631,7 @@ function setupHomeDiscovery() {
   }
 
   const cards = Array.from(grid.querySelectorAll('.card[href]'));
+  const originalOrder = new Map(cards.map((card, index) => [card, index]));
   let activeFilter = 'all';
 
   cards.forEach((card) => {
@@ -519,6 +651,128 @@ function setupHomeDiscovery() {
       }
     }
   });
+
+  function getPathRank(paths, path) {
+    const index = paths.indexOf(path);
+    return index === -1 ? Number.POSITIVE_INFINITY : index;
+  }
+
+  function sortCards() {
+    const favorites = getFavoritePaths();
+    const recents = getRecentPaths();
+
+    cards
+      .slice()
+      .sort((left, right) => {
+        const leftPath = getToolPath(left.getAttribute('href'));
+        const rightPath = getToolPath(right.getAttribute('href'));
+
+        const leftFavorite = getPathRank(favorites, leftPath);
+        const rightFavorite = getPathRank(favorites, rightPath);
+        if (leftFavorite !== rightFavorite) {
+          return leftFavorite - rightFavorite;
+        }
+
+        const leftRecent = getPathRank(recents, leftPath);
+        const rightRecent = getPathRank(recents, rightPath);
+        if (leftRecent !== rightRecent) {
+          return leftRecent - rightRecent;
+        }
+
+        const leftPopular = getPathRank(POPULAR_HOME_PATHS, leftPath);
+        const rightPopular = getPathRank(POPULAR_HOME_PATHS, rightPath);
+        if (leftPopular !== rightPopular) {
+          return leftPopular - rightPopular;
+        }
+
+        return (originalOrder.get(left) || 0) - (originalOrder.get(right) || 0);
+      })
+      .forEach((card) => grid.append(card));
+  }
+
+  function renderAccessItem(path, locale) {
+    const tool = TOOL_LOOKUP.get(path);
+    if (!tool) return '';
+
+    const copy = getLibraryCopy(locale);
+    const saved = isFavoritePath(path);
+
+    return `
+      <div class="home-access__item">
+        <a class="home-access__link" href="${path}">
+          <strong>${escapeHtml(getToolLabel(tool, locale))}</strong>
+          <span>${escapeHtml(path)}</span>
+        </a>
+        <button
+          type="button"
+          class="favorite-toggle favorite-toggle--inline${saved ? ' is-active' : ''}"
+          data-favorite-path="${path}"
+          aria-pressed="${String(saved)}"
+          aria-label="${escapeHtml(saved ? copy.removeFavorite : copy.addFavorite)}"
+          title="${escapeHtml(saved ? copy.removeFavorite : copy.addFavorite)}"
+        >
+          ${escapeHtml(saved ? copy.pinnedShort : copy.pinShort)}
+        </button>
+      </div>
+    `;
+  }
+
+  function renderAccessPanels(locale) {
+    if (!accessGrid) {
+      return;
+    }
+
+    const copy = getLibraryCopy(locale);
+    const favorites = getFavoritePaths();
+    const recents = getRecentPaths();
+    const popular = POPULAR_HOME_PATHS.filter((path) => TOOL_LOOKUP.has(path)).slice(0, 6);
+
+    const panels = [
+      {
+        key: 'favorites',
+        title: copy.favoritesTitle,
+        lead: copy.favoritesLead,
+        items: favorites,
+        empty: copy.favoritesEmpty,
+      },
+      {
+        key: 'recent',
+        title: copy.recentTitle,
+        lead: copy.recentLead,
+        items: recents,
+        empty: copy.recentEmpty,
+      },
+      {
+        key: 'popular',
+        title: copy.popularTitle,
+        lead: copy.popularLead,
+        items: popular,
+        empty: '',
+      },
+    ];
+
+    accessGrid.innerHTML = panels
+      .map((panel) => {
+        const countLabel = applyTemplate(copy.countLabel, { count: String(panel.items.length) });
+        const body = panel.items.length
+          ? panel.items.map((path) => renderAccessItem(path, locale)).join('')
+          : `<p class="home-access__empty">${escapeHtml(panel.empty)}</p>`;
+
+        return `
+          <article class="home-access__panel home-access__panel--${panel.key}">
+            <div class="home-access__panel-head">
+              <div>
+                <h3 class="home-access__panel-title">${escapeHtml(panel.title)}</h3>
+                <p class="home-access__panel-lead">${escapeHtml(panel.lead)}</p>
+              </div>
+              <span class="home-access__count">${escapeHtml(countLabel)}</span>
+            </div>
+            <div class="home-access__list">${body}</div>
+          </article>
+        `;
+      })
+      .join('');
+  }
 
   function renderSpotlightCards(locale) {
     if (!spotlightsHost) {
@@ -615,10 +869,14 @@ function setupHomeDiscovery() {
 
   function render(locale = document.documentElement.getAttribute('lang') || currentLocale) {
     const copy = HOME_DISCOVERY_COPY[locale] || HOME_DISCOVERY_COPY.en;
+    const accessCopy = getLibraryCopy(locale);
 
     const kickerEl = document.querySelector('[data-home-kicker]');
     const headingEl = document.querySelector('[data-home-heading]');
     const leadEl = document.querySelector('[data-home-lead]');
+    const accessKickerEl = document.querySelector('[data-home-access-kicker]');
+    const accessHeadingEl = document.querySelector('[data-home-access-heading]');
+    const accessLeadEl = document.querySelector('[data-home-access-lead]');
     const searchLabelEl = document.querySelector('[data-home-search-label]');
     const spotlightKickerEl = document.querySelector('[data-home-spotlight-kicker]');
     const spotlightHeadingEl = document.querySelector('[data-home-spotlight-heading]');
@@ -630,6 +888,9 @@ function setupHomeDiscovery() {
     if (kickerEl) kickerEl.textContent = copy.kicker;
     if (headingEl) headingEl.textContent = copy.heading;
     if (leadEl) leadEl.textContent = copy.lead;
+    if (accessKickerEl) accessKickerEl.textContent = accessCopy.accessKicker;
+    if (accessHeadingEl) accessHeadingEl.textContent = accessCopy.accessHeading;
+    if (accessLeadEl) accessLeadEl.textContent = accessCopy.accessLead;
     if (searchLabelEl) searchLabelEl.textContent = copy.searchLabel;
     if (spotlightKickerEl) spotlightKickerEl.textContent = copy.spotlightKicker;
     if (spotlightHeadingEl) spotlightHeadingEl.textContent = copy.spotlightHeading;
@@ -667,13 +928,79 @@ function setupHomeDiscovery() {
       });
     });
 
+    sortCards();
+    renderAccessPanels(locale);
     renderSpotlightCards(locale);
     renderWorkflowCards(locale);
     applyFilters(locale);
   }
 
+  accessGrid?.addEventListener('click', (event) => {
+    const button = event.target instanceof Element ? event.target.closest('[data-favorite-path]') : null;
+    if (!(button instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    const path = button.dataset.favoritePath || '';
+    const saved = toggleFavoritePath(path);
+    trackToolInteraction('favorite_toggle', {
+      favorite_path: path,
+      saved: saved ? 'true' : 'false',
+      location: 'home_access',
+    });
+    render(document.documentElement.getAttribute('lang') || currentLocale);
+  });
+
   searchInput.addEventListener('input', () => {
     applyFilters(document.documentElement.getAttribute('lang') || currentLocale);
+  });
+
+  render();
+  return render;
+}
+
+function setupToolFavoriteButton() {
+  const path = normalizeToolPath(window.location.pathname);
+  if (!path) {
+    return () => {};
+  }
+
+  const header = document.querySelector('.page-header');
+  if (!header) {
+    return () => {};
+  }
+
+  let actions = header.querySelector('.page-actions');
+  if (!actions) {
+    actions = document.createElement('div');
+    actions.className = 'page-actions';
+    header.append(actions);
+  }
+
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'link-button favorite-toggle favorite-toggle--header';
+  button.dataset.trackLabel = 'favorite-toggle';
+  actions.append(button);
+
+  const render = (locale = document.documentElement.getAttribute('lang') || currentLocale) => {
+    const copy = getLibraryCopy(locale);
+    const saved = isFavoritePath(path);
+    button.textContent = saved ? copy.pinnedButton : copy.pinButton;
+    button.classList.toggle('is-active', saved);
+    button.setAttribute('aria-pressed', String(saved));
+    button.setAttribute('aria-label', saved ? copy.removeFavorite : copy.addFavorite);
+    button.setAttribute('title', saved ? copy.removeFavorite : copy.addFavorite);
+  };
+
+  button.addEventListener('click', () => {
+    const saved = toggleFavoritePath(path);
+    trackToolInteraction('favorite_toggle', {
+      favorite_path: path,
+      saved: saved ? 'true' : 'false',
+      location: 'tool_header',
+    });
+    render(document.documentElement.getAttribute('lang') || currentLocale);
   });
 
   render();
@@ -1075,7 +1402,7 @@ function setupAnalytics() {
     const target = event.target instanceof Element ? event.target.closest('a, button') : null;
     if (!target) return;
 
-    if (target.matches('a.card, .related-tool-link, .home-spotlight__link, .home-workflow__link, [data-chrome-link]')) {
+    if (target.matches('a.card, .related-tool-link, .home-access__link, .home-spotlight__link, .home-workflow__link, [data-chrome-link]')) {
       trackEvent('navigation_click', {
         destination: target.getAttribute('href') || '',
         link_label: getLinkLabel(target),
@@ -1307,9 +1634,11 @@ window.addEventListener('DOMContentLoaded', () => {
     bindLocaleSwitcher(localeSelect, { root });
   }
 
+  recordRecentToolVisit(window.location.pathname);
   const refreshFilePickers = setupFilePickers();
   setupGlobalNavigation();
   const refreshHomeDiscovery = setupHomeDiscovery();
+  const refreshFavoriteButton = setupToolFavoriteButton();
   const refreshQuickStart = setupQuickStartPanel();
   injectRelatedToolsSection();
   syncLocaleBlocks(currentLocale);
@@ -1318,6 +1647,7 @@ window.addEventListener('DOMContentLoaded', () => {
     updateChromeText(locale);
     refreshFilePickers(locale);
     refreshHomeDiscovery(locale);
+    refreshFavoriteButton(locale);
     refreshQuickStart(locale);
     window.statelessTools.locale = locale;
   });
