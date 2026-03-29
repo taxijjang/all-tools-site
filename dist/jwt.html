@@ -17,9 +17,9 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/jwt-8U1qQBRj.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-Bxr07-Dr.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-IARWdfRY.css">
+  <script type="module" crossorigin src="/assets/jwt-Cjq32VPR.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-BOZTYmXk.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-ChNRaFOv.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -178,9 +178,10 @@
   }
 ]
   </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="jwt" data-allow-ads="false">
+<body class="layout layout--dev" data-tool="jwt" data-allow-ads="true">
 
   <div class="page page--dev">
     <div class="page-controls">
@@ -367,6 +368,45 @@
             <article class="faq-item">
               <h3>Useful companion tools</h3>
               <p>JWT debugging often pairs well with <a href="/json">JSON Viewer</a>, the <a href="/base64">Base64 tool</a>, and <a href="/api-tester">API Tester</a> when you need to reproduce the full request flow.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">How To</p>
+          <h2 class="section-title">JWT를 볼 때 가장 먼저 보는 순서</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>1. 헤더와 payload를 먼저 열어 구조 확인</h3>
+              <p>alg, typ, iss, aud, sub, exp 같은 핵심 필드가 기대한 시스템과 맞는지 먼저 확인하면 문제 범위를 크게 줄일 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>2. 시간 클레임은 timestamp 도구와 함께 확인</h3>
+              <p>exp, nbf, iat 값은 사람이 읽기 쉬운 시간으로 다시 보고, 서버 clock skew가 있는지도 함께 판단해야 합니다. 이때 <a href="/timestamp">timestamp converter</a>와 같이 보는 흐름이 유용합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>3. 신뢰 판단은 JWKS 검증까지 진행</h3>
+              <p>읽을 수 있는 토큰과 신뢰할 수 있는 토큰은 다릅니다. 외부 issuer 환경이라면 JWKS URL을 사용해 실제 서명 검증까지 확인하는 편이 안전합니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">How To</p>
+          <h2 class="section-title">The order that makes JWT review easier</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>1. Open the header and payload first</h3>
+              <p>Start by comparing alg, typ, iss, aud, sub, and exp against the environment you expect. That narrows the problem quickly.</p>
+            </article>
+            <article class="info-card">
+              <h3>2. Review time claims with a timestamp tool</h3>
+              <p>Translate exp, nbf, and iat into human-readable time and account for server clock skew. The <a href="/timestamp">timestamp converter</a> pairs well with this step.</p>
+            </article>
+            <article class="info-card">
+              <h3>3. Treat trust as a separate verification step</h3>
+              <p>A readable token is not automatically a trustworthy one. When an external issuer is involved, use the JWKS URL to verify the signature explicitly.</p>
             </article>
           </div>
         </div>

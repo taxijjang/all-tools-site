@@ -17,9 +17,9 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/uuid-Bn_ub4lz.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-Bxr07-Dr.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-IARWdfRY.css">
+  <script type="module" crossorigin src="/assets/uuid-BO6c0Xsl.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-BOZTYmXk.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-ChNRaFOv.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -178,9 +178,10 @@
   }
 ]
   </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="uuid" data-allow-ads="false">
+<body class="layout layout--dev" data-tool="uuid" data-allow-ads="true">
 
   <div class="page page--dev">
     <div class="page-controls">
@@ -385,6 +386,45 @@
             <article class="faq-item">
               <h3>Does this page upload UUIDs anywhere?</h3>
               <p>Generation and conversion happen in the browser. You should still account for browser extensions or your own security policies when handling sensitive identifiers.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">How To</p>
+          <h2 class="section-title">이 도구를 가장 실용적으로 쓰는 순서</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>1. 새 식별자가 필요하면 먼저 생성</h3>
+              <p>장애 추적, 요청 상관관계, 임시 테스트 데이터처럼 지금 바로 식별자가 필요할 때는 상단 생성 영역에서 UUID v4나 ULID를 먼저 만듭니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>2. 저장 형식 문제는 UUID ↔ hex 변환으로 확인</h3>
+              <p>DB 바이너리 컬럼, 로그에 남은 32자리 값, 레거시 시스템 데이터처럼 표현이 다른 값은 상호 변환으로 같은 식별자인지 먼저 확인하는 편이 안전합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>3. 시간 정렬이 중요하면 UUID v7로 이어가기</h3>
+              <p>정렬 가능한 식별자 전략이 목적이라면 이 페이지에서 바로 끝내지 말고 <a href="/uuidv7">UUID v7 generator</a>로 넘어가 비교해보는 흐름이 더 맞습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">How To</p>
+          <h2 class="section-title">The most practical order for using this page</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>1. Generate first when you need a fresh identifier</h3>
+              <p>Start with UUID v4 or ULID when you need a tracing ID, a temporary reference, or a clean test value right away.</p>
+            </article>
+            <article class="info-card">
+              <h3>2. Compare storage formats through round-trip conversion</h3>
+              <p>When logs, binary columns, or legacy datasets hold the same value in a different format, convert both ways before assuming they differ.</p>
+            </article>
+            <article class="info-card">
+              <h3>3. Move to UUID v7 when ordering matters</h3>
+              <p>If the real question is about time-ordered identifiers, continue into the <a href="/uuidv7">UUID v7 generator</a> instead of stopping at plain conversion.</p>
             </article>
           </div>
         </div>

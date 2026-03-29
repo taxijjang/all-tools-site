@@ -330,6 +330,57 @@ function buildStructuredData(meta, pageTitle, description, canonicalUrl) {
   return structuredData;
 }
 
+function resolveSitemapDefaults(meta) {
+  if (meta.path === '/') {
+    return { changefreq: 'weekly', priority: '1.0' };
+  }
+
+  if (meta.path === '/learn') {
+    return { changefreq: 'weekly', priority: '0.8' };
+  }
+
+  if (meta.kind === 'content') {
+    return { changefreq: 'monthly', priority: '0.6' };
+  }
+
+  if (FEATURED_TOOL_PATHS.includes(meta.path)) {
+    return { changefreq: 'weekly', priority: '0.8' };
+  }
+
+  return { changefreq: 'weekly', priority: '0.7' };
+}
+
+function buildSitemapXml(buildDate) {
+  const urls = Object.values(PAGE_META).filter((meta) => !meta.noindex && meta.kind !== 'alias');
+  const entries = urls
+    .map((meta) => {
+      const canonicalPath = meta.canonicalPath || meta.path;
+      const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
+      const defaults = resolveSitemapDefaults(meta);
+      return `  <url>
+    <loc>${canonicalUrl}</loc>
+    <lastmod>${buildDate}</lastmod>
+    <changefreq>${defaults.changefreq}</changefreq>
+    <priority>${defaults.priority}</priority>
+  </url>`;
+    })
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries}
+</urlset>
+`;
+}
+
+function buildRobotsTxt() {
+  return `User-agent: *
+Allow: /
+
+Sitemap: ${SITE_ORIGIN}/sitemap.xml
+`;
+}
+
 function seoMetadataPlugin() {
   return {
     name: 'seo-metadata',
@@ -401,8 +452,29 @@ function seoMetadataPlugin() {
   };
 }
 
+function staticSiteArtifactsPlugin() {
+  const buildDate = new Date().toISOString().slice(0, 10);
+
+  return {
+    name: 'static-site-artifacts',
+    generateBundle() {
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: buildSitemapXml(buildDate),
+      });
+
+      this.emitFile({
+        type: 'asset',
+        fileName: 'robots.txt',
+        source: buildRobotsTxt(),
+      });
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [seoMetadataPlugin()],
+  plugins: [seoMetadataPlugin(), staticSiteArtifactsPlugin()],
   build: {
     rollupOptions: {
       input: pageInputs,

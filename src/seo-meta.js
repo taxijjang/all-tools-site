@@ -1,4 +1,19 @@
-export const SITE_ORIGIN = 'https://all-tools-site.pages.dev';
+const DEFAULT_SITE_ORIGIN = 'https://all-tools-site.pages.dev';
+
+function normalizeSiteOrigin(origin) {
+  if (!origin) {
+    return DEFAULT_SITE_ORIGIN;
+  }
+
+  return origin
+    .trim()
+    .replace(/\/+$/, '')
+    .replace(/^http:\/\//i, 'https://');
+}
+
+export const SITE_ORIGIN = normalizeSiteOrigin(
+  process.env.SITE_ORIGIN || process.env.VITE_SITE_ORIGIN || DEFAULT_SITE_ORIGIN,
+);
 export const SITE_NAME = 'Stateless Tools';
 export const SITE_ALT_NAME = 'stateless dev tools';
 export const SITE_LOGO_PATH = '/icon.svg';
@@ -47,6 +62,7 @@ export const PAGE_META = {
   uuid: {
     path: '/uuid',
     kind: 'tool',
+    allowAds: true,
     title: 'UUID Generator and Converter | UUID v4, ULID, Hex(binary16)',
     description:
       'Generate UUID v4 or ULID values and convert UUIDs to and from hex(binary16) in your browser.',
@@ -55,6 +71,7 @@ export const PAGE_META = {
   base64: {
     path: '/base64',
     kind: 'tool',
+    allowAds: true,
     title: 'Base64 Encode Decode Tool | URL-Safe and File Conversion',
     description:
       'Encode and decode Base64 strings, handle URL-safe variants, strip whitespace, and convert files in the browser.',
@@ -71,6 +88,7 @@ export const PAGE_META = {
   jwt: {
     path: '/jwt',
     kind: 'tool',
+    allowAds: true,
     title: 'JWT Decoder and Inspector | Claims, Expiry, and JWKS Check',
     description:
       'Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser.',
@@ -231,6 +249,7 @@ export const PAGE_META = {
   'pdf-toolkit': {
     path: '/pdf-toolkit',
     kind: 'tool',
+    allowAds: true,
     title: 'PDF Toolkit | Merge, Split, Extract Pages, Watermark',
     description:
       'Merge, split, extract, and watermark PDFs locally in the browser without sending files to a server.',
@@ -263,6 +282,7 @@ export const PAGE_META = {
   'seo-check': {
     path: '/seo-check',
     kind: 'tool',
+    allowAds: true,
     title: 'SEO Meta Tag Checker | Title, Description, OG, Canonical',
     description:
       'Review page titles, descriptions, Open Graph tags, and canonical URLs to catch common SEO issues.',

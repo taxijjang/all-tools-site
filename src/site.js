@@ -12,6 +12,7 @@ import './style.css';
 
 // --- State & DOM Elements ---
 const root = document.body;
+const toolNamespace = document.body.dataset.tool || 'global';
 const currentLocale = initI18n({ root, reveal: false });
 let persistElements = [];
 const adsAllowed = document.body.dataset.allowAds === 'true';
@@ -65,6 +66,60 @@ function escapeHtml(value = '') {
     .replaceAll('"', '&quot;');
 }
 
+function sanitizeAnalyticsValue(value) {
+  if (value == null) return undefined;
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : undefined;
+  }
+
+  return String(value).slice(0, 100);
+}
+
+function trackEvent(eventName, params = {}) {
+  if (typeof window.gtag !== 'function') {
+    return;
+  }
+
+  const normalized = Object.fromEntries(
+    Object.entries({
+      tool_name: toolNamespace,
+      page_path: window.location.pathname,
+      ...params,
+    }).flatMap(([key, value]) => {
+      const sanitized = sanitizeAnalyticsValue(value);
+      return sanitized == null ? [] : [[key, sanitized]];
+    }),
+  );
+
+  window.gtag('event', eventName, normalized);
+}
+
+function trackToolInteraction(action, params = {}) {
+  trackEvent('tool_interaction', {
+    interaction_name: action,
+    ...params,
+  });
+}
+
+function getButtonLabel(button) {
+  return (
+    button?.dataset?.trackLabel ||
+    button?.getAttribute('aria-label') ||
+    button?.textContent?.replace(/\s+/g, ' ').trim() ||
+    button?.id ||
+    'button'
+  );
+}
+
+function getLinkLabel(link) {
+  return (
+    link?.dataset?.trackLabel ||
+    link?.textContent?.replace(/\s+/g, ' ').trim() ||
+    link?.getAttribute('href') ||
+    'link'
+  );
+}
+
 function getToolPath(href = '') {
   try {
     return new URL(href, window.location.origin).pathname;
@@ -76,6 +131,20 @@ function getToolPath(href = '') {
 function getCategoryLabel(categoryKey, locale = document.documentElement.getAttribute('lang')) {
   const entry = HOME_FILTERS.find((filter) => filter.key === categoryKey);
   return getLocalizedValue(entry?.labels, locale);
+}
+
+function getAdCopy(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+  if (locale === 'ko') {
+    return {
+      label: 'Sponsored',
+      note: 'Google 제공 광고',
+    };
+  }
+
+  return {
+    label: 'Sponsored',
+    note: 'Google-provided ad',
+  };
 }
 
 function formatBytesForUi(bytes, locale = document.documentElement.getAttribute('lang') || currentLocale) {
@@ -565,6 +634,8 @@ function setupHomeDiscovery() {
 }
 
 function runQuickStartAction(actionKey) {
+  trackToolInteraction('quick_start', { action_key: actionKey });
+
   switch (actionKey) {
     case 'uuid-generate': {
       const mode = document.getElementById('uuidVersion');
@@ -630,6 +701,15 @@ function runQuickStartAction(actionKey) {
     case 'jwt-decode':
       document.getElementById('decodeJwtBtn')?.click();
       document.getElementById('jwtPayload')?.focus();
+      break;
+    case 'seo-load-sample':
+      document.getElementById('seoSampleBtn')?.click();
+      document.getElementById('seoHtml')?.focus();
+      break;
+    case 'seo-run-sample':
+      document.getElementById('seoSampleBtn')?.click();
+      document.getElementById('seoRunBtn')?.click();
+      document.getElementById('seoOutput')?.focus();
       break;
     case 'regex-sample':
       document.getElementById('reSampleBtn')?.click();
@@ -711,6 +791,7 @@ function toggleTheme() {
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem('stateless-theme', next);
   updateThemeIcon(next);
+  trackEvent('theme_toggle', { from_theme: current, to_theme: next });
 }
 
 function updateThemeIcon(theme) {
@@ -868,6 +949,7 @@ function updateChromeText(locale = document.documentElement.getAttribute('lang')
 
   const theme = document.documentElement.getAttribute('data-theme') || 'dark';
   updateThemeIcon(theme);
+  updateContentAdCopy(locale);
 }
 
 function syncLocaleBlocks(locale = document.documentElement.getAttribute('lang') || currentLocale) {
@@ -878,47 +960,132 @@ function syncLocaleBlocks(locale = document.documentElement.getAttribute('lang')
   });
 }
 
-function createAdRail(side) {
-  const rail = document.createElement('aside');
-  rail.className = `ad-rail ad-rail--${side}`;
-  rail.setAttribute('aria-label', side === 'left' ? '좌측 광고' : '우측 광고');
-
-  const wrap = document.createElement('div');
-  const slot = document.createElement('ins');
-  slot.className = 'adsbygoogle ad-rail__slot';
-  slot.style.display = 'block';
-  slot.dataset.adFormat = 'fluid';
-  slot.dataset.adLayoutKey = '-bb+85+2h-1m-4u';
-  slot.dataset.adClient = 'ca-pub-4324902308911757';
-  slot.dataset.adSlot = '9966144067';
-
-  const note = document.createElement('p');
-  note.className = 'ad-rail__note';
-  note.textContent = 'Google 제공 광고';
-
-  wrap.appendChild(slot);
-  wrap.appendChild(note);
-  rail.appendChild(wrap);
-  return rail;
+function createContentAdSlot() {
+  const locale = document.documentElement.getAttribute('lang') || currentLocale;
+  const copy = getAdCopy(locale);
+  const slot = document.createElement('aside');
+  slot.className = 'content-ad';
+  slot.setAttribute('aria-label', copy.note);
+  slot.innerHTML = `
+    <div class="content-ad__frame">
+      <p class="content-ad__eyebrow" data-content-ad-label>${copy.label}</p>
+      <ins
+        class="adsbygoogle content-ad__slot"
+        style="display:block"
+        data-ad-client="ca-pub-4324902308911757"
+        data-ad-slot="9966144067"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <p class="content-ad__note" data-content-ad-note>${copy.note}</p>
+    </div>
+  `;
+  return slot;
 }
 
-function injectDesktopAdRails() {
-  if (!adsAllowed) return;
-  if (window.matchMedia('(max-width: 1180px)').matches) return;
-  const page = document.querySelector('.page');
-  if (!page || document.querySelector('.ad-rail')) return;
+function updateContentAdCopy(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+  const copy = getAdCopy(locale);
+  document.querySelectorAll('[data-content-ad-label]').forEach((label) => {
+    label.textContent = copy.label;
+  });
+  document.querySelectorAll('[data-content-ad-note]').forEach((note) => {
+    note.textContent = copy.note;
+  });
+}
 
-  const left = createAdRail('left');
-  const right = createAdRail('right');
-  page.before(left);
-  page.after(right);
+function injectContentAds() {
+  if (!adsAllowed) return;
+  const page = document.querySelector('.page');
+  const footer = page?.querySelector('.footer');
+  if (!page || page.querySelector('.content-ad')) return;
+
+  const contentStack = page.querySelector('.content-stack');
+  const anchor =
+    contentStack?.querySelector('.content-section') ||
+    page.querySelector('.quick-start') ||
+    page.querySelector('.tool') ||
+    footer;
+
+  if (!anchor) return;
+
+  const ad = createContentAdSlot();
+  anchor.after(ad);
 
   try {
     (window.adsbygoogle = window.adsbygoogle || []).push({});
-    (window.adsbygoogle = window.adsbygoogle || []).push({});
   } catch (err) {
-    console.warn('Ad rail init failed', err);
+    console.warn('Content ad init failed', err);
   }
+}
+
+function setupAnalytics() {
+  trackEvent('tool_view', {
+    locale: currentLocale,
+    ads_enabled: adsAllowed ? 'true' : 'false',
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target instanceof Element ? event.target.closest('a, button') : null;
+    if (!target) return;
+
+    if (target.matches('a.card, .related-tool-link, .home-workflow__link, [data-chrome-link]')) {
+      trackEvent('navigation_click', {
+        destination: target.getAttribute('href') || '',
+        link_label: getLinkLabel(target),
+      });
+      return;
+    }
+
+    if (!(target instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    if (target.dataset.copy || target.dataset.shareState) {
+      return;
+    }
+
+    if (target.id === 'pdfDownloadBtn' || /download/i.test(target.id)) {
+      trackToolInteraction('download_result', {
+        button_id: target.id || '',
+        button_label: getButtonLabel(target),
+      });
+      return;
+    }
+
+    if (target.dataset.quickAction || target.classList.contains('primary') || /Btn$/i.test(target.id || '')) {
+      trackToolInteraction('button_click', {
+        button_id: target.id || '',
+        button_label: getButtonLabel(target),
+      });
+    }
+  });
+
+  document.addEventListener('change', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) {
+      return;
+    }
+
+    if (target instanceof HTMLInputElement && target.type === 'file') {
+      const files = Array.from(target.files || []);
+      const totalBytes = files.reduce((sum, file) => sum + (Number(file.size) || 0), 0);
+      trackToolInteraction('file_upload', {
+        input_id: target.id || '',
+        file_count: files.length,
+        total_bytes: totalBytes,
+      });
+      return;
+    }
+
+    if (target.id === 'toolSelect') {
+      trackEvent('tool_switch', { destination: target.value || '' });
+      return;
+    }
+
+    if (target.id === 'localeSelect') {
+      trackEvent('locale_change', { locale: target.value || '' });
+    }
+  });
 }
 
 // --- PWA Installation ---
@@ -973,8 +1140,6 @@ export function showToast(message, type = 'success') {
 }
 
 // --- Persistence & State Sharing ---
-const toolNamespace = document.body.dataset.tool || 'global';
-
 function storageKey(field) {
   return `stateless:${toolNamespace}:${field}`;
 }
@@ -1055,6 +1220,7 @@ function setupActions() {
         const shareUrl = new URL(window.location.href);
         shareUrl.hash = `state=${encoded}`;
         await navigator.clipboard.writeText(shareUrl.toString());
+        trackEvent('share_state', { state_fields: Object.keys(state).length });
         showToast('URL copied to clipboard!', 'success');
       } catch (err) {
         console.error('Failed to copy share URL', err);
@@ -1073,6 +1239,10 @@ function setupActions() {
       const text = target.value || target.textContent;
       try {
         await navigator.clipboard.writeText(text);
+        trackEvent('copy_result', {
+          target_id: targetId,
+          text_length: typeof text === 'string' ? text.length : String(text || '').length,
+        });
         showToast('Copied to clipboard!');
       } catch (err) {
         showToast('Failed to copy', 'error');
@@ -1104,7 +1274,8 @@ window.addEventListener('DOMContentLoaded', () => {
     refreshQuickStart(locale);
     window.statelessTools.locale = locale;
   });
-  injectDesktopAdRails();
+  injectContentAds();
+  setupAnalytics();
   hydratePersistentFields();
   setupActions();
   revealI18n();
@@ -1133,4 +1304,6 @@ if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
 window.statelessTools = {
   locale: currentLocale,
   showToast,
+  trackEvent,
+  trackToolInteraction,
 };

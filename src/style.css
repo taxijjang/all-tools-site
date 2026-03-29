@@ -729,6 +729,44 @@ body {
   margin-top: 0.4rem;
 }
 
+.content-ad {
+  margin: 1.25rem 0;
+}
+
+.content-ad__frame {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem 1rem 0.85rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-alt) 82%, transparent), var(--surface)),
+    var(--surface);
+  box-shadow: 0 20px 40px var(--shadow-color);
+}
+
+.content-ad__eyebrow {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.content-ad__slot {
+  min-height: 190px;
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--surface-muted) 88%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--border) 74%, var(--primary) 26%);
+}
+
+.content-ad__note {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
 .page-actions {
   display: flex;
   justify-content: flex-end;

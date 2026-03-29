@@ -426,6 +426,48 @@ export const QUICK_START_META = {
       },
     ],
   },
+  'seo-check': {
+    copy: {
+      ko: {
+        kicker: 'Quick Start',
+        title: '메타 태그 상태를 샘플로 익히고 실제 HTML로 바로 비교하세요',
+        lead: '샘플 HTML을 불러온 뒤 결과 형식을 익히고, 실제 페이지 소스를 붙여 넣어 누락된 title, description, canonical, OG 태그를 빠르게 확인할 수 있습니다.',
+        checks: ['샘플 HTML로 결과 형식 확인', 'paste한 소스의 누락 태그 점검', 'URL fetch가 막힐 때 HTML 소스로 우회'],
+      },
+      en: {
+        kicker: 'Quick Start',
+        title: 'Learn the output on a sample, then compare it with real HTML',
+        lead: 'Load a sample document first, then paste real markup to catch missing title, description, canonical, and OG tags quickly.',
+        checks: ['Inspect the result format on a sample', 'Check pasted markup for missing tags', 'Use raw HTML when URL fetch is blocked'],
+      },
+    },
+    actions: [
+      {
+        kind: 'action',
+        key: 'seo-load-sample',
+        labels: {
+          ko: '샘플 HTML 넣기',
+          en: 'Load sample HTML',
+        },
+      },
+      {
+        kind: 'action',
+        key: 'seo-run-sample',
+        labels: {
+          ko: '바로 점검 실행',
+          en: 'Run sample audit',
+        },
+      },
+      {
+        kind: 'link',
+        href: '/utm-builder',
+        labels: {
+          ko: 'UTM 빌더 열기',
+          en: 'Open UTM Builder',
+        },
+      },
+    ],
+  },
   regex: {
     copy: {
       ko: {
