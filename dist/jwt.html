@@ -17,8 +17,8 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/jwt-DYDxhL1D.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DH84FU_q.js">
+  <script type="module" crossorigin src="/assets/jwt-BRbwEXiW.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-DS-hco-U.js">
   <link rel="stylesheet" crossorigin href="/assets/site-C9rP7oBH.css">
   <script data-client-boot>
     (function () {
@@ -192,36 +192,36 @@
         <select id="toolSelect" aria-label="기능 이동">
           <option value="/">홈</option>
           <option value="/uuid">UUID 변환기</option>
-          <option value="/base64">Base64 인코더</option>
-          <option value="/json">JSON 뷰어</option>
-          <option value="/jwt" selected>JWT 검사기</option>
-          <option value="/cron">Cron 계산기</option>
-          <option value="/url">URL 인코더</option>
-          <option value="/hash">해시 계산기</option>
-          <option value="/timestamp">타임스탬프</option>
+          <option value="/base64">Base64 변환기</option>
+          <option value="/json">JSON 포매터</option>
+          <option value="/jwt" selected>JWT 디코더</option>
+          <option value="/cron">Cron 파서</option>
+          <option value="/url">URL 인코더/디코더</option>
+          <option value="/hash">SHA 해시 계산기</option>
+          <option value="/timestamp">타임스탬프 변환</option>
           <option value="/password">비밀번호 생성기</option>
-          <option value="/regex">Regex 테스터</option>
-          <option value="/qr">QR 생성기</option>
-          <option value="/diff">텍스트 Diff</option>
-          <option value="/color">색상 도구</option>
+          <option value="/regex">정규식 테스트기</option>
+          <option value="/qr">QR 코드 생성기</option>
+          <option value="/diff">텍스트 비교기</option>
+          <option value="/color">색상 변환기</option>
           <option value="/markdown">Markdown 미리보기</option>
           <option value="/convert">단위 변환기</option>
-          <option value="/file-hash">파일 해시</option>
-          <option value="/image-base64">이미지 Base64</option>
-          <option value="/uuidv7">UUID v7</option>
-          <option value="/case-convert">케이스 변환</option>
-          <option value="/json-yaml">JSON ↔ YAML</option>
-          <option value="/query-builder">쿼리 빌더</option>
+          <option value="/file-hash">파일 해시 계산기</option>
+          <option value="/image-base64">이미지 Base64 변환</option>
+          <option value="/uuidv7">UUID v7 생성기</option>
+          <option value="/case-convert">케이스 변환기</option>
+          <option value="/json-yaml">JSON YAML 변환</option>
+          <option value="/query-builder">URL 쿼리 생성기</option>
           <option value="/ip-ua">IP / User-Agent</option>
-          <option value="/ip-cidr">IP/CIDR 계산기</option>
+          <option value="/ip-cidr">CIDR 계산기</option>
           <option value="/text-stats">텍스트 통계</option>
-          <option value="/pdf-toolkit">PDF 툴킷</option>
+          <option value="/pdf-toolkit">PDF 병합/분할</option>
           <option value="/image-optimize">이미지 최적화</option>
-          <option value="/ocr">OCR 추출</option>
-          <option value="/seo-check">SEO 퀵체크</option>
-          <option value="/utm-builder">UTM 빌더</option>
+          <option value="/ocr">OCR 텍스트 추출</option>
+          <option value="/seo-check">SEO 메타 태그 검사</option>
+          <option value="/utm-builder">UTM 생성기</option>
           <option value="/text-cleaner">텍스트 정리기</option>
-          <option value="/api-tester">API 테스터</option>
+          <option value="/api-tester">API 요청 테스트</option>
         </select>
       </div>
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
@@ -242,7 +242,7 @@
     </div>
     <header class="page-header">
       <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
-      <h1 data-i18n="jwt.title">JWT Inspector</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
+      <h1 data-i18n="jwt.title">JWT 디코더/검사기</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
       <p data-i18n="jwt.description">
         JWT 헤더·페이로드를 확인하고 exp/nbf 등 만료 클레임을 점검하세요. 서명 검증은 지원하지 않습니다.
       </p>
@@ -349,7 +349,7 @@
             </article>
             <article class="faq-item">
               <h3>함께 보면 좋은 도구</h3>
-              <p>JWT 앞뒤로는 <a href="/json">JSON Viewer</a>로 구조를 확인하고, <a href="/base64">Base64 도구</a>로 관련 인코딩 값을 비교하거나, <a href="/api-tester">API 테스터</a>로 재현 요청을 보내는 흐름이 자주 이어집니다.</p>
+              <p>JWT 앞뒤로는 <a href="/json">JSON 포매터</a>로 구조를 확인하고, <a href="/base64">Base64 변환기</a>로 관련 인코딩 값을 비교하거나, <a href="/api-tester">API 요청 테스트</a>로 재현 요청을 보내는 흐름이 자주 이어집니다.</p>
             </article>
           </div>
         </div>
@@ -367,7 +367,7 @@
             </article>
             <article class="faq-item">
               <h3>Useful companion tools</h3>
-              <p>JWT debugging often pairs well with <a href="/json">JSON Viewer</a>, the <a href="/base64">Base64 tool</a>, and <a href="/api-tester">API Tester</a> when you need to reproduce the full request flow.</p>
+              <p>JWT debugging often pairs well with <a href="/json">JSON Formatter</a>, the <a href="/base64">Base64 converter</a>, and <a href="/api-tester">API Request Tester</a> when you need to reproduce the full request flow.</p>
             </article>
           </div>
         </div>

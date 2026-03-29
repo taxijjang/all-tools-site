@@ -414,6 +414,13 @@ function seoMetadataPlugin() {
       ).replaceAll('</script>', '<\\/script>');
 
       let nextHtml = removeHeadArtifacts(html);
+      const primaryHeading =
+        meta.kind === 'tool' || meta.kind === 'home'
+          ? (meta.title || pageTitle).split('|')[0].trim()
+          : '';
+      if (primaryHeading) {
+        nextHtml = nextHtml.replace(/<h1([^>]*)>[\s\S]*?<\/h1>/i, `<h1$1>${escapeHtml(primaryHeading)}</h1>`);
+      }
       nextHtml = injectChromeShell(nextHtml, meta.path);
       nextHtml = nextHtml.replace(
         /<h1([^>]*)>([\s\S]*?)<span class="trust-badge"([^>]*)>([\s\S]*?)<\/span><\/h1>/i,

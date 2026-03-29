@@ -173,15 +173,15 @@ export const HOME_WORKFLOWS = [
     links: [
       {
         href: '/json',
-        labels: { ko: 'JSON 보기', en: 'Open JSON' },
+        labels: { ko: 'JSON 포매터', en: 'Open JSON Formatter' },
       },
       {
         href: '/jwt',
-        labels: { ko: 'JWT 점검', en: 'Inspect JWT' },
+        labels: { ko: 'JWT 디코더', en: 'Open JWT Decoder' },
       },
       {
         href: '/api-tester',
-        labels: { ko: 'API 재현', en: 'Replay request' },
+        labels: { ko: 'API 요청 테스트', en: 'Open API Request Tester' },
       },
     ],
   },
@@ -199,7 +199,7 @@ export const HOME_WORKFLOWS = [
     links: [
       {
         href: '/base64',
-        labels: { ko: 'Base64', en: 'Base64' },
+        labels: { ko: 'Base64 변환기', en: 'Base64 Tool' },
       },
       {
         href: '/url',
@@ -207,7 +207,7 @@ export const HOME_WORKFLOWS = [
       },
       {
         href: '/query-builder',
-        labels: { ko: '쿼리 빌더', en: 'Query Builder' },
+        labels: { ko: 'URL 쿼리 생성기', en: 'URL Query Builder' },
       },
     ],
   },
@@ -225,7 +225,7 @@ export const HOME_WORKFLOWS = [
     links: [
       {
         href: '/pdf-toolkit',
-        labels: { ko: 'PDF 툴킷', en: 'PDF Toolkit' },
+        labels: { ko: 'PDF 병합/분할', en: 'PDF Merge/Split' },
       },
       {
         href: '/image-optimize',
@@ -251,7 +251,7 @@ export const HOME_WORKFLOWS = [
     links: [
       {
         href: '/regex',
-        labels: { ko: 'Regex', en: 'Regex' },
+        labels: { ko: '정규식 테스트기', en: 'Regex Tester' },
       },
       {
         href: '/text-cleaner',
@@ -282,19 +282,19 @@ export const HOME_SPOTLIGHTS = [
     links: [
       {
         href: '/json',
-        labels: { ko: 'JSON 보기', en: 'Open JSON' },
+        labels: { ko: 'JSON 포매터', en: 'Open JSON Formatter' },
       },
       {
         href: '/jwt',
-        labels: { ko: 'JWT 점검', en: 'Inspect JWT' },
+        labels: { ko: 'JWT 디코더', en: 'Open JWT Decoder' },
       },
       {
         href: '/api-tester',
-        labels: { ko: 'API 테스트', en: 'Replay request' },
+        labels: { ko: 'API 요청 테스트', en: 'Open API Request Tester' },
       },
       {
         href: '/seo-check',
-        labels: { ko: 'SEO 체크', en: 'Check metadata' },
+        labels: { ko: 'SEO 메타 태그 검사', en: 'Check meta tags' },
       },
     ],
   },
@@ -314,7 +314,7 @@ export const HOME_SPOTLIGHTS = [
     links: [
       {
         href: '/base64',
-        labels: { ko: 'Base64', en: 'Base64' },
+        labels: { ko: 'Base64 변환기', en: 'Base64 Tool' },
       },
       {
         href: '/url',
@@ -322,11 +322,11 @@ export const HOME_SPOTLIGHTS = [
       },
       {
         href: '/query-builder',
-        labels: { ko: '쿼리 빌더', en: 'Query Builder' },
+        labels: { ko: 'URL 쿼리 생성기', en: 'URL Query Builder' },
       },
       {
         href: '/regex',
-        labels: { ko: 'Regex', en: 'Regex' },
+        labels: { ko: '정규식 테스트기', en: 'Regex Tester' },
       },
     ],
   },
@@ -346,7 +346,7 @@ export const HOME_SPOTLIGHTS = [
     links: [
       {
         href: '/pdf-toolkit',
-        labels: { ko: 'PDF 툴킷', en: 'PDF Toolkit' },
+        labels: { ko: 'PDF 병합/분할', en: 'PDF Merge/Split' },
       },
       {
         href: '/image-optimize',
@@ -354,11 +354,11 @@ export const HOME_SPOTLIGHTS = [
       },
       {
         href: '/ocr',
-        labels: { ko: 'OCR', en: 'OCR' },
+        labels: { ko: 'OCR 텍스트 추출', en: 'OCR Extractor' },
       },
       {
         href: '/qr',
-        labels: { ko: 'QR', en: 'QR' },
+        labels: { ko: 'QR 코드 생성기', en: 'QR Code Tool' },
       },
     ],
   },
@@ -497,13 +497,13 @@ export const QUICK_START_META = {
         kicker: 'Quick Start',
         title: '토큰 구조와 만료 시간을 10초 안에 확인하는 흐름',
         lead: '샘플 JWT를 넣어 구조를 익히고, 현재 토큰을 바로 디코드해서 헤더와 클레임 문제를 먼저 볼 수 있습니다.',
-        checks: ['샘플 토큰 구조 익히기', '현재 토큰 즉시 디코드', 'JSON 뷰어로 세부 필드 비교'],
+        checks: ['샘플 토큰 구조 익히기', '현재 토큰 즉시 디코드', 'JSON 포매터로 세부 필드 비교'],
       },
       en: {
         kicker: 'Quick Start',
         title: 'A 10-second flow for structure and expiry checks',
         lead: 'Load a sample token to learn the layout, then decode the current token immediately to inspect headers and claims.',
-        checks: ['Learn from a sample token', 'Decode the current token', 'Compare details in JSON Viewer'],
+        checks: ['Learn from a sample token', 'Decode the current token', 'Compare details in JSON Formatter'],
       },
     },
     actions: [
@@ -527,8 +527,8 @@ export const QUICK_START_META = {
         kind: 'link',
         href: '/json',
         labels: {
-          ko: 'JSON Viewer 열기',
-          en: 'Open JSON Viewer',
+          ko: 'JSON 포매터 열기',
+          en: 'Open JSON Formatter',
         },
       },
     ],
@@ -569,8 +569,8 @@ export const QUICK_START_META = {
         kind: 'link',
         href: '/utm-builder',
         labels: {
-          ko: 'UTM 빌더 열기',
-          en: 'Open UTM Builder',
+          ko: 'UTM 생성기 열기',
+          en: 'Open UTM Generator',
         },
       },
     ],

@@ -16,7 +16,7 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-DH84FU_q.js"></script>
+  <script type="module" crossorigin src="/assets/site-DS-hco-U.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-C9rP7oBH.css">
   <script data-client-boot>
     (function () {
@@ -257,14 +257,14 @@
           <p class="section-kicker">Guide 2</p>
           <h2 class="section-title">JWT 디버깅에서 가장 많이 헷갈리는 건 만료 시간이 아니라 맥락이다</h2>
           <p class="section-lead">JWT를 볼 때 많은 사람이 payload를 디코딩하는 것만으로 충분하다고 생각하지만, 실제 장애는 "숫자를 읽는 방법"보다 "어떤 시각 기준으로 해석하느냐"에서 자주 납니다. <code>exp</code>, <code>iat</code>, <code>nbf</code>는 보통 Unix timestamp 초 단위를 사용하지만, 어떤 문서나 프런트 로직은 밀리초로 착각해 잘못 표시하기도 합니다.</p>
-          <p>또 하나는 토큰을 디코딩했다고 해서 검증한 것이 아니라는 점입니다. 공개키 서명 확인, issuer/audience 검토, clock skew 허용 범위 등은 별개의 문제입니다. 그래서 JWT 페이지 하나만 보는 것보다 <a href="/jwt">JWT inspector</a>와 <a href="/timestamp">timestamp converter</a>를 같이 써서 시간 값을 사람 기준으로 다시 확인하는 흐름이 유용합니다.</p>
+          <p>또 하나는 토큰을 디코딩했다고 해서 검증한 것이 아니라는 점입니다. 공개키 서명 확인, issuer/audience 검토, clock skew 허용 범위 등은 별개의 문제입니다. 그래서 JWT 페이지 하나만 보는 것보다 <a href="/jwt">JWT 디코더</a>와 <a href="/timestamp">타임스탬프 변환기</a>를 같이 써서 시간 값을 사람 기준으로 다시 확인하는 흐름이 유용합니다.</p>
           <p>보안 관점에서도 "민감한 토큰을 아무 사이트에 붙여넣어도 된다"는 생각은 위험합니다. 가능하면 브라우저 안에서만 처리되고, 업로드가 필요 없는 도구를 써야 하며, 사내 정책이나 브라우저 확장 상태도 함께 고려해야 합니다.</p>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">Guide 2</p>
           <h2 class="section-title">JWT debugging fails more on context than on decoding</h2>
           <p class="section-lead">A lot of teams think decoding the payload is the hard part, but real incidents usually come from how timestamp values are interpreted. <code>exp</code>, <code>iat</code>, and <code>nbf</code> are usually expressed in Unix seconds, yet frontend code and human assumptions often drift toward milliseconds.</p>
-          <p>Another common blind spot is treating decoding as validation. Signature verification, issuer and audience checks, and clock skew policy are separate problems. In practice, it helps to use the <a href="/jwt">JWT inspector</a> alongside the <a href="/timestamp">timestamp converter</a> so the token values are reviewed in both machine and human formats.</p>
+          <p>Another common blind spot is treating decoding as validation. Signature verification, issuer and audience checks, and clock skew policy are separate problems. In practice, it helps to use the <a href="/jwt">JWT decoder</a> alongside the <a href="/timestamp">timestamp converter</a> so the token values are reviewed in both machine and human formats.</p>
           <p>There is also a security angle: decoding a token is not a good reason to paste it into any random website. Browser-side tools are safer when no upload is required, but your environment and policies still matter.</p>
         </div>
       </section>
@@ -275,14 +275,14 @@
           <h2 class="section-title">Base64와 URL 인코딩은 비슷해 보여도 해결하는 문제가 다르다</h2>
           <p class="section-lead">Base64는 바이너리나 텍스트를 안전한 문자 조합으로 바꿔 옮기기 쉽게 만드는 방식이고, URL 인코딩은 URL 안에서 특수문자가 의미를 깨지 않도록 변환하는 방식입니다. 둘 다 "문자열이 깨지지 않게 바꾼다"는 느낌이 있지만, 교체 가능한 기술은 아닙니다.</p>
           <p>예를 들어 JSON payload를 쿠키나 헤더에 실어 보내기 위해 Base64를 쓰는 경우가 있고, 쿼리 파라미터 안에서 공백이나 한글, 예약 문자를 안전하게 넘기기 위해 URL 인코딩을 씁니다. 이 둘을 섞어 쓰는 시스템도 많아서, 디버깅 시에는 먼저 값이 어느 층에서 변환되었는지 구분해야 합니다.</p>
-          <p>이 사이트에서는 <a href="/base64">Base64 tool</a>, <a href="/url">URL encoder/decoder</a>, <a href="/query-builder">query builder</a>를 분리해 둔 이유가 여기에 있습니다. 각 변환은 입력 규칙과 실패 원인이 다르기 때문에, 하나의 만능 상자보다 명확한 목적별 도구가 더 실수를 줄여줍니다.</p>
+          <p>이 사이트에서는 <a href="/base64">Base64 변환기</a>, <a href="/url">URL 인코더/디코더</a>, <a href="/query-builder">URL 쿼리 생성기</a>를 분리해 둔 이유가 여기에 있습니다. 각 변환은 입력 규칙과 실패 원인이 다르기 때문에, 하나의 만능 상자보다 명확한 목적별 도구가 더 실수를 줄여줍니다.</p>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">Guide 3</p>
           <h2 class="section-title">Base64 and URL encoding look similar but solve different problems</h2>
           <p class="section-lead">Base64 turns binary or text into a transport-friendly character sequence. URL encoding preserves meaning inside a URL by escaping characters that would otherwise break parsing. They can both make strings "safer", but they are not interchangeable.</p>
           <p>In real systems, Base64 often shows up around payload transport or compact serialization, while URL encoding appears in query parameters and callback links. Some stacks even layer them together, which is why debugging gets easier when you first identify where in the pipeline the value was transformed.</p>
-          <p>That is also why this site keeps the <a href="/base64">Base64 tool</a>, <a href="/url">URL encoder/decoder</a>, and <a href="/query-builder">query builder</a> separate. Different transforms fail in different ways, and specialized tools reduce confusion.</p>
+          <p>That is also why this site keeps the <a href="/base64">Base64 converter</a>, <a href="/url">URL encoder/decoder</a>, and <a href="/query-builder">URL Query Builder</a> separate. Different transforms fail in different ways, and specialized tools reduce confusion.</p>
         </div>
       </section>
 
