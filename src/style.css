@@ -324,6 +324,88 @@ body {
   gap: 0.85rem;
 }
 
+.home-spotlights__shell {
+  display: grid;
+  gap: 1rem;
+}
+
+.home-spotlights__copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.home-spotlights__title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.home-spotlights__lead {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 70ch;
+}
+
+.home-spotlights {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.home-spotlight {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgb(56 189 248 / 0.2);
+  background:
+    radial-gradient(circle at top right, rgb(56 189 248 / 0.12), transparent 42%),
+    linear-gradient(145deg, var(--surface-muted), var(--surface-alt));
+  box-shadow: 0 16px 32px var(--shadow-color);
+}
+
+.home-spotlight__eyebrow {
+  margin: 0;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-spotlight__title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.home-spotlight__description {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.home-spotlight__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.home-spotlight__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.84rem;
+  transition: all 0.2s ease;
+}
+
+.home-spotlight__link:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
 .home-search {
   width: 100%;
   border-radius: 1rem;
@@ -648,6 +730,13 @@ body {
   min-height: 100%;
 }
 
+.card--featured {
+  border-color: rgb(56 189 248 / 0.24);
+  background:
+    radial-gradient(circle at top right, rgb(56 189 248 / 0.14), transparent 40%),
+    linear-gradient(145deg, var(--surface), var(--surface-alt));
+}
+
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px var(--shadow-color);
@@ -663,6 +752,10 @@ body {
   margin: 0;
   color: var(--text-muted);
   flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .card__meta {
@@ -1184,8 +1277,36 @@ select:focus {
 
 textarea[readonly],
 input[readonly] {
-  background: var(--surface-alt);
+  background:
+    linear-gradient(145deg, rgb(56 189 248 / 0.06), transparent 36%),
+    var(--surface-alt);
+  border-color: rgb(56 189 248 / 0.22);
   color: var(--text-muted);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+progress {
+  width: 100%;
+  height: 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  accent-color: var(--primary);
+}
+
+progress::-webkit-progress-bar {
+  background: var(--surface-muted);
+  border-radius: 999px;
+}
+
+progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: 999px;
+}
+
+progress::-moz-progress-bar {
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: 999px;
 }
 
 button {
@@ -1265,13 +1386,46 @@ button:active {
 }
 
 .message {
-  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 3.2rem;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgb(110 231 183 / 0.24);
+  background: rgb(16 185 129 / 0.08);
   color: var(--success);
   font-weight: 600;
+  line-height: 1.45;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+.message::before {
+  content: '';
+  width: 0.68rem;
+  height: 0.68rem;
+  border-radius: 999px;
+  background: currentColor;
+  box-shadow: 0 0 0 0.3rem rgb(255 255 255 / 0.04);
+  flex: none;
+}
+
+.message:empty {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.message:empty::before {
+  display: none;
 }
 
 .message--error {
   color: var(--error);
+  border-color: rgb(252 165 165 / 0.24);
+  background: rgb(239 68 68 / 0.08);
 }
 
 .toolbar {
@@ -1568,6 +1722,10 @@ button:active {
   .quick-start,
   .layout--dev .page-header {
     padding: 1rem;
+  }
+
+  .home-spotlights {
+    grid-template-columns: 1fr;
   }
 
   .home-workflow__links {

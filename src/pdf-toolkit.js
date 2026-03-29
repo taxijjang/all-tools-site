@@ -1,6 +1,5 @@
 import './style.css';
 import { t } from './i18n.js';
-import { PDFDocument, StandardFonts, rgb, degrees } from 'pdf-lib';
 
 const dom = {
   mergeFiles: document.getElementById('pdfMergeFiles'),
@@ -26,7 +25,21 @@ const dom = {
 
 let lastBlob = null;
 let pdfjsModule;
+let pdfLibModule;
+let pdfLibPromise;
 const MAX_STATUS_FILES = 3;
+const pdfUiCopy = {
+  ko: {
+    loadingLib: 'PDF 엔진을 준비하고 있습니다...',
+  },
+  en: {
+    loadingLib: 'Loading the PDF engine...',
+  },
+};
+
+function getPdfUiCopy(locale = document.documentElement.getAttribute('lang')) {
+  return pdfUiCopy[locale] || pdfUiCopy.en;
+}
 
 function setMessage(text, error = false) {
   dom.message.textContent = text;
@@ -242,8 +255,28 @@ function formatDateValue(date) {
 
 async function getPdfDoc(file) {
   const bytes = await file.arrayBuffer();
+  const { PDFDocument } = await loadPdfLib(true);
   const pdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
   return { pdf, bytes };
+}
+
+async function loadPdfLib(showStatus = false) {
+  if (pdfLibModule) return pdfLibModule;
+  if (showStatus) {
+    setMessage(getPdfUiCopy().loadingLib);
+  }
+  if (!pdfLibPromise) {
+    pdfLibPromise = import('pdf-lib')
+      .then((module) => {
+        pdfLibModule = module;
+        return module;
+      })
+      .catch((error) => {
+        pdfLibPromise = undefined;
+        throw error;
+      });
+  }
+  return pdfLibPromise;
 }
 
 async function loadPdfJs() {
@@ -261,6 +294,7 @@ async function mergePdfs() {
     return;
   }
 
+  const { PDFDocument } = await loadPdfLib(true);
   const merged = await PDFDocument.create();
   let totalPages = 0;
 
@@ -296,6 +330,7 @@ async function splitPdfRange() {
     return;
   }
 
+  const { PDFDocument } = await loadPdfLib(true);
   const out = await PDFDocument.create();
   const indices = Array.from({ length: to - from + 1 }, (_, idx) => from - 1 + idx);
   const pages = await out.copyPages(pdf, indices);
@@ -324,6 +359,7 @@ async function watermarkPdf() {
   }
 
   const { pdf } = await getPdfDoc(file);
+  const { StandardFonts, rgb, degrees } = await loadPdfLib(true);
   const font = await pdf.embedFont(StandardFonts.HelveticaBold);
 
   for (const page of pdf.getPages()) {
@@ -382,10 +418,9 @@ async function extractText() {
     return;
   }
 
-  const [bytes, { pdf: loadedPdf }] = await Promise.all([
-    file.arrayBuffer(),
-    getPdfDoc(file),
-  ]);
+  const bytes = await file.arrayBuffer();
+  const { PDFDocument } = await loadPdfLib(true);
+  const loadedPdf = await PDFDocument.load(bytes, { ignoreEncryption: true });
   const totalPages = loadedPdf.getPageCount();
   const { from, to } = getPageRange(totalPages);
 

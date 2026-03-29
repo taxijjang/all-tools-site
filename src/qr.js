@@ -1,7 +1,5 @@
 import './style.css';
 import { t } from './i18n.js';
-import { toDataURL } from 'qrcode';
-import jsQR from 'jsqr';
 
 const dom = {
   type: document.getElementById('qrType'),
@@ -19,6 +17,9 @@ const dom = {
   scanOutput: document.getElementById('qrScanOutput'),
   message: document.getElementById('qrMessage'),
 };
+
+let qrEncoderPromise;
+let qrScannerPromise;
 
 function setMessage(text, error = false) {
   dom.message.textContent = text;
@@ -41,6 +42,44 @@ function syncTypeUi() {
   dom.textFields.hidden = wifiMode;
 }
 
+function clearPreview() {
+  dom.image.hidden = true;
+  dom.image.removeAttribute('src');
+  dom.download.disabled = true;
+}
+
+function debounce(fn, wait = 120) {
+  let timeoutId;
+  return (...args) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => fn(...args), wait);
+  };
+}
+
+async function loadQrEncoder() {
+  if (!qrEncoderPromise) {
+    qrEncoderPromise = import('qrcode')
+      .then((module) => module)
+      .catch((error) => {
+        qrEncoderPromise = undefined;
+        throw error;
+      });
+  }
+  return qrEncoderPromise;
+}
+
+async function loadQrScanner() {
+  if (!qrScannerPromise) {
+    qrScannerPromise = import('jsqr')
+      .then((module) => module.default || module)
+      .catch((error) => {
+        qrScannerPromise = undefined;
+        throw error;
+      });
+  }
+  return qrScannerPromise;
+}
+
 function loadImageFile(file) {
   return new Promise((resolve, reject) => {
     const image = new Image();
@@ -59,6 +98,9 @@ function loadImageFile(file) {
 
 async function scanQrWithJsQr(file) {
   const image = await loadImageFile(file);
+  const jsQR = await loadQrScanner().catch(() => {
+    throw new Error('qr-lib');
+  });
   const canvas = document.createElement('canvas');
   canvas.width = image.naturalWidth || image.width;
   canvas.height = image.naturalHeight || image.height;
@@ -71,23 +113,31 @@ async function scanQrWithJsQr(file) {
   return result?.data || '';
 }
 
-async function generateQr() {
+async function generateQr({ silentWhenEmpty = false } = {}) {
   const text = buildPayload();
   const size = Number(dom.size.value || 256);
 
   if (!text) {
-    setMessage(t('qr.error.empty'), true);
+    clearPreview();
+    if (silentWhenEmpty) {
+      setMessage('');
+    } else {
+      setMessage(t('qr.error.empty'), true);
+    }
     return;
   }
 
   try {
+    const { toDataURL } = await loadQrEncoder().catch(() => {
+      throw new Error('qr-lib');
+    });
     const url = await toDataURL(text, { width: size, margin: 1, errorCorrectionLevel: 'M' });
     dom.image.src = url;
     dom.image.hidden = false;
     dom.download.disabled = false;
     setMessage(t('qr.success.generated'));
-  } catch {
-    setMessage(t('qr.error.generate'), true);
+  } catch (error) {
+    setMessage(error?.message === 'qr-lib' ? t('qr.error.lib') : t('qr.error.generate'), true);
   }
 }
 
@@ -118,16 +168,31 @@ async function scanQrFromFile(file) {
       'BarcodeDetector' in window ? t('qr.error.notFound') : t('qr.error.unsupported'),
       true,
     );
-  } catch {
-    setMessage(t('qr.error.scan'), true);
+  } catch (error) {
+    setMessage(error?.message === 'qr-lib' ? t('qr.error.lib') : t('qr.error.scan'), true);
   }
 }
 
-dom.generate.addEventListener('click', generateQr);
+const schedulePreview = debounce(() => {
+  generateQr({ silentWhenEmpty: true }).catch(() => {
+    setMessage(t('qr.error.generate'), true);
+  });
+});
+
+dom.generate.addEventListener('click', () => {
+  generateQr().catch(() => {
+    setMessage(t('qr.error.generate'), true);
+  });
+});
 dom.type.addEventListener('change', () => {
   syncTypeUi();
-  generateQr();
+  schedulePreview();
 });
+dom.text?.addEventListener('input', schedulePreview);
+dom.wifiSsid?.addEventListener('input', schedulePreview);
+dom.wifiPass?.addEventListener('input', schedulePreview);
+dom.wifiSec?.addEventListener('change', schedulePreview);
+dom.size?.addEventListener('input', schedulePreview);
 dom.download.addEventListener('click', () => {
   if (!dom.image.src) return;
   const a = document.createElement('a');
@@ -142,4 +207,15 @@ dom.scanFile.addEventListener('change', async (e) => {
 });
 
 syncTypeUi();
-generateQr();
+
+const queueInitialPreview = () => {
+  generateQr({ silentWhenEmpty: true }).catch(() => {
+    setMessage(t('qr.error.generate'), true);
+  });
+};
+
+if ('requestIdleCallback' in window) {
+  window.requestIdleCallback(queueInitialPreview, { timeout: 800 });
+} else {
+  window.setTimeout(queueInitialPreview, 0);
+}

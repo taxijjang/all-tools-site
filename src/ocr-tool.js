@@ -1,5 +1,4 @@
 import './style.css';
-import { createWorker } from 'tesseract.js';
 import { t } from './i18n.js';
 
 const dom = {
@@ -11,9 +10,23 @@ const dom = {
   message: document.getElementById('ocrMessage'),
 };
 
+let tesseractPromise;
+
 function setMessage(text, error = false) {
   dom.message.textContent = text;
   dom.message.classList.toggle('message--error', error);
+}
+
+async function loadTesseract() {
+  if (!tesseractPromise) {
+    tesseractPromise = import('tesseract.js')
+      .then((module) => module)
+      .catch((error) => {
+        tesseractPromise = undefined;
+        throw error;
+      });
+  }
+  return tesseractPromise;
 }
 
 async function runOcr() {
@@ -26,6 +39,7 @@ async function runOcr() {
   dom.progress.value = 0;
   setMessage(t('messages.ocr.loading'));
 
+  const { createWorker } = await loadTesseract();
   const worker = await createWorker(dom.lang.value, 1, {
     logger: (message) => {
       if (message.status === 'recognizing text' && message.progress) {

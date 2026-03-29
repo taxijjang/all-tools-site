@@ -4,6 +4,7 @@ import {
   FILE_PICKER_META,
   HOME_DISCOVERY_COPY,
   HOME_FILTERS,
+  HOME_SPOTLIGHTS,
   HOME_WORKFLOWS,
   QUICK_START_META,
   TOOL_CATEGORY_MAP,
@@ -413,6 +414,15 @@ const RELATED_TOOL_MAP = {
   'api-tester': ['/json', '/seo-check', '/query-builder'],
 };
 
+const FEATURED_HOME_PATHS = new Set([
+  '/uuid',
+  '/base64',
+  '/json',
+  '/jwt',
+  '/pdf-toolkit',
+  '/image-optimize',
+]);
+
 function getRelatedCopy(locale = document.documentElement.getAttribute('lang')) {
   if (locale === 'ko') {
     return {
@@ -483,6 +493,7 @@ function setupHomeDiscovery() {
   const searchInput = document.querySelector('[data-home-search]');
   const filtersHost = document.querySelector('[data-home-filters]');
   const resultsEl = document.querySelector('[data-home-results]');
+  const spotlightsHost = document.querySelector('[data-home-spotlights]');
   const workflowsHost = document.querySelector('[data-home-workflows]');
   if (!grid || !searchInput || !filtersHost || !resultsEl || !workflowsHost) {
     return () => {};
@@ -494,6 +505,7 @@ function setupHomeDiscovery() {
   cards.forEach((card) => {
     const path = getToolPath(card.getAttribute('href'));
     card.dataset.category = TOOL_CATEGORY_MAP[path] || 'ops';
+    card.classList.toggle('card--featured', FEATURED_HOME_PATHS.has(path));
 
     let meta = card.querySelector('.card__meta');
     if (!meta) {
@@ -508,7 +520,35 @@ function setupHomeDiscovery() {
     }
   });
 
+  function renderSpotlightCards(locale) {
+    if (!spotlightsHost) {
+      return;
+    }
+
+    spotlightsHost.innerHTML = HOME_SPOTLIGHTS.map((spotlight) => {
+      const spotlightCopy = spotlight.labels[locale] || spotlight.labels.en;
+      const links = spotlight.links
+        .map(
+          (link) =>
+            `<a class="home-spotlight__link" href="${link.href}">${escapeHtml(
+              getLocalizedValue(link.labels, locale),
+            )}</a>`,
+        )
+        .join('');
+
+      return `
+        <article class="home-spotlight">
+          <p class="home-spotlight__eyebrow">${escapeHtml(spotlightCopy.eyebrow)}</p>
+          <h3 class="home-spotlight__title">${escapeHtml(spotlightCopy.title)}</h3>
+          <p class="home-spotlight__description">${escapeHtml(spotlightCopy.description)}</p>
+          <div class="home-spotlight__links">${links}</div>
+        </article>
+      `;
+    }).join('');
+  }
+
   function renderWorkflowCards(locale) {
+    const copy = HOME_DISCOVERY_COPY[locale] || HOME_DISCOVERY_COPY.en;
     workflowsHost.innerHTML = HOME_WORKFLOWS.map((workflow) => {
       const workflowCopy = workflow.labels[locale] || workflow.labels.en;
       const links = workflow.links
@@ -522,7 +562,7 @@ function setupHomeDiscovery() {
 
       return `
         <article class="home-workflow">
-          <p class="home-workflow__eyebrow">Workflow</p>
+          <p class="home-workflow__eyebrow">${escapeHtml(copy.workflowEyebrow)}</p>
           <h3>${escapeHtml(workflowCopy.title)}</h3>
           <p>${escapeHtml(workflowCopy.description)}</p>
           <div class="home-workflow__links">${links}</div>
@@ -580,6 +620,9 @@ function setupHomeDiscovery() {
     const headingEl = document.querySelector('[data-home-heading]');
     const leadEl = document.querySelector('[data-home-lead]');
     const searchLabelEl = document.querySelector('[data-home-search-label]');
+    const spotlightKickerEl = document.querySelector('[data-home-spotlight-kicker]');
+    const spotlightHeadingEl = document.querySelector('[data-home-spotlight-heading]');
+    const spotlightLeadEl = document.querySelector('[data-home-spotlight-lead]');
     const catalogKickerEl = document.querySelector('[data-home-catalog-kicker]');
     const catalogHeadingEl = document.querySelector('[data-home-catalog-heading]');
     const catalogLinkEl = document.querySelector('[data-home-catalog-link]');
@@ -588,6 +631,9 @@ function setupHomeDiscovery() {
     if (headingEl) headingEl.textContent = copy.heading;
     if (leadEl) leadEl.textContent = copy.lead;
     if (searchLabelEl) searchLabelEl.textContent = copy.searchLabel;
+    if (spotlightKickerEl) spotlightKickerEl.textContent = copy.spotlightKicker;
+    if (spotlightHeadingEl) spotlightHeadingEl.textContent = copy.spotlightHeading;
+    if (spotlightLeadEl) spotlightLeadEl.textContent = copy.spotlightLead;
     if (catalogKickerEl) catalogKickerEl.textContent = copy.catalogKicker;
     if (catalogHeadingEl) catalogHeadingEl.textContent = copy.catalogHeading;
     if (catalogLinkEl) catalogLinkEl.textContent = copy.catalogLink;
@@ -621,6 +667,7 @@ function setupHomeDiscovery() {
       });
     });
 
+    renderSpotlightCards(locale);
     renderWorkflowCards(locale);
     applyFilters(locale);
   }
@@ -1028,7 +1075,7 @@ function setupAnalytics() {
     const target = event.target instanceof Element ? event.target.closest('a, button') : null;
     if (!target) return;
 
-    if (target.matches('a.card, .related-tool-link, .home-workflow__link, [data-chrome-link]')) {
+    if (target.matches('a.card, .related-tool-link, .home-spotlight__link, .home-workflow__link, [data-chrome-link]')) {
       trackEvent('navigation_click', {
         destination: target.getAttribute('href') || '',
         link_label: getLinkLabel(target),

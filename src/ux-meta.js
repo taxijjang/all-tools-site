@@ -121,11 +121,15 @@ export const HOME_DISCOVERY_COPY = {
     heading: '지금 하려는 작업으로 바로 들어가세요',
     lead:
       '도구 이름을 몰라도 됩니다. API 점검, 텍스트 정리, 파일 변환처럼 지금 하려는 일 기준으로 먼저 좁혀서 시작하세요.',
+    spotlightKicker: 'Start Here',
+    spotlightHeading: '많이 여는 조합을 먼저 보여드립니다',
+    spotlightLead: '자주 이어서 쓰는 도구를 작업 흐름별로 묶어 뒀습니다. 급하면 여기서 바로 들어가면 됩니다.',
     searchPlaceholder: '예: jwt, pdf, 정규식, url, 이미지',
     searchLabel: '도구 검색',
     catalogKicker: 'Tool Catalog',
     catalogHeading: '전체 도구 모음',
     catalogLink: '가이드도 같이 보기',
+    workflowEyebrow: 'Workflow',
     resultsAll: '{count}개 도구 표시 중',
     resultsFiltered: '"{filter}" 범주에서 {count}개 도구 표시 중',
     resultsSearch: '"{query}" 검색 결과 {count}개',
@@ -137,11 +141,15 @@ export const HOME_DISCOVERY_COPY = {
     heading: 'Jump in by the job you need to finish',
     lead:
       'You do not need to know the tool name first. Narrow the list by the task in front of you, then open the right utility in one step.',
+    spotlightKicker: 'Start Here',
+    spotlightHeading: 'Open the combinations people reach for most',
+    spotlightLead: 'These clusters bundle the tools that are commonly used back-to-back, so you can move faster without scanning the full catalog first.',
     searchPlaceholder: 'Try jwt, pdf, regex, url, image',
     searchLabel: 'Search tools',
     catalogKicker: 'Tool Catalog',
     catalogHeading: 'Browse the full toolbox',
     catalogLink: 'Read the guides too',
+    workflowEyebrow: 'Workflow',
     resultsAll: 'Showing {count} tools',
     resultsFiltered: 'Showing {count} tools in {filter}',
     resultsSearch: '{count} result(s) for "{query}"',
@@ -252,6 +260,105 @@ export const HOME_WORKFLOWS = [
       {
         href: '/markdown',
         labels: { ko: 'Markdown', en: 'Markdown' },
+      },
+    ],
+  },
+];
+
+export const HOME_SPOTLIGHTS = [
+  {
+    labels: {
+      ko: {
+        eyebrow: 'API',
+        title: '응답과 토큰을 빠르게 확인할 때',
+        description: 'JSON 구조 확인부터 JWT 해석, 재현 가능한 요청 테스트까지 한 번에 이어집니다.',
+      },
+      en: {
+        eyebrow: 'API',
+        title: 'Inspect payloads and tokens fast',
+        description: 'Move from JSON structure checks to JWT inspection and reproducible request tests in one pass.',
+      },
+    },
+    links: [
+      {
+        href: '/json',
+        labels: { ko: 'JSON 보기', en: 'Open JSON' },
+      },
+      {
+        href: '/jwt',
+        labels: { ko: 'JWT 점검', en: 'Inspect JWT' },
+      },
+      {
+        href: '/api-tester',
+        labels: { ko: 'API 테스트', en: 'Replay request' },
+      },
+      {
+        href: '/seo-check',
+        labels: { ko: 'SEO 체크', en: 'Check metadata' },
+      },
+    ],
+  },
+  {
+    labels: {
+      ko: {
+        eyebrow: 'Encode',
+        title: '문자열과 링크를 빨리 정리할 때',
+        description: 'Base64, URL 인코딩, 쿼리 스트링, 정규식을 한 흐름으로 묶었습니다.',
+      },
+      en: {
+        eyebrow: 'Encode',
+        title: 'Clean up strings and links',
+        description: 'Bundle Base64, URL encoding, query strings, and regex checks into one quick lane.',
+      },
+    },
+    links: [
+      {
+        href: '/base64',
+        labels: { ko: 'Base64', en: 'Base64' },
+      },
+      {
+        href: '/url',
+        labels: { ko: 'URL', en: 'URL' },
+      },
+      {
+        href: '/query-builder',
+        labels: { ko: '쿼리 빌더', en: 'Query Builder' },
+      },
+      {
+        href: '/regex',
+        labels: { ko: 'Regex', en: 'Regex' },
+      },
+    ],
+  },
+  {
+    labels: {
+      ko: {
+        eyebrow: 'Files',
+        title: '파일 작업을 브라우저 안에서 끝낼 때',
+        description: 'PDF, 이미지 최적화, OCR, QR 스캔처럼 무거운 작업을 바로 이어서 처리할 수 있습니다.',
+      },
+      en: {
+        eyebrow: 'Files',
+        title: 'Finish file work inside the browser',
+        description: 'Handle PDFs, image optimization, OCR, and QR scanning without hopping between tools.',
+      },
+    },
+    links: [
+      {
+        href: '/pdf-toolkit',
+        labels: { ko: 'PDF 툴킷', en: 'PDF Toolkit' },
+      },
+      {
+        href: '/image-optimize',
+        labels: { ko: '이미지 최적화', en: 'Image Optimize' },
+      },
+      {
+        href: '/ocr',
+        labels: { ko: 'OCR', en: 'OCR' },
+      },
+      {
+        href: '/qr',
+        labels: { ko: 'QR', en: 'QR' },
       },
     ],
   },
