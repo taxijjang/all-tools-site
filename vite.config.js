@@ -415,6 +415,16 @@ function seoMetadataPlugin() {
 
       let nextHtml = removeHeadArtifacts(html);
       nextHtml = injectChromeShell(nextHtml, meta.path);
+      nextHtml = nextHtml.replace(
+        /<h1([^>]*)>([\s\S]*?)<span class="trust-badge"([^>]*)>([\s\S]*?)<\/span><\/h1>/i,
+        '<h1$1>$2</h1><p class="trust-badge"$3 data-nosnippet>$4</p>',
+      );
+      nextHtml = nextHtml.replace(/<div class="page-controls">/i, '<div class="page-controls" data-nosnippet>');
+      nextHtml = nextHtml.replace(
+        /(<(?:div|section)\b[^>]*data-locale-block=["'][^"']+["'][^>]*?)\shidden(?=[^>]*>)/gi,
+        '$1 hidden data-nosnippet',
+      );
+      nextHtml = nextHtml.replace(/<footer class="footer([^"]*)">/i, '<footer class="footer$1" data-nosnippet>');
       nextHtml = nextHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(fullTitle)}</title>`);
       nextHtml = upsertBodyAttribute(nextHtml, 'data-allow-ads', meta.allowAds ? 'true' : 'false');
 

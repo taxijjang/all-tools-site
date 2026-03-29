@@ -1251,13 +1251,15 @@ function setupGlobalNavigation() {
 
   const header = document.querySelector('.page-header h1, .hero h1');
   if (header) {
-    let badge = header.querySelector('.trust-badge');
+    let badge = document.querySelector('[data-chrome-badge="trust"]');
     if (!badge) {
-      badge = document.createElement('span');
+      badge = document.createElement('p');
       badge.className = 'trust-badge';
       badge.dataset.chromeBadge = 'trust';
       badge.textContent = '🔒';
-      header.appendChild(badge);
+      header.insertAdjacentElement('afterend', badge);
+    } else if (badge.previousElementSibling !== header) {
+      header.insertAdjacentElement('afterend', badge);
     }
   }
 
@@ -1331,6 +1333,11 @@ function syncLocaleBlocks(locale = document.documentElement.getAttribute('lang')
     const isActive = block.dataset.localeBlock === locale;
     block.hidden = !isActive;
     block.setAttribute('aria-hidden', String(!isActive));
+    if (isActive) {
+      block.removeAttribute('data-nosnippet');
+    } else {
+      block.setAttribute('data-nosnippet', '');
+    }
   });
 }
 

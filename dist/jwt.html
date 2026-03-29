@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>JWT Decoder and Inspector | Claims, Expiry, and JWKS Check | Stateless Tools</title>
+  <title>JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
@@ -17,9 +17,9 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/jwt-DMMz-hQe.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-B_42xKH5.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-9nHIt0vm.css">
+  <script type="module" crossorigin src="/assets/jwt-DYDxhL1D.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-DH84FU_q.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-C9rP7oBH.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -74,7 +74,7 @@
       overflow: hidden;
     }
   </style>
-  <meta name="description" content="Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser." />
+  <meta name="description" content="JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="taxijjang" />
   <meta name="theme-color" content="#020817" />
@@ -82,14 +82,14 @@
   <link rel="canonical" href="https://all-tools-site.pages.dev/jwt" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Stateless Tools" />
-  <meta property="og:title" content="JWT Decoder and Inspector | Claims, Expiry, and JWKS Check" />
-  <meta property="og:description" content="Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser." />
+  <meta property="og:title" content="JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS" />
+  <meta property="og:description" content="JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다." />
   <meta property="og:url" content="https://all-tools-site.pages.dev/jwt" />
   <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <meta property="og:image:alt" content="Stateless Tools logo" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="JWT Decoder and Inspector | Claims, Expiry, and JWKS Check" />
-  <meta name="twitter:description" content="Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser." />
+  <meta name="twitter:title" content="JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS" />
+  <meta name="twitter:description" content="JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다." />
   <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <script type="application/ld+json" data-seo-schema>
 [
@@ -125,9 +125,9 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": "https://all-tools-site.pages.dev/jwt#webpage",
-    "name": "JWT Decoder and Inspector | Claims, Expiry, and JWKS Check",
+    "name": "JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS",
     "url": "https://all-tools-site.pages.dev/jwt",
-    "description": "Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser.",
+    "description": "JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.",
     "isPartOf": {
       "@id": "https://all-tools-site.pages.dev/#website"
     },
@@ -150,7 +150,7 @@
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "JWT Decoder and Inspector | Claims, Expiry, and JWKS Check",
+        "name": "JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS",
         "item": "https://all-tools-site.pages.dev/jwt"
       }
     ]
@@ -159,9 +159,9 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "@id": "https://all-tools-site.pages.dev/jwt#app",
-    "name": "JWT Decoder and Inspector | Claims, Expiry, and JWKS Check",
+    "name": "JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS",
     "url": "https://all-tools-site.pages.dev/jwt",
-    "description": "Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser.",
+    "description": "JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript and a modern browser",
@@ -184,7 +184,7 @@
 <body class="layout layout--dev" data-tool="jwt" data-allow-ads="true">
 
   <div class="page page--dev">
-    <div class="page-controls">
+    <div class="page-controls" data-nosnippet>
 
       <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
 
@@ -242,7 +242,7 @@
     </div>
     <header class="page-header">
       <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
-      <h1 data-i18n="jwt.title">JWT Inspector<span class="trust-badge" data-chrome-badge="trust">🔒 브라우저 내부 처리</span></h1>
+      <h1 data-i18n="jwt.title">JWT Inspector</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
       <p data-i18n="jwt.description">
         JWT 헤더·페이로드를 확인하고 exp/nbf 등 만료 클레임을 점검하세요. 서명 검증은 지원하지 않습니다.
       </p>
@@ -314,7 +314,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">Guide</p>
           <h2 class="section-title">What to inspect first in a JWT</h2>
           <div class="content-grid">
@@ -353,7 +353,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">Security Notes</p>
           <h2 class="section-title">Decoding is not the same as trust</h2>
           <div class="faq-list">
@@ -392,7 +392,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">How To</p>
           <h2 class="section-title">The order that makes JWT review easier</h2>
           <div class="content-columns">
@@ -413,7 +413,7 @@
       </section>
     </section>
 
-    <footer class="footer footer--dev">
+    <footer class="footer footer--dev" data-nosnippet>
       <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
     </footer>
   </div>

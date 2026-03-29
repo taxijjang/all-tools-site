@@ -26,17 +26,17 @@ export const PAGE_META = {
   index: {
     path: '/',
     kind: 'home',
-    title: 'Developer Tools for UUID, Base64, JSON, JWT and More | Stateless Tools',
+    title: '개발자 도구 모음 | UUID 변환기, Base64, JSON, JWT',
     description:
-      'Free browser-based developer tools for UUID generation, Base64 encode/decode, JSON formatting, JWT inspection, URL utilities, hashing, and more.',
+      'UUID 변환기, Base64 인코더/디코더, JSON 포매터, JWT 디코더 등 개발자용 브라우저 도구를 바로 사용할 수 있습니다.',
   },
   learn: {
     path: '/learn',
     kind: 'content',
     allowAds: true,
-    title: 'Practical Utility Guides | UUID, JWT, Base64 and More',
+    title: '개발자 유틸 가이드 | UUID, JWT, Base64',
     description:
-      'Read practical guides for UUIDs, JWT debugging, Base64, URL encoding, and safe browser-based utility workflows.',
+      'UUID, JWT, Base64, URL 인코딩 같은 개발자 유틸을 언제 어떻게 쓰는지 실무 중심으로 정리한 가이드입니다.',
   },
   about: {
     path: '/about',
@@ -63,43 +63,43 @@ export const PAGE_META = {
     path: '/uuid',
     kind: 'tool',
     allowAds: true,
-    title: 'UUID Generator and Converter | UUID v4, ULID, Hex(binary16)',
+    title: 'UUID 변환기 | UUID Generator, UUID v4, ULID, Hex(binary16)',
     description:
-      'Generate UUID v4 or ULID values and convert UUIDs to and from hex(binary16) in your browser.',
+      'UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.',
     applicationCategory: 'DeveloperApplication',
   },
   base64: {
     path: '/base64',
     kind: 'tool',
     allowAds: true,
-    title: 'Base64 Encode Decode Tool | URL-Safe and File Conversion',
+    title: 'Base64 인코더/디코더 | Encode Decode, URL-Safe, 파일 변환',
     description:
-      'Encode and decode Base64 strings, handle URL-safe variants, strip whitespace, and convert files in the browser.',
+      '문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
   },
   json: {
     path: '/json',
     kind: 'tool',
-    title: 'JSON Formatter and Validator | Pretty Print, Minify, Tree View',
+    title: 'JSON 포매터/검증기 | Formatter, Validator, Tree View',
     description:
-      'Validate JSON, pretty-print or minify it, search keys and values, and inspect the result in a tree view.',
+      'JSON 유효성 검사, 포맷/압축, 키 검색, 트리 뷰 확인까지 한 번에 할 수 있는 브라우저 도구입니다.',
     applicationCategory: 'DeveloperApplication',
   },
   jwt: {
     path: '/jwt',
     kind: 'tool',
     allowAds: true,
-    title: 'JWT Decoder and Inspector | Claims, Expiry, and JWKS Check',
+    title: 'JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS',
     description:
-      'Decode JWT headers and payloads, inspect exp and nbf claims, and review tokens in your browser.',
+      'JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.',
     applicationCategory: 'DeveloperApplication',
   },
   url: {
     path: '/url',
     kind: 'tool',
-    title: 'URL Encoder Decoder | Query String Parser',
+    title: 'URL 인코더/디코더 | Query String Parser',
     description:
-      'Encode or decode URLs, inspect query parameters, and verify URL-safe strings directly in the browser.',
+      'URL 인코딩/디코딩, 쿼리 스트링 파싱, URL-safe 문자열 확인을 브라우저에서 바로 처리할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
   },
   hash: {
@@ -250,9 +250,9 @@ export const PAGE_META = {
     path: '/pdf-toolkit',
     kind: 'tool',
     allowAds: true,
-    title: 'PDF Toolkit | Merge, Split, Extract Pages, Watermark',
+    title: 'PDF 툴킷 | 병합, 분할, 페이지 추출, 워터마크',
     description:
-      'Merge, split, extract, and watermark PDFs locally in the browser without sending files to a server.',
+      'PDF 병합, 분할, 페이지 추출, 워터마크 작업을 파일 업로드 없이 브라우저에서 처리할 수 있습니다.',
     applicationCategory: 'BusinessApplication',
   },
   'image-optimize': {
@@ -283,9 +283,9 @@ export const PAGE_META = {
     path: '/seo-check',
     kind: 'tool',
     allowAds: true,
-    title: 'SEO Meta Tag Checker | Title, Description, OG, Canonical',
+    title: 'SEO 메타 태그 검사기 | Title, Description, OG, Canonical',
     description:
-      'Review page titles, descriptions, Open Graph tags, and canonical URLs to catch common SEO issues.',
+      '페이지 제목, 설명, Open Graph, canonical 태그를 점검해 자주 놓치는 SEO 문제를 빠르게 확인할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
   },
   'utm-builder': {

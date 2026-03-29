@@ -2031,7 +2031,8 @@ button:active {
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 600;
-  margin-left: 0.5rem;
+  margin: 0.35rem 0 0;
+  width: fit-content;
 }
 
 /* PWA Install Button */
