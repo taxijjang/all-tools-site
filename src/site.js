@@ -437,7 +437,7 @@ const RECENTS_LIMIT = 6;
 const libraryCopy = {
   ko: {
     accessKicker: 'Quick Return',
-    accessHeading: '다시 쓰는 도구를 더 빨리 여세요',
+    accessHeading: '즐겨찾기 & 최근 사용',
     accessLead: '최근 사용, 즐겨찾기, 대표 도구를 한곳에 모아 다시 들어오기 쉽게 정리했습니다.',
     favoritesTitle: '즐겨찾기',
     favoritesLead: '고정해 둔 도구만 모아 다시 여세요.',
@@ -457,7 +457,7 @@ const libraryCopy = {
   },
   en: {
     accessKicker: 'Quick Return',
-    accessHeading: 'Get back to your tools faster',
+    accessHeading: 'Favorites & Recent',
     accessLead: 'Keep recent tools, favorites, and go-to utilities in one place so you can jump back in without scanning the full catalog.',
     favoritesTitle: 'Favorites',
     favoritesLead: 'Open the tools you pinned on purpose.',

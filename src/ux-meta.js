@@ -118,7 +118,7 @@ export const FILE_PICKER_META = {
 export const HOME_DISCOVERY_COPY = {
   ko: {
     kicker: 'Quick Launch',
-    heading: '지금 하려는 작업으로 바로 들어가세요',
+    heading: '바로 찾기',
     lead:
       '도구 이름을 몰라도 됩니다. API 점검, 텍스트 정리, 파일 변환처럼 지금 하려는 일 기준으로 먼저 좁혀서 시작하세요.',
     spotlightKicker: 'Start Here',
@@ -127,7 +127,7 @@ export const HOME_DISCOVERY_COPY = {
     searchPlaceholder: '예: jwt, pdf, 정규식, url, 이미지',
     searchLabel: '도구 검색',
     catalogKicker: 'Tool Catalog',
-    catalogHeading: '전체 도구 모음',
+    catalogHeading: '전체 도구',
     catalogLink: '가이드도 같이 보기',
     workflowEyebrow: 'Workflow',
     resultsAll: '{count}개 도구 표시 중',
@@ -138,7 +138,7 @@ export const HOME_DISCOVERY_COPY = {
   },
   en: {
     kicker: 'Quick Launch',
-    heading: 'Jump in by the job you need to finish',
+    heading: 'Find a tool and go',
     lead:
       'You do not need to know the tool name first. Narrow the list by the task in front of you, then open the right utility in one step.',
     spotlightKicker: 'Start Here',
@@ -147,7 +147,7 @@ export const HOME_DISCOVERY_COPY = {
     searchPlaceholder: 'Try jwt, pdf, regex, url, image',
     searchLabel: 'Search tools',
     catalogKicker: 'Tool Catalog',
-    catalogHeading: 'Browse the full toolbox',
+    catalogHeading: 'All tools',
     catalogLink: 'Read the guides too',
     workflowEyebrow: 'Workflow',
     resultsAll: 'Showing {count} tools',
