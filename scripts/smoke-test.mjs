@@ -9,6 +9,11 @@ const BASE = `http://${HOST}:${PORT}`;
 
 const ROUTES = [
   '/',
+  '/learn',
+  '/uuid-v4-v7',
+  '/jwt-exp-nbf',
+  '/base64-vs-url-encoding',
+  '/pdf-merge-split-guide',
   '/uuid',
   '/base64',
   '/json',

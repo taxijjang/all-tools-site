@@ -5,7 +5,6 @@
   <meta charset="utf-8" />
   <title>개발자 유틸 가이드 | UUID, JWT, Base64 | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
@@ -16,8 +15,8 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-DS-hco-U.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-C9rP7oBH.css">
+  <script type="module" crossorigin src="/assets/site-y6777Sbj.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-CYxBXt4D.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -72,7 +71,7 @@
       overflow: hidden;
     }
   </style>
-  <meta name="description" content="UUID, JWT, Base64, URL 인코딩 같은 개발자 유틸을 언제 어떻게 쓰는지 실무 중심으로 정리한 가이드입니다." />
+  <meta name="description" content="UUID, JWT, Base64, URL 인코딩, PDF 작업처럼 자주 쓰는 개발자 유틸을 개별 가이드로 정리한 허브 페이지입니다." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="taxijjang" />
   <meta name="theme-color" content="#020817" />
@@ -81,13 +80,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Stateless Tools" />
   <meta property="og:title" content="개발자 유틸 가이드 | UUID, JWT, Base64" />
-  <meta property="og:description" content="UUID, JWT, Base64, URL 인코딩 같은 개발자 유틸을 언제 어떻게 쓰는지 실무 중심으로 정리한 가이드입니다." />
+  <meta property="og:description" content="UUID, JWT, Base64, URL 인코딩, PDF 작업처럼 자주 쓰는 개발자 유틸을 개별 가이드로 정리한 허브 페이지입니다." />
   <meta property="og:url" content="https://all-tools-site.pages.dev/learn" />
   <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <meta property="og:image:alt" content="Stateless Tools logo" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="개발자 유틸 가이드 | UUID, JWT, Base64" />
-  <meta name="twitter:description" content="UUID, JWT, Base64, URL 인코딩 같은 개발자 유틸을 언제 어떻게 쓰는지 실무 중심으로 정리한 가이드입니다." />
+  <meta name="twitter:description" content="UUID, JWT, Base64, URL 인코딩, PDF 작업처럼 자주 쓰는 개발자 유틸을 개별 가이드로 정리한 허브 페이지입니다." />
   <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <script type="application/ld+json" data-seo-schema>
 [
@@ -125,7 +124,7 @@
     "@id": "https://all-tools-site.pages.dev/learn#webpage",
     "name": "개발자 유틸 가이드 | UUID, JWT, Base64",
     "url": "https://all-tools-site.pages.dev/learn",
-    "description": "UUID, JWT, Base64, URL 인코딩 같은 개발자 유틸을 언제 어떻게 쓰는지 실무 중심으로 정리한 가이드입니다.",
+    "description": "UUID, JWT, Base64, URL 인코딩, PDF 작업처럼 자주 쓰는 개발자 유틸을 개별 가이드로 정리한 허브 페이지입니다.",
     "isPartOf": {
       "@id": "https://all-tools-site.pages.dev/#website"
     },
@@ -155,10 +154,9 @@
   }
 ]
   </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="learn" data-allow-ads="true">
+<body class="layout layout--dev" data-tool="learn" data-allow-ads="false">
 
   <div class="page page--dev page--content">
     <div class="page-controls" data-nosnippet>
@@ -184,12 +182,15 @@
 
     <header class="page-header">
       <a class="back-link" href="/" data-i18n="common.back">도구 목록으로</a>
-      <h1>Practical Utility Guides</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
+      <h1>
+        <span data-locale-block="ko" lang="ko">개발자 유틸 가이드 허브</span>
+        <span data-locale-block="en" lang="en" hidden>Developer utility guide hub</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
       <div data-locale-block="ko" lang="ko">
-        <p>도구만 나열하는 대신, 어떤 문제에서 어떤 도구를 써야 하는지와 실수하기 쉬운 포인트를 정리한 실무 가이드 모음입니다.</p>
+        <p>도구를 바로 쓰기 전에 어떤 상황에서 어떤 유틸을 고르면 좋은지, 실무에서 많이 틀리는 포인트가 무엇인지 짧은 가이드로 묶었습니다.</p>
       </div>
       <div data-locale-block="en" lang="en" hidden data-nosnippet>
-        <p>A practical guide hub that explains when to use each utility, what teams often get wrong, and which browser-first workflows are actually safe and helpful.</p>
+        <p>A compact guide hub that points to the most useful utility walkthroughs, common mistakes, and practical browser-first workflows.</p>
       </div>
     </header>
 
@@ -197,39 +198,39 @@
       <section class="content-section content-section--highlight">
         <div data-locale-block="ko" lang="ko">
           <p class="section-kicker">Overview</p>
-          <h2 class="section-title">이 페이지를 만든 이유</h2>
-          <p class="section-lead">AdSense나 검색엔진 입장에서도, 빈 입력창만 있는 페이지보다 실제 문제 해결 맥락과 판단 기준이 있는 페이지가 훨씬 가치가 높습니다. 그래서 자주 쓰는 도구 주변에 설명형 콘텐츠를 따로 쌓기 시작했습니다.</p>
+          <h2 class="section-title">허브를 따로 둔 이유</h2>
+          <p class="section-lead">빈 입력창만 있는 페이지보다, 어떤 문제에서 어떤 도구를 써야 하는지와 실제 판단 기준이 정리된 페이지가 검색과 신뢰 측면에서 더 강합니다. 그래서 핵심 주제를 개별 가이드 URL로 분리하기 시작했습니다.</p>
           <div class="content-grid">
             <article class="info-card">
-              <h3>도구 선택 기준 정리</h3>
-              <p>UUID v4와 v7의 차이, Base64와 URL 인코딩의 차이처럼 이름은 익숙하지만 막상 현업에서 헷갈리는 주제를 짧고 실용적으로 정리합니다.</p>
+              <h3>검색 가능한 설명형 페이지</h3>
+              <p>UUID, JWT, Base64, PDF처럼 자주 쓰는 기능을 검색어 중심의 개별 페이지로 따로 정리해 색인과 내부 링크 신호를 함께 키웁니다.</p>
             </article>
             <article class="info-card">
-              <h3>실수 방지 포인트</h3>
-              <p>밀리초와 초, JWT 만료 시간, 정규식 플래그, 브라우저 내 처리 가능 범위처럼 장애나 오작동으로 이어지기 쉬운 포인트를 먼저 짚습니다.</p>
+              <h3>툴과 바로 연결되는 구조</h3>
+              <p>설명을 읽은 뒤 바로 해당 도구로 넘어가거나, 반대로 툴 페이지에서 관련 가이드로 이동할 수 있게 연결해서 실제 사용 흐름을 끊지 않습니다.</p>
             </article>
             <article class="info-card">
-              <h3>도구로 바로 이어지는 구조</h3>
-              <p>설명을 읽다가 바로 관련 도구로 이동할 수 있게 연결해 두어서, 검색 유입과 실제 사용이 끊기지 않도록 설계합니다.</p>
+              <h3>승인 전엔 광고보다 내용 우선</h3>
+              <p>현재는 광고 삽입보다 설명형 콘텐츠와 검색 신호를 우선 강화하는 단계입니다. 승인 전에는 라이브 페이지에서 광고 코드를 빼고 품질부터 올립니다.</p>
             </article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">Overview</p>
-          <h2 class="section-title">Why this guide hub exists</h2>
-          <p class="section-lead">Search engines and ad reviewers both respond better to pages that explain real decisions and practical trade-offs, not just blank forms. This page is the start of that shift.</p>
+          <h2 class="section-title">Why this hub exists</h2>
+          <p class="section-lead">Search engines and ad reviewers both respond better to pages that explain real decisions and trade-offs, not just blank forms. This hub now routes traffic into focused guide URLs.</p>
           <div class="content-grid">
             <article class="info-card">
-              <h3>Clarify tool choice</h3>
-              <p>Topics like UUID v4 vs v7 or Base64 vs URL encoding are familiar on the surface but still cause confusion in day-to-day work.</p>
+              <h3>Searchable guide pages</h3>
+              <p>High-interest topics like UUIDs, JWTs, Base64, and PDF handling are split into their own indexable pages with tighter keyword focus.</p>
             </article>
             <article class="info-card">
-              <h3>Reduce avoidable mistakes</h3>
-              <p>Seconds versus milliseconds, JWT expiry handling, regex flags, and browser-side processing limits are the kind of details that quietly cause bugs.</p>
+              <h3>Bridge guides and tools</h3>
+              <p>Every guide links back into a working utility page so educational content still leads directly into action instead of becoming dead content.</p>
             </article>
             <article class="info-card">
-              <h3>Bridge reading and action</h3>
-              <p>Each section links directly into the relevant utility so an educational page can still drive real usage instead of becoming dead content.</p>
+              <h3>Quality before ads</h3>
+              <p>For now, the site prioritizes useful content and crawl quality over ad loading, which is the safer path while the review status is still blocked.</p>
             </article>
           </div>
         </div>
@@ -237,93 +238,116 @@
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
-          <p class="section-kicker">Guide 1</p>
-          <h2 class="section-title">UUID는 언제 v4를 쓰고, 언제 v7을 보는 게 좋을까</h2>
-          <p class="section-lead">대부분의 웹앱에서는 UUID v4만으로 충분합니다. 예측 불가능한 난수 기반 식별자가 필요하고, 정렬 순서가 중요한 요구가 크지 않다면 구현도 단순하고 호환성도 좋습니다. 반면 로그나 이벤트 저장소처럼 시간 순으로 쌓이는 데이터가 많고, 인덱스 효율이나 정렬 성능을 더 챙기고 싶다면 UUID v7 쪽이 매력적일 수 있습니다.</p>
-          <p>실무에서 많이 놓치는 점은 "v7이 무조건 더 좋다"가 아니라는 것입니다. 이미 UUID 문자열을 널리 쓰는 시스템이라면 우선 변경 비용, 라이브러리 호환성, DB 컬럼 정의, 기존 운영 도구와의 연동까지 함께 봐야 합니다. 또한 v7을 쓰더라도 사람이 직접 읽는 경험은 여전히 어렵기 때문에, 비교나 디버깅 편의를 위해 표준 UUID 문자열과 hex(binary16) 표현을 함께 다루는 흐름이 필요합니다.</p>
-          <p>그래서 이 사이트에서는 단순 생성과 변환을 분리했습니다. 기존 시스템과 맞물린 UUID 문자열 확인은 <a href="/uuid">UUID generator and converter</a>에서 처리하고, 시간 정렬형 식별자 실험은 <a href="/uuidv7">UUID v7 generator</a>에서 보는 쪽이 더 안전합니다.</p>
+          <p class="section-kicker">Guide Library</p>
+          <h2 class="section-title">지금 읽어둘 만한 핵심 가이드</h2>
+          <div class="content-grid">
+            <a class="info-card guide-link-card" href="/uuid-v4-v7">
+              <h3>UUID v4 vs v7</h3>
+              <p>랜덤 식별자와 시간 정렬형 식별자를 언제 고르는지, DB 저장 방식과 운영상의 차이까지 같이 정리했습니다.</p>
+              <span class="guide-link-card__meta">UUID 가이드 보기 →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/jwt-exp-nbf">
+              <h3>JWT exp / nbf</h3>
+              <p>만료 시간과 not-before 값을 읽을 때 왜 초/밀리초, clock skew, 검증 단계가 계속 문제를 만드는지 설명합니다.</p>
+              <span class="guide-link-card__meta">JWT 가이드 보기 →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/base64-vs-url-encoding">
+              <h3>Base64 vs URL 인코딩</h3>
+              <p>둘 다 “문자열을 안전하게 바꾼다”는 인상이 있지만, 실제로는 전혀 다른 문제를 해결합니다.</p>
+              <span class="guide-link-card__meta">인코딩 가이드 보기 →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/pdf-merge-split-guide">
+              <h3>PDF 병합/분할</h3>
+              <p>언제 병합하고, 언제 페이지 범위를 잘라야 하는지와 브라우저 처리의 장단점을 한 페이지로 모았습니다.</p>
+              <span class="guide-link-card__meta">PDF 가이드 보기 →</span>
+            </a>
+          </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Guide 1</p>
-          <h2 class="section-title">When UUID v4 is enough and when UUID v7 is worth considering</h2>
-          <p class="section-lead">UUID v4 is still the practical default for most web applications. If you need non-guessable identifiers and ordering is not a major operational requirement, it stays simple and broadly compatible. UUID v7 becomes more interesting when records are naturally time-ordered and you care about sorting behavior or index locality.</p>
-          <p>A common mistake is assuming that v7 is automatically better. In real systems, you still need to account for migration cost, ecosystem support, database column design, and the tools your team already uses for debugging or exports. Even with v7, people often still need readable standard UUID strings and conversion helpers during operational work.</p>
-          <p>That is why this site separates the workflows: use the <a href="/uuid">UUID generator and converter</a> for string and binary conversions, and the <a href="/uuidv7">UUID v7 generator</a> when you want to test time-ordered identifiers directly.</p>
+          <p class="section-kicker">Guide Library</p>
+          <h2 class="section-title">The guides worth reading first</h2>
+          <div class="content-grid">
+            <a class="info-card guide-link-card" href="/uuid-v4-v7">
+              <h3>UUID v4 vs v7</h3>
+              <p>When random IDs are enough, when time-ordered IDs help, and how storage choices affect operational work.</p>
+              <span class="guide-link-card__meta">Open UUID guide →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/jwt-exp-nbf">
+              <h3>JWT exp / nbf</h3>
+              <p>How expiry claims are misread in practice and why clock skew and validation context matter more than people expect.</p>
+              <span class="guide-link-card__meta">Open JWT guide →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/base64-vs-url-encoding">
+              <h3>Base64 vs URL encoding</h3>
+              <p>They both make strings feel safer, but they solve different transport problems and fail in different ways.</p>
+              <span class="guide-link-card__meta">Open encoding guide →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/pdf-merge-split-guide">
+              <h3>PDF merge / split</h3>
+              <p>When to combine documents, when to extract ranges, and where browser-side PDF processing helps or hurts.</p>
+              <span class="guide-link-card__meta">Open PDF guide →</span>
+            </a>
+          </div>
         </div>
       </section>
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
-          <p class="section-kicker">Guide 2</p>
-          <h2 class="section-title">JWT 디버깅에서 가장 많이 헷갈리는 건 만료 시간이 아니라 맥락이다</h2>
-          <p class="section-lead">JWT를 볼 때 많은 사람이 payload를 디코딩하는 것만으로 충분하다고 생각하지만, 실제 장애는 "숫자를 읽는 방법"보다 "어떤 시각 기준으로 해석하느냐"에서 자주 납니다. <code>exp</code>, <code>iat</code>, <code>nbf</code>는 보통 Unix timestamp 초 단위를 사용하지만, 어떤 문서나 프런트 로직은 밀리초로 착각해 잘못 표시하기도 합니다.</p>
-          <p>또 하나는 토큰을 디코딩했다고 해서 검증한 것이 아니라는 점입니다. 공개키 서명 확인, issuer/audience 검토, clock skew 허용 범위 등은 별개의 문제입니다. 그래서 JWT 페이지 하나만 보는 것보다 <a href="/jwt">JWT 디코더</a>와 <a href="/timestamp">타임스탬프 변환기</a>를 같이 써서 시간 값을 사람 기준으로 다시 확인하는 흐름이 유용합니다.</p>
-          <p>보안 관점에서도 "민감한 토큰을 아무 사이트에 붙여넣어도 된다"는 생각은 위험합니다. 가능하면 브라우저 안에서만 처리되고, 업로드가 필요 없는 도구를 써야 하며, 사내 정책이나 브라우저 확장 상태도 함께 고려해야 합니다.</p>
+          <p class="section-kicker">Use It Well</p>
+          <h2 class="section-title">허브를 어떻게 쓰면 좋은가</h2>
+          <ul class="content-list">
+            <li>먼저 검색으로 들어온 주제와 가장 가까운 가이드 한 장만 읽고, 바로 연결된 도구 페이지로 이동합니다.</li>
+            <li>같은 문제를 디버깅할 때도 변환, 시간, 파일, 메타 태그처럼 서로 다른 층의 도구를 섞어 보는 편이 더 빠릅니다.</li>
+            <li>도구 페이지에서 막히면 다시 허브로 돌아와 관련 가이드를 찾아 실수 포인트를 먼저 확인하는 흐름이 좋습니다.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/uuid-v4-v7">UUID 가이드</a>
+            <a class="link-button" href="/jwt-exp-nbf">JWT 가이드</a>
+            <a class="link-button" href="/base64-vs-url-encoding">인코딩 가이드</a>
+            <a class="link-button" href="/pdf-merge-split-guide">PDF 가이드</a>
+          </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Guide 2</p>
-          <h2 class="section-title">JWT debugging fails more on context than on decoding</h2>
-          <p class="section-lead">A lot of teams think decoding the payload is the hard part, but real incidents usually come from how timestamp values are interpreted. <code>exp</code>, <code>iat</code>, and <code>nbf</code> are usually expressed in Unix seconds, yet frontend code and human assumptions often drift toward milliseconds.</p>
-          <p>Another common blind spot is treating decoding as validation. Signature verification, issuer and audience checks, and clock skew policy are separate problems. In practice, it helps to use the <a href="/jwt">JWT decoder</a> alongside the <a href="/timestamp">timestamp converter</a> so the token values are reviewed in both machine and human formats.</p>
-          <p>There is also a security angle: decoding a token is not a good reason to paste it into any random website. Browser-side tools are safer when no upload is required, but your environment and policies still matter.</p>
-        </div>
-      </section>
-
-      <section class="content-section">
-        <div data-locale-block="ko" lang="ko">
-          <p class="section-kicker">Guide 3</p>
-          <h2 class="section-title">Base64와 URL 인코딩은 비슷해 보여도 해결하는 문제가 다르다</h2>
-          <p class="section-lead">Base64는 바이너리나 텍스트를 안전한 문자 조합으로 바꿔 옮기기 쉽게 만드는 방식이고, URL 인코딩은 URL 안에서 특수문자가 의미를 깨지 않도록 변환하는 방식입니다. 둘 다 "문자열이 깨지지 않게 바꾼다"는 느낌이 있지만, 교체 가능한 기술은 아닙니다.</p>
-          <p>예를 들어 JSON payload를 쿠키나 헤더에 실어 보내기 위해 Base64를 쓰는 경우가 있고, 쿼리 파라미터 안에서 공백이나 한글, 예약 문자를 안전하게 넘기기 위해 URL 인코딩을 씁니다. 이 둘을 섞어 쓰는 시스템도 많아서, 디버깅 시에는 먼저 값이 어느 층에서 변환되었는지 구분해야 합니다.</p>
-          <p>이 사이트에서는 <a href="/base64">Base64 변환기</a>, <a href="/url">URL 인코더/디코더</a>, <a href="/query-builder">URL 쿼리 생성기</a>를 분리해 둔 이유가 여기에 있습니다. 각 변환은 입력 규칙과 실패 원인이 다르기 때문에, 하나의 만능 상자보다 명확한 목적별 도구가 더 실수를 줄여줍니다.</p>
-        </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Guide 3</p>
-          <h2 class="section-title">Base64 and URL encoding look similar but solve different problems</h2>
-          <p class="section-lead">Base64 turns binary or text into a transport-friendly character sequence. URL encoding preserves meaning inside a URL by escaping characters that would otherwise break parsing. They can both make strings "safer", but they are not interchangeable.</p>
-          <p>In real systems, Base64 often shows up around payload transport or compact serialization, while URL encoding appears in query parameters and callback links. Some stacks even layer them together, which is why debugging gets easier when you first identify where in the pipeline the value was transformed.</p>
-          <p>That is also why this site keeps the <a href="/base64">Base64 converter</a>, <a href="/url">URL encoder/decoder</a>, and <a href="/query-builder">URL Query Builder</a> separate. Different transforms fail in different ways, and specialized tools reduce confusion.</p>
+          <p class="section-kicker">Use It Well</p>
+          <h2 class="section-title">How to use the hub well</h2>
+          <ul class="content-list">
+            <li>Start with the one guide that matches the problem you searched for, then jump into the linked tool page immediately.</li>
+            <li>Most debugging flows move across layers, so it helps to combine conversion, time, PDF, and meta-tag tools instead of staying on one page.</li>
+            <li>When a tool page feels too terse, come back here and use the guide pages to check the most common mistakes first.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/uuid-v4-v7">UUID guide</a>
+            <a class="link-button" href="/jwt-exp-nbf">JWT guide</a>
+            <a class="link-button" href="/base64-vs-url-encoding">Encoding guide</a>
+            <a class="link-button" href="/pdf-merge-split-guide">PDF guide</a>
+          </div>
         </div>
       </section>
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
           <p class="section-kicker">Policy</p>
-          <h2 class="section-title">브라우저 기반 유틸은 언제 안전하고, 언제 조심해야 할까</h2>
+          <h2 class="section-title">지금 운영 방향</h2>
           <ul class="content-list">
-            <li>민감한 텍스트나 파일을 외부 서버로 보내지 않는 도구가 기본적으로 더 안전합니다.</li>
-            <li>브라우저 확장 프로그램, 조직 보안 솔루션, 회사 네트워크 정책은 사이트 자체와 별개로 영향을 줄 수 있습니다.</li>
-            <li>JWT, API 응답, 사용자 데이터처럼 운영 중인 실제 값은 항상 최소 범위만 노출하는 습관이 중요합니다.</li>
-            <li>광고나 검색 유입을 노리더라도, 얇은 입력창만 있는 화면보다 설명과 사용 맥락이 함께 있는 화면이 더 신뢰를 얻습니다.</li>
+            <li>광고 승인 전까지는 라이브 사이트에서 광고 스크립트를 빼고, 색인과 콘텐츠 품질을 우선 강화합니다.</li>
+            <li>툴 페이지는 빠르고 짧게 유지하되, 검색 유입이 잘 붙는 주제는 설명형 페이지를 따로 분리합니다.</li>
+            <li>허브와 개별 가이드, 툴 페이지가 서로 링크되도록 만들어 색인된 URL 수와 실제 사용 흐름을 함께 늘립니다.</li>
           </ul>
-          <div class="cta-row">
-            <a class="link-button link-button--primary" href="/uuid">UUID 도구 열기</a>
-            <a class="link-button" href="/jwt">JWT 도구 열기</a>
-            <a class="link-button" href="/base64">Base64 도구 열기</a>
-            <a class="link-button" href="/about">사이트 소개</a>
-          </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">Policy</p>
-          <h2 class="section-title">When browser-first utilities are safe and when to slow down</h2>
+          <h2 class="section-title">Current operating direction</h2>
           <ul class="content-list">
-            <li>Tools that do not send sensitive text or files to a remote server are generally the safer starting point.</li>
-            <li>Browser extensions, endpoint security tools, and company policies can still affect the environment around the page.</li>
-            <li>Real JWTs, production API responses, and user data should still be minimized even when using local browser tools.</li>
-            <li>For both search and ad review, pages with clear explanations and real use context are stronger than blank utility shells.</li>
+            <li>Until ad approval is cleared, the live site favors crawl quality and useful content over loading any ad scripts.</li>
+            <li>Tool pages stay fast and compact, while search-friendly topics get their own explanation pages.</li>
+            <li>The hub, the standalone guides, and the tool pages all link into each other so indexed pages can still drive real usage.</li>
           </ul>
-          <div class="cta-row">
-            <a class="link-button link-button--primary" href="/uuid">Open UUID tool</a>
-            <a class="link-button" href="/jwt">Open JWT tool</a>
-            <a class="link-button" href="/base64">Open Base64 tool</a>
-            <a class="link-button" href="/about">About the site</a>
-          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer footer--dev" data-nosnippet>
-      <small>짤 2025 stateless tools 쨌 practical browser-first utility guides</small>
+      <small>© 2025 stateless tools · practical utility guide hub</small>
     </footer>
   </div>
 

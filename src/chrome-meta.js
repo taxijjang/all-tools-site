@@ -1,4 +1,13 @@
-export const CONTENT_PAGES = new Set(['learn', 'about', 'privacy', 'contact']);
+export const CONTENT_PAGES = new Set([
+  'learn',
+  'about',
+  'privacy',
+  'contact',
+  'uuid-v4-v7',
+  'jwt-exp-nbf',
+  'base64-vs-url-encoding',
+  'pdf-merge-split-guide',
+]);
 
 export const UTILITY_LINKS = [
   {

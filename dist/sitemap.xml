@@ -1,218 +1,242 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://all-tools-site.pages.dev/uuid-v4-v7</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://all-tools-site.pages.dev/jwt-exp-nbf</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://all-tools-site.pages.dev/base64-vs-url-encoding</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://all-tools-site.pages.dev/pdf-merge-split-guide</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://all-tools-site.pages.dev/</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/learn</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/about</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/privacy</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/contact</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/uuid</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/base64</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/json</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/jwt</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/url</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/hash</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/cron</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/timestamp</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/password</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/regex</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/qr</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/diff</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/color</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/markdown</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/convert</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/file-hash</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/image-base64</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/uuidv7</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/case-convert</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/json-yaml</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/query-builder</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/ip-ua</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/ip-cidr</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/pdf-toolkit</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/image-optimize</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/ocr</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/text-stats</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/seo-check</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/utm-builder</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/text-cleaner</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://all-tools-site.pages.dev/api-tester</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

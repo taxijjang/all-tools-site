@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <title>JWT exp nbf 가이드 | 만료 시간과 not before 읽는 법 | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-y6777Sbj.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-CYxBXt4D.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = pickLocale();
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="description" content="JWT exp, nbf, iat 클레임을 어떻게 해석해야 하는지와 clock skew, 검증 흐름, 운영 중 자주 생기는 실수를 정리했습니다." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://all-tools-site.pages.dev/jwt-exp-nbf" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="JWT exp nbf 가이드 | 만료 시간과 not before 읽는 법" />
+  <meta property="og:description" content="JWT exp, nbf, iat 클레임을 어떻게 해석해야 하는지와 clock skew, 검증 흐름, 운영 중 자주 생기는 실수를 정리했습니다." />
+  <meta property="og:url" content="https://all-tools-site.pages.dev/jwt-exp-nbf" />
+  <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="JWT exp nbf 가이드 | 만료 시간과 not before 읽는 법" />
+  <meta name="twitter:description" content="JWT exp, nbf, iat 클레임을 어떻게 해석해야 하는지와 clock skew, 검증 흐름, 운영 중 자주 생기는 실수를 정리했습니다." />
+  <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://all-tools-site.pages.dev/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://all-tools-site.pages.dev/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "logo": "https://all-tools-site.pages.dev/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://all-tools-site.pages.dev/jwt-exp-nbf#webpage",
+    "name": "JWT exp nbf 가이드 | 만료 시간과 not before 읽는 법",
+    "url": "https://all-tools-site.pages.dev/jwt-exp-nbf",
+    "description": "JWT exp, nbf, iat 클레임을 어떻게 해석해야 하는지와 clock skew, 검증 흐름, 운영 중 자주 생기는 실수를 정리했습니다.",
+    "isPartOf": {
+      "@id": "https://all-tools-site.pages.dev/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://all-tools-site.pages.dev/jwt-exp-nbf#breadcrumb"
+    },
+    "primaryImageOfPage": "https://all-tools-site.pages.dev/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://all-tools-site.pages.dev/jwt-exp-nbf#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://all-tools-site.pages.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "JWT exp nbf 가이드 | 만료 시간과 not before 읽는 법",
+        "item": "https://all-tools-site.pages.dev/jwt-exp-nbf"
+      }
+    ]
+  }
+]
+  </script>
+</head>
+
+<body class="layout layout--dev" data-tool="jwt-exp-nbf" data-allow-ads="false">
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">가이드</a>
+        <a href="/about" data-chrome-link="about">소개</a>
+        <a href="/privacy" data-chrome-link="privacy">개인정보 처리</a>
+        <a href="/contact" data-chrome-link="contact">문의</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/learn" data-i18n="common.back">도구 목록으로</a>
+      <h1>
+        <span data-locale-block="ko" lang="ko">JWT exp nbf 가이드</span>
+        <span data-locale-block="en" lang="en" hidden>JWT exp nbf guide</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
+      <div data-locale-block="ko" lang="ko">
+        <p>JWT의 <code>exp</code>, <code>nbf</code>, <code>iat</code> 클레임을 어떻게 읽어야 하는지와, clock skew 때문에 자주 생기는 장애 패턴을 정리했습니다.</p>
+      </div>
+      <div data-locale-block="en" lang="en" hidden data-nosnippet>
+        <p>A practical guide to reading JWT <code>exp</code>, <code>nbf</code>, and <code>iat</code> claims, including the incidents that come from clock skew and bad assumptions.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">First Read</p>
+          <h2 class="section-title">가장 많이 틀리는 건 숫자가 아니라 해석 순서</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3><code>exp</code></h3>
+              <p>이 시각 이후에는 토큰을 거부해야 한다는 뜻입니다. 문제는 서버 시간, 프록시 시간, 사용자의 로컬 시간이 모두 다를 수 있다는 점입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3><code>nbf</code></h3>
+              <p>이 시각 이전에는 토큰을 아직 쓰면 안 된다는 의미입니다. 발급 직후 호출에서 바로 실패하는 상황은 이 값과 clock skew를 먼저 의심해야 합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3><code>iat</code></h3>
+              <p>언제 발급되었는지를 뜻하지만, 검증에 직접 쓰이지 않는 경우도 많습니다. 다만 디버깅할 때는 세 클레임을 같이 봐야 흐름이 맞습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">First Read</p>
+          <h2 class="section-title">Most JWT timing bugs come from interpretation, not the raw numbers</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3><code>exp</code></h3>
+              <p>This marks when the token should stop being accepted. The problem is that server time, proxy time, and the operator's local view can all differ.</p>
+            </article>
+            <article class="info-card">
+              <h3><code>nbf</code></h3>
+              <p>This marks when the token should start being accepted. Immediate failures right after issue time often point here first.</p>
+            </article>
+            <article class="info-card">
+              <h3><code>iat</code></h3>
+              <p>It tracks issue time and is not always enforced directly, but it becomes useful when you compare all timing claims together.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Common Failures</p>
+          <h2 class="section-title">실제 장애에서 자주 보이는 패턴</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>초와 밀리초를 섞어 읽음</h3>
+              <p>JWT는 보통 Unix 초 단위를 쓰는데, 프런트엔드 코드나 로그 뷰어가 밀리초로 착각하면 시간이 완전히 다르게 보입니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>검증보다 디코딩만 함</h3>
+              <p>내용을 읽을 수 있다고 해서 유효한 토큰은 아닙니다. 외부 issuer 환경이라면 JWKS 기반 서명 검증이 별도로 필요합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>환경 시간 차이를 무시함</h3>
+              <p>애플리케이션 서버와 인증 서버의 시간이 몇 초만 달라도 경계 구간에서 실패가 반복될 수 있습니다. 운영 문서에 허용 clock skew 기준을 적어두는 편이 좋습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Common Failures</p>
+          <h2 class="section-title">What shows up in real incidents</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Seconds vs milliseconds</h3>
+              <p>JWTs usually use Unix seconds. When frontend code or logs treat them as milliseconds, the resulting timestamps look completely wrong.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Decoding without verification</h3>
+              <p>Readable tokens are not automatically trustworthy. External issuer setups still need signature validation through JWKS or an equivalent check.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Ignoring environment drift</h3>
+              <p>Even a small time difference between application and auth servers can create repeated boundary failures. Teams should document acceptable skew explicitly.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">이 사이트에서 바로 같이 볼 페이지</h2>
+          <ol class="content-list">
+            <li><a href="/jwt">JWT 디코더</a>에서 헤더와 페이로드를 먼저 확인합니다.</li>
+            <li><a href="/timestamp">타임스탬프 변환기</a>로 <code>exp</code>, <code>nbf</code>, <code>iat</code>를 사람이 읽는 시각으로 다시 봅니다.</li>
+            <li>응답 전체 흐름을 재현해야 하면 <a href="/api-tester">API 요청 테스트</a>를 같이 열어 요청과 응답을 함께 봅니다.</li>
+          </ol>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/jwt">JWT 디코더 열기</a>
+            <a class="link-button" href="/timestamp">타임스탬프 변환기</a>
+            <a class="link-button" href="/learn">가이드 허브</a>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">The pages to pair with this guide</h2>
+          <ol class="content-list">
+            <li>Start on the <a href="/jwt">JWT decoder</a> to inspect the header and payload quickly.</li>
+            <li>Use the <a href="/timestamp">timestamp converter</a> to translate <code>exp</code>, <code>nbf</code>, and <code>iat</code> into human time.</li>
+            <li>When you need the full request flow, open the <a href="/api-tester">API Request Tester</a> alongside it.</li>
+          </ol>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/jwt">Open JWT decoder</a>
+            <a class="link-button" href="/timestamp">Open timestamp converter</a>
+            <a class="link-button" href="/learn">Back to guide hub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <small>© 2025 stateless tools · browser-first utility guides</small>
+    </footer>
+  </div>
+
+</body>
+
+</html>

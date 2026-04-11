@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Base64 vs URL 인코딩 가이드 | 언제 어떤 인코딩을 써야 할까 | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-y6777Sbj.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-CYxBXt4D.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = pickLocale();
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="description" content="Base64와 URL 인코딩의 차이, URL-safe 처리, 디버깅 포인트, 실제 사용 흐름을 비교한 브라우저 기반 실무 가이드입니다." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://all-tools-site.pages.dev/base64-vs-url-encoding" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="Base64 vs URL 인코딩 가이드 | 언제 어떤 인코딩을 써야 할까" />
+  <meta property="og:description" content="Base64와 URL 인코딩의 차이, URL-safe 처리, 디버깅 포인트, 실제 사용 흐름을 비교한 브라우저 기반 실무 가이드입니다." />
+  <meta property="og:url" content="https://all-tools-site.pages.dev/base64-vs-url-encoding" />
+  <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Base64 vs URL 인코딩 가이드 | 언제 어떤 인코딩을 써야 할까" />
+  <meta name="twitter:description" content="Base64와 URL 인코딩의 차이, URL-safe 처리, 디버깅 포인트, 실제 사용 흐름을 비교한 브라우저 기반 실무 가이드입니다." />
+  <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://all-tools-site.pages.dev/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://all-tools-site.pages.dev/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "logo": "https://all-tools-site.pages.dev/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://all-tools-site.pages.dev/base64-vs-url-encoding#webpage",
+    "name": "Base64 vs URL 인코딩 가이드 | 언제 어떤 인코딩을 써야 할까",
+    "url": "https://all-tools-site.pages.dev/base64-vs-url-encoding",
+    "description": "Base64와 URL 인코딩의 차이, URL-safe 처리, 디버깅 포인트, 실제 사용 흐름을 비교한 브라우저 기반 실무 가이드입니다.",
+    "isPartOf": {
+      "@id": "https://all-tools-site.pages.dev/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://all-tools-site.pages.dev/base64-vs-url-encoding#breadcrumb"
+    },
+    "primaryImageOfPage": "https://all-tools-site.pages.dev/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://all-tools-site.pages.dev/base64-vs-url-encoding#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://all-tools-site.pages.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Base64 vs URL 인코딩 가이드 | 언제 어떤 인코딩을 써야 할까",
+        "item": "https://all-tools-site.pages.dev/base64-vs-url-encoding"
+      }
+    ]
+  }
+]
+  </script>
+</head>
+
+<body class="layout layout--dev" data-tool="base64-vs-url-encoding" data-allow-ads="false">
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">가이드</a>
+        <a href="/about" data-chrome-link="about">소개</a>
+        <a href="/privacy" data-chrome-link="privacy">개인정보 처리</a>
+        <a href="/contact" data-chrome-link="contact">문의</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/learn" data-i18n="common.back">도구 목록으로</a>
+      <h1>
+        <span data-locale-block="ko" lang="ko">Base64 vs URL 인코딩 가이드</span>
+        <span data-locale-block="en" lang="en" hidden>Base64 vs URL encoding guide</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
+      <div data-locale-block="ko" lang="ko">
+        <p>둘 다 문자열을 “안전하게 바꾼다”는 느낌이 있지만, Base64와 URL 인코딩은 완전히 다른 목적과 실패 지점을 갖습니다.</p>
+      </div>
+      <div data-locale-block="en" lang="en" hidden data-nosnippet>
+        <p>Both can make strings feel safer, but Base64 and URL encoding solve different transport problems and fail in different places.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Difference</p>
+          <h2 class="section-title">한 줄로 구분하면</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Base64</h3>
+              <p>바이너리나 텍스트를 운반하기 쉬운 문자 조합으로 바꿉니다. 데이터 자체를 다른 표기로 변환하는 데 가깝습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>URL 인코딩</h3>
+              <p>URL 안에서 의미가 깨질 수 있는 문자만 이스케이프합니다. 원래 문자열을 URL 문법에 맞게 안전하게 보내는 데 가깝습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>서로 대체 불가</h3>
+              <p>쿼리 파라미터를 Base64만 해서 해결되는 것도 아니고, 바이너리 파일을 URL 인코딩으로 보내는 것도 맞지 않습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Difference</p>
+          <h2 class="section-title">The shortest way to distinguish them</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Base64</h3>
+              <p>Turns binary or text into a transport-friendly character sequence. It is mainly a representation change.</p>
+            </article>
+            <article class="info-card">
+              <h3>URL encoding</h3>
+              <p>Escapes characters that would break URL parsing. It preserves meaning inside a URL rather than transforming the data model itself.</p>
+            </article>
+            <article class="info-card">
+              <h3>Not interchangeable</h3>
+              <p>Encoding query params with Base64 alone is not the same as making them URL-safe, and URL encoding is not a substitute for binary-to-text transport.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">언제 무엇을 써야 하나</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>JWT, 쿠키, 헤더 payload</h3>
+              <p>구조화된 값이나 바이너리 조각을 문자열로 실어야 할 때는 Base64가 더 자주 나옵니다. 다만 URL 경로로 넘길 땐 URL-safe 변형까지 고려해야 합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>쿼리 파라미터, 리디렉션 URL</h3>
+              <p>공백, 한글, 예약 문자 때문에 URL이 깨질 수 있는 상황이면 URL 인코딩이 먼저입니다. 특히 OAuth 콜백이나 결제 리턴 URL에서 자주 중요합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>둘 다 필요한 경우</h3>
+              <p>일부 시스템은 먼저 Base64로 구조를 바꾼 뒤, 그 값을 다시 URL 파라미터에 실어 보냅니다. 이럴 때는 어느 단계에서 실패했는지 순서를 나눠서 봐야 합니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">When to use which one</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>JWTs, cookies, header payloads</h3>
+              <p>Base64 shows up often when structured or binary data needs to travel as text. If it later moves through a URL, URL-safe variants may still matter.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Query params and redirects</h3>
+              <p>URL encoding comes first when spaces, Korean text, or reserved characters can break a callback or redirect chain.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Stacks that use both</h3>
+              <p>Some systems Base64-encode a value first and then place it in a query parameter. Debugging gets easier when you identify which layer transformed the value.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">이 사이트에서 바로 같이 볼 페이지</h2>
+          <ol class="content-list">
+            <li>문자열이나 파일을 변환할 때는 <a href="/base64">Base64 변환기</a>를 먼저 엽니다.</li>
+            <li>쿼리 파라미터와 리디렉션 주소를 점검할 때는 <a href="/url">URL 인코더/디코더</a>를 같이 엽니다.</li>
+            <li>키-값 행으로 공유 링크를 조립해야 하면 <a href="/query-builder">URL 쿼리 생성기</a>를 이어서 봅니다.</li>
+          </ol>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/base64">Base64 변환기 열기</a>
+            <a class="link-button" href="/url">URL 인코더/디코더</a>
+            <a class="link-button" href="/query-builder">URL 쿼리 생성기</a>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">The pages to open next</h2>
+          <ol class="content-list">
+            <li>Open the <a href="/base64">Base64 converter</a> when the value itself needs representation changes.</li>
+            <li>Use the <a href="/url">URL encoder/decoder</a> when the string is traveling through a query, redirect, or callback.</li>
+            <li>When you need to assemble a final shareable link, move into the <a href="/query-builder">URL Query Builder</a>.</li>
+          </ol>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/base64">Open Base64 converter</a>
+            <a class="link-button" href="/url">Open URL encoder/decoder</a>
+            <a class="link-button" href="/query-builder">Open URL Query Builder</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <small>© 2025 stateless tools · browser-first utility guides</small>
+    </footer>
+  </div>
+
+</body>
+
+</html>

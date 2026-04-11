@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <title>PDF 병합/분할 가이드 | 언제 합치고 언제 나눠야 할까 | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-y6777Sbj.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-CYxBXt4D.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = pickLocale();
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="description" content="PDF 병합, 분할, 범위 추출, 워터마크, 텍스트 추출을 언제 어떻게 쓰는지와 브라우저 처리의 한계를 정리한 가이드입니다." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://all-tools-site.pages.dev/pdf-merge-split-guide" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="PDF 병합/분할 가이드 | 언제 합치고 언제 나눠야 할까" />
+  <meta property="og:description" content="PDF 병합, 분할, 범위 추출, 워터마크, 텍스트 추출을 언제 어떻게 쓰는지와 브라우저 처리의 한계를 정리한 가이드입니다." />
+  <meta property="og:url" content="https://all-tools-site.pages.dev/pdf-merge-split-guide" />
+  <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PDF 병합/분할 가이드 | 언제 합치고 언제 나눠야 할까" />
+  <meta name="twitter:description" content="PDF 병합, 분할, 범위 추출, 워터마크, 텍스트 추출을 언제 어떻게 쓰는지와 브라우저 처리의 한계를 정리한 가이드입니다." />
+  <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://all-tools-site.pages.dev/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://all-tools-site.pages.dev/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "logo": "https://all-tools-site.pages.dev/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://all-tools-site.pages.dev/pdf-merge-split-guide#webpage",
+    "name": "PDF 병합/분할 가이드 | 언제 합치고 언제 나눠야 할까",
+    "url": "https://all-tools-site.pages.dev/pdf-merge-split-guide",
+    "description": "PDF 병합, 분할, 범위 추출, 워터마크, 텍스트 추출을 언제 어떻게 쓰는지와 브라우저 처리의 한계를 정리한 가이드입니다.",
+    "isPartOf": {
+      "@id": "https://all-tools-site.pages.dev/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://all-tools-site.pages.dev/pdf-merge-split-guide#breadcrumb"
+    },
+    "primaryImageOfPage": "https://all-tools-site.pages.dev/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://all-tools-site.pages.dev/pdf-merge-split-guide#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://all-tools-site.pages.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "PDF 병합/분할 가이드 | 언제 합치고 언제 나눠야 할까",
+        "item": "https://all-tools-site.pages.dev/pdf-merge-split-guide"
+      }
+    ]
+  }
+]
+  </script>
+</head>
+
+<body class="layout layout--dev" data-tool="pdf-merge-split-guide" data-allow-ads="false">
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">가이드</a>
+        <a href="/about" data-chrome-link="about">소개</a>
+        <a href="/privacy" data-chrome-link="privacy">개인정보 처리</a>
+        <a href="/contact" data-chrome-link="contact">문의</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/learn" data-i18n="common.back">도구 목록으로</a>
+      <h1>
+        <span data-locale-block="ko" lang="ko">PDF 병합/분할 가이드</span>
+        <span data-locale-block="en" lang="en" hidden>PDF merge / split guide</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
+      <div data-locale-block="ko" lang="ko">
+        <p>PDF를 합칠지, 범위만 잘라낼지, 워터마크를 넣을지 판단할 때 도움이 되는 기준과 브라우저 처리의 한계를 정리했습니다.</p>
+      </div>
+      <div data-locale-block="en" lang="en" hidden data-nosnippet>
+        <p>A guide to deciding when to merge PDFs, when to extract a range, and what to expect from browser-side PDF processing.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Decision</p>
+          <h2 class="section-title">합칠 때와 나눌 때를 먼저 구분하기</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>병합이 맞는 경우</h3>
+              <p>보고서 부록, 계약서 세트, 스캔본 여러 장처럼 여러 파일을 하나의 결과물로 제출하거나 보관해야 할 때입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>범위 추출이 맞는 경우</h3>
+              <p>긴 문서 중 일부 페이지만 공유해야 하거나, 첨부용으로 필요한 구간만 별도 PDF로 만들어야 할 때입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>워터마크가 맞는 경우</h3>
+              <p>검토본, 내부 공유본, 임시 배포본처럼 상태를 명확히 표시해야 할 때 문서 자체에 맥락을 남기기 좋습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Decision</p>
+          <h2 class="section-title">Separate merge, split, and watermark decisions first</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Merge when</h3>
+              <p>Several files need to become one final deliverable, such as appendices, bundled contracts, or ordered scan batches.</p>
+            </article>
+            <article class="info-card">
+              <h3>Extract a range when</h3>
+              <p>You only need part of a longer document for sharing, review, or archiving.</p>
+            </article>
+            <article class="info-card">
+              <h3>Watermark when</h3>
+              <p>You need the file itself to carry a review or distribution state, such as draft, internal, or confidential.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Limits</p>
+          <h2 class="section-title">브라우저 처리의 장점과 한계</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>장점</h3>
+              <p>민감한 문서를 외부 서버에 올리지 않고 로컬에서 처리할 수 있어서 검토본, 내부 자료, 임시 문서 작업에 유리합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>한계</h3>
+              <p>아주 큰 파일이나 페이지 수가 많은 문서는 브라우저 메모리와 기기 성능에 따라 느려질 수 있습니다. 서버형 처리보다 안정성이 떨어질 수 있다는 점도 같이 봐야 합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>텍스트 추출 품질</h3>
+              <p>PDF 구조와 글꼴 상태에 따라 텍스트 줄바꿈이나 순서가 어긋날 수 있습니다. 스캔본이면 OCR 흐름이 더 적합할 수 있습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Limits</p>
+          <h2 class="section-title">The benefits and limits of browser-side handling</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Benefit</h3>
+              <p>Local handling is attractive when the PDFs are sensitive and you do not want them uploaded to a remote server.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Limit</h3>
+              <p>Very large files and long documents still depend on browser memory and local device performance, so they can feel slower or less predictable than server processing.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Text extraction quality</h3>
+              <p>PDF structure and embedded fonts can affect line order. When the source is a scanned image, OCR is usually the better path.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">같이 열어두면 좋은 페이지</h2>
+          <ol class="content-list">
+            <li><a href="/pdf-toolkit">PDF 병합/분할 툴</a>에서 실제 파일 작업을 진행합니다.</li>
+            <li>스캔 이미지에서 텍스트를 읽어야 하면 <a href="/ocr">OCR 텍스트 추출</a>을 같이 엽니다.</li>
+            <li>결과 파일 무결성을 확인하거나 비교해야 하면 <a href="/file-hash">파일 해시 계산기</a>를 이어서 씁니다.</li>
+          </ol>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/pdf-toolkit">PDF 병합/분할 툴 열기</a>
+            <a class="link-button" href="/ocr">OCR 도구</a>
+            <a class="link-button" href="/file-hash">파일 해시 계산기</a>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">The best related pages to open next</h2>
+          <ol class="content-list">
+            <li>Use the <a href="/pdf-toolkit">PDF merge/split tool</a> for the actual file operations.</li>
+            <li>Pair it with <a href="/ocr">OCR text extraction</a> when the source is scan-heavy or image-based.</li>
+            <li>Use the <a href="/file-hash">file hash calculator</a> when you need a quick integrity check on the result.</li>
+          </ol>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/pdf-toolkit">Open PDF merge/split tool</a>
+            <a class="link-button" href="/ocr">Open OCR tool</a>
+            <a class="link-button" href="/file-hash">Open file hash tool</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <small>© 2025 stateless tools · browser-first utility guides</small>
+    </footer>
+  </div>
+
+</body>
+
+</html>

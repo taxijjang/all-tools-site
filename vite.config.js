@@ -11,12 +11,18 @@ import {
 } from './src/seo-meta.js';
 import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './src/chrome-meta.js';
 
+const ADSENSE_ENABLED = false;
+
 const pageInputs = {
   main: resolve(__dirname, 'index.html'),
   learn: resolve(__dirname, 'learn.html'),
   about: resolve(__dirname, 'about.html'),
   privacy: resolve(__dirname, 'privacy.html'),
   contact: resolve(__dirname, 'contact.html'),
+  uuidV4V7: resolve(__dirname, 'uuid-v4-v7.html'),
+  jwtExpNbf: resolve(__dirname, 'jwt-exp-nbf.html'),
+  base64VsUrlEncoding: resolve(__dirname, 'base64-vs-url-encoding.html'),
+  pdfMergeSplitGuide: resolve(__dirname, 'pdf-merge-split-guide.html'),
   uuid: resolve(__dirname, 'uuid.html'),
   base64: resolve(__dirname, 'base64.html'),
   json: resolve(__dirname, 'json.html'),
@@ -84,6 +90,7 @@ function cleanTitle(title) {
 function removeHeadArtifacts(html) {
   const patterns = [
     /<meta\s+name=["']description["'][^>]*>\s*/gi,
+    /<meta\s+name=["']google-adsense-account["'][^>]*>\s*/gi,
     /<meta\s+name=["']robots["'][^>]*>\s*/gi,
     /<meta\s+name=["']author["'][^>]*>\s*/gi,
     /<meta\s+name=["']theme-color["'][^>]*>\s*/gi,
@@ -433,7 +440,11 @@ function seoMetadataPlugin() {
       );
       nextHtml = nextHtml.replace(/<footer class="footer([^"]*)">/i, '<footer class="footer$1" data-nosnippet>');
       nextHtml = nextHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(fullTitle)}</title>`);
-      nextHtml = upsertBodyAttribute(nextHtml, 'data-allow-ads', meta.allowAds ? 'true' : 'false');
+      nextHtml = upsertBodyAttribute(
+        nextHtml,
+        'data-allow-ads',
+        ADSENSE_ENABLED && meta.allowAds ? 'true' : 'false',
+      );
 
       const headTags = [
         buildClientBootScript(),
@@ -458,7 +469,7 @@ function seoMetadataPlugin() {
         `  <script type="application/ld+json" data-seo-schema>\n${structuredDataJson}\n  </script>`,
       ];
 
-      if (meta.allowAds) {
+      if (ADSENSE_ENABLED && meta.allowAds) {
         headTags.push(
           '  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>',
         );

@@ -23,6 +23,34 @@ export const SITE_SOCIALS = [
 ];
 
 export const PAGE_META = {
+  'uuid-v4-v7': {
+    path: '/uuid-v4-v7',
+    kind: 'content',
+    title: 'UUID v4 vs v7 가이드 | 언제 어떤 UUID를 써야 할까',
+    description:
+      'UUID v4와 UUID v7의 차이, 정렬 특성, 데이터베이스 저장 전략, 운영 중 선택 기준을 정리한 실무 가이드입니다.',
+  },
+  'jwt-exp-nbf': {
+    path: '/jwt-exp-nbf',
+    kind: 'content',
+    title: 'JWT exp nbf 가이드 | 만료 시간과 not before 읽는 법',
+    description:
+      'JWT exp, nbf, iat 클레임을 어떻게 해석해야 하는지와 clock skew, 검증 흐름, 운영 중 자주 생기는 실수를 정리했습니다.',
+  },
+  'base64-vs-url-encoding': {
+    path: '/base64-vs-url-encoding',
+    kind: 'content',
+    title: 'Base64 vs URL 인코딩 가이드 | 언제 어떤 인코딩을 써야 할까',
+    description:
+      'Base64와 URL 인코딩의 차이, URL-safe 처리, 디버깅 포인트, 실제 사용 흐름을 비교한 브라우저 기반 실무 가이드입니다.',
+  },
+  'pdf-merge-split-guide': {
+    path: '/pdf-merge-split-guide',
+    kind: 'content',
+    title: 'PDF 병합/분할 가이드 | 언제 합치고 언제 나눠야 할까',
+    description:
+      'PDF 병합, 분할, 범위 추출, 워터마크, 텍스트 추출을 언제 어떻게 쓰는지와 브라우저 처리의 한계를 정리한 가이드입니다.',
+  },
   index: {
     path: '/',
     kind: 'home',
@@ -33,10 +61,9 @@ export const PAGE_META = {
   learn: {
     path: '/learn',
     kind: 'content',
-    allowAds: true,
     title: '개발자 유틸 가이드 | UUID, JWT, Base64',
     description:
-      'UUID, JWT, Base64, URL 인코딩 같은 개발자 유틸을 언제 어떻게 쓰는지 실무 중심으로 정리한 가이드입니다.',
+      'UUID, JWT, Base64, URL 인코딩, PDF 작업처럼 자주 쓰는 개발자 유틸을 개별 가이드로 정리한 허브 페이지입니다.',
   },
   about: {
     path: '/about',
@@ -62,7 +89,6 @@ export const PAGE_META = {
   uuid: {
     path: '/uuid',
     kind: 'tool',
-    allowAds: true,
     title: 'UUID 변환기 | UUID 생성기, UUID v4, ULID, Hex 변환',
     description:
       'UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.',
@@ -71,7 +97,6 @@ export const PAGE_META = {
   base64: {
     path: '/base64',
     kind: 'tool',
-    allowAds: true,
     title: 'Base64 인코더/디코더 | Base64 변환, URL-safe, 파일 인코딩',
     description:
       '문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.',
@@ -88,7 +113,6 @@ export const PAGE_META = {
   jwt: {
     path: '/jwt',
     kind: 'tool',
-    allowAds: true,
     title: 'JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS',
     description:
       'JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.',
@@ -249,7 +273,6 @@ export const PAGE_META = {
   'pdf-toolkit': {
     path: '/pdf-toolkit',
     kind: 'tool',
-    allowAds: true,
     title: 'PDF 병합/분할 툴 | PDF 병합, 분할, 페이지 추출, 워터마크',
     description:
       'PDF 병합, 분할, 페이지 추출, 워터마크 작업을 파일 업로드 없이 브라우저에서 처리할 수 있습니다.',
@@ -282,7 +305,6 @@ export const PAGE_META = {
   'seo-check': {
     path: '/seo-check',
     kind: 'tool',
-    allowAds: true,
     title: 'SEO 메타 태그 검사기 | Title, Description, OG, Canonical',
     description:
       '페이지 제목, 설명, Open Graph, canonical 태그를 점검해 자주 놓치는 SEO 문제를 빠르게 확인할 수 있습니다.',
