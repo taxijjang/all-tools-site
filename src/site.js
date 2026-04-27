@@ -690,6 +690,48 @@ function setupHomeDiscovery() {
       .forEach((card) => grid.append(card));
   }
 
+  function getHomeLocale() {
+    return document.documentElement.getAttribute('lang') || currentLocale;
+  }
+
+  function isTypingTarget(target) {
+    if (!(target instanceof Element)) {
+      return false;
+    }
+
+    return Boolean(target.closest('input, textarea, select, [contenteditable="true"]'));
+  }
+
+  function focusSearch() {
+    searchInput.focus({ preventScroll: true });
+    searchInput.select();
+  }
+
+  function getVisibleCards() {
+    return cards.filter((card) => !card.hidden);
+  }
+
+  function openFirstVisibleCard() {
+    const firstCard = getVisibleCards()[0];
+    if (!firstCard) {
+      return;
+    }
+
+    trackToolInteraction('home_keyboard_open', {
+      target_path: getToolPath(firstCard.getAttribute('href')),
+    });
+    window.location.href = firstCard.href;
+  }
+
+  function setActiveFilter(nextFilter, locale = getHomeLocale()) {
+    if (!HOME_FILTERS.some((filter) => filter.key === nextFilter)) {
+      return;
+    }
+
+    activeFilter = nextFilter;
+    render(locale);
+  }
+
   function renderAccessItem(path, locale) {
     const tool = TOOL_LOOKUP.get(path);
     if (!tool) return '';
@@ -834,6 +876,7 @@ function setupHomeDiscovery() {
     const rawQuery = searchInput.value.trim();
     const query = rawQuery.toLowerCase();
     let visibleCount = 0;
+    let firstVisibleCard = null;
 
     cards.forEach((card) => {
       const cardText = `${card.textContent || ''} ${card.getAttribute('href') || ''}`.toLowerCase();
@@ -844,7 +887,12 @@ function setupHomeDiscovery() {
       card.classList.toggle('card--hidden', !isVisible);
       if (isVisible) {
         visibleCount += 1;
+        firstVisibleCard ||= card;
       }
+    });
+
+    cards.forEach((card) => {
+      card.classList.toggle('card--top-result', card === firstVisibleCard && (Boolean(query) || activeFilter !== 'all'));
     });
 
     let message = copy.resultsAll;
@@ -927,8 +975,7 @@ function setupHomeDiscovery() {
 
     filtersHost.querySelectorAll('[data-filter-key]').forEach((button) => {
       button.addEventListener('click', () => {
-        activeFilter = button.dataset.filterKey || 'all';
-        render(locale);
+        setActiveFilter(button.dataset.filterKey || 'all', locale);
       });
     });
 
@@ -958,6 +1005,55 @@ function setupHomeDiscovery() {
   searchInput.addEventListener('input', () => {
     applyFilters(document.documentElement.getAttribute('lang') || currentLocale);
   });
+
+  searchInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      openFirstVisibleCard();
+      return;
+    }
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      searchInput.value = '';
+      setActiveFilter('all', getHomeLocale());
+    }
+  });
+
+  document.querySelectorAll('[data-home-query]').forEach((button) => {
+    button.addEventListener('click', () => {
+      searchInput.value = button.dataset.homeQuery || '';
+      setActiveFilter('all', getHomeLocale());
+      focusSearch();
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    const key = event.key.toLowerCase();
+    if ((event.metaKey || event.ctrlKey) && key === 'k') {
+      event.preventDefault();
+      focusSearch();
+      return;
+    }
+
+    if (!isTypingTarget(event.target) && event.key === '/') {
+      event.preventDefault();
+      focusSearch();
+      return;
+    }
+
+    if (!isTypingTarget(event.target) && /^[1-5]$/.test(event.key)) {
+      const filter = HOME_FILTERS[Number(event.key) - 1];
+      if (filter) {
+        event.preventDefault();
+        setActiveFilter(filter.key, getHomeLocale());
+      }
+    }
+  });
+
+  if (window.matchMedia('(min-width: 900px)').matches) {
+    requestAnimationFrame(() => focusSearch());
+  }
 
   render();
   return render;

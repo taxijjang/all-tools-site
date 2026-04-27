@@ -14,8 +14,8 @@
     gtag('js', new Date());
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-eOyI7FCD.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-CwKm3iFn.css">
+  <script type="module" crossorigin src="/assets/site-o1Ns0led.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-DBwDZF8y.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -270,51 +270,66 @@
       </div>
     </div>
 
-    <header class="home-launcher">
-      <div class="home-hero-copy">
-        <p class="home-brand">All Tools</p>
-        <h1>
-          <span data-locale-block="ko" lang="ko">찾고, 열고, 바로 끝내세요.</span>
-          <span data-locale-block="en" lang="en" hidden>Find it. Open it. Finish faster.</span>
-        </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
-        <div data-locale-block="ko" lang="ko">
-          <p class="home-hero-lead">UUID, JSON, Base64, PDF, 이미지, SEO까지. 설명을 읽는 페이지가 아니라 필요한 도구로 바로 점프하는 런처입니다.</p>
-          <div class="home-trust-strip" aria-label="사이트 특징">
-            <span>검색 먼저</span>
-            <span>브라우저 중심</span>
-            <span>모바일 최적화</span>
+    <header class="home-launcher home-command-center">
+      <section class="home-discovery home-command-panel" aria-labelledby="homeDiscoveryTitle">
+        <div class="home-command-panel__intro">
+          <p class="home-brand">All Tools</p>
+          <p class="section-kicker" data-home-kicker>Command Center</p>
+          <h1 id="homeDiscoveryTitle" class="section-title" data-home-heading>개발자 도구, 바로 실행</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
+          <p class="section-lead" data-home-lead>검색창에 키워드를 치고 Enter로 첫 결과를 여세요.</p>
+          <div class="home-dev-metrics" aria-label="Developer workflow highlights">
+            <span><strong>31</strong> tools</span>
+            <span><strong>0</strong> upload server</span>
+            <span><strong>/</strong> search</span>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="home-hero-lead">UUID, JSON, Base64, PDF, images, SEO, and more. This is a launcher, not a maze of explanations.</p>
-          <div class="home-trust-strip" aria-label="Site highlights">
-            <span>Search first</span>
-            <span>Browser-first</span>
-            <span>Mobile friendly</span>
-          </div>
-        </div>
-      </div>
 
-      <section class="home-discovery" aria-labelledby="homeDiscoveryTitle">
-        <div class="home-discovery__intro">
-          <p class="section-kicker" data-home-kicker>Quick Launch</p>
-          <h2 id="homeDiscoveryTitle" class="section-title" data-home-heading>바로 찾기</h2>
-          <p class="section-lead" data-home-lead>도구 이름이나 작업 키워드를 입력하면 목록이 바로 줄어듭니다.</p>
-        </div>
-        <div class="home-discovery__controls">
+        <div class="home-discovery__controls home-command-palette">
           <label class="sr-only" for="toolSearch" data-home-search-label>도구 검색</label>
-          <input
-            id="toolSearch"
-            class="home-search"
-            type="search"
-            inputmode="search"
-            autocomplete="off"
-            spellcheck="false"
-            data-home-search
-            placeholder="uuid, json, base64, pdf, regex"
-          />
+          <div class="home-search-wrap">
+            <span class="home-search-prefix" aria-hidden="true">&gt;</span>
+            <input
+              id="toolSearch"
+              class="home-search"
+              type="search"
+              inputmode="search"
+              autocomplete="off"
+              spellcheck="false"
+              aria-keyshortcuts="/ Control+K Meta+K"
+              data-home-search
+              placeholder="json jwt uuid pdf regex"
+            />
+            <span class="home-search-shortcuts" aria-hidden="true">
+              <kbd>/</kbd>
+              <kbd>Ctrl K</kbd>
+            </span>
+          </div>
+          <div class="home-query-row" aria-label="Quick searches">
+            <button type="button" class="home-query-chip" data-home-query="json">json</button>
+            <button type="button" class="home-query-chip" data-home-query="jwt">jwt</button>
+            <button type="button" class="home-query-chip" data-home-query="uuid">uuid</button>
+            <button type="button" class="home-query-chip" data-home-query="base64">base64</button>
+            <button type="button" class="home-query-chip" data-home-query="pdf">pdf</button>
+            <button type="button" class="home-query-chip" data-home-query="regex">regex</button>
+          </div>
           <div class="home-filter-bar" data-home-filters></div>
-          <p class="home-results" data-home-results>도구를 불러오는 중...</p>
+          <div class="home-command-footer">
+            <p class="home-results" data-home-results>도구를 불러오는 중...</p>
+            <div class="home-shortcuts">
+              <span>
+                <kbd>Enter</kbd>
+                Open first result
+              </span>
+              <span>
+                <kbd>1-5</kbd>
+                Switch filters
+              </span>
+              <span>
+                <kbd>Esc</kbd>
+                Clear search
+              </span>
+            </div>
+          </div>
         </div>
       </section>
     </header>
