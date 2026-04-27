@@ -16,9 +16,12 @@ const ADSENSE_ENABLED = false;
 const pageInputs = {
   main: resolve(__dirname, 'index.html'),
   learn: resolve(__dirname, 'learn.html'),
+  aiTools: resolve(__dirname, 'ai-tools.html'),
   about: resolve(__dirname, 'about.html'),
   privacy: resolve(__dirname, 'privacy.html'),
   contact: resolve(__dirname, 'contact.html'),
+  claudeCodeCheatsheet: resolve(__dirname, 'claude-code-cheatsheet.html'),
+  codexCheatsheet: resolve(__dirname, 'codex-cheatsheet.html'),
   uuidV4V7: resolve(__dirname, 'uuid-v4-v7.html'),
   jwtExpNbf: resolve(__dirname, 'jwt-exp-nbf.html'),
   base64VsUrlEncoding: resolve(__dirname, 'base64-vs-url-encoding.html'),

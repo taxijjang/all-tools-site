@@ -5,11 +5,11 @@
   <meta charset="utf-8" />
   <title>실무 가이드 | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="UUID, JWT, Base64, URL 인코딩, 브라우저 기반 유틸 사용법을 다루는 실무 가이드 모음입니다." />
+  <meta name="description" content="UUID, JWT, Base64, URL 인코딩, AI 코딩 도구까지 브라우저 기반 실무 사용법을 모아둔 가이드 허브입니다." />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="실무 가이드 | Stateless Tools" />
-  <meta property="og:description" content="도구만 나열하지 않고, 실제 사용 맥락과 선택 기준을 정리한 유틸 가이드 페이지입니다." />
+  <meta property="og:description" content="도구만 나열하지 않고, 실제 사용 맥락과 선택 기준을 정리한 실무 가이드 허브입니다." />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>
     (function () {
@@ -17,14 +17,10 @@
       function pickLocale() {
         try {
           var stored = localStorage.getItem('stateless-tools-locale');
-          if (stored && supported.indexOf(stored) !== -1) {
-            return stored;
-          }
-        } catch (err) { }
+          if (stored && supported.indexOf(stored) !== -1) return stored;
+        } catch (err) {}
         var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
+        if (supported.indexOf(lang) !== -1) return lang;
         return 'ko';
       }
       var locale = pickLocale();
@@ -39,13 +35,11 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-WZJ5247NQK');
   </script>
 </head>
 
 <body class="layout layout--dev" data-tool="learn" data-allow-ads="false">
-
   <div class="page page--dev page--content">
     <div class="page-controls">
       <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
@@ -64,10 +58,10 @@
         <span data-locale-block="en" lang="en" hidden>Developer utility guide hub</span>
       </h1>
       <div data-locale-block="ko" lang="ko">
-        <p>도구를 바로 쓰기 전에 어떤 상황에서 어떤 유틸을 고르면 좋은지, 실무에서 많이 틀리는 포인트가 무엇인지 짧은 가이드로 묶었습니다.</p>
+        <p>도구를 바로 쓰기 전에, 어떤 문제에서 어떤 유틸을 고르면 좋은지와 실무에서 자주 부딪히는 판단 기준을 빠르게 정리한 허브입니다.</p>
       </div>
       <div data-locale-block="en" lang="en" hidden>
-        <p>A compact guide hub that points to the most useful utility walkthroughs, common mistakes, and practical browser-first workflows.</p>
+        <p>A compact hub that points to the most useful utility walkthroughs, practical trade-offs, and the tool pages that follow next.</p>
       </div>
     </header>
 
@@ -83,31 +77,31 @@
               <p>UUID, JWT, Base64, PDF처럼 자주 쓰는 기능을 검색어 중심의 개별 페이지로 따로 정리해 색인과 내부 링크 신호를 함께 키웁니다.</p>
             </article>
             <article class="info-card">
-              <h3>툴과 바로 연결되는 구조</h3>
-              <p>설명을 읽은 뒤 바로 해당 도구로 넘어가거나, 반대로 툴 페이지에서 관련 가이드로 이동할 수 있게 연결해서 실제 사용 흐름을 끊지 않습니다.</p>
+              <h3>바로 도구로 이어지는 구조</h3>
+              <p>설명만 읽고 끝나지 않게, 각 가이드에서 실제 유틸 페이지로 바로 들어갈 수 있도록 연결했습니다.</p>
             </article>
             <article class="info-card">
-              <h3>승인 전엔 광고보다 내용 우선</h3>
-              <p>현재는 광고 삽입보다 설명형 콘텐츠와 검색 신호를 우선 강화하는 단계입니다. 승인 전에는 라이브 페이지에서 광고 코드를 빼고 품질부터 올립니다.</p>
+              <h3>광고보다 내용 우선</h3>
+              <p>지금은 광고 로딩보다 색인 품질과 페이지 가치를 우선 강화하는 단계라서, 실사용에 도움 되는 허브 구조를 먼저 키우고 있습니다.</p>
             </article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden>
           <p class="section-kicker">Overview</p>
           <h2 class="section-title">Why this hub exists</h2>
-          <p class="section-lead">Search engines and ad reviewers both respond better to pages that explain real decisions and trade-offs, not just blank forms. This hub now routes traffic into focused guide URLs.</p>
+          <p class="section-lead">Search engines and reviewers respond better to pages that explain real decisions and trade-offs, not just blank forms. This hub routes traffic into focused guide URLs and then back into working tools.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Searchable guide pages</h3>
-              <p>High-interest topics like UUIDs, JWTs, Base64, and PDF handling are split into their own indexable pages with tighter keyword focus.</p>
+              <p>High-interest topics like UUIDs, JWTs, Base64, and PDF handling live on their own indexable pages with tighter keyword focus.</p>
             </article>
             <article class="info-card">
               <h3>Bridge guides and tools</h3>
-              <p>Every guide links back into a working utility page so educational content still leads directly into action instead of becoming dead content.</p>
+              <p>Every guide links into an actual utility page so explanation still leads straight into action.</p>
             </article>
             <article class="info-card">
               <h3>Quality before ads</h3>
-              <p>For now, the site prioritizes useful content and crawl quality over ad loading, which is the safer path while the review status is still blocked.</p>
+              <p>For now, the site prioritizes useful content and crawl quality over ad loading, which is the safer direction while review status is still sensitive.</p>
             </article>
           </div>
         </div>
@@ -125,17 +119,17 @@
             </a>
             <a class="info-card guide-link-card" href="/jwt-exp-nbf">
               <h3>JWT exp / nbf</h3>
-              <p>만료 시간과 not-before 값을 읽을 때 왜 초/밀리초, clock skew, 검증 단계가 계속 문제를 만드는지 설명합니다.</p>
+              <p>만료 시간과 not-before 값을 읽을 때 자주 생기는 실수와 검증 흐름을 짧게 정리했습니다.</p>
               <span class="guide-link-card__meta">JWT 가이드 보기 →</span>
             </a>
             <a class="info-card guide-link-card" href="/base64-vs-url-encoding">
               <h3>Base64 vs URL 인코딩</h3>
-              <p>둘 다 “문자열을 안전하게 바꾼다”는 인상이 있지만, 실제로는 전혀 다른 문제를 해결합니다.</p>
+              <p>둘 다 문자열을 바꾸지만 해결하는 문제는 다르다는 점을 실무 관점으로 비교했습니다.</p>
               <span class="guide-link-card__meta">인코딩 가이드 보기 →</span>
             </a>
             <a class="info-card guide-link-card" href="/pdf-merge-split-guide">
               <h3>PDF 병합/분할</h3>
-              <p>언제 병합하고, 언제 페이지 범위를 잘라야 하는지와 브라우저 처리의 장단점을 한 페이지로 모았습니다.</p>
+              <p>문서를 합칠지 나눌지, 브라우저 처리의 장단점은 무엇인지 빠르게 판단하게 도와줍니다.</p>
               <span class="guide-link-card__meta">PDF 가이드 보기 →</span>
             </a>
           </div>
@@ -151,12 +145,12 @@
             </a>
             <a class="info-card guide-link-card" href="/jwt-exp-nbf">
               <h3>JWT exp / nbf</h3>
-              <p>How expiry claims are misread in practice and why clock skew and validation context matter more than people expect.</p>
+              <p>How expiry claims are misread in practice and why validation context matters more than people expect.</p>
               <span class="guide-link-card__meta">Open JWT guide →</span>
             </a>
             <a class="info-card guide-link-card" href="/base64-vs-url-encoding">
               <h3>Base64 vs URL encoding</h3>
-              <p>They both make strings feel safer, but they solve different transport problems and fail in different ways.</p>
+              <p>They both transform strings, but they solve different transport problems and fail in different ways.</p>
               <span class="guide-link-card__meta">Open encoding guide →</span>
             </a>
             <a class="info-card guide-link-card" href="/pdf-merge-split-guide">
@@ -170,18 +164,66 @@
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">AI Coding</p>
+          <h2 class="section-title">Claude Code와 Codex도 빠르게 다시 찾게 붙였습니다</h2>
+          <p class="section-lead">요즘은 유틸 도구만큼 AI 코딩 도구의 명령과 설정도 자주 다시 찾게 됩니다. 그래서 공식 문서 기반 치트시트 허브를 따로 묶어뒀습니다.</p>
+          <div class="content-grid">
+            <a class="info-card guide-link-card" href="/ai-tools">
+              <h3>AI 코딩 치트시트 허브</h3>
+              <p>Claude Code와 Codex를 어떤 상황에서 어느 페이지부터 열면 되는지 빠르게 고르는 시작점입니다.</p>
+              <span class="guide-link-card__meta">허브 열기 →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/claude-code-cheatsheet">
+              <h3>Claude Code 치트시트</h3>
+              <p>슬래시 명령, MCP, hooks, 프로젝트 commands 위치를 빠르게 훑는 페이지입니다.</p>
+              <span class="guide-link-card__meta">Claude Code 보기 →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/codex-cheatsheet">
+              <h3>Codex 치트시트</h3>
+              <p>CLI 플래그, /mode, /personality, Skills, Automations, 설정 포인트를 정리했습니다.</p>
+              <span class="guide-link-card__meta">Codex 보기 →</span>
+            </a>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">AI Coding</p>
+          <h2 class="section-title">Claude Code and Codex now have quick references too</h2>
+          <p class="section-lead">People re-open AI coding tools for the same command names and settings over and over. These pages summarize the official docs and link straight back to the sources.</p>
+          <div class="content-grid">
+            <a class="info-card guide-link-card" href="/ai-tools">
+              <h3>AI coding cheatsheet hub</h3>
+              <p>A fast entry point for deciding which reference page to open first based on the problem in front of you.</p>
+              <span class="guide-link-card__meta">Open the hub →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/claude-code-cheatsheet">
+              <h3>Claude Code cheatsheet</h3>
+              <p>A quick page for slash commands, MCP, hooks, and project command locations.</p>
+              <span class="guide-link-card__meta">Open Claude Code →</span>
+            </a>
+            <a class="info-card guide-link-card" href="/codex-cheatsheet">
+              <h3>Codex cheatsheet</h3>
+              <p>A compact reference for CLI flags, /mode, /personality, Skills, Automations, and key settings.</p>
+              <span class="guide-link-card__meta">Open Codex →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
           <p class="section-kicker">Use It Well</p>
           <h2 class="section-title">허브를 어떻게 쓰면 좋은가</h2>
           <ul class="content-list">
             <li>먼저 검색으로 들어온 주제와 가장 가까운 가이드 한 장만 읽고, 바로 연결된 도구 페이지로 이동합니다.</li>
             <li>같은 문제를 디버깅할 때도 변환, 시간, 파일, 메타 태그처럼 서로 다른 층의 도구를 섞어 보는 편이 더 빠릅니다.</li>
-            <li>도구 페이지에서 막히면 다시 허브로 돌아와 관련 가이드를 찾아 실수 포인트를 먼저 확인하는 흐름이 좋습니다.</li>
+            <li>AI 코딩 도구처럼 자주 바뀌는 주제는 치트시트를 보고 바로 공식 문서로 다시 연결하는 흐름이 좋습니다.</li>
           </ul>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/uuid-v4-v7">UUID 가이드</a>
             <a class="link-button" href="/jwt-exp-nbf">JWT 가이드</a>
             <a class="link-button" href="/base64-vs-url-encoding">인코딩 가이드</a>
             <a class="link-button" href="/pdf-merge-split-guide">PDF 가이드</a>
+            <a class="link-button" href="/ai-tools">AI 치트시트</a>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden>
@@ -190,13 +232,14 @@
           <ul class="content-list">
             <li>Start with the one guide that matches the problem you searched for, then jump into the linked tool page immediately.</li>
             <li>Most debugging flows move across layers, so it helps to combine conversion, time, PDF, and meta-tag tools instead of staying on one page.</li>
-            <li>When a tool page feels too terse, come back here and use the guide pages to check the most common mistakes first.</li>
+            <li>For fast-moving topics like AI coding tools, use the cheatsheet first and then jump out to the official docs once you have the right keyword again.</li>
           </ul>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/uuid-v4-v7">UUID guide</a>
             <a class="link-button" href="/jwt-exp-nbf">JWT guide</a>
             <a class="link-button" href="/base64-vs-url-encoding">Encoding guide</a>
             <a class="link-button" href="/pdf-merge-split-guide">PDF guide</a>
+            <a class="link-button" href="/ai-tools">AI cheatsheets</a>
           </div>
         </div>
       </section>
@@ -208,23 +251,23 @@
           <ul class="content-list">
             <li>광고 승인 전까지는 라이브 사이트에서 광고 스크립트를 빼고, 색인과 콘텐츠 품질을 우선 강화합니다.</li>
             <li>툴 페이지는 빠르고 짧게 유지하되, 검색 유입이 잘 붙는 주제는 설명형 페이지를 따로 분리합니다.</li>
-            <li>허브와 개별 가이드, 툴 페이지가 서로 링크되도록 만들어 색인된 URL 수와 실제 사용 흐름을 함께 늘립니다.</li>
+            <li>허브와 개별 가이드, 치트시트, 툴 페이지가 서로 링크되도록 만들어 색인된 URL 수와 실제 사용 흐름을 함께 늘립니다.</li>
           </ul>
         </div>
         <div data-locale-block="en" lang="en" hidden>
           <p class="section-kicker">Policy</p>
           <h2 class="section-title">Current operating direction</h2>
           <ul class="content-list">
-            <li>Until ad approval is cleared, the live site favors crawl quality and useful content over loading any ad scripts.</li>
+            <li>Until ad approval is cleared, the live site favors crawl quality and useful content over loading ad scripts.</li>
             <li>Tool pages stay fast and compact, while search-friendly topics get their own explanation pages.</li>
-            <li>The hub, the standalone guides, and the tool pages all link into each other so indexed pages can still drive real usage.</li>
+            <li>The hub, the standalone guides, the cheatsheets, and the tool pages all link into each other so indexed pages can still drive real usage.</li>
           </ul>
         </div>
       </section>
     </main>
 
     <footer class="footer footer--dev">
-      <small>© 2025 stateless tools · practical utility guide hub</small>
+      <small>(c) 2025 stateless tools · practical utility guide hub</small>
     </footer>
   </div>
 

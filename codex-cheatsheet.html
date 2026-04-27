@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Codex 치트시트 | /mode, /personality, Skills, Automations</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Codex CLI와 앱에서 자주 다시 찾는 /mode, /personality, 로그인, 업그레이드, Skills, Automations를 한 페이지에 정리했습니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Codex 치트시트" />
+  <meta property="og:description" content="공식 OpenAI 문서를 기반으로 Codex에서 자주 찾는 명령과 설정, Skills, Automations 흐름을 빠르게 요약했습니다." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script>
+    (function () {
+      var supported = ['ko', 'en'];
+      function pickLocale() {
+        try {
+          var stored = localStorage.getItem('stateless-tools-locale');
+          if (stored && supported.indexOf(stored) !== -1) return stored;
+        } catch (err) {}
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) return lang;
+        return 'ko';
+      }
+      var locale = pickLocale();
+      document.documentElement.setAttribute('lang', locale);
+      document.documentElement.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <link rel="stylesheet" href="/src/style.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+</head>
+
+<body class="layout layout--dev" data-tool="codex-cheatsheet" data-allow-ads="false">
+  <div class="page page--dev page--content">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/ai-tools" data-i18n="common.back">도구 목록으로</a>
+      <h1>
+        <span data-locale-block="ko" lang="ko">Codex 치트시트</span>
+        <span data-locale-block="en" lang="en" hidden>Codex cheatsheet</span>
+      </h1>
+      <div data-locale-block="ko" lang="ko">
+        <p>OpenAI 공식 도움말과 Academy 문서 기준으로, Codex에서 자주 다시 찾는 CLI 플래그, 공개 커맨드, Skills, Automations, 설정 포인트를 먼저 모았습니다.</p>
+      </div>
+      <div data-locale-block="en" lang="en" hidden>
+        <p>A compact Codex reference built from OpenAI’s official help and Academy docs, focused on the CLI flags, documented commands, Skills, Automations, and settings people re-open most.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Checked</p>
+          <h2 class="section-title">공식 문서에 공개된 범위만 먼저 정리</h2>
+          <p class="section-lead">Codex는 앱 기능과 워크플로가 빠르게 확장되는 중이라, 이 페이지는 2026년 4월 27일 기준 OpenAI 공식 문서에 직접 나온 항목 위주로만 정리했습니다.</p>
+          <span class="update-pill">Last checked · 2026-04-27</span>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Checked</p>
+          <h2 class="section-title">Start from the features OpenAI documents directly</h2>
+          <p class="section-lead">Codex is evolving quickly, so this page stays anchored to features that OpenAI documents explicitly as of April 27, 2026.</p>
+          <span class="update-pill">Last checked · 2026-04-27</span>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">CLI First</p>
+          <h2 class="section-title">터미널에서 가장 먼저 다시 찾는 명령</h2>
+          <div class="command-list">
+            <article class="command-card"><span class="command-pill"><code>codex --login</code></span><h3>ChatGPT 계정 연결</h3><p>로그인과 키 설정을 다시 시작할 때 제일 먼저 찾는 명령입니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --upgrade</code></span><h3>최신 버전으로 올릴 때</h3><p>CLI 자체 업데이트 명령입니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --auto-edit</code></span><h3>파일 수정은 자동, 셸은 승인</h3><p>반복 편집 작업에서 승인 부담을 조금 줄이고 싶을 때 씁니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --full-auto</code></span><h3>더 자율적으로 맡기고 싶을 때</h3><p>로컬 샌드박스 안에서 읽기, 쓰기, 명령 실행까지 맡기는 모드입니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex -m &lt;model&gt;</code></span><h3>모델 지정</h3><p>CLI에서 다른 모델로 세션을 시작하고 싶을 때 씁니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/mode</code></span><h3>세션 중 모드 전환</h3><p>OpenAI 공식 도움말에 직접 나온 인세션 전환 명령입니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/personality</code></span><h3>응답 톤 전환</h3><p>Codex app, CLI, IDE extension에서 성격을 바꿀 수 있다고 OpenAI가 안내합니다.</p></article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">CLI First</p>
+          <h2 class="section-title">The terminal controls people look up first</h2>
+          <div class="command-list">
+            <article class="command-card"><span class="command-pill"><code>codex --login</code></span><h3>Connect your ChatGPT account</h3><p>The fastest way to recover authentication and local credentials.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --upgrade</code></span><h3>Update the CLI</h3><p>The documented self-upgrade path for the Codex CLI.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --auto-edit</code></span><h3>Auto-edit files, still confirm shell commands</h3><p>Useful when repetitive editing is more important than full manual control.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --full-auto</code></span><h3>Hand off more autonomy</h3><p>Lets Codex read, write, and run commands inside the local sandbox.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex -m &lt;model&gt;</code></span><h3>Pick a model explicitly</h3><p>Use this when the default model is not the one you want for the session.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/mode</code></span><h3>Switch approval mode mid-session</h3><p>This is the in-session mode toggle OpenAI documents directly.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/personality</code></span><h3>Change the working tone</h3><p>OpenAI documents this for the app, CLI, and IDE extension.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">App Workflow</p>
+          <h2 class="section-title">명령 말고도 자주 다시 찾는 핵심 포인트</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Skills</h3>
+              <p>Codex는 Skills로 팀별 작업 플레이북을 붙일 수 있습니다. 반복되는 코드 이해, 프로토타이핑, 문서화 흐름을 표준화할 때 중요합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>Automations</h3>
+              <p>일정 기반 반복 작업을 Codex가 백그라운드에서 돌릴 수 있습니다. 리뷰 대기함으로 결과가 돌아오는 구조라 장기 작업에 잘 맞습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>Settings</h3>
+              <p>General &gt; Prevent sleep, Detail level, Appearance, Personalization은 장시간 작업이나 백그라운드 실행 시 가장 자주 다시 찾는 설정 포인트입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>Worktree + multi-agent</h3>
+              <p>OpenAI는 Codex app을 병렬 에이전트 중심 워크플로로 소개합니다. 큰 작업을 나눠 맡길 때 앱 강점이 커집니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">App Workflow</p>
+          <h2 class="section-title">The features people re-open even more than commands</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Skills</h3>
+              <p>Skills let Codex follow repeatable team playbooks for work like code understanding, prototyping, and documentation.</p>
+            </article>
+            <article class="info-card">
+              <h3>Automations</h3>
+              <p>Automations let Codex run recurring tasks on a schedule and return the output into a review queue.</p>
+            </article>
+            <article class="info-card">
+              <h3>Settings</h3>
+              <p>Prevent sleep, detail level, appearance, and personalization are the settings people usually want again during longer-running work.</p>
+            </article>
+            <article class="info-card">
+              <h3>Worktree + multi-agent</h3>
+              <p>OpenAI positions the Codex app as a multi-agent workspace, which matters most once you split larger work across parallel tasks.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">이 페이지를 열어두면 좋은 순간</h2>
+          <div class="command-list">
+            <article class="command-card">
+              <span class="command-pill">복귀</span>
+              <h3>Codex CLI를 오랜만에 다시 켰을 때</h3>
+              <p>로그인, 업그레이드, 모드 전환, 모델 지정부터 빠르게 되살리고 싶을 때 이 페이지가 제일 먼저 도움이 됩니다.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">확장</span>
+              <h3>앱에서 Skills나 Automations를 붙이려 할 때</h3>
+              <p>커맨드보다 실제로 더 많이 찾는 건 설정 위치와 기능 이름입니다. 그래서 Codex 쪽은 워크플로 제어 포인트를 같이 적었습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">When this page is worth keeping open</h2>
+          <div class="command-list">
+            <article class="command-card">
+              <span class="command-pill">Return</span>
+              <h3>When you have not used Codex CLI in a while</h3>
+              <p>This page helps you recover login, upgrade, mode switching, and model selection before you dig back into work.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">Extend</span>
+              <h3>When you want to add Skills or Automations in the app</h3>
+              <p>For Codex, the remembered workflow controls often matter more than a long list of slash commands, so the cheatsheet keeps both together.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Official Sources</p>
+          <h2 class="section-title">공식 문서 원문 링크</h2>
+          <div class="source-list">
+            <article class="source-card">
+              <a href="https://help.openai.com/en/articles/11096431-openai-codex-ci-getting-started" target="_blank" rel="noreferrer">OpenAI Help · Codex CLI getting started</a>
+              <p>로그인, 업그레이드, 승인 모드, <code>/mode</code> 같은 CLI 시작 지점을 다시 확인할 때.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noreferrer">OpenAI · Introducing the Codex app</a>
+              <p><code>/personality</code>, Skills, Automations, 에이전트 중심 앱 방향을 다시 볼 때.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://openai.com/academy/codex-settings/" target="_blank" rel="noreferrer">OpenAI Academy · Codex settings</a>
+              <p>Prevent sleep, detail level, appearance, personalization 같은 설정 포인트 확인용.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://openai.com/academy/codex-automations" target="_blank" rel="noreferrer">OpenAI Academy · Automations</a>
+              <p>일정 기반 작업을 어떻게 자동화하는지, 어떤 반복 업무에 맞는지 볼 때.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://openai.com/academy/codex-plugins-and-skills" target="_blank" rel="noreferrer">OpenAI Academy · Plugins and skills</a>
+              <p>Skills와 plugins의 역할 차이, 언제 어떤 확장 방식을 써야 하는지 볼 때.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <p class="section-kicker">Official Sources</p>
+          <h2 class="section-title">Direct links to the official docs</h2>
+          <div class="source-list">
+            <article class="source-card">
+              <a href="https://help.openai.com/en/articles/11096431-openai-codex-ci-getting-started" target="_blank" rel="noreferrer">OpenAI Help · Codex CLI getting started</a>
+              <p>For login, upgrade, approval modes, and the documented <code>/mode</code> entry point.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noreferrer">OpenAI · Introducing the Codex app</a>
+              <p>For <code>/personality</code>, Skills, Automations, and the app’s multi-agent positioning.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://openai.com/academy/codex-settings/" target="_blank" rel="noreferrer">OpenAI Academy · Codex settings</a>
+              <p>For prevent sleep, detail level, appearance, and personalization settings.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://openai.com/academy/codex-automations" target="_blank" rel="noreferrer">OpenAI Academy · Automations</a>
+              <p>For scheduled recurring work and how Codex returns automation results.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://openai.com/academy/codex-plugins-and-skills" target="_blank" rel="noreferrer">OpenAI Academy · Plugins and skills</a>
+              <p>For the role of Skills and how they differ from plugins.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev">
+      <small>(c) 2025 stateless tools · unofficial summary based on OpenAI docs</small>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/site.js"></script>
+</body>
+
+</html>

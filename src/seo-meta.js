@@ -23,6 +23,27 @@ export const SITE_SOCIALS = [
 ];
 
 export const PAGE_META = {
+  'ai-tools': {
+    path: '/ai-tools',
+    kind: 'content',
+    title: 'AI 코딩 치트시트 | Claude Code, Codex 바로 찾기',
+    description:
+      'Claude Code와 Codex를 빠르게 다시 쓰기 위한 명령, 워크플로, 공식 문서 링크를 한곳에 묶은 AI 코딩 치트시트 허브입니다.',
+  },
+  'claude-code-cheatsheet': {
+    path: '/claude-code-cheatsheet',
+    kind: 'content',
+    title: 'Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드',
+    description:
+      'Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다.',
+  },
+  'codex-cheatsheet': {
+    path: '/codex-cheatsheet',
+    kind: 'content',
+    title: 'Codex 치트시트 | /mode, /personality, Skills, Automations',
+    description:
+      'Codex CLI와 앱에서 자주 찾는 /mode, /personality, 로그인, 업그레이드, Skills, Automations, 설정 포인트를 빠르게 정리한 페이지입니다.',
+  },
   'uuid-v4-v7': {
     path: '/uuid-v4-v7',
     kind: 'content',

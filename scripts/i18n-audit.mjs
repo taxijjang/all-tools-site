@@ -17,6 +17,9 @@ const CHROME_PATHS = [
 const ROUTES = [
   '/',
   '/learn',
+  '/ai-tools',
+  '/claude-code-cheatsheet',
+  '/codex-cheatsheet',
   '/uuid-v4-v7',
   '/jwt-exp-nbf',
   '/base64-vs-url-encoding',

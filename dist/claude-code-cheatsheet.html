@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드 | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-CMzlXr4R.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-VD8YwIxw.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = pickLocale();
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="description" content="Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://all-tools-site.pages.dev/claude-code-cheatsheet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드" />
+  <meta property="og:description" content="Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다." />
+  <meta property="og:url" content="https://all-tools-site.pages.dev/claude-code-cheatsheet" />
+  <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드" />
+  <meta name="twitter:description" content="Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다." />
+  <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://all-tools-site.pages.dev/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "publisher": {
+      "@id": "https://all-tools-site.pages.dev/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://all-tools-site.pages.dev/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://all-tools-site.pages.dev",
+    "logo": "https://all-tools-site.pages.dev/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://all-tools-site.pages.dev/claude-code-cheatsheet#webpage",
+    "name": "Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드",
+    "url": "https://all-tools-site.pages.dev/claude-code-cheatsheet",
+    "description": "Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다.",
+    "isPartOf": {
+      "@id": "https://all-tools-site.pages.dev/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://all-tools-site.pages.dev/claude-code-cheatsheet#breadcrumb"
+    },
+    "primaryImageOfPage": "https://all-tools-site.pages.dev/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://all-tools-site.pages.dev/claude-code-cheatsheet#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://all-tools-site.pages.dev"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드",
+        "item": "https://all-tools-site.pages.dev/claude-code-cheatsheet"
+      }
+    ]
+  }
+]
+  </script>
+</head>
+
+<body class="layout layout--dev" data-tool="claude-code-cheatsheet" data-allow-ads="false">
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">가이드</a>
+        <a href="/about" data-chrome-link="about">소개</a>
+        <a href="/privacy" data-chrome-link="privacy">개인정보 처리</a>
+        <a href="/contact" data-chrome-link="contact">문의</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/ai-tools" data-i18n="common.back">도구 목록으로</a>
+      <h1>
+        <span data-locale-block="ko" lang="ko">Claude Code 치트시트</span>
+        <span data-locale-block="en" lang="en" hidden>Claude Code cheatsheet</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
+      <div data-locale-block="ko" lang="ko">
+        <p>Anthropic 공식 문서 기준으로 자주 다시 찾는 슬래시 명령, MCP 프롬프트 형식, hooks와 커스텀 commands 위치를 빠르게 정리했습니다.</p>
+      </div>
+      <div data-locale-block="en" lang="en" hidden data-nosnippet>
+        <p>A fast summary of the Claude Code slash commands, MCP prompt format, hooks, and custom command locations that people usually have to look up again.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Checked</p>
+          <h2 class="section-title">지금 가장 많이 다시 찾는 것부터</h2>
+          <p class="section-lead">이 페이지는 2026년 4월 27일 기준 Anthropic 공식 문서 내용을 바탕으로 요약했습니다. 커맨드는 계속 바뀌므로 마지막엔 꼭 공식 링크도 함께 확인하는 흐름이 좋습니다.</p>
+          <span class="update-pill">Last checked · 2026-04-27</span>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Checked</p>
+          <h2 class="section-title">Start with the things people re-open most often</h2>
+          <p class="section-lead">This page was checked against Anthropic’s official Claude Code docs on April 27, 2026. Commands evolve, so the official links at the bottom still matter.</p>
+          <span class="update-pill">Last checked · 2026-04-27</span>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Slash Commands</p>
+          <h2 class="section-title">세션 안에서 가장 자주 쓰는 기본 명령</h2>
+          <div class="command-list">
+            <article class="command-card"><span class="command-pill"><code>/help</code></span><h3>명령이 기억 안 날 때</h3><p>현재 세션에서 사용 가능한 명령 목록을 다시 엽니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/clear</code></span><h3>맥락을 비우고 새로 시작할 때</h3><p>대화 히스토리를 비우고 같은 작업 디렉토리에서 다시 진행합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/compact [instructions]</code></span><h3>세션이 너무 길어졌을 때</h3><p>긴 대화를 짧게 압축해 맥락은 유지하고 토큰 부담을 줄입니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/config</code></span><h3>설정 확인과 변경</h3><p>모델, 렌더링, 동작 옵션 같은 구성 변경의 출발점입니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/model</code></span><h3>모델을 바꾸고 싶을 때</h3><p>현재 대화에 사용할 모델을 전환합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/permissions</code></span><h3>도구 허용 범위를 조정할 때</h3><p>읽기, 쓰기, 명령 실행 허용 범위를 조절하는 안전 장치입니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/review</code></span><h3>코드 리뷰가 필요할 때</h3><p>변경 내용에 대해 리뷰 관점 점검을 요청합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/status</code></span><h3>세션/시스템 상태 확인</h3><p>계정과 환경 상태를 빠르게 다시 점검할 때 씁니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/doctor</code></span><h3>설치가 이상할 때</h3><p>Claude Code 설치 상태를 진단합니다.</p></article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Slash Commands</p>
+          <h2 class="section-title">The built-in commands people look up most</h2>
+          <div class="command-list">
+            <article class="command-card"><span class="command-pill"><code>/help</code></span><h3>When you forgot what is available</h3><p>Reopens the list of available commands in the current session.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/clear</code></span><h3>When you want a clean thread</h3><p>Clears conversation history without leaving the project context.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/compact [instructions]</code></span><h3>When the thread gets long</h3><p>Compresses the conversation while preserving working context.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/config</code></span><h3>When you need settings</h3><p>The main entry point for configuration changes and environment behavior.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/model</code></span><h3>When you want a different model</h3><p>Switches the model used for the current interactive session.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/permissions</code></span><h3>When you need to change tool access</h3><p>Controls the safety envelope for reads, writes, and command execution.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/review</code></span><h3>When you want review-mode feedback</h3><p>Asks Claude Code to inspect your changes from a review perspective.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/status</code></span><h3>When you want account or system state</h3><p>Useful for quickly checking environment and session status.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/doctor</code></span><h3>When the installation feels off</h3><p>Runs health checks against your Claude Code installation.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Project Extension</p>
+          <h2 class="section-title">프로젝트 단위로 기억할 확장 포인트</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>커스텀 slash commands</h3>
+              <p><code>.claude/commands/</code> 아래 Markdown 파일을 두면 프로젝트 명령이 됩니다. 개인용 명령은 <code>~/.claude/commands/</code> 에 둡니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>MCP 프롬프트 명령</h3>
+              <p>MCP 서버가 노출한 프롬프트는 <code>/mcp__server__prompt</code> 형식으로 세션 안에서 바로 실행할 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>hooks 설정</h3>
+              <p>hooks는 <code>.claude/settings.json</code> 또는 사용자 설정 파일에서 관리합니다. 자동 셸 명령 실행이기 때문에 강한 쪽 설정입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>메모리 파일</h3>
+              <p><code>/init</code> 과 <code>/memory</code> 는 프로젝트용 <code>CLAUDE.md</code> 기억을 관리할 때 가장 자주 다시 찾는 흐름입니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Project Extension</p>
+          <h2 class="section-title">The extension points worth remembering at project level</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Custom slash commands</h3>
+              <p>Put Markdown files in <code>.claude/commands/</code> for project commands. Personal commands live in <code>~/.claude/commands/</code>.</p>
+            </article>
+            <article class="info-card">
+              <h3>MCP prompt commands</h3>
+              <p>MCP prompts become in-session commands using the <code>/mcp__server__prompt</code> format.</p>
+            </article>
+            <article class="info-card">
+              <h3>Hooks configuration</h3>
+              <p>Hooks are configured through <code>.claude/settings.json</code> or user settings. Treat them carefully because they can execute shell commands automatically.</p>
+            </article>
+            <article class="info-card">
+              <h3>Memory files</h3>
+              <p><code>/init</code> and <code>/memory</code> are the main commands to remember when you need to manage project-level <code>CLAUDE.md</code> memory.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">이럴 때 이 페이지가 바로 도움 됩니다</h2>
+          <div class="command-list">
+            <article class="command-card">
+              <span class="command-pill">복귀</span>
+              <h3>며칠 만에 Claude Code를 다시 열었을 때</h3>
+              <p><code>/compact</code>, <code>/config</code>, <code>/review</code> 같은 핵심 명령을 먼저 되살리고, 그다음 커스텀 commands나 MCP 연결을 다시 확인하면 복귀 속도가 빠릅니다.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">확장</span>
+              <h3>프로젝트에 명령과 자동화 지점을 붙일 때</h3>
+              <p><code>.claude/commands/</code>, hooks, MCP 형식만 기억해도 프로젝트 단위 확장 흐름이 훨씬 빨리 잡힙니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">Where this page helps most</h2>
+          <div class="command-list">
+            <article class="command-card">
+              <span class="command-pill">Return</span>
+              <h3>When you open Claude Code again after a break</h3>
+              <p>Recover the core commands first, then re-open the project extension points like custom commands and MCP once the session is moving again.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">Extend</span>
+              <h3>When you want to add project-level behavior</h3>
+              <p>Remembering <code>.claude/commands/</code>, hooks, and MCP command format is often enough to get back into extension work quickly.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Official Sources</p>
+          <h2 class="section-title">공식 문서로 바로 넘어갈 링크</h2>
+          <div class="source-list">
+            <article class="source-card">
+              <a href="https://docs.anthropic.com/en/docs/claude-code/slash-commands" target="_blank" rel="noreferrer">Anthropic · Claude Code slash commands</a>
+              <p>기본 내장 명령과 커스텀 slash commands 구조를 다시 확인할 때.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank" rel="noreferrer">Anthropic · Claude Code hooks</a>
+              <p>hooks matcher, 설정 파일 위치, 자동 셸 실행 구조를 볼 때.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://docs.anthropic.com/en/docs/claude-code/mcp" target="_blank" rel="noreferrer">Anthropic · Claude Code MCP</a>
+              <p>MCP 연결, 프롬프트 노출, slash command 형식을 다시 확인할 때.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p class="section-kicker">Official Sources</p>
+          <h2 class="section-title">Jump straight to the official docs</h2>
+          <div class="source-list">
+            <article class="source-card">
+              <a href="https://docs.anthropic.com/en/docs/claude-code/slash-commands" target="_blank" rel="noreferrer">Anthropic · Claude Code slash commands</a>
+              <p>For the built-in command list and custom slash command structure.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank" rel="noreferrer">Anthropic · Claude Code hooks</a>
+              <p>For matcher structure, config file locations, and hook command behavior.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://docs.anthropic.com/en/docs/claude-code/mcp" target="_blank" rel="noreferrer">Anthropic · Claude Code MCP</a>
+              <p>For MCP connectivity, prompt exposure, and slash command format.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <small>(c) 2025 stateless tools · unofficial summary based on Anthropic docs</small>
+    </footer>
+  </div>
+
+</body>
+
+</html>

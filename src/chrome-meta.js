@@ -1,8 +1,11 @@
 export const CONTENT_PAGES = new Set([
   'learn',
+  'ai-tools',
   'about',
   'privacy',
   'contact',
+  'claude-code-cheatsheet',
+  'codex-cheatsheet',
   'uuid-v4-v7',
   'jwt-exp-nbf',
   'base64-vs-url-encoding',
