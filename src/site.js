@@ -437,16 +437,16 @@ const RECENTS_LIMIT = 6;
 const libraryCopy = {
   ko: {
     accessKicker: 'Quick Return',
-    accessHeading: '즐겨찾기 & 최근 사용',
-    accessLead: '최근 사용, 즐겨찾기, 대표 도구를 한곳에 모아 다시 들어오기 쉽게 정리했습니다.',
+    accessHeading: '다시 열기',
+    accessLead: '즐겨찾기와 최근 사용만 빠르게.',
     favoritesTitle: '즐겨찾기',
-    favoritesLead: '고정해 둔 도구만 모아 다시 여세요.',
-    favoritesEmpty: '아직 고정한 도구가 없습니다. 도구 페이지에서 즐겨찾기 버튼을 누르면 여기에 모입니다.',
+    favoritesLead: '고정한 도구.',
+    favoritesEmpty: '아직 고정한 도구가 없습니다.',
     recentTitle: '최근 사용',
-    recentLead: '방금 열었던 도구로 빠르게 돌아가세요.',
+    recentLead: '방금 열었던 도구.',
     recentEmpty: '최근 사용한 도구가 아직 없습니다.',
-    popularTitle: '자주 찾는 툴',
-    popularLead: '처음 들어와도 바로 쓰기 좋은 대표 도구를 먼저 모아뒀습니다.',
+    popularTitle: '대표 도구',
+    popularLead: '바로 쓰기 좋은 시작점.',
     pinButton: '즐겨찾기 추가',
     pinnedButton: '즐겨찾기됨',
     pinShort: '고정',
@@ -457,16 +457,16 @@ const libraryCopy = {
   },
   en: {
     accessKicker: 'Quick Return',
-    accessHeading: 'Favorites & Recent',
-    accessLead: 'Keep recent tools, favorites, and go-to utilities in one place so you can jump back in without scanning the full catalog.',
+    accessHeading: 'Return fast',
+    accessLead: 'Favorites and recent tools only.',
     favoritesTitle: 'Favorites',
-    favoritesLead: 'Open the tools you pinned on purpose.',
-    favoritesEmpty: 'No pinned tools yet. Use the favorite button on a tool page and it will show up here.',
+    favoritesLead: 'Pinned tools.',
+    favoritesEmpty: 'No pinned tools yet.',
     recentTitle: 'Recent',
-    recentLead: 'Jump back into the tools you opened last.',
+    recentLead: 'Last opened tools.',
     recentEmpty: 'No recent tool usage yet.',
     popularTitle: 'Go-to tools',
-    popularLead: 'These are the strongest default starting points when you want to move fast.',
+    popularLead: 'Strong default starters.',
     pinButton: 'Add to favorites',
     pinnedButton: 'Favorited',
     pinShort: 'Pin',
@@ -626,7 +626,7 @@ function setupHomeDiscovery() {
   const accessGrid = document.querySelector('[data-home-access-grid]');
   const spotlightsHost = document.querySelector('[data-home-spotlights]');
   const workflowsHost = document.querySelector('[data-home-workflows]');
-  if (!grid || !searchInput || !filtersHost || !resultsEl || !workflowsHost) {
+  if (!grid || !searchInput || !filtersHost || !resultsEl) {
     return () => {};
   }
 
@@ -802,6 +802,10 @@ function setupHomeDiscovery() {
   }
 
   function renderWorkflowCards(locale) {
+    if (!workflowsHost) {
+      return;
+    }
+
     const copy = HOME_DISCOVERY_COPY[locale] || HOME_DISCOVERY_COPY.en;
     workflowsHost.innerHTML = HOME_WORKFLOWS.map((workflow) => {
       const workflowCopy = workflow.labels[locale] || workflow.labels.en;

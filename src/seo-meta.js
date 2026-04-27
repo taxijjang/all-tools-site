@@ -75,9 +75,9 @@ export const PAGE_META = {
   index: {
     path: '/',
     kind: 'home',
-    title: '개발자 도구 모음 | UUID 변환기, Base64, JSON, JWT',
+    title: '개발자 도구 런처 | UUID, JSON, Base64, PDF, SEO',
     description:
-      'UUID 변환기, Base64 인코더/디코더, JSON 포매터, JWT 디코더 등 개발자용 브라우저 도구를 바로 사용할 수 있습니다.',
+      'UUID, JSON, Base64, JWT, PDF, 이미지, SEO 등 자주 쓰는 브라우저 기반 개발자 도구를 검색하고 바로 실행하세요.',
   },
   learn: {
     path: '/learn',

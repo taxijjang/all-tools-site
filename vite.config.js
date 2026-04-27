@@ -424,10 +424,7 @@ function seoMetadataPlugin() {
       ).replaceAll('</script>', '<\\/script>');
 
       let nextHtml = removeHeadArtifacts(html);
-      const primaryHeading =
-        meta.kind === 'tool' || meta.kind === 'home'
-          ? (meta.title || pageTitle).split('|')[0].trim()
-          : '';
+      const primaryHeading = meta.kind === 'tool' ? (meta.title || pageTitle).split('|')[0].trim() : '';
       if (primaryHeading) {
         nextHtml = nextHtml.replace(/<h1([^>]*)>[\s\S]*?<\/h1>/i, `<h1$1>${escapeHtml(primaryHeading)}</h1>`);
       }
