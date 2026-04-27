@@ -959,6 +959,68 @@ function setupHomeDiscovery() {
   return render;
 }
 
+function setupCommandReferences() {
+  const roots = Array.from(document.querySelectorAll('[data-command-reference]'));
+  if (!roots.length) {
+    return () => {};
+  }
+
+  const refreshers = roots.map((reference) => {
+    const input = reference.querySelector('[data-command-search]');
+    const filters = Array.from(reference.querySelectorAll('[data-command-filter]'));
+    const entries = Array.from(reference.querySelectorAll('[data-command-entry]'));
+    const count = reference.querySelector('[data-command-count]');
+    const empty = reference.querySelector('[data-command-empty]');
+    let activeFilter = 'all';
+
+    function applyFilter(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+      const rootLocale = reference.getAttribute('lang') || locale;
+      const query = (input?.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      entries.forEach((entry) => {
+        const categoryMatches = activeFilter === 'all' || entry.dataset.commandCategory === activeFilter;
+        const haystack = `${entry.textContent || ''} ${entry.dataset.commandKeywords || ''}`.toLowerCase();
+        const queryMatches = !query || haystack.includes(query);
+        const isVisible = categoryMatches && queryMatches;
+        entry.hidden = !isVisible;
+        if (isVisible) {
+          visibleCount += 1;
+        }
+      });
+
+      filters.forEach((button) => {
+        const selected = button.dataset.commandFilter === activeFilter;
+        button.classList.toggle('is-active', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
+
+      if (count) {
+        count.textContent = rootLocale === 'ko' ? `${visibleCount}개 항목` : `${visibleCount} entries`;
+      }
+
+      if (empty) {
+        empty.hidden = visibleCount !== 0;
+      }
+    }
+
+    input?.addEventListener('input', () => applyFilter());
+    filters.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeFilter = button.dataset.commandFilter || 'all';
+        applyFilter();
+      });
+    });
+
+    applyFilter();
+    return applyFilter;
+  });
+
+  return (locale = document.documentElement.getAttribute('lang') || currentLocale) => {
+    refreshers.forEach((refresh) => refresh(locale));
+  };
+}
+
 function setupToolFavoriteButton() {
   const path = normalizeToolPath(window.location.pathname);
   if (!path) {
@@ -1645,6 +1707,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const refreshFilePickers = setupFilePickers();
   setupGlobalNavigation();
   const refreshHomeDiscovery = setupHomeDiscovery();
+  const refreshCommandReferences = setupCommandReferences();
   const refreshFavoriteButton = setupToolFavoriteButton();
   const refreshQuickStart = setupQuickStartPanel();
   injectRelatedToolsSection();
@@ -1654,6 +1717,7 @@ window.addEventListener('DOMContentLoaded', () => {
     updateChromeText(locale);
     refreshFilePickers(locale);
     refreshHomeDiscovery(locale);
+    refreshCommandReferences(locale);
     refreshFavoriteButton(locale);
     refreshQuickStart(locale);
     window.statelessTools.locale = locale;

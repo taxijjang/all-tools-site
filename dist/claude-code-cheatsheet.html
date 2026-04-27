@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드 | Stateless Tools</title>
+  <title>Claude Code 치트시트 | 명령어, 스킬, MCP, 훅 검색 | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
@@ -13,8 +13,8 @@
     gtag('js', new Date());
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-CMzlXr4R.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-VD8YwIxw.css">
+  <script type="module" crossorigin src="/assets/site-Bgi_yTD-.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-MCYpp3Os.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -69,7 +69,7 @@
       overflow: hidden;
     }
   </style>
-  <meta name="description" content="Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다." />
+  <meta name="description" content="Claude Code 명령어, 스킬, MCP 프롬프트, hooks, 실전 루틴을 한 페이지에서 검색하고 공식 문서로 바로 이동하는 치트시트입니다." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="taxijjang" />
   <meta name="theme-color" content="#020817" />
@@ -77,14 +77,14 @@
   <link rel="canonical" href="https://all-tools-site.pages.dev/claude-code-cheatsheet" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Stateless Tools" />
-  <meta property="og:title" content="Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드" />
-  <meta property="og:description" content="Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다." />
+  <meta property="og:title" content="Claude Code 치트시트 | 명령어, 스킬, MCP, 훅 검색" />
+  <meta property="og:description" content="Claude Code 명령어, 스킬, MCP 프롬프트, hooks, 실전 루틴을 한 페이지에서 검색하고 공식 문서로 바로 이동하는 치트시트입니다." />
   <meta property="og:url" content="https://all-tools-site.pages.dev/claude-code-cheatsheet" />
   <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <meta property="og:image:alt" content="Stateless Tools logo" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드" />
-  <meta name="twitter:description" content="Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다." />
+  <meta name="twitter:title" content="Claude Code 치트시트 | 명령어, 스킬, MCP, 훅 검색" />
+  <meta name="twitter:description" content="Claude Code 명령어, 스킬, MCP 프롬프트, hooks, 실전 루틴을 한 페이지에서 검색하고 공식 문서로 바로 이동하는 치트시트입니다." />
   <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <script type="application/ld+json" data-seo-schema>
 [
@@ -120,9 +120,9 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": "https://all-tools-site.pages.dev/claude-code-cheatsheet#webpage",
-    "name": "Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드",
+    "name": "Claude Code 치트시트 | 명령어, 스킬, MCP, 훅 검색",
     "url": "https://all-tools-site.pages.dev/claude-code-cheatsheet",
-    "description": "Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다.",
+    "description": "Claude Code 명령어, 스킬, MCP 프롬프트, hooks, 실전 루틴을 한 페이지에서 검색하고 공식 문서로 바로 이동하는 치트시트입니다.",
     "isPartOf": {
       "@id": "https://all-tools-site.pages.dev/#website"
     },
@@ -145,7 +145,7 @@
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드",
+        "name": "Claude Code 치트시트 | 명령어, 스킬, MCP, 훅 검색",
         "item": "https://all-tools-site.pages.dev/claude-code-cheatsheet"
       }
     ]
@@ -177,146 +177,379 @@
       </div>
     </div>
 
-    <header class="page-header">
-      <a class="back-link" href="/ai-tools" data-i18n="common.back">도구 목록으로</a>
-      <h1>
-        <span data-locale-block="ko" lang="ko">Claude Code 치트시트</span>
-        <span data-locale-block="en" lang="en" hidden>Claude Code cheatsheet</span>
-      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
-      <div data-locale-block="ko" lang="ko">
-        <p>Anthropic 공식 문서 기준으로 자주 다시 찾는 슬래시 명령, MCP 프롬프트 형식, hooks와 커스텀 commands 위치를 빠르게 정리했습니다.</p>
+    <header class="page-header page-header--reference">
+      <a class="back-link" href="/ai-tools" data-i18n="common.back">← 도구 목록으로</a>
+      <div>
+        <h1>
+          <span data-locale-block="ko" lang="ko">Claude Code 치트시트</span>
+          <span data-locale-block="en" lang="en" hidden>Claude Code cheatsheet</span>
+        </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
+        <div data-locale-block="ko" lang="ko">
+          <p>명령어, 스킬, MCP, 훅, 에이전트 작업 루틴을 한 페이지에서 빠르게 찾도록 정리했습니다.</p>
+        </div>
+        <div data-locale-block="en" lang="en" hidden data-nosnippet>
+          <p>A fast Claude Code reference for commands, skills, MCP prompts, hooks, and practical coding routines.</p>
+        </div>
       </div>
-      <div data-locale-block="en" lang="en" hidden data-nosnippet>
-        <p>A fast summary of the Claude Code slash commands, MCP prompt format, hooks, and custom command locations that people usually have to look up again.</p>
+      <div class="reference-hero-meta" aria-label="Page metadata">
+        <span class="update-pill">Last checked · 2026-04-27</span>
+        <span class="update-pill">Unofficial summary</span>
       </div>
     </header>
 
     <main class="content-stack">
       <section class="content-section content-section--highlight">
         <div data-locale-block="ko" lang="ko">
-          <p class="section-kicker">Checked</p>
-          <h2 class="section-title">지금 가장 많이 다시 찾는 것부터</h2>
-          <p class="section-lead">이 페이지는 2026년 4월 27일 기준 Anthropic 공식 문서 내용을 바탕으로 요약했습니다. 커맨드는 계속 바뀌므로 마지막엔 꼭 공식 링크도 함께 확인하는 흐름이 좋습니다.</p>
-          <span class="update-pill">Last checked · 2026-04-27</span>
-        </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Checked</p>
-          <h2 class="section-title">Start with the things people re-open most often</h2>
-          <p class="section-lead">This page was checked against Anthropic’s official Claude Code docs on April 27, 2026. Commands evolve, so the official links at the bottom still matter.</p>
-          <span class="update-pill">Last checked · 2026-04-27</span>
-        </div>
-      </section>
-
-      <section class="content-section">
-        <div data-locale-block="ko" lang="ko">
-          <p class="section-kicker">Slash Commands</p>
-          <h2 class="section-title">세션 안에서 가장 자주 쓰는 기본 명령</h2>
-          <div class="command-list">
-            <article class="command-card"><span class="command-pill"><code>/help</code></span><h3>명령이 기억 안 날 때</h3><p>현재 세션에서 사용 가능한 명령 목록을 다시 엽니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/clear</code></span><h3>맥락을 비우고 새로 시작할 때</h3><p>대화 히스토리를 비우고 같은 작업 디렉토리에서 다시 진행합니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/compact [instructions]</code></span><h3>세션이 너무 길어졌을 때</h3><p>긴 대화를 짧게 압축해 맥락은 유지하고 토큰 부담을 줄입니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/config</code></span><h3>설정 확인과 변경</h3><p>모델, 렌더링, 동작 옵션 같은 구성 변경의 출발점입니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/model</code></span><h3>모델을 바꾸고 싶을 때</h3><p>현재 대화에 사용할 모델을 전환합니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/permissions</code></span><h3>도구 허용 범위를 조정할 때</h3><p>읽기, 쓰기, 명령 실행 허용 범위를 조절하는 안전 장치입니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/review</code></span><h3>코드 리뷰가 필요할 때</h3><p>변경 내용에 대해 리뷰 관점 점검을 요청합니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/status</code></span><h3>세션/시스템 상태 확인</h3><p>계정과 환경 상태를 빠르게 다시 점검할 때 씁니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/doctor</code></span><h3>설치가 이상할 때</h3><p>Claude Code 설치 상태를 진단합니다.</p></article>
+          <p class="section-kicker">Overview</p>
+          <h2 class="section-title">블로그처럼 읽고, 문서처럼 찾는 구조</h2>
+          <p class="section-lead">참고 링크처럼 최근 핵심 변화와 전체 명령어 흐름이 바로 보이도록 바꿨습니다. 긴 설명보다 “지금 뭘 쳐야 하는지”와 “어디서 확장하는지”를 먼저 보여줍니다.</p>
+          <div class="reference-stats" aria-label="Claude Code reference summary">
+            <span><strong>20+</strong> 핵심 명령</span>
+            <span><strong>4</strong> 카테고리</span>
+            <span><strong>공식 문서</strong> 바로가기</span>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Slash Commands</p>
-          <h2 class="section-title">The built-in commands people look up most</h2>
-          <div class="command-list">
-            <article class="command-card"><span class="command-pill"><code>/help</code></span><h3>When you forgot what is available</h3><p>Reopens the list of available commands in the current session.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/clear</code></span><h3>When you want a clean thread</h3><p>Clears conversation history without leaving the project context.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/compact [instructions]</code></span><h3>When the thread gets long</h3><p>Compresses the conversation while preserving working context.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/config</code></span><h3>When you need settings</h3><p>The main entry point for configuration changes and environment behavior.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/model</code></span><h3>When you want a different model</h3><p>Switches the model used for the current interactive session.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/permissions</code></span><h3>When you need to change tool access</h3><p>Controls the safety envelope for reads, writes, and command execution.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/review</code></span><h3>When you want review-mode feedback</h3><p>Asks Claude Code to inspect your changes from a review perspective.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/status</code></span><h3>When you want account or system state</h3><p>Useful for quickly checking environment and session status.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/doctor</code></span><h3>When the installation feels off</h3><p>Runs health checks against your Claude Code installation.</p></article>
+          <p class="section-kicker">Overview</p>
+          <h2 class="section-title">Readable like a guide, searchable like a reference</h2>
+          <p class="section-lead">This page is shaped around the same job as the reference you shared: show the important recent mental model first, then make commands easy to scan and filter.</p>
+          <div class="reference-stats" aria-label="Claude Code reference summary">
+            <span><strong>20+</strong> key commands</span>
+            <span><strong>4</strong> categories</span>
+            <span><strong>Official docs</strong> linked</span>
           </div>
         </div>
       </section>
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
-          <p class="section-kicker">Project Extension</p>
-          <h2 class="section-title">프로젝트 단위로 기억할 확장 포인트</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>커스텀 slash commands</h3>
-              <p><code>.claude/commands/</code> 아래 Markdown 파일을 두면 프로젝트 명령이 됩니다. 개인용 명령은 <code>~/.claude/commands/</code> 에 둡니다.</p>
+          <p class="section-kicker">최근 확인한 핵심</p>
+          <h2 class="section-title">먼저 기억하면 좋은 변화와 포인트</h2>
+          <div class="reference-update-list">
+            <article class="reference-update-card">
+              <span class="reference-update-card__tag">Commands</span>
+              <h3>명령어 목록은 내장 명령과 번들 스킬을 함께 보여줍니다</h3>
+              <p>공식 Commands 문서는 <code>/clear</code>, <code>/compact</code> 같은 내장 명령과 <code>/debug</code>, <code>/simplify</code> 같은 번들 스킬을 한 표에서 설명합니다.</p>
             </article>
-            <article class="info-card">
-              <h3>MCP 프롬프트 명령</h3>
-              <p>MCP 서버가 노출한 프롬프트는 <code>/mcp__server__prompt</code> 형식으로 세션 안에서 바로 실행할 수 있습니다.</p>
+            <article class="reference-update-card">
+              <span class="reference-update-card__tag">Skills</span>
+              <h3>예전 커스텀 커맨드는 스킬 흐름으로 통합됐습니다</h3>
+              <p><code>.claude/commands/deploy.md</code>도 계속 동작하지만, 새로 만들 때는 <code>.claude/skills/deploy/SKILL.md</code> 구조가 더 확장성이 좋습니다.</p>
             </article>
-            <article class="info-card">
-              <h3>hooks 설정</h3>
-              <p>hooks는 <code>.claude/settings.json</code> 또는 사용자 설정 파일에서 관리합니다. 자동 셸 명령 실행이기 때문에 강한 쪽 설정입니다.</p>
+            <article class="reference-update-card">
+              <span class="reference-update-card__tag">MCP</span>
+              <h3>MCP 프롬프트는 슬래시 명령처럼 실행됩니다</h3>
+              <p>연결된 MCP 서버가 프롬프트를 노출하면 <code>/mcp__github__list_prs</code> 같은 형식으로 세션 안에서 바로 실행할 수 있습니다.</p>
             </article>
-            <article class="info-card">
-              <h3>메모리 파일</h3>
-              <p><code>/init</code> 과 <code>/memory</code> 는 프로젝트용 <code>CLAUDE.md</code> 기억을 관리할 때 가장 자주 다시 찾는 흐름입니다.</p>
+            <article class="reference-update-card">
+              <span class="reference-update-card__tag">Hooks</span>
+              <h3>훅은 자동화지만, 권한 경계로 생각해야 합니다</h3>
+              <p>훅은 세션 생명주기 중 특정 이벤트에서 쉘 명령, HTTP 엔드포인트, LLM 프롬프트를 실행할 수 있으므로 프로젝트 정책처럼 관리하는 편이 안전합니다.</p>
             </article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Project Extension</p>
-          <h2 class="section-title">The extension points worth remembering at project level</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Custom slash commands</h3>
-              <p>Put Markdown files in <code>.claude/commands/</code> for project commands. Personal commands live in <code>~/.claude/commands/</code>.</p>
+          <p class="section-kicker">Recently Checked</p>
+          <h2 class="section-title">The mental model worth remembering first</h2>
+          <div class="reference-update-list">
+            <article class="reference-update-card">
+              <span class="reference-update-card__tag">Commands</span>
+              <h3>The command list mixes built-ins and bundled skills</h3>
+              <p>The official Commands page documents built-in controls like <code>/clear</code> and <code>/compact</code> alongside bundled skills like <code>/debug</code> and <code>/simplify</code>.</p>
             </article>
-            <article class="info-card">
-              <h3>MCP prompt commands</h3>
-              <p>MCP prompts become in-session commands using the <code>/mcp__server__prompt</code> format.</p>
+            <article class="reference-update-card">
+              <span class="reference-update-card__tag">Skills</span>
+              <h3>Legacy custom commands now fit into the skills model</h3>
+              <p><code>.claude/commands/deploy.md</code> still works, but <code>.claude/skills/deploy/SKILL.md</code> is the more capable structure for new workflows.</p>
             </article>
-            <article class="info-card">
-              <h3>Hooks configuration</h3>
-              <p>Hooks are configured through <code>.claude/settings.json</code> or user settings. Treat them carefully because they can execute shell commands automatically.</p>
+            <article class="reference-update-card">
+              <span class="reference-update-card__tag">MCP</span>
+              <h3>MCP prompts show up as slash-style commands</h3>
+              <p>Connected MCP servers can expose prompts you run with names like <code>/mcp__github__list_prs</code> directly inside Claude Code.</p>
             </article>
-            <article class="info-card">
-              <h3>Memory files</h3>
-              <p><code>/init</code> and <code>/memory</code> are the main commands to remember when you need to manage project-level <code>CLAUDE.md</code> memory.</p>
+            <article class="reference-update-card">
+              <span class="reference-update-card__tag">Hooks</span>
+              <h3>Treat hooks as automation plus policy</h3>
+              <p>Hooks can run shell commands, HTTP endpoints, or LLM prompts at lifecycle events, so they belong in the same mental bucket as project policy.</p>
             </article>
           </div>
         </div>
       </section>
 
       <section class="content-section">
-        <div data-locale-block="ko" lang="ko">
-          <p class="section-kicker">Use Cases</p>
-          <h2 class="section-title">이럴 때 이 페이지가 바로 도움 됩니다</h2>
-          <div class="command-list">
-            <article class="command-card">
-              <span class="command-pill">복귀</span>
-              <h3>며칠 만에 Claude Code를 다시 열었을 때</h3>
-              <p><code>/compact</code>, <code>/config</code>, <code>/review</code> 같은 핵심 명령을 먼저 되살리고, 그다음 커스텀 commands나 MCP 연결을 다시 확인하면 복귀 속도가 빠릅니다.</p>
+        <div data-locale-block="ko" lang="ko" data-command-reference>
+          <p class="section-kicker">Command Reference</p>
+          <h2 class="section-title">명령어 검색</h2>
+          <p class="section-lead">명령어, 목적, 키워드를 입력하거나 카테고리 버튼을 누르면 바로 좁혀집니다.</p>
+          <div class="reference-toolbar">
+            <label class="sr-only" for="claudeCommandSearchKo">Claude Code 명령어 검색</label>
+            <input id="claudeCommandSearchKo" class="reference-search" type="search" placeholder="예: compact, MCP, review, 권한" data-command-search />
+            <div class="reference-filters" aria-label="Claude Code command filters">
+              <button class="reference-filter is-active" type="button" data-command-filter="all">전체</button>
+              <button class="reference-filter" type="button" data-command-filter="session">세션</button>
+              <button class="reference-filter" type="button" data-command-filter="setup">설정</button>
+              <button class="reference-filter" type="button" data-command-filter="workflow">워크플로</button>
+              <button class="reference-filter" type="button" data-command-filter="extend">확장</button>
+            </div>
+            <p class="reference-count" data-command-count></p>
+          </div>
+          <div class="command-reference-list">
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="clear reset new conversation context 초기화 새 대화">
+              <div class="command-reference-card__top"><code>/clear</code><span>세션</span></div>
+              <h3>대화를 비우고 새 흐름으로 시작</h3>
+              <p>이전 대화는 <code>/resume</code>에서 다시 찾을 수 있고, 같은 프로젝트 안에서 새 맥락으로 시작할 때 씁니다.</p>
             </article>
-            <article class="command-card">
-              <span class="command-pill">확장</span>
-              <h3>프로젝트에 명령과 자동화 지점을 붙일 때</h3>
-              <p><code>.claude/commands/</code>, hooks, MCP 형식만 기억해도 프로젝트 단위 확장 흐름이 훨씬 빨리 잡힙니다.</p>
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="compact context summary token 압축 요약 토큰">
+              <div class="command-reference-card__top"><code>/compact [instructions]</code><span>세션</span></div>
+              <h3>긴 대화를 요약해 컨텍스트 확보</h3>
+              <p>계속 이어가야 하지만 맥락이 너무 길어진 경우 사용합니다. 선택 지시문으로 요약 초점을 줄 수 있습니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="resume continue session restore 복원 이어하기">
+              <div class="command-reference-card__top"><code>/resume [session]</code><span>세션</span></div>
+              <h3>이전 세션을 다시 이어가기</h3>
+              <p>세션 ID나 이름을 지정하거나 피커에서 골라 끊긴 작업으로 돌아갑니다. 별칭은 <code>/continue</code>입니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="rewind checkpoint undo rollback 되돌리기 체크포인트">
+              <div class="command-reference-card__top"><code>/rewind</code><span>세션</span></div>
+              <h3>대화나 변경을 이전 지점으로 되돌림</h3>
+              <p>체크포인트 기반으로 이전 상태를 복구해야 할 때 씁니다. 별칭으로 <code>/checkpoint</code>, <code>/undo</code>가 있습니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="usage cost stats limit rate 사용량 비용 한도">
+              <div class="command-reference-card__top"><code>/usage</code><span>세션</span></div>
+              <h3>사용량, 비용, 플랜 한도 확인</h3>
+              <p><code>/cost</code>, <code>/stats</code>는 사용량 화면으로 이어지는 별칭입니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="config settings theme model output 설정 테마 환경">
+              <div class="command-reference-card__top"><code>/config</code><span>설정</span></div>
+              <h3>Claude Code 설정 화면 열기</h3>
+              <p>테마, 모델, 출력 스타일 등 인터랙티브 설정을 바꿀 때 시작점으로 쓰입니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="model effort opus sonnet 모델 사고 강도">
+              <div class="command-reference-card__top"><code>/model [model]</code><span>설정</span></div>
+              <h3>현재 세션 모델 변경</h3>
+              <p>모델 선택 피커를 열거나 모델 이름을 지정합니다. 지원 모델에서는 effort 조정도 함께 다룹니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="permissions allowed tools allow ask deny 권한 허용 거부">
+              <div class="command-reference-card__top"><code>/permissions</code><span>설정</span></div>
+              <h3>도구 권한 규칙 관리</h3>
+              <p>읽기, 쓰기, Bash, MCP 도구의 allow, ask, deny 규칙을 관리합니다. 별칭은 <code>/allowed-tools</code>입니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="doctor diagnose install health 설치 진단">
+              <div class="command-reference-card__top"><code>/doctor</code><span>설정</span></div>
+              <h3>설치와 설정 상태 진단</h3>
+              <p>Claude Code 환경이 이상할 때 먼저 돌려볼 건강검진 명령입니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="init memory claude.md project guide 프로젝트 기억">
+              <div class="command-reference-card__top"><code>/init</code> / <code>/memory</code><span>설정</span></div>
+              <h3>프로젝트 기억 파일 만들고 관리</h3>
+              <p><code>/init</code>은 <code>CLAUDE.md</code> 초안을 만들고, <code>/memory</code>는 메모리 파일과 자동 메모리를 관리합니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="review pr code review 리뷰 풀리퀘스트">
+              <div class="command-reference-card__top"><code>/review [PR]</code><span>워크플로</span></div>
+              <h3>현재 세션에서 PR이나 변경 리뷰</h3>
+              <p>로컬 컨텍스트를 기준으로 코드 리뷰 관점의 피드백을 받을 때 씁니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="security audit vulnerability 보안 감사 취약점">
+              <div class="command-reference-card__top"><code>/security-review</code><span>워크플로</span></div>
+              <h3>보안 관점의 변경 검토</h3>
+              <p>현재 브랜치의 pending 변경에서 주입, 인증, 데이터 노출 같은 위험을 찾습니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="diff changes git 변경 리뷰">
+              <div class="command-reference-card__top"><code>/diff</code><span>워크플로</span></div>
+              <h3>현재 변경과 턴별 diff 확인</h3>
+              <p>전체 git diff와 Claude 턴별 변경을 훑으며 작업 흐름을 점검합니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="loop schedule recurring proactive 반복 자동화">
+              <div class="command-reference-card__top"><code>/loop [interval] [prompt]</code><span>워크플로</span></div>
+              <h3>프롬프트 반복 실행</h3>
+              <p>배포 완료 대기, 주기적 상태 확인처럼 같은 확인을 반복해야 할 때 유용합니다. 별칭은 <code>/proactive</code>입니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="batch parallel worktree multi agent 대규모 병렬">
+              <div class="command-reference-card__top"><code>/batch &lt;instruction&gt;</code><span>워크플로</span></div>
+              <h3>대규모 변경을 병렬 작업으로 분해</h3>
+              <p>코드베이스를 분석하고 독립 작업 단위로 나눈 뒤, 승인 후 여러 worktree 에이전트로 진행하는 번들 스킬입니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="extend" data-command-keywords="skills custom command skill.md commands 커스텀 명령 스킬">
+              <div class="command-reference-card__top"><code>/skills</code> / <code>SKILL.md</code><span>확장</span></div>
+              <h3>반복 절차를 스킬로 만들기</h3>
+              <p>개인 스킬은 <code>~/.claude/skills/</code>, 프로젝트 스킬은 <code>.claude/skills/</code>에 둡니다. 기존 <code>.claude/commands/</code>도 계속 동작합니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="extend" data-command-keywords="mcp server prompt tools github jira 연동">
+              <div class="command-reference-card__top"><code>/mcp</code> / <code>/mcp__server__prompt</code><span>확장</span></div>
+              <h3>MCP 서버 관리와 프롬프트 실행</h3>
+              <p><code>/mcp</code>는 연결 상태와 OAuth를 관리하고, 서버 프롬프트는 <code>/mcp__github__pr_review 456</code>처럼 실행합니다.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="extend" data-command-keywords="hooks lifecycle automation pretooluse posttooluse 훅 자동화">
+              <div class="command-reference-card__top"><code>/hooks</code><span>확장</span></div>
+              <h3>라이프사이클 훅 확인</h3>
+              <p><code>PreToolUse</code>, <code>UserPromptSubmit</code>, <code>SessionStart</code> 같은 이벤트에서 실행되는 훅 설정을 확인합니다.</p>
+            </article>
+          </div>
+          <p class="reference-empty" data-command-empty hidden>검색 결과가 없습니다. 다른 키워드나 전체 필터를 사용해 보세요.</p>
+        </div>
+
+        <div data-locale-block="en" lang="en" hidden data-nosnippet data-command-reference>
+          <p class="section-kicker">Command Reference</p>
+          <h2 class="section-title">Search commands</h2>
+          <p class="section-lead">Filter by command, purpose, or category when you need the exact thing to type.</p>
+          <div class="reference-toolbar">
+            <label class="sr-only" for="claudeCommandSearchEn">Search Claude Code commands</label>
+            <input id="claudeCommandSearchEn" class="reference-search" type="search" placeholder="Try: compact, MCP, review, permissions" data-command-search />
+            <div class="reference-filters" aria-label="Claude Code command filters">
+              <button class="reference-filter is-active" type="button" data-command-filter="all">All</button>
+              <button class="reference-filter" type="button" data-command-filter="session">Session</button>
+              <button class="reference-filter" type="button" data-command-filter="setup">Setup</button>
+              <button class="reference-filter" type="button" data-command-filter="workflow">Workflow</button>
+              <button class="reference-filter" type="button" data-command-filter="extend">Extend</button>
+            </div>
+            <p class="reference-count" data-command-count></p>
+          </div>
+          <div class="command-reference-list">
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="clear reset new conversation context">
+              <div class="command-reference-card__top"><code>/clear</code><span>Session</span></div>
+              <h3>Start a clean conversation</h3>
+              <p>Use this when the old context is no longer useful. The previous thread remains available through <code>/resume</code>.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="compact context summary token">
+              <div class="command-reference-card__top"><code>/compact [instructions]</code><span>Session</span></div>
+              <h3>Summarize a long thread to recover context</h3>
+              <p>Keep going in the same task while freeing context. Optional instructions can steer what the summary preserves.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="resume continue session restore">
+              <div class="command-reference-card__top"><code>/resume [session]</code><span>Session</span></div>
+              <h3>Resume a previous session</h3>
+              <p>Choose by session ID, name, or picker. Alias: <code>/continue</code>.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="rewind checkpoint undo rollback">
+              <div class="command-reference-card__top"><code>/rewind</code><span>Session</span></div>
+              <h3>Return to an earlier point</h3>
+              <p>Restore a previous conversation or code checkpoint. Aliases include <code>/checkpoint</code> and <code>/undo</code>.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="session" data-command-keywords="usage cost stats limit rate">
+              <div class="command-reference-card__top"><code>/usage</code><span>Session</span></div>
+              <h3>Check usage, cost, and limits</h3>
+              <p><code>/cost</code> and <code>/stats</code> are aliases into the usage view.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="config settings theme model output">
+              <div class="command-reference-card__top"><code>/config</code><span>Setup</span></div>
+              <h3>Open Claude Code settings</h3>
+              <p>The main entry point for theme, model, output style, and other interactive preferences.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="model effort opus sonnet">
+              <div class="command-reference-card__top"><code>/model [model]</code><span>Setup</span></div>
+              <h3>Change model for the current session</h3>
+              <p>Open the model picker or pass a model name. Supported models also expose effort controls.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="permissions allowed tools allow ask deny">
+              <div class="command-reference-card__top"><code>/permissions</code><span>Setup</span></div>
+              <h3>Manage tool permission rules</h3>
+              <p>Adjust allow, ask, and deny rules for reads, writes, Bash, and MCP tools. Alias: <code>/allowed-tools</code>.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="doctor diagnose install health">
+              <div class="command-reference-card__top"><code>/doctor</code><span>Setup</span></div>
+              <h3>Diagnose installation and settings</h3>
+              <p>The first health check to run when your Claude Code environment feels off.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="setup" data-command-keywords="init memory claude.md project guide">
+              <div class="command-reference-card__top"><code>/init</code> / <code>/memory</code><span>Setup</span></div>
+              <h3>Create and manage project memory</h3>
+              <p><code>/init</code> drafts <code>CLAUDE.md</code>. <code>/memory</code> manages memory files and auto-memory entries.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="review pr code review">
+              <div class="command-reference-card__top"><code>/review [PR]</code><span>Workflow</span></div>
+              <h3>Review a PR or local changes</h3>
+              <p>Ask Claude Code to inspect changes from a reviewer’s perspective inside the current session.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="security audit vulnerability">
+              <div class="command-reference-card__top"><code>/security-review</code><span>Workflow</span></div>
+              <h3>Review pending changes for security risk</h3>
+              <p>Looks for risks like injection, auth problems, and data exposure in current branch changes.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="diff changes git">
+              <div class="command-reference-card__top"><code>/diff</code><span>Workflow</span></div>
+              <h3>Inspect current and per-turn diffs</h3>
+              <p>Review the full git diff and the changes made across recent Claude turns.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="loop schedule recurring proactive">
+              <div class="command-reference-card__top"><code>/loop [interval] [prompt]</code><span>Workflow</span></div>
+              <h3>Run a prompt repeatedly</h3>
+              <p>Useful for waiting on deployment, polling state, or running a recurring check. Alias: <code>/proactive</code>.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="workflow" data-command-keywords="batch parallel worktree multi agent">
+              <div class="command-reference-card__top"><code>/batch &lt;instruction&gt;</code><span>Workflow</span></div>
+              <h3>Split large changes across parallel agents</h3>
+              <p>A bundled skill that researches the codebase, decomposes work, then uses isolated worktree agents after approval.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="extend" data-command-keywords="skills custom command skill.md commands">
+              <div class="command-reference-card__top"><code>/skills</code> / <code>SKILL.md</code><span>Extend</span></div>
+              <h3>Turn repeatable playbooks into skills</h3>
+              <p>Personal skills live in <code>~/.claude/skills/</code>. Project skills live in <code>.claude/skills/</code>. Legacy <code>.claude/commands/</code> files still work.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="extend" data-command-keywords="mcp server prompt tools github jira">
+              <div class="command-reference-card__top"><code>/mcp</code> / <code>/mcp__server__prompt</code><span>Extend</span></div>
+              <h3>Manage MCP servers and run MCP prompts</h3>
+              <p><code>/mcp</code> handles connection status and OAuth. Server prompts run like <code>/mcp__github__pr_review 456</code>.</p>
+            </article>
+            <article class="command-reference-card" data-command-entry data-command-category="extend" data-command-keywords="hooks lifecycle automation pretooluse posttooluse">
+              <div class="command-reference-card__top"><code>/hooks</code><span>Extend</span></div>
+              <h3>Inspect lifecycle hooks</h3>
+              <p>Review hooks for events like <code>PreToolUse</code>, <code>UserPromptSubmit</code>, and <code>SessionStart</code>.</p>
+            </article>
+          </div>
+          <p class="reference-empty" data-command-empty hidden>No commands found. Try another keyword or the All filter.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <p class="section-kicker">Practical Routines</p>
+          <h2 class="section-title">상황별로 이렇게 쓰면 빠릅니다</h2>
+          <div class="routine-grid">
+            <article class="routine-card">
+              <span>01</span>
+              <h3>새 저장소를 Claude Code에 태울 때</h3>
+              <p><code>/init</code>으로 프로젝트 기억을 만들고, <code>/permissions</code>로 도구 권한을 확인한 뒤, 반복 절차는 <code>.claude/skills/</code>로 빼세요.</p>
+            </article>
+            <article class="routine-card">
+              <span>02</span>
+              <h3>긴 작업이 엉키기 시작할 때</h3>
+              <p><code>/diff</code>로 변경을 확인하고, 계속 갈 작업이면 <code>/compact</code>, 방향이 틀렸으면 <code>/rewind</code>를 먼저 고려하세요.</p>
+            </article>
+            <article class="routine-card">
+              <span>03</span>
+              <h3>PR 전에 한 번 더 보고 싶을 때</h3>
+              <p><code>/review</code>로 일반 리뷰를 받고, 인증/권한/입력 처리 쪽 변경이면 <code>/security-review</code>를 추가하세요.</p>
+            </article>
+            <article class="routine-card">
+              <span>04</span>
+              <h3>팀 루틴을 자동화하고 싶을 때</h3>
+              <p>규칙은 <code>CLAUDE.md</code>, 반복 절차는 스킬, 외부 도구 연결은 MCP, 강제 정책은 hooks로 나누면 관리가 쉬워집니다.</p>
             </article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Use Cases</p>
-          <h2 class="section-title">Where this page helps most</h2>
-          <div class="command-list">
-            <article class="command-card">
-              <span class="command-pill">Return</span>
-              <h3>When you open Claude Code again after a break</h3>
-              <p>Recover the core commands first, then re-open the project extension points like custom commands and MCP once the session is moving again.</p>
+          <p class="section-kicker">Practical Routines</p>
+          <h2 class="section-title">Fast ways to use this in real work</h2>
+          <div class="routine-grid">
+            <article class="routine-card">
+              <span>01</span>
+              <h3>Starting a new repository</h3>
+              <p>Run <code>/init</code>, check tool access with <code>/permissions</code>, then move repeatable procedures into <code>.claude/skills/</code>.</p>
             </article>
-            <article class="command-card">
-              <span class="command-pill">Extend</span>
-              <h3>When you want to add project-level behavior</h3>
-              <p>Remembering <code>.claude/commands/</code>, hooks, and MCP command format is often enough to get back into extension work quickly.</p>
+            <article class="routine-card">
+              <span>02</span>
+              <h3>When a long task gets messy</h3>
+              <p>Use <code>/diff</code> to inspect changes, <code>/compact</code> if the direction is right, or <code>/rewind</code> if the path is wrong.</p>
+            </article>
+            <article class="routine-card">
+              <span>03</span>
+              <h3>Before opening a PR</h3>
+              <p>Run <code>/review</code> for general review and add <code>/security-review</code> for auth, permissions, or input-handling changes.</p>
+            </article>
+            <article class="routine-card">
+              <span>04</span>
+              <h3>Automating team behavior</h3>
+              <p>Keep facts in <code>CLAUDE.md</code>, procedures in skills, external integrations in MCP, and hard guardrails in hooks.</p>
             </article>
           </div>
         </div>
@@ -325,37 +558,45 @@
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
           <p class="section-kicker">Official Sources</p>
-          <h2 class="section-title">공식 문서로 바로 넘어갈 링크</h2>
+          <h2 class="section-title">공식 문서로 바로 확인</h2>
           <div class="source-list">
             <article class="source-card">
-              <a href="https://docs.anthropic.com/en/docs/claude-code/slash-commands" target="_blank" rel="noreferrer">Anthropic · Claude Code slash commands</a>
-              <p>기본 내장 명령과 커스텀 slash commands 구조를 다시 확인할 때.</p>
+              <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noreferrer">Claude Code Commands</a>
+              <p>내장 명령, 번들 스킬, MCP 프롬프트 명령 형식을 확인합니다.</p>
             </article>
             <article class="source-card">
-              <a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank" rel="noreferrer">Anthropic · Claude Code hooks</a>
-              <p>hooks matcher, 설정 파일 위치, 자동 셸 실행 구조를 볼 때.</p>
+              <a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noreferrer">Claude Code Skills</a>
+              <p>스킬 위치, <code>SKILL.md</code> 구조, 기존 <code>.claude/commands/</code>와의 관계를 확인합니다.</p>
             </article>
             <article class="source-card">
-              <a href="https://docs.anthropic.com/en/docs/claude-code/mcp" target="_blank" rel="noreferrer">Anthropic · Claude Code MCP</a>
-              <p>MCP 연결, 프롬프트 노출, slash command 형식을 다시 확인할 때.</p>
+              <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noreferrer">Claude Code MCP</a>
+              <p>MCP 서버 연결, 프롬프트 명령 실행, 관리형 MCP 구성을 확인합니다.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noreferrer">Claude Code Hooks</a>
+              <p>훅 이벤트, 설정 스키마, 입력/출력, 차단 동작을 확인합니다.</p>
             </article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">Official Sources</p>
-          <h2 class="section-title">Jump straight to the official docs</h2>
+          <h2 class="section-title">Jump to the official docs</h2>
           <div class="source-list">
             <article class="source-card">
-              <a href="https://docs.anthropic.com/en/docs/claude-code/slash-commands" target="_blank" rel="noreferrer">Anthropic · Claude Code slash commands</a>
-              <p>For the built-in command list and custom slash command structure.</p>
+              <a href="https://code.claude.com/docs/en/commands" target="_blank" rel="noreferrer">Claude Code Commands</a>
+              <p>Built-in commands, bundled skills, and MCP prompt command format.</p>
             </article>
             <article class="source-card">
-              <a href="https://docs.anthropic.com/en/docs/claude-code/hooks" target="_blank" rel="noreferrer">Anthropic · Claude Code hooks</a>
-              <p>For matcher structure, config file locations, and hook command behavior.</p>
+              <a href="https://code.claude.com/docs/en/skills" target="_blank" rel="noreferrer">Claude Code Skills</a>
+              <p>Skill locations, <code>SKILL.md</code> structure, and how legacy <code>.claude/commands/</code> files fit in.</p>
             </article>
             <article class="source-card">
-              <a href="https://docs.anthropic.com/en/docs/claude-code/mcp" target="_blank" rel="noreferrer">Anthropic · Claude Code MCP</a>
-              <p>For MCP connectivity, prompt exposure, and slash command format.</p>
+              <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noreferrer">Claude Code MCP</a>
+              <p>MCP server setup, prompt command execution, and managed MCP configuration.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://code.claude.com/docs/en/hooks" target="_blank" rel="noreferrer">Claude Code Hooks</a>
+              <p>Hook events, configuration schema, inputs, outputs, and blocking behavior.</p>
             </article>
           </div>
         </div>
@@ -363,7 +604,7 @@
     </main>
 
     <footer class="footer footer--dev" data-nosnippet>
-      <small>(c) 2025 stateless tools · unofficial summary based on Anthropic docs</small>
+      <small>© 2025 stateless tools · unofficial Claude Code summary based on official docs</small>
     </footer>
   </div>
 

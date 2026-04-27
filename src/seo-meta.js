@@ -33,9 +33,9 @@ export const PAGE_META = {
   'claude-code-cheatsheet': {
     path: '/claude-code-cheatsheet',
     kind: 'content',
-    title: 'Claude Code 치트시트 | 슬래시 명령, MCP, 훅, 커스텀 커맨드',
+    title: 'Claude Code 치트시트 | 명령어, 스킬, MCP, 훅 검색',
     description:
-      'Claude Code에서 자주 쓰는 슬래시 명령, MCP 프롬프트 형식, hooks 설정 위치, 커스텀 커맨드 경로를 빠르게 훑는 실전 치트시트입니다.',
+      'Claude Code 명령어, 스킬, MCP 프롬프트, hooks, 실전 루틴을 한 페이지에서 검색하고 공식 문서로 바로 이동하는 치트시트입니다.',
   },
   'codex-cheatsheet': {
     path: '/codex-cheatsheet',
