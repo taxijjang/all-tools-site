@@ -88,6 +88,7 @@
         <button id="encodeBtn" type="button" class="primary" data-i18n="base64.encode.button">인코딩</button>
 
         <label for="base64Output" data-i18n="base64.encode.result">Base64 결과</label>
+        <div id="base64EncodeStats" class="tool-inspector" aria-live="polite"></div>
         <div class="field-row">
           <textarea id="base64Output" rows="4" readonly></textarea>
           <button type="button" data-copy="base64Output" data-i18n="common.copy">복사</button>
@@ -114,6 +115,7 @@
         <button id="decodeBtn" type="button" class="primary" data-i18n="base64.decode.button">디코딩</button>
 
         <label for="plainOutput" data-i18n="base64.decode.result">문자열 결과</label>
+        <div id="base64DecodeStats" class="tool-inspector" aria-live="polite"></div>
         <div class="field-row">
           <textarea id="plainOutput" rows="4" readonly></textarea>
           <button type="button" data-copy="plainOutput" data-i18n="common.copy">복사</button>

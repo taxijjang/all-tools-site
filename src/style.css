@@ -2176,6 +2176,56 @@ button.link-button {
   margin-top: 1.25rem;
 }
 
+.tool-inspector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.55rem;
+}
+
+.tool-inspector:empty {
+  display: none;
+}
+
+.tool-inspector__item {
+  display: grid;
+  gap: 0.16rem;
+  min-width: 0;
+  padding: 0.58rem 0.68rem;
+  border: 1px solid color-mix(in srgb, var(--border) 82%, var(--primary));
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--surface-muted) 78%, transparent);
+}
+
+.tool-inspector__label {
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tool-inspector__value {
+  overflow-wrap: anywhere;
+  color: var(--text-main);
+  font-family: var(--font-code);
+  font-size: 0.88rem;
+  font-weight: 850;
+}
+
+.tool-inspector__item--ok {
+  border-color: color-mix(in srgb, var(--success) 42%, var(--border));
+}
+
+.tool-inspector__item--warn {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+}
+
+.tool-inspector__item--error {
+  border-color: color-mix(in srgb, var(--error) 55%, var(--border));
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;

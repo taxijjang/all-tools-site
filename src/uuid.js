@@ -1,5 +1,5 @@
 import './style.css';
-import { t } from './i18n.js';
+import { onLocaleChange, t } from './i18n.js';
 
 const randomUuidInput = document.getElementById('randomUuid');
 const generateBtn = document.getElementById('generateBtn');
@@ -12,12 +12,64 @@ const uuidVersionSelect = document.getElementById('uuidVersion');
 const bulkCountInput = document.getElementById('bulkCount');
 const bulkOutput = document.getElementById('bulkOutput');
 const bulkGenerateBtn = document.getElementById('bulkGenerateBtn');
+const uuidInspector = document.getElementById('uuidInspector');
 
 const ULID_ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+let lastGeneratedKind = 'v4';
+
+const inspectorCopy = {
+  ko: {
+    kind: '종류',
+    length: '길이',
+    sortable: '정렬',
+    storage: '저장',
+    random: '랜덤',
+    timeOrdered: '시간순',
+    binary16: 'binary(16)',
+    text: 'text',
+  },
+  en: {
+    kind: 'Kind',
+    length: 'Length',
+    sortable: 'Sort',
+    storage: 'Storage',
+    random: 'Random',
+    timeOrdered: 'Time ordered',
+    binary16: 'binary(16)',
+    text: 'text',
+  },
+};
 
 function showMessage(text, isError = false) {
   uuidMessage.textContent = text;
   uuidMessage.classList.toggle('message--error', isError);
+}
+
+function getInspectorCopy(locale = document.documentElement.getAttribute('lang') || 'ko') {
+  return inspectorCopy[locale] || inspectorCopy.en;
+}
+
+function renderInspector(value = randomUuidInput.value, kind = lastGeneratedKind) {
+  if (!uuidInspector || !value) return;
+  const copy = getInspectorCopy();
+  const isUlid = kind === 'ulid';
+  const entries = [
+    [copy.kind, isUlid ? 'ULID' : 'UUID v4'],
+    [copy.length, `${value.length}`],
+    [copy.sortable, isUlid ? copy.timeOrdered : copy.random, isUlid ? 'ok' : ''],
+    [copy.storage, isUlid ? copy.text : copy.binary16],
+  ];
+
+  uuidInspector.innerHTML = entries
+    .map(
+      ([label, value, state = '']) => `
+        <div class="tool-inspector__item${state ? ` tool-inspector__item--${state}` : ''}">
+          <span class="tool-inspector__label">${label}</span>
+          <span class="tool-inspector__value">${value}</span>
+        </div>
+      `,
+    )
+    .join('');
 }
 
 function copyValue(targetId) {
@@ -58,15 +110,18 @@ function formatUuid(hex) {
 }
 
 function generateUlid() {
-  const time = Date.now();
-  let timestamp = time.toString(32).toUpperCase();
-  timestamp = timestamp.padStart(8, '0');
-  const randomBytes = crypto.getRandomValues(new Uint8Array(10));
+  let time = Date.now();
+  let timestamp = '';
+  for (let i = 0; i < 10; i += 1) {
+    timestamp = ULID_ALPHABET[time % 32] + timestamp;
+    time = Math.floor(time / 32);
+  }
+  const randomBytes = crypto.getRandomValues(new Uint8Array(16));
   let randomPart = '';
   randomBytes.forEach((byte) => {
-    randomPart += ULID_ALPHABET[byte % ULID_ALPHABET.length];
+    randomPart += ULID_ALPHABET[byte % 32];
   });
-  return (timestamp + randomPart).slice(0, 26);
+  return `${timestamp}${randomPart}`;
 }
 
 function generateIdentifier() {
@@ -79,7 +134,9 @@ function generateIdentifier() {
 
 generateBtn.addEventListener('click', () => {
   const value = generateIdentifier();
+  lastGeneratedKind = uuidVersionSelect?.value || 'v4';
   randomUuidInput.value = value;
+  renderInspector(value, lastGeneratedKind);
   showMessage(t('messages.uuid.randomGenerated'));
 });
 
@@ -112,8 +169,16 @@ bulkGenerateBtn?.addEventListener('click', () => {
   bulkCountInput.value = count;
   const values = Array.from({ length: count }, () => generateIdentifier());
   bulkOutput.value = values.join('\n');
+  lastGeneratedKind = uuidVersionSelect?.value || 'v4';
+  renderInspector(values[0], lastGeneratedKind);
   showMessage(t('messages.uuid.bulkGenerated', { count }));
 });
 
 // 초기 UUID 준비
+lastGeneratedKind = uuidVersionSelect?.value || 'v4';
 randomUuidInput.value = generateIdentifier();
+renderInspector(randomUuidInput.value, lastGeneratedKind);
+
+onLocaleChange(() => {
+  renderInspector(randomUuidInput.value, lastGeneratedKind);
+});

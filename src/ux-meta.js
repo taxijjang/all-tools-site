@@ -80,6 +80,45 @@ export const TOOL_CATEGORY_MAP = {
   '/file-hash': 'file',
 };
 
+export const HOME_SEARCH_KEYWORDS = {
+  '/ai-tools': 'ai coding assistant command cheatsheet claude codex slash prompt mcp hooks skills',
+  '/claude-code-cheatsheet':
+    'claude code claude-code slash command compact clear resume mcp hooks skills claude md anthropic',
+  '/codex-cheatsheet':
+    'codex openai cli mode personality skills automations agents worktree approval full auto auto edit',
+  '/uuid': 'uuid guid random v4 ulid binary16 hex request id trace id correlation id db primary key',
+  '/base64': 'base64 b64 encode decode url safe data url atob btoa binary file token payload',
+  '/json': 'json formatter validator pretty print minify parse tree api response payload config log',
+  '/jwt': 'jwt decoder token claims exp nbf iat jwks verify bearer oidc oauth base64url',
+  '/url': 'url encode decode percent encoding query string uri component escape unescape',
+  '/hash': 'sha sha256 sha512 digest checksum hash hmac integrity',
+  '/cron': 'cron crontab schedule parser next run linux job expression',
+  '/timestamp': 'unix epoch timestamp date timezone iso utc milliseconds seconds',
+  '/password': 'password generator random secure passphrase entropy',
+  '/regex': 'regex regexp regular expression tester match replace flags pattern',
+  '/qr': 'qr qrcode generator scanner wifi scan image',
+  '/diff': 'diff compare text patch changed lines',
+  '/color': 'color hex rgb hsl contrast wcag palette',
+  '/markdown': 'markdown md preview html render readme',
+  '/convert': 'unit converter length weight temperature',
+  '/file-hash': 'file hash sha256 checksum integrity download verify',
+  '/image-base64': 'image base64 data url encode decode png jpg webp svg',
+  '/uuidv7': 'uuid v7 uuidv7 time ordered sortable id database index',
+  '/case-convert': 'case convert camel snake kebab pascal title slug',
+  '/json-yaml': 'json yaml yml convert csv config kubernetes',
+  '/query-builder': 'query builder url params search params encode utm',
+  '/ip-ua': 'ip user agent ua browser locale timezone',
+  '/ip-cidr': 'cidr ip subnet netmask broadcast host range ipv4',
+  '/text-stats': 'text stats count words characters lines reading time',
+  '/pdf-toolkit': 'pdf merge split extract watermark metadata text',
+  '/image-optimize': 'image optimize compress resize webp jpeg png quality',
+  '/ocr': 'ocr text extract image screenshot scan korean english tesseract',
+  '/seo-check': 'seo meta title description canonical og robots json ld search console adsense',
+  '/utm-builder': 'utm campaign source medium url analytics tracking',
+  '/text-cleaner': 'text cleaner dedupe trim whitespace sort slugify normalize',
+  '/api-tester': 'api tester http request curl fetch rest headers json response',
+};
+
 export const FILE_PICKER_META = {
   'base64:fileInput': {
     hint: {

@@ -1,5 +1,5 @@
 import './style.css';
-import { t } from './i18n.js';
+import { onLocaleChange, t } from './i18n.js';
 
 const plainInput = document.getElementById('plainInput');
 const base64Output = document.getElementById('base64Output');
@@ -12,10 +12,81 @@ const base64Message = document.getElementById('base64Message');
 const fileInput = document.getElementById('fileInput');
 const downloadFileBtn = document.getElementById('downloadFileBtn');
 const downloadFileName = document.getElementById('downloadFileName');
+const encodeStatsEl = document.getElementById('base64EncodeStats');
+const decodeStatsEl = document.getElementById('base64DecodeStats');
+
+const statsCopy = {
+  ko: {
+    inputBytes: '입력',
+    outputChars: '출력',
+    overhead: '증가',
+    mode: '모드',
+    decodedBytes: '복원',
+    urlSafe: 'URL-safe',
+    standard: 'Standard',
+  },
+  en: {
+    inputBytes: 'Input',
+    outputChars: 'Output',
+    overhead: 'Overhead',
+    mode: 'Mode',
+    decodedBytes: 'Decoded',
+    urlSafe: 'URL-safe',
+    standard: 'Standard',
+  },
+};
 
 function showMessage(text, isError = false) {
   base64Message.textContent = text;
   base64Message.classList.toggle('message--error', isError);
+}
+
+function getStatsCopy(locale = document.documentElement.getAttribute('lang') || 'ko') {
+  return statsCopy[locale] || statsCopy.en;
+}
+
+function formatBytes(bytes) {
+  if (!Number.isFinite(bytes) || bytes < 0) return '0 B';
+  if (bytes < 1024) return `${bytes} B`;
+  return `${(bytes / 1024).toFixed(bytes >= 10240 ? 0 : 1)} KB`;
+}
+
+function renderInspector(target, entries) {
+  if (!target) return;
+  target.innerHTML = entries
+    .map(
+      ([label, value, state = '']) => `
+        <div class="tool-inspector__item${state ? ` tool-inspector__item--${state}` : ''}">
+          <span class="tool-inspector__label">${label}</span>
+          <span class="tool-inspector__value">${value}</span>
+        </div>
+      `,
+    )
+    .join('');
+}
+
+function renderEncodeStats() {
+  const copy = getStatsCopy();
+  const inputBytes = new TextEncoder().encode(plainInput.value || '').length;
+  const outputLength = base64Output.value.length;
+  const overhead = inputBytes ? `${Math.round((outputLength / inputBytes - 1) * 100)}%` : '0%';
+  renderInspector(encodeStatsEl, [
+    [copy.inputBytes, formatBytes(inputBytes)],
+    [copy.outputChars, `${outputLength}`],
+    [copy.overhead, overhead, outputLength > inputBytes ? 'warn' : ''],
+    [copy.mode, urlSafeEncode.checked ? copy.urlSafe : copy.standard],
+  ]);
+}
+
+function renderDecodeStats() {
+  const copy = getStatsCopy();
+  const cleanInput = sanitizeBase64(base64Input.value);
+  const decodedBytes = new TextEncoder().encode(plainOutput.value || '').length;
+  renderInspector(decodeStatsEl, [
+    [copy.inputBytes, `${cleanInput.length}`],
+    [copy.decodedBytes, formatBytes(decodedBytes)],
+    [copy.mode, urlSafeDecode.checked ? copy.urlSafe : copy.standard],
+  ]);
 }
 
 function copyValue(targetId) {
@@ -107,6 +178,7 @@ document.getElementById('encodeBtn').addEventListener('click', () => {
   try {
     const base64 = utf8ToBase64(plainInput.value || '');
     base64Output.value = urlSafeEncode.checked ? toUrlSafe(base64) : base64;
+    renderEncodeStats();
     showMessage(t('messages.base64.encodeSuccess'));
   } catch (err) {
     showMessage(t('messages.base64.encodeError'), true);
@@ -117,6 +189,7 @@ document.getElementById('decodeBtn').addEventListener('click', () => {
   try {
     const input = sanitizeBase64(base64Input.value);
     plainOutput.value = base64ToUtf8(input);
+    renderDecodeStats();
     showMessage(t('messages.base64.decodeSuccess'));
   } catch (err) {
     showMessage(t('messages.base64.decodeError'), true);
@@ -134,6 +207,7 @@ fileInput?.addEventListener('change', async () => {
     }
     base64Output.value = base64;
     plainInput.value = '';
+    renderEncodeStats();
     showMessage(t('messages.base64.fileEncoded', { name: file.name }));
   } catch (err) {
     showMessage(t('messages.base64.fileError'), true);
@@ -151,8 +225,14 @@ downloadFileBtn?.addEventListener('click', () => {
     }
     const bytes = base64ToBytes(input);
     downloadBytes(bytes, downloadFileName?.value || 'decoded.bin');
+    renderDecodeStats();
     showMessage(t('messages.base64.fileDecoded'));
   } catch (err) {
     showMessage(t('messages.base64.fileError'), true);
   }
+});
+
+onLocaleChange(() => {
+  if (base64Output.value) renderEncodeStats();
+  if (plainOutput.value || base64Input.value) renderDecodeStats();
 });

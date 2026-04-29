@@ -7,8 +7,10 @@ const dom = {
   run: document.getElementById('seoRunBtn'),
   sample: document.getElementById('seoSampleBtn'),
   output: document.getElementById('seoOutput'),
+  inspector: document.getElementById('seoInspector'),
   message: document.getElementById('seoMessage'),
 };
+let lastResult = null;
 
 const SAMPLE_URL = 'https://example.com/blog/base64-guide';
 
@@ -45,6 +47,12 @@ const SEO_COPY = {
     summary: '요약',
     source: '분석 기준',
     recommendations: '권장 조치',
+    title: 'Title',
+    description: 'Description',
+    h1: 'H1',
+    canonical: 'Canonical',
+    jsonLd: 'JSON-LD',
+    fixes: '수정',
     sourceHtml: '붙여 넣은 HTML',
     sourceUrl: '직접 조회한 URL',
     statusOk: 'OK',
@@ -74,6 +82,12 @@ const SEO_COPY = {
     summary: 'Summary',
     source: 'Source',
     recommendations: 'Recommendations',
+    title: 'Title',
+    description: 'Description',
+    h1: 'H1',
+    canonical: 'Canonical',
+    jsonLd: 'JSON-LD',
+    fixes: 'Fixes',
     sourceHtml: 'Pasted HTML',
     sourceUrl: 'Fetched URL',
     statusOk: 'OK',
@@ -128,6 +142,40 @@ function setMessage(text, error = false) {
 function getStatus(statusKey) {
   const copy = getCopy();
   return copy[statusKey] || statusKey;
+}
+
+function renderInspector(result) {
+  if (!dom.inspector) return;
+  if (!result) {
+    dom.inspector.innerHTML = '';
+    return;
+  }
+
+  const copy = getCopy();
+  const statusState = {
+    statusOk: 'ok',
+    statusWarn: 'warn',
+    statusMissing: 'error',
+  };
+  const entries = [
+    [copy.title, `${result.titleLength}`, statusState[result.titleStatus]],
+    [copy.description, `${result.descriptionLength}`, statusState[result.descriptionStatus]],
+    [copy.h1, getStatus(result.h1Status), statusState[result.h1Status]],
+    [copy.canonical, getStatus(result.canonicalStatus), statusState[result.canonicalStatus]],
+    [copy.jsonLd, `${result.jsonLdCount}`, statusState[result.jsonLdStatus]],
+    [copy.fixes, `${result.recommendationCount}`, result.recommendationCount ? 'warn' : 'ok'],
+  ];
+
+  dom.inspector.innerHTML = entries
+    .map(
+      ([label, value, state = '']) => `
+        <div class="tool-inspector__item${state ? ` tool-inspector__item--${state}` : ''}">
+          <span class="tool-inspector__label">${label}</span>
+          <span class="tool-inspector__value">${value}</span>
+        </div>
+      `,
+    )
+    .join('');
 }
 
 function buildMetric(status, label, value, detail = '') {
@@ -210,7 +258,13 @@ function analyzeHtml(html, sourceKind) {
     report: `${summary.join('\n')}\n\n${copy.recommendations}\n${recommendationLines.join('\n')}`,
     recommendationCount: recommendations.length,
     titleLength: title.length,
+    titleStatus,
     descriptionLength: description.length,
+    descriptionStatus,
+    h1Status,
+    canonicalStatus,
+    jsonLdStatus,
+    jsonLdCount,
   };
 }
 
@@ -236,17 +290,23 @@ async function run() {
     } catch {
       setMessage(t('messages.seo.fetchFailed'), true);
       dom.output.value = getCopy().useHtmlFallback;
+      lastResult = null;
+      renderInspector(null);
       return;
     }
   }
 
   if (!html) {
     setMessage(t('messages.seo.needInput'), true);
+    lastResult = null;
+    renderInspector(null);
     return;
   }
 
   const result = analyzeHtml(html, sourceKind);
+  lastResult = result;
   dom.output.value = result.report;
+  renderInspector(result);
   window.statelessTools?.trackToolInteraction?.('seo_audit_complete', {
     source_kind: sourceKind,
     recommendation_count: result.recommendationCount,
@@ -270,4 +330,5 @@ onLocaleChange(() => {
   if (dom.output.value.trim() === getCopy('en').useHtmlFallback || dom.output.value.trim() === getCopy('ko').useHtmlFallback) {
     dom.output.value = getCopy().useHtmlFallback;
   }
+  renderInspector(lastResult);
 });

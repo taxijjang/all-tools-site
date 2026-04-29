@@ -4,6 +4,7 @@ import {
   FILE_PICKER_META,
   HOME_DISCOVERY_COPY,
   HOME_FILTERS,
+  HOME_SEARCH_KEYWORDS,
   HOME_SPOTLIGHTS,
   HOME_WORKFLOWS,
   QUICK_START_META,
@@ -639,6 +640,7 @@ function setupHomeDiscovery() {
   cards.forEach((card) => {
     const path = getToolPath(card.getAttribute('href'));
     card.dataset.category = TOOL_CATEGORY_MAP[path] || 'ops';
+    card.dataset.searchTerms = HOME_SEARCH_KEYWORDS[path] || '';
     card.classList.toggle('card--featured', FEATURED_HOME_PATHS.has(path));
 
     let meta = card.querySelector('.card__meta');
@@ -881,7 +883,9 @@ function setupHomeDiscovery() {
     let firstVisibleCard = null;
 
     cards.forEach((card) => {
-      const cardText = `${card.textContent || ''} ${card.getAttribute('href') || ''}`.toLowerCase();
+      const cardText = `${card.textContent || ''} ${card.getAttribute('href') || ''} ${
+        card.dataset.searchTerms || ''
+      }`.toLowerCase();
       const matchesFilter = activeFilter === 'all' || card.dataset.category === activeFilter;
       const matchesQuery = !query || cardText.includes(query);
       const isVisible = matchesFilter && matchesQuery;

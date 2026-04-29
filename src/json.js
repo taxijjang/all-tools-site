@@ -1,5 +1,5 @@
 import './style.css';
-import { t } from './i18n.js';
+import { onLocaleChange, t } from './i18n.js';
 
 const jsonInput = document.getElementById('jsonInput');
 const jsonOutput = document.getElementById('jsonOutput');
@@ -9,6 +9,32 @@ const jsonHighlight = document.getElementById('jsonHighlight');
 const jsonTree = document.getElementById('jsonTree');
 const jsonSearch = document.getElementById('jsonSearch');
 const collapseTreeBtn = document.getElementById('collapseTreeBtn');
+const jsonStats = document.getElementById('jsonStats');
+let lastParsedValue = null;
+let lastFormattedValue = '';
+
+const statsCopy = {
+  ko: {
+    type: '타입',
+    topKeys: '상위 키',
+    depth: '깊이',
+    nodes: '노드',
+    size: '크기',
+    array: '배열',
+    object: '객체',
+    primitive: '값',
+  },
+  en: {
+    type: 'Type',
+    topKeys: 'Top keys',
+    depth: 'Depth',
+    nodes: 'Nodes',
+    size: 'Size',
+    array: 'Array',
+    object: 'Object',
+    primitive: 'Value',
+  },
+};
 
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
@@ -37,6 +63,81 @@ function summarizeJson(value) {
     return t('json.meta.object', { count: keys.length, examples });
   }
   return t('json.meta.primitive', { type: typeof value });
+}
+
+function getStatsCopy(locale = document.documentElement.getAttribute('lang') || 'ko') {
+  return statsCopy[locale] || statsCopy.en;
+}
+
+function formatBytes(bytes) {
+  if (!Number.isFinite(bytes)) return '0 B';
+  if (bytes < 1024) return `${bytes} B`;
+  return `${(bytes / 1024).toFixed(bytes >= 10240 ? 0 : 1)} KB`;
+}
+
+function collectJsonStats(value, depth = 1) {
+  if (Array.isArray(value)) {
+    return value.reduce(
+      (stats, child) => {
+        const childStats = collectJsonStats(child, depth + 1);
+        return {
+          depth: Math.max(stats.depth, childStats.depth),
+          objects: stats.objects + childStats.objects,
+          arrays: stats.arrays + childStats.arrays,
+          primitives: stats.primitives + childStats.primitives,
+        };
+      },
+      { depth, objects: 0, arrays: 1, primitives: 0 },
+    );
+  }
+
+  if (value && typeof value === 'object') {
+    return Object.values(value).reduce(
+      (stats, child) => {
+        const childStats = collectJsonStats(child, depth + 1);
+        return {
+          depth: Math.max(stats.depth, childStats.depth),
+          objects: stats.objects + childStats.objects,
+          arrays: stats.arrays + childStats.arrays,
+          primitives: stats.primitives + childStats.primitives,
+        };
+      },
+      { depth, objects: 1, arrays: 0, primitives: 0 },
+    );
+  }
+
+  return { depth, objects: 0, arrays: 0, primitives: 1 };
+}
+
+function renderStats(value = lastParsedValue, formatted = lastFormattedValue) {
+  if (!jsonStats) return;
+  if (value == null && !formatted) {
+    jsonStats.innerHTML = '';
+    return;
+  }
+
+  const copy = getStatsCopy();
+  const topKeys = value && typeof value === 'object' && !Array.isArray(value) ? Object.keys(value) : [];
+  const stats = collectJsonStats(value);
+  const type = Array.isArray(value) ? copy.array : value && typeof value === 'object' ? copy.object : copy.primitive;
+  const entries = [
+    [copy.type, type],
+    [copy.topKeys, topKeys.length ? topKeys.slice(0, 3).join(', ') : '—'],
+    [copy.depth, String(stats.depth)],
+    [copy.nodes, `${stats.objects + stats.arrays + stats.primitives}`],
+    [copy.size, formatBytes(new TextEncoder().encode(formatted || '').length)],
+  ];
+
+  jsonStats.innerHTML = entries
+    .map(
+      ([label, value]) => `
+        <div class="tool-inspector__item">
+          <span class="tool-inspector__label">${escapeHtml(label)}</span>
+          <span class="tool-inspector__value">${escapeHtml(value)}</span>
+        </div>
+      `,
+    )
+    .join('');
 }
 
 function escapeHtml(str) {
@@ -142,16 +243,22 @@ function formatJson({ pretty = true } = {}) {
       jsonHighlight.innerHTML = '';
       jsonTree.innerHTML = '';
       jsonMeta.textContent = t('json.meta.empty');
+      lastParsedValue = null;
+      lastFormattedValue = '';
+      renderStats();
       showMessage(t('messages.json.empty'));
       return;
     }
 
     const parsed = JSON.parse(trimmed);
     const formatted = pretty ? JSON.stringify(parsed, null, 2) : JSON.stringify(parsed);
+    lastParsedValue = parsed;
+    lastFormattedValue = formatted;
     jsonOutput.value = formatted;
     jsonHighlight.innerHTML = highlightJson(JSON.stringify(parsed, null, 2));
     renderTree(parsed);
     jsonMeta.textContent = summarizeJson(parsed);
+    renderStats(parsed, formatted);
     showMessage(pretty ? t('messages.json.pretty') : t('messages.json.compact'));
     applySearchFilter(jsonSearch.value);
   } catch (err) {
@@ -169,6 +276,9 @@ document.getElementById('clearBtn').addEventListener('click', () => {
   jsonHighlight.innerHTML = '';
   jsonTree.innerHTML = '';
   jsonMeta.textContent = t('json.meta.empty');
+  lastParsedValue = null;
+  lastFormattedValue = '';
+  renderStats();
   showMessage(t('messages.json.cleared'));
 });
 
@@ -199,3 +309,7 @@ if (collapseTreeBtn) {
     collapseTree();
   });
 }
+
+onLocaleChange(() => {
+  renderStats();
+});

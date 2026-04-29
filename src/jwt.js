@@ -11,6 +11,8 @@ const jwksUrlEl = document.getElementById('jwtJwksUrl');
 const verifyBtn = document.getElementById('jwtVerifyBtn');
 const verifyOutputEl = document.getElementById('jwtVerifyOutput');
 const verifySectionEl = jwksUrlEl?.closest('section');
+const inspectorEl = document.getElementById('jwtInspector');
+let lastDecoded = null;
 
 const verifyCopy = {
   ko: {
@@ -25,9 +27,117 @@ const verifyCopy = {
   },
 };
 
+const inspectorCopy = {
+  ko: {
+    alg: '알고리즘',
+    typ: '타입',
+    issuer: '발급자',
+    subject: '주체',
+    audience: '대상',
+    expiry: '만료',
+    notBefore: 'nbf',
+    signature: '서명',
+    missing: '없음',
+    unsigned: '검증 전',
+    expired: '만료됨',
+    valid: '유효',
+    pending: '대기',
+    active: '활성',
+  },
+  en: {
+    alg: 'Algorithm',
+    typ: 'Type',
+    issuer: 'Issuer',
+    subject: 'Subject',
+    audience: 'Audience',
+    expiry: 'Expiry',
+    notBefore: 'nbf',
+    signature: 'Signature',
+    missing: 'Missing',
+    unsigned: 'Not verified',
+    expired: 'Expired',
+    valid: 'Valid',
+    pending: 'Pending',
+    active: 'Active',
+  },
+};
+
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
   messageEl.classList.toggle('message--error', isError);
+}
+
+function escapeHtml(value = '') {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
+
+function getInspectorCopy(locale = document.documentElement.getAttribute('lang') || 'ko') {
+  return inspectorCopy[locale] || inspectorCopy.en;
+}
+
+function formatClaimTime(value, labels) {
+  if (typeof value !== 'number') {
+    return { value: labels.missing, state: 'warn' };
+  }
+
+  const now = Math.floor(Date.now() / 1000);
+  const date = new Date(value * 1000).toISOString().slice(0, 19).replace('T', ' ');
+  if (value < now) {
+    return { value: `${labels.expired} · ${date}`, state: 'error' };
+  }
+
+  return { value: `${labels.valid} · ${date}`, state: 'ok' };
+}
+
+function formatNbf(value, labels) {
+  if (typeof value !== 'number') {
+    return { value: labels.missing, state: '' };
+  }
+
+  const now = Math.floor(Date.now() / 1000);
+  const date = new Date(value * 1000).toISOString().slice(0, 19).replace('T', ' ');
+  return value > now
+    ? { value: `${labels.pending} · ${date}`, state: 'warn' }
+    : { value: `${labels.active} · ${date}`, state: 'ok' };
+}
+
+function renderInspector(decoded = lastDecoded) {
+  if (!inspectorEl) return;
+  if (!decoded) {
+    inspectorEl.innerHTML = '';
+    return;
+  }
+
+  const copy = getInspectorCopy();
+  const { header, payload, signatureVerified = false } = decoded;
+  const expiry = formatClaimTime(payload.exp, copy);
+  const nbf = formatNbf(payload.nbf, copy);
+  const audience = Array.isArray(payload.aud) ? payload.aud.join(', ') : payload.aud;
+  const entries = [
+    [copy.alg, header.alg || copy.missing, header.alg ? '' : 'warn'],
+    [copy.typ, header.typ || copy.missing],
+    [copy.issuer, payload.iss || copy.missing],
+    [copy.subject, payload.sub || copy.missing],
+    [copy.audience, audience || copy.missing],
+    [copy.expiry, expiry.value, expiry.state],
+    [copy.notBefore, nbf.value, nbf.state],
+    [copy.signature, signatureVerified ? copy.valid : copy.unsigned, signatureVerified ? 'ok' : 'warn'],
+  ];
+
+  inspectorEl.innerHTML = entries
+    .map(
+      ([label, value, state = '']) => `
+        <div class="tool-inspector__item${state ? ` tool-inspector__item--${state}` : ''}">
+          <span class="tool-inspector__label">${escapeHtml(label)}</span>
+          <span class="tool-inspector__value">${escapeHtml(value)}</span>
+        </div>
+      `,
+    )
+    .join('');
 }
 
 function applyVerifyCopy(locale = document.documentElement.getAttribute('lang') || 'ko') {
@@ -101,9 +211,11 @@ function decodeJwt() {
 
     const header = JSON.parse(base64UrlDecode(parts[0]));
     const payload = JSON.parse(base64UrlDecode(parts[1]));
+    lastDecoded = { header, payload, signatureVerified: false };
     headerEl.textContent = prettyPrint(header);
     payloadEl.textContent = prettyPrint(payload);
     describeClaims(payload);
+    renderInspector();
     showMessage(t('jwt.success'));
   } catch {
     showMessage(t('jwt.error.decode'), true);
@@ -139,6 +251,11 @@ async function verifyJwtSignature() {
 
     const cryptoKey = await importJWK(key, key.alg || header.alg || 'RS256');
     const verified = await jwtVerify(token, cryptoKey, {});
+    lastDecoded = {
+      header,
+      payload: verified.payload,
+      signatureVerified: true,
+    };
     verifyOutputEl.value = JSON.stringify(
       {
         verified: true,
@@ -149,6 +266,7 @@ async function verifyJwtSignature() {
       null,
       2,
     );
+    renderInspector();
     showMessage(t('jwt.verify.success'));
   } catch (error) {
     verifyOutputEl.value = '';
@@ -164,11 +282,16 @@ document.getElementById('jwtClearBtn').addEventListener('click', () => {
   payloadEl.textContent = '';
   metaEl.textContent = '';
   verifyOutputEl.value = '';
+  lastDecoded = null;
+  renderInspector();
   showMessage('');
 });
 
 applyVerifyCopy();
-onLocaleChange((locale) => applyVerifyCopy(locale));
+onLocaleChange((locale) => {
+  applyVerifyCopy(locale);
+  renderInspector();
+});
 
 document.getElementById('jwtSampleBtn').addEventListener('click', () => {
   const sample =
