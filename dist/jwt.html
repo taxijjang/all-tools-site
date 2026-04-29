@@ -16,8 +16,8 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/jwt-BVDeQzlm.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-D4phoUmr.js">
+  <script type="module" crossorigin src="/assets/jwt-HM4TiV3R.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Wks8RwJw.js">
   <link rel="stylesheet" crossorigin href="/assets/site-Dfk_M1kM.css">
   <script data-client-boot>
     (function () {
@@ -174,6 +174,37 @@
     "publisher": {
       "@id": "https://all-tools-site.pages.dev/#organization"
     }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://all-tools-site.pages.dev/jwt#faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "JWT 디코딩만으로 토큰을 신뢰할 수 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "아니요. 디코딩은 내용을 읽는 단계이고, 토큰을 신뢰하려면 issuer와 audience 확인 및 서명 검증이 필요합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "JWT exp와 nbf는 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "exp는 만료 시간, nbf는 not before 시간을 의미합니다. 두 값은 보통 Unix timestamp라서 서버 시간 차이와 함께 확인해야 합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "JWT payload에 민감한 정보를 넣어도 되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JWT payload는 Base64URL로 인코딩되어 쉽게 읽을 수 있으므로 비밀값이나 민감한 개인정보를 담는 구조는 피하는 것이 좋습니다."
+        }
+      }
+    ]
   }
 ]
   </script>
@@ -421,7 +452,7 @@
     </section>
 
     <footer class="footer footer--dev" data-nosnippet>
-      <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
+      <small data-i18n="common.footerJwt">© 2025 stateless tools · JWT 디코딩과 JWKS 검증은 브라우저에서 처리됩니다.</small>
     </footer>
   </div>
 </body>

@@ -337,6 +337,22 @@ function buildStructuredData(meta, pageTitle, description, canonicalUrl) {
     });
   }
 
+  if (Array.isArray(meta.faq) && meta.faq.length) {
+    structuredData.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      '@id': `${canonicalUrl}#faq`,
+      mainEntity: meta.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    });
+  }
+
   return structuredData;
 }
 

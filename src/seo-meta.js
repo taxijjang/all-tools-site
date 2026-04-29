@@ -114,6 +114,23 @@ export const PAGE_META = {
     description:
       'UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.',
     applicationCategory: 'DeveloperApplication',
+    faq: [
+      {
+        question: 'UUID hex(binary16)은 왜 사용하나요?',
+        answer:
+          'UUID 문자열에서 하이픈을 제거한 32자리 16진수 형태로, 일부 데이터베이스의 binary 컬럼 저장이나 레거시 데이터 비교에 유용합니다.',
+      },
+      {
+        question: 'UUID v4와 UUID v7 중 어떤 것을 선택해야 하나요?',
+        answer:
+          '일반적인 무작위 식별자는 UUID v4가 단순하고, 생성 순서나 시간 정렬이 중요하면 UUID v7이 더 적합합니다.',
+      },
+      {
+        question: 'UUID 변환 값이 서버로 전송되나요?',
+        answer:
+          '이 도구의 UUID 생성과 형식 변환은 브라우저 안에서 처리되며 입력값을 별도 서버로 업로드하지 않습니다.',
+      },
+    ],
   },
   base64: {
     path: '/base64',
@@ -122,6 +139,23 @@ export const PAGE_META = {
     description:
       '문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
+    faq: [
+      {
+        question: 'Base64는 암호화인가요?',
+        answer:
+          '아니요. Base64는 데이터를 다른 문자 표현으로 바꾸는 인코딩일 뿐이며 누구나 다시 디코딩할 수 있습니다.',
+      },
+      {
+        question: 'Base64 결과가 원본보다 길어지는 이유는 무엇인가요?',
+        answer:
+          'Base64는 3바이트를 4개의 출력 문자로 표현하므로 일반적으로 원본보다 약 33% 정도 길어집니다.',
+      },
+      {
+        question: 'URL-safe Base64는 언제 쓰나요?',
+        answer:
+          'Base64 값을 URL 파라미터, 콜백 URL, 짧은 토큰처럼 URL 안에서 전달해야 할 때 예약 문자를 피하기 위해 사용합니다.',
+      },
+    ],
   },
   json: {
     path: '/json',
@@ -130,6 +164,23 @@ export const PAGE_META = {
     description:
       'JSON 유효성 검사, 포맷/압축, 키 검색, 트리 뷰 확인까지 한 번에 할 수 있는 브라우저 도구입니다.',
     applicationCategory: 'DeveloperApplication',
+    faq: [
+      {
+        question: 'JSON 포매터는 어떤 오류를 가장 자주 잡아주나요?',
+        answer:
+          '누락된 큰따옴표, 마지막 쉼표, 잘못된 괄호, 문자열 안의 이스케이프 오류처럼 표준 JSON 파서가 거부하는 문법 문제를 빠르게 확인할 수 있습니다.',
+      },
+      {
+        question: 'JSON 포맷과 압축은 언제 각각 사용하나요?',
+        answer:
+          '사람이 읽고 검토할 때는 포맷을 사용하고, 전송 크기를 줄이거나 한 줄 payload가 필요할 때는 압축을 사용합니다.',
+      },
+      {
+        question: '붙여넣은 JSON이 서버로 전송되나요?',
+        answer:
+          'JSON 검증과 포맷팅은 브라우저 메모리에서 수행되며 입력값을 별도 서버로 업로드하지 않습니다.',
+      },
+    ],
   },
   jwt: {
     path: '/jwt',
@@ -138,6 +189,23 @@ export const PAGE_META = {
     description:
       'JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.',
     applicationCategory: 'DeveloperApplication',
+    faq: [
+      {
+        question: 'JWT 디코딩만으로 토큰을 신뢰할 수 있나요?',
+        answer:
+          '아니요. 디코딩은 내용을 읽는 단계이고, 토큰을 신뢰하려면 issuer와 audience 확인 및 서명 검증이 필요합니다.',
+      },
+      {
+        question: 'JWT exp와 nbf는 무엇인가요?',
+        answer:
+          'exp는 만료 시간, nbf는 not before 시간을 의미합니다. 두 값은 보통 Unix timestamp라서 서버 시간 차이와 함께 확인해야 합니다.',
+      },
+      {
+        question: 'JWT payload에 민감한 정보를 넣어도 되나요?',
+        answer:
+          'JWT payload는 Base64URL로 인코딩되어 쉽게 읽을 수 있으므로 비밀값이나 민감한 개인정보를 담는 구조는 피하는 것이 좋습니다.',
+      },
+    ],
   },
   url: {
     path: '/url',
@@ -330,6 +398,23 @@ export const PAGE_META = {
     description:
       '페이지 제목, 설명, Open Graph, canonical 태그를 점검해 자주 놓치는 SEO 문제를 빠르게 확인할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
+    faq: [
+      {
+        question: 'SEO 메타 태그 검사기는 외부 URL을 항상 읽을 수 있나요?',
+        answer:
+          '아니요. 브라우저에서 직접 요청하기 때문에 상대 사이트의 CORS 정책에 막힐 수 있으며, 이 경우 HTML 소스를 붙여넣어 점검하는 방식이 더 안정적입니다.',
+      },
+      {
+        question: 'title과 description만 고치면 검색 순위가 오르나요?',
+        answer:
+          '기본 신호를 정리하는 데 도움이 되지만, 실제 검색 성과는 본문 품질, 검색 의도 충족, 내부 링크, 사이트 신뢰도까지 함께 영향을 받습니다.',
+      },
+      {
+        question: 'SEO 점검에서 가장 먼저 볼 항목은 무엇인가요?',
+        answer:
+          '비어 있는 title과 description, 잘못된 canonical, accidental noindex, OG 태그 누락처럼 기본 노출과 공유 품질에 영향을 주는 항목부터 확인하는 것이 좋습니다.',
+      },
+    ],
   },
   'utm-builder': {
     path: '/utm-builder',
@@ -380,6 +465,7 @@ export const FEATURED_TOOL_PATHS = [
   '/base64',
   '/json',
   '/jwt',
+  '/seo-check',
   '/url',
   '/password',
   '/timestamp',
