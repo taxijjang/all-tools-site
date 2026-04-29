@@ -419,6 +419,8 @@ const TOOL_LOOKUP = new Map(
 );
 
 const POPULAR_HOME_PATHS = [
+  '/codex-cheatsheet',
+  '/claude-code-cheatsheet',
   '/json',
   '/uuid',
   '/base64',
@@ -1042,8 +1044,9 @@ function setupHomeDiscovery() {
       return;
     }
 
-    if (!isTypingTarget(event.target) && /^[1-5]$/.test(event.key)) {
-      const filter = HOME_FILTERS[Number(event.key) - 1];
+    const filterShortcut = Number(event.key);
+    if (!isTypingTarget(event.target) && Number.isInteger(filterShortcut) && filterShortcut >= 1) {
+      const filter = HOME_FILTERS[filterShortcut - 1];
       if (filter) {
         event.preventDefault();
         setActiveFilter(filter.key, getHomeLocale());

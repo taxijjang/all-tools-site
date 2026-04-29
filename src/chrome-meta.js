@@ -22,6 +22,14 @@ export const UTILITY_LINKS = [
     },
   },
   {
+    key: 'aiTools',
+    href: '/ai-tools',
+    labels: {
+      ko: 'AI 명령어',
+      en: 'AI Commands',
+    },
+  },
+  {
     key: 'about',
     href: '/about',
     labels: {

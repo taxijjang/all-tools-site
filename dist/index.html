@@ -14,8 +14,8 @@
     gtag('js', new Date());
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-By_vta6u.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-CaTMPp8p.css">
+  <script type="module" crossorigin src="/assets/site-D4phoUmr.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-Dfk_M1kM.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -257,6 +257,7 @@
 
       <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
         <a href="/learn" data-chrome-link="learn">가이드</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI 명령어</a>
         <a href="/about" data-chrome-link="about">소개</a>
         <a href="/privacy" data-chrome-link="privacy">개인정보 처리</a>
         <a href="/contact" data-chrome-link="contact">문의</a>
@@ -279,6 +280,7 @@
           <p class="section-lead" data-home-lead>검색창에 키워드를 치고 Enter로 첫 결과를 여세요.</p>
           <div class="home-dev-metrics" aria-label="Developer workflow highlights">
             <span><strong>31</strong> tools</span>
+            <span><strong>3</strong> AI refs</span>
             <span><strong>0</strong> upload server</span>
             <span><strong>/</strong> search</span>
           </div>
@@ -311,6 +313,20 @@
             <button type="button" class="home-query-chip" data-home-query="base64">base64</button>
             <button type="button" class="home-query-chip" data-home-query="pdf">pdf</button>
             <button type="button" class="home-query-chip" data-home-query="regex">regex</button>
+            <button type="button" class="home-query-chip home-query-chip--ai" data-home-query="codex">codex</button>
+            <button type="button" class="home-query-chip home-query-chip--ai" data-home-query="claude">claude</button>
+          </div>
+          <div class="home-reference-rail" aria-label="AI coding command references">
+            <a class="home-reference-link" href="/codex-cheatsheet">
+              <span>AI Commands</span>
+              <strong>Codex</strong>
+              <small>/mode · /personality · skills</small>
+            </a>
+            <a class="home-reference-link" href="/claude-code-cheatsheet">
+              <span>AI Commands</span>
+              <strong>Claude Code</strong>
+              <small>/clear · /compact · MCP</small>
+            </a>
           </div>
           <div class="home-filter-bar" data-home-filters></div>
           <div class="home-command-footer">
@@ -321,7 +337,7 @@
                 Open first result
               </span>
               <span>
-                <kbd>1-5</kbd>
+                <kbd>1-6</kbd>
                 Switch filters
               </span>
               <span>
@@ -344,6 +360,21 @@
       </div>
 
       <main class="card-grid" data-home-grid>
+        <a class="card card--reference" href="/ai-tools">
+          <h2 data-i18n="home.card.aihub.title">AI 명령어 치트시트</h2>
+          <p data-i18n="home.card.aihub.desc">Claude Code와 Codex 명령어, 설정, 공식 문서 링크를 한 곳에서 확인.</p>
+          <span class="pill">/ai-tools</span>
+        </a>
+        <a class="card card--reference" href="/codex-cheatsheet">
+          <h2 data-i18n="home.card.codex.title">Codex 명령어</h2>
+          <p data-i18n="home.card.codex.desc">codex CLI, /mode, /personality, Skills, Automations 빠른 참고.</p>
+          <span class="pill">/codex-cheatsheet</span>
+        </a>
+        <a class="card card--reference" href="/claude-code-cheatsheet">
+          <h2 data-i18n="home.card.claude.title">Claude Code 명령어</h2>
+          <p data-i18n="home.card.claude.desc">/clear, /compact, MCP, hooks, skills 같은 Claude Code 사용법 정리.</p>
+          <span class="pill">/claude-code-cheatsheet</span>
+        </a>
         <a class="card" href="/uuid">
           <h2 data-i18n="home.card.uuid.title">UUID 변환기</h2>
           <p data-i18n="home.card.uuid.desc">UUID 생성, UUID hex(binary16) 변환, ULID 생성까지 한 화면에서 처리.</p>
@@ -512,11 +543,13 @@
     </section>
 
     <nav class="home-guide-strip" aria-label="Guides and references">
+      <a href="/ai-tools">AI commands</a>
+      <a href="/codex-cheatsheet">Codex cheatsheet</a>
+      <a href="/claude-code-cheatsheet">Claude Code cheatsheet</a>
       <a href="/learn">Guides</a>
       <a href="/uuid-v4-v7">UUID v4 vs v7</a>
       <a href="/jwt-exp-nbf">JWT exp / nbf</a>
       <a href="/base64-vs-url-encoding">Base64 vs URL</a>
-      <a href="/ai-tools">AI cheatsheets</a>
     </nav>
 
     <footer class="footer" data-nosnippet>

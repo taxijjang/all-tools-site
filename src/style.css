@@ -1870,14 +1870,67 @@ kbd {
   color: var(--primary);
 }
 
-.page--home .home-filter-bar {
+.home-query-chip--ai {
+  border-color: color-mix(in srgb, var(--primary) 44%, var(--border));
+  background: color-mix(in srgb, var(--primary) 13%, var(--surface-muted));
+  color: var(--primary);
+}
+
+.home-reference-rail {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.home-reference-link {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--primary) 36%, var(--border));
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--primary) 14%, transparent), transparent 62%),
+    color-mix(in srgb, var(--surface-muted) 82%, transparent);
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.home-reference-link span,
+.home-reference-link small {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-reference-link strong {
+  overflow: hidden;
+  color: var(--primary);
+  font-size: 1rem;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-reference-link:hover {
+  transform: translateY(-1px);
+  border-color: var(--primary);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--shadow-color) 76%, transparent);
+}
+
+.page--home .home-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.45rem;
 }
 
 .page--home .filter-chip {
-  width: 100%;
+  width: auto;
+  flex: 1 1 6.4rem;
   justify-content: center;
   min-height: 2.3rem;
   padding: 0.45rem 0.5rem;
@@ -1925,6 +1978,18 @@ kbd {
   padding: 0.82rem;
   border-radius: 0.9rem;
   box-shadow: 0 10px 24px color-mix(in srgb, var(--shadow-color) 72%, transparent);
+}
+
+.page--home .card--reference {
+  border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--primary) 18%, transparent), transparent 44%),
+    var(--surface);
+}
+
+.page--home .card--reference .pill {
+  border-color: color-mix(in srgb, var(--primary) 58%, var(--border));
+  background: color-mix(in srgb, var(--primary) 13%, transparent);
 }
 
 .page--home .card::after {
@@ -3116,9 +3181,17 @@ button:active {
     width: auto;
   }
 
+  .home-reference-rail {
+    grid-template-columns: 1fr;
+  }
+
+  .home-reference-link {
+    padding: 0.62rem 0.72rem;
+  }
+
   .page--home .home-filter-bar {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .home-command-footer,

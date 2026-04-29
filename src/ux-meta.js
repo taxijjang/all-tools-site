@@ -14,6 +14,13 @@ export const HOME_FILTERS = [
     },
   },
   {
+    key: 'ai',
+    labels: {
+      ko: 'AI 명령어',
+      en: 'AI Commands',
+    },
+  },
+  {
     key: 'text',
     labels: {
       ko: '텍스트 · 콘텐츠',
@@ -37,6 +44,9 @@ export const HOME_FILTERS = [
 ];
 
 export const TOOL_CATEGORY_MAP = {
+  '/ai-tools': 'ai',
+  '/claude-code-cheatsheet': 'ai',
+  '/codex-cheatsheet': 'ai',
   '/uuid': 'api',
   '/base64': 'api',
   '/json': 'api',
@@ -123,7 +133,7 @@ export const HOME_DISCOVERY_COPY = {
     spotlightKicker: 'Start Here',
     spotlightHeading: '많이 여는 조합을 먼저 보여드립니다',
     spotlightLead: '자주 이어서 쓰는 도구를 작업 흐름별로 묶어 뒀습니다. 급하면 여기서 바로 들어가면 됩니다.',
-    searchPlaceholder: 'json jwt uuid pdf regex',
+    searchPlaceholder: 'codex claude json jwt uuid pdf',
     searchLabel: '도구 검색',
     catalogKicker: 'Tool Catalog',
     catalogHeading: '도구 전체',
@@ -142,7 +152,7 @@ export const HOME_DISCOVERY_COPY = {
     spotlightKicker: 'Start Here',
     spotlightHeading: 'Open the combinations people reach for most',
     spotlightLead: 'These clusters bundle the tools that are commonly used back-to-back, so you can move faster without scanning the full catalog first.',
-    searchPlaceholder: 'json jwt uuid pdf regex',
+    searchPlaceholder: 'codex claude json jwt uuid pdf',
     searchLabel: 'Search tools',
     catalogKicker: 'Tool Catalog',
     catalogHeading: 'All tools',
