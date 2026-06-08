@@ -28,7 +28,7 @@ export const PAGE_META = {
     kind: 'content',
     title: 'AI 코딩 치트시트 | Claude Code, Codex 최신 명령 모음',
     description:
-      'Claude Code와 Codex를 빠르게 다시 쓰기 위한 최신 명령, 워크플로, 공식 문서 링크를 한곳에 묶은 AI 코딩 치트시트 허브입니다.',
+      'Claude Code와 Codex를 빠르게 다시 쓰기 위한 최신 명령, 워크플로, GitHub skills 탐색 링크, 공식 문서 링크를 묶은 AI 코딩 치트시트 허브입니다.',
   },
   'claude-code-cheatsheet': {
     path: '/claude-code-cheatsheet',
