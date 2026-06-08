@@ -26,23 +26,23 @@ export const PAGE_META = {
   'ai-tools': {
     path: '/ai-tools',
     kind: 'content',
-    title: 'AI 코딩 치트시트 | Claude Code, Codex 바로 찾기',
+    title: 'AI 코딩 치트시트 | Claude Code, Codex 최신 명령 모음',
     description:
-      'Claude Code와 Codex를 빠르게 다시 쓰기 위한 명령, 워크플로, 공식 문서 링크를 한곳에 묶은 AI 코딩 치트시트 허브입니다.',
+      'Claude Code와 Codex를 빠르게 다시 쓰기 위한 최신 명령, 워크플로, 공식 문서 링크를 한곳에 묶은 AI 코딩 치트시트 허브입니다.',
   },
   'claude-code-cheatsheet': {
     path: '/claude-code-cheatsheet',
     kind: 'content',
-    title: 'Claude Code 치트시트 | 명령어, 스킬, MCP, 훅 검색',
+    title: 'Claude Code 치트시트 | Commands, Skills, MCP, Hooks',
     description:
-      'Claude Code 명령어, 스킬, MCP 프롬프트, hooks, 실전 루틴을 한 페이지에서 검색하고 공식 문서로 바로 이동하는 치트시트입니다.',
+      'Claude Code commands, skills, MCP, hooks, run/verify, code review, routines까지 한 페이지에서 검색하고 공식 문서로 이동하는 치트시트입니다.',
   },
   'codex-cheatsheet': {
     path: '/codex-cheatsheet',
     kind: 'content',
-    title: 'Codex 치트시트 | /mode, /personality, Skills, Automations',
+    title: 'Codex 치트시트 | CLI, Slash Commands, Skills, MCP',
     description:
-      'Codex CLI와 앱에서 자주 찾는 /mode, /personality, 로그인, 업그레이드, Skills, Automations, 설정 포인트를 빠르게 정리한 페이지입니다.',
+      'Codex CLI, 앱, slash commands, AGENTS.md, Skills, MCP, Automations, worktree 설정 포인트를 빠르게 정리한 최신 치트시트입니다.',
   },
   'uuid-v4-v7': {
     path: '/uuid-v4-v7',

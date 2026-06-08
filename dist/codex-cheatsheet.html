@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Codex 치트시트 | /mode, /personality, Skills, Automations | Stateless Tools</title>
+  <title>Codex 치트시트 | CLI, Slash Commands, Skills, MCP | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
@@ -70,7 +70,7 @@
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
-  <meta name="description" content="Codex CLI와 앱에서 자주 찾는 /mode, /personality, 로그인, 업그레이드, Skills, Automations, 설정 포인트를 빠르게 정리한 페이지입니다." />
+  <meta name="description" content="Codex CLI, 앱, slash commands, AGENTS.md, Skills, MCP, Automations, worktree 설정 포인트를 빠르게 정리한 최신 치트시트입니다." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="taxijjang" />
   <meta name="theme-color" content="#020817" />
@@ -78,14 +78,14 @@
   <link rel="canonical" href="https://all-tools-site.pages.dev/codex-cheatsheet" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Stateless Tools" />
-  <meta property="og:title" content="Codex 치트시트 | /mode, /personality, Skills, Automations" />
-  <meta property="og:description" content="Codex CLI와 앱에서 자주 찾는 /mode, /personality, 로그인, 업그레이드, Skills, Automations, 설정 포인트를 빠르게 정리한 페이지입니다." />
+  <meta property="og:title" content="Codex 치트시트 | CLI, Slash Commands, Skills, MCP" />
+  <meta property="og:description" content="Codex CLI, 앱, slash commands, AGENTS.md, Skills, MCP, Automations, worktree 설정 포인트를 빠르게 정리한 최신 치트시트입니다." />
   <meta property="og:url" content="https://all-tools-site.pages.dev/codex-cheatsheet" />
   <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <meta property="og:image:alt" content="Stateless Tools logo" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Codex 치트시트 | /mode, /personality, Skills, Automations" />
-  <meta name="twitter:description" content="Codex CLI와 앱에서 자주 찾는 /mode, /personality, 로그인, 업그레이드, Skills, Automations, 설정 포인트를 빠르게 정리한 페이지입니다." />
+  <meta name="twitter:title" content="Codex 치트시트 | CLI, Slash Commands, Skills, MCP" />
+  <meta name="twitter:description" content="Codex CLI, 앱, slash commands, AGENTS.md, Skills, MCP, Automations, worktree 설정 포인트를 빠르게 정리한 최신 치트시트입니다." />
   <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <script type="application/ld+json" data-seo-schema>
 [
@@ -121,9 +121,9 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": "https://all-tools-site.pages.dev/codex-cheatsheet#webpage",
-    "name": "Codex 치트시트 | /mode, /personality, Skills, Automations",
+    "name": "Codex 치트시트 | CLI, Slash Commands, Skills, MCP",
     "url": "https://all-tools-site.pages.dev/codex-cheatsheet",
-    "description": "Codex CLI와 앱에서 자주 찾는 /mode, /personality, 로그인, 업그레이드, Skills, Automations, 설정 포인트를 빠르게 정리한 페이지입니다.",
+    "description": "Codex CLI, 앱, slash commands, AGENTS.md, Skills, MCP, Automations, worktree 설정 포인트를 빠르게 정리한 최신 치트시트입니다.",
     "isPartOf": {
       "@id": "https://all-tools-site.pages.dev/#website"
     },
@@ -146,7 +146,7 @@
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Codex 치트시트 | /mode, /personality, Skills, Automations",
+        "name": "Codex 치트시트 | CLI, Slash Commands, Skills, MCP",
         "item": "https://all-tools-site.pages.dev/codex-cheatsheet"
       }
     ]
@@ -186,10 +186,10 @@
         <span data-locale-block="en" lang="en" hidden>Codex cheatsheet</span>
       </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
       <div data-locale-block="ko" lang="ko">
-        <p>OpenAI 공식 도움말과 Academy 문서 기준으로, Codex에서 자주 다시 찾는 CLI 플래그, 공개 커맨드, Skills, Automations, 설정 포인트를 먼저 모았습니다.</p>
+        <p>OpenAI Codex 매뉴얼 기준으로, CLI 명령, slash commands, AGENTS.md, Skills, MCP, Automations, 앱 설정 포인트를 다시 정리했습니다.</p>
       </div>
       <div data-locale-block="en" lang="en" hidden data-nosnippet>
-        <p>A compact Codex reference built from OpenAI’s official help and Academy docs, focused on the CLI flags, documented commands, Skills, Automations, and settings people re-open most.</p>
+        <p>A compact Codex reference rebuilt from the OpenAI Codex manual, focused on CLI commands, slash commands, AGENTS.md, Skills, MCP, Automations, and app settings.</p>
       </div>
     </header>
 
@@ -198,42 +198,48 @@
         <div data-locale-block="ko" lang="ko">
           <p class="section-kicker">Checked</p>
           <h2 class="section-title">공식 문서에 공개된 범위만 먼저 정리</h2>
-          <p class="section-lead">Codex는 앱 기능과 워크플로가 빠르게 확장되는 중이라, 이 페이지는 2026년 4월 29일 기준 OpenAI 공식 문서에 직접 나온 항목 위주로만 정리했습니다.</p>
-          <span class="update-pill">Last checked · 2026-04-29</span>
+          <p class="section-lead">Codex는 CLI, 데스크톱 앱, IDE 확장, 클라우드 작업 흐름이 함께 움직입니다. 이 페이지는 2026년 6월 8일 기준 OpenAI Codex 매뉴얼에 직접 나온 항목 위주로 정리했습니다.</p>
+          <span class="update-pill">Last checked · 2026-06-08</span>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">Checked</p>
           <h2 class="section-title">Start from the features OpenAI documents directly</h2>
-          <p class="section-lead">Codex is evolving quickly, so this page stays anchored to features that OpenAI documents explicitly as of April 29, 2026.</p>
-          <span class="update-pill">Last checked · 2026-04-29</span>
+          <p class="section-lead">Codex now spans the CLI, desktop app, IDE extension, and cloud workflows. This page stays anchored to features OpenAI documents explicitly as of June 8, 2026.</p>
+          <span class="update-pill">Last checked · 2026-06-08</span>
         </div>
       </section>
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
           <p class="section-kicker">CLI First</p>
-          <h2 class="section-title">터미널에서 가장 먼저 다시 찾는 명령</h2>
+          <h2 class="section-title">터미널에서 가장 먼저 다시 찾는 명령과 슬래시 커맨드</h2>
           <div class="command-list">
-            <article class="command-card"><span class="command-pill"><code>codex --login</code></span><h3>ChatGPT 계정 연결</h3><p>로그인과 키 설정을 다시 시작할 때 제일 먼저 찾는 명령입니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>codex --upgrade</code></span><h3>최신 버전으로 올릴 때</h3><p>CLI 자체 업데이트 명령입니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>codex --auto-edit</code></span><h3>파일 수정은 자동, 셸은 승인</h3><p>반복 편집 작업에서 승인 부담을 조금 줄이고 싶을 때 씁니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>codex --full-auto</code></span><h3>더 자율적으로 맡기고 싶을 때</h3><p>로컬 샌드박스 안에서 읽기, 쓰기, 명령 실행까지 맡기는 모드입니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>codex -m &lt;model&gt;</code></span><h3>모델 지정</h3><p>CLI에서 다른 모델로 세션을 시작하고 싶을 때 씁니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/mode</code></span><h3>세션 중 모드 전환</h3><p>OpenAI 공식 도움말에 직접 나온 인세션 전환 명령입니다.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/personality</code></span><h3>응답 톤 전환</h3><p>Codex app, CLI, IDE extension에서 성격을 바꿀 수 있다고 OpenAI가 안내합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex login</code></span><h3>인증 다시 연결</h3><p>ChatGPT OAuth, device auth, API key, stdin access token 방식으로 Codex 인증을 복구합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex update</code></span><h3>CLI 최신화</h3><p>현재 설치 버전이 self-update를 지원할 때 Codex CLI 업데이트를 확인하고 적용합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex doctor</code></span><h3>설치와 설정 진단</h3><p>설치, 인증, config, Git, 터미널, app-server, thread inventory 문제를 지원 리포트 형태로 점검합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex exec</code></span><h3>비대화형 실행</h3><p>스크립트나 자동화에서 Codex를 한 번 실행하고 stdout 또는 JSONL로 결과를 받을 때 씁니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --model</code></span><h3>모델 지정</h3><p>설정 파일의 기본 모델 대신 해당 세션에서만 모델을 바꿔 시작합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>--sandbox</code> / <code>--ask-for-approval</code></span><h3>권한 경계 설정</h3><p>로컬 작업은 보통 <code>workspace-write</code>와 <code>on-request</code> 조합이 낮은 마찰과 안전성의 균형점입니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/permissions</code></span><h3>세션 중 승인 정책 조정</h3><p>Read Only, Auto 같은 권한 프리셋을 세션 중 바꿔 파일 수정과 명령 실행의 자율성을 조절합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/model</code> / <code>/status</code></span><h3>모델과 세션 상태 확인</h3><p>활성 모델, reasoning effort, 승인 정책, writable roots, 남은 컨텍스트를 빠르게 확인합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/plan</code> / <code>/goal</code></span><h3>큰 작업을 먼저 구조화</h3><p>구현 전에 계획 모드로 범위를 잡고, 장기 작업은 목표를 붙여 진행 상태를 유지합니다.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/diff</code> / <code>/review</code></span><h3>커밋 전 점검</h3><p>현재 Git diff를 보고, 작업 트리에 대한 리뷰 관점의 재검토를 요청합니다.</p></article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
           <p class="section-kicker">CLI First</p>
-          <h2 class="section-title">The terminal controls people look up first</h2>
+          <h2 class="section-title">The terminal commands and slash controls people look up first</h2>
           <div class="command-list">
-            <article class="command-card"><span class="command-pill"><code>codex --login</code></span><h3>Connect your ChatGPT account</h3><p>The fastest way to recover authentication and local credentials.</p></article>
-            <article class="command-card"><span class="command-pill"><code>codex --upgrade</code></span><h3>Update the CLI</h3><p>The documented self-upgrade path for the Codex CLI.</p></article>
-            <article class="command-card"><span class="command-pill"><code>codex --auto-edit</code></span><h3>Auto-edit files, still confirm shell commands</h3><p>Useful when repetitive editing is more important than full manual control.</p></article>
-            <article class="command-card"><span class="command-pill"><code>codex --full-auto</code></span><h3>Hand off more autonomy</h3><p>Lets Codex read, write, and run commands inside the local sandbox.</p></article>
-            <article class="command-card"><span class="command-pill"><code>codex -m &lt;model&gt;</code></span><h3>Pick a model explicitly</h3><p>Use this when the default model is not the one you want for the session.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/mode</code></span><h3>Switch approval mode mid-session</h3><p>This is the in-session mode toggle OpenAI documents directly.</p></article>
-            <article class="command-card"><span class="command-pill"><code>/personality</code></span><h3>Change the working tone</h3><p>OpenAI documents this for the app, CLI, and IDE extension.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex login</code></span><h3>Reconnect authentication</h3><p>Recover Codex auth through ChatGPT OAuth, device auth, API key, or an access token piped over stdin.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex update</code></span><h3>Update the CLI</h3><p>Check for and apply a Codex CLI update when the installed release supports self-update.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex doctor</code></span><h3>Diagnose local setup</h3><p>Generate a support report for installation, auth, config, Git, terminal, app-server, and thread inventory issues.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex exec</code></span><h3>Run non-interactively</h3><p>Use Codex from scripts or automation and stream output to stdout or JSONL.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --model</code></span><h3>Pick a model explicitly</h3><p>Override the configured default model for a single invocation.</p></article>
+            <article class="command-card"><span class="command-pill"><code>--sandbox</code> / <code>--ask-for-approval</code></span><h3>Set permission boundaries</h3><p>For local work, <code>workspace-write</code> plus <code>on-request</code> is usually the practical balance.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/permissions</code></span><h3>Adjust approval behavior mid-session</h3><p>Switch between presets such as Read Only and Auto while the session is running.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/model</code> / <code>/status</code></span><h3>Inspect model and session state</h3><p>Confirm the active model, effort, approval policy, writable roots, and remaining context.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/plan</code> / <code>/goal</code></span><h3>Structure bigger tasks first</h3><p>Use plan mode before implementation and goals for longer-running tracked work.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/diff</code> / <code>/review</code></span><h3>Check before committing</h3><p>Inspect the working tree diff and ask Codex for a review pass on local changes.</p></article>
           </div>
         </div>
       </section>
@@ -244,20 +250,28 @@
           <h2 class="section-title">명령 말고도 자주 다시 찾는 핵심 포인트</h2>
           <div class="content-grid">
             <article class="info-card">
+              <h3>AGENTS.md</h3>
+              <p>반복되는 리뷰 기준, 빌드 명령, 저장소 규칙은 <code>AGENTS.md</code>에 둡니다. 가까운 하위 디렉터리의 지침이 더 구체적인 규칙으로 작동합니다.</p>
+            </article>
+            <article class="info-card">
               <h3>Skills</h3>
-              <p>Codex는 Skills로 팀별 작업 플레이북을 붙일 수 있습니다. 반복되는 코드 이해, 프로토타이핑, 문서화 흐름을 표준화할 때 중요합니다.</p>
+              <p>반복 절차는 <code>.agents/skills</code>나 <code>$HOME/.agents/skills</code>에 스킬로 둡니다. Codex는 설명을 보고 필요할 때 전체 <code>SKILL.md</code>를 읽습니다.</p>
             </article>
             <article class="info-card">
-              <h3>Automations</h3>
-              <p>일정 기반 반복 작업을 Codex가 백그라운드에서 돌릴 수 있습니다. 리뷰 대기함으로 결과가 돌아오는 구조라 장기 작업에 잘 맞습니다.</p>
+              <h3>MCP</h3>
+              <p>GitHub, Figma, 브라우저, 내부 문서처럼 외부 시스템이 필요하면 <code>codex mcp</code>나 <code>config.toml</code>의 MCP 설정으로 연결합니다.</p>
             </article>
             <article class="info-card">
-              <h3>Settings</h3>
-              <p>General &gt; Prevent sleep, Detail level, Appearance, Personalization은 장시간 작업이나 백그라운드 실행 시 가장 자주 다시 찾는 설정 포인트입니다.</p>
+              <h3>Automations + worktrees</h3>
+              <p>반복 점검은 Automations로 돌리고, Git 저장소에서는 전용 worktree를 선택해 미완성 로컬 작업과 분리하는 편이 안전합니다.</p>
             </article>
             <article class="info-card">
-              <h3>Worktree + multi-agent</h3>
-              <p>OpenAI는 Codex app을 병렬 에이전트 중심 워크플로로 소개합니다. 큰 작업을 나눠 맡길 때 앱 강점이 커집니다.</p>
+              <h3>App modes</h3>
+              <p>Codex 앱 스레드는 Local, Worktree, Cloud 모드로 나뉩니다. 같은 저장소의 독립 작업은 Worktree 모드가 가장 다루기 쉽습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>Browser / Computer Use</h3>
+              <p>웹앱 검증은 in-app browser와 Browser plugin, 데스크톱 앱 검증은 Computer Use 설정으로 분리해 생각하면 됩니다.</p>
             </article>
           </div>
         </div>
@@ -266,20 +280,28 @@
           <h2 class="section-title">The features people re-open even more than commands</h2>
           <div class="content-grid">
             <article class="info-card">
+              <h3>AGENTS.md</h3>
+              <p>Keep recurring review criteria, build commands, and repository rules in <code>AGENTS.md</code>. Closer nested files provide more specific guidance.</p>
+            </article>
+            <article class="info-card">
               <h3>Skills</h3>
-              <p>Skills let Codex follow repeatable team playbooks for work like code understanding, prototyping, and documentation.</p>
+              <p>Put repeatable procedures in <code>.agents/skills</code> or <code>$HOME/.agents/skills</code>. Codex reads the full <code>SKILL.md</code> only when needed.</p>
             </article>
             <article class="info-card">
-              <h3>Automations</h3>
-              <p>Automations let Codex run recurring tasks on a schedule and return the output into a review queue.</p>
+              <h3>MCP</h3>
+              <p>Use <code>codex mcp</code> or <code>config.toml</code> MCP settings when Codex needs GitHub, Figma, browsers, internal docs, or other external systems.</p>
             </article>
             <article class="info-card">
-              <h3>Settings</h3>
-              <p>Prevent sleep, detail level, appearance, and personalization are the settings people usually want again during longer-running work.</p>
+              <h3>Automations + worktrees</h3>
+              <p>Run recurring checks with Automations, and choose dedicated worktrees in Git repositories to isolate background changes from local work.</p>
             </article>
             <article class="info-card">
-              <h3>Worktree + multi-agent</h3>
-              <p>OpenAI positions the Codex app as a multi-agent workspace, which matters most once you split larger work across parallel tasks.</p>
+              <h3>App modes</h3>
+              <p>Codex app threads run in Local, Worktree, or Cloud mode. Worktree mode is usually the cleanest choice for independent work in one repo.</p>
+            </article>
+            <article class="info-card">
+              <h3>Browser / Computer Use</h3>
+              <p>Think of the in-app browser and Browser plugin for web app checks, and Computer Use for desktop-app workflows.</p>
             </article>
           </div>
         </div>
@@ -293,12 +315,17 @@
             <article class="command-card">
               <span class="command-pill">복귀</span>
               <h3>Codex CLI를 오랜만에 다시 켰을 때</h3>
-              <p>로그인, 업그레이드, 모드 전환, 모델 지정부터 빠르게 되살리고 싶을 때 이 페이지가 제일 먼저 도움이 됩니다.</p>
+              <p><code>codex login</code>, <code>codex doctor</code>, <code>codex update</code>, <code>/status</code>로 인증, 설치, 버전, 세션 상태를 먼저 확인하세요.</p>
             </article>
             <article class="command-card">
               <span class="command-pill">확장</span>
-              <h3>앱에서 Skills나 Automations를 붙이려 할 때</h3>
-              <p>커맨드보다 실제로 더 많이 찾는 건 설정 위치와 기능 이름입니다. 그래서 Codex 쪽은 워크플로 제어 포인트를 같이 적었습니다.</p>
+              <h3>팀 플레이북을 붙이려 할 때</h3>
+              <p>규칙은 <code>AGENTS.md</code>, 반복 절차는 Skills, 외부 시스템은 MCP, 반복 실행은 Automations로 나눠 설계하면 유지보수가 쉽습니다.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">검증</span>
+              <h3>커밋 전 마지막 점검을 맡길 때</h3>
+              <p><code>/diff</code>로 변경을 확인하고 <code>/review</code>로 작업 트리 리뷰를 받은 뒤, 필요한 테스트를 직접 실행하게 하세요.</p>
             </article>
           </div>
         </div>
@@ -309,12 +336,17 @@
             <article class="command-card">
               <span class="command-pill">Return</span>
               <h3>When you have not used Codex CLI in a while</h3>
-              <p>This page helps you recover login, upgrade, mode switching, and model selection before you dig back into work.</p>
+              <p>Start with <code>codex login</code>, <code>codex doctor</code>, <code>codex update</code>, and <code>/status</code> to recover auth, install, version, and session state.</p>
             </article>
             <article class="command-card">
               <span class="command-pill">Extend</span>
-              <h3>When you want to add Skills or Automations in the app</h3>
-              <p>For Codex, the remembered workflow controls often matter more than a long list of slash commands, so the cheatsheet keeps both together.</p>
+              <h3>When you want to add team playbooks</h3>
+              <p>Use <code>AGENTS.md</code> for rules, Skills for repeatable procedures, MCP for external systems, and Automations for recurring runs.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">Review</span>
+              <h3>When you want a final pass before committing</h3>
+              <p>Inspect changes with <code>/diff</code>, request a working-tree review with <code>/review</code>, then ask Codex to run the relevant tests.</p>
             </article>
           </div>
         </div>
@@ -326,24 +358,28 @@
           <h2 class="section-title">공식 문서 원문 링크</h2>
           <div class="source-list">
             <article class="source-card">
-              <a href="https://help.openai.com/en/articles/11096431-openai-codex-ci-getting-started" target="_blank" rel="noreferrer">OpenAI Help · Codex CLI getting started</a>
-              <p>로그인, 업그레이드, 승인 모드, <code>/mode</code> 같은 CLI 시작 지점을 다시 확인할 때.</p>
+              <a href="https://developers.openai.com/codex/cli/reference" target="_blank" rel="noreferrer">OpenAI Codex · CLI command reference</a>
+              <p>CLI 명령, 전역 플래그, sandbox, approval, <code>codex exec</code>, <code>codex doctor</code>, <code>codex mcp</code>를 확인합니다.</p>
             </article>
             <article class="source-card">
-              <a href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noreferrer">OpenAI · Introducing the Codex app</a>
-              <p><code>/personality</code>, Skills, Automations, 에이전트 중심 앱 방향을 다시 볼 때.</p>
+              <a href="https://developers.openai.com/codex/cli/slash-commands" target="_blank" rel="noreferrer">OpenAI Codex · CLI slash commands</a>
+              <p><code>/permissions</code>, <code>/model</code>, <code>/plan</code>, <code>/goal</code>, <code>/review</code>, <code>/status</code>를 확인합니다.</p>
             </article>
             <article class="source-card">
-              <a href="https://openai.com/academy/codex-settings/" target="_blank" rel="noreferrer">OpenAI Academy · Codex settings</a>
-              <p>Prevent sleep, detail level, appearance, personalization 같은 설정 포인트 확인용.</p>
+              <a href="https://developers.openai.com/codex/skills" target="_blank" rel="noreferrer">OpenAI Codex · Agent Skills</a>
+              <p>스킬 구조, 저장 위치, progressive disclosure, plugins와의 역할 차이를 확인합니다.</p>
             </article>
             <article class="source-card">
-              <a href="https://openai.com/academy/codex-automations" target="_blank" rel="noreferrer">OpenAI Academy · Automations</a>
-              <p>일정 기반 작업을 어떻게 자동화하는지, 어떤 반복 업무에 맞는지 볼 때.</p>
+              <a href="https://developers.openai.com/codex/mcp" target="_blank" rel="noreferrer">OpenAI Codex · Model Context Protocol</a>
+              <p>MCP 서버 연결, stdio/HTTP 설정, OAuth, tool approval, plugin-provided MCP 설정을 확인합니다.</p>
             </article>
             <article class="source-card">
-              <a href="https://openai.com/academy/codex-plugins-and-skills" target="_blank" rel="noreferrer">OpenAI Academy · Plugins and skills</a>
-              <p>Skills와 plugins의 역할 차이, 언제 어떤 확장 방식을 써야 하는지 볼 때.</p>
+              <a href="https://developers.openai.com/codex/app/automations" target="_blank" rel="noreferrer">OpenAI Codex · Automations</a>
+              <p>standalone automation, thread automation, worktree 실행, sandbox 권한 경계를 확인합니다.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://developers.openai.com/codex/app/features" target="_blank" rel="noreferrer">OpenAI Codex · App features</a>
+              <p>Local, Worktree, Cloud 모드, 내장 Git 도구, browser use, computer use, app 기능을 확인합니다.</p>
             </article>
           </div>
         </div>
@@ -352,24 +388,28 @@
           <h2 class="section-title">Direct links to the official docs</h2>
           <div class="source-list">
             <article class="source-card">
-              <a href="https://help.openai.com/en/articles/11096431-openai-codex-ci-getting-started" target="_blank" rel="noreferrer">OpenAI Help · Codex CLI getting started</a>
-              <p>For login, upgrade, approval modes, and the documented <code>/mode</code> entry point.</p>
+              <a href="https://developers.openai.com/codex/cli/reference" target="_blank" rel="noreferrer">OpenAI Codex · CLI command reference</a>
+              <p>For CLI commands, global flags, sandboxing, approvals, <code>codex exec</code>, <code>codex doctor</code>, and <code>codex mcp</code>.</p>
             </article>
             <article class="source-card">
-              <a href="https://openai.com/index/introducing-the-codex-app/" target="_blank" rel="noreferrer">OpenAI · Introducing the Codex app</a>
-              <p>For <code>/personality</code>, Skills, Automations, and the app’s multi-agent positioning.</p>
+              <a href="https://developers.openai.com/codex/cli/slash-commands" target="_blank" rel="noreferrer">OpenAI Codex · CLI slash commands</a>
+              <p>For <code>/permissions</code>, <code>/model</code>, <code>/plan</code>, <code>/goal</code>, <code>/review</code>, and <code>/status</code>.</p>
             </article>
             <article class="source-card">
-              <a href="https://openai.com/academy/codex-settings/" target="_blank" rel="noreferrer">OpenAI Academy · Codex settings</a>
-              <p>For prevent sleep, detail level, appearance, and personalization settings.</p>
+              <a href="https://developers.openai.com/codex/skills" target="_blank" rel="noreferrer">OpenAI Codex · Agent Skills</a>
+              <p>For skill structure, locations, progressive disclosure, and how skills relate to plugins.</p>
             </article>
             <article class="source-card">
-              <a href="https://openai.com/academy/codex-automations" target="_blank" rel="noreferrer">OpenAI Academy · Automations</a>
-              <p>For scheduled recurring work and how Codex returns automation results.</p>
+              <a href="https://developers.openai.com/codex/mcp" target="_blank" rel="noreferrer">OpenAI Codex · Model Context Protocol</a>
+              <p>For MCP server setup, stdio/HTTP transports, OAuth, tool approvals, and plugin-provided MCP settings.</p>
             </article>
             <article class="source-card">
-              <a href="https://openai.com/academy/codex-plugins-and-skills" target="_blank" rel="noreferrer">OpenAI Academy · Plugins and skills</a>
-              <p>For the role of Skills and how they differ from plugins.</p>
+              <a href="https://developers.openai.com/codex/app/automations" target="_blank" rel="noreferrer">OpenAI Codex · Automations</a>
+              <p>For standalone automations, thread automations, worktree execution, and sandbox boundaries.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://developers.openai.com/codex/app/features" target="_blank" rel="noreferrer">OpenAI Codex · App features</a>
+              <p>For Local, Worktree, and Cloud modes, built-in Git tools, browser use, computer use, and app behavior.</p>
             </article>
           </div>
         </div>
@@ -377,7 +417,7 @@
     </main>
 
     <footer class="footer footer--dev" data-nosnippet>
-      <small>(c) 2025 stateless tools · unofficial summary based on OpenAI docs</small>
+      <small>(c) 2026 stateless tools · unofficial summary based on OpenAI Codex docs</small>
     </footer>
   </div>
 
