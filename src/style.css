@@ -3804,3 +3804,255 @@ button.primary:hover,
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* Home clarity pass: keep the launcher focused and make secondary surfaces quiet. */
+.page--home {
+  max-width: 1120px;
+}
+
+.home-command-center {
+  margin: 0.35rem 0 0.85rem;
+}
+
+.page--home .home-command-panel {
+  display: block;
+  min-height: 0;
+  padding: clamp(1rem, 2.2vw, 1.45rem);
+  border: 1px solid color-mix(in srgb, var(--border) 86%, transparent);
+  border-radius: 0.55rem;
+  background: linear-gradient(180deg, var(--surface), color-mix(in srgb, var(--surface-alt) 86%, var(--surface)));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--shadow-color) 42%, transparent);
+}
+
+.home-command-panel__intro {
+  max-width: 760px;
+  margin-bottom: 0.95rem;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.home-command-panel .home-brand {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+}
+
+.home-command-panel .section-kicker {
+  display: none;
+}
+
+.page--home .home-command-panel .trust-badge {
+  display: none;
+}
+
+.home-command-panel .section-title {
+  max-width: none;
+  font-size: clamp(1.85rem, 4vw, 2.8rem);
+  line-height: 1.08;
+}
+
+.page--home .home-command-panel [data-home-lead] {
+  max-width: 42rem;
+  font-size: 0.98rem;
+}
+
+.home-command-palette {
+  gap: 0.68rem;
+}
+
+.home-search-wrap {
+  min-height: 3.35rem;
+  border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--surface-muted) 66%, var(--surface));
+  box-shadow: none;
+}
+
+.home-search-wrap:focus-within {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 13%, transparent);
+}
+
+.home-search-prefix {
+  font-size: 1.05rem;
+}
+
+.page--home .home-search {
+  min-height: auto;
+  font-size: clamp(0.98rem, 1.3vw, 1.08rem);
+  font-weight: 720;
+}
+
+.home-search-shortcuts,
+.home-dev-metrics,
+.home-reference-rail,
+.home-shortcuts {
+  display: none;
+}
+
+.home-query-row {
+  gap: 0.4rem;
+}
+
+.home-query-chip {
+  min-height: 1.9rem;
+  padding: 0.35rem 0.58rem;
+  border-radius: 0.4rem;
+  background: transparent;
+  font-size: 0.76rem;
+}
+
+.page--home .home-filter-bar {
+  gap: 0.4rem;
+}
+
+.page--home .filter-chip {
+  flex: 0 1 auto;
+  min-height: 2rem;
+  padding: 0.36rem 0.62rem;
+  border-radius: 0.4rem;
+  font-size: 0.76rem;
+}
+
+.home-command-footer {
+  justify-content: flex-start;
+  min-height: 1.4rem;
+}
+
+.page--home .home-results {
+  min-width: 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.page--home .home-catalog,
+.page--home .home-access {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.page--home .home-catalog__header,
+.page--home .home-access__header {
+  margin-bottom: 0.65rem;
+  padding: 0.15rem 0 0.55rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+}
+
+.page--home .home-catalog__header .section-title,
+.page--home .home-access__header .section-title {
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+
+.page--home .card-grid {
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  padding-bottom: 1.4rem;
+}
+
+.page--home .card {
+  position: relative;
+  min-height: 5.1rem;
+  padding: 0.7rem 0.72rem;
+  gap: 0.26rem;
+  border-color: color-mix(in srgb, var(--border) 88%, transparent);
+  border-radius: 0.42rem;
+  background: color-mix(in srgb, var(--surface) 94%, var(--surface-alt));
+  box-shadow: none;
+}
+
+.page--home .card:hover,
+.page--home .card--top-result {
+  transform: none;
+  border-color: color-mix(in srgb, var(--primary) 58%, var(--border));
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--shadow-color) 42%, transparent);
+}
+
+.page--home .card--featured,
+.page--home .card--reference {
+  background: color-mix(in srgb, var(--surface) 90%, var(--primary) 5%);
+}
+
+.page--home .card--reference {
+  border-left: 3px solid color-mix(in srgb, var(--primary) 58%, var(--border));
+}
+
+.page--home .card__meta {
+  position: static;
+  order: -2;
+  max-width: 100%;
+  color: var(--text-muted);
+  font-size: 0.66rem;
+  letter-spacing: 0.02em;
+}
+
+.page--home .card h2 {
+  max-width: 100%;
+  font-size: 0.95rem;
+  line-height: 1.28;
+}
+
+.page--home .card p {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.page--home .pill {
+  order: 2;
+  max-width: 100%;
+  margin-top: auto;
+  margin-bottom: 0;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: color-mix(in srgb, var(--text-muted) 82%, transparent);
+  font-size: 0.68rem;
+}
+
+.page--home .home-access[hidden] {
+  display: none;
+}
+
+.page--home .home-access__grid {
+  gap: 0.6rem;
+}
+
+.page--home .home-access__panel {
+  box-shadow: none;
+}
+
+@media (max-width: 720px) {
+  .page--home .home-command-panel {
+    padding: 0.95rem;
+  }
+
+  .home-command-panel .section-title {
+    max-width: none;
+    font-size: clamp(1.85rem, 9vw, 2.35rem);
+  }
+
+  .home-query-row,
+  .page--home .home-filter-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.1rem;
+  }
+
+  .page--home .filter-chip {
+    white-space: nowrap;
+  }
+
+  .page--home .card-grid {
+    grid-template-columns: 1fr;
+  }
+}

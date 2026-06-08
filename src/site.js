@@ -420,16 +420,16 @@ const TOOL_LOOKUP = new Map(
 );
 
 const POPULAR_HOME_PATHS = [
-  '/codex-cheatsheet',
-  '/claude-code-cheatsheet',
   '/json',
   '/uuid',
   '/base64',
   '/jwt',
+  '/url',
+  '/regex',
   '/pdf-toolkit',
   '/image-optimize',
-  '/regex',
   '/seo-check',
+  '/api-tester',
 ];
 
 const FEATURED_HOME_PATHS = new Set(POPULAR_HOME_PATHS.slice(0, 6));
@@ -771,7 +771,19 @@ function setupHomeDiscovery() {
     const copy = getLibraryCopy(locale);
     const favorites = getFavoritePaths();
     const recents = getRecentPaths();
-    const popular = POPULAR_HOME_PATHS.filter((path) => TOOL_LOOKUP.has(path)).slice(0, 6);
+    const section = accessGrid.closest('.home-access');
+
+    if (!favorites.length && !recents.length) {
+      accessGrid.innerHTML = '';
+      if (section instanceof HTMLElement) {
+        section.hidden = true;
+      }
+      return;
+    }
+
+    if (section instanceof HTMLElement) {
+      section.hidden = false;
+    }
 
     const panels = [
       {
@@ -788,14 +800,7 @@ function setupHomeDiscovery() {
         items: recents,
         empty: copy.recentEmpty,
       },
-      {
-        key: 'popular',
-        title: copy.popularTitle,
-        lead: copy.popularLead,
-        items: popular,
-        empty: '',
-      },
-    ];
+    ].filter((panel) => panel.items.length);
 
     accessGrid.innerHTML = panels
       .map((panel) => {

@@ -83,9 +83,9 @@ export const TOOL_CATEGORY_MAP = {
 export const HOME_SEARCH_KEYWORDS = {
   '/ai-tools': 'ai coding assistant command cheatsheet claude codex slash prompt mcp hooks skills',
   '/claude-code-cheatsheet':
-    'claude code claude-code slash command compact clear resume mcp hooks skills claude md anthropic',
+    'claude code claude-code commands compact clear context run verify code review background agents mcp hooks skills claude md anthropic',
   '/codex-cheatsheet':
-    'codex openai cli mode personality skills automations agents worktree approval full auto auto edit',
+    'codex openai cli slash commands permissions sandbox approval agents md skills mcp automations worktree exec doctor',
   '/uuid': 'uuid guid random v4 ulid binary16 hex request id trace id correlation id db primary key',
   '/base64': 'base64 b64 encode decode url safe data url atob btoa binary file token payload',
   '/json': 'json formatter validator pretty print minify parse tree api response payload config log',
@@ -166,13 +166,13 @@ export const FILE_PICKER_META = {
 
 export const HOME_DISCOVERY_COPY = {
   ko: {
-    kicker: 'Command Center',
-    heading: '개발자 도구, 바로 실행',
-    lead: '검색창에 키워드를 치고 Enter로 첫 결과를 여세요.',
+    kicker: 'Tool Search',
+    heading: '필요한 도구만 빠르게 찾기',
+    lead: '키워드를 입력하거나 카테고리를 고르면 바로 쓸 도구만 남습니다.',
     spotlightKicker: 'Start Here',
     spotlightHeading: '많이 여는 조합을 먼저 보여드립니다',
     spotlightLead: '자주 이어서 쓰는 도구를 작업 흐름별로 묶어 뒀습니다. 급하면 여기서 바로 들어가면 됩니다.',
-    searchPlaceholder: 'codex claude json jwt uuid pdf',
+    searchPlaceholder: 'json jwt uuid pdf regex seo',
     searchLabel: '도구 검색',
     catalogKicker: 'Tool Catalog',
     catalogHeading: '도구 전체',
@@ -185,13 +185,13 @@ export const HOME_DISCOVERY_COPY = {
     resultsEmpty: '맞는 도구가 없습니다. 다른 키워드로 찾아보세요.',
   },
   en: {
-    kicker: 'Command Center',
-    heading: 'Developer tools, one shortcut away',
-    lead: 'Type a keyword, press Enter, and open the first matching tool.',
+    kicker: 'Tool Search',
+    heading: 'Find the tool you need',
+    lead: 'Search by keyword or choose a category to narrow the catalog quickly.',
     spotlightKicker: 'Start Here',
     spotlightHeading: 'Open the combinations people reach for most',
     spotlightLead: 'These clusters bundle the tools that are commonly used back-to-back, so you can move faster without scanning the full catalog first.',
-    searchPlaceholder: 'codex claude json jwt uuid pdf',
+    searchPlaceholder: 'json jwt uuid pdf regex seo',
     searchLabel: 'Search tools',
     catalogKicker: 'Tool Catalog',
     catalogHeading: 'All tools',
