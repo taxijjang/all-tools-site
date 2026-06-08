@@ -89,23 +89,23 @@ export const PAGE_META = {
   about: {
     path: '/about',
     kind: 'content',
-    title: 'About Stateless Tools | Browser-Based Utility Suite',
+    title: '사이트 소개 | Stateless Tools 운영 원칙과 브라우저 도구 모음',
     description:
-      'Learn why Stateless Tools was built, who it helps, and how the browser-first utility site is maintained.',
+      'Stateless Tools를 만든 이유, 대상 사용자, 브라우저 우선 처리 원칙, 운영자와 공개 피드백 경로를 정리한 소개 페이지입니다.',
   },
   privacy: {
     path: '/privacy',
     kind: 'content',
-    title: 'Privacy Guide | Stateless Tools',
+    title: '개인정보 처리 안내 | 브라우저 처리, 분석, 광고 정책',
     description:
-      'How Stateless Tools handles browser-side processing, analytics, cached preferences, and third-party services.',
+      'Stateless Tools의 브라우저 내부 처리, localStorage 저장, Google Analytics, AdSense, 외부 라이브러리 사용 방식을 정리한 개인정보 안내입니다.',
   },
   contact: {
     path: '/contact',
     kind: 'content',
-    title: 'Contact and Feedback | Stateless Tools',
+    title: '문의 안내 | 오류 제보, 기능 요청, 피드백 경로',
     description:
-      'Where to report bugs, request features, and share feedback for Stateless Tools.',
+      'Stateless Tools의 오류 제보, 기능 요청, 사용 경험 피드백을 보낼 수 있는 GitHub Issue와 공개 연락 경로를 안내합니다.',
   },
   uuid: {
     path: '/uuid',

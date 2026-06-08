@@ -13,9 +13,14 @@ const BASE = `http://${HOST}:${PORT}`;
 const CHROME_PORT = 9225;
 const USER_DATA_DIR = join(process.cwd(), '.tmp', `chrome-upload-audit-${Date.now()}`);
 const CHROME_PATHS = [
+  process.env.CHROME_PATH,
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/Applications/Chromium.app/Contents/MacOS/Chromium',
+  '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+  '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
   'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
   'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-];
+].filter(Boolean);
 
 function fail(message) {
   console.error(`UPLOAD AUDIT FAIL: ${message}`);
@@ -23,7 +28,11 @@ function fail(message) {
 }
 
 function getChromePath() {
-  return CHROME_PATHS.find((path) => existsSync(path)) || CHROME_PATHS[0];
+  const chromePath = CHROME_PATHS.find((path) => existsSync(path));
+  if (!chromePath) {
+    fail('Chrome executable not found. Set CHROME_PATH to run the upload audit.');
+  }
+  return chromePath;
 }
 
 function stringify(value) {

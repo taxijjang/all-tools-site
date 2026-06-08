@@ -11,6 +11,7 @@ import {
 } from './src/seo-meta.js';
 import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './src/chrome-meta.js';
 
+const ADSENSE_PUBLISHER_ID = 'ca-pub-4324902308911757';
 const ADSENSE_ENABLED = false;
 
 const pageInputs = {
@@ -88,6 +89,99 @@ function withSiteSuffix(title) {
 
 function cleanTitle(title) {
   return title.replace(/\s+\|\s+Stateless Tools$/i, '').trim();
+}
+
+function getCleanPageTitle(meta, fallbackTitle = '') {
+  return cleanTitle(meta.title || fallbackTitle || SITE_NAME).split('|')[0].trim();
+}
+
+function getDefaultFaq(meta, pageTitle, description) {
+  if (Array.isArray(meta.faq) && meta.faq.length) {
+    return meta.faq;
+  }
+
+  if (meta.kind !== 'tool') {
+    return [];
+  }
+
+  const toolName = getCleanPageTitle(meta, pageTitle);
+  const dataHandlingAnswer =
+    meta.path === '/api-tester'
+      ? '요청 전송 버튼을 누르면 사용자가 입력한 URL로 HTTP 요청이 전송됩니다. 토큰, 개인정보, 운영 API 주소처럼 민감한 값은 테스트 전에 마스킹하거나 샘플 값으로 바꾸는 것이 좋습니다.'
+      : `${toolName}의 주요 변환과 계산은 브라우저 안에서 처리됩니다. 다만 광고, 분석 도구, 일부 외부 링크는 별도 서비스의 정책을 따를 수 있습니다.`;
+
+  return [
+    {
+      question: `${toolName}는 어떤 작업에 쓰나요?`,
+      answer: description,
+    },
+    {
+      question: '입력한 데이터가 서버로 전송되나요?',
+      answer: dataHandlingAnswer,
+    },
+    {
+      question: '결과가 기대와 다르면 무엇을 확인해야 하나요?',
+      answer:
+        '입력 형식, 선택한 옵션, 복사 과정에서 생긴 공백이나 줄바꿈을 먼저 확인하세요. 파일 기반 도구라면 브라우저가 해당 파일 형식과 크기를 처리할 수 있는지도 함께 확인하는 것이 좋습니다.',
+    },
+  ];
+}
+
+function buildGeneratedToolContent(meta, pageTitle, description) {
+  const toolName = getCleanPageTitle(meta, pageTitle);
+  const escapedToolName = escapeHtml(toolName);
+  const escapedDescription = escapeHtml(description);
+  const faqItems = getDefaultFaq(meta, pageTitle, description);
+  const faqMarkup = faqItems
+    .map(
+      (item) => `            <article class="faq-item">
+              <h3>${escapeHtml(item.question)}</h3>
+              <p>${escapeHtml(item.answer)}</p>
+            </article>`,
+    )
+    .join('\n');
+
+  return `
+    <section class="content-stack content-stack--generated" data-seo-support>
+      <section class="content-section content-section--highlight" data-locale-block="ko" lang="ko">
+        <p class="section-kicker">Feature</p>
+        <h2 class="section-title">${escapedToolName} 기능 설명</h2>
+        <p class="section-lead">${escapedDescription}</p>
+        <div class="content-grid">
+          <article class="info-card">
+            <h3>브라우저에서 바로 실행</h3>
+            <p>별도 설치 없이 현재 페이지에서 입력, 변환, 검증 흐름을 이어갈 수 있도록 구성했습니다.</p>
+          </article>
+          <article class="info-card">
+            <h3>반복 작업 단축</h3>
+            <p>개발, 운영, 콘텐츠 작업 중 자주 반복되는 확인 과정을 한 화면에서 빠르게 처리하는 데 초점을 맞췄습니다.</p>
+          </article>
+          <article class="info-card">
+            <h3>다음 작업으로 연결</h3>
+            <p>결과를 복사하거나 다운로드한 뒤 관련 도구와 가이드로 이어서 점검할 수 있습니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" data-locale-block="ko" lang="ko">
+        <p class="section-kicker">How To</p>
+        <h2 class="section-title">${escapedToolName} 사용 방법</h2>
+        <ol class="content-list">
+          <li>입력창에 확인할 값이나 파일을 넣습니다.</li>
+          <li>필요한 옵션, 형식, 출력 방식을 선택합니다.</li>
+          <li>실행 버튼을 누르고 결과 영역에서 변환 또는 검사 결과를 확인합니다.</li>
+          <li>결과를 복사하거나 다운로드한 뒤 관련 도구에서 추가 점검을 이어갑니다.</li>
+        </ol>
+      </section>
+
+      <section class="content-section" data-locale-block="ko" lang="ko">
+        <p class="section-kicker">FAQ</p>
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <div class="faq-list">
+${faqMarkup}
+        </div>
+      </section>
+    </section>`;
 }
 
 function removeHeadArtifacts(html) {
@@ -337,12 +431,13 @@ function buildStructuredData(meta, pageTitle, description, canonicalUrl) {
     });
   }
 
-  if (Array.isArray(meta.faq) && meta.faq.length) {
+  const faq = getDefaultFaq(meta, pageTitle, description);
+  if (faq.length) {
     structuredData.push({
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
       '@id': `${canonicalUrl}#faq`,
-      mainEntity: meta.faq.map((item) => ({
+      mainEntity: faq.map((item) => ({
         '@type': 'Question',
         name: item.question,
         acceptedAnswer: {
@@ -354,6 +449,21 @@ function buildStructuredData(meta, pageTitle, description, canonicalUrl) {
   }
 
   return structuredData;
+}
+
+function injectGeneratedToolContent(html, meta, pageTitle, description) {
+  if (meta.kind !== 'tool' || /data-seo-support|class=["'][^"']*\bcontent-section\b/i.test(html)) {
+    return html;
+  }
+
+  const content = buildGeneratedToolContent(meta, pageTitle, description);
+  const messagePattern = /(<\/main>\s*)(<p\b[^>]*class=["'][^"']*\bmessage\b[^"']*["'][\s\S]*?<\/p>)/i;
+
+  if (messagePattern.test(html)) {
+    return html.replace(messagePattern, `$1$2\n${content}`);
+  }
+
+  return html.replace(/<\/main>/i, `</main>\n${content}`);
 }
 
 function resolveSitemapDefaults(meta) {
@@ -444,6 +554,7 @@ function seoMetadataPlugin() {
       if (primaryHeading) {
         nextHtml = nextHtml.replace(/<h1([^>]*)>[\s\S]*?<\/h1>/i, `<h1$1>${escapeHtml(primaryHeading)}</h1>`);
       }
+      nextHtml = injectGeneratedToolContent(nextHtml, meta, pageTitle, description);
       nextHtml = injectChromeShell(nextHtml, meta.path);
       nextHtml = nextHtml.replace(
         /<h1([^>]*)>([\s\S]*?)<span class="trust-badge"([^>]*)>([\s\S]*?)<\/span><\/h1>/i,
@@ -465,6 +576,7 @@ function seoMetadataPlugin() {
       const headTags = [
         buildClientBootScript(),
         buildClientBootStyle(),
+        `  <meta name="google-adsense-account" content="${ADSENSE_PUBLISHER_ID}" />`,
         `  <meta name="description" content="${escapeAttr(description)}" />`,
         `  <meta name="robots" content="${robots}" />`,
         '  <meta name="author" content="taxijjang" />',
@@ -501,6 +613,25 @@ function staticSiteArtifactsPlugin() {
 
   return {
     name: 'static-site-artifacts',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const pathname = req.url?.split('?')[0];
+
+        if (pathname === '/sitemap.xml') {
+          res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+          res.end(buildSitemapXml(buildDate));
+          return;
+        }
+
+        if (pathname === '/robots.txt') {
+          res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+          res.end(buildRobotsTxt());
+          return;
+        }
+
+        next();
+      });
+    },
     generateBundle() {
       this.emitFile({
         type: 'asset',

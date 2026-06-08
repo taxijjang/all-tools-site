@@ -1280,8 +1280,8 @@ function setupQuickStartPanel() {
   if (!panel) {
     panel = document.createElement('section');
     panel.className = 'quick-start';
-    header.after(panel);
   }
+  main.after(panel);
 
   function render(locale = document.documentElement.getAttribute('lang') || currentLocale) {
     const copy = meta.copy[locale] || meta.copy.en;

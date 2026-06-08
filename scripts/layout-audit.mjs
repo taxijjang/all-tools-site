@@ -10,9 +10,14 @@ const BASE = `http://${HOST}:${PORT}`;
 const CHROME_PORT = 9224;
 const USER_DATA_DIR = join(process.cwd(), '.tmp', `chrome-layout-audit-${Date.now()}`);
 const CHROME_PATHS = [
+  process.env.CHROME_PATH,
+  '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  '/Applications/Chromium.app/Contents/MacOS/Chromium',
+  '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge',
+  '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser',
   'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
   'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
-];
+].filter(Boolean);
 
 const ROUTES = [
   '/',
@@ -69,7 +74,11 @@ function fail(message) {
 }
 
 function getChromePath() {
-  return CHROME_PATHS.find((path) => existsSync(path)) || CHROME_PATHS[0];
+  const chromePath = CHROME_PATHS.find((path) => existsSync(path));
+  if (!chromePath) {
+    fail('Chrome executable not found. Set CHROME_PATH to run the layout audit.');
+  }
+  return chromePath;
 }
 
 async function waitForHttp(url, attempts = 60) {

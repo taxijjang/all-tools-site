@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Privacy Guide | Stateless Tools</title>
+  <title>개인정보 처리 안내 | 브라우저 처리, 분석, 광고 정책 | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
@@ -15,8 +15,8 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-BWVPo8uH.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-CHjPviYf.css">
+  <script type="module" crossorigin src="/assets/site-vEjY-0Lp.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-DQU8Qc7m.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -71,7 +71,8 @@
       overflow: hidden;
     }
   </style>
-  <meta name="description" content="How Stateless Tools handles browser-side processing, analytics, cached preferences, and third-party services." />
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Stateless Tools의 브라우저 내부 처리, localStorage 저장, Google Analytics, AdSense, 외부 라이브러리 사용 방식을 정리한 개인정보 안내입니다." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="taxijjang" />
   <meta name="theme-color" content="#020817" />
@@ -79,14 +80,14 @@
   <link rel="canonical" href="https://all-tools-site.pages.dev/privacy" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Stateless Tools" />
-  <meta property="og:title" content="Privacy Guide" />
-  <meta property="og:description" content="How Stateless Tools handles browser-side processing, analytics, cached preferences, and third-party services." />
+  <meta property="og:title" content="개인정보 처리 안내 | 브라우저 처리, 분석, 광고 정책" />
+  <meta property="og:description" content="Stateless Tools의 브라우저 내부 처리, localStorage 저장, Google Analytics, AdSense, 외부 라이브러리 사용 방식을 정리한 개인정보 안내입니다." />
   <meta property="og:url" content="https://all-tools-site.pages.dev/privacy" />
   <meta property="og:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <meta property="og:image:alt" content="Stateless Tools logo" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Privacy Guide" />
-  <meta name="twitter:description" content="How Stateless Tools handles browser-side processing, analytics, cached preferences, and third-party services." />
+  <meta name="twitter:title" content="개인정보 처리 안내 | 브라우저 처리, 분석, 광고 정책" />
+  <meta name="twitter:description" content="Stateless Tools의 브라우저 내부 처리, localStorage 저장, Google Analytics, AdSense, 외부 라이브러리 사용 방식을 정리한 개인정보 안내입니다." />
   <meta name="twitter:image" content="https://all-tools-site.pages.dev/icon.svg" />
   <script type="application/ld+json" data-seo-schema>
 [
@@ -122,9 +123,9 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": "https://all-tools-site.pages.dev/privacy#webpage",
-    "name": "Privacy Guide",
+    "name": "개인정보 처리 안내 | 브라우저 처리, 분석, 광고 정책",
     "url": "https://all-tools-site.pages.dev/privacy",
-    "description": "How Stateless Tools handles browser-side processing, analytics, cached preferences, and third-party services.",
+    "description": "Stateless Tools의 브라우저 내부 처리, localStorage 저장, Google Analytics, AdSense, 외부 라이브러리 사용 방식을 정리한 개인정보 안내입니다.",
     "isPartOf": {
       "@id": "https://all-tools-site.pages.dev/#website"
     },
@@ -147,7 +148,7 @@
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Privacy Guide",
+        "name": "개인정보 처리 안내 | 브라우저 처리, 분석, 광고 정책",
         "item": "https://all-tools-site.pages.dev/privacy"
       }
     ]
@@ -186,9 +187,11 @@
       <h1>개인정보 처리 안내</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
       <div data-locale-block="ko" lang="ko">
         <p>이 사이트는 가능한 한 많은 처리를 브라우저 내부에서 끝내는 방향을 우선합니다. 아래 내용은 현재 페이지 기준 동작을 간단히 정리한 것입니다.</p>
+        <p class="content-note">최종 업데이트: 2026년 6월 8일 · 운영자: taxijjang</p>
       </div>
       <div data-locale-block="en" lang="en" hidden data-nosnippet>
         <p>This site tries to keep as much processing as possible inside the browser. The sections below summarize how the current pages handle data.</p>
+        <p class="content-note">Last updated: June 8, 2026 · Maintainer: taxijjang</p>
       </div>
     </header>
 
@@ -233,6 +236,10 @@
               <h3>저장 상태</h3>
               <p>언어 설정, 테마, 일부 입력 상태는 다시 방문했을 때 편의를 위해 localStorage에 저장될 수 있습니다.</p>
             </article>
+            <article class="info-card">
+              <h3>회원 정보</h3>
+              <p>현재 별도 회원가입, 로그인, 결제 기능을 제공하지 않으며 자체 회원 데이터베이스를 운영하지 않습니다.</p>
+            </article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden data-nosnippet>
@@ -250,6 +257,10 @@
             <article class="info-card">
               <h3>Stored preferences</h3>
               <p>Locale, theme, and some recent input state may be stored in local storage to make return visits smoother.</p>
+            </article>
+            <article class="info-card">
+              <h3>Account data</h3>
+              <p>The site currently does not provide its own sign-up, login, payment flow, or member database.</p>
             </article>
           </div>
         </div>
