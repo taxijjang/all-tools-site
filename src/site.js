@@ -1536,6 +1536,17 @@ function hydrateLocaleBlocks(locale) {
   });
 }
 
+// ponytail: 도구 22개가 각자 setMessage로 이미 번역된 문자열을 직접 써넣고, 언어 변경을
+// 구독하지 않는다. 그래서 한국어로 쓰다 영어로 바꾸면 "변환 완료."가 그대로 남았다.
+// 22개 파일에 구독을 붙이는 대신 여기서 지운다. 상태 메시지는 직전 동작에 대한 일회성
+// 피드백이라, 언어를 바꾼 시점에 맞는 상태는 "메시지 없음"이다. 다시 실행하면 새 언어로 나온다.
+function clearStaleMessages() {
+  document.querySelectorAll('p.message').forEach((el) => {
+    el.textContent = '';
+    el.classList.remove('message--error');
+  });
+}
+
 function syncLocaleBlocks(locale = document.documentElement.getAttribute('lang') || currentLocale) {
   hydrateLocaleBlocks(locale);
   document.querySelectorAll('[data-locale-block]').forEach((block) => {
@@ -1857,7 +1868,9 @@ window.addEventListener('DOMContentLoaded', () => {
   const refreshCommandReferences = setupCommandReferences();
   const refreshFavoriteButton = setupToolFavoriteButton();
   const refreshQuickStart = setupQuickStartPanel();
-  injectRelatedToolsSection();
+  // ponytail: 관련 도구 섹션이 두 벌 렌더링됐다. 빌드 타임(.related-list)이 HTML에 있어
+  // 크롤러도 읽고 언어 전환도 되는데, 런타임 버전은 제목이 생성 시점 언어로 굳어
+  // 영어로 바꿔도 한글이 남았다. 중복이면서 버그라 런타임 쪽을 뺀다.
   syncLocaleBlocks(currentLocale);
   onLocaleChange((locale) => {
     syncLocaleBlocks(locale);
@@ -1867,6 +1880,7 @@ window.addEventListener('DOMContentLoaded', () => {
     refreshCommandReferences(locale);
     refreshFavoriteButton(locale);
     refreshQuickStart(locale);
+    clearStaleMessages();
     window.statelessTools.locale = locale;
   });
   injectContentAds();

@@ -542,7 +542,11 @@ function injectFooterLinks(html) {
   // 도구 18개는 푸터 자체가 없었다. 정책 링크가 닿을 곳이 없으면 만들어 준다.
   // body 직속으로 넣으면 .page 형제가 되어 오른쪽 컬럼처럼 떠버린다.
   // .page를 닫는 마지막 </div> 앞, 즉 래퍼 안에 넣어야 기존 푸터와 같은 자리에 온다.
-  const footer = `    <footer class="footer footer--dev">\n${nav}\n    </footer>\n`;
+  // 링크만 있는 푸터는 맥락이 없다. 기존 푸터들처럼 사이트 표기를 함께 넣는다.
+  const footer =
+    `    <footer class="footer footer--dev">\n${nav}\n` +
+    `      <small data-i18n="common.footerHome">© 2025 stateless tools · Cloudflare Pages 배포용 정적 사이트</small>\n` +
+    `    </footer>\n`;
   const closeIndex = html.lastIndexOf('</div>');
 
   if (closeIndex === -1) {

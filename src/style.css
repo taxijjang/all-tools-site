@@ -4222,3 +4222,77 @@ button.primary:hover,
 .content-more[open] > summary {
   margin-bottom: 0.5rem;
 }
+
+/* ponytail: 상단 바 순서가 설치 버튼 -> 도구선택 -> 테마 -> 링크 -> 언어였다.
+   초록 채운 설치 버튼이 페이지 맨 앞에서 도구보다 튀었다.
+   DOM 삽입 순서와 싸우지 않고 order로 시각 순서만 정리한다.
+   왼쪽: 도구 선택과 콘텐츠 링크 / 오른쪽: 테마·언어·설치 같은 유틸리티. */
+.page-controls .tool-switcher {
+  order: 1;
+  margin-right: 0.25rem;
+}
+
+.page-controls .utility-links {
+  order: 2;
+  flex-basis: auto;
+  margin: 0;
+  min-height: 0;
+}
+
+.page-controls .theme-toggle {
+  order: 3;
+  margin-left: auto;
+}
+
+.page-controls .locale-switcher {
+  order: 4;
+  /* 기존 규칙이 여기에도 margin-left: auto를 주어 남는 공간이 둘로 쪼개졌다.
+     오른쪽 묶음의 첫 항목(테마)만 auto를 갖게 한다. */
+  margin-left: 0;
+}
+
+.page-controls .pwa-install-btn {
+  order: 5;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.page-controls .pwa-install-btn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+@media (max-width: 720px) {
+  /* ponytail: 좁은 화면에서 상단 바가 3줄, 헤더가 4줄로 흩어졌다.
+     오른쪽 묶음의 auto 마진을 풀어 링크 뒤로 바로 흐르게 하고, 배지를 줄여 줄 수를 줄인다. */
+  .page-controls {
+    gap: 0.4rem;
+  }
+
+  /* auto 마진을 빼면 테마와 언어가 양끝으로 벌어진다. 데스크톱과 같이 붙여 오른쪽으로 보낸다. */
+  .page-controls .theme-toggle {
+    margin-left: auto;
+  }
+
+  /* 래퍼를 100%로 늘리면 화살표(래퍼 가상요소)와 셀렉트 박스가 어긋난다. 셀렉트 폭을 그대로 쓴다. */
+  .page-controls .tool-switcher {
+    margin-right: 0;
+  }
+
+  .layout--dev .page-header {
+    column-gap: 0.5rem;
+    padding: 0.85rem 0.9rem;
+  }
+
+  .layout--dev .page-header .trust-badge {
+    padding: 0.15rem 0.5rem;
+    font-size: 0.68rem;
+  }
+
+  .layout--dev .page-header .page-actions {
+    margin-left: 0;
+  }
+}
