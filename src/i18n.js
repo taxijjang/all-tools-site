@@ -2,6 +2,9 @@ const SUPPORTED_LOCALES = ['ko', 'en'];
 
 const translations = {
   ko: {
+    'page.aboutTitle': '사이트 소개',
+    'page.privacyTitle': '개인정보 처리 안내',
+    'page.contactTitle': '문의 안내',
     'common.languageLabel': '언어',
     'common.languageKorean': '한국어',
     'common.languageEnglish': 'English',
@@ -581,6 +584,9 @@ const translations = {
     'jwt.verify.failed': 'JWT 서명 검증 실패: {message}',
   },
   en: {
+    'page.aboutTitle': 'About this site',
+    'page.privacyTitle': 'Privacy and data handling',
+    'page.contactTitle': 'Contact and feedback',
     'common.languageLabel': 'Language',
     'common.languageKorean': '한국어',
     'common.languageEnglish': 'English',
