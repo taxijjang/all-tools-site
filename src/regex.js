@@ -13,7 +13,7 @@ const dom = {
   sampleBtn: document.getElementById('reSampleBtn'),
 };
 
-const SAMPLE_TEXT = `name: alice\nemail: alice@example.com\nphone: +82-10-1234-5678\nurl: https://all-tools-site.pages.dev`;
+const SAMPLE_TEXT = `name: alice\nemail: alice@example.com\nphone: +82-10-1234-5678\nurl: https://taxijjang.com`;
 
 function showMessage(text, isError = false) {
   dom.message.textContent = text;

@@ -1,4 +1,6 @@
-const DEFAULT_SITE_ORIGIN = 'https://all-tools-site.pages.dev';
+// ponytail: 기본값을 커스텀 도메인으로 두면 Pages 빌드 환경변수를 설정할 필요가 없다.
+// SITE_ORIGIN / VITE_SITE_ORIGIN으로 여전히 덮어쓸 수 있다.
+const DEFAULT_SITE_ORIGIN = 'https://taxijjang.com';
 
 function normalizeSiteOrigin(origin) {
   if (!origin) {

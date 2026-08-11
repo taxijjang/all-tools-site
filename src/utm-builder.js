@@ -42,7 +42,8 @@ async function build() {
     const out = url.toString();
     dom.url.value = out;
     const code = await shortCode(out);
-    dom.short.value = `https://all-tools-site.pages.dev/go/${code}`;
+    // ponytail: 도메인 하드코딩은 도메인 옮길 때마다 어긋난다. 실행 중인 오리진을 쓰면 항상 맞다.
+    dom.short.value = `${location.origin}/go/${code}`;
     setMessage(t('messages.utm.done'));
   } catch {
     setMessage(t('messages.utm.invalidBase'), true);
