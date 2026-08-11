@@ -1808,6 +1808,54 @@ function hydratePersistentFields() {
 }
 
 // --- Clipboard & Sharing ---
+// ponytail: 33개 도구 중 26개가 버튼을 눌러야 결과가 나왔다. 유효한 JSON을 넣어도
+// 출력 칸이 "No input"으로 남아 있어서, 참고하신 jsonviewer/jwt.io처럼 입력하면
+// 바로 반영되는 감각과 어긋났다. 도구마다 리스너를 붙이는 대신 여기서 기준 버튼을
+// 디바운스로 눌러준다.
+//
+// 목록에 없는 도구는 자동 실행하면 안 되는 이유가 각각 있다.
+//   api-tester, seo-check  실제 네트워크 요청이 나간다
+//   ocr, pdf-*, image-*, file-hash  파일을 다루거나 무겁다
+//   password, uuid, uuidv7, qr  누를 때마다 새 값을 만든다. 타이핑마다 바뀌면 못 쓴다
+//   base64, url, json-yaml  인코딩/디코딩 방향이 둘이라 한쪽을 자동으로 고르면 틀린 결과가 된다
+const LIVE_RUN_TOOLS = new Set([
+  'case-convert',
+  'convert',
+  'hash',
+  'ip-cidr',
+  'json',
+  'jwt',
+  'markdown',
+  'query-builder',
+  'regex',
+  'text-cleaner',
+  'text-stats',
+  'timestamp',
+  'utm-builder',
+]);
+
+function setupLiveRun() {
+  if (!LIVE_RUN_TOOLS.has(document.body.dataset.tool)) {
+    return;
+  }
+
+  const main = document.querySelector('main');
+  const primary = main?.querySelector('button.primary');
+  if (!main || !primary) {
+    return;
+  }
+
+  let timer;
+  main.addEventListener('input', (event) => {
+    const el = event.target;
+    if (!el.matches('textarea, select, input') || el.type === 'file') {
+      return;
+    }
+    clearTimeout(timer);
+    timer = setTimeout(() => primary.click(), 250);
+  });
+}
+
 function setupActions() {
   // Share State
   document.querySelectorAll('[data-share-state]').forEach((btn) => {
@@ -1887,6 +1935,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupAnalytics();
   hydratePersistentFields();
   setupActions();
+  setupLiveRun();
   revealI18n();
 });
 
