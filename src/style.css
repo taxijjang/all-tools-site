@@ -4296,3 +4296,37 @@ button.primary:hover,
     margin-left: 0;
   }
 }
+
+/* ponytail: /jwt는 패널 4개가 2열 그리드로 흘러 입력|헤더 / 페이로드|JWKS가 됐다.
+   헤더와 페이로드는 같은 토큰의 두 부분인데 대각선으로 떨어져 있었고,
+   헤더 칸은 짧아서 옆의 긴 입력창과 나란히 놓이며 빈 공간을 크게 만들었다.
+   jwt.io처럼 왼쪽에 토큰, 오른쪽에 헤더->페이로드->서명검증을 세로로 쌓는다. */
+/* 그리드로 행을 span하면 행 높이 계산 때문에 오른쪽에 큰 빈칸이 생긴다.
+   오른쪽 패널들을 .tool__column으로 묶고 2열 flex로 두는 편이 단순하다. */
+.tool__column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+@media (min-width: 980px) {
+  body[data-tool='jwt'] .tool:not(.tool--columns) {
+    display: flex;
+    /* .tool 기본 규칙이 column이라 명시적으로 되돌려야 한다 */
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  body[data-tool='jwt'] .tool > .tool__panel:first-of-type {
+    flex: 1 1 0;
+    min-width: 0;
+    position: sticky;
+    top: 1rem;
+  }
+
+  body[data-tool='jwt'] .tool > .tool__column {
+    flex: 1 1 0;
+  }
+}

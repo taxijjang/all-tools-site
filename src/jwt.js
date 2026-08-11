@@ -293,14 +293,22 @@ onLocaleChange((locale) => {
   renderInspector();
 });
 
+const SAMPLE_JWT =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
+  'eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRldlVzZXIiLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MjUxNjIzOTAyMn0.' +
+  'TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ';
+
 document.getElementById('jwtSampleBtn').addEventListener('click', () => {
-  const sample =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
-    'eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRldlVzZXIiLCJpYXQiOjE1MTYyMzkwMjIsImV4cCI6MjUxNjIzOTAyMn0.' +
-    'TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ';
-  jwtInput.value = sample;
+  jwtInput.value = SAMPLE_JWT;
   decodeJwt();
 });
+
+// ponytail: 빈 화면으로 열리면 무슨 도구인지 눌러봐야 안다. jwt.io는 예시 토큰이
+// 디코드된 상태로 시작한다. 저장된 입력이 없을 때만 채우므로 쓰던 값은 건드리지 않는다.
+if (!jwtInput.value.trim()) {
+  jwtInput.value = SAMPLE_JWT;
+  decodeJwt();
+}
 
 document.querySelectorAll('button[data-copy]').forEach((btn) => {
   btn.addEventListener('click', () => {
