@@ -110,6 +110,7 @@ const TOOL_SUPPORT_LABELS = {
     stepsTitle: '사용 순서',
     notesTitle: '확인할 점',
     faqTitle: '자주 묻는 질문',
+    moreSummary: '사용법, 예시, 자주 만나는 오류 더 보기',
     examplesKicker: 'Examples',
     examplesTitle: '실제 입력과 결과',
     troublesKicker: 'Troubleshooting',
@@ -128,6 +129,7 @@ const TOOL_SUPPORT_LABELS = {
     stepsTitle: 'How to use it',
     notesTitle: 'Things to check',
     faqTitle: 'Common questions',
+    moreSummary: 'More: how to use it, examples, and common errors',
     examplesKicker: 'Examples',
     examplesTitle: 'Real input and output',
     troublesKicker: 'Troubleshooting',
@@ -327,6 +329,9 @@ ${buildCardMarkup(support.cards)}
           </div>
         </section>
 
+        <details class="content-more">
+          <summary>${escapeHtml(labels.moreSummary)}</summary>
+
         <section class="content-section">
           <p class="section-kicker">${escapeHtml(labels.stepsKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.stepsTitle)}</h2>
@@ -391,6 +396,7 @@ ${relatedMarkup}
         </section>`
     : ''
 }
+        </details>
     </section>`;
 }
 
@@ -534,10 +540,16 @@ function injectFooterLinks(html) {
   }
 
   // 도구 18개는 푸터 자체가 없었다. 정책 링크가 닿을 곳이 없으면 만들어 준다.
-  return html.replace(
-    /<\/body>/i,
-    `    <footer class="footer footer--dev">\n${nav}\n    </footer>\n</body>`,
-  );
+  // body 직속으로 넣으면 .page 형제가 되어 오른쪽 컬럼처럼 떠버린다.
+  // .page를 닫는 마지막 </div> 앞, 즉 래퍼 안에 넣어야 기존 푸터와 같은 자리에 온다.
+  const footer = `    <footer class="footer footer--dev">\n${nav}\n    </footer>\n`;
+  const closeIndex = html.lastIndexOf('</div>');
+
+  if (closeIndex === -1) {
+    return html.replace(/<\/body>/i, `${footer}</body>`);
+  }
+
+  return `${html.slice(0, closeIndex)}${footer}  ${html.slice(closeIndex)}`;
 }
 
 function injectChromeShell(html, pathname) {
@@ -705,6 +717,8 @@ function buildExtraOnlyContent(meta, locale, { hidden = false } = {}) {
 
   return `
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="${locale}" lang="${locale}"${hiddenAttrs}>
+        <details class="content-more">
+          <summary>${escapeHtml(labels.moreSummary)}</summary>
 ${
   extra?.examples?.length
     ? `        <section class="content-section">
@@ -738,7 +752,8 @@ ${relatedMarkup}
         </section>
 `
     : ''
-}    </section>`;
+}        </details>
+    </section>`;
 }
 
 function injectGeneratedToolContent(html, meta, pageTitle, description) {

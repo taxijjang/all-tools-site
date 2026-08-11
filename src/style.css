@@ -4177,3 +4177,48 @@ button.primary:hover,
   color: var(--primary);
   text-decoration: underline;
 }
+
+/* ponytail: /ip-cidr에서 도구가 페이지의 15%, 설명이 76%를 차지했다.
+   애드센스가 콘텐츠 부족으로 거절한 상태라 지울 수는 없으니 접는다.
+   <details>는 hidden과 다르다. 사용자가 펼칠 수 있고 구글도 안의 내용을 색인한다.
+   Guide 섹션은 펼친 채로 남겨 접힌 상태에서도 페이지가 비어 보이지 않게 했다. */
+.content-more {
+  margin-top: 0.5rem;
+}
+
+.content-more > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.75rem;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.content-more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.content-more > summary::before {
+  content: '▸';
+  font-size: 0.8rem;
+  color: var(--primary);
+  transition: transform 0.15s ease;
+}
+
+.content-more[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.content-more > summary:hover {
+  color: var(--text);
+}
+
+.content-more[open] > summary {
+  margin-bottom: 0.5rem;
+}
