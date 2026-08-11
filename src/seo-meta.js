@@ -442,24 +442,6 @@ export const PAGE_META = {
       'HTTP 요청을 보내고 응답을 확인한 뒤 cURL 명령으로 내보낼 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
   },
-  'csv-tools': {
-    path: '/csv-tools',
-    kind: 'alias',
-    noindex: true,
-    canonicalPath: '/json-yaml',
-  },
-  'jwt-verify': {
-    path: '/jwt-verify',
-    kind: 'alias',
-    noindex: true,
-    canonicalPath: '/jwt',
-  },
-  'qr-advanced': {
-    path: '/qr-advanced',
-    kind: 'alias',
-    noindex: true,
-    canonicalPath: '/qr',
-  },
 };
 
 export const FEATURED_TOOL_PATHS = [
