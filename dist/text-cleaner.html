@@ -5,9 +5,9 @@
   <title>텍스트 정리기 | 공백 제거, 중복 제거, slugify | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/textCleaner-Cc4yvBxE.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/textCleaner-Cg8W_k0x.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -288,6 +288,49 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>중복 제거와 정렬</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>banana
+apple
+banana
+cherry
+apple</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>apple
+banana
+cherry</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>slug 만들기</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>  Hello   World – 2026 Edition!  </code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>hello-world-2026-edition</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>눈에 안 보이는 공백이 남을 때</h3>
+              <p>웹에서 복사한 텍스트에는 일반 공백이 아닌 non-breaking space(U+00A0)나 제로폭 문자가 섞여 있는 경우가 많습니다. 눈으로는 같아 보여도 비교나 정렬에서 다르게 취급됩니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>한글 slug가 사라질 때</h3>
+              <p>slug는 보통 ASCII만 남기므로 한글 제목은 통째로 지워질 수 있습니다. 한글 URL을 쓸 계획이면 slug 대신 인코딩된 원문을 쓰는 편이 낫습니다.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -304,10 +347,21 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/regex">정규식 테스트기</a> — 정규식 패턴과 플래그를 테스트하고 매치 결과와 치환 결과를 빠르게 확인할 수 있습니다.</li>
+            <li><a href="/diff">텍스트 비교기</a> — 두 텍스트를 줄 단위로 비교하고 변경 내용을 unified diff 형태로 확인할 수 있습니다.</li>
+            <li><a href="/markdown">Markdown 미리보기</a> — Markdown을 실시간으로 렌더링하고 HTML 출력까지 함께 확인할 수 있습니다.</li>
+            <li><a href="/case-convert">텍스트 케이스 변환기</a> — camelCase, snake_case, kebab-case, PascalCase를 서로 변환할 수 있습니다.</li>
+            <li><a href="/text-stats">텍스트 통계 계산기</a> — 글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Text cleaning workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying text in the browser.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Remove paste artifacts\u003c/h3>\n              \u003cp>Clean extra spaces and blank lines from text copied out of documents, spreadsheets, or logs.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Organize lists\u003c/h3>\n              \u003cp>Use duplicate removal and sorting to review keyword, URL, email, or config-value lists more easily.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Draft slugs\u003c/h3>\n              \u003cp>Turn titles into URL-friendly slug drafts for document paths and filenames.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Paste the text you want to clean.\u003c/li>\n          \u003cli>Choose trimming, blank-line removal, duplicate removal, sorting, or slugify actions.\u003c/li>\n          \u003cli>Compare the result with the original so meaningful spacing or ordering is not lost.\u003c/li>\n          \u003cli>Keep the original before bulk edits, then copy the cleaned result.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Keep the original\u003c/h3>\n              \u003cp>Duplicate removal and sorting can change order. Preserve the source when sequence matters.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review slugs\u003c/h3>\n              \u003cp>Automatic slugs are drafts. Before publishing URLs, adjust brand names, acronyms, and search intent manually.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Text cleaning workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying text in the browser.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Remove paste artifacts\u003c/h3>\n              \u003cp>Clean extra spaces and blank lines from text copied out of documents, spreadsheets, or logs.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Organize lists\u003c/h3>\n              \u003cp>Use duplicate removal and sorting to review keyword, URL, email, or config-value lists more easily.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Draft slugs\u003c/h3>\n              \u003cp>Turn titles into URL-friendly slug drafts for document paths and filenames.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Paste the text you want to clean.\u003c/li>\n          \u003cli>Choose trimming, blank-line removal, duplicate removal, sorting, or slugify actions.\u003c/li>\n          \u003cli>Compare the result with the original so meaningful spacing or ordering is not lost.\u003c/li>\n          \u003cli>Keep the original before bulk edits, then copy the cleaned result.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Dedupe and sort\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>banana\napple\nbanana\ncherry\napple\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>apple\nbanana\ncherry\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Building a slug\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>  Hello   World – 2026 Edition!  \u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>hello-world-2026-edition\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Invisible whitespace survives\u003c/h3>\n              \u003cp>Text copied from the web often carries non-breaking spaces (U+00A0) or zero-width characters. They look identical but compare and sort differently.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Non-ASCII titles vanish in a slug\u003c/h3>\n              \u003cp>Slugs usually keep ASCII only, so a Korean or Japanese title can be stripped entirely. If you plan to use non-ASCII URLs, keep the encoded original instead.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Keep the original\u003c/h3>\n              \u003cp>Duplicate removal and sorting can change order. Preserve the source when sequence matters.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review slugs\u003c/h3>\n              \u003cp>Automatic slugs are drafts. Before publishing URLs, adjust brand names, acronyms, and search intent manually.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/regex\">Regex Tester\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/diff\">Text Diff\u003c/a> — Compare two similar text blocks such as config files, drafts, or API responses and focus on the changed lines.\u003c/li>\n            \u003cli>\u003ca href=\"/markdown\">Markdown\u003c/a> — Review Markdown documents such as READMEs, release notes, and issue templates as rendered output and generated\u003c/li>\n            \u003cli>\u003ca href=\"/case-convert\">Case Converter\u003c/a> — Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-ca\u003c/li>\n            \u003cli>\u003ca href=\"/text-stats\">Text Stats\u003c/a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

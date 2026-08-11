@@ -8,9 +8,9 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/fileHash-BdeLzLGP.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/fileHash-Ct2Omeww.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -292,6 +292,42 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>다운로드 파일 무결성 확인</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>ubuntu-24.04.iso</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>SHA-256
+9b2e1f...c47a3d</code></pre>
+              <p class="example-item__note">배포처가 공개한 체크섬과 한 글자라도 다르면 파일이 손상됐거나 변조된 것입니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>대소문자가 달라 다르게 보일 때</h3>
+              <p>16진수 표기는 대소문자 구분이 없습니다. 9B2E와 9b2e는 같은 값이므로 비교 전에 한쪽으로 통일하세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>큰 파일에서 브라우저가 멈출 때</h3>
+              <p>파일을 메모리에 올려 계산하므로 기가바이트 단위 파일은 탭이 버거울 수 있습니다. 큰 파일은 OS 명령(shasum, certutil)을 쓰는 편이 빠릅니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>SHA-1 결과를 신뢰해도 되는지</h3>
+              <p>SHA-1은 충돌 공격이 실증되어 보안 검증 용도로는 부적합합니다. 무결성 확인에는 SHA-256 이상을 쓰세요.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -308,10 +344,21 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/pdf-toolkit">PDF 병합/분할 툴</a> — PDF 병합, 분할, 페이지 추출, 워터마크 작업을 파일 업로드 없이 브라우저에서 처리할 수 있습니다.</li>
+            <li><a href="/image-optimize">이미지 최적화</a> — 이미지를 압축하고 리사이즈한 뒤 WEBP, JPEG, PNG로 변환할 수 있습니다.</li>
+            <li><a href="/image-base64">이미지 Base64 변환기</a> — 이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.</li>
+            <li><a href="/ocr">OCR 텍스트 추출</a> — 이미지에서 한글과 영어 텍스트를 추출해 복사, 검색, 정리에 활용할 수 있습니다.</li>
+            <li><a href="/qr">QR 코드 생성기/스캐너</a> — 텍스트, URL, Wi-Fi 정보를 QR 코드로 만들고 업로드한 QR 이미지를 바로 읽을 수 있습니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">File hash verification workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Calculate SHA hashes for downloads, release artifacts, and shared files in the browser to verify integrity.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Compare checksums\u003c/h3>\n              \u003cp>Compare a local file hash with the SHA-256 value published in release notes or download pages.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>No upload required\u003c/h3>\n              \u003cp>The browser reads the file and computes the hash locally; the selected file is not uploaded by this tool.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Record multiple hashes\u003c/h3>\n              \u003cp>When needed, keep SHA-256 and SHA-512 values together in verification notes.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Select the file you want to verify.\u003c/li>\n          \u003cli>Compare the calculated SHA value with the reference value from a release note, download page, or internal document.\u003c/li>\n          \u003cli>Ignore casing and extra whitespace when comparing hexadecimal strings.\u003c/li>\n          \u003cli>If the value differs, download the file again or review the transfer path.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Hashing is not encryption\u003c/h3>\n              \u003cp>A hash identifies file content and helps with integrity checks. It does not restore the original file or provide secrecy.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Large files take time\u003c/h3>\n              \u003cp>Very large files can use more browser memory and processing time. Wait briefly before assuming the calculation failed.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">File hash verification workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Calculate SHA hashes for downloads, release artifacts, and shared files in the browser to verify integrity.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Compare checksums\u003c/h3>\n              \u003cp>Compare a local file hash with the SHA-256 value published in release notes or download pages.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>No upload required\u003c/h3>\n              \u003cp>The browser reads the file and computes the hash locally; the selected file is not uploaded by this tool.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Record multiple hashes\u003c/h3>\n              \u003cp>When needed, keep SHA-256 and SHA-512 values together in verification notes.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Select the file you want to verify.\u003c/li>\n          \u003cli>Compare the calculated SHA value with the reference value from a release note, download page, or internal document.\u003c/li>\n          \u003cli>Ignore casing and extra whitespace when comparing hexadecimal strings.\u003c/li>\n          \u003cli>If the value differs, download the file again or review the transfer path.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Verifying a download\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>ubuntu-24.04.iso\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>SHA-256\n9b2e1f...c47a3d\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">If a single character differs from the published checksum, the file is corrupted or tampered with.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Case differences look like a mismatch\u003c/h3>\n              \u003cp>Hex digests are case insensitive. 9B2E and 9b2e are the same value — normalize the case before comparing.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>The browser stalls on large files\u003c/h3>\n              \u003cp>Hashing happens in memory, so multi-gigabyte files can overwhelm the tab. Use an OS command such as shasum or certutil for those.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Can you trust a SHA-1 result?\u003c/h3>\n              \u003cp>SHA-1 has demonstrated collision attacks and is unsuitable for security verification. Use SHA-256 or stronger.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Hashing is not encryption\u003c/h3>\n              \u003cp>A hash identifies file content and helps with integrity checks. It does not restore the original file or provide secrecy.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Large files take time\u003c/h3>\n              \u003cp>Very large files can use more browser memory and processing time. Wait briefly before assuming the calculation failed.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/pdf-toolkit\">PDF Merge/Split\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/image-optimize\">Image Optimizer\u003c/a> — Resize images, adjust quality, and compare output formats in the browser before uploading them to a website or\u003c/li>\n            \u003cli>\u003ca href=\"/image-base64\">Image Base64\u003c/a> — Move small icons, test images, and data URLs between files and strings for CSS, HTML, and API samples.\u003c/li>\n            \u003cli>\u003ca href=\"/ocr\">OCR Extractor\u003c/a> — Extract Korean and English text from screenshots, scans, and captured documents into copyable text.\u003c/li>\n            \u003cli>\u003ca href=\"/qr\">QR Code\u003c/a> — Create QR codes for URLs, short text, and Wi-Fi details, then decode QR images in the browser before opening o\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

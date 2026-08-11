@@ -8,9 +8,9 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/convert-DD7Hw2Rp.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/convert-bdd_z057.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -301,6 +301,46 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>길이 변환</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>100 km</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>62.1371 mile
+328,084 ft
+100,000 m</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>온도 변환</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>25 °C</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>77 °F
+298.15 K</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>온도만 계산이 다른 이유</h3>
+              <p>길이나 무게는 배율만 곱하면 되지만 온도는 기준점이 달라 오프셋이 들어갑니다. 0°C는 0°F가 아니라 32°F입니다. 온도 차이를 변환할 때와 온도 값을 변환할 때 결과가 다르다는 점도 주의하세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>문서에 넣을 때 자릿수가 지저분할 때</h3>
+              <p>결과는 계산값을 그대로 보여줍니다. 보고서나 UI에 넣을 때는 필요한 자릿수로 반올림하고 단위 표기를 함께 정리하세요.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -317,10 +357,22 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/ip-ua">IP/User-Agent 확인</a> — IP 주소, User-Agent, 언어, 타임존 같은 브라우저 환경 정보를 빠르게 확인할 수 있습니다.</li>
+            <li><a href="/ip-cidr">CIDR 계산기</a> — IPv4 CIDR 블록에서 서브넷, 브로드캐스트 주소, 호스트 범위를 계산할 수 있습니다.</li>
+            <li><a href="/cron">Cron 표현식 파서</a> — Cron 표현식을 사람이 읽기 쉬운 문장으로 해석하고 다음 실행 시간을 계산할 수 있습니다.</li>
+            <li><a href="/timestamp">Unix 타임스탬프 변환기</a> — 유닉스 타임스탬프를 날짜로 변환하고 날짜를 epoch 초 또는 밀리초로 다시 바꿀 수 있습니다.</li>
+            <li><a href="/hash">SHA 해시 계산기</a> — SHA-1, SHA-256, SHA-384, SHA-512 해시를 계산하고 HEX 또는 Base64로 바로 복사할 수 있습니다.</li>
+            <li><a href="/password">비밀번호 생성기</a> — 길이와 문자셋 옵션으로 랜덤 비밀번호를 생성하고 강도를 바로 확인할 수 있습니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Unit conversion checklist\u003c/h2>\n          \u003cp class=\"section-lead\">Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations notes.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Common units first\u003c/h3>\n              \u003cp>The tool focuses on units that often appear in engineering and documentation: m, km, cm, inch, ft, kg, g, lb, oz, C, F, and K.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Two-way conversion\u003c/h3>\n              \u003cp>Switch From and To values or use the swap button to check the same quantity in the opposite direction.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Immediate calculation\u003c/h3>\n              \u003cp>Calculations run in the browser, so you can avoid jumping to a separate calculator or search result.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Select length, weight, or temperature.\u003c/li>\n          \u003cli>Enter the value and choose the source and target units.\u003c/li>\n          \u003cli>Review the result and use swap when you need the reverse conversion.\u003c/li>\n          \u003cli>When pasting into docs, decide the rounding and include the unit label.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Rounding policy\u003c/h3>\n              \u003cp>The tool shows the calculated value directly. For reports or UI text, round to the precision your audience expects.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Temperature has offsets\u003c/h3>\n              \u003cp>Temperature conversion is not a simple ratio. Always keep the unit label when mixing Celsius, Fahrenheit, and Kelvin.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Unit conversion checklist\u003c/h2>\n          \u003cp class=\"section-lead\">Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations notes.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Common units first\u003c/h3>\n              \u003cp>The tool focuses on units that often appear in engineering and documentation: m, km, cm, inch, ft, kg, g, lb, oz, C, F, and K.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Two-way conversion\u003c/h3>\n              \u003cp>Switch From and To values or use the swap button to check the same quantity in the opposite direction.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Immediate calculation\u003c/h3>\n              \u003cp>Calculations run in the browser, so you can avoid jumping to a separate calculator or search result.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Select length, weight, or temperature.\u003c/li>\n          \u003cli>Enter the value and choose the source and target units.\u003c/li>\n          \u003cli>Review the result and use swap when you need the reverse conversion.\u003c/li>\n          \u003cli>When pasting into docs, decide the rounding and include the unit label.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Length\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>100 km\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>62.1371 mile\n328,084 ft\n100,000 m\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Temperature\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>25 °C\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>77 °F\n298.15 K\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Why temperature behaves differently\u003c/h3>\n              \u003cp>Length and weight are pure scaling, but temperature scales have different zero points and need an offset. 0°C is 32°F, not 0°F. Converting a temperature difference is also not the same as converting a temperature.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Too many decimal places for a document\u003c/h3>\n              \u003cp>The result shows the raw computed value. Round to the precision you need and settle the unit notation before publishing.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Rounding policy\u003c/h3>\n              \u003cp>The tool shows the calculated value directly. For reports or UI text, round to the precision your audience expects.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Temperature has offsets\u003c/h3>\n              \u003cp>Temperature conversion is not a simple ratio. Always keep the unit label when mixing Celsius, Fahrenheit, and Kelvin.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/ip-ua\">IP / User-Agent\u003c/a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/li>\n            \u003cli>\u003ca href=\"/ip-cidr\">CIDR Calculator\u003c/a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s\u003c/li>\n            \u003cli>\u003ca href=\"/cron\">Cron Parser\u003c/a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin\u003c/li>\n            \u003cli>\u003ca href=\"/timestamp\">Timestamp Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/hash\">SHA Hash\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/password\">Password\u003c/a>\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

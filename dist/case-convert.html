@@ -8,9 +8,9 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/caseConvert-BGRb3mkL.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/caseConvert-CHIfhzUW.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -289,6 +289,49 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>한 입력에서 모든 표기로</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>user profile image</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>camelCase   userProfileImage
+PascalCase  UserProfileImage
+snake_case  user_profile_image
+kebab-case  user-profile-image
+CONSTANT    USER_PROFILE_IMAGE</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>기존 코드 식별자 변환</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>getHTTPResponseCode</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>snake_case  get_http_response_code
+kebab-case  get-http-response-code</code></pre>
+              <p class="example-item__note">연속된 대문자 약어는 구현마다 끊는 위치가 달라 결과가 갈리는 대표적인 입력입니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>약어가 이상하게 쪼개질 때</h3>
+              <p>HTTP, ID, URL 같은 연속 대문자는 경계를 판단하기 어렵습니다. getHTTPResponse가 get_h_t_t_p_response로 갈라지는 도구도 있습니다. 변환 후 약어 부분은 눈으로 확인하세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>숫자 경계 처리</h3>
+              <p>user2Name 같은 입력에서 숫자 앞뒤를 단어 경계로 볼지가 도구마다 다릅니다. DB 컬럼명처럼 되돌릴 수 없는 곳에 쓰기 전에 결과를 확인하세요.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -305,10 +348,21 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/regex">정규식 테스트기</a> — 정규식 패턴과 플래그를 테스트하고 매치 결과와 치환 결과를 빠르게 확인할 수 있습니다.</li>
+            <li><a href="/diff">텍스트 비교기</a> — 두 텍스트를 줄 단위로 비교하고 변경 내용을 unified diff 형태로 확인할 수 있습니다.</li>
+            <li><a href="/markdown">Markdown 미리보기</a> — Markdown을 실시간으로 렌더링하고 HTML 출력까지 함께 확인할 수 있습니다.</li>
+            <li><a href="/text-cleaner">텍스트 정리기</a> — 공백 정리, 줄 중복 제거, 정렬, slugify 작업을 한 번에 처리합니다.</li>
+            <li><a href="/text-stats">텍스트 통계 계산기</a> — 글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Text case conversion workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-case, PascalCase, and related formats.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Match code conventions\u003c/h3>\n              \u003cp>Convert field names quickly when frontend and backend layers use different naming styles.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Clean URLs and filenames\u003c/h3>\n              \u003cp>Turn titles into slugs or kebab-case values for document paths, image names, and anchor links.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review before bulk edits\u003c/h3>\n              \u003cp>Inspect how acronyms, numbers, and spacing are split before applying the result broadly.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Enter the text or identifier list you want to convert.\u003c/li>\n          \u003cli>Choose the output case and review the converted value.\u003c/li>\n          \u003cli>Manually check values containing acronyms, numbers, hyphens, or underscores.\u003c/li>\n          \u003cli>Before pasting into code, compare the result with the existing naming convention.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Acronyms are team-specific\u003c/h3>\n              \u003cp>Terms like URL, ID, and API can be written as url, Url, or URL depending on convention. Adjust after conversion.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Meaning can shift\u003c/h3>\n              \u003cp>Combining words can change readability or meaning, so public URLs and API field names deserve a final review.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Text case conversion workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-case, PascalCase, and related formats.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Match code conventions\u003c/h3>\n              \u003cp>Convert field names quickly when frontend and backend layers use different naming styles.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Clean URLs and filenames\u003c/h3>\n              \u003cp>Turn titles into slugs or kebab-case values for document paths, image names, and anchor links.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review before bulk edits\u003c/h3>\n              \u003cp>Inspect how acronyms, numbers, and spacing are split before applying the result broadly.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Enter the text or identifier list you want to convert.\u003c/li>\n          \u003cli>Choose the output case and review the converted value.\u003c/li>\n          \u003cli>Manually check values containing acronyms, numbers, hyphens, or underscores.\u003c/li>\n          \u003cli>Before pasting into code, compare the result with the existing naming convention.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>One input, every convention\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>user profile image\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>camelCase   userProfileImage\nPascalCase  UserProfileImage\nsnake_case  user_profile_image\nkebab-case  user-profile-image\nCONSTANT    USER_PROFILE_IMAGE\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Converting an existing identifier\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>getHTTPResponseCode\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>snake_case  get_http_response_code\nkebab-case  get-http-response-code\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">Consecutive uppercase acronyms are where implementations disagree most.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Acronyms split in odd places\u003c/h3>\n              \u003cp>Runs of capitals like HTTP, ID, or URL are hard to segment. Some tools turn getHTTPResponse into get_h_t_t_p_response. Check acronyms by eye after converting.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Digit boundaries\u003c/h3>\n              \u003cp>Tools disagree on whether the digits in user2Name form a word boundary. Verify before using the result somewhere irreversible, like a database column name.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Acronyms are team-specific\u003c/h3>\n              \u003cp>Terms like URL, ID, and API can be written as url, Url, or URL depending on convention. Adjust after conversion.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Meaning can shift\u003c/h3>\n              \u003cp>Combining words can change readability or meaning, so public URLs and API field names deserve a final review.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/regex\">Regex Tester\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/diff\">Text Diff\u003c/a> — Compare two similar text blocks such as config files, drafts, or API responses and focus on the changed lines.\u003c/li>\n            \u003cli>\u003ca href=\"/markdown\">Markdown\u003c/a> — Review Markdown documents such as READMEs, release notes, and issue templates as rendered output and generated\u003c/li>\n            \u003cli>\u003ca href=\"/text-cleaner\">Text Cleaner\u003c/a> — Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying te\u003c/li>\n            \u003cli>\u003ca href=\"/text-stats\">Text Stats\u003c/a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

@@ -8,9 +8,9 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/ipUa-DPTrjEqq.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/ipUa-9mlh9DP7.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -260,6 +260,38 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>User-Agent 해석</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>브라우저 Chrome 131
+OS macOS
+엔진 WebKit/Blink</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>표시된 IP가 실제 위치와 다를 때</h3>
+              <p>VPN, 회사 프록시, 모바일 캐리어 NAT를 거치면 출구 서버의 IP가 보입니다. IP 기반 위치는 참고용이며 정확한 위치 판단에 쓰기 어렵습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>OS 버전이 10_15_7로 고정돼 보일 때</h3>
+              <p>크롬은 개인정보 보호를 위해 User-Agent에 담기는 정보를 줄이고 있습니다(User-Agent Reduction). 최신 macOS에서도 10_15_7로 고정 표기되므로 실제 버전이 필요하면 Client Hints를 써야 합니다.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -276,10 +308,22 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/ip-cidr">CIDR 계산기</a> — IPv4 CIDR 블록에서 서브넷, 브로드캐스트 주소, 호스트 범위를 계산할 수 있습니다.</li>
+            <li><a href="/cron">Cron 표현식 파서</a> — Cron 표현식을 사람이 읽기 쉬운 문장으로 해석하고 다음 실행 시간을 계산할 수 있습니다.</li>
+            <li><a href="/timestamp">Unix 타임스탬프 변환기</a> — 유닉스 타임스탬프를 날짜로 변환하고 날짜를 epoch 초 또는 밀리초로 다시 바꿀 수 있습니다.</li>
+            <li><a href="/hash">SHA 해시 계산기</a> — SHA-1, SHA-256, SHA-384, SHA-512 해시를 계산하고 HEX 또는 Base64로 바로 복사할 수 있습니다.</li>
+            <li><a href="/password">비밀번호 생성기</a> — 길이와 문자셋 옵션으로 랜덤 비밀번호를 생성하고 강도를 바로 확인할 수 있습니다.</li>
+            <li><a href="/convert">단위 변환기</a> — 길이, 무게, 온도 등 자주 쓰는 단위를 브라우저에서 빠르게 변환합니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">IP and User-Agent inspection\u003c/h2>\n          \u003cp class=\"section-lead\">Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Collect support details\u003c/h3>\n              \u003cp>Gather the browser string, language, and timezone that support or QA teams need for reproduction.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Check network path\u003c/h3>\n              \u003cp>Confirm the externally visible IP when using a VPN, proxy, office network, or mobile network.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Copy-ready environment data\u003c/h3>\n              \u003cp>Use the values in logs, support tickets, and QA notes after reviewing what should be shared.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Open the page and inspect the current browser environment values.\u003c/li>\n          \u003cli>Refresh after changing VPN or network settings to compare the visible IP.\u003c/li>\n          \u003cli>Record User-Agent, browser language, and timezone when asking someone to reproduce a bug.\u003c/li>\n          \u003cli>Before sharing, decide whether exposing IP or internal network details is appropriate.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>IP is not exact location\u003c/h3>\n              \u003cp>IP-based location can differ from physical location because of VPNs, proxies, carriers, and office networks.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>User-Agent is reduced\u003c/h3>\n              \u003cp>Modern browsers may reduce or freeze User-Agent details for privacy. Feature detection is more reliable for capability checks.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">IP and User-Agent inspection\u003c/h2>\n          \u003cp class=\"section-lead\">Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Collect support details\u003c/h3>\n              \u003cp>Gather the browser string, language, and timezone that support or QA teams need for reproduction.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Check network path\u003c/h3>\n              \u003cp>Confirm the externally visible IP when using a VPN, proxy, office network, or mobile network.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Copy-ready environment data\u003c/h3>\n              \u003cp>Use the values in logs, support tickets, and QA notes after reviewing what should be shared.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Open the page and inspect the current browser environment values.\u003c/li>\n          \u003cli>Refresh after changing VPN or network settings to compare the visible IP.\u003c/li>\n          \u003cli>Record User-Agent, browser language, and timezone when asking someone to reproduce a bug.\u003c/li>\n          \u003cli>Before sharing, decide whether exposing IP or internal network details is appropriate.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Reading a User-Agent string\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Browser Chrome 131\nOS macOS\nEngine WebKit/Blink\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>The IP does not match your location\u003c/h3>\n              \u003cp>A VPN, corporate proxy, or mobile carrier NAT shows the exit server address. IP-based geolocation is indicative only.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>The OS version is frozen at 10_15_7\u003c/h3>\n              \u003cp>Chrome reduces the detail it reports in the User-Agent for privacy. Newer macOS versions still report 10_15_7, so use Client Hints when you need the real version.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>IP is not exact location\u003c/h3>\n              \u003cp>IP-based location can differ from physical location because of VPNs, proxies, carriers, and office networks.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>User-Agent is reduced\u003c/h3>\n              \u003cp>Modern browsers may reduce or freeze User-Agent details for privacy. Feature detection is more reliable for capability checks.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/ip-cidr\">CIDR Calculator\u003c/a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s\u003c/li>\n            \u003cli>\u003ca href=\"/cron\">Cron Parser\u003c/a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin\u003c/li>\n            \u003cli>\u003ca href=\"/timestamp\">Timestamp Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/hash\">SHA Hash\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/password\">Password\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/convert\">Unit Converter\u003c/a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

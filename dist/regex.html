@@ -16,9 +16,9 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/regex-BXMa04XQ.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/regex-czSf-DvT.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -283,6 +283,66 @@
       </section>
     </main>
 
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="ko" lang="ko">
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>그룹으로 날짜 형식 바꾸기</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>패턴  (\d{4})-(\d{2})-(\d{2})
+치환  $3/$2/$1
+대상  2026-08-11</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>11/08/2026</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>탐욕적 수량자와 게으른 수량자</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>대상  &lt;b&gt;one&lt;/b&gt;&lt;b&gt;two&lt;/b&gt;
+패턴A &lt;b&gt;.*&lt;/b&gt;
+패턴B &lt;b&gt;.*?&lt;/b&gt;</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>A  &lt;b&gt;one&lt;/b&gt;&lt;b&gt;two&lt;/b&gt;  (전체를 한 번에)
+B  &lt;b&gt;one&lt;/b&gt;            (가장 짧게)</code></pre>
+              <p class="example-item__note">.*는 최대한 길게, .*?는 최대한 짧게 잡습니다. 태그나 인용부호를 다룰 때 결과가 갈리는 지점입니다.</p>
+            </article>
+          </div>
+        </section>
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>점(.)이 모든 걸 잡아버릴 때</h3>
+              <p>.는 줄바꿈을 제외한 모든 문자입니다. 여기에 *가 붙으면 의도한 종료 지점을 지나쳐 끝까지 삼킵니다. .*? 로 바꾸거나 [^&lt;]* 처럼 문자 집합을 좁히세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>특수문자를 그대로 찾고 싶을 때</h3>
+              <p>. + * ? ( ) [ ] { } | ^ $ \ 는 정규식 문법 문자입니다. 문자 그대로 찾으려면 앞에 백슬래시를 붙이세요. 예를 들어 소수점은 \. 입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>같은 정규식이 두 번째 호출에서 실패할 때</h3>
+              <p>JavaScript에서 g 플래그가 붙은 정규식 객체는 lastIndex를 기억합니다. test나 exec를 반복 호출하면 이전 위치부터 검색합니다. 매번 새로 만들거나 lastIndex를 0으로 되돌리세요.</p>
+            </article>
+          </div>
+        </section>
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/diff">텍스트 비교기</a> — 두 텍스트를 줄 단위로 비교하고 변경 내용을 unified diff 형태로 확인할 수 있습니다.</li>
+            <li><a href="/markdown">Markdown 미리보기</a> — Markdown을 실시간으로 렌더링하고 HTML 출력까지 함께 확인할 수 있습니다.</li>
+            <li><a href="/case-convert">텍스트 케이스 변환기</a> — camelCase, snake_case, kebab-case, PascalCase를 서로 변환할 수 있습니다.</li>
+            <li><a href="/text-cleaner">텍스트 정리기</a> — 공백 정리, 줄 중복 제거, 정렬, slugify 작업을 한 번에 처리합니다.</li>
+            <li><a href="/text-stats">텍스트 통계 계산기</a> — 글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다.</li>
+          </ul>
+        </section>
+    </section>
+
+    <div data-locale-slot="en" data-locale-index="0"></div>
+
     <p id="reMessage" class="message" role="status" aria-live="polite"></p>
 
     <section class="content-stack">
@@ -305,7 +365,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-slot="en" data-locale-index="0"></div>
+        <div data-locale-slot="en" data-locale-index="1"></div>
       </section>
 
       <section class="content-section">
@@ -327,7 +387,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-slot="en" data-locale-index="1"></div>
+        <div data-locale-slot="en" data-locale-index="2"></div>
       </section>
     </section>
 
@@ -335,7 +395,7 @@
       <small data-i18n="common.footerJson">© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
     </footer>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Where a regex tester saves real time\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Validate input rules\u003c/h3>\n              \u003cp>Test patterns for emails, slugs, employee IDs, or order references before you wire them into app validation logic.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Extract values from logs\u003c/h3>\n              \u003cp>Build patterns that pull UUIDs, request IDs, paths, or token-like strings out of noisy incident logs.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Preview replacements safely\u003c/h3>\n              \u003cp>Check what a pattern really matches before doing large-scale replacements or text cleanup in another tool or codebase.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Notes\u003c/p>\n          \u003ch2 class=\"section-title\">Things that trip people up a lot\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>What do \u003ccode>g\u003c/code>, \u003ccode>i\u003c/code>, and \u003ccode>m\u003c/code> change?\u003c/h3>\n              \u003cp>\u003ccode>g\u003c/code> searches globally, \u003ccode>i\u003c/code> ignores case, and \u003ccode>m\u003c/code> changes how line anchors behave across multiple lines.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Why do regex syntax errors happen so often?\u003c/h3>\n              \u003cp>Missing escapes, unbalanced groups, or unsupported syntax are the common causes. Testing a smaller fragment first is usually the fastest fix.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Which regex engine does this page use?\u003c/h3>\n              \u003cp>It uses the browser JavaScript regex engine. That means behavior can differ from PCRE or some server runtimes, so production checks still matter.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Reordering a date with capture groups\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Pattern  (\\d{4})-(\\d{2})-(\\d{2})\nReplace  $3/$2/$1\nSubject  2026-08-11\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>11/08/2026\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Greedy versus lazy quantifiers\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Subject  &lt;b&gt;one&lt;/b&gt;&lt;b&gt;two&lt;/b&gt;\nA        &lt;b&gt;.*&lt;/b&gt;\nB        &lt;b&gt;.*?&lt;/b&gt;\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>A  &lt;b&gt;one&lt;/b&gt;&lt;b&gt;two&lt;/b&gt;  (matches everything)\nB  &lt;b&gt;one&lt;/b&gt;            (shortest match)\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">.* takes as much as possible, .*? as little as possible. This is where tag and quote matching diverges.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>A dot swallows everything\u003c/h3>\n              \u003cp>. matches any character except a newline. Combined with * it runs past your intended stop. Switch to .*? or narrow the class, for example [^&lt;]*.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Matching a literal special character\u003c/h3>\n              \u003cp>. + * ? ( ) [ ] { } | ^ $ \\ are syntax characters. Prefix a backslash to match them literally — a literal period is \\.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>The same regex fails on the second call\u003c/h3>\n              \u003cp>In JavaScript a regex object with the g flag remembers lastIndex, so repeated test or exec calls resume from the previous position. Recreate the regex each time or reset lastIndex to 0.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/diff\">Text Diff\u003c/a> — Compare two similar text blocks such as config files, drafts, or API responses and focus on the changed lines.\u003c/li>\n            \u003cli>\u003ca href=\"/markdown\">Markdown\u003c/a> — Review Markdown documents such as READMEs, release notes, and issue templates as rendered output and generated\u003c/li>\n            \u003cli>\u003ca href=\"/case-convert\">Case Converter\u003c/a> — Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-ca\u003c/li>\n            \u003cli>\u003ca href=\"/text-cleaner\">Text Cleaner\u003c/a> — Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying te\u003c/li>\n            \u003cli>\u003ca href=\"/text-stats\">Text Stats\u003c/a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Where a regex tester saves real time\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Validate input rules\u003c/h3>\n              \u003cp>Test patterns for emails, slugs, employee IDs, or order references before you wire them into app validation logic.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Extract values from logs\u003c/h3>\n              \u003cp>Build patterns that pull UUIDs, request IDs, paths, or token-like strings out of noisy incident logs.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Preview replacements safely\u003c/h3>\n              \u003cp>Check what a pattern really matches before doing large-scale replacements or text cleanup in another tool or codebase.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Notes\u003c/p>\n          \u003ch2 class=\"section-title\">Things that trip people up a lot\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>What do \u003ccode>g\u003c/code>, \u003ccode>i\u003c/code>, and \u003ccode>m\u003c/code> change?\u003c/h3>\n              \u003cp>\u003ccode>g\u003c/code> searches globally, \u003ccode>i\u003c/code> ignores case, and \u003ccode>m\u003c/code> changes how line anchors behave across multiple lines.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Why do regex syntax errors happen so often?\u003c/h3>\n              \u003cp>Missing escapes, unbalanced groups, or unsupported syntax are the common causes. Testing a smaller fragment first is usually the fastest fix.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Which regex engine does this page use?\u003c/h3>\n              \u003cp>It uses the browser JavaScript regex engine. That means behavior can differ from PCRE or some server runtimes, so production checks still matter.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>"]</script>
 </body>
 
 </html>

@@ -10,7 +10,9 @@ import {
   SITE_SOCIALS,
 } from './src/seo-meta.js';
 import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './src/chrome-meta.js';
+import { TOOL_CATEGORY_MAP } from './src/ux-meta.js';
 import { TOOL_SUPPORT_COPY } from './src/tool-support-copy.js';
+import { TOOL_SUPPORT_EXTRA } from './src/tool-support-extra.js';
 
 const ADSENSE_PUBLISHER_ID = 'ca-pub-4324902308911757';
 const ADSENSE_ENABLED = true;
@@ -103,6 +105,14 @@ const TOOL_SUPPORT_LABELS = {
     stepsTitle: '사용 순서',
     notesTitle: '확인할 점',
     faqTitle: '자주 묻는 질문',
+    examplesKicker: 'Examples',
+    examplesTitle: '실제 입력과 결과',
+    troublesKicker: 'Troubleshooting',
+    troublesTitle: '자주 만나는 오류',
+    relatedKicker: 'Related',
+    relatedTitle: '함께 쓰면 좋은 도구',
+    inputLabel: '입력',
+    outputLabel: '결과',
   },
   en: {
     featureKicker: 'Guide',
@@ -113,6 +123,14 @@ const TOOL_SUPPORT_LABELS = {
     stepsTitle: 'How to use it',
     notesTitle: 'Things to check',
     faqTitle: 'Common questions',
+    examplesKicker: 'Examples',
+    examplesTitle: 'Real input and output',
+    troublesKicker: 'Troubleshooting',
+    troublesTitle: 'Errors you will hit',
+    relatedKicker: 'Related',
+    relatedTitle: 'Tools that pair well',
+    inputLabel: 'Input',
+    outputLabel: 'Output',
   },
 };
 
@@ -191,11 +209,13 @@ function getFallbackSupportCopy(meta, toolName, description, locale = 'ko') {
 }
 
 function getToolSupportCopy(meta, toolName, description, locale = 'ko') {
-  return (
+  const base =
     TOOL_SUPPORT_COPY[meta.path]?.[locale] ||
     TOOL_SUPPORT_COPY[meta.path]?.ko ||
-    getFallbackSupportCopy(meta, toolName, description, locale)
-  );
+    getFallbackSupportCopy(meta, toolName, description, locale);
+  const extra = TOOL_SUPPORT_EXTRA[meta.path]?.[locale] || {};
+
+  return { ...base, ...extra };
 }
 
 // ponytail: 자동생성 FAQ는 20개 페이지에 같은 질문 2개와 같은 답이 그대로 들어가 중복 콘텐츠가 됐다.
@@ -219,6 +239,68 @@ function buildListMarkup(items = []) {
   return items.map((item) => `          <li>${escapeHtml(item)}</li>`).join('\n');
 }
 
+// ponytail: 예시/오류/관련도구는 전부 선택적. 데이터가 없는 페이지는 섹션 자체가 안 나간다.
+function buildExamplesMarkup(items = [], labels) {
+  return items
+    .map(
+      (item) => `            <article class="example-item">
+              <h3>${escapeHtml(item.title)}</h3>
+              <p class="example-item__label">${escapeHtml(labels.inputLabel)}</p>
+              <pre class="example-item__code"><code>${escapeHtml(item.input)}</code></pre>
+              <p class="example-item__label">${escapeHtml(labels.outputLabel)}</p>
+              <pre class="example-item__code"><code>${escapeHtml(item.output)}</code></pre>
+${item.note ? `              <p class="example-item__note">${escapeHtml(item.note)}</p>\n` : ''}            </article>`,
+    )
+    .join('\n');
+}
+
+// PAGE_META는 한국어만 담고 있어서 영어 라벨은 NAV_TOOLS, 영어 설명은 TOOL_SUPPORT_COPY의 en.lead에서 가져온다.
+// 영어 설명이 없는 경로는 링크만 남긴다. 한국어를 그대로 두면 영어 모드에 한글이 새어 i18n 감사가 잡는다.
+function buildRelatedMarkup(meta, locale) {
+  const category = TOOL_CATEGORY_MAP[meta.path];
+  if (!category) {
+    return '';
+  }
+
+  const siblings = Object.entries(TOOL_CATEGORY_MAP)
+    .filter(([path, cat]) => cat === category && path !== meta.path)
+    .map(([path]) => {
+      const sibling = Object.values(PAGE_META).find((item) => item.path === path && !item.noindex);
+      if (!sibling?.title) {
+        return null;
+      }
+
+      if (locale === 'en') {
+        const navLabel = NAV_TOOLS.find((tool) => tool.value === path)?.labels?.en;
+        if (!navLabel) {
+          return null;
+        }
+        const lead = TOOL_SUPPORT_COPY[path]?.en?.lead || '';
+        return { path, label: navLabel, description: lead };
+      }
+
+      return {
+        path,
+        label: cleanTitle(sibling.title).split('|')[0].trim(),
+        description: sibling.description || '',
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 6);
+
+  if (!siblings.length) {
+    return '';
+  }
+
+  return siblings
+    .map((item) => {
+      const summary = item.description.split(/(?<=\.)\s|(?<=다\.)\s/)[0].trim().slice(0, 110);
+      const tail = summary ? ` — ${escapeHtml(summary)}` : '';
+      return `            <li><a href="${item.path}">${escapeHtml(item.label)}</a>${tail}</li>`;
+    })
+    .join('\n');
+}
+
 function buildLocaleToolContent(meta, pageTitle, description, locale, { hidden = false } = {}) {
   const toolName = getCleanPageTitle(meta, pageTitle);
   const labels = TOOL_SUPPORT_LABELS[locale] || TOOL_SUPPORT_LABELS.ko;
@@ -226,6 +308,7 @@ function buildLocaleToolContent(meta, pageTitle, description, locale, { hidden =
   // ponytail: 손으로 쓴 faq가 있을 때만 FAQ 섹션을 낸다. 자동생성분은 페이지끼리 문장이 겹쳤다.
   const faqItems = locale === 'ko' ? getStructuredFaq(meta) : [];
   const heading = support.heading || labels.fallbackHeading(toolName);
+  const relatedMarkup = buildRelatedMarkup(meta, locale);
   const hiddenAttrs = hidden ? ' hidden aria-hidden="true"' : '';
 
   return `
@@ -247,6 +330,31 @@ ${buildListMarkup(support.steps)}
           </ol>
         </section>
 
+${
+  support.examples?.length
+    ? `
+        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.examplesKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
+          <div class="example-list">
+${buildExamplesMarkup(support.examples, labels)}
+          </div>
+        </section>
+`
+    : ''
+}${
+  support.troubles?.length
+    ? `
+        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.troublesKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.troublesTitle)}</h2>
+          <div class="content-grid">
+${buildCardMarkup(support.troubles)}
+          </div>
+        </section>
+`
+    : ''
+}
         <section class="content-section">
           <p class="section-kicker">${escapeHtml(labels.notesKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.notesTitle)}</h2>
@@ -264,6 +372,17 @@ ${
           <div class="faq-list">
 ${buildCardMarkup(faqItems, 'faq-item')}
           </div>
+        </section>`
+    : ''
+}${
+  relatedMarkup
+    ? `
+        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.relatedKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.relatedTitle)}</h2>
+          <ul class="related-list">
+${relatedMarkup}
+          </ul>
         </section>`
     : ''
 }
@@ -543,9 +662,65 @@ function buildStructuredData(meta, pageTitle, description, canonicalUrl) {
   return structuredData;
 }
 
+// ponytail: 손으로 쓴 콘텐츠가 이미 있는 페이지는 전체 생성 블록을 넣으면 중복이 된다.
+// 예시/오류/관련도구 섹션만 뒤에 덧붙인다.
+function buildExtraOnlyContent(meta, locale, { hidden = false } = {}) {
+  const extra = TOOL_SUPPORT_EXTRA[meta.path]?.[locale];
+  const labels = TOOL_SUPPORT_LABELS[locale] || TOOL_SUPPORT_LABELS.ko;
+  const relatedMarkup = buildRelatedMarkup(meta, locale);
+
+  if (!extra?.examples?.length && !extra?.troubles?.length && !relatedMarkup) {
+    return '';
+  }
+
+  const hiddenAttrs = hidden ? ' hidden aria-hidden="true"' : '';
+
+  return `
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="${locale}" lang="${locale}"${hiddenAttrs}>
+${
+  extra?.examples?.length
+    ? `        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.examplesKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
+          <div class="example-list">
+${buildExamplesMarkup(extra.examples, labels)}
+          </div>
+        </section>
+`
+    : ''
+}${
+  extra?.troubles?.length
+    ? `        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.troublesKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.troublesTitle)}</h2>
+          <div class="content-grid">
+${buildCardMarkup(extra.troubles)}
+          </div>
+        </section>
+`
+    : ''
+}${
+  relatedMarkup
+    ? `        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.relatedKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.relatedTitle)}</h2>
+          <ul class="related-list">
+${relatedMarkup}
+          </ul>
+        </section>
+`
+    : ''
+}    </section>`;
+}
+
 function injectGeneratedToolContent(html, meta, pageTitle, description) {
-  if (meta.kind !== 'tool' || /data-seo-support|class=["'][^"']*\bcontent-section\b/i.test(html)) {
+  if (meta.kind !== 'tool') {
     return html;
+  }
+
+  if (/data-seo-support|class=["'][^"']*\bcontent-section\b/i.test(html)) {
+    const extras = `${buildExtraOnlyContent(meta, 'ko')}\n${buildExtraOnlyContent(meta, 'en', { hidden: true })}`;
+    return extras.trim() ? html.replace(/<\/main>/i, `</main>\n${extras}`) : html;
   }
 
   const content = buildGeneratedToolContent(meta, pageTitle, description);

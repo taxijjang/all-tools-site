@@ -8,9 +8,9 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/queryBuilder-DNDTgATy.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/queryBuilder-DJUvqQsm.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -260,6 +260,46 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>기본 파라미터 조합</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>base   https://api.example.com/search
+q      개발자 도구
+page   2</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>https://api.example.com/search?q=%EA%B0%9C%EB%B0%9C%EC%9E%90%20%EB%8F%84%EA%B5%AC&amp;page=2</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>특수문자가 든 값</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>redirect  https://example.com/back?id=1&amp;t=2</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>redirect=https%3A%2F%2Fexample.com%2Fback%3Fid%3D1%26t%3D2</code></pre>
+              <p class="example-item__note">값 안의 &amp;와 =까지 인코딩해야 파라미터가 끊기지 않습니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>공백이 +인지 %20인지</h3>
+              <p>쿼리 문자열에서는 둘 다 공백으로 해석되는 것이 보통이지만, 경로(path)에서는 +가 문자 그대로 플러스입니다. 서버 구현에 따라 다르게 받으므로 %20이 안전합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>배열 파라미터 표기</h3>
+              <p>tags=a&amp;tags=b, tags[]=a&amp;tags[]=b, tags=a,b 세 가지가 모두 쓰입니다. 어느 것을 받는지는 서버 프레임워크에 달렸으니 API 문서를 먼저 확인하세요.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -276,10 +316,22 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/uuid">UUID 변환기</a> — UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/base64">Base64 인코더/디코더</a> — 문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.</li>
+            <li><a href="/json">JSON 포매터/검증기</a> — JSON 유효성 검사, 포맷/압축, 키 검색, 트리 뷰 확인까지 한 번에 할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/jwt">JWT 디코더/검사기</a> — JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.</li>
+            <li><a href="/url">URL 인코더/디코더</a> — URL 인코딩/디코딩, 쿼리 스트링 파싱, URL-safe 문자열 확인을 브라우저에서 바로 처리할 수 있습니다.</li>
+            <li><a href="/json-yaml">JSON YAML 변환기</a> — JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">URL query builder workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Encode key-value pairs safely for search URLs, share links, and API test query strings.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Reduce encoding mistakes\u003c/h3>\n              \u003cp>Encode spaces, Korean text, and special characters according to URL rules instead of concatenating strings manually.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Assemble test links\u003c/h3>\n              \u003cp>Build filters, page numbers, sorting values, and other parameters in one place to reproduce API or screen states.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review before copying\u003c/h3>\n              \u003cp>Check required parameters and empty values before copying the final URL.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Enter a base URL or prepare to build only the query string.\u003c/li>\n          \u003cli>Add parameter names and values row by row.\u003c/li>\n          \u003cli>Review the generated URL for correct separators and encoded values.\u003c/li>\n          \u003cli>Remove unnecessary empty values before using it in analytics tools or API tests.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Repeated keys vary\u003c/h3>\n              \u003cp>Servers can interpret repeated keys differently. Match array parameter rules with the API documentation.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Avoid sensitive data\u003c/h3>\n              \u003cp>URLs can appear in browser history, logs, and previews. Avoid putting tokens or personal data in query strings.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">URL query builder workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Encode key-value pairs safely for search URLs, share links, and API test query strings.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Reduce encoding mistakes\u003c/h3>\n              \u003cp>Encode spaces, Korean text, and special characters according to URL rules instead of concatenating strings manually.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Assemble test links\u003c/h3>\n              \u003cp>Build filters, page numbers, sorting values, and other parameters in one place to reproduce API or screen states.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review before copying\u003c/h3>\n              \u003cp>Check required parameters and empty values before copying the final URL.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Enter a base URL or prepare to build only the query string.\u003c/li>\n          \u003cli>Add parameter names and values row by row.\u003c/li>\n          \u003cli>Review the generated URL for correct separators and encoded values.\u003c/li>\n          \u003cli>Remove unnecessary empty values before using it in analytics tools or API tests.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Basic parameters\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>base   https://api.example.com/search\nq      developer tools\npage   2\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>https://api.example.com/search?q=developer%20tools&amp;page=2\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>A value containing special characters\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>redirect  https://example.com/back?id=1&amp;t=2\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>redirect=https%3A%2F%2Fexample.com%2Fback%3Fid%3D1%26t%3D2\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">The &amp; and = inside the value must be encoded or the parameter list breaks apart.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Is a space + or %20?\u003c/h3>\n              \u003cp>Both usually decode to a space in a query string, but in a path a + is a literal plus. Servers differ, so %20 is the safer choice.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Array parameter styles\u003c/h3>\n              \u003cp>tags=a&amp;tags=b, tags[]=a&amp;tags[]=b, and tags=a,b are all in use. Which one works depends on the server framework — check the API docs first.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Repeated keys vary\u003c/h3>\n              \u003cp>Servers can interpret repeated keys differently. Match array parameter rules with the API documentation.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Avoid sensitive data\u003c/h3>\n              \u003cp>URLs can appear in browser history, logs, and previews. Avoid putting tokens or personal data in query strings.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/uuid\">UUID Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json\">JSON Formatter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/url\">URL Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json-yaml\">JSON YAML\u003c/a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

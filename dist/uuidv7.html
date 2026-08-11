@@ -8,9 +8,9 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/uuidv7-HTSsYfN0.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/uuidv7-CQzBOaE_.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -282,6 +282,39 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>연속 생성 시 정렬</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>3회 연속 생성</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a
+01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b
+01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f</code></pre>
+              <p class="example-item__note">앞 12자리가 밀리초 타임스탬프라 문자열 정렬만으로도 생성 순서가 유지됩니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>v4를 쓰던 인덱스가 느렸던 이유</h3>
+              <p>v4는 완전 난수라 B-tree 인덱스에 무작위로 삽입되어 페이지 분할이 잦습니다. v7은 시간순이라 끝에 붙어 삽입 성능과 캐시 적중률이 낫습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>생성 시각이 노출됩니다</h3>
+              <p>v7에는 밀리초 단위 생성 시각이 그대로 들어 있습니다. 가입 시점이나 주문 시각을 숨겨야 하는 공개 식별자에는 v4가 맞습니다.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -298,10 +331,22 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/uuid">UUID 변환기</a> — UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/base64">Base64 인코더/디코더</a> — 문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.</li>
+            <li><a href="/json">JSON 포매터/검증기</a> — JSON 유효성 검사, 포맷/압축, 키 검색, 트리 뷰 확인까지 한 번에 할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/jwt">JWT 디코더/검사기</a> — JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.</li>
+            <li><a href="/url">URL 인코더/디코더</a> — URL 인코딩/디코딩, 쿼리 스트링 파싱, URL-safe 문자열 확인을 브라우저에서 바로 처리할 수 있습니다.</li>
+            <li><a href="/json-yaml">JSON YAML 변환기</a> — JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">When to use UUID v7\u003c/h2>\n          \u003cp class=\"section-lead\">Generate sortable UUID values for storage keys, event IDs, and log correlation when creation order matters.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Friendly to time ordering\u003c/h3>\n              \u003cp>UUID v7 includes timestamp-derived bits near the front, making generated order easier to inspect in logs and indexes.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Create test identifiers\u003c/h3>\n              \u003cp>Generate sample IDs for fixtures, docs, and local development without leaving the browser.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Not a secret token\u003c/h3>\n              \u003cp>A UUID is an identifier, not an authentication secret. Do not use it alone to protect access.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Generate a new UUID v7 value.\u003c/li>\n          \u003cli>Decide whether sortable IDs fit your table keys, event IDs, or correlation IDs.\u003c/li>\n          \u003cli>For public IDs, design authorization and exposure rules separately.\u003c/li>\n          \u003cli>Choose string or binary storage based on your database and operational conventions.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Creation time can be inferred\u003c/h3>\n              \u003cp>UUID v7 exposes enough information to estimate creation time. UUID v4 may be better when timing should not be visible.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Ordering is not security\u003c/h3>\n              \u003cp>Sortable IDs can help operations and indexing, but they do not replace authentication or authorization.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">When to use UUID v7\u003c/h2>\n          \u003cp class=\"section-lead\">Generate sortable UUID values for storage keys, event IDs, and log correlation when creation order matters.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Friendly to time ordering\u003c/h3>\n              \u003cp>UUID v7 includes timestamp-derived bits near the front, making generated order easier to inspect in logs and indexes.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Create test identifiers\u003c/h3>\n              \u003cp>Generate sample IDs for fixtures, docs, and local development without leaving the browser.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Not a secret token\u003c/h3>\n              \u003cp>A UUID is an identifier, not an authentication secret. Do not use it alone to protect access.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Generate a new UUID v7 value.\u003c/li>\n          \u003cli>Decide whether sortable IDs fit your table keys, event IDs, or correlation IDs.\u003c/li>\n          \u003cli>For public IDs, design authorization and exposure rules separately.\u003c/li>\n          \u003cli>Choose string or binary storage based on your database and operational conventions.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Sort order across sequential IDs\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Generate three in a row\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a\n01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b\n01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">The first 12 hex digits are a millisecond timestamp, so plain string sorting preserves creation order.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Why v4 made your index slow\u003c/h3>\n              \u003cp>v4 is fully random, so rows land anywhere in a B-tree index and split pages often. v7 appends in time order, which improves insert throughput and cache hit rate.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>The creation time is exposed\u003c/h3>\n              \u003cp>A v7 value embeds its millisecond creation time. If a public identifier must not reveal signup or order timing, use v4 instead.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Creation time can be inferred\u003c/h3>\n              \u003cp>UUID v7 exposes enough information to estimate creation time. UUID v4 may be better when timing should not be visible.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Ordering is not security\u003c/h3>\n              \u003cp>Sortable IDs can help operations and indexing, but they do not replace authentication or authorization.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/uuid\">UUID Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json\">JSON Formatter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/url\">URL Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json-yaml\">JSON YAML\u003c/a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

@@ -5,10 +5,10 @@
   <title>OCR 텍스트 추출 | 이미지 글자 인식, Image to Text | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/ocr-DvZowTgS.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
+  <script type="module" crossorigin src="/assets/ocr-OcuQQkZt.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
   <link rel="modulepreload" crossorigin href="/assets/preload-helper-D7HrI6pR.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -289,6 +289,41 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>스크린샷에서 문구 추출</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>오류 메시지가 담긴 스크린샷 (PNG)</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>Connection refused: could not connect to server at 127.0.0.1:5432</code></pre>
+              <p class="example-item__note">오류 메시지를 다시 타이핑하지 않고 바로 검색하거나 붙여 넣을 수 있습니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>글자가 뭉개져 나올 때</h3>
+              <p>해상도가 가장 큰 변수입니다. 확대해서 다시 캡처하거나, 스캔이라면 300 DPI 이상으로 받으세요. 기울어진 사진은 수평을 맞추면 정확도가 확 올라갑니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>한글과 영어가 섞이면 정확도가 떨어질 때</h3>
+              <p>인식 언어를 지정하면 결과가 나아집니다. 다만 한 이미지에 두 언어가 섞이면 어느 쪽이든 오인식이 늘어나므로 결과는 반드시 검수하세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>손글씨가 안 읽힐 때</h3>
+              <p>이 도구는 인쇄체를 전제로 합니다. 손글씨 인식은 별도 모델이 필요해 기대만큼 나오지 않습니다.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -305,10 +340,21 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/pdf-toolkit">PDF 병합/분할 툴</a> — PDF 병합, 분할, 페이지 추출, 워터마크 작업을 파일 업로드 없이 브라우저에서 처리할 수 있습니다.</li>
+            <li><a href="/image-optimize">이미지 최적화</a> — 이미지를 압축하고 리사이즈한 뒤 WEBP, JPEG, PNG로 변환할 수 있습니다.</li>
+            <li><a href="/image-base64">이미지 Base64 변환기</a> — 이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.</li>
+            <li><a href="/qr">QR 코드 생성기/스캐너</a> — 텍스트, URL, Wi-Fi 정보를 QR 코드로 만들고 업로드한 QR 이미지를 바로 읽을 수 있습니다.</li>
+            <li><a href="/file-hash">파일 해시 계산기</a> — 업로드한 파일의 SHA 해시를 로컬에서 계산해 무결성을 빠르게 점검할 수 있습니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">OCR text extraction guidance\u003c/h2>\n          \u003cp class=\"section-lead\">Extract Korean and English text from screenshots, scans, and captured documents into copyable text.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Copy text from images\u003c/h3>\n              \u003cp>Extract error messages, UI labels, and scanned snippets without retyping them manually.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Focused on Korean and English\u003c/h3>\n              \u003cp>Use it for mixed Korean and English screenshots, then review the result manually before relying on it.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Browser-side processing\u003c/h3>\n              \u003cp>The selected image is processed in the browser; this tool does not store the image on a separate server.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Select an image where the text is sharp and readable.\u003c/li>\n          \u003cli>Run OCR and inspect the extracted text.\u003c/li>\n          \u003cli>Manually correct misread numbers, casing, and spacing.\u003c/li>\n          \u003cli>Mask personal data before sharing the extracted result.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Image quality matters\u003c/h3>\n              \u003cp>Blur, skew, low contrast, and tiny text reduce accuracy. Use the clearest source image available.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review important text\u003c/h3>\n              \u003cp>OCR is an assistant, not a source of truth. Compare contracts, amounts, and account numbers with the original image.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">OCR text extraction guidance\u003c/h2>\n          \u003cp class=\"section-lead\">Extract Korean and English text from screenshots, scans, and captured documents into copyable text.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Copy text from images\u003c/h3>\n              \u003cp>Extract error messages, UI labels, and scanned snippets without retyping them manually.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Focused on Korean and English\u003c/h3>\n              \u003cp>Use it for mixed Korean and English screenshots, then review the result manually before relying on it.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Browser-side processing\u003c/h3>\n              \u003cp>The selected image is processed in the browser; this tool does not store the image on a separate server.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Select an image where the text is sharp and readable.\u003c/li>\n          \u003cli>Run OCR and inspect the extracted text.\u003c/li>\n          \u003cli>Manually correct misread numbers, casing, and spacing.\u003c/li>\n          \u003cli>Mask personal data before sharing the extracted result.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Pulling text out of a screenshot\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>A PNG screenshot of an error dialog\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Connection refused: could not connect to server at 127.0.0.1:5432\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">Search or paste the message without retyping it.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Characters come out garbled\u003c/h3>\n              \u003cp>Resolution matters most. Recapture zoomed in, or scan at 300 DPI or higher. Straightening a skewed photo also lifts accuracy sharply.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Mixed languages reduce accuracy\u003c/h3>\n              \u003cp>Selecting the recognition language helps, but a single image containing two scripts raises the error rate either way. Always proofread the output.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Handwriting is not recognized\u003c/h3>\n              \u003cp>This tool assumes printed text. Handwriting needs a different class of model and will not perform well here.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Image quality matters\u003c/h3>\n              \u003cp>Blur, skew, low contrast, and tiny text reduce accuracy. Use the clearest source image available.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review important text\u003c/h3>\n              \u003cp>OCR is an assistant, not a source of truth. Compare contracts, amounts, and account numbers with the original image.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/pdf-toolkit\">PDF Merge/Split\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/image-optimize\">Image Optimizer\u003c/a> — Resize images, adjust quality, and compare output formats in the browser before uploading them to a website or\u003c/li>\n            \u003cli>\u003ca href=\"/image-base64\">Image Base64\u003c/a> — Move small icons, test images, and data URLs between files and strings for CSS, HTML, and API samples.\u003c/li>\n            \u003cli>\u003ca href=\"/qr\">QR Code\u003c/a> — Create QR codes for URLs, short text, and Wi-Fi details, then decode QR images in the browser before opening o\u003c/li>\n            \u003cli>\u003ca href=\"/file-hash\">File Hash\u003c/a> — Calculate SHA hashes for downloads, release artifacts, and shared files in the browser to verify integrity.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

@@ -16,12 +16,12 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/cron-CVROTbnc.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
+  <script type="module" crossorigin src="/assets/cron-DD-wKrcc.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
   <link rel="modulepreload" crossorigin href="/assets/_commonjsHelpers-BosuxZz1.js">
   <link rel="modulepreload" crossorigin href="/assets/luxon-CGv2xrGI.js">
   <link rel="modulepreload" crossorigin href="/assets/__vite-browser-external-D7Ct-6yo.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -317,6 +317,55 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>평일 아침 배치</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>0 9 * * 1-5</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>매주 월요일부터 금요일까지 09:00에 실행</code></pre>
+              <p class="example-item__note">요일은 0이 일요일입니다. 1-5는 월요일부터 금요일까지를 뜻합니다.</p>
+            </article>
+            <article class="example-item">
+              <h3>15분 간격 헬스체크</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>*/15 * * * *</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>매시 00, 15, 30, 45분에 실행</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>매월 1일 자정</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>0 0 1 * *</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>매월 1일 00:00에 실행</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>일요일이 0인지 7인지 헷갈릴 때</h3>
+              <p>표준 cron에서 0과 7은 모두 일요일입니다. 다만 구현체마다 7을 거부하는 경우가 있어 0을 쓰는 편이 안전합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>필드가 5개인지 6개인지</h3>
+              <p>유닉스 cron은 분·시·일·월·요일 5개 필드입니다. Spring이나 Quartz는 맨 앞에 초 필드가 붙어 6개입니다. 5개짜리를 Quartz에 넣으면 의미가 한 칸씩 밀립니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>다음 실행 시간이 예상과 다를 때</h3>
+              <p>일(日)과 요일을 동시에 지정하면 대부분의 구현이 둘 중 하나만 맞아도 실행합니다. AND가 아니라 OR입니다. 서버 타임존과 서머타임도 함께 확인하세요.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -333,6 +382,18 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/ip-ua">IP/User-Agent 확인</a> — IP 주소, User-Agent, 언어, 타임존 같은 브라우저 환경 정보를 빠르게 확인할 수 있습니다.</li>
+            <li><a href="/ip-cidr">CIDR 계산기</a> — IPv4 CIDR 블록에서 서브넷, 브로드캐스트 주소, 호스트 범위를 계산할 수 있습니다.</li>
+            <li><a href="/timestamp">Unix 타임스탬프 변환기</a> — 유닉스 타임스탬프를 날짜로 변환하고 날짜를 epoch 초 또는 밀리초로 다시 바꿀 수 있습니다.</li>
+            <li><a href="/hash">SHA 해시 계산기</a> — SHA-1, SHA-256, SHA-384, SHA-512 해시를 계산하고 HEX 또는 Base64로 바로 복사할 수 있습니다.</li>
+            <li><a href="/password">비밀번호 생성기</a> — 길이와 문자셋 옵션으로 랜덤 비밀번호를 생성하고 강도를 바로 확인할 수 있습니다.</li>
+            <li><a href="/convert">단위 변환기</a> — 길이, 무게, 온도 등 자주 쓰는 단위를 브라우저에서 빠르게 변환합니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
@@ -341,7 +402,7 @@
             <small data-i18n="common.footerJson">© 2025 stateless tools</small>
         </footer>
     </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Practical cron expression checks\u003c/h2>\n          \u003cp class=\"section-lead\">Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deploying them.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Validate schedules before release\u003c/h3>\n              \u003cp>Confirm that expressions such as */15 * * * * match the intended interval before they reach production jobs.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Share readable timing\u003c/h3>\n              \u003cp>Pair the raw expression with a human-readable explanation so teammates can review the schedule without memorizing cron syntax.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Runs in the browser\u003c/h3>\n              \u003cp>The expression is parsed locally in your browser and is not stored or sent to a separate server by this tool.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Paste a 5-field cron expression and compare the explanation with the intended cadence.\u003c/li>\n          \u003cli>Review the next five run times for start time, interval, month-end behavior, and weekend behavior.\u003c/li>\n          \u003cli>Compare browser timezone with the timezone used by the actual server or scheduler.\u003c/li>\n          \u003cli>Check spacing and field count before copying the expression into deployment config or documentation.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Day fields can differ\u003c/h3>\n              \u003cp>Schedulers can interpret day-of-month and day-of-week combinations differently, so verify critical jobs against the target runtime.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Seconds are runtime-specific\u003c/h3>\n              \u003cp>Some systems support a seconds field, while traditional crontab uses five fields. Match the format expected by your scheduler.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Practical cron expression checks\u003c/h2>\n          \u003cp class=\"section-lead\">Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deploying them.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Validate schedules before release\u003c/h3>\n              \u003cp>Confirm that expressions such as */15 * * * * match the intended interval before they reach production jobs.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Share readable timing\u003c/h3>\n              \u003cp>Pair the raw expression with a human-readable explanation so teammates can review the schedule without memorizing cron syntax.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Runs in the browser\u003c/h3>\n              \u003cp>The expression is parsed locally in your browser and is not stored or sent to a separate server by this tool.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Paste a 5-field cron expression and compare the explanation with the intended cadence.\u003c/li>\n          \u003cli>Review the next five run times for start time, interval, month-end behavior, and weekend behavior.\u003c/li>\n          \u003cli>Compare browser timezone with the timezone used by the actual server or scheduler.\u003c/li>\n          \u003cli>Check spacing and field count before copying the expression into deployment config or documentation.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Weekday morning batch\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>0 9 * * 1-5\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Runs at 09:00, Monday through Friday\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">Day-of-week starts at 0 for Sunday, so 1-5 means Monday to Friday.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Health check every 15 minutes\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>*/15 * * * *\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Runs at minute 00, 15, 30, and 45 of every hour\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Midnight on the first of the month\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>0 0 1 * *\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Runs at 00:00 on day 1 of every month\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Is Sunday 0 or 7?\u003c/h3>\n              \u003cp>Standard cron accepts both, but some implementations reject 7. Using 0 is the safer choice.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Five fields or six?\u003c/h3>\n              \u003cp>Unix cron uses five fields: minute, hour, day, month, weekday. Spring and Quartz prepend a seconds field for six. A five-field expression pasted into Quartz shifts every value by one position.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>The next run time looks wrong\u003c/h3>\n              \u003cp>When both day-of-month and day-of-week are set, most implementations run if either matches — an OR, not an AND. Check the server timezone and daylight saving as well.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Day fields can differ\u003c/h3>\n              \u003cp>Schedulers can interpret day-of-month and day-of-week combinations differently, so verify critical jobs against the target runtime.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Seconds are runtime-specific\u003c/h3>\n              \u003cp>Some systems support a seconds field, while traditional crontab uses five fields. Match the format expected by your scheduler.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/ip-ua\">IP / User-Agent\u003c/a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/li>\n            \u003cli>\u003ca href=\"/ip-cidr\">CIDR Calculator\u003c/a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s\u003c/li>\n            \u003cli>\u003ca href=\"/timestamp\">Timestamp Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/hash\">SHA Hash\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/password\">Password\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/convert\">Unit Converter\u003c/a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 
 </html>

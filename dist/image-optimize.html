@@ -5,9 +5,9 @@
   <title>이미지 최적화 | 이미지 압축, 리사이즈, WEBP 변환 | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/imageOptimize-DKXd12L5.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/imageOptimize-CGbEGVCw.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -296,6 +296,41 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>사진을 WebP로</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>photo.jpg 2.4 MB / 4032×3024</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>photo.webp 310 KB / 1600×1200
+약 87% 감소</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>투명 배경이 검게 변할 때</h3>
+              <p>JPEG는 투명도를 지원하지 않습니다. 투명 PNG를 JPEG로 바꾸면 투명 부분이 검정이나 흰색으로 채워집니다. 투명이 필요하면 WebP나 PNG로 유지하세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>다시 압축할수록 흐려질 때</h3>
+              <p>JPEG와 WebP는 손실 압축입니다. 이미 압축된 파일을 다시 압축하면 화질 저하가 누적됩니다. 항상 원본에서 시작하세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>용량이 거의 안 줄 때</h3>
+              <p>이미 최적화된 파일이거나 해상도가 그대로인 경우입니다. 대개 품질 수치보다 가로 크기를 실제 표시 크기로 줄이는 쪽이 효과가 큽니다.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -312,10 +347,21 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/pdf-toolkit">PDF 병합/분할 툴</a> — PDF 병합, 분할, 페이지 추출, 워터마크 작업을 파일 업로드 없이 브라우저에서 처리할 수 있습니다.</li>
+            <li><a href="/image-base64">이미지 Base64 변환기</a> — 이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.</li>
+            <li><a href="/ocr">OCR 텍스트 추출</a> — 이미지에서 한글과 영어 텍스트를 추출해 복사, 검색, 정리에 활용할 수 있습니다.</li>
+            <li><a href="/qr">QR 코드 생성기/스캐너</a> — 텍스트, URL, Wi-Fi 정보를 QR 코드로 만들고 업로드한 QR 이미지를 바로 읽을 수 있습니다.</li>
+            <li><a href="/file-hash">파일 해시 계산기</a> — 업로드한 파일의 SHA 해시를 로컬에서 계산해 무결성을 빠르게 점검할 수 있습니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Image optimization workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Resize images, adjust quality, and compare output formats in the browser before uploading them to a website or document.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Reduce upload weight\u003c/h3>\n              \u003cp>Prepare images for blogs, docs, and landing pages with appropriate width and quality settings.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Compare output formats\u003c/h3>\n              \u003cp>Choose WEBP, JPEG, or PNG based on whether the source is a photo, screenshot, or transparent graphic.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Local conversion\u003c/h3>\n              \u003cp>Resizing and conversion happen in the browser; the original file is not uploaded by this tool.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Select the source image.\u003c/li>\n          \u003cli>Set target width, quality, and output format.\u003c/li>\n          \u003cli>Compare the expected size and visible quality, then download the optimized file.\u003c/li>\n          \u003cli>Place important images in the real page to recheck sharpness and layout impact.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Transparency and format\u003c/h3>\n              \u003cp>JPEG does not preserve transparency. Use PNG or WEBP when logos or icons need transparent backgrounds.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Metadata may be removed\u003c/h3>\n              \u003cp>Canvas-based conversion may not preserve EXIF metadata. Keep the original when photo metadata matters.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">Image optimization workflow\u003c/h2>\n          \u003cp class=\"section-lead\">Resize images, adjust quality, and compare output formats in the browser before uploading them to a website or document.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Reduce upload weight\u003c/h3>\n              \u003cp>Prepare images for blogs, docs, and landing pages with appropriate width and quality settings.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Compare output formats\u003c/h3>\n              \u003cp>Choose WEBP, JPEG, or PNG based on whether the source is a photo, screenshot, or transparent graphic.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Local conversion\u003c/h3>\n              \u003cp>Resizing and conversion happen in the browser; the original file is not uploaded by this tool.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Select the source image.\u003c/li>\n          \u003cli>Set target width, quality, and output format.\u003c/li>\n          \u003cli>Compare the expected size and visible quality, then download the optimized file.\u003c/li>\n          \u003cli>Place important images in the real page to recheck sharpness and layout impact.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>A photo converted to WebP\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>photo.jpg 2.4 MB / 4032×3024\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>photo.webp 310 KB / 1600×1200\nabout 87% smaller\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Transparent areas turn black\u003c/h3>\n              \u003cp>JPEG has no alpha channel. Converting a transparent PNG to JPEG fills those pixels with black or white. Keep WebP or PNG when transparency matters.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Quality degrades with each pass\u003c/h3>\n              \u003cp>JPEG and WebP are lossy. Recompressing an already compressed file stacks the loss. Always start from the original.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>The size barely drops\u003c/h3>\n              \u003cp>The file is probably already optimized, or the dimensions are unchanged. Reducing the pixel width to the actual display size usually beats lowering the quality value.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Transparency and format\u003c/h3>\n              \u003cp>JPEG does not preserve transparency. Use PNG or WEBP when logos or icons need transparent backgrounds.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Metadata may be removed\u003c/h3>\n              \u003cp>Canvas-based conversion may not preserve EXIF metadata. Keep the original when photo metadata matters.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/pdf-toolkit\">PDF Merge/Split\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/image-base64\">Image Base64\u003c/a> — Move small icons, test images, and data URLs between files and strings for CSS, HTML, and API samples.\u003c/li>\n            \u003cli>\u003ca href=\"/ocr\">OCR Extractor\u003c/a> — Extract Korean and English text from screenshots, scans, and captured documents into copyable text.\u003c/li>\n            \u003cli>\u003ca href=\"/qr\">QR Code\u003c/a> — Create QR codes for URLs, short text, and Wi-Fi details, then decode QR images in the browser before opening o\u003c/li>\n            \u003cli>\u003ca href=\"/file-hash\">File Hash\u003c/a> — Calculate SHA hashes for downloads, release artifacts, and shared files in the browser to verify integrity.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>

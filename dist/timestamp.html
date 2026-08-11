@@ -15,10 +15,10 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/timestamp-CVIADPa5.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
+  <script type="module" crossorigin src="/assets/timestamp-4ROdhP6e.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
   <link rel="modulepreload" crossorigin href="/assets/luxon-CGv2xrGI.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -329,6 +329,63 @@
             </section>
         </main>
 
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="ko" lang="ko">
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>초 단위 epoch 변환</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>1767225600</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>2026-01-01 00:00:00 UTC
+2026-01-01 09:00:00 KST</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>밀리초 단위 값</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>1767225600000</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>2026-01-01 00:00:00 UTC</code></pre>
+              <p class="example-item__note">자릿수가 10개면 초, 13개면 밀리초입니다. 이 기준으로 먼저 구분하세요.</p>
+            </article>
+          </div>
+        </section>
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>날짜가 1970년으로 나올 때</h3>
+              <p>밀리초 값을 초로 해석했거나 그 반대입니다. 1000배 차이라 밀리초를 초로 읽으면 5만 년 후가, 초를 밀리초로 읽으면 1970년 초가 나옵니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>9시간이 어긋날 때</h3>
+              <p>epoch는 항상 UTC 기준입니다. 표시할 때 로컬 타임존이 적용되어 한국은 +9시간입니다. 로그를 비교할 때는 양쪽이 어느 기준으로 찍혔는지 먼저 확인하세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>2038년 문제</h3>
+              <p>32비트 부호 있는 정수로 초를 저장하면 2038년 1월 19일에 넘칩니다. 오래된 시스템이나 DB 컬럼 타입을 다룰 때는 64비트인지 확인해두는 편이 좋습니다.</p>
+            </article>
+          </div>
+        </section>
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/ip-ua">IP/User-Agent 확인</a> — IP 주소, User-Agent, 언어, 타임존 같은 브라우저 환경 정보를 빠르게 확인할 수 있습니다.</li>
+            <li><a href="/ip-cidr">CIDR 계산기</a> — IPv4 CIDR 블록에서 서브넷, 브로드캐스트 주소, 호스트 범위를 계산할 수 있습니다.</li>
+            <li><a href="/cron">Cron 표현식 파서</a> — Cron 표현식을 사람이 읽기 쉬운 문장으로 해석하고 다음 실행 시간을 계산할 수 있습니다.</li>
+            <li><a href="/hash">SHA 해시 계산기</a> — SHA-1, SHA-256, SHA-384, SHA-512 해시를 계산하고 HEX 또는 Base64로 바로 복사할 수 있습니다.</li>
+            <li><a href="/password">비밀번호 생성기</a> — 길이와 문자셋 옵션으로 랜덤 비밀번호를 생성하고 강도를 바로 확인할 수 있습니다.</li>
+            <li><a href="/convert">단위 변환기</a> — 길이, 무게, 온도 등 자주 쓰는 단위를 브라우저에서 빠르게 변환합니다.</li>
+          </ul>
+        </section>
+    </section>
+
+    <div data-locale-slot="en" data-locale-index="0"></div>
+
         <section class="content-stack">
             <section class="content-section">
                 <div data-locale-block="ko" lang="ko">
@@ -349,7 +406,7 @@
                         </article>
                     </div>
                 </div>
-                <div data-locale-slot="en" data-locale-index="0"></div>
+                <div data-locale-slot="en" data-locale-index="1"></div>
             </section>
 
             <section class="content-section">
@@ -371,7 +428,7 @@
                         </article>
                     </div>
                 </div>
-                <div data-locale-slot="en" data-locale-index="1"></div>
+                <div data-locale-slot="en" data-locale-index="2"></div>
             </section>
         </section>
 
@@ -379,7 +436,7 @@
             <small data-i18n="common.footerHome">© 2025 stateless tools</small>
         </footer>
     </div>
-  <script type="application/json" data-locale-payload="en">["\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n                    \u003cp class=\"section-kicker\">Guide\u003c/p>\n                    \u003ch2 class=\"section-title\">Why timestamp conversion shows up so often\u003c/h2>\n                    \u003cdiv class=\"content-grid\">\n                        \u003carticle class=\"info-card\">\n                            \u003ch3>Check JWT expiry values\u003c/h3>\n                            \u003cp>Turn \u003ccode>iat\u003c/code>, \u003ccode>exp\u003c/code>, and \u003ccode>nbf\u003c/code> numbers into readable dates when debugging auth flows.\u003c/p>\n                        \u003c/article>\n                        \u003carticle class=\"info-card\">\n                            \u003ch3>Interpret logs faster\u003c/h3>\n                            \u003cp>Compare epoch values against both local time and UTC so incident timelines line up with alerts, dashboards, and user reports.\u003c/p>\n                        \u003c/article>\n                        \u003carticle class=\"info-card\">\n                            \u003ch3>Review schedules safely\u003c/h3>\n                            \u003cp>Move between seconds and milliseconds when checking campaigns, scheduled jobs, or delayed message sends.\u003c/p>\n                        \u003c/article>\n                    \u003c/div>\n                \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n                    \u003cp class=\"section-kicker\">Notes\u003c/p>\n                    \u003ch2 class=\"section-title\">Practical questions teams ask a lot\u003c/h2>\n                    \u003cdiv class=\"faq-list\">\n                        \u003carticle class=\"faq-item\">\n                            \u003ch3>How do I tell seconds from milliseconds?\u003c/h3>\n                            \u003cp>Ten digits usually means seconds and thirteen usually means milliseconds, but the safest check is always the source system documentation.\u003c/p>\n                        \u003c/article>\n                        \u003carticle class=\"faq-item\">\n                            \u003ch3>Why keep both local time and UTC?\u003c/h3>\n                            \u003cp>Local time is easier for people, while UTC is the safer reference for systems, logs, and cross-region debugging.\u003c/p>\n                        \u003c/article>\n                        \u003carticle class=\"faq-item\">\n                            \u003ch3>Does the page send date values anywhere?\u003c/h3>\n                            \u003cp>The conversion runs in the browser. You should still account for your own device, extensions, and operational security policies.\u003c/p>\n                        \u003c/article>\n                    \u003c/div>\n                \u003c/div>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Seconds since epoch\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>1767225600\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>2026-01-01 00:00:00 UTC\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>A millisecond value\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>1767225600000\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>2026-01-01 00:00:00 UTC\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">Ten digits means seconds, thirteen means milliseconds. Check the digit count first.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>The date comes out as 1970\u003c/h3>\n              \u003cp>A millisecond value was read as seconds, or the reverse. The factor of 1000 puts milliseconds-as-seconds tens of thousands of years out, and seconds-as-milliseconds back in early 1970.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>The result is off by a fixed number of hours\u003c/h3>\n              \u003cp>Epoch values are always UTC. Display applies your local timezone. When comparing logs, confirm which basis each side recorded.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>The year 2038 problem\u003c/h3>\n              \u003cp>Storing seconds in a signed 32-bit integer overflows on 19 January 2038. When touching legacy systems or database column types, confirm the field is 64-bit.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/ip-ua\">IP / User-Agent\u003c/a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/li>\n            \u003cli>\u003ca href=\"/ip-cidr\">CIDR Calculator\u003c/a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s\u003c/li>\n            \u003cli>\u003ca href=\"/cron\">Cron Parser\u003c/a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin\u003c/li>\n            \u003cli>\u003ca href=\"/hash\">SHA Hash\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/password\">Password\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/convert\">Unit Converter\u003c/a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n                    \u003cp class=\"section-kicker\">Guide\u003c/p>\n                    \u003ch2 class=\"section-title\">Why timestamp conversion shows up so often\u003c/h2>\n                    \u003cdiv class=\"content-grid\">\n                        \u003carticle class=\"info-card\">\n                            \u003ch3>Check JWT expiry values\u003c/h3>\n                            \u003cp>Turn \u003ccode>iat\u003c/code>, \u003ccode>exp\u003c/code>, and \u003ccode>nbf\u003c/code> numbers into readable dates when debugging auth flows.\u003c/p>\n                        \u003c/article>\n                        \u003carticle class=\"info-card\">\n                            \u003ch3>Interpret logs faster\u003c/h3>\n                            \u003cp>Compare epoch values against both local time and UTC so incident timelines line up with alerts, dashboards, and user reports.\u003c/p>\n                        \u003c/article>\n                        \u003carticle class=\"info-card\">\n                            \u003ch3>Review schedules safely\u003c/h3>\n                            \u003cp>Move between seconds and milliseconds when checking campaigns, scheduled jobs, or delayed message sends.\u003c/p>\n                        \u003c/article>\n                    \u003c/div>\n                \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n                    \u003cp class=\"section-kicker\">Notes\u003c/p>\n                    \u003ch2 class=\"section-title\">Practical questions teams ask a lot\u003c/h2>\n                    \u003cdiv class=\"faq-list\">\n                        \u003carticle class=\"faq-item\">\n                            \u003ch3>How do I tell seconds from milliseconds?\u003c/h3>\n                            \u003cp>Ten digits usually means seconds and thirteen usually means milliseconds, but the safest check is always the source system documentation.\u003c/p>\n                        \u003c/article>\n                        \u003carticle class=\"faq-item\">\n                            \u003ch3>Why keep both local time and UTC?\u003c/h3>\n                            \u003cp>Local time is easier for people, while UTC is the safer reference for systems, logs, and cross-region debugging.\u003c/p>\n                        \u003c/article>\n                        \u003carticle class=\"faq-item\">\n                            \u003ch3>Does the page send date values anywhere?\u003c/h3>\n                            \u003cp>The conversion runs in the browser. You should still account for your own device, extensions, and operational security policies.\u003c/p>\n                        \u003c/article>\n                    \u003c/div>\n                \u003c/div>"]</script>
 </body>
 
 </html>

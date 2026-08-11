@@ -9,9 +9,9 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
-  <script type="module" crossorigin src="/assets/jsonYaml-x3JL6veS.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
+  <script type="module" crossorigin src="/assets/jsonYaml-B1uDyGzN.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lxjFko5E.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Cb_Pl6qQ.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -267,6 +267,53 @@
           </ol>
         </section>
 
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>JSON을 YAML로</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>{"name":"api","port":8080,"debug":false}</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>name: api
+port: 8080
+debug: false</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>중첩 구조</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>{"db":{"host":"localhost","ports":[5432,5433]}}</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>db:
+  host: localhost
+  ports:
+    - 5432
+    - 5433</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>따옴표 없는 no가 false로 바뀔 때</h3>
+              <p>YAML 1.1은 no, yes, on, off를 불리언으로 해석합니다. 노르웨이 국가코드 NO가 false가 되는 이 문제는 흔히 Norway problem이라 부릅니다. 문자열로 남기려면 따옴표로 감싸세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>들여쓰기가 깨질 때</h3>
+              <p>YAML은 탭을 들여쓰기로 인정하지 않습니다. 반드시 공백을 쓰고, 한 파일 안에서 폭을 통일하세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>앞자리 0이 사라질 때</h3>
+              <p>010-1234-5678 같은 값이나 08 같은 숫자는 8진수 또는 숫자로 해석될 수 있습니다. 전화번호, 우편번호, 버전 문자열은 따옴표로 감싸는 것이 안전합니다.</p>
+            </article>
+          </div>
+        </section>
+
         <section class="content-section">
           <p class="section-kicker">Review</p>
           <h2 class="section-title">확인할 점</h2>
@@ -283,10 +330,22 @@
         </section>
 
 
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/uuid">UUID 변환기</a> — UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/base64">Base64 인코더/디코더</a> — 문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.</li>
+            <li><a href="/json">JSON 포매터/검증기</a> — JSON 유효성 검사, 포맷/압축, 키 검색, 트리 뷰 확인까지 한 번에 할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/jwt">JWT 디코더/검사기</a> — JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.</li>
+            <li><a href="/url">URL 인코더/디코더</a> — URL 인코딩/디코딩, 쿼리 스트링 파싱, URL-safe 문자열 확인을 브라우저에서 바로 처리할 수 있습니다.</li>
+            <li><a href="/query-builder">URL 쿼리 생성기</a> — 키-값 쌍으로 쿼리 스트링을 만들고 인코딩된 공유 URL을 빠르게 생성할 수 있습니다.</li>
+          </ul>
+        </section>
     </section>
 
     <div data-locale-slot="en" data-locale-index="0"></div>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">JSON and YAML conversion review\u003c/h2>\n          \u003cp class=\"section-lead\">Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV output.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Move between config formats\u003c/h3>\n              \u003cp>Convert JSON samples into YAML config, or convert YAML into JSON for easier handling in code.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Inspect structure\u003c/h3>\n              \u003cp>Check whether arrays, objects, strings, numbers, booleans, and null values survive conversion as intended.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Flatten simple arrays\u003c/h3>\n              \u003cp>Turn simple array data into CSV when you need a quick spreadsheet or review table.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Paste the source JSON or YAML.\u003c/li>\n          \u003cli>Choose the conversion direction and review the output structure.\u003c/li>\n          \u003cli>Check string numbers, true/false values, and null values for type changes.\u003c/li>\n          \u003cli>Use CSV output mainly for shallow array data.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>YAML infers types\u003c/h3>\n              \u003cp>YAML can interpret values that look like yes, no, or dates. Quote sensitive string values when exact text matters.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Comments may not survive\u003c/h3>\n              \u003cp>JSON has no comments, and YAML comments or original formatting may be lost during conversion. Keep the original config separately.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">JSON and YAML conversion review\u003c/h2>\n          \u003cp class=\"section-lead\">Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV output.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Move between config formats\u003c/h3>\n              \u003cp>Convert JSON samples into YAML config, or convert YAML into JSON for easier handling in code.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Inspect structure\u003c/h3>\n              \u003cp>Check whether arrays, objects, strings, numbers, booleans, and null values survive conversion as intended.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Flatten simple arrays\u003c/h3>\n              \u003cp>Turn simple array data into CSV when you need a quick spreadsheet or review table.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Paste the source JSON or YAML.\u003c/li>\n          \u003cli>Choose the conversion direction and review the output structure.\u003c/li>\n          \u003cli>Check string numbers, true/false values, and null values for type changes.\u003c/li>\n          \u003cli>Use CSV output mainly for shallow array data.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Examples\u003c/p>\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>JSON to YAML\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>{\"name\":\"api\",\"port\":8080,\"debug\":false}\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>name: api\nport: 8080\ndebug: false\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Nested structures\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>{\"db\":{\"host\":\"localhost\",\"ports\":[5432,5433]}}\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>db:\n  host: localhost\n  ports:\n    - 5432\n    - 5433\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Troubleshooting\u003c/p>\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Unquoted \"no\" turns into false\u003c/h3>\n              \u003cp>YAML 1.1 reads no, yes, on, and off as booleans. The country code NO becoming false is known as the Norway problem. Quote the value to keep it a string.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Indentation breaks\u003c/h3>\n              \u003cp>YAML does not accept tabs for indentation. Use spaces and keep the width consistent across the file.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Leading zeros disappear\u003c/h3>\n              \u003cp>Values like 08 or a phone number can be parsed as octal or numeric. Quote phone numbers, postal codes, and version strings.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Review\u003c/p>\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>YAML infers types\u003c/h3>\n              \u003cp>YAML can interpret values that look like yes, no, or dates. Quote sensitive string values when exact text matters.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Comments may not survive\u003c/h3>\n              \u003cp>JSON has no comments, and YAML comments or original formatting may be lost during conversion. Keep the original config separately.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003cp class=\"section-kicker\">Related\u003c/p>\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/uuid\">UUID Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json\">JSON Formatter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/url\">URL Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/query-builder\">URL Query Builder\u003c/a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 </html>
