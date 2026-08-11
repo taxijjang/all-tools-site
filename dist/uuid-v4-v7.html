@@ -13,7 +13,7 @@
     gtag('js', new Date());
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-DJ1dtG8K.js"></script>
+  <script type="module" crossorigin src="/assets/site-DAHxeGtM.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
   <script data-client-boot>
     (function () {
@@ -153,9 +153,10 @@
   }
 ]
   </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="uuid-v4-v7" data-allow-ads="false">
+<body class="layout layout--dev" data-tool="uuid-v4-v7" data-allow-ads="true">
   <div class="page page--dev page--content">
     <div class="page-controls" data-nosnippet>
 
@@ -183,14 +184,12 @@
       <a class="back-link" href="/learn" data-i18n="common.back">도구 목록으로</a>
       <h1>
         <span data-locale-block="ko" lang="ko">UUID v4 vs v7 가이드</span>
-        <span data-locale-block="en" lang="en" hidden>UUID v4 vs v7 guide</span>
+        <div data-locale-slot="en" data-locale-index="0"></div>
       </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
       <div data-locale-block="ko" lang="ko">
         <p>랜덤 UUID와 시간 정렬형 UUID를 언제 고르는지, 데이터베이스 저장 전략과 운영 편의성까지 포함해서 정리한 실무 가이드입니다.</p>
       </div>
-      <div data-locale-block="en" lang="en" hidden data-nosnippet>
-        <p>A practical guide to choosing between random UUIDs and time-ordered UUIDs, including storage and operational trade-offs.</p>
-      </div>
+      <div data-locale-slot="en" data-locale-index="1"></div>
     </header>
 
     <main class="content-stack">
@@ -213,24 +212,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Decision</p>
-          <h2 class="section-title">The short answer first</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Choose UUID v4 when</h3>
-              <p>Most web apps, APIs, and trace IDs only need non-guessable identifiers. In that case UUID v4 stays the practical default.</p>
-            </article>
-            <article class="info-card">
-              <h3>Choose UUID v7 when</h3>
-              <p>Logs, queue records, or time-oriented datasets benefit from IDs that sort more naturally as they are created.</p>
-            </article>
-            <article class="info-card">
-              <h3>v7 is not automatically better</h3>
-              <p>Migration cost, library support, database layout, and existing operational tooling still matter before you switch identifier formats.</p>
-            </article>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="2"></div>
       </section>
 
       <section class="content-section">
@@ -252,24 +234,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Trade-offs</p>
-          <h2 class="section-title">The practical issues that matter most</h2>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>Ordering and index locality</h3>
-              <p>UUID v4 inserts are effectively random. UUID v7 can improve ordering behavior in some storage engines because time information is encoded near the front.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Readability and debugging</h3>
-              <p>Neither version is pleasant for humans. Teams still need conversion helpers for standard strings, compact binary forms, and log-friendly outputs.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Mixed-format operations</h3>
-              <p>If older services stay on v4 while newer ones move to v7, filters, tracing docs, and operational scripts often need more cleanup than expected.</p>
-            </article>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="3"></div>
       </section>
 
       <section class="content-section">
@@ -287,20 +252,7 @@
             <a class="link-button" href="/learn">가이드 허브</a>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Workflow</p>
-          <h2 class="section-title">The related pages to open next</h2>
-          <ol class="content-list">
-            <li>Use the <a href="/uuid">UUID converter</a> when you need to compare standard UUID strings and compact hex(binary16) storage forms.</li>
-            <li>Open the <a href="/uuidv7">UUID v7 generator</a> when you want to test time-ordered IDs directly.</li>
-            <li>Pair that with the <a href="/timestamp">timestamp converter</a> if you need to reason about ordering against real time.</li>
-          </ol>
-          <div class="cta-row">
-            <a class="link-button link-button--primary" href="/uuid">Open UUID converter</a>
-            <a class="link-button" href="/uuidv7">Open UUID v7 generator</a>
-            <a class="link-button" href="/learn">Back to guide hub</a>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="4"></div>
       </section>
     </main>
 
@@ -309,6 +261,7 @@
     </footer>
   </div>
 
+  <script type="application/json" data-locale-payload="en">["\u003cspan data-locale-block=\"en\" lang=\"en\" hidden>UUID v4 vs v7 guide\u003c/span>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n        \u003cp>A practical guide to choosing between random UUIDs and time-ordered UUIDs, including storage and operational trade-offs.\u003c/p>\n      \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Decision\u003c/p>\n          \u003ch2 class=\"section-title\">The short answer first\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Choose UUID v4 when\u003c/h3>\n              \u003cp>Most web apps, APIs, and trace IDs only need non-guessable identifiers. In that case UUID v4 stays the practical default.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Choose UUID v7 when\u003c/h3>\n              \u003cp>Logs, queue records, or time-oriented datasets benefit from IDs that sort more naturally as they are created.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>v7 is not automatically better\u003c/h3>\n              \u003cp>Migration cost, library support, database layout, and existing operational tooling still matter before you switch identifier formats.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Trade-offs\u003c/p>\n          \u003ch2 class=\"section-title\">The practical issues that matter most\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Ordering and index locality\u003c/h3>\n              \u003cp>UUID v4 inserts are effectively random. UUID v7 can improve ordering behavior in some storage engines because time information is encoded near the front.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Readability and debugging\u003c/h3>\n              \u003cp>Neither version is pleasant for humans. Teams still need conversion helpers for standard strings, compact binary forms, and log-friendly outputs.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Mixed-format operations\u003c/h3>\n              \u003cp>If older services stay on v4 while newer ones move to v7, filters, tracing docs, and operational scripts often need more cleanup than expected.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">The related pages to open next\u003c/h2>\n          \u003col class=\"content-list\">\n            \u003cli>Use the \u003ca href=\"/uuid\">UUID converter\u003c/a> when you need to compare standard UUID strings and compact hex(binary16) storage forms.\u003c/li>\n            \u003cli>Open the \u003ca href=\"/uuidv7\">UUID v7 generator\u003c/a> when you want to test time-ordered IDs directly.\u003c/li>\n            \u003cli>Pair that with the \u003ca href=\"/timestamp\">timestamp converter\u003c/a> if you need to reason about ordering against real time.\u003c/li>\n          \u003c/ol>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/uuid\">Open UUID converter\u003c/a>\n            \u003ca class=\"link-button\" href=\"/uuidv7\">Open UUID v7 generator\u003c/a>\n            \u003ca class=\"link-button\" href=\"/learn\">Back to guide hub\u003c/a>\n          \u003c/div>\n        \u003c/div>"]</script>
 </body>
 
 </html>

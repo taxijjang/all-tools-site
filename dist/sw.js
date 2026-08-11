@@ -1,4 +1,4 @@
-const CACHE_NAME = 'stateless-tools-v14-20260329';
+const CACHE_NAME = 'stateless-tools-v15-20260811';
 const OFFLINE_FALLBACK = '/index.html';
 const ASSETS = [
   '/',

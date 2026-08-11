@@ -10,9 +10,10 @@ import {
   SITE_SOCIALS,
 } from './src/seo-meta.js';
 import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './src/chrome-meta.js';
+import { TOOL_SUPPORT_COPY } from './src/tool-support-copy.js';
 
 const ADSENSE_PUBLISHER_ID = 'ca-pub-4324902308911757';
-const ADSENSE_ENABLED = false;
+const ADSENSE_ENABLED = true;
 
 const pageInputs = {
   main: resolve(__dirname, 'index.html'),
@@ -54,12 +55,9 @@ const pageInputs = {
   imageOptimize: resolve(__dirname, 'image-optimize.html'),
   ocr: resolve(__dirname, 'ocr.html'),
   textStats: resolve(__dirname, 'text-stats.html'),
-  csvTools: resolve(__dirname, 'csv-tools.html'),
   seoCheck: resolve(__dirname, 'seo-check.html'),
   utmBuilder: resolve(__dirname, 'utm-builder.html'),
-  qrAdvanced: resolve(__dirname, 'qr-advanced.html'),
   textCleaner: resolve(__dirname, 'text-cleaner.html'),
-  jwtVerify: resolve(__dirname, 'jwt-verify.html'),
   apiTester: resolve(__dirname, 'api-tester.html'),
 };
 
@@ -95,93 +93,187 @@ function getCleanPageTitle(meta, fallbackTitle = '') {
   return cleanTitle(meta.title || fallbackTitle || SITE_NAME).split('|')[0].trim();
 }
 
-function getDefaultFaq(meta, pageTitle, description) {
-  if (Array.isArray(meta.faq) && meta.faq.length) {
-    return meta.faq;
+const TOOL_SUPPORT_LABELS = {
+  ko: {
+    featureKicker: 'Guide',
+    stepsKicker: 'Workflow',
+    notesKicker: 'Review',
+    faqKicker: 'FAQ',
+    fallbackHeading: (toolName) => `${toolName} 기능 설명`,
+    stepsTitle: '사용 순서',
+    notesTitle: '확인할 점',
+    faqTitle: '자주 묻는 질문',
+  },
+  en: {
+    featureKicker: 'Guide',
+    stepsKicker: 'Workflow',
+    notesKicker: 'Review',
+    faqKicker: 'FAQ',
+    fallbackHeading: (toolName) => `${toolName} feature guide`,
+    stepsTitle: 'How to use it',
+    notesTitle: 'Things to check',
+    faqTitle: 'Common questions',
+  },
+};
+
+function getFallbackSupportCopy(meta, toolName, description, locale = 'ko') {
+  if (locale === 'en') {
+    return {
+      heading: `${toolName} workflow guide`,
+      lead: description,
+      cards: [
+        {
+          title: 'Work in the browser',
+          body: 'Use the current page for input, conversion, and validation without installing a separate app.',
+        },
+        {
+          title: 'Shorten repeated checks',
+          body: 'Handle common development, operations, and content tasks in a focused single-purpose interface.',
+        },
+        {
+          title: 'Move to the next task',
+          body: 'Copy or download the result, then continue with related tools or guides when another check is needed.',
+        },
+      ],
+      steps: [
+        'Enter the value or choose the file you want to inspect.',
+        'Select the required options, format, or output mode.',
+        'Run the tool and review the result area.',
+        'Copy or download the result after checking that it matches your expected format.',
+      ],
+      notes: [
+        {
+          title: 'Check the source format',
+          body: 'Most unexpected results come from mismatched input format, hidden whitespace, or copied line breaks.',
+        },
+        {
+          title: 'Keep sensitive values out of shared output',
+          body: 'Mask tokens, personal data, and internal hostnames before sharing results with other people.',
+        },
+      ],
+    };
   }
 
-  if (meta.kind !== 'tool') {
-    return [];
-  }
-
-  const toolName = getCleanPageTitle(meta, pageTitle);
-  const dataHandlingAnswer =
-    meta.path === '/api-tester'
-      ? '요청 전송 버튼을 누르면 사용자가 입력한 URL로 HTTP 요청이 전송됩니다. 토큰, 개인정보, 운영 API 주소처럼 민감한 값은 테스트 전에 마스킹하거나 샘플 값으로 바꾸는 것이 좋습니다.'
-      : `${toolName}의 주요 변환과 계산은 브라우저 안에서 처리됩니다. 다만 광고, 분석 도구, 일부 외부 링크는 별도 서비스의 정책을 따를 수 있습니다.`;
-
-  return [
-    {
-      question: `${toolName}는 어떤 작업에 쓰나요?`,
-      answer: description,
-    },
-    {
-      question: '입력한 데이터가 서버로 전송되나요?',
-      answer: dataHandlingAnswer,
-    },
-    {
-      question: '결과가 기대와 다르면 무엇을 확인해야 하나요?',
-      answer:
-        '입력 형식, 선택한 옵션, 복사 과정에서 생긴 공백이나 줄바꿈을 먼저 확인하세요. 파일 기반 도구라면 브라우저가 해당 파일 형식과 크기를 처리할 수 있는지도 함께 확인하는 것이 좋습니다.',
-    },
-  ];
+  return {
+    heading: `${toolName} 기능 설명`,
+    lead: description,
+    cards: [
+      {
+        title: '브라우저에서 바로 실행',
+        body: '별도 설치 없이 현재 페이지에서 입력, 변환, 검증 흐름을 이어갈 수 있도록 구성했습니다.',
+      },
+      {
+        title: '반복 작업 단축',
+        body: '개발, 운영, 콘텐츠 작업 중 자주 반복되는 확인 과정을 한 화면에서 빠르게 처리하는 데 초점을 맞췄습니다.',
+      },
+      {
+        title: '다음 작업으로 연결',
+        body: '결과를 복사하거나 다운로드한 뒤 관련 도구와 가이드로 이어서 점검할 수 있습니다.',
+      },
+    ],
+    steps: [
+      '입력창에 확인할 값이나 파일을 넣습니다.',
+      '필요한 옵션, 형식, 출력 방식을 선택합니다.',
+      '실행 버튼을 누르고 결과 영역에서 변환 또는 검사 결과를 확인합니다.',
+      '결과를 복사하거나 다운로드한 뒤 관련 도구에서 추가 점검을 이어갑니다.',
+    ],
+    notes: [
+      {
+        title: '입력 형식 확인',
+        body: '대부분의 예상 밖 결과는 입력 형식, 숨은 공백, 복사 과정에서 들어간 줄바꿈 때문에 생깁니다.',
+      },
+      {
+        title: '공유 전 민감 값 제거',
+        body: '토큰, 개인정보, 내부 호스트명은 결과를 공유하기 전에 마스킹하는 것이 좋습니다.',
+      },
+    ],
+  };
 }
 
-function buildGeneratedToolContent(meta, pageTitle, description) {
-  const toolName = getCleanPageTitle(meta, pageTitle);
-  const escapedToolName = escapeHtml(toolName);
-  const escapedDescription = escapeHtml(description);
-  const faqItems = getDefaultFaq(meta, pageTitle, description);
-  const faqMarkup = faqItems
+function getToolSupportCopy(meta, toolName, description, locale = 'ko') {
+  return (
+    TOOL_SUPPORT_COPY[meta.path]?.[locale] ||
+    TOOL_SUPPORT_COPY[meta.path]?.ko ||
+    getFallbackSupportCopy(meta, toolName, description, locale)
+  );
+}
+
+// ponytail: 자동생성 FAQ는 20개 페이지에 같은 질문 2개와 같은 답이 그대로 들어가 중복 콘텐츠가 됐다.
+// 나머지 1개도 바로 위 Guide 섹션과 같은 문장이라 더하는 정보가 없었다. 손으로 쓴 faq만 남긴다.
+function getStructuredFaq(meta) {
+  return Array.isArray(meta.faq) && meta.faq.length ? meta.faq : [];
+}
+
+function buildCardMarkup(items = [], className = 'info-card') {
+  return items
     .map(
-      (item) => `            <article class="faq-item">
-              <h3>${escapeHtml(item.question)}</h3>
-              <p>${escapeHtml(item.answer)}</p>
+      (item) => `            <article class="${className}">
+              <h3>${escapeHtml(item.question || item.title)}</h3>
+              <p>${escapeHtml(item.answer || item.body)}</p>
             </article>`,
     )
     .join('\n');
+}
+
+function buildListMarkup(items = []) {
+  return items.map((item) => `          <li>${escapeHtml(item)}</li>`).join('\n');
+}
+
+function buildLocaleToolContent(meta, pageTitle, description, locale, { hidden = false } = {}) {
+  const toolName = getCleanPageTitle(meta, pageTitle);
+  const labels = TOOL_SUPPORT_LABELS[locale] || TOOL_SUPPORT_LABELS.ko;
+  const support = getToolSupportCopy(meta, toolName, description, locale);
+  // ponytail: 손으로 쓴 faq가 있을 때만 FAQ 섹션을 낸다. 자동생성분은 페이지끼리 문장이 겹쳤다.
+  const faqItems = locale === 'ko' ? getStructuredFaq(meta) : [];
+  const heading = support.heading || labels.fallbackHeading(toolName);
+  const hiddenAttrs = hidden ? ' hidden aria-hidden="true"' : '';
 
   return `
-    <section class="content-stack content-stack--generated" data-seo-support>
-      <section class="content-section content-section--highlight" data-locale-block="ko" lang="ko">
-        <p class="section-kicker">Feature</p>
-        <h2 class="section-title">${escapedToolName} 기능 설명</h2>
-        <p class="section-lead">${escapedDescription}</p>
-        <div class="content-grid">
-          <article class="info-card">
-            <h3>브라우저에서 바로 실행</h3>
-            <p>별도 설치 없이 현재 페이지에서 입력, 변환, 검증 흐름을 이어갈 수 있도록 구성했습니다.</p>
-          </article>
-          <article class="info-card">
-            <h3>반복 작업 단축</h3>
-            <p>개발, 운영, 콘텐츠 작업 중 자주 반복되는 확인 과정을 한 화면에서 빠르게 처리하는 데 초점을 맞췄습니다.</p>
-          </article>
-          <article class="info-card">
-            <h3>다음 작업으로 연결</h3>
-            <p>결과를 복사하거나 다운로드한 뒤 관련 도구와 가이드로 이어서 점검할 수 있습니다.</p>
-          </article>
-        </div>
-      </section>
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="${locale}" lang="${locale}"${hiddenAttrs}>
+        <section class="content-section content-section--highlight">
+          <p class="section-kicker">${escapeHtml(labels.featureKicker)}</p>
+          <h2 class="section-title">${escapeHtml(heading)}</h2>
+          <p class="section-lead">${escapeHtml(support.lead || description)}</p>
+          <div class="content-grid">
+${buildCardMarkup(support.cards)}
+          </div>
+        </section>
 
-      <section class="content-section" data-locale-block="ko" lang="ko">
-        <p class="section-kicker">How To</p>
-        <h2 class="section-title">${escapedToolName} 사용 방법</h2>
-        <ol class="content-list">
-          <li>입력창에 확인할 값이나 파일을 넣습니다.</li>
-          <li>필요한 옵션, 형식, 출력 방식을 선택합니다.</li>
-          <li>실행 버튼을 누르고 결과 영역에서 변환 또는 검사 결과를 확인합니다.</li>
-          <li>결과를 복사하거나 다운로드한 뒤 관련 도구에서 추가 점검을 이어갑니다.</li>
-        </ol>
-      </section>
+        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.stepsKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.stepsTitle)}</h2>
+          <ol class="content-list">
+${buildListMarkup(support.steps)}
+          </ol>
+        </section>
 
-      <section class="content-section" data-locale-block="ko" lang="ko">
-        <p class="section-kicker">FAQ</p>
-        <h2 class="section-title">자주 묻는 질문</h2>
-        <div class="faq-list">
-${faqMarkup}
-        </div>
-      </section>
+        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.notesKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.notesTitle)}</h2>
+          <div class="content-grid">
+${buildCardMarkup(support.notes)}
+          </div>
+        </section>
+
+${
+  faqItems.length
+    ? `
+        <section class="content-section">
+          <p class="section-kicker">${escapeHtml(labels.faqKicker)}</p>
+          <h2 class="section-title">${escapeHtml(labels.faqTitle)}</h2>
+          <div class="faq-list">
+${buildCardMarkup(faqItems, 'faq-item')}
+          </div>
+        </section>`
+    : ''
+}
     </section>`;
+}
+
+function buildGeneratedToolContent(meta, pageTitle, description) {
+  return `
+${buildLocaleToolContent(meta, pageTitle, description, 'ko')}
+${buildLocaleToolContent(meta, pageTitle, description, 'en', { hidden: true })}`;
 }
 
 function removeHeadArtifacts(html) {
@@ -431,7 +523,7 @@ function buildStructuredData(meta, pageTitle, description, canonicalUrl) {
     });
   }
 
-  const faq = getDefaultFaq(meta, pageTitle, description);
+  const faq = getStructuredFaq(meta);
   if (faq.length) {
     structuredData.push({
       '@context': 'https://schema.org',
@@ -464,6 +556,63 @@ function injectGeneratedToolContent(html, meta, pageTitle, description) {
   }
 
   return html.replace(/<\/main>/i, `</main>\n${content}`);
+}
+
+// ponytail: 숨긴 영어 블록을 HTML 본문에서 빼고 JSON 페이로드로 옮긴다.
+// hidden + data-nosnippet 텍스트가 페이지의 35%를 차지해 애드센스/구글에 숨긴 텍스트로 읽혔다.
+// 손으로 쓴 22개 페이지와 자동생성 20개 페이지가 같은 마크업을 쓰므로 여기 한 곳에서 모두 처리된다.
+// 영어를 별도 URL(/en/...)로 빼면 이 단계는 필요 없어진다.
+function findMatchingClose(html, tagName, openTagEnd) {
+  const pattern = new RegExp(`<${tagName}\\b[^>]*>|</${tagName}\\s*>`, 'gi');
+  pattern.lastIndex = openTagEnd;
+  let depth = 1;
+  let match;
+
+  while ((match = pattern.exec(html))) {
+    if (match[0][1] === '/') {
+      depth -= 1;
+      if (depth === 0) {
+        return match.index + match[0].length;
+      }
+    } else if (!match[0].endsWith('/>')) {
+      depth += 1;
+    }
+  }
+
+  return -1;
+}
+
+function extractHiddenLocaleBlocks(html) {
+  const blocks = [];
+  const marker = /<([a-z]+)\b[^>]*\bdata-locale-block=["']en["'][^>]*>/gi;
+  let result = '';
+  let cursor = 0;
+  let match;
+
+  while ((match = marker.exec(html))) {
+    const closeEnd = findMatchingClose(html, match[1], match.index + match[0].length);
+    if (closeEnd === -1) {
+      continue;
+    }
+
+    result += html.slice(cursor, match.index);
+    result += `<div data-locale-slot="en" data-locale-index="${blocks.length}"></div>`;
+    blocks.push(html.slice(match.index, closeEnd));
+    cursor = closeEnd;
+    marker.lastIndex = closeEnd;
+  }
+
+  if (!blocks.length) {
+    return html;
+  }
+
+  result += html.slice(cursor);
+  const payload = JSON.stringify(blocks).replaceAll('<', '\\u003c');
+
+  return result.replace(
+    /<\/body>/i,
+    `  <script type="application/json" data-locale-payload="en">${payload}</script>\n</body>`,
+  );
 }
 
 function resolveSitemapDefaults(meta) {
@@ -567,10 +716,12 @@ function seoMetadataPlugin() {
       );
       nextHtml = nextHtml.replace(/<footer class="footer([^"]*)">/i, '<footer class="footer$1" data-nosnippet>');
       nextHtml = nextHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(fullTitle)}</title>`);
+      nextHtml = extractHiddenLocaleBlocks(nextHtml);
       nextHtml = upsertBodyAttribute(
         nextHtml,
         'data-allow-ads',
-        ADSENSE_ENABLED && meta.allowAds ? 'true' : 'false',
+        // ponytail: meta.allowAds는 어느 PAGE_META에도 없어서 항상 undefined였음. noindex 페이지만 제외.
+        ADSENSE_ENABLED && !meta.noindex ? 'true' : 'false',
       );
 
       const headTags = [
@@ -597,7 +748,7 @@ function seoMetadataPlugin() {
         `  <script type="application/ld+json" data-seo-schema>\n${structuredDataJson}\n  </script>`,
       ];
 
-      if (ADSENSE_ENABLED && meta.allowAds) {
+      if (ADSENSE_ENABLED && !meta.noindex) {
         headTags.push(
           '  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>',
         );

@@ -1502,7 +1502,42 @@ function updateChromeText(locale = document.documentElement.getAttribute('lang')
   updateContentAdCopy(locale);
 }
 
+// ponytail: 빌드가 영어 블록을 JSON으로 빼놨으므로(vite.config.js extractHiddenLocaleBlocks)
+// 영어로 전환할 때만 DOM에 되돌린다. 한국어 사용자는 이 페이로드를 파싱하지 않는다.
+function hydrateLocaleBlocks(locale) {
+  if (locale !== 'en') {
+    return;
+  }
+
+  const slots = document.querySelectorAll('[data-locale-slot="en"]:not([data-hydrated])');
+  if (!slots.length) {
+    return;
+  }
+
+  const payloadEl = document.querySelector('script[data-locale-payload="en"]');
+  if (!payloadEl) {
+    return;
+  }
+
+  let blocks;
+  try {
+    blocks = JSON.parse(payloadEl.textContent);
+  } catch (err) {
+    return;
+  }
+
+  slots.forEach((slot) => {
+    const html = blocks[Number(slot.dataset.localeIndex)];
+    if (!html) {
+      return;
+    }
+    slot.insertAdjacentHTML('beforebegin', html);
+    slot.dataset.hydrated = 'true';
+  });
+}
+
 function syncLocaleBlocks(locale = document.documentElement.getAttribute('lang') || currentLocale) {
+  hydrateLocaleBlocks(locale);
   document.querySelectorAll('[data-locale-block]').forEach((block) => {
     const isActive = block.dataset.localeBlock === locale;
     block.hidden = !isActive;

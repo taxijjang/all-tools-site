@@ -16,8 +16,8 @@
 
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/jwt-DR_OSYrx.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-DJ1dtG8K.js">
+  <script type="module" crossorigin src="/assets/jwt-tuqO31Ri.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-DAHxeGtM.js">
   <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
   <script data-client-boot>
     (function () {
@@ -209,9 +209,10 @@
   }
 ]
   </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="jwt" data-allow-ads="false">
+<body class="layout layout--dev" data-tool="jwt" data-allow-ads="true">
 
   <div class="page page--dev">
     <div class="page-controls" data-nosnippet>
@@ -346,24 +347,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Guide</p>
-          <h2 class="section-title">What to inspect first in a JWT</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Start with the header algorithm</h3>
-              <p>Check whether the <code>alg</code> value matches the algorithm your environment is supposed to use. A mismatch is a common source of failed verification.</p>
-            </article>
-            <article class="info-card">
-              <h3>Review time-based claims</h3>
-              <p><code>exp</code>, <code>nbf</code>, and <code>iat</code> should be interpreted alongside server clock differences. Time drift often looks like a token issue at first.</p>
-            </article>
-            <article class="info-card">
-              <h3>Check payload sensitivity</h3>
-              <p>JWTs are only encoded, not encrypted. If the payload contains sensitive personal or secret values, the token design itself may need review.</p>
-            </article>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="0"></div>
       </section>
 
       <section class="content-section">
@@ -389,28 +373,7 @@
             <a class="link-button" href="/timestamp">타임스탬프 변환기</a>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Security Notes</p>
-          <h2 class="section-title">Decoding is not the same as trust</h2>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>Readable does not mean valid</h3>
-              <p>Being able to decode a token only means you can inspect it. Trusting it still requires signature validation.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Why the JWKS step matters</h3>
-              <p>In OIDC and external identity-provider setups, JWKS verification helps confirm that the token actually came from the issuer you expect.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Useful companion tools</h3>
-              <p>JWT debugging often pairs well with <a href="/json">JSON Formatter</a>, the <a href="/base64">Base64 converter</a>, and <a href="/api-tester">API Request Tester</a> when you need to reproduce the full request flow.</p>
-            </article>
-          </div>
-          <div class="cta-row">
-            <a class="link-button link-button--primary" href="/jwt-exp-nbf">Open JWT exp / nbf guide</a>
-            <a class="link-button" href="/timestamp">Open timestamp converter</a>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="1"></div>
       </section>
 
       <section class="content-section">
@@ -432,24 +395,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">How To</p>
-          <h2 class="section-title">The order that makes JWT review easier</h2>
-          <div class="content-columns">
-            <article class="info-card">
-              <h3>1. Open the header and payload first</h3>
-              <p>Start by comparing alg, typ, iss, aud, sub, and exp against the environment you expect. That narrows the problem quickly.</p>
-            </article>
-            <article class="info-card">
-              <h3>2. Review time claims with a timestamp tool</h3>
-              <p>Translate exp, nbf, and iat into human-readable time and account for server clock skew. The <a href="/timestamp">timestamp converter</a> pairs well with this step.</p>
-            </article>
-            <article class="info-card">
-              <h3>3. Treat trust as a separate verification step</h3>
-              <p>A readable token is not automatically a trustworthy one. When an external issuer is involved, use the JWKS URL to verify the signature explicitly.</p>
-            </article>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="2"></div>
       </section>
     </section>
 
@@ -457,6 +403,7 @@
       <small data-i18n="common.footerJwt">© 2025 stateless tools · JWT 디코딩과 JWKS 검증은 브라우저에서 처리됩니다.</small>
     </footer>
   </div>
+  <script type="application/json" data-locale-payload="en">["\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Guide\u003c/p>\n          \u003ch2 class=\"section-title\">What to inspect first in a JWT\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Start with the header algorithm\u003c/h3>\n              \u003cp>Check whether the \u003ccode>alg\u003c/code> value matches the algorithm your environment is supposed to use. A mismatch is a common source of failed verification.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review time-based claims\u003c/h3>\n              \u003cp>\u003ccode>exp\u003c/code>, \u003ccode>nbf\u003c/code>, and \u003ccode>iat\u003c/code> should be interpreted alongside server clock differences. Time drift often looks like a token issue at first.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Check payload sensitivity\u003c/h3>\n              \u003cp>JWTs are only encoded, not encrypted. If the payload contains sensitive personal or secret values, the token design itself may need review.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Security Notes\u003c/p>\n          \u003ch2 class=\"section-title\">Decoding is not the same as trust\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Readable does not mean valid\u003c/h3>\n              \u003cp>Being able to decode a token only means you can inspect it. Trusting it still requires signature validation.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Why the JWKS step matters\u003c/h3>\n              \u003cp>In OIDC and external identity-provider setups, JWKS verification helps confirm that the token actually came from the issuer you expect.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Useful companion tools\u003c/h3>\n              \u003cp>JWT debugging often pairs well with \u003ca href=\"/json\">JSON Formatter\u003c/a>, the \u003ca href=\"/base64\">Base64 converter\u003c/a>, and \u003ca href=\"/api-tester\">API Request Tester\u003c/a> when you need to reproduce the full request flow.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/jwt-exp-nbf\">Open JWT exp / nbf guide\u003c/a>\n            \u003ca class=\"link-button\" href=\"/timestamp\">Open timestamp converter\u003c/a>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">How To\u003c/p>\n          \u003ch2 class=\"section-title\">The order that makes JWT review easier\u003c/h2>\n          \u003cdiv class=\"content-columns\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>1. Open the header and payload first\u003c/h3>\n              \u003cp>Start by comparing alg, typ, iss, aud, sub, and exp against the environment you expect. That narrows the problem quickly.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>2. Review time claims with a timestamp tool\u003c/h3>\n              \u003cp>Translate exp, nbf, and iat into human-readable time and account for server clock skew. The \u003ca href=\"/timestamp\">timestamp converter\u003c/a> pairs well with this step.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>3. Treat trust as a separate verification step\u003c/h3>\n              \u003cp>A readable token is not automatically a trustworthy one. When an external issuer is involved, use the JWKS URL to verify the signature explicitly.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>"]</script>
 </body>
 
 </html>

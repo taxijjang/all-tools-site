@@ -13,7 +13,7 @@
     gtag('js', new Date());
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-DJ1dtG8K.js"></script>
+  <script type="module" crossorigin src="/assets/site-DAHxeGtM.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
   <script data-client-boot>
     (function () {
@@ -153,9 +153,10 @@
   }
 ]
   </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="jwt-exp-nbf" data-allow-ads="false">
+<body class="layout layout--dev" data-tool="jwt-exp-nbf" data-allow-ads="true">
   <div class="page page--dev page--content">
     <div class="page-controls" data-nosnippet>
 
@@ -183,14 +184,12 @@
       <a class="back-link" href="/learn" data-i18n="common.back">도구 목록으로</a>
       <h1>
         <span data-locale-block="ko" lang="ko">JWT exp nbf 가이드</span>
-        <span data-locale-block="en" lang="en" hidden>JWT exp nbf guide</span>
+        <div data-locale-slot="en" data-locale-index="0"></div>
       </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
       <div data-locale-block="ko" lang="ko">
         <p>JWT의 <code>exp</code>, <code>nbf</code>, <code>iat</code> 클레임을 어떻게 읽어야 하는지와, clock skew 때문에 자주 생기는 장애 패턴을 정리했습니다.</p>
       </div>
-      <div data-locale-block="en" lang="en" hidden data-nosnippet>
-        <p>A practical guide to reading JWT <code>exp</code>, <code>nbf</code>, and <code>iat</code> claims, including the incidents that come from clock skew and bad assumptions.</p>
-      </div>
+      <div data-locale-slot="en" data-locale-index="1"></div>
     </header>
 
     <main class="content-stack">
@@ -213,24 +212,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">First Read</p>
-          <h2 class="section-title">Most JWT timing bugs come from interpretation, not the raw numbers</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3><code>exp</code></h3>
-              <p>This marks when the token should stop being accepted. The problem is that server time, proxy time, and the operator's local view can all differ.</p>
-            </article>
-            <article class="info-card">
-              <h3><code>nbf</code></h3>
-              <p>This marks when the token should start being accepted. Immediate failures right after issue time often point here first.</p>
-            </article>
-            <article class="info-card">
-              <h3><code>iat</code></h3>
-              <p>It tracks issue time and is not always enforced directly, but it becomes useful when you compare all timing claims together.</p>
-            </article>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="2"></div>
       </section>
 
       <section class="content-section">
@@ -252,24 +234,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Common Failures</p>
-          <h2 class="section-title">What shows up in real incidents</h2>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>Seconds vs milliseconds</h3>
-              <p>JWTs usually use Unix seconds. When frontend code or logs treat them as milliseconds, the resulting timestamps look completely wrong.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Decoding without verification</h3>
-              <p>Readable tokens are not automatically trustworthy. External issuer setups still need signature validation through JWKS or an equivalent check.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Ignoring environment drift</h3>
-              <p>Even a small time difference between application and auth servers can create repeated boundary failures. Teams should document acceptable skew explicitly.</p>
-            </article>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="3"></div>
       </section>
 
       <section class="content-section">
@@ -287,20 +252,7 @@
             <a class="link-button" href="/learn">가이드 허브</a>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Workflow</p>
-          <h2 class="section-title">The pages to pair with this guide</h2>
-          <ol class="content-list">
-            <li>Start on the <a href="/jwt">JWT decoder</a> to inspect the header and payload quickly.</li>
-            <li>Use the <a href="/timestamp">timestamp converter</a> to translate <code>exp</code>, <code>nbf</code>, and <code>iat</code> into human time.</li>
-            <li>When you need the full request flow, open the <a href="/api-tester">API Request Tester</a> alongside it.</li>
-          </ol>
-          <div class="cta-row">
-            <a class="link-button link-button--primary" href="/jwt">Open JWT decoder</a>
-            <a class="link-button" href="/timestamp">Open timestamp converter</a>
-            <a class="link-button" href="/learn">Back to guide hub</a>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="4"></div>
       </section>
     </main>
 
@@ -309,6 +261,7 @@
     </footer>
   </div>
 
+  <script type="application/json" data-locale-payload="en">["\u003cspan data-locale-block=\"en\" lang=\"en\" hidden>JWT exp nbf guide\u003c/span>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n        \u003cp>A practical guide to reading JWT \u003ccode>exp\u003c/code>, \u003ccode>nbf\u003c/code>, and \u003ccode>iat\u003c/code> claims, including the incidents that come from clock skew and bad assumptions.\u003c/p>\n      \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">First Read\u003c/p>\n          \u003ch2 class=\"section-title\">Most JWT timing bugs come from interpretation, not the raw numbers\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>\u003ccode>exp\u003c/code>\u003c/h3>\n              \u003cp>This marks when the token should stop being accepted. The problem is that server time, proxy time, and the operator's local view can all differ.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>\u003ccode>nbf\u003c/code>\u003c/h3>\n              \u003cp>This marks when the token should start being accepted. Immediate failures right after issue time often point here first.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>\u003ccode>iat\u003c/code>\u003c/h3>\n              \u003cp>It tracks issue time and is not always enforced directly, but it becomes useful when you compare all timing claims together.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Common Failures\u003c/p>\n          \u003ch2 class=\"section-title\">What shows up in real incidents\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Seconds vs milliseconds\u003c/h3>\n              \u003cp>JWTs usually use Unix seconds. When frontend code or logs treat them as milliseconds, the resulting timestamps look completely wrong.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Decoding without verification\u003c/h3>\n              \u003cp>Readable tokens are not automatically trustworthy. External issuer setups still need signature validation through JWKS or an equivalent check.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Ignoring environment drift\u003c/h3>\n              \u003cp>Even a small time difference between application and auth servers can create repeated boundary failures. Teams should document acceptable skew explicitly.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">The pages to pair with this guide\u003c/h2>\n          \u003col class=\"content-list\">\n            \u003cli>Start on the \u003ca href=\"/jwt\">JWT decoder\u003c/a> to inspect the header and payload quickly.\u003c/li>\n            \u003cli>Use the \u003ca href=\"/timestamp\">timestamp converter\u003c/a> to translate \u003ccode>exp\u003c/code>, \u003ccode>nbf\u003c/code>, and \u003ccode>iat\u003c/code> into human time.\u003c/li>\n            \u003cli>When you need the full request flow, open the \u003ca href=\"/api-tester\">API Request Tester\u003c/a> alongside it.\u003c/li>\n          \u003c/ol>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/jwt\">Open JWT decoder\u003c/a>\n            \u003ca class=\"link-button\" href=\"/timestamp\">Open timestamp converter\u003c/a>\n            \u003ca class=\"link-button\" href=\"/learn\">Back to guide hub\u003c/a>\n          \u003c/div>\n        \u003c/div>"]</script>
 </body>
 
 </html>

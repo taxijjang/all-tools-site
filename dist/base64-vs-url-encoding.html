@@ -13,7 +13,7 @@
     gtag('js', new Date());
     gtag('config', 'G-WZJ5247NQK');
   </script>
-  <script type="module" crossorigin src="/assets/site-DJ1dtG8K.js"></script>
+  <script type="module" crossorigin src="/assets/site-DAHxeGtM.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-Balgp8U_.css">
   <script data-client-boot>
     (function () {
@@ -153,9 +153,10 @@
   }
 ]
   </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="base64-vs-url-encoding" data-allow-ads="false">
+<body class="layout layout--dev" data-tool="base64-vs-url-encoding" data-allow-ads="true">
   <div class="page page--dev page--content">
     <div class="page-controls" data-nosnippet>
 
@@ -183,14 +184,12 @@
       <a class="back-link" href="/learn" data-i18n="common.back">도구 목록으로</a>
       <h1>
         <span data-locale-block="ko" lang="ko">Base64 vs URL 인코딩 가이드</span>
-        <span data-locale-block="en" lang="en" hidden>Base64 vs URL encoding guide</span>
+        <div data-locale-slot="en" data-locale-index="0"></div>
       </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 브라우저 내부 처리</p>
       <div data-locale-block="ko" lang="ko">
         <p>둘 다 문자열을 “안전하게 바꾼다”는 느낌이 있지만, Base64와 URL 인코딩은 완전히 다른 목적과 실패 지점을 갖습니다.</p>
       </div>
-      <div data-locale-block="en" lang="en" hidden data-nosnippet>
-        <p>Both can make strings feel safer, but Base64 and URL encoding solve different transport problems and fail in different places.</p>
-      </div>
+      <div data-locale-slot="en" data-locale-index="1"></div>
     </header>
 
     <main class="content-stack">
@@ -213,24 +212,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Difference</p>
-          <h2 class="section-title">The shortest way to distinguish them</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Base64</h3>
-              <p>Turns binary or text into a transport-friendly character sequence. It is mainly a representation change.</p>
-            </article>
-            <article class="info-card">
-              <h3>URL encoding</h3>
-              <p>Escapes characters that would break URL parsing. It preserves meaning inside a URL rather than transforming the data model itself.</p>
-            </article>
-            <article class="info-card">
-              <h3>Not interchangeable</h3>
-              <p>Encoding query params with Base64 alone is not the same as making them URL-safe, and URL encoding is not a substitute for binary-to-text transport.</p>
-            </article>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="2"></div>
       </section>
 
       <section class="content-section">
@@ -252,24 +234,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Use Cases</p>
-          <h2 class="section-title">When to use which one</h2>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>JWTs, cookies, header payloads</h3>
-              <p>Base64 shows up often when structured or binary data needs to travel as text. If it later moves through a URL, URL-safe variants may still matter.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Query params and redirects</h3>
-              <p>URL encoding comes first when spaces, Korean text, or reserved characters can break a callback or redirect chain.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Stacks that use both</h3>
-              <p>Some systems Base64-encode a value first and then place it in a query parameter. Debugging gets easier when you identify which layer transformed the value.</p>
-            </article>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="3"></div>
       </section>
 
       <section class="content-section">
@@ -287,20 +252,7 @@
             <a class="link-button" href="/query-builder">URL 쿼리 생성기</a>
           </div>
         </div>
-        <div data-locale-block="en" lang="en" hidden data-nosnippet>
-          <p class="section-kicker">Workflow</p>
-          <h2 class="section-title">The pages to open next</h2>
-          <ol class="content-list">
-            <li>Open the <a href="/base64">Base64 converter</a> when the value itself needs representation changes.</li>
-            <li>Use the <a href="/url">URL encoder/decoder</a> when the string is traveling through a query, redirect, or callback.</li>
-            <li>When you need to assemble a final shareable link, move into the <a href="/query-builder">URL Query Builder</a>.</li>
-          </ol>
-          <div class="cta-row">
-            <a class="link-button link-button--primary" href="/base64">Open Base64 converter</a>
-            <a class="link-button" href="/url">Open URL encoder/decoder</a>
-            <a class="link-button" href="/query-builder">Open URL Query Builder</a>
-          </div>
-        </div>
+        <div data-locale-slot="en" data-locale-index="4"></div>
       </section>
     </main>
 
@@ -309,6 +261,7 @@
     </footer>
   </div>
 
+  <script type="application/json" data-locale-payload="en">["\u003cspan data-locale-block=\"en\" lang=\"en\" hidden>Base64 vs URL encoding guide\u003c/span>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n        \u003cp>Both can make strings feel safer, but Base64 and URL encoding solve different transport problems and fail in different places.\u003c/p>\n      \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Difference\u003c/p>\n          \u003ch2 class=\"section-title\">The shortest way to distinguish them\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Base64\u003c/h3>\n              \u003cp>Turns binary or text into a transport-friendly character sequence. It is mainly a representation change.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>URL encoding\u003c/h3>\n              \u003cp>Escapes characters that would break URL parsing. It preserves meaning inside a URL rather than transforming the data model itself.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Not interchangeable\u003c/h3>\n              \u003cp>Encoding query params with Base64 alone is not the same as making them URL-safe, and URL encoding is not a substitute for binary-to-text transport.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Use Cases\u003c/p>\n          \u003ch2 class=\"section-title\">When to use which one\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>JWTs, cookies, header payloads\u003c/h3>\n              \u003cp>Base64 shows up often when structured or binary data needs to travel as text. If it later moves through a URL, URL-safe variants may still matter.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Query params and redirects\u003c/h3>\n              \u003cp>URL encoding comes first when spaces, Korean text, or reserved characters can break a callback or redirect chain.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Stacks that use both\u003c/h3>\n              \u003cp>Some systems Base64-encode a value first and then place it in a query parameter. Debugging gets easier when you identify which layer transformed the value.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003cp class=\"section-kicker\">Workflow\u003c/p>\n          \u003ch2 class=\"section-title\">The pages to open next\u003c/h2>\n          \u003col class=\"content-list\">\n            \u003cli>Open the \u003ca href=\"/base64\">Base64 converter\u003c/a> when the value itself needs representation changes.\u003c/li>\n            \u003cli>Use the \u003ca href=\"/url\">URL encoder/decoder\u003c/a> when the string is traveling through a query, redirect, or callback.\u003c/li>\n            \u003cli>When you need to assemble a final shareable link, move into the \u003ca href=\"/query-builder\">URL Query Builder\u003c/a>.\u003c/li>\n          \u003c/ol>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/base64\">Open Base64 converter\u003c/a>\n            \u003ca class=\"link-button\" href=\"/url\">Open URL encoder/decoder\u003c/a>\n            \u003ca class=\"link-button\" href=\"/query-builder\">Open URL Query Builder\u003c/a>\n          \u003c/div>\n        \u003c/div>"]</script>
 </body>
 
 </html>
