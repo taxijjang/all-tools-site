@@ -1119,10 +1119,14 @@ body {
 
 .example-list {
   display: grid;
+  /* ponytail: 긴 예시 문자열이 그리드 트랙을 밀어내 가로 스크롤을 만들었다.
+     minmax(0, 1fr)과 min-width: 0이 없으면 자동 최소 크기가 콘텐츠 폭이 된다. */
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
 }
 
 .example-item {
+  min-width: 0;
   background: var(--surface-muted);
   border: 1px solid var(--border);
   border-radius: 1rem;
@@ -1145,17 +1149,21 @@ body {
 
 .example-item__code {
   margin: 0;
+  max-width: 100%;
   padding: 0.7rem 0.85rem;
   border: 1px solid var(--border);
   border-radius: 0.6rem;
   background: var(--surface);
-  overflow-x: auto;
+  /* ponytail: 긴 URL이나 UA 문자열을 좌우 스크롤로 두면 세로 스크롤과 섞여 조작이 불편하다.
+     의도한 줄바꿈은 pre-wrap으로 유지하고, 긴 토큰만 접는다. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
   font-size: 0.86rem;
   line-height: 1.5;
 }
 
 .example-item__code code {
-  white-space: pre;
+  white-space: inherit;
 }
 
 .example-item__note {
@@ -4111,4 +4119,64 @@ button.primary:hover,
   .page--home .card-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ponytail: 도구 페이지 첫 화면의 45%(720px 중 325px)가 도구에 닿기 전 껍데기였다.
+   되돌아가기 링크, 제목, 배지, 액션 버튼이 각각 한 줄씩 차지하던 것을 한 줄로 합친다.
+   요소를 지우지 않고 배치만 바꿨다. 좁은 화면에서는 flex-wrap으로 자연히 접힌다. */
+.layout--dev .page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.75rem;
+  row-gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.layout--dev .page-header .back-link {
+  order: 1;
+  margin-bottom: 0;
+  font-size: 0.88rem;
+}
+
+.layout--dev .page-header h1 {
+  order: 2;
+  margin: 0;
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+}
+
+.layout--dev .page-header .trust-badge {
+  order: 3;
+  margin: 0;
+}
+
+.layout--dev .page-header .page-actions {
+  order: 4;
+  margin: 0 0 0 auto;
+}
+
+.layout--dev .page-header > p:not(.trust-badge) {
+  order: 5;
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+  text-decoration: underline;
 }

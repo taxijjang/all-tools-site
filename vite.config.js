@@ -9,7 +9,12 @@ import {
   SITE_ORIGIN,
   SITE_SOCIALS,
 } from './src/seo-meta.js';
-import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './src/chrome-meta.js';
+import {
+  CONTENT_PAGES,
+  FOOTER_UTILITY_LINKS,
+  NAV_TOOLS,
+  NAV_UTILITY_LINKS,
+} from './src/chrome-meta.js';
 import { TOOL_CATEGORY_MAP } from './src/ux-meta.js';
 import { TOOL_SUPPORT_COPY } from './src/tool-support-copy.js';
 import { TOOL_SUPPORT_EXTRA } from './src/tool-support-extra.js';
@@ -502,7 +507,7 @@ ${NAV_TOOLS.map((tool) => {
 
   const utilityMarkup = `
       <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
-${UTILITY_LINKS.map((link) => `        <a href="${link.href}" data-chrome-link="${link.key}">${link.labels.ko}</a>`).join('\n')}
+${NAV_UTILITY_LINKS.map((link) => `        <a href="${link.href}" data-chrome-link="${link.key}">${link.labels.ko}</a>`).join('\n')}
       </nav>`;
 
   return `
@@ -510,6 +515,29 @@ ${UTILITY_LINKS.map((link) => `        <a href="${link.href}" data-chrome-link="
 ${switcherMarkup}
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
 ${utilityMarkup}`;
+}
+
+// 푸터에는 저작권 한 줄뿐이었다. 상단에서 내린 정책 링크를 여기 붙인다.
+// site.js가 data-chrome-link를 문서 전체에서 찾아 번역하므로 다국어는 자동으로 따라온다.
+function injectFooterLinks(html) {
+  if (/class="footer-links"/.test(html)) {
+    return html;
+  }
+
+  const links = FOOTER_UTILITY_LINKS.map(
+    (link) => `        <a href="${link.href}" data-chrome-link="${link.key}">${link.labels.ko}</a>`,
+  ).join('\n');
+  const nav = `      <nav class="footer-links" aria-label="사이트 정보">\n${links}\n      </nav>`;
+
+  if (/<footer\b/i.test(html)) {
+    return html.replace(/(<footer\b[^>]*>)/i, `$1\n${nav}`);
+  }
+
+  // 도구 18개는 푸터 자체가 없었다. 정책 링크가 닿을 곳이 없으면 만들어 준다.
+  return html.replace(
+    /<\/body>/i,
+    `    <footer class="footer footer--dev">\n${nav}\n    </footer>\n</body>`,
+  );
 }
 
 function injectChromeShell(html, pathname) {
@@ -882,6 +910,7 @@ function seoMetadataPlugin() {
       }
       nextHtml = injectGeneratedToolContent(nextHtml, meta, pageTitle, description);
       nextHtml = injectChromeShell(nextHtml, meta.path);
+      nextHtml = injectFooterLinks(nextHtml);
       nextHtml = nextHtml.replace(
         /<h1([^>]*)>([\s\S]*?)<span class="trust-badge"([^>]*)>([\s\S]*?)<\/span><\/h1>/i,
         '<h1$1>$2</h1><p class="trust-badge"$3 data-nosnippet>$4</p>',

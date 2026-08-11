@@ -12,10 +12,14 @@ export const CONTENT_PAGES = new Set([
   'pdf-merge-split-guide',
 ]);
 
+// placement: 'nav'은 상단 바, 'footer'는 푸터.
+// 상단 바에 컨트롤이 8개까지 늘어나 도구가 화면 아래로 밀렸다. 정책·소개 링크는
+// 푸터가 관례적인 자리이고, 애드센스가 보는 발견성도 푸터로 충족된다.
 export const UTILITY_LINKS = [
   {
     key: 'learn',
     href: '/learn',
+    placement: 'nav',
     labels: {
       ko: '가이드',
       en: 'Guides',
@@ -24,6 +28,7 @@ export const UTILITY_LINKS = [
   {
     key: 'aiTools',
     href: '/ai-tools',
+    placement: 'nav',
     labels: {
       ko: 'AI 명령어',
       en: 'AI Commands',
@@ -32,6 +37,7 @@ export const UTILITY_LINKS = [
   {
     key: 'about',
     href: '/about',
+    placement: 'footer',
     labels: {
       ko: '소개',
       en: 'About',
@@ -40,6 +46,7 @@ export const UTILITY_LINKS = [
   {
     key: 'privacy',
     href: '/privacy',
+    placement: 'footer',
     labels: {
       ko: '개인정보 처리',
       en: 'Privacy',
@@ -48,12 +55,16 @@ export const UTILITY_LINKS = [
   {
     key: 'contact',
     href: '/contact',
+    placement: 'footer',
     labels: {
       ko: '문의',
       en: 'Contact',
     },
   },
 ];
+
+export const NAV_UTILITY_LINKS = UTILITY_LINKS.filter((link) => link.placement !== 'footer');
+export const FOOTER_UTILITY_LINKS = UTILITY_LINKS.filter((link) => link.placement === 'footer');
 
 export const NAV_TOOLS = [
   { value: '/', labels: { ko: '홈', en: 'Home' } },

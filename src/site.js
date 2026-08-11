@@ -1,5 +1,5 @@
 import { bindLocaleSwitcher, initI18n, onLocaleChange, revealI18n, t } from './i18n.js';
-import { CONTENT_PAGES, NAV_TOOLS, UTILITY_LINKS } from './chrome-meta.js';
+import { CONTENT_PAGES, NAV_TOOLS, NAV_UTILITY_LINKS, UTILITY_LINKS } from './chrome-meta.js';
 import {
   FILE_PICKER_META,
   HOME_DISCOVERY_COPY,
@@ -1414,7 +1414,7 @@ function setupGlobalNavigation() {
   if (!utilityLinks) {
     utilityLinks = document.createElement('nav');
     utilityLinks.className = 'utility-links';
-    utilityLinks.innerHTML = UTILITY_LINKS.map(
+    utilityLinks.innerHTML = NAV_UTILITY_LINKS.map(
       (link) => `<a href="${link.href}" data-chrome-link="${link.key}">${link.labels.ko}</a>`,
     ).join('');
     controls.appendChild(utilityLinks);
