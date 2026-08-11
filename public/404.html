@@ -1,0 +1,123 @@
+<!doctype html>
+<!-- ponytail: public/에 두면 Vite가 그대로 복사하고 Cloudflare Pages가 미매칭 경로에 404로 내준다.
+     빌드 산출물 해시에 의존하지 않도록 스타일을 인라인으로 둔다. -->
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#020817" />
+    <title>페이지를 찾을 수 없습니다 | Stateless Tools</title>
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f8fafc;
+        --card: #ffffff;
+        --fg: #0f172a;
+        --muted: #64748b;
+        --line: #e2e8f0;
+        --accent: #0f766e;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #020817;
+          --card: #0b1220;
+          --fg: #e2e8f0;
+          --muted: #94a3b8;
+          --line: #1e293b;
+          --accent: #2dd4bf;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+          'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        line-height: 1.6;
+      }
+
+      main {
+        width: 100%;
+        max-width: 34rem;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: 2.5rem 2rem;
+      }
+
+      p.code {
+        margin: 0;
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      h1 {
+        margin: 0.5rem 0 0.75rem;
+        font-size: 1.6rem;
+        line-height: 1.3;
+      }
+
+      p.lead {
+        margin: 0 0 1.75rem;
+        color: var(--muted);
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      a {
+        display: inline-block;
+        padding: 0.55rem 0.95rem;
+        border: 1px solid var(--line);
+        border-radius: 0.6rem;
+        color: var(--fg);
+        text-decoration: none;
+        font-size: 0.92rem;
+      }
+
+      a.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #04141a;
+        font-weight: 600;
+      }
+
+      a:hover {
+        border-color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="code">404</p>
+      <h1>페이지를 찾을 수 없습니다</h1>
+      <p class="lead">
+        주소가 바뀌었거나 삭제된 페이지입니다. 아래에서 필요한 도구를 찾아보세요.
+      </p>
+      <nav>
+        <a class="primary" href="/">도구 전체 보기</a>
+        <a href="/json">JSON 포매터</a>
+        <a href="/uuid">UUID 변환기</a>
+        <a href="/base64">Base64</a>
+        <a href="/learn">가이드</a>
+      </nav>
+    </main>
+  </body>
+</html>
