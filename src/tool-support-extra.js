@@ -1310,4 +1310,258 @@ export const TOOL_SUPPORT_EXTRA = {
       ],
     },
   },
+
+  '/uuid-v4-v7': {
+    ko: {
+      examples: [
+        {
+          title: 'v4와 v7을 나란히 놓고 보기',
+          input: '같은 순간에 각각 3개 생성',
+          output:
+            'v4  f47ac10b-58cc-4372-a567-0e02b2c3d479\nv4  1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed\nv4  7c9e6679-7425-40de-944b-e07fc1f90ae7\n\nv7  01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a\nv7  01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b\nv7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f',
+          note: 'v7은 앞부분이 거의 같습니다. 밀리초 타임스탬프가 들어 있어서 문자열 정렬만으로 생성 순서가 유지됩니다. v4는 앞부분부터 무작위입니다.',
+        },
+        {
+          title: '버전 자리 확인법',
+          input: '01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a',
+          output: '세 번째 그룹의 첫 글자가 버전\n7000 -> v7\n4372 -> v4',
+        },
+      ],
+      troubles: [
+        {
+          title: 'v4를 기본키로 쓰다 인덱스가 커졌을 때',
+          body: 'v4는 완전 난수라 B-tree 인덱스 곳곳에 삽입되어 페이지 분할이 잦고 캐시 적중률이 떨어집니다. 행이 수백만 건으로 늘어난 뒤에 체감되는 문제라 초기 설계에서 놓치기 쉽습니다. v7은 끝에 순차적으로 붙어 이 비용을 줄입니다.',
+        },
+        {
+          title: '공개 URL에 v7을 쓰면 시각이 노출됩니다',
+          body: 'v7에는 생성 밀리초가 그대로 들어 있어 가입 시점이나 주문 시각을 역산할 수 있습니다. 경쟁사가 가입자 증가 속도를 추정할 수도 있습니다. 외부에 노출되는 식별자는 v4가 맞습니다.',
+        },
+        {
+          title: '두 버전을 한 컬럼에 섞어도 되는지',
+          body: '형식이 같아 저장은 문제없지만 정렬 보장이 깨집니다. v7끼리는 시간순이어도 섞인 v4는 무작위 위치에 들어갑니다. 마이그레이션할 때는 정렬에 의존하는 쿼리가 있는지 먼저 확인하세요.',
+        },
+      ],
+    },
+    en: {
+      examples: [
+        {
+          title: 'v4 and v7 side by side',
+          input: 'Three of each, generated at the same moment',
+          output:
+            'v4  f47ac10b-58cc-4372-a567-0e02b2c3d479\nv4  1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed\nv4  7c9e6679-7425-40de-944b-e07fc1f90ae7\n\nv7  01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a\nv7  01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b\nv7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f',
+          note: 'The v7 values share a prefix because it encodes a millisecond timestamp, so string sorting preserves creation order. v4 is random from the first digit.',
+        },
+        {
+          title: 'Reading the version digit',
+          input: '01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a',
+          output: 'The first digit of the third group is the version\n7000 -> v7\n4372 -> v4',
+        },
+      ],
+      troubles: [
+        {
+          title: 'Index bloat after using v4 as a primary key',
+          body: 'Because v4 is fully random, rows land all over a B-tree index, splitting pages often and hurting cache hit rate. The cost only becomes visible at millions of rows, which is why it slips past early design reviews. v7 appends sequentially and avoids most of it.',
+        },
+        {
+          title: 'v7 in a public URL leaks timing',
+          body: 'A v7 value embeds its creation millisecond, so signup or order times can be derived — and a competitor could estimate your growth rate. Use v4 for identifiers exposed outside your system.',
+        },
+        {
+          title: 'Can both versions share a column?',
+          body: 'Storage is fine since the format is identical, but the sort guarantee breaks. v7 values stay time-ordered while interleaved v4 values land randomly. Before migrating, check for queries that rely on ordering.',
+        },
+      ],
+    },
+  },
+
+  '/jwt-exp-nbf': {
+    ko: {
+      examples: [
+        {
+          title: '만료 판정에 쓰이는 클레임',
+          input: '{\n  "sub": "user-123",\n  "iat": 1767225600,\n  "nbf": 1767225600,\n  "exp": 1767229200\n}',
+          output:
+            'iat 발급 시각  2026-01-01 00:00:00 UTC\nnbf 유효 시작  2026-01-01 00:00:00 UTC\nexp 만료      2026-01-01 01:00:00 UTC\n유효 기간 1시간',
+          note: '세 값 모두 초 단위 epoch입니다. 밀리초를 넣으면 수만 년 후로 해석되어 만료 검사가 무력화됩니다.',
+        },
+        {
+          title: 'nbf가 미래인 토큰',
+          input: '현재 1767225600 · nbf 1767229200',
+          output: '아직 사용할 수 없음 (1시간 뒤부터 유효)',
+        },
+      ],
+      troubles: [
+        {
+          title: '유효한 토큰인데 만료로 거부될 때',
+          body: '서버 시계가 어긋난 경우가 가장 흔합니다. 발급 서버가 조금 빠르면 받는 쪽 기준으로 nbf가 아직 미래입니다. 대부분의 라이브러리가 clock skew 허용값(보통 30~60초)을 제공하니 그것을 먼저 확인하세요.',
+        },
+        {
+          title: 'exp를 밀리초로 넣었을 때',
+          body: 'JWT 표준(RFC 7519)의 시간 클레임은 초 단위입니다. Date.now()를 그대로 넣으면 1000배가 되어 사실상 만료되지 않는 토큰이 발급됩니다. 보안 사고로 이어지는 실수라 발급 코드를 먼저 확인하세요.',
+        },
+        {
+          title: '디코딩됐다고 검증된 것은 아닙니다',
+          body: 'JWT의 헤더와 페이로드는 Base64URL 인코딩일 뿐 암호화가 아닙니다. 누구나 읽을 수 있고 내용을 바꿔 다시 인코딩할 수도 있습니다. 서명 검증을 통과해야 신뢰할 수 있으며, 페이로드에 비밀 값을 담아서는 안 됩니다.',
+        },
+      ],
+    },
+    en: {
+      examples: [
+        {
+          title: 'The claims that decide expiry',
+          input: '{\n  "sub": "user-123",\n  "iat": 1767225600,\n  "nbf": 1767225600,\n  "exp": 1767229200\n}',
+          output:
+            'iat issued at   2026-01-01 00:00:00 UTC\nnbf valid from  2026-01-01 00:00:00 UTC\nexp expires     2026-01-01 01:00:00 UTC\nLifetime 1 hour',
+          note: 'All three are epoch seconds. Passing milliseconds pushes the value tens of thousands of years out and effectively disables expiry checks.',
+        },
+        {
+          title: 'A token whose nbf is in the future',
+          input: 'now 1767225600, nbf 1767229200',
+          output: 'Not yet usable — valid one hour from now',
+        },
+      ],
+      troubles: [
+        {
+          title: 'A valid token is rejected as expired',
+          body: 'Clock drift between servers is the usual cause. If the issuer runs slightly ahead, nbf is still in the future for the receiver. Most libraries expose a clock skew tolerance, commonly 30 to 60 seconds — check that first.',
+        },
+        {
+          title: 'exp set in milliseconds',
+          body: 'RFC 7519 time claims are in seconds. Passing Date.now() directly inflates the value by 1000 and issues a token that never expires. This is a security incident waiting to happen, so audit the issuing code.',
+        },
+        {
+          title: 'Decoding is not verifying',
+          body: 'A JWT header and payload are Base64URL encoded, not encrypted. Anyone can read them and re-encode modified content. Only a passing signature check makes a token trustworthy, and secrets must never go in the payload.',
+        },
+      ],
+    },
+  },
+
+  '/base64-vs-url-encoding': {
+    ko: {
+      examples: [
+        {
+          title: '같은 문자열을 두 방식으로',
+          input: 'hello world?',
+          output:
+            'Base64            aGVsbG8gd29ybGQ/\nPercent encoding  hello%20world%3F',
+          note: 'Base64는 바이트를 다른 문자 집합으로 옮겨 담는 것이고, percent encoding은 URL에서 특별한 뜻을 가진 문자만 바꿉니다. 목적이 다릅니다.',
+        },
+        {
+          title: 'Base64를 URL에 넣을 때',
+          input: 'a+b/c=  (표준 Base64)',
+          output: 'a-b_c   (URL-safe Base64)\n+ -> -,  / -> _,  = 패딩 제거',
+          note: '표준 Base64의 +와 /는 URL에서 다른 의미로 읽힙니다. JWT가 URL-safe 변형을 쓰는 이유입니다.',
+        },
+      ],
+      troubles: [
+        {
+          title: '어느 쪽을 써야 할지 헷갈릴 때',
+          body: '텍스트가 아닌 데이터(이미지, 인증서, 바이너리)를 텍스트만 다니는 통로에 실어야 하면 Base64입니다. URL의 경로나 쿼리에 특수문자를 안전히 넣어야 하면 percent encoding입니다. 둘은 대체재가 아닙니다.',
+        },
+        {
+          title: 'Base64 문자열이 URL에서 깨질 때',
+          body: '표준 Base64의 +가 공백으로, /가 경로 구분자로 해석됩니다. URL-safe Base64로 바꾸거나, Base64 결과를 percent encoding으로 한 번 더 감싸세요. 후자를 쓸 때는 디코딩 순서를 반대로 해야 합니다.',
+        },
+        {
+          title: 'Base64가 암호화라고 오해할 때',
+          body: 'Base64는 누구나 되돌릴 수 있는 인코딩입니다. 비밀을 감추는 기능이 전혀 없습니다. Basic 인증 헤더가 Base64인 것도 보안이 아니라 전송 호환성 때문입니다.',
+        },
+      ],
+    },
+    en: {
+      examples: [
+        {
+          title: 'One string, two encodings',
+          input: 'hello world?',
+          output:
+            'Base64            aGVsbG8gd29ybGQ/\nPercent encoding  hello%20world%3F',
+          note: 'Base64 moves bytes into a different character set; percent encoding only escapes characters that carry special meaning in a URL. They solve different problems.',
+        },
+        {
+          title: 'Putting Base64 into a URL',
+          input: 'a+b/c=  (standard Base64)',
+          output: 'a-b_c   (URL-safe Base64)\n+ becomes -, / becomes _, padding dropped',
+          note: 'The + and / of standard Base64 mean something else in a URL. That is why JWT uses the URL-safe variant.',
+        },
+      ],
+      troubles: [
+        {
+          title: 'Which one should you use?',
+          body: 'Use Base64 when non-text data (an image, a certificate, any binary) has to travel through a text-only channel. Use percent encoding when special characters must sit safely in a URL path or query. They are not interchangeable.',
+        },
+        {
+          title: 'A Base64 string breaks inside a URL',
+          body: 'Standard Base64 uses + which decodes as a space, and / which reads as a path separator. Switch to URL-safe Base64, or percent-encode the Base64 output — in which case remember to decode in the reverse order.',
+        },
+        {
+          title: 'Mistaking Base64 for encryption',
+          body: 'Base64 is reversible by anyone and hides nothing. Basic authentication headers use it for transport compatibility, not for security.',
+        },
+      ],
+    },
+  },
+
+  '/pdf-merge-split-guide': {
+    ko: {
+      examples: [
+        {
+          title: '페이지 범위 표기',
+          input: '1-3, 7, 10-12',
+          output: '1, 2, 3, 7, 10, 11, 12 페이지를 순서대로 추출',
+          note: '페이지 번호는 1부터 셉니다. 0을 넣으면 무시되거나 오류가 납니다.',
+        },
+        {
+          title: '두 문서 병합 결과',
+          input: 'A.pdf (5쪽) + B.pdf (3쪽)',
+          output: '합본 8쪽 · A의 1-5쪽 다음에 B의 1-3쪽',
+          note: '병합 순서는 파일을 추가한 순서를 따릅니다. 목차나 표지가 있으면 순서를 먼저 정리하세요.',
+        },
+      ],
+      troubles: [
+        {
+          title: '열리지 않거나 처리에 실패할 때',
+          body: '암호가 걸린 PDF는 먼저 암호를 풀어야 편집할 수 있습니다. 열람 암호가 아니라 권한 암호만 걸린 경우도 라이브러리가 거부할 수 있습니다.',
+        },
+        {
+          title: '병합 후 글자가 검색되지 않을 때',
+          body: '스캔한 PDF는 페이지가 이미지입니다. 병합해도 텍스트 레이어가 생기지 않으므로 검색이나 복사가 안 됩니다. 텍스트가 필요하면 OCR을 먼저 거쳐야 합니다.',
+        },
+        {
+          title: '파일 용량이 예상보다 클 때',
+          body: '병합은 각 문서의 리소스를 함께 담기 때문에 원본 합계보다 커질 수 있습니다. 같은 글꼴이 여러 번 포함되는 경우가 대표적입니다.',
+        },
+      ],
+    },
+    en: {
+      examples: [
+        {
+          title: 'Page range syntax',
+          input: '1-3, 7, 10-12',
+          output: 'Extracts pages 1, 2, 3, 7, 10, 11, 12 in that order',
+          note: 'Page numbers start at 1. A 0 is ignored or raises an error.',
+        },
+        {
+          title: 'Merging two documents',
+          input: 'A.pdf (5 pages) + B.pdf (3 pages)',
+          output: '8 pages total — A pages 1-5 followed by B pages 1-3',
+          note: 'Merge order follows the order you added the files. Sort covers and tables of contents first.',
+        },
+      ],
+      troubles: [
+        {
+          title: 'The file will not open or process',
+          body: 'A password-protected PDF must be unlocked before editing. Even permission-only passwords, with no open password, can be refused by the library.',
+        },
+        {
+          title: 'Text is not searchable after merging',
+          body: 'Scanned PDFs are images per page. Merging does not create a text layer, so search and copy still fail. Run OCR first if you need the text.',
+        },
+        {
+          title: 'The output is larger than expected',
+          body: 'Merging carries each document resources along, so the result can exceed the sum of the inputs — most often because the same fonts get embedded more than once.',
+        },
+      ],
+    },
+  },
 };

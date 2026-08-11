@@ -714,11 +714,13 @@ ${relatedMarkup}
 }
 
 function injectGeneratedToolContent(html, meta, pageTitle, description) {
-  if (meta.kind !== 'tool') {
+  // 가이드 문서(kind: content)도 예시/오류 섹션을 받을 수 있게 허용한다.
+  // 전체 생성 블록은 kind가 tool이고 자체 콘텐츠가 없을 때만 들어간다.
+  if (meta.kind !== 'tool' && meta.kind !== 'content') {
     return html;
   }
 
-  if (/data-seo-support|class=["'][^"']*\bcontent-section\b/i.test(html)) {
+  if (meta.kind === 'content' || /data-seo-support|class=["'][^"']*\bcontent-section\b/i.test(html)) {
     const extras = `${buildExtraOnlyContent(meta, 'ko')}\n${buildExtraOnlyContent(meta, 'en', { hidden: true })}`;
     return extras.trim() ? html.replace(/<\/main>/i, `</main>\n${extras}`) : html;
   }
