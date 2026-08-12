@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>JWT Decoder and Inspector | Claims, Expiry, JWKS | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/jwt-Bddb0ALb.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Dybl5N3h.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Decode a JWT header and payload, inspect claims, check exp and nbf, and verify the signature against a JWKS endpoint." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/jwt" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/jwt" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/jwt" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/jwt" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="JWT Decoder and Inspector | Claims, Expiry, JWKS" />
+  <meta property="og:description" content="Decode a JWT header and payload, inspect claims, check exp and nbf, and verify the signature against a JWKS endpoint." />
+  <meta property="og:url" content="https://taxijjang.com/en/jwt" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="JWT Decoder and Inspector | Claims, Expiry, JWKS" />
+  <meta name="twitter:description" content="Decode a JWT header and payload, inspect claims, check exp and nbf, and verify the signature against a JWKS endpoint." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/jwt#webpage",
+    "name": "JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS",
+    "url": "https://taxijjang.com/jwt",
+    "description": "JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/jwt#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/jwt#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS",
+        "item": "https://taxijjang.com/jwt"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://taxijjang.com/jwt#app",
+    "name": "JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS",
+    "url": "https://taxijjang.com/jwt",
+    "description": "JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://taxijjang.com/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://taxijjang.com/jwt#faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "JWT 디코딩만으로 토큰을 신뢰할 수 있나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "아니요. 디코딩은 내용을 읽는 단계이고, 토큰을 신뢰하려면 issuer와 audience 확인 및 서명 검증이 필요합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "JWT exp와 nbf는 무엇인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "exp는 만료 시간, nbf는 not before 시간을 의미합니다. 두 값은 보통 Unix timestamp라서 서버 시간 차이와 함께 확인해야 합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "JWT payload에 민감한 정보를 넣어도 되나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "JWT payload는 Base64URL로 인코딩되어 쉽게 읽을 수 있으므로 비밀값이나 민감한 개인정보를 담는 구조는 피하는 것이 좋습니다."
+        }
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="jwt" data-allow-ads="true">
+
+  <div class="page page--dev">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt" selected>JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash">SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color">Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/uuidv7">UUID v7</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml">JSON YAML</option>
+          <option value="/query-builder">URL Query Builder</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr">CIDR Calculator</option>
+          <option value="/text-stats">Text Stats</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder">UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1 data-i18n="jwt.title">JWT Decoder/Inspector</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      <p data-i18n="jwt.description">Decode JWTs, inspect claims, review expiry, and verify signatures with JWKS.</p>
+      <div class="page-actions">
+        <button type="button" class="ghost" data-share-state data-i18n="common.shareState">Copy shareable link</button>
+      </div>
+    </header>
+
+    <main class="tool">
+      <section class="tool__panel tool__panel--stack">
+        <label for="jwtInput" data-i18n="jwt.input">JWT token</label>
+        <textarea id="jwtInput" rows="6" spellcheck="false" placeholder="eyJhbGciOi..." data-i18n="jwt.placeholder"
+          data-i18n-attr="placeholder" data-persist="jwt">eyJhbGciOi...</textarea>
+        <div class="toolbar">
+          <button id="decodeJwtBtn" type="button" class="primary" data-i18n="jwt.action.decode">Decode</button>
+          <button id="jwtClearBtn" type="button" class="ghost" data-i18n="common.clear">Clear</button>
+          <button id="jwtSampleBtn" type="button" class="ghost" data-i18n="common.sample">Sample</button>
+        </div>
+        <p id="jwtMeta" class="panel-subtitle"></p>
+        <div id="jwtInspector" class="tool-inspector" aria-live="polite"></div>
+      </section>
+
+      <div class="tool__column">
+      <section class="tool__panel tool__panel--stack">
+        <div class="panel-header">
+          <h2 data-i18n="jwt.output.header">Header</h2>
+          <button type="button" data-copy="jwtHeader" data-i18n="common.copy">Copy</button>
+        </div>
+        <pre id="jwtHeader" class="code-block"></pre>
+      </section>
+
+      <section class="tool__panel tool__panel--stack">
+        <div class="panel-header">
+          <h2 data-i18n="jwt.output.payload">Payload</h2>
+          <button type="button" data-copy="jwtPayload" data-i18n="common.copy">Copy</button>
+        </div>
+        <pre id="jwtPayload" class="code-block"></pre>
+      </section>
+
+      <section class="tool__panel tool__panel--stack">
+        <h2>JWKS 서명 검증</h2>
+        <label for="jwtJwksUrl">JWKS URL</label>
+        <input id="jwtJwksUrl" type="url" placeholder="https://example.com/.well-known/jwks.json" data-persist="jwksUrl" />
+        <div class="toolbar">
+          <button id="jwtVerifyBtn" type="button" class="primary">서명 검증</button>
+        </div>
+        <label for="jwtVerifyOutput">검증 결과</label>
+        <textarea id="jwtVerifyOutput" rows="8" readonly></textarea>
+      </section>
+      </div>
+
+    </main>
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/uuid">UUID Converter</a></li>
+            <li><a href="/base64">Base64 Encoder/Decoder</a></li>
+            <li><a href="/json">JSON Formatter</a></li>
+            <li><a href="/url">URL Encoder/Decoder</a></li>
+            <li><a href="/json-yaml">JSON YAML</a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out</li>
+            <li><a href="/query-builder">URL Query Builder</a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.</li>
+          </ul>
+        </section>
+        </details>
+    </section>
+    <p id="jwtMessage" class="message" role="status" aria-live="polite"></p>
+
+    <section class="content-stack">
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">What to inspect first in a JWT</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Start with the header algorithm</h3>
+              <p>Check whether the <code>alg</code> value matches the algorithm your environment is supposed to use. A mismatch is a common source of failed verification.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review time-based claims</h3>
+              <p><code>exp</code>, <code>nbf</code>, and <code>iat</code> should be interpreted alongside server clock differences. Time drift often looks like a token issue at first.</p>
+            </article>
+            <article class="info-card">
+              <h3>Check payload sensitivity</h3>
+              <p>JWTs are only encoded, not encrypted. If the payload contains sensitive personal or secret values, the token design itself may need review.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      
+        <details class="content-more">
+          <summary data-i18n="common.moreContent">More: how to use it, examples, and common errors</summary>
+<section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Security Notes</p>
+          <h2 class="section-title">Decoding is not the same as trust</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Readable does not mean valid</h3>
+              <p>Being able to decode a token only means you can inspect it. Trusting it still requires signature validation.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Why the JWKS step matters</h3>
+              <p>In OIDC and external identity-provider setups, JWKS verification helps confirm that the token actually came from the issuer you expect.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Useful companion tools</h3>
+              <p>JWT debugging often pairs well with <a href="/json">JSON Formatter</a>, the <a href="/base64">Base64 converter</a>, and <a href="/api-tester">API Request Tester</a> when you need to reproduce the full request flow.</p>
+            </article>
+          </div>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/jwt-exp-nbf">Open JWT exp / nbf guide</a>
+            <a class="link-button" href="/timestamp">Open timestamp converter</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">How To</p>
+          <h2 class="section-title">The order that makes JWT review easier</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>1. Open the header and payload first</h3>
+              <p>Start by comparing alg, typ, iss, aud, sub, and exp against the environment you expect. That narrows the problem quickly.</p>
+            </article>
+            <article class="info-card">
+              <h3>2. Review time claims with a timestamp tool</h3>
+              <p>Translate exp, nbf, and iat into human-readable time and account for server clock skew. The <a href="/timestamp">timestamp converter</a> pairs well with this step.</p>
+            </article>
+            <article class="info-card">
+              <h3>3. Treat trust as a separate verification step</h3>
+              <p>A readable token is not automatically a trustworthy one. When an external issuer is involved, use the JWKS URL to verify the signature explicitly.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    
+        </details>
+      </section>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small data-i18n="common.footerJwt">© 2025 stateless tools · JWT decoding and JWKS checks run in your browser.</small>
+    </footer>
+  </div>
+  
+</body>
+
+</html>

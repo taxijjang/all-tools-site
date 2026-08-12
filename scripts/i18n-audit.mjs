@@ -63,6 +63,17 @@ const ROUTES = [
   '/utm-builder',
   '/text-cleaner',
   '/api-tester',
+  // /en/ 정적 영어 판. 여기가 깨지면 영어권 유입 자체가 막힌다.
+  '/en/',
+  '/en/json',
+  '/en/base64',
+  '/en/jwt',
+  '/en/uuid',
+  '/en/cron',
+  '/en/regex',
+  '/en/privacy',
+  '/en/about',
+  '/en/contact',
 ];
 
 function fail(message) {

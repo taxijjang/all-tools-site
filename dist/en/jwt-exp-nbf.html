@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>JWT exp and nbf Guide | Reading Expiry and Not Before | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-Dybl5N3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="How to read the JWT exp, nbf, and iat claims, how clock skew affects verification, and the mistakes that show up in production." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/jwt-exp-nbf" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/jwt-exp-nbf" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/jwt-exp-nbf" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/jwt-exp-nbf" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="JWT exp and nbf Guide | Reading Expiry and Not Before" />
+  <meta property="og:description" content="How to read the JWT exp, nbf, and iat claims, how clock skew affects verification, and the mistakes that show up in production." />
+  <meta property="og:url" content="https://taxijjang.com/en/jwt-exp-nbf" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="JWT exp and nbf Guide | Reading Expiry and Not Before" />
+  <meta name="twitter:description" content="How to read the JWT exp, nbf, and iat claims, how clock skew affects verification, and the mistakes that show up in production." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/jwt-exp-nbf#webpage",
+    "name": "JWT exp nbf 가이드 | 만료 시간과 not before 읽는 법",
+    "url": "https://taxijjang.com/jwt-exp-nbf",
+    "description": "JWT exp, nbf, iat 클레임을 어떻게 해석해야 하는지와 clock skew, 검증 흐름, 운영 중 자주 생기는 실수를 정리했습니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/jwt-exp-nbf#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/jwt-exp-nbf#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "JWT exp nbf 가이드 | 만료 시간과 not before 읽는 법",
+        "item": "https://taxijjang.com/jwt-exp-nbf"
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="jwt-exp-nbf" data-allow-ads="true">
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1>
+        
+        <span data-locale-block="en" lang="en">JWT exp nbf guide</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      
+      <div data-locale-block="en" lang="en">
+        <p>A practical guide to reading JWT <code>exp</code>, <code>nbf</code>, and <code>iat</code> claims, including the incidents that come from clock skew and bad assumptions.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">First Read</p>
+          <h2 class="section-title">Most JWT timing bugs come from interpretation, not the raw numbers</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3><code>exp</code></h3>
+              <p>This marks when the token should stop being accepted. The problem is that server time, proxy time, and the operator's local view can all differ.</p>
+            </article>
+            <article class="info-card">
+              <h3><code>nbf</code></h3>
+              <p>This marks when the token should start being accepted. Immediate failures right after issue time often point here first.</p>
+            </article>
+            <article class="info-card">
+              <h3><code>iat</code></h3>
+              <p>It tracks issue time and is not always enforced directly, but it becomes useful when you compare all timing claims together.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Common Failures</p>
+          <h2 class="section-title">What shows up in real incidents</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Seconds vs milliseconds</h3>
+              <p>JWTs usually use Unix seconds. When frontend code or logs treat them as milliseconds, the resulting timestamps look completely wrong.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Decoding without verification</h3>
+              <p>Readable tokens are not automatically trustworthy. External issuer setups still need signature validation through JWKS or an equivalent check.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Ignoring environment drift</h3>
+              <p>Even a small time difference between application and auth servers can create repeated boundary failures. Teams should document acceptable skew explicitly.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">The pages to pair with this guide</h2>
+          <ol class="content-list">
+            <li>Start on the <a href="/jwt">JWT decoder</a> to inspect the header and payload quickly.</li>
+            <li>Use the <a href="/timestamp">timestamp converter</a> to translate <code>exp</code>, <code>nbf</code>, and <code>iat</code> into human time.</li>
+            <li>When you need the full request flow, open the <a href="/api-tester">API Request Tester</a> alongside it.</li>
+          </ol>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/jwt">Open JWT decoder</a>
+            <a class="link-button" href="/timestamp">Open timestamp converter</a>
+            <a class="link-button" href="/learn">Back to guide hub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>The claims that decide expiry</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>{
+  "sub": "user-123",
+  "iat": 1767225600,
+  "nbf": 1767225600,
+  "exp": 1767229200
+}</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>iat issued at   2026-01-01 00:00:00 UTC
+nbf valid from  2026-01-01 00:00:00 UTC
+exp expires     2026-01-01 01:00:00 UTC
+Lifetime 1 hour</code></pre>
+              <p class="example-item__note">All three are epoch seconds. Passing milliseconds pushes the value tens of thousands of years out and effectively disables expiry checks.</p>
+            </article>
+            <article class="example-item">
+              <h3>A token whose nbf is in the future</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>now 1767225600, nbf 1767229200</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>Not yet usable — valid one hour from now</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>A valid token is rejected as expired</h3>
+              <p>Clock drift between servers is the usual cause. If the issuer runs slightly ahead, nbf is still in the future for the receiver. Most libraries expose a clock skew tolerance, commonly 30 to 60 seconds — check that first.</p>
+            </article>
+            <article class="info-card">
+              <h3>exp set in milliseconds</h3>
+              <p>RFC 7519 time claims are in seconds. Passing Date.now() directly inflates the value by 1000 and issues a token that never expires. This is a security incident waiting to happen, so audit the issuing code.</p>
+            </article>
+            <article class="info-card">
+              <h3>Decoding is not verifying</h3>
+              <p>A JWT header and payload are Base64URL encoded, not encrypted. Anyone can read them and re-encode modified content. Only a passing signature check makes a token trustworthy, and secrets must never go in the payload.</p>
+            </article>
+          </div>
+        </section>
+        </details>
+    </section>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small>© 2025 stateless tools · browser-first utility guides</small>
+    </footer>
+  </div>
+
+  
+</body>
+
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>UUID v4 vs v7 Guide | Which UUID Should You Use | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-Dybl5N3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="How UUID v4 and v7 differ in randomness and sort order, what that means for database storage, and how to choose in production." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/uuid-v4-v7" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/uuid-v4-v7" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/uuid-v4-v7" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/uuid-v4-v7" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="UUID v4 vs v7 Guide | Which UUID Should You Use" />
+  <meta property="og:description" content="How UUID v4 and v7 differ in randomness and sort order, what that means for database storage, and how to choose in production." />
+  <meta property="og:url" content="https://taxijjang.com/en/uuid-v4-v7" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="UUID v4 vs v7 Guide | Which UUID Should You Use" />
+  <meta name="twitter:description" content="How UUID v4 and v7 differ in randomness and sort order, what that means for database storage, and how to choose in production." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/uuid-v4-v7#webpage",
+    "name": "UUID v4 vs v7 가이드 | 언제 어떤 UUID를 써야 할까",
+    "url": "https://taxijjang.com/uuid-v4-v7",
+    "description": "UUID v4와 UUID v7의 차이, 정렬 특성, 데이터베이스 저장 전략, 운영 중 선택 기준을 정리한 실무 가이드입니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/uuid-v4-v7#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/uuid-v4-v7#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "UUID v4 vs v7 가이드 | 언제 어떤 UUID를 써야 할까",
+        "item": "https://taxijjang.com/uuid-v4-v7"
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="uuid-v4-v7" data-allow-ads="true">
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1>
+        
+        <span data-locale-block="en" lang="en">UUID v4 vs v7 guide</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      
+      <div data-locale-block="en" lang="en">
+        <p>A practical guide to choosing between random UUIDs and time-ordered UUIDs, including storage and operational trade-offs.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Decision</p>
+          <h2 class="section-title">The short answer first</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Choose UUID v4 when</h3>
+              <p>Most web apps, APIs, and trace IDs only need non-guessable identifiers. In that case UUID v4 stays the practical default.</p>
+            </article>
+            <article class="info-card">
+              <h3>Choose UUID v7 when</h3>
+              <p>Logs, queue records, or time-oriented datasets benefit from IDs that sort more naturally as they are created.</p>
+            </article>
+            <article class="info-card">
+              <h3>v7 is not automatically better</h3>
+              <p>Migration cost, library support, database layout, and existing operational tooling still matter before you switch identifier formats.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Trade-offs</p>
+          <h2 class="section-title">The practical issues that matter most</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Ordering and index locality</h3>
+              <p>UUID v4 inserts are effectively random. UUID v7 can improve ordering behavior in some storage engines because time information is encoded near the front.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Readability and debugging</h3>
+              <p>Neither version is pleasant for humans. Teams still need conversion helpers for standard strings, compact binary forms, and log-friendly outputs.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Mixed-format operations</h3>
+              <p>If older services stay on v4 while newer ones move to v7, filters, tracing docs, and operational scripts often need more cleanup than expected.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">The related pages to open next</h2>
+          <ol class="content-list">
+            <li>Use the <a href="/uuid">UUID converter</a> when you need to compare standard UUID strings and compact hex(binary16) storage forms.</li>
+            <li>Open the <a href="/uuidv7">UUID v7 generator</a> when you want to test time-ordered IDs directly.</li>
+            <li>Pair that with the <a href="/timestamp">timestamp converter</a> if you need to reason about ordering against real time.</li>
+          </ol>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/uuid">Open UUID converter</a>
+            <a class="link-button" href="/uuidv7">Open UUID v7 generator</a>
+            <a class="link-button" href="/learn">Back to guide hub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>v4 and v7 side by side</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>Three of each, generated at the same moment</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>v4  f47ac10b-58cc-4372-a567-0e02b2c3d479
+v4  1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed
+v4  7c9e6679-7425-40de-944b-e07fc1f90ae7
+
+v7  01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a
+v7  01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b
+v7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f</code></pre>
+              <p class="example-item__note">The v7 values share a prefix because it encodes a millisecond timestamp, so string sorting preserves creation order. v4 is random from the first digit.</p>
+            </article>
+            <article class="example-item">
+              <h3>Reading the version digit</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>The first digit of the third group is the version
+7000 -&gt; v7
+4372 -&gt; v4</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Index bloat after using v4 as a primary key</h3>
+              <p>Because v4 is fully random, rows land all over a B-tree index, splitting pages often and hurting cache hit rate. The cost only becomes visible at millions of rows, which is why it slips past early design reviews. v7 appends sequentially and avoids most of it.</p>
+            </article>
+            <article class="info-card">
+              <h3>v7 in a public URL leaks timing</h3>
+              <p>A v7 value embeds its creation millisecond, so signup or order times can be derived — and a competitor could estimate your growth rate. Use v4 for identifiers exposed outside your system.</p>
+            </article>
+            <article class="info-card">
+              <h3>Can both versions share a column?</h3>
+              <p>Storage is fine since the format is identical, but the sort guarantee breaks. v7 values stay time-ordered while interleaved v4 values land randomly. Before migrating, check for queries that rely on ordering.</p>
+            </article>
+          </div>
+        </section>
+        </details>
+    </section>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small>© 2025 stateless tools · browser-first utility guides</small>
+    </footer>
+  </div>
+
+  
+</body>
+
+</html>

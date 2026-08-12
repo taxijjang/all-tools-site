@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>UTM Builder | Campaign Tracking URLs | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script type="module" crossorigin src="/assets/utmBuilder-BgyLaApU.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Dybl5N3h.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Build campaign URLs with UTM parameters that stay consistent across your reports." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/utm-builder" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/utm-builder" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/utm-builder" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/utm-builder" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="UTM Builder | Campaign Tracking URLs" />
+  <meta property="og:description" content="Build campaign URLs with UTM parameters that stay consistent across your reports." />
+  <meta property="og:url" content="https://taxijjang.com/en/utm-builder" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="UTM Builder | Campaign Tracking URLs" />
+  <meta name="twitter:description" content="Build campaign URLs with UTM parameters that stay consistent across your reports." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/utm-builder#webpage",
+    "name": "UTM 생성기 | Campaign URL Builder",
+    "url": "https://taxijjang.com/utm-builder",
+    "description": "광고, 소셜, 뉴스레터용 UTM 파라미터 URL을 만들어 추적 링크를 빠르게 생성합니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/utm-builder#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/utm-builder#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "UTM 생성기 | Campaign URL Builder",
+        "item": "https://taxijjang.com/utm-builder"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://taxijjang.com/utm-builder#app",
+    "name": "UTM 생성기 | Campaign URL Builder",
+    "url": "https://taxijjang.com/utm-builder",
+    "description": "광고, 소셜, 뉴스레터용 UTM 파라미터 URL을 만들어 추적 링크를 빠르게 생성합니다.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://taxijjang.com/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    }
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="utm-builder" data-allow-ads="true">
+  <div class="page page--dev">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt">JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash">SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color">Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/uuidv7">UUID v7</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml">JSON YAML</option>
+          <option value="/query-builder">URL Query Builder</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr">CIDR Calculator</option>
+          <option value="/text-stats">Text Stats</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder" selected>UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1 data-i18n="utm.title">UTM Generator</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      <p data-i18n="utm.description">Build campaign URLs with UTM parameters for ads, newsletters, and social posts.</p>
+    </header>
+    <main class="tool">
+      <section class="tool__panel tool__panel--stack">
+        <label for="utmBase">Base URL</label>
+        <input id="utmBase" type="url" value="https://taxijjang.com" />
+        <div class="tool-grid-3">
+          <div>
+            <label for="utmSource">utm_source</label>
+            <input id="utmSource" type="text" value="google" />
+          </div>
+          <div>
+            <label for="utmMedium">utm_medium</label>
+            <input id="utmMedium" type="text" value="cpc" />
+          </div>
+          <div>
+            <label for="utmCampaign">utm_campaign</label>
+            <input id="utmCampaign" type="text" value="spring_sale" />
+          </div>
+        </div>
+        <div class="tool-grid-3">
+          <div>
+            <label for="utmTerm">utm_term</label>
+            <input id="utmTerm" type="text" />
+          </div>
+          <div>
+            <label for="utmContent">utm_content</label>
+            <input id="utmContent" type="text" />
+          </div>
+          <div class="toolbar">
+            <button id="utmBuildBtn" class="primary" type="button" data-i18n="utm.build">Build URL</button>
+          </div>
+        </div>
+        <label for="utmOutput">UTM URL</label>
+        <textarea id="utmOutput" rows="3" readonly></textarea>
+        <label for="utmShortOutput" data-i18n="utm.shortOutput">Short URL (simulation)</label>
+        <input id="utmShortOutput" type="text" readonly />
+      </section>
+    </main>
+    <p id="utmMessage" class="message"></p>
+
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section content-section--highlight">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">UTM campaign URL workflow</h2>
+          <p class="section-lead">Attach source, medium, and campaign values consistently so ad, social, and newsletter traffic is easier to analyze.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Keep naming consistent</h3>
+              <p>Build URLs using the same source, medium, and campaign conventions instead of retyping them manually.</p>
+            </article>
+            <article class="info-card">
+              <h3>Create encoded links</h3>
+              <p>Encode spaces and non-English campaign names according to URL rules to reduce broken links.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review before launch</h3>
+              <p>Check landing URL, required UTM values, and duplicate parameters before copying the final link.</p>
+            </article>
+          </div>
+        </section>
+
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+
+        <section class="content-section">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">How to use it</h2>
+          <ol class="content-list">
+          <li>Enter the landing page URL.</li>
+          <li>Fill utm_source, utm_medium, and utm_campaign using your team convention.</li>
+          <li>Add term and content when you need to distinguish keywords or creatives.</li>
+          <li>Open the generated URL once before publishing it.</li>
+          </ol>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>A newsletter campaign link</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>url       https://example.com/pricing
+source    newsletter
+medium    email
+campaign  2026_summer</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>https://example.com/pricing?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=2026_summer</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>One campaign splits into two rows</h3>
+              <p>UTM values are case sensitive, so Email and email are counted separately. Agreeing on lowercase across the team removes the problem.</p>
+            </article>
+            <article class="info-card">
+              <h3>source versus medium</h3>
+              <p>source is where the traffic came from (naver, newsletter); medium is how it arrived (cpc, email, social). Mixing them makes channel reporting impossible later.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Review</p>
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Consistency matters most</h3>
+              <p>Mixed values such as google, Google, cpc, and paid can split reports. Decide casing and separators first.</p>
+            </article>
+            <article class="info-card">
+              <h3>Use carefully on internal links</h3>
+              <p>Too many internal UTM links can overwrite the original acquisition source. Prefer UTMs for external campaign links.</p>
+            </article>
+          </div>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/ip-ua">IP / User-Agent</a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.</li>
+            <li><a href="/ip-cidr">CIDR Calculator</a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s</li>
+            <li><a href="/cron">Cron Parser</a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin</li>
+            <li><a href="/timestamp">Timestamp Converter</a></li>
+            <li><a href="/hash">SHA Hash</a></li>
+            <li><a href="/password">Password</a></li>
+          </ul>
+        </section>
+        </details>
+    </section>
+      <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small data-i18n="common.footerHome">© 2025 stateless tools · Static site for Cloudflare Pages deployment</small>
+    </footer>
+  </div>
+  
+</body>
+</html>

@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
-import { basename, resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import {
   FEATURED_TOOL_PATHS,
   PAGE_META,
@@ -14,10 +15,13 @@ import {
   FOOTER_UTILITY_LINKS,
   NAV_TOOLS,
   NAV_UTILITY_LINKS,
+  UTILITY_LINKS,
 } from './src/chrome-meta.js';
 import { TOOL_CATEGORY_MAP } from './src/ux-meta.js';
 import { TOOL_SUPPORT_COPY } from './src/tool-support-copy.js';
 import { TOOL_SUPPORT_EXTRA } from './src/tool-support-extra.js';
+import { PAGE_META_EN } from './src/seo-meta-en.js';
+import { translations } from './src/i18n-dict.js';
 
 const ADSENSE_PUBLISHER_ID = 'ca-pub-4324902308911757';
 const ADSENSE_ENABLED = true;
@@ -890,6 +894,137 @@ function extractHiddenLocaleBlocks(html) {
   );
 }
 
+// ponytail: 영어 사용자는 이 사이트를 찾을 방법이 없었다. <head>를 런타임에 바꿔도
+// 그건 이미 들어온 사람에게만 보이고, 구글은 한국어 제목만 본다.
+// /en/ 아래에 영어가 이미 박힌 정적 페이지를 따로 찍어 크롤러가 그대로 읽게 한다.
+// 지정 언어의 로케일 블록을 통째로 제거한다. 중첩 태그가 있어 균형 스캔이 필요하다.
+function removeLocaleBlocks(html, locale) {
+  const marker = new RegExp(`<([a-z]+)\\b[^>]*data-locale-block="${locale}"[^>]*>`, 'i');
+  let out = html;
+  let guard = 0;
+
+  while (guard < 200) {
+    const match = out.match(marker);
+    if (!match) {
+      break;
+    }
+    const start = out.indexOf(match[0]);
+    const end = findMatchingClose(out, match[1], start + match[0].length);
+    if (end === -1) {
+      break;
+    }
+    out = out.slice(0, start) + out.slice(end);
+    guard += 1;
+  }
+
+  return out;
+}
+
+function buildEnglishPage(html, meta) {
+  const en = PAGE_META_EN[meta.path];
+  if (!en) {
+    return null;
+  }
+
+  let out = html;
+
+  // data-i18n 자리를 영어로 미리 채운다. JS 없이도 영어로 읽힌다.
+  out = out.replace(
+    /(<([a-z0-9]+)\b[^>]*\bdata-i18n="([^"]+)"[^>]*>)([\s\S]*?)(<\/\2>)/gi,
+    (match, open, tag, key, inner, close) => {
+      const value = translations.en[key];
+      return typeof value === 'string' ? `${open}${escapeHtml(value)}${close}` : match;
+    },
+  );
+
+  // 영어 블록은 이미 JSON 페이로드로 빠져나간 상태다(extractHiddenLocaleBlocks).
+  // 슬롯 자리에 도로 끼워 넣고, 한국어 블록은 지운다.
+  // 숨겨서 남기면 영어 페이지에 숨긴 한국어가 생겨 아침에 없앤 문제가 되돌아온다.
+  const payloadMatch = out.match(/<script type="application\/json" data-locale-payload="en">([\s\S]*?)<\/script>/);
+  if (payloadMatch) {
+    let blocks = [];
+    try {
+      blocks = JSON.parse(payloadMatch[1]);
+    } catch (err) {
+      blocks = [];
+    }
+    out = out.replace(
+      /<div data-locale-slot="en" data-locale-index="(\d+)"><\/div>/g,
+      (match, index) => (blocks[Number(index)] || '').replace(/\shidden\b/g, '').replace(/\sdata-nosnippet\b/g, ''),
+    );
+    out = out.replace(payloadMatch[0], '');
+  }
+
+  // 한국어 블록 제거
+  out = removeLocaleBlocks(out, 'ko');
+
+  // 런타임 번역 대상이 아닌 셸 텍스트를 영어로 바꾼다.
+  out = out.replace(
+    /(<select id="toolSelect"[^>]*>)([\s\S]*?)(<\/select>)/i,
+    (match, open, body, close) => {
+      const swapped = body.replace(
+        /(<option value="([^"]+)"[^>]*>)([^<]*)(<\/option>)/g,
+        (optMatch, optOpen, value, label, optClose) => {
+          const tool = NAV_TOOLS.find((item) => item.value === value);
+          return tool?.labels?.en ? `${optOpen}${escapeHtml(tool.labels.en)}${optClose}` : optMatch;
+        },
+      );
+      return `${open}${swapped}${close}`;
+    },
+  );
+
+  out = out.replace(
+    /(<a href="[^"]*" data-chrome-link="([^"]+)">)([^<]*)(<\/a>)/g,
+    (match, open, key, label, close) => {
+      const link = UTILITY_LINKS.find((item) => item.key === key);
+      return link?.labels?.en ? `${open}${escapeHtml(link.labels.en)}${close}` : match;
+    },
+  );
+
+  out = out.replace(
+    /(<button id="pwaInstallBtn"[^>]*>)[^<]*(<\/button>)/i,
+    '$1Install$2',
+  );
+  out = out.replace(
+    /(<p class="trust-badge"[^>]*>)[^<]*(<\/p>)/i,
+    '$1\u{1F512} Browser-side processing$2',
+  );
+
+  out = out.replace(/<html([^>]*)\slang="[^"]*"/i, '<html$1 lang="en"');
+  out = out.replace(/data-preferred-locale="[^"]*"/gi, 'data-preferred-locale="en"');
+
+  const enUrl = `${SITE_ORIGIN}/en${meta.path === '/' ? '/' : meta.path}`;
+  const fullTitle = `${en.title} | ${SITE_NAME}`;
+
+  out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(fullTitle)}</title>`);
+  out = out.replace(/(<meta name="description" content=")[^"]*(")/i, `$1${escapeAttr(en.description)}$2`);
+  out = out.replace(/(<meta property="og:title" content=")[^"]*(")/i, `$1${escapeAttr(en.title)}$2`);
+  out = out.replace(/(<meta property="og:description" content=")[^"]*(")/i, `$1${escapeAttr(en.description)}$2`);
+  out = out.replace(/(<meta name="twitter:title" content=")[^"]*(")/i, `$1${escapeAttr(en.title)}$2`);
+  out = out.replace(/(<meta name="twitter:description" content=")[^"]*(")/i, `$1${escapeAttr(en.description)}$2`);
+  out = out.replace(/(<link rel="canonical" href=")[^"]*(")/i, `$1${enUrl}$2`);
+  out = out.replace(/(<meta property="og:url" content=")[^"]*(")/i, `$1${enUrl}$2`);
+
+  // 저장된 언어 설정이 ko여도 이 페이지는 영어로 시작해야 한다.
+  out = out.replace(/var locale = pickLocale\(\);/, "var locale = 'en';");
+
+  return out;
+}
+
+// 두 언어 판을 서로 가리키게 한다. x-default는 한국어로 둔다(주 언어).
+function buildHreflangTags(meta) {
+  if (!PAGE_META_EN[meta.path]) {
+    return '';
+  }
+  const koUrl = `${SITE_ORIGIN}${meta.canonicalPath || meta.path}`;
+  const enUrl = `${SITE_ORIGIN}/en${meta.path === '/' ? '/' : meta.path}`;
+  return [
+    `  <link rel="alternate" hreflang="ko" href="${koUrl}" />`,
+    `  <link rel="alternate" hreflang="en" href="${enUrl}" />`,
+    `  <link rel="alternate" hreflang="x-default" href="${koUrl}" />`,
+  ].join('\n');
+}
+
 function resolveSitemapDefaults(meta) {
   if (meta.path === '/') {
     return { changefreq: 'weekly', priority: '1.0' };
@@ -917,12 +1052,27 @@ function buildSitemapXml(buildDate) {
       const canonicalPath = meta.canonicalPath || meta.path;
       const canonicalUrl = `${SITE_ORIGIN}${canonicalPath}`;
       const defaults = resolveSitemapDefaults(meta);
-      return `  <url>
+      const entries = [
+        `  <url>
     <loc>${canonicalUrl}</loc>
     <lastmod>${buildDate}</lastmod>
     <changefreq>${defaults.changefreq}</changefreq>
     <priority>${defaults.priority}</priority>
-  </url>`;
+  </url>`,
+      ];
+
+      // 영어 판이 있으면 함께 싣는다. 사이트맵에 없으면 색인 대상이 되기까지 오래 걸린다.
+      if (PAGE_META_EN[meta.path]) {
+        const enUrl = `${SITE_ORIGIN}/en${meta.path === '/' ? '/' : meta.path}`;
+        entries.push(`  <url>
+    <loc>${enUrl}</loc>
+    <lastmod>${buildDate}</lastmod>
+    <changefreq>${defaults.changefreq}</changefreq>
+    <priority>${defaults.priority}</priority>
+  </url>`);
+      }
+
+      return entries.join('\n');
     })
     .join('\n');
 
@@ -940,6 +1090,11 @@ Allow: /
 Sitemap: ${SITE_ORIGIN}/sitemap.xml
 `;
 }
+
+// transformIndexHtml에서 만든 최종 HTML을 모아 두었다가 generateBundle에서
+// /en/ 판으로 한 번 더 찍는다. Vite의 input을 늘리면 JS 번들이 페이지마다
+// 중복 생성되므로, 완성된 HTML을 복제하는 편이 산출물이 깔끔하다.
+const transformedPages = new Map();
 
 function seoMetadataPlugin() {
   return {
@@ -1011,6 +1166,7 @@ function seoMetadataPlugin() {
         '  <meta name="theme-color" content="#020817" />',
         `  <link rel="icon" href="${SITE_LOGO_PATH}" type="image/svg+xml" />`,
         `  <link rel="canonical" href="${canonicalUrl}" />`,
+        buildHreflangTags(meta),
         '  <meta property="og:type" content="website" />',
         `  <meta property="og:site_name" content="${SITE_NAME}" />`,
         `  <meta property="og:title" content="${escapeAttr(pageTitle)}" />`,
@@ -1031,7 +1187,9 @@ function seoMetadataPlugin() {
         );
       }
 
-      return nextHtml.replace('</head>', `${headTags.join('\n')}\n</head>`);
+      const finalHtml = nextHtml.replace('</head>', `${headTags.join('\n')}\n</head>`);
+      transformedPages.set(meta.path, { meta, html: finalHtml });
+      return finalHtml;
     },
   };
 }
@@ -1060,6 +1218,28 @@ function staticSiteArtifactsPlugin() {
         next();
       });
     },
+    // transformIndexHtml은 generateBundle보다 늦게 돈다. 모든 페이지가 확정된 뒤인
+    // closeBundle에서 /en/ 판을 직접 기록한다.
+    closeBundle() {
+      let written = 0;
+      for (const [path, { meta, html }] of transformedPages) {
+        const english = buildEnglishPage(html, meta);
+        if (!english) {
+          continue;
+        }
+        const target = resolve(
+          __dirname,
+          'dist',
+          path === '/' ? 'en/index.html' : `en${path}.html`,
+        );
+        mkdirSync(dirname(target), { recursive: true });
+        writeFileSync(target, english, 'utf8');
+        written += 1;
+      }
+      if (written) {
+        console.log(`  english pages: ${written}`);
+      }
+    },
     generateBundle() {
       this.emitFile({
         type: 'asset',
@@ -1072,6 +1252,7 @@ function staticSiteArtifactsPlugin() {
         fileName: 'robots.txt',
         source: buildRobotsTxt(),
       });
+
     },
   };
 }

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JSON to YAML Converter | YAML to JSON, CSV Output | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
+  <script type="module" crossorigin src="/assets/jsonYaml-Coa6lTT7.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Dybl5N3h.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Convert structured data between JSON and YAML, and flatten it to CSV when you need a table." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/json-yaml" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/json-yaml" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/json-yaml" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/json-yaml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="JSON to YAML Converter | YAML to JSON, CSV Output" />
+  <meta property="og:description" content="Convert structured data between JSON and YAML, and flatten it to CSV when you need a table." />
+  <meta property="og:url" content="https://taxijjang.com/en/json-yaml" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="JSON to YAML Converter | YAML to JSON, CSV Output" />
+  <meta name="twitter:description" content="Convert structured data between JSON and YAML, and flatten it to CSV when you need a table." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/json-yaml#webpage",
+    "name": "JSON YAML 변환기 | JSON to YAML, YAML to JSON, CSV",
+    "url": "https://taxijjang.com/json-yaml",
+    "description": "JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/json-yaml#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/json-yaml#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "JSON YAML 변환기 | JSON to YAML, YAML to JSON, CSV",
+        "item": "https://taxijjang.com/json-yaml"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://taxijjang.com/json-yaml#app",
+    "name": "JSON YAML 변환기 | JSON to YAML, YAML to JSON, CSV",
+    "url": "https://taxijjang.com/json-yaml",
+    "description": "JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://taxijjang.com/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    }
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="json-yaml" data-allow-ads="true">
+  <div class="page page--dev">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt">JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash">SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color">Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/uuidv7">UUID v7</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml" selected>JSON YAML</option>
+          <option value="/query-builder">URL Query Builder</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr">CIDR Calculator</option>
+          <option value="/text-stats">Text Stats</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder">UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher"><select id="localeSelect" aria-label="Language"><option value="ko" data-i18n="common.languageKorean">한국어</option><option value="en" data-i18n="common.languageEnglish">English</option></select></div>
+    </div>
+    <header class="page-header"><h1 data-i18n="jsonyaml.title">JSON ↔ YAML Converter</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p><p data-i18n="jsonyaml.description">Convert JSON and YAML while moving structured data between formats.</p></header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack"><label for="jyInput" data-i18n="jsonyaml.input">Input</label><textarea id="jyInput" rows="14" data-persist="input">{"name":"all-tools","env":"prod"}</textarea><div class="toolbar"><button id="jyToYamlBtn" class="primary" type="button" data-i18n="jsonyaml.toYaml">JSON → YAML</button><button id="jyToJsonBtn" type="button" data-i18n="jsonyaml.toJson">YAML → JSON</button><button id="jyCsvToJsonBtn" type="button">CSV → JSON</button><button id="jyJsonToCsvBtn" type="button">JSON → CSV</button><button id="jyClearBtn" type="button" data-i18n="common.clear">Clear</button></div></section>
+      <section class="tool__panel tool__panel--stack"><div class="panel-header"><label for="jyOutput" data-i18n="jsonyaml.output">Output</label><button type="button" data-copy="jyOutput" data-i18n="common.copy">Copy</button></div><textarea id="jyOutput" rows="14" readonly></textarea></section>
+    </main>
+    <p id="jyMessage" class="message"></p>
+
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section content-section--highlight">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">JSON and YAML conversion review</h2>
+          <p class="section-lead">Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV output.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Move between config formats</h3>
+              <p>Convert JSON samples into YAML config, or convert YAML into JSON for easier handling in code.</p>
+            </article>
+            <article class="info-card">
+              <h3>Inspect structure</h3>
+              <p>Check whether arrays, objects, strings, numbers, booleans, and null values survive conversion as intended.</p>
+            </article>
+            <article class="info-card">
+              <h3>Flatten simple arrays</h3>
+              <p>Turn simple array data into CSV when you need a quick spreadsheet or review table.</p>
+            </article>
+          </div>
+        </section>
+
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+
+        <section class="content-section">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">How to use it</h2>
+          <ol class="content-list">
+          <li>Paste the source JSON or YAML.</li>
+          <li>Choose the conversion direction and review the output structure.</li>
+          <li>Check string numbers, true/false values, and null values for type changes.</li>
+          <li>Use CSV output mainly for shallow array data.</li>
+          </ol>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>JSON to YAML</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>{"name":"api","port":8080,"debug":false}</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>name: api
+port: 8080
+debug: false</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>Nested structures</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>{"db":{"host":"localhost","ports":[5432,5433]}}</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>db:
+  host: localhost
+  ports:
+    - 5432
+    - 5433</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Unquoted "no" turns into false</h3>
+              <p>YAML 1.1 reads no, yes, on, and off as booleans. The country code NO becoming false is known as the Norway problem. Quote the value to keep it a string.</p>
+            </article>
+            <article class="info-card">
+              <h3>Indentation breaks</h3>
+              <p>YAML does not accept tabs for indentation. Use spaces and keep the width consistent across the file.</p>
+            </article>
+            <article class="info-card">
+              <h3>Leading zeros disappear</h3>
+              <p>Values like 08 or a phone number can be parsed as octal or numeric. Quote phone numbers, postal codes, and version strings.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Review</p>
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>YAML infers types</h3>
+              <p>YAML can interpret values that look like yes, no, or dates. Quote sensitive string values when exact text matters.</p>
+            </article>
+            <article class="info-card">
+              <h3>Comments may not survive</h3>
+              <p>JSON has no comments, and YAML comments or original formatting may be lost during conversion. Keep the original config separately.</p>
+            </article>
+          </div>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/uuid">UUID Converter</a></li>
+            <li><a href="/base64">Base64 Encoder/Decoder</a></li>
+            <li><a href="/json">JSON Formatter</a></li>
+            <li><a href="/jwt">JWT Decoder</a></li>
+            <li><a href="/url">URL Encoder/Decoder</a></li>
+            <li><a href="/query-builder">URL Query Builder</a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.</li>
+          </ul>
+        </section>
+        </details>
+    </section>
+      <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small data-i18n="common.footerHome">© 2025 stateless tools · Static site for Cloudflare Pages deployment</small>
+    </footer>
+  </div>
+  
+</body>
+</html>

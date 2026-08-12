@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>SHA Hash Calculator | SHA-256, SHA-1, SHA-384, SHA-512 | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/hash-AuLgCLw3.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Dybl5N3h.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Compute SHA-1, SHA-256, SHA-384, and SHA-512 hashes and copy the digest as HEX or Base64." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/hash" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/hash" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/hash" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/hash" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="SHA Hash Calculator | SHA-256, SHA-1, SHA-384, SHA-512" />
+  <meta property="og:description" content="Compute SHA-1, SHA-256, SHA-384, and SHA-512 hashes and copy the digest as HEX or Base64." />
+  <meta property="og:url" content="https://taxijjang.com/en/hash" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SHA Hash Calculator | SHA-256, SHA-1, SHA-384, SHA-512" />
+  <meta name="twitter:description" content="Compute SHA-1, SHA-256, SHA-384, and SHA-512 hashes and copy the digest as HEX or Base64." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/hash#webpage",
+    "name": "SHA 해시 계산기 | SHA-256, SHA-1, SHA-384, SHA-512",
+    "url": "https://taxijjang.com/hash",
+    "description": "SHA-1, SHA-256, SHA-384, SHA-512 해시를 계산하고 HEX 또는 Base64로 바로 복사할 수 있습니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/hash#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/hash#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "SHA 해시 계산기 | SHA-256, SHA-1, SHA-384, SHA-512",
+        "item": "https://taxijjang.com/hash"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://taxijjang.com/hash#app",
+    "name": "SHA 해시 계산기 | SHA-256, SHA-1, SHA-384, SHA-512",
+    "url": "https://taxijjang.com/hash",
+    "description": "SHA-1, SHA-256, SHA-384, SHA-512 해시를 계산하고 HEX 또는 Base64로 바로 복사할 수 있습니다.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://taxijjang.com/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    }
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="hash" data-allow-ads="true">
+
+  <div class="page page--dev">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt">JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash" selected>SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color">Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/uuidv7">UUID v7</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml">JSON YAML</option>
+          <option value="/query-builder">URL Query Builder</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr">CIDR Calculator</option>
+          <option value="/text-stats">Text Stats</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder">UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1 data-i18n="hash.title">SHA Hash Calculator</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      <p data-i18n="hash.description">Compute SHA-1, SHA-256, SHA-384, and SHA-512 hashes via WebCrypto.</p>
+      <div class="page-actions">
+        <button type="button" class="ghost" data-share-state data-i18n="common.shareState">Copy shareable link</button>
+      </div>
+    </header>
+
+    <main class="tool">
+      <section class="tool__panel tool__panel--stack">
+        <label for="hashInput" data-i18n="hash.input">Input text</label>
+        <textarea id="hashInput" rows="4" placeholder="stateless tools" data-i18n="hash.placeholder"
+          data-i18n-attr="placeholder" data-persist="input">stateless tools</textarea>
+        <div class="field-row">
+          <label for="hashAlgorithm" data-i18n="hash.algorithm">Algorithm</label>
+          <select id="hashAlgorithm" data-persist="algorithm">
+            <option value="SHA-256">SHA-256</option>
+            <option value="SHA-1">SHA-1</option>
+            <option value="SHA-384">SHA-384</option>
+            <option value="SHA-512">SHA-512</option>
+          </select>
+        </div>
+        <div class="option-row">
+          <label class="field-row">
+            <input id="hashUppercase" type="checkbox" data-persist="uppercase" />
+            <span data-i18n="hash.uppercase">Uppercase HEX output</span>
+          </label>
+        </div>
+        <div class="toolbar">
+          <button id="hashComputeBtn" type="button" class="primary" data-i18n="hash.compute">Compute hash</button>
+          <button id="hashClearBtn" type="button" class="ghost" data-i18n="common.clear">Clear</button>
+        </div>
+      </section>
+
+      <div class="tool__column">
+      <section class="tool__panel tool__panel--stack">
+        <div class="panel-header">
+          <label for="hashHex" data-i18n="hash.hex">HEX</label>
+          <button type="button" data-copy="hashHex" data-i18n="common.copy">Copy</button>
+        </div>
+        <textarea id="hashHex" rows="3" readonly></textarea>
+      </section>
+      <section class="tool__panel tool__panel--stack">
+        <div class="panel-header">
+          <label for="hashBase64" data-i18n="hash.base64">Base64</label>
+          <button type="button" data-copy="hashBase64" data-i18n="common.copy">Copy</button>
+        </div>
+        <textarea id="hashBase64" rows="3" readonly></textarea>
+      </section>
+      </div>
+
+    </main>
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>SHA-256 of a string</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>hello</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>HEX versus Base64 output</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>hello (SHA-256)</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>HEX     2cf24dba5fb0a3...938b9824
+Base64  LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=</code></pre>
+              <p class="example-item__note">Same digest, different notation. Match whatever the verifying side expects.</p>
+            </article>
+          </div>
+        </section>
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Trying to reverse a hash</h3>
+              <p>Hashing is a one-way function, not encryption. There is no decryption. The only way back is guessing candidates and comparing digests.</p>
+            </article>
+            <article class="info-card">
+              <h3>Storing passwords with SHA-256</h3>
+              <p>SHA functions are deliberately fast, which makes brute force cheap. Use bcrypt, scrypt, or Argon2, which add salting and a tunable work factor.</p>
+            </article>
+            <article class="info-card">
+              <h3>Same text, different digest</h3>
+              <p>Check for a trailing newline. Copying from a file or editor often carries the final line break, producing a completely different hash.</p>
+            </article>
+          </div>
+        </section>
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/ip-ua">IP / User-Agent</a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.</li>
+            <li><a href="/ip-cidr">CIDR Calculator</a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s</li>
+            <li><a href="/cron">Cron Parser</a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin</li>
+            <li><a href="/timestamp">Timestamp Converter</a></li>
+            <li><a href="/password">Password</a></li>
+            <li><a href="/convert">Unit Converter</a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not</li>
+          </ul>
+        </section>
+        </details>
+    </section>
+    <p id="hashMessage" class="message" role="status" aria-live="polite"></p>
+
+    <section class="content-stack">
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">When this hash tool is genuinely useful</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Check release integrity</h3>
+              <p>Compare SHA values for downloaded files or build outputs to confirm whether two artifacts are actually identical.</p>
+            </article>
+            <article class="info-card">
+              <h3>Validate signing inputs</h3>
+              <p>Test how whitespace, line breaks, or field ordering change a digest before you wire the same input into a backend signature flow.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review values locally</h3>
+              <p>Short comparison strings stay in the browser, which is safer than pasting them into random online converters during debugging.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      
+        <details class="content-more">
+          <summary data-i18n="common.moreContent">More: how to use it, examples, and common errors</summary>
+<section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Notes</p>
+          <h2 class="section-title">Questions that come up often</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Is hashing the same as encryption?</h3>
+              <p>No. Hashing is a one-way digest used for comparison or integrity checks, while encryption is designed for later decryption.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Should I use SHA-256 or SHA-512?</h3>
+              <p>SHA-256 is usually the practical default for integrity checks. Use SHA-512 when your policy, ecosystem, or output-length requirements call for it.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Does the page upload my input?</h3>
+              <p>The digest is computed with the browser Web Crypto API. You should still account for extensions, device security, and your own operating environment.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    
+        </details>
+      </section>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small data-i18n="common.footerJson">© 2025 stateless tools · JSON stays entirely in browser memory.</small>
+    </footer>
+  </div>
+  
+</body>
+
+</html>

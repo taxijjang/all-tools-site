@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Developer Tool Launcher | UUID, JSON, Base64, PDF, SEO | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-Dybl5N3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Search and run browser-based developer tools for UUID, JSON, Base64, JWT, PDF, images, and SEO checks." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="Developer Tool Launcher | UUID, JSON, Base64, PDF, SEO" />
+  <meta property="og:description" content="Search and run browser-based developer tools for UUID, JSON, Base64, JWT, PDF, images, and SEO checks." />
+  <meta property="og:url" content="https://taxijjang.com/en/" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Developer Tool Launcher | UUID, JSON, Base64, PDF, SEO" />
+  <meta name="twitter:description" content="Search and run browser-based developer tools for UUID, JSON, Base64, JWT, PDF, images, and SEO checks." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://taxijjang.com/#webpage",
+    "name": "개발자 도구 런처 | UUID, JSON, Base64, PDF, SEO",
+    "url": "https://taxijjang.com/",
+    "description": "UUID, JSON, Base64, JWT, PDF, 이미지, SEO 등 자주 쓰는 브라우저 기반 개발자 도구를 검색하고 바로 실행하세요.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "개발자 도구 런처 | UUID, JSON, Base64, PDF, SEO",
+        "item": "https://taxijjang.com/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": "https://taxijjang.com/#featured-tools",
+    "name": "Featured browser tools",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "UUID 변환기 | UUID 생성기, UUID v4, ULID, Hex 변환",
+        "url": "https://taxijjang.com/uuid"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Base64 인코더/디코더 | Base64 변환, URL-safe, 파일 인코딩",
+        "url": "https://taxijjang.com/base64"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "JSON 포매터/검증기 | Formatter, Validator, Tree View",
+        "url": "https://taxijjang.com/json"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS",
+        "url": "https://taxijjang.com/jwt"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "SEO 메타 태그 검사기 | Title, Description, OG, Canonical",
+        "url": "https://taxijjang.com/seo-check"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "URL 인코더/디코더 | URL Decode, Query String Parser",
+        "url": "https://taxijjang.com/url"
+      },
+      {
+        "@type": "ListItem",
+        "position": 7,
+        "name": "비밀번호 생성기 | 랜덤 비밀번호, 강도 확인",
+        "url": "https://taxijjang.com/password"
+      },
+      {
+        "@type": "ListItem",
+        "position": 8,
+        "name": "Unix 타임스탬프 변환기 | Epoch 변환, 날짜 변환",
+        "url": "https://taxijjang.com/timestamp"
+      },
+      {
+        "@type": "ListItem",
+        "position": 9,
+        "name": "API 요청 테스트 | HTTP Request Builder, cURL",
+        "url": "https://taxijjang.com/api-tester"
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout" data-tool="home" data-allow-ads="true">
+  <div class="page page--home">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/" selected>Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt">JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash">SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color">Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/uuidv7">UUID v7</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml">JSON YAML</option>
+          <option value="/query-builder">URL Query Builder</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr">CIDR Calculator</option>
+          <option value="/text-stats">Text Stats</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder">UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="home-launcher home-command-center">
+      <section class="home-discovery home-command-panel" aria-labelledby="homeDiscoveryTitle">
+        <div class="home-command-panel__intro">
+          <p class="home-brand">All Tools</p>
+          <p class="section-kicker" data-home-kicker>Tool Search</p>
+          <h1 id="homeDiscoveryTitle" class="section-title" data-home-heading>필요한 도구만 빠르게 찾기</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+          <p class="section-lead" data-home-lead>키워드를 입력하거나 카테고리를 고르면 바로 쓸 도구만 남습니다.</p>
+        </div>
+
+        <div class="home-discovery__controls home-command-palette">
+          <label class="sr-only" for="toolSearch" data-home-search-label>도구 검색</label>
+          <div class="home-search-wrap">
+            <span class="home-search-prefix" aria-hidden="true">&gt;</span>
+            <input
+              id="toolSearch"
+              class="home-search"
+              type="search"
+              inputmode="search"
+              autocomplete="off"
+              spellcheck="false"
+              aria-keyshortcuts="/ Control+K Meta+K"
+              data-home-search
+              placeholder="json jwt uuid pdf regex seo"
+            />
+            <span class="home-search-shortcuts" aria-hidden="true">
+              <kbd>/</kbd>
+              <kbd>Ctrl K</kbd>
+            </span>
+          </div>
+          <div class="home-query-row" aria-label="Quick searches">
+            <button type="button" class="home-query-chip" data-home-query="json">json</button>
+            <button type="button" class="home-query-chip" data-home-query="jwt">jwt</button>
+            <button type="button" class="home-query-chip" data-home-query="uuid">uuid</button>
+            <button type="button" class="home-query-chip" data-home-query="base64">base64</button>
+            <button type="button" class="home-query-chip" data-home-query="pdf">pdf</button>
+            <button type="button" class="home-query-chip" data-home-query="regex">regex</button>
+          </div>
+          <div class="home-filter-bar" data-home-filters></div>
+          <div class="home-command-footer">
+            <p class="home-results" data-home-results>도구를 불러오는 중...</p>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <section class="home-catalog" aria-labelledby="toolCatalogTitle">
+      <div class="home-catalog__header">
+        <div>
+          <p class="section-kicker" data-home-catalog-kicker>Tool Catalog</p>
+          <h2 id="toolCatalogTitle" class="section-title" data-home-catalog-heading>전체 도구</h2>
+        </div>
+        <a class="link-button" href="/learn" data-home-catalog-link>가이드 보기</a>
+      </div>
+
+      <main class="card-grid" data-home-grid>
+        <a class="card card--reference" href="/ai-tools">
+          <h2 data-i18n="home.card.aihub.title">AI Command Cheatsheets</h2>
+          <p data-i18n="home.card.aihub.desc">Current Claude Code and Codex command flows with official docs.</p>
+          <span class="pill">/ai-tools</span>
+        </a>
+        <a class="card card--reference" href="/codex-cheatsheet">
+          <h2 data-i18n="home.card.codex.title">Codex Commands</h2>
+          <p data-i18n="home.card.codex.desc">Codex CLI, slash commands, AGENTS.md, Skills, MCP, and Automations.</p>
+          <span class="pill">/codex-cheatsheet</span>
+        </a>
+        <a class="card card--reference" href="/claude-code-cheatsheet">
+          <h2 data-i18n="home.card.claude.title">Claude Code Commands</h2>
+          <p data-i18n="home.card.claude.desc">Commands, skills, MCP, hooks, run/verify, and background agents.</p>
+          <span class="pill">/claude-code-cheatsheet</span>
+        </a>
+        <a class="card" href="/uuid">
+          <h2 data-i18n="home.card.uuid.title">UUID Converter</h2>
+          <p data-i18n="home.card.uuid.desc">Random UUIDs plus round-trip hex(binary16) conversion.</p>
+          <span class="pill">/uuid</span>
+        </a>
+        <a class="card" href="/base64">
+          <h2 data-i18n="home.card.base64.title">Base64 Encoder/Decoder</h2>
+          <p data-i18n="home.card.base64.desc">Encode or decode Base64 text, files, and URL-safe values.</p>
+          <span class="pill">/base64</span>
+        </a>
+        <a class="card" href="/json">
+          <h2 data-i18n="home.card.json.title">JSON Formatter</h2>
+          <p data-i18n="home.card.json.desc">Format, validate, minify, and inspect JSON in tree view.</p>
+          <span class="pill">/json</span>
+        </a>
+        <a class="card" href="/jwt">
+          <h2 data-i18n="home.card.jwt.title">JWT Decoder</h2>
+          <p data-i18n="home.card.jwt.desc">Decode JWTs, inspect claims, and check expiry quickly.</p>
+          <span class="pill">/jwt</span>
+        </a>
+        <a class="card" href="/cron">
+          <h2 data-i18n="home.card.cron.title">Cron Parser</h2>
+          <p data-i18n="home.card.cron.desc">Parse cron expressions and preview next run times.</p>
+          <span class="pill">/cron</span>
+        </a>
+        <a class="card" href="/url">
+          <h2 data-i18n="home.card.url.title">URL Encoder/Decoder</h2>
+          <p data-i18n="home.card.url.desc">Encode, decode, and inspect query string parameters.</p>
+          <span class="pill">/url</span>
+        </a>
+        <a class="card" href="/hash">
+          <h2 data-i18n="home.card.hash.title">SHA Hash Calculator</h2>
+          <p data-i18n="home.card.hash.desc">Compute SHA hashes and copy HEX or Base64 output.</p>
+          <span class="pill">/hash</span>
+        </a>
+        <a class="card" href="/timestamp">
+          <h2 data-i18n="home.card.timestamp.title">Unix Timestamp Converter</h2>
+          <p data-i18n="home.card.timestamp.desc">Convert epoch seconds or milliseconds to dates and back.</p>
+          <span class="pill">/timestamp</span>
+        </a>
+        <a class="card" href="/password">
+          <h2 data-i18n="home.card.password.title">Password Generator</h2>
+          <p data-i18n="home.card.password.desc">Generate secure passwords with flexible length and character options.</p>
+          <span class="pill">/password</span>
+        </a>
+        <a class="card" href="/regex">
+          <h2 data-i18n="home.card.regex.title">Regex Tester</h2>
+          <p data-i18n="home.card.regex.desc">Test patterns and flags, then inspect highlighted matches.</p>
+          <span class="pill">/regex</span>
+        </a>
+        <a class="card" href="/qr">
+          <h2 data-i18n="home.card.qr.title">QR Code Generator/Scanner</h2>
+          <p data-i18n="home.card.qr.desc">Generate text/Wi-Fi QR and scan QR from image uploads.</p>
+          <span class="pill">/qr</span>
+        </a>
+        <a class="card" href="/diff">
+          <h2 data-i18n="home.card.diff.title">Text Diff</h2>
+          <p data-i18n="home.card.diff.desc">Compare original/edited lines with unified diff output.</p>
+          <span class="pill">/diff</span>
+        </a>
+        <a class="card" href="/color">
+          <h2 data-i18n="home.card.color.title">Color Converter/Contrast Checker</h2>
+          <p data-i18n="home.card.color.desc">Convert HEX, RGB, HSL and check contrast ratios.</p>
+          <span class="pill">/color</span>
+        </a>
+        <a class="card" href="/markdown">
+          <h2 data-i18n="home.card.markdown.title">Markdown Preview</h2>
+          <p data-i18n="home.card.markdown.desc">Render Markdown and extract HTML.</p>
+          <span class="pill">/markdown</span>
+        </a>
+        <a class="card" href="/convert">
+          <h2 data-i18n="home.card.convert.title">Unit Converter</h2>
+          <p data-i18n="home.card.convert.desc">Quick conversion for length/weight/temperature.</p>
+          <span class="pill">/convert</span>
+        </a>
+        <a class="card" href="/file-hash">
+          <h2 data-i18n="home.card.filehash.title">File Hash Calculator</h2>
+          <p data-i18n="home.card.filehash.desc">Compute SHA hashes in your browser.</p>
+          <span class="pill">/file-hash</span>
+        </a>
+        <a class="card" href="/image-base64">
+          <h2 data-i18n="home.card.imagebase64.title">Image Base64 Converter</h2>
+          <p data-i18n="home.card.imagebase64.desc">Convert image files to/from data URLs.</p>
+          <span class="pill">/image-base64</span>
+        </a>
+        <a class="card" href="/uuidv7">
+          <h2 data-i18n="home.card.uuidv7.title">UUID v7 Generator</h2>
+          <p data-i18n="home.card.uuidv7.desc">Generate time-sortable UUID v7 values.</p>
+          <span class="pill">/uuidv7</span>
+        </a>
+        <a class="card" href="/case-convert">
+          <h2 data-i18n="home.card.case.title">Case Converter</h2>
+          <p data-i18n="home.card.case.desc">Convert camelCase, snake_case, kebab-case, and PascalCase.</p>
+          <span class="pill">/case-convert</span>
+        </a>
+        <a class="card" href="/json-yaml">
+          <h2 data-i18n="home.card.jsonyaml.title">JSON YAML Converter</h2>
+          <p data-i18n="home.card.jsonyaml.desc">Convert JSON and YAML, plus clean up CSV data.</p>
+          <span class="pill">/json-yaml</span>
+        </a>
+        <a class="card" href="/query-builder">
+          <h2 data-i18n="home.card.query.title">URL Query Builder</h2>
+          <p data-i18n="home.card.query.desc">Build query strings with key/value rows.</p>
+          <span class="pill">/query-builder</span>
+        </a>
+        <a class="card" href="/ip-ua">
+          <h2 data-i18n="home.card.ipua.title">IP/User-Agent Info</h2>
+          <p data-i18n="home.card.ipua.desc">Quick check for IP, UA, locale and timezone.</p>
+          <span class="pill">/ip-ua</span>
+        </a>
+        <a class="card" href="/pdf-toolkit">
+          <h2 data-i18n="home.card.pdf.title">PDF Merge/Split</h2>
+          <p data-i18n="home.card.pdf.desc">Merge, split, extract pages, watermark, and inspect PDFs.</p>
+          <span class="pill">/pdf-toolkit</span>
+        </a>
+        <a class="card" href="/image-optimize">
+          <h2 data-i18n="home.card.imageoptimize.title">Image Optimizer</h2>
+          <p data-i18n="home.card.imageoptimize.desc">Compress, resize, and convert WEBP/JPEG/PNG files.</p>
+          <span class="pill">/image-optimize</span>
+        </a>
+        <a class="card" href="/ocr">
+          <h2 data-i18n="home.card.ocr.title">OCR Text Extractor</h2>
+          <p data-i18n="home.card.ocr.desc">Extract Korean and English text from images.</p>
+          <span class="pill">/ocr</span>
+        </a>
+        <a class="card" href="/seo-check">
+          <h2 data-i18n="home.card.seocheck.title">SEO Meta Tag Checker</h2>
+          <p data-i18n="home.card.seocheck.desc">Audit title, description, OG, and canonical tags.</p>
+          <span class="pill">/seo-check</span>
+        </a>
+        <a class="card" href="/utm-builder">
+          <h2 data-i18n="home.card.utm.title">UTM Generator</h2>
+          <p data-i18n="home.card.utm.desc">Build campaign URLs and test short-code style parameters.</p>
+          <span class="pill">/utm-builder</span>
+        </a>
+        <a class="card" href="/text-cleaner">
+          <h2 data-i18n="home.card.textcleaner.title">Text Cleaner</h2>
+          <p data-i18n="home.card.textcleaner.desc">Remove duplicates, trim whitespace, sort lines, and slugify.</p>
+          <span class="pill">/text-cleaner</span>
+        </a>
+        <a class="card" href="/text-stats">
+          <h2 data-i18n="home.card.textstats.title">Text Statistics Calculator</h2>
+          <p data-i18n="home.card.textstats.desc">Count characters, words, lines and estimate reading time.</p>
+          <span class="pill">/text-stats</span>
+        </a>
+        <a class="card" href="/ip-cidr">
+          <h2 data-i18n="home.card.ipcidr.title">CIDR Calculator</h2>
+          <p data-i18n="home.card.ipcidr.desc">Calculate subnet, broadcast, and host ranges from IPv4 CIDR blocks.</p>
+          <span class="pill">/ip-cidr</span>
+        </a>
+        <a class="card" href="/api-tester">
+          <h2 data-i18n="home.card.apitester.title">API Request Tester</h2>
+          <p data-i18n="home.card.apitester.desc">Send HTTP requests, inspect responses, and export them as cURL.</p>
+          <span class="pill">/api-tester</span>
+        </a>
+      </main>
+    </section>
+
+    <section class="home-access" aria-labelledby="homeAccessTitle">
+      <div class="home-access__header">
+        <p class="section-kicker" data-home-access-kicker>Quick Return</p>
+        <h2 id="homeAccessTitle" class="section-title" data-home-access-heading>즐겨찾기 & 최근 사용</h2>
+        <p class="section-lead" data-home-access-lead>다시 쓰는 도구만 모아 빠르게 돌아오세요.</p>
+      </div>
+      <div class="home-access__grid" data-home-access-grid></div>
+    </section>
+
+    <nav class="home-guide-strip" aria-label="Guides and references">
+      <a href="/ai-tools">AI commands</a>
+      <a href="/codex-cheatsheet">Codex cheatsheet</a>
+      <a href="/claude-code-cheatsheet">Claude Code cheatsheet</a>
+      <a href="/learn">Guides</a>
+      <a href="/uuid-v4-v7">UUID v4 vs v7</a>
+      <a href="/jwt-exp-nbf">JWT exp / nbf</a>
+      <a href="/base64-vs-url-encoding">Base64 vs URL</a>
+    </nav>
+
+    <footer class="footer" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small>© 2026 stateless tools · browser-first utility launcher</small>
+    </footer>
+  </div>
+
+</body>
+
+</html>

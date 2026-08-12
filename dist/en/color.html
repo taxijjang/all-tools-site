@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Color Converter and Contrast Checker | HEX, RGB, HSL | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
+  <script type="module" crossorigin src="/assets/color-DkSw1YcS.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Dybl5N3h.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Convert between HEX, RGB, and HSL, and check the contrast ratio against WCAG AA and AAA thresholds." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/color" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/color" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/color" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/color" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="Color Converter and Contrast Checker | HEX, RGB, HSL" />
+  <meta property="og:description" content="Convert between HEX, RGB, and HSL, and check the contrast ratio against WCAG AA and AAA thresholds." />
+  <meta property="og:url" content="https://taxijjang.com/en/color" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Color Converter and Contrast Checker | HEX, RGB, HSL" />
+  <meta name="twitter:description" content="Convert between HEX, RGB, and HSL, and check the contrast ratio against WCAG AA and AAA thresholds." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/color#webpage",
+    "name": "색상 변환기/대비 검사기 | HEX, RGB, HSL",
+    "url": "https://taxijjang.com/color",
+    "description": "HEX, RGB, HSL 색상 코드를 서로 변환하고 대비 비율을 계산할 수 있습니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/color#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/color#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "색상 변환기/대비 검사기 | HEX, RGB, HSL",
+        "item": "https://taxijjang.com/color"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://taxijjang.com/color#app",
+    "name": "색상 변환기/대비 검사기 | HEX, RGB, HSL",
+    "url": "https://taxijjang.com/color",
+    "description": "HEX, RGB, HSL 색상 코드를 서로 변환하고 대비 비율을 계산할 수 있습니다.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://taxijjang.com/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    }
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="color" data-allow-ads="true">
+  <div class="page page--dev">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt">JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash">SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color" selected>Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/uuidv7">UUID v7</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml">JSON YAML</option>
+          <option value="/query-builder">URL Query Builder</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr">CIDR Calculator</option>
+          <option value="/text-stats">Text Stats</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder">UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+    <header class="page-header">
+      <h1 data-i18n="color.title">Color Converter/Contrast Checker</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      <p data-i18n="color.description">Convert HEX, RGB, and HSL colors while checking contrast ratios.</p>
+    </header>
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack">
+        <label for="colorPicker" data-i18n="color.pick">Pick color</label>
+        <input id="colorPicker" type="color" value="#0ea5e9" />
+        <div id="colorSwatch" class="color-swatch"></div>
+      </section>
+      <section class="tool__panel tool__panel--stack">
+        <div class="panel-header"><label for="colorHex">HEX</label><button data-copy="colorHex" type="button" data-i18n="common.copy">Copy</button></div><input id="colorHex" type="text" readonly />
+        <div class="panel-header"><label for="colorRgb">RGB</label><button data-copy="colorRgb" type="button" data-i18n="common.copy">Copy</button></div><input id="colorRgb" type="text" readonly />
+        <div class="panel-header"><label for="colorHsl">HSL</label><button data-copy="colorHsl" type="button" data-i18n="common.copy">Copy</button></div><input id="colorHsl" type="text" readonly />
+        <label for="colorContrast" data-i18n="color.contrast">Contrast ratio</label><input id="colorContrast" type="text" readonly />
+      </section>
+    </main>
+    <p id="colorMessage" class="message" role="status" aria-live="polite"></p>
+
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section content-section--highlight">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">Color conversion and contrast review</h2>
+          <p class="section-lead">Convert HEX, RGB, and HSL values from the same color and check contrast against white and black backgrounds.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Normalize design tokens</h3>
+              <p>Convert HEX values from design tools into RGB and HSL formats for CSS, JavaScript, and documentation.</p>
+            </article>
+            <article class="info-card">
+              <h3>Check readable contrast</h3>
+              <p>See how the selected color performs against light and dark backgrounds before using it for UI text or icons.</p>
+            </article>
+            <article class="info-card">
+              <h3>Copy-ready output</h3>
+              <p>Copy each color format directly into theme variables, component styles, or design notes.</p>
+            </article>
+          </div>
+        </section>
+
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+
+        <section class="content-section">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">How to use it</h2>
+          <ol class="content-list">
+          <li>Choose a base color with the picker or inspect the current HEX value.</li>
+          <li>Copy the RGB or HSL output that matches the code format you need.</li>
+          <li>Review contrast against white and black before using the color for text or icons.</li>
+          <li>Do a final check in the real UI with the actual background, font size, and weight.</li>
+          </ol>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>One color in three notations</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>#2DD4BF</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>HEX  #2DD4BF
+RGB  rgb(45, 212, 191)
+HSL  hsl(173, 66%, 50%)</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>Body text contrast check</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>Foreground #64748B on background #FFFFFF</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>Contrast ratio 4.76:1
+Passes AA for body text, fails AAA</code></pre>
+              <p class="example-item__note">WCAG asks for 4.5:1 (AA) and 7:1 (AAA) on body text, and 3:1 for large text.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>It looks fine but fails the audit</h3>
+              <p>Light grey text on a light background is the most common failure. If you cannot reach 4.5:1, darken the text or increase the size to qualify for the 3:1 large-text threshold.</p>
+            </article>
+            <article class="info-card">
+              <h3>Transparency is not accounted for</h3>
+              <p>Contrast must be computed on the color the eye actually sees. For semi-transparent colors, enter the composited result rather than the source value.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Review</p>
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Contrast needs context</h3>
+              <p>The ratio is a fast signal, but final accessibility depends on text size, font weight, state color, and surrounding background.</p>
+            </article>
+            <article class="info-card">
+              <h3>Use HSL for variants</h3>
+              <p>HSL is useful when you want to keep hue stable while adjusting lightness or saturation for hover, disabled, and border states.</p>
+            </article>
+          </div>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/ip-ua">IP / User-Agent</a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.</li>
+            <li><a href="/ip-cidr">CIDR Calculator</a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s</li>
+            <li><a href="/cron">Cron Parser</a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin</li>
+            <li><a href="/timestamp">Timestamp Converter</a></li>
+            <li><a href="/hash">SHA Hash</a></li>
+            <li><a href="/password">Password</a></li>
+          </ul>
+        </section>
+        </details>
+    </section>
+      <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small data-i18n="common.footerHome">© 2025 stateless tools · Static site for Cloudflare Pages deployment</small>
+    </footer>
+  </div>
+  
+</body>
+</html>

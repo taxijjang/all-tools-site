@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Privacy and Data Handling | Cookies, Analytics, Ads | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-Dybl5N3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="How Stateless Tools handles data in the browser, what is kept in local storage, and how Google Analytics, AdSense, and cookies are used." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/privacy" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/privacy" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/privacy" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/privacy" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="Privacy and Data Handling | Cookies, Analytics, Ads" />
+  <meta property="og:description" content="How Stateless Tools handles data in the browser, what is kept in local storage, and how Google Analytics, AdSense, and cookies are used." />
+  <meta property="og:url" content="https://taxijjang.com/en/privacy" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Privacy and Data Handling | Cookies, Analytics, Ads" />
+  <meta name="twitter:description" content="How Stateless Tools handles data in the browser, what is kept in local storage, and how Google Analytics, AdSense, and cookies are used." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/privacy#webpage",
+    "name": "개인정보 처리 안내 | 브라우저 처리, 분석, 광고 정책",
+    "url": "https://taxijjang.com/privacy",
+    "description": "Stateless Tools의 브라우저 내부 처리, localStorage 저장, Google Analytics, AdSense, 외부 라이브러리 사용 방식을 정리한 개인정보 안내입니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/privacy#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/privacy#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "개인정보 처리 안내 | 브라우저 처리, 분석, 광고 정책",
+        "item": "https://taxijjang.com/privacy"
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="privacy" data-allow-ads="true">
+
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1 data-i18n="page.privacyTitle">Privacy and data handling</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      
+      <div data-locale-block="en" lang="en">
+        <p>This site tries to keep as much processing as possible inside the browser. The sections below summarize how the current pages handle data.</p>
+        <p class="content-note">Last updated: June 8, 2026 · Maintainer: taxijjang</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Summary</p>
+          <h2 class="section-title">Key points</h2>
+          <ul class="content-list">
+            <li>Many tools, including UUID, Base64, JSON, hashing, and text helpers, run in browser memory.</li>
+            <li>The site does not currently provide its own account system, member database, or payment processing.</li>
+            <li>Google Analytics may run for basic traffic measurement.</li>
+            <li>Service worker cache and local storage may keep theme, locale, and some recent input state inside your browser.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Browser Processing</p>
+          <h2 class="section-title">How input data is handled</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Text input</h3>
+              <p>Values used in JSON, JWT, Base64, URL, regex, and text-stat flows are processed in the browser to provide the tool output.</p>
+            </article>
+            <article class="info-card">
+              <h3>File input</h3>
+              <p>PDF, image, OCR, and file-hash features read files in the browser for conversion or inspection. Browser behavior and third-party libraries still matter.</p>
+            </article>
+            <article class="info-card">
+              <h3>Stored preferences</h3>
+              <p>Locale, theme, and some recent input state may be stored in local storage to make return visits smoother.</p>
+            </article>
+            <article class="info-card">
+              <h3>Account data</h3>
+              <p>The site currently does not provide its own sign-up, login, payment flow, or member database.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Cookies</p>
+          <h2 class="section-title">Cookies and advertising identifiers</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>This site uses cookies</h3>
+              <p>
+                Third-party vendors, including Google, use cookies to serve ads based on your prior visits to this
+                site. Google's use of advertising cookies enables it and its partners to serve ads based on your
+                visits to this site and other sites on the internet.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>Opting out of personalized ads</h3>
+              <p>
+                You may opt out of personalized advertising by visiting
+                <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google Ads Settings</a>.
+                To opt out of personalized advertising from other vendors, visit
+                <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info</a>.
+              </p>
+            </article>
+            <article class="faq-item">
+              <h3>Blocking cookies in your browser</h3>
+              <p>
+                You can block or delete cookies in your browser settings. Blocking them may also disable the
+                conveniences this site stores locally, such as your theme and language preference.
+              </p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Third Parties</p>
+          <h2 class="section-title">Third-party services</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Google Analytics</h3>
+              <p>Google Analytics may load to measure traffic and basic page usage patterns.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Google AdSense</h3>
+              <p>When advertising is enabled, Google AdSense may use its own technologies for ad delivery and measurement. The exact behavior depends on page-level and account-level settings.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Open-source libraries</h3>
+              <p>Features such as PDF handling, OCR, and QR processing may rely on public libraries whose runtime behavior also depends on your browser environment.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Control</p>
+          <h2 class="section-title">What you can control</h2>
+          <ul class="content-list">
+            <li>Clearing browser cache and service workers removes cached offline resources and related stored state.</li>
+            <li>Deleting local storage resets saved locale, theme, and recent input values.</li>
+            <li>Sensitive payloads should be masked or replaced with test samples before pasting them into any browser tool.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/contact">Contact</a>
+            <a class="link-button" href="https://github.com/taxijjang/all-tools-site" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small>© 2025 stateless tools · privacy summary for current browser-based features</small>
+    </footer>
+  </div>
+
+  
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>About This Site | Stateless Tools Principles | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-Dybl5N3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Why Stateless Tools exists, who it is for, the browser-first processing principle, and how to reach the maintainer." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/about" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/about" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/about" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/about" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="About This Site | Stateless Tools Principles" />
+  <meta property="og:description" content="Why Stateless Tools exists, who it is for, the browser-first processing principle, and how to reach the maintainer." />
+  <meta property="og:url" content="https://taxijjang.com/en/about" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="About This Site | Stateless Tools Principles" />
+  <meta name="twitter:description" content="Why Stateless Tools exists, who it is for, the browser-first processing principle, and how to reach the maintainer." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/about#webpage",
+    "name": "사이트 소개 | Stateless Tools 운영 원칙과 브라우저 도구 모음",
+    "url": "https://taxijjang.com/about",
+    "description": "Stateless Tools를 만든 이유, 대상 사용자, 브라우저 우선 처리 원칙, 운영자와 공개 피드백 경로를 정리한 소개 페이지입니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/about#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/about#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "사이트 소개 | Stateless Tools 운영 원칙과 브라우저 도구 모음",
+        "item": "https://taxijjang.com/about"
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="about" data-allow-ads="true">
+
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1 data-i18n="page.aboutTitle">About this site</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      
+      <div data-locale-block="en" lang="en">
+        <p>stateless tools is a personal project built to speed up the repetitive conversion and inspection work that shows up in development, operations, and content workflows.</p>
+        <p class="content-note">Maintainer: taxijjang · Public repository: github.com/taxijjang/all-tools-site</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Overview</p>
+          <h2 class="section-title">Why this project exists</h2>
+          <p class="section-lead">
+            It started from the friction of opening a terminal or bouncing across multiple ad-heavy websites just to finish a small conversion task. The goal is to keep common utilities in one place and let browser-native workflows solve as much as possible.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Audience</p>
+          <h2 class="section-title">Who this site is for</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Developers</h3>
+              <p>JSON, JWT, URL, hashing, and API checks are kept close for debugging sessions and quick payload inspection.</p>
+            </article>
+            <article class="info-card">
+              <h3>Operators</h3>
+              <p>Cron, timestamps, and IP/CIDR tools support short verification loops around deployments and monitoring work.</p>
+            </article>
+            <article class="info-card">
+              <h3>Content and marketing teams</h3>
+              <p>UTM, QR, image optimization, Base64, and text-cleanup tasks can be handled without installing a separate desktop tool.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Principles</p>
+          <h2 class="section-title">Operating rules</h2>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>1. Browser-first when possible</h3>
+              <p>If a task can finish in browser memory without server-side processing, that is the preferred path.</p>
+            </article>
+            <article class="info-card">
+              <h3>2. Practical over bloated</h3>
+              <p>The site prioritizes outputs people actually copy, compare, and verify instead of loading every page with extra controls.</p>
+            </article>
+            <article class="info-card">
+              <h3>3. Visible feedback routes</h3>
+              <p>Bugs and improvement ideas are reviewed through public channels tied to the repository and site owner.</p>
+            </article>
+            <article class="info-card">
+              <h3>4. Reviewable site information</h3>
+              <p>About, privacy, and contact pages are kept public so visitors and reviewers can understand ownership and policies.</p>
+            </article>
+          </div>
+          <p class="content-note">The project is currently maintained by <strong>taxijjang</strong> as an evolving personal toolkit.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Links</p>
+          <h2 class="section-title">More information and feedback routes</h2>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="/privacy">Privacy</a>
+            <a class="link-button" href="/contact">Contact</a>
+            <a class="link-button" href="https://github.com/taxijjang/all-tools-site" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+            <a class="link-button" href="https://taxijjang.tistory.com/" target="_blank" rel="noopener noreferrer">Tistory</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small>© 2025 stateless tools · browser-first utility project</small>
+    </footer>
+  </div>
+
+  
+</body>
+
+</html>

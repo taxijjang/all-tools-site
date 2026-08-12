@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Codex Cheat Sheet | CLI, Slash Commands, Skills, MCP | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-Dybl5N3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="A current summary of the Codex CLI and app, slash commands, AGENTS.md, Skills, MCP, Automations, and worktree setup points." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/codex-cheatsheet" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/codex-cheatsheet" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/codex-cheatsheet" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/codex-cheatsheet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="Codex Cheat Sheet | CLI, Slash Commands, Skills, MCP" />
+  <meta property="og:description" content="A current summary of the Codex CLI and app, slash commands, AGENTS.md, Skills, MCP, Automations, and worktree setup points." />
+  <meta property="og:url" content="https://taxijjang.com/en/codex-cheatsheet" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Codex Cheat Sheet | CLI, Slash Commands, Skills, MCP" />
+  <meta name="twitter:description" content="A current summary of the Codex CLI and app, slash commands, AGENTS.md, Skills, MCP, Automations, and worktree setup points." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/codex-cheatsheet#webpage",
+    "name": "Codex 치트시트 | CLI, Slash Commands, Skills, MCP",
+    "url": "https://taxijjang.com/codex-cheatsheet",
+    "description": "Codex CLI, 앱, slash commands, AGENTS.md, Skills, MCP, Automations, worktree 설정 포인트를 빠르게 정리한 최신 치트시트입니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/codex-cheatsheet#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/codex-cheatsheet#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Codex 치트시트 | CLI, Slash Commands, Skills, MCP",
+        "item": "https://taxijjang.com/codex-cheatsheet"
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="codex-cheatsheet" data-allow-ads="true">
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1>
+        
+        <span data-locale-block="en" lang="en">Codex cheatsheet</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      
+      <div data-locale-block="en" lang="en">
+        <p>A compact Codex reference rebuilt from the OpenAI Codex manual, focused on CLI commands, slash commands, AGENTS.md, Skills, MCP, Automations, and app settings.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Checked</p>
+          <h2 class="section-title">Start from the features OpenAI documents directly</h2>
+          <p class="section-lead">Codex now spans the CLI, desktop app, IDE extension, and cloud workflows. This page stays anchored to features OpenAI documents explicitly as of June 8, 2026.</p>
+          <span class="update-pill">Last checked · 2026-06-08</span>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">CLI First</p>
+          <h2 class="section-title">The terminal commands and slash controls people look up first</h2>
+          <div class="command-list">
+            <article class="command-card"><span class="command-pill"><code>codex login</code></span><h3>Reconnect authentication</h3><p>Recover Codex auth through ChatGPT OAuth, device auth, API key, or an access token piped over stdin.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex update</code></span><h3>Update the CLI</h3><p>Check for and apply a Codex CLI update when the installed release supports self-update.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex doctor</code></span><h3>Diagnose local setup</h3><p>Generate a support report for installation, auth, config, Git, terminal, app-server, and thread inventory issues.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex exec</code></span><h3>Run non-interactively</h3><p>Use Codex from scripts or automation and stream output to stdout or JSONL.</p></article>
+            <article class="command-card"><span class="command-pill"><code>codex --model</code></span><h3>Pick a model explicitly</h3><p>Override the configured default model for a single invocation.</p></article>
+            <article class="command-card"><span class="command-pill"><code>--sandbox</code> / <code>--ask-for-approval</code></span><h3>Set permission boundaries</h3><p>For local work, <code>workspace-write</code> plus <code>on-request</code> is usually the practical balance.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/permissions</code></span><h3>Adjust approval behavior mid-session</h3><p>Switch between presets such as Read Only and Auto while the session is running.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/model</code> / <code>/status</code></span><h3>Inspect model and session state</h3><p>Confirm the active model, effort, approval policy, writable roots, and remaining context.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/plan</code> / <code>/goal</code></span><h3>Structure bigger tasks first</h3><p>Use plan mode before implementation and goals for longer-running tracked work.</p></article>
+            <article class="command-card"><span class="command-pill"><code>/diff</code> / <code>/review</code></span><h3>Check before committing</h3><p>Inspect the working tree diff and ask Codex for a review pass on local changes.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">App Workflow</p>
+          <h2 class="section-title">The features people re-open even more than commands</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>AGENTS.md</h3>
+              <p>Keep recurring review criteria, build commands, and repository rules in <code>AGENTS.md</code>. Closer nested files provide more specific guidance.</p>
+            </article>
+            <article class="info-card">
+              <h3>Skills</h3>
+              <p>Put repeatable procedures in <code>.agents/skills</code> or <code>$HOME/.agents/skills</code>. Codex reads the full <code>SKILL.md</code> only when needed.</p>
+            </article>
+            <article class="info-card">
+              <h3>MCP</h3>
+              <p>Use <code>codex mcp</code> or <code>config.toml</code> MCP settings when Codex needs GitHub, Figma, browsers, internal docs, or other external systems.</p>
+            </article>
+            <article class="info-card">
+              <h3>Automations + worktrees</h3>
+              <p>Run recurring checks with Automations, and choose dedicated worktrees in Git repositories to isolate background changes from local work.</p>
+            </article>
+            <article class="info-card">
+              <h3>App modes</h3>
+              <p>Codex app threads run in Local, Worktree, or Cloud mode. Worktree mode is usually the cleanest choice for independent work in one repo.</p>
+            </article>
+            <article class="info-card">
+              <h3>Browser / Computer Use</h3>
+              <p>Think of the in-app browser and Browser plugin for web app checks, and Computer Use for desktop-app workflows.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Use Cases</p>
+          <h2 class="section-title">When this page is worth keeping open</h2>
+          <div class="command-list">
+            <article class="command-card">
+              <span class="command-pill">Return</span>
+              <h3>When you have not used Codex CLI in a while</h3>
+              <p>Start with <code>codex login</code>, <code>codex doctor</code>, <code>codex update</code>, and <code>/status</code> to recover auth, install, version, and session state.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">Extend</span>
+              <h3>When you want to add team playbooks</h3>
+              <p>Use <code>AGENTS.md</code> for rules, Skills for repeatable procedures, MCP for external systems, and Automations for recurring runs.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">Review</span>
+              <h3>When you want a final pass before committing</h3>
+              <p>Inspect changes with <code>/diff</code>, request a working-tree review with <code>/review</code>, then ask Codex to run the relevant tests.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Official Sources</p>
+          <h2 class="section-title">Direct links to the official docs</h2>
+          <div class="source-list">
+            <article class="source-card">
+              <a href="https://developers.openai.com/codex/cli/reference" target="_blank" rel="noreferrer">OpenAI Codex · CLI command reference</a>
+              <p>For CLI commands, global flags, sandboxing, approvals, <code>codex exec</code>, <code>codex doctor</code>, and <code>codex mcp</code>.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://developers.openai.com/codex/cli/slash-commands" target="_blank" rel="noreferrer">OpenAI Codex · CLI slash commands</a>
+              <p>For <code>/permissions</code>, <code>/model</code>, <code>/plan</code>, <code>/goal</code>, <code>/review</code>, and <code>/status</code>.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://developers.openai.com/codex/skills" target="_blank" rel="noreferrer">OpenAI Codex · Agent Skills</a>
+              <p>For skill structure, locations, progressive disclosure, and how skills relate to plugins.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://developers.openai.com/codex/mcp" target="_blank" rel="noreferrer">OpenAI Codex · Model Context Protocol</a>
+              <p>For MCP server setup, stdio/HTTP transports, OAuth, tool approvals, and plugin-provided MCP settings.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://developers.openai.com/codex/app/automations" target="_blank" rel="noreferrer">OpenAI Codex · Automations</a>
+              <p>For standalone automations, thread automations, worktree execution, and sandbox boundaries.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://developers.openai.com/codex/app/features" target="_blank" rel="noreferrer">OpenAI Codex · App features</a>
+              <p>For Local, Worktree, and Cloud modes, built-in Git tools, browser use, computer use, and app behavior.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    
+
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small>(c) 2026 stateless tools · unofficial summary based on OpenAI Codex docs</small>
+    </footer>
+  </div>
+
+  
+</body>
+
+</html>

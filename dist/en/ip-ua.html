@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>IP and User-Agent Checker | Browser Environment Info | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
+  <script type="module" crossorigin src="/assets/ipUa-C7z7IQZT.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Dybl5N3h.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Check your IP address, User-Agent, language, and timezone as the browser reports them." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/ip-ua" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/ip-ua" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/ip-ua" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/ip-ua" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="IP and User-Agent Checker | Browser Environment Info" />
+  <meta property="og:description" content="Check your IP address, User-Agent, language, and timezone as the browser reports them." />
+  <meta property="og:url" content="https://taxijjang.com/en/ip-ua" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="IP and User-Agent Checker | Browser Environment Info" />
+  <meta name="twitter:description" content="Check your IP address, User-Agent, language, and timezone as the browser reports them." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/ip-ua#webpage",
+    "name": "IP/User-Agent 확인 | 브라우저 네트워크 정보",
+    "url": "https://taxijjang.com/ip-ua",
+    "description": "IP 주소, User-Agent, 언어, 타임존 같은 브라우저 환경 정보를 빠르게 확인할 수 있습니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/ip-ua#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/ip-ua#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "IP/User-Agent 확인 | 브라우저 네트워크 정보",
+        "item": "https://taxijjang.com/ip-ua"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://taxijjang.com/ip-ua#app",
+    "name": "IP/User-Agent 확인 | 브라우저 네트워크 정보",
+    "url": "https://taxijjang.com/ip-ua",
+    "description": "IP 주소, User-Agent, 언어, 타임존 같은 브라우저 환경 정보를 빠르게 확인할 수 있습니다.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://taxijjang.com/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    }
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="ip-ua" data-allow-ads="true">
+  <div class="page page--dev">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt">JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash">SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color">Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/uuidv7">UUID v7</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml">JSON YAML</option>
+          <option value="/query-builder">URL Query Builder</option>
+          <option value="/ip-ua" selected>IP / User-Agent</option>
+          <option value="/ip-cidr">CIDR Calculator</option>
+          <option value="/text-stats">Text Stats</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder">UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label><div class="locale-switcher"><select id="localeSelect"><option value="ko" data-i18n="common.languageKorean">한국어</option><option value="en" data-i18n="common.languageEnglish">English</option></select></div></div>
+    <header class="page-header"><h1 data-i18n="ipua.title">IP/User-Agent Info</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p><p data-i18n="ipua.description">Check IP, user-agent, language, and timezone quickly.</p></header>
+    <main class="tool"><section class="tool__panel tool__panel--stack"><div class="toolbar"><button id="iuRefreshBtn" class="primary" type="button" data-i18n="ipua.refresh">Refresh</button></div><div class="panel-header"><label for="iuIp">Public IP</label><button type="button" data-copy="iuIp" data-i18n="common.copy">Copy</button></div><input id="iuIp" type="text" readonly /><div class="panel-header"><label for="iuUa">User-Agent</label><button type="button" data-copy="iuUa" data-i18n="common.copy">Copy</button></div><textarea id="iuUa" rows="4" readonly></textarea><label for="iuLang" data-i18n="ipua.lang">Language</label><input id="iuLang" type="text" readonly /><label for="iuTz" data-i18n="ipua.tz">Timezone</label><input id="iuTz" type="text" readonly /><label for="iuPlatform" data-i18n="ipua.platform">Platform</label><input id="iuPlatform" type="text" readonly /></section></main>
+    <p id="iuMessage" class="message"></p>
+
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section content-section--highlight">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">IP and User-Agent inspection</h2>
+          <p class="section-lead">Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Collect support details</h3>
+              <p>Gather the browser string, language, and timezone that support or QA teams need for reproduction.</p>
+            </article>
+            <article class="info-card">
+              <h3>Check network path</h3>
+              <p>Confirm the externally visible IP when using a VPN, proxy, office network, or mobile network.</p>
+            </article>
+            <article class="info-card">
+              <h3>Copy-ready environment data</h3>
+              <p>Use the values in logs, support tickets, and QA notes after reviewing what should be shared.</p>
+            </article>
+          </div>
+        </section>
+
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+
+        <section class="content-section">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">How to use it</h2>
+          <ol class="content-list">
+          <li>Open the page and inspect the current browser environment values.</li>
+          <li>Refresh after changing VPN or network settings to compare the visible IP.</li>
+          <li>Record User-Agent, browser language, and timezone when asking someone to reproduce a bug.</li>
+          <li>Before sharing, decide whether exposing IP or internal network details is appropriate.</li>
+          </ol>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>Reading a User-Agent string</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>Browser Chrome 131
+OS macOS
+Engine WebKit/Blink</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>The IP does not match your location</h3>
+              <p>A VPN, corporate proxy, or mobile carrier NAT shows the exit server address. IP-based geolocation is indicative only.</p>
+            </article>
+            <article class="info-card">
+              <h3>The OS version is frozen at 10_15_7</h3>
+              <p>Chrome reduces the detail it reports in the User-Agent for privacy. Newer macOS versions still report 10_15_7, so use Client Hints when you need the real version.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Review</p>
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>IP is not exact location</h3>
+              <p>IP-based location can differ from physical location because of VPNs, proxies, carriers, and office networks.</p>
+            </article>
+            <article class="info-card">
+              <h3>User-Agent is reduced</h3>
+              <p>Modern browsers may reduce or freeze User-Agent details for privacy. Feature detection is more reliable for capability checks.</p>
+            </article>
+          </div>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/ip-cidr">CIDR Calculator</a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s</li>
+            <li><a href="/cron">Cron Parser</a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin</li>
+            <li><a href="/timestamp">Timestamp Converter</a></li>
+            <li><a href="/hash">SHA Hash</a></li>
+            <li><a href="/password">Password</a></li>
+            <li><a href="/convert">Unit Converter</a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not</li>
+          </ul>
+        </section>
+        </details>
+    </section>
+      <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small data-i18n="common.footerHome">© 2025 stateless tools · Static site for Cloudflare Pages deployment</small>
+    </footer>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>AI Coding Cheat Sheets | Claude Code and Codex Commands | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-Dybl5N3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Current commands, workflows, and official documentation links for Claude Code and Codex, collected in one cheat sheet hub." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/ai-tools" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/ai-tools" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/ai-tools" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/ai-tools" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="AI Coding Cheat Sheets | Claude Code and Codex Commands" />
+  <meta property="og:description" content="Current commands, workflows, and official documentation links for Claude Code and Codex, collected in one cheat sheet hub." />
+  <meta property="og:url" content="https://taxijjang.com/en/ai-tools" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI Coding Cheat Sheets | Claude Code and Codex Commands" />
+  <meta name="twitter:description" content="Current commands, workflows, and official documentation links for Claude Code and Codex, collected in one cheat sheet hub." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/ai-tools#webpage",
+    "name": "AI 코딩 치트시트 | Claude Code, Codex 최신 명령 모음",
+    "url": "https://taxijjang.com/ai-tools",
+    "description": "Claude Code와 Codex를 빠르게 다시 쓰기 위한 최신 명령, 워크플로, GitHub skills 탐색 링크, 공식 문서 링크를 묶은 AI 코딩 치트시트 허브입니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/ai-tools#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/ai-tools#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "AI 코딩 치트시트 | Claude Code, Codex 최신 명령 모음",
+        "item": "https://taxijjang.com/ai-tools"
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="ai-tools" data-allow-ads="true">
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1>
+        
+        <span data-locale-block="en" lang="en">AI coding cheatsheet hub</span>
+      </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      
+      <div data-locale-block="en" lang="en">
+        <p>A compact hub for quickly recovering the commands, settings, and official docs you reach for when you open Claude Code or Codex again.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Why This Exists</p>
+          <h2 class="section-title">A page that should be faster than a blog post</h2>
+          <p class="section-lead">This hub is not a long-form opinion piece. It is a quick-recovery cheatsheet for developers who just need the key commands, settings, and official references again.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Faster return-to-work</h3>
+              <p>The goal is to restore the command names, settings, and extension points you actually reach for, then get you back into the tool.</p>
+            </article>
+            <article class="info-card">
+              <h3>Official-doc first</h3>
+              <p>These surfaces change quickly, so each cheatsheet stays anchored to official documentation rather than pretending to be the primary source.</p>
+            </article>
+            <article class="info-card">
+              <h3>Search-friendly structure</h3>
+              <p>People often search for cheatsheets directly. These pages are meant to capture that intent while still routing into practical references.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Open These First</p>
+          <h2 class="section-title">The cheatsheets worth opening now</h2>
+          <div class="content-grid">
+            <a class="info-card guide-link-card" href="/claude-code-cheatsheet">
+              <h3>Claude Code cheatsheet</h3>
+              <p>Commands, skills, MCP, hooks, run/verify, code review, and background agent workflows in one place.</p>
+              <span class="guide-link-card__meta">Open Claude Code page</span>
+            </a>
+            <a class="info-card guide-link-card" href="/codex-cheatsheet">
+              <h3>Codex cheatsheet</h3>
+              <p>CLI commands, slash commands, AGENTS.md, Skills, MCP, Automations, and worktree settings worth remembering first.</p>
+              <span class="guide-link-card__meta">Open Codex page</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">GitHub Skills Watch</p>
+          <h2 class="section-title">Find hot Claude Code / Codex skills</h2>
+          <p class="section-lead">Checked against GitHub on June 8, 2026. Before installing a third-party skill, read the README, <code>SKILL.md</code>, recent commits, and issues.</p>
+          <div class="source-list">
+            <article class="source-card">
+              <a href="https://github.com/search?q=claude-code+skills&type=repositories&s=stars&o=desc" target="_blank" rel="noreferrer">Claude Code skills · stars</a>
+              <p>The fastest star-sorted search for Claude Code skill, command, and plugin repositories.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://github.com/search?q=claude-code+skills&type=repositories&s=updated&o=desc" target="_blank" rel="noreferrer">Claude Code skills · recently updated</a>
+              <p>Use updated sorting when you care more about active maintenance than raw popularity.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://github.com/search?q=codex+skills&type=repositories&s=stars&o=desc" target="_blank" rel="noreferrer">Codex skills · stars</a>
+              <p>Codex-specific skills are still smaller than Claude's ecosystem, so pair this with multi-agent searches.</p>
+            </article>
+            <article class="source-card">
+              <a href="https://github.com/search?q=agent+skills+codex+claude&type=repositories&s=stars&o=desc" target="_blank" rel="noreferrer">Claude + Codex compatible skills</a>
+              <p>Find skill packs that support multiple agents such as Claude Code, Codex, Cursor, and Gemini CLI.</p>
+            </article>
+          </div>
+          <div class="content-grid">
+            <a class="info-card guide-link-card" href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">
+              <h3>anthropics/skills</h3>
+              <p>The official public Agent Skills repository and the best baseline before reviewing third-party packs.</p>
+              <span class="guide-link-card__meta">Official reference</span>
+            </a>
+            <a class="info-card guide-link-card" href="https://github.com/mattpocock/skills" target="_blank" rel="noreferrer">
+              <h3>mattpocock/skills</h3>
+              <p>A practical Claude Code skill pack for real engineering workflows.</p>
+              <span class="guide-link-card__meta">Engineering skills</span>
+            </a>
+            <a class="info-card guide-link-card" href="https://github.com/secondsky/claude-skills" target="_blank" rel="noreferrer">
+              <h3>secondsky/claude-skills</h3>
+              <p>Claude Code skills for Cloudflare, React, Tailwind, and AI integration workflows.</p>
+              <span class="guide-link-card__meta">Production workflows</span>
+            </a>
+            <a class="info-card guide-link-card" href="https://github.com/ComposioHQ/awesome-claude-skills" target="_blank" rel="noreferrer">
+              <h3>ComposioHQ/awesome-claude-skills</h3>
+              <p>A curated list for Claude skills, MCP, and workflow automation resources.</p>
+              <span class="guide-link-card__meta">Curated list</span>
+            </a>
+            <a class="info-card guide-link-card" href="https://github.com/sickn33/antigravity-awesome-skills" target="_blank" rel="noreferrer">
+              <h3>sickn33/antigravity-awesome-skills</h3>
+              <p>A large multi-agent skill library spanning Claude Code, Codex CLI, Cursor, Gemini CLI, and more.</p>
+              <span class="guide-link-card__meta">Multi-agent library</span>
+            </a>
+            <a class="info-card guide-link-card" href="https://github.com/Gitmaxd/deepagents-cli-codex-skill" target="_blank" rel="noreferrer">
+              <h3>Gitmaxd/deepagents-cli-codex-skill</h3>
+              <p>A Codex-specific Deep Agents CLI skill example for studying Codex skill structure.</p>
+              <span class="guide-link-card__meta">Codex-specific example</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section content-section--highlight">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Decision Matrix</p>
+          <h2 class="section-title">Which reference to open for the moment you are in</h2>
+          <div class="cheatsheet-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Situation</th>
+                  <th>Open first</th>
+                  <th>Keywords to search</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>The session is long and context feels heavy</td>
+                  <td><a href="/claude-code-cheatsheet">Claude Code</a></td>
+                  <td><code>/context</code>, <code>/compact</code>, <code>/clear</code></td>
+                </tr>
+                <tr>
+                  <td>You want to change local CLI approval behavior</td>
+                  <td><a href="/codex-cheatsheet">Codex</a></td>
+                  <td><code>/permissions</code>, <code>--sandbox</code>, <code>--ask-for-approval</code></td>
+                </tr>
+                <tr>
+                  <td>You forgot the extension points around MCP, hooks, skills, or plugins</td>
+                  <td><a href="/claude-code-cheatsheet">Claude Code</a></td>
+                  <td><code>/mcp</code>, <code>/hooks</code>, <code>/plugin</code>, <code>SKILL.md</code></td>
+                </tr>
+                <tr>
+                  <td>You are setting up longer Codex app work or a team playbook</td>
+                  <td><a href="/codex-cheatsheet">Codex</a></td>
+                  <td><code>AGENTS.md</code>, Skills, MCP, Automations, worktree</td>
+                </tr>
+                <tr>
+                  <td>You want the agent to drive and verify a running app</td>
+                  <td><a href="/claude-code-cheatsheet">Claude Code</a></td>
+                  <td><code>/run</code>, <code>/verify</code>, <code>/run-skill-generator</code></td>
+                </tr>
+                <tr>
+                  <td>You want a non-interactive terminal run</td>
+                  <td><a href="/codex-cheatsheet">Codex</a></td>
+                  <td><code>codex exec</code>, <code>codex doctor</code>, <code>codex mcp</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Use Case</p>
+          <h2 class="section-title">Which page to open for which problem</h2>
+          <div class="command-list">
+            <article class="command-card">
+              <span class="command-pill">Claude Code</span>
+              <h3>Open this when you need commands, MCP, hooks, skills, or background agents again</h3>
+              <p>The Claude page focuses on session control, running-app verification, and project extension points together.</p>
+            </article>
+            <article class="command-card">
+              <span class="command-pill">Codex</span>
+              <h3>Open this when you need CLI commands, slash commands, AGENTS.md, Skills, MCP, or Automations again</h3>
+              <p>The Codex page focuses on which surface to use and where to put durable rules, workflows, and external tools.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    
+
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small>(c) 2026 stateless tools · AI coding cheatsheet hub</small>
+    </footer>
+  </div>
+
+  
+</body>
+
+</html>

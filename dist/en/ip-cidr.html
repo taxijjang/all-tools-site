@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CIDR Calculator | IPv4 Subnet, Broadcast, Host Range | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/ipCidr-DhW-3V4I.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Dybl5N3h.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Calculate the network address, broadcast address, netmask, and usable host range for an IPv4 CIDR block." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/ip-cidr" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/ip-cidr" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/ip-cidr" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/ip-cidr" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="CIDR Calculator | IPv4 Subnet, Broadcast, Host Range" />
+  <meta property="og:description" content="Calculate the network address, broadcast address, netmask, and usable host range for an IPv4 CIDR block." />
+  <meta property="og:url" content="https://taxijjang.com/en/ip-cidr" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="CIDR Calculator | IPv4 Subnet, Broadcast, Host Range" />
+  <meta name="twitter:description" content="Calculate the network address, broadcast address, netmask, and usable host range for an IPv4 CIDR block." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/ip-cidr#webpage",
+    "name": "CIDR 계산기 | IPv4 서브넷, 브로드캐스트, 호스트 범위",
+    "url": "https://taxijjang.com/ip-cidr",
+    "description": "IPv4 CIDR 블록에서 서브넷, 브로드캐스트 주소, 호스트 범위를 계산할 수 있습니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/ip-cidr#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/ip-cidr#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "CIDR 계산기 | IPv4 서브넷, 브로드캐스트, 호스트 범위",
+        "item": "https://taxijjang.com/ip-cidr"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://taxijjang.com/ip-cidr#app",
+    "name": "CIDR 계산기 | IPv4 서브넷, 브로드캐스트, 호스트 범위",
+    "url": "https://taxijjang.com/ip-cidr",
+    "description": "IPv4 CIDR 블록에서 서브넷, 브로드캐스트 주소, 호스트 범위를 계산할 수 있습니다.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://taxijjang.com/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    }
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="ip-cidr" data-allow-ads="true">
+  <div class="page page--dev">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt">JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash">SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color">Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/uuidv7">UUID v7</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml">JSON YAML</option>
+          <option value="/query-builder">URL Query Builder</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr" selected>CIDR Calculator</option>
+          <option value="/text-stats">Text Stats</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder">UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1 data-i18n="ipCidr.title">CIDR Calculator</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      <p data-i18n="ipCidr.description">Compute subnet, broadcast, and host range details from IPv4 CIDR blocks.</p>
+    </header>
+
+    <main class="tool tool--columns">
+      <section class="tool__panel tool__panel--stack">
+        <label for="icIp" data-i18n="ipCidr.ip">IPv4 Address</label>
+        <input id="icIp" type="text" value="192.168.1.10" data-persist="ip" />
+        <label for="icPrefix" data-i18n="ipCidr.prefix">CIDR Prefix</label>
+        <input id="icPrefix" type="number" min="0" max="32" value="24" data-persist="prefix" />
+        <div class="toolbar">
+          <button id="icCalcBtn" class="primary" type="button" data-i18n="ipCidr.calculate">Calculate</button>
+          <button id="icCopyBtn" type="button" data-copy="icCidrOutput" data-i18n="ipCidr.copy">Copy CIDR</button>
+        </div>
+      </section>
+
+      <section class="tool__panel tool__panel--stack">
+        <label for="icCidrOutput" data-i18n="ipCidr.output">Result</label>
+        <input id="icCidrOutput" type="text" readonly value="192.168.1.0/24" />
+        <div class="tool-grid-3">
+          <div><label for="icNetwork" data-i18n="ipCidr.network">Network</label><input id="icNetwork" type="text" readonly /></div>
+          <div><label for="icBroadcast" data-i18n="ipCidr.broadcast">Broadcast</label><input id="icBroadcast" type="text" readonly /></div>
+          <div><label for="icNetmask" data-i18n="ipCidr.netmask">Subnet mask</label><input id="icNetmask" type="text" readonly /></div>
+          <div><label for="icWildcard" data-i18n="ipCidr.wildcard">Wildcard mask</label><input id="icWildcard" type="text" readonly /></div>
+          <div><label for="icUsable" data-i18n="ipCidr.usable">Usable hosts</label><input id="icUsable" type="text" readonly /></div>
+          <div><label for="ipCidrClass" data-i18n="ipCidr.class">Address type</label><input id="ipCidrClass" type="text" readonly /></div>
+          <div><label for="icFirst" data-i18n="ipCidr.firstHost">First host</label><input id="icFirst" type="text" readonly /></div>
+          <div><label for="icLast" data-i18n="ipCidr.lastHost">Last host</label><input id="icLast" type="text" readonly /></div>
+          <div><label for="icTotal" data-i18n="ipCidr.total">Total addresses</label><input id="icTotal" type="text" readonly /></div>
+        </div>
+        <div class="field-row">
+          <label><input id="icNetworkFlag" type="checkbox" disabled /> <span data-i18n="ipCidr.isNetwork">Input IP is network address</span></label>
+          <label><input id="icBroadcastFlag" type="checkbox" disabled /> <span data-i18n="ipCidr.isBroadcast">Input IP is broadcast address</span></label>
+        </div>
+      </section>
+    </main>
+
+    <p id="icMessage" class="message" role="status" aria-live="polite"></p>
+
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section content-section--highlight">
+          <p class="section-kicker">Guide</p>
+          <h2 class="section-title">CIDR calculation checklist</h2>
+          <p class="section-lead">Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet settings.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Inspect subnet ranges</h3>
+              <p>See the actual start and end addresses for CIDR blocks such as 10.0.0.0/24.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review access rules</h3>
+              <p>Check whether a firewall, allowlist, or VPN range is broader or narrower than intended before deployment.</p>
+            </article>
+            <article class="info-card">
+              <h3>Document network values</h3>
+              <p>Record network address, broadcast address, and host count to make infrastructure notes clearer.</p>
+            </article>
+          </div>
+        </section>
+
+        <details class="content-more">
+          <summary>More: how to use it, examples, and common errors</summary>
+
+        <section class="content-section">
+          <p class="section-kicker">Workflow</p>
+          <h2 class="section-title">How to use it</h2>
+          <ol class="content-list">
+          <li>Enter the IPv4 address and prefix length in CIDR notation.</li>
+          <li>Review the calculated network, broadcast, and host range values.</li>
+          <li>Compare the result with the range needed by your allowlist or route rule.</li>
+          <li>Apply cloud-provider reserved-address rules separately when relevant.</li>
+          </ol>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Examples</p>
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>A common private subnet</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>192.168.0.0/24</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>Network 192.168.0.0
+Broadcast 192.168.0.255
+Host range 192.168.0.1 - 192.168.0.254
+Usable hosts 254</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>A larger block</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>10.0.8.0/22</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>Network 10.0.8.0
+Broadcast 10.0.11.255
+Host range 10.0.8.1 - 10.0.11.254
+Usable hosts 1,022</code></pre>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Troubleshooting</p>
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>The host count is two short</h3>
+              <p>Usable hosts exclude the network address and the broadcast address. A /24 gives 254 usable hosts, not 256.</p>
+            </article>
+            <article class="info-card">
+              <h3>/31 and /32 behave differently</h3>
+              <p>A /32 identifies a single host. A /31 is used for point-to-point router links and uses both addresses with no broadcast (RFC 3021).</p>
+            </article>
+            <article class="info-card">
+              <h3>A bigger prefix means a smaller network</h3>
+              <p>A /26 is smaller than a /24. As the number grows the host count shrinks — a common inversion when writing firewall or security group rules.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <p class="section-kicker">Review</p>
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>IPv4 focused</h3>
+              <p>This tool focuses on IPv4 CIDR calculation. IPv6 uses different notation and sizing rules.</p>
+            </article>
+            <article class="info-card">
+              <h3>Reserved addresses vary</h3>
+              <p>Cloud networks may reserve some addresses in every subnet. Confirm usable host counts with the platform documentation.</p>
+            </article>
+          </div>
+        </section>
+
+
+        <section class="content-section">
+          <p class="section-kicker">Related</p>
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/ip-ua">IP / User-Agent</a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.</li>
+            <li><a href="/cron">Cron Parser</a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin</li>
+            <li><a href="/timestamp">Timestamp Converter</a></li>
+            <li><a href="/hash">SHA Hash</a></li>
+            <li><a href="/password">Password</a></li>
+            <li><a href="/convert">Unit Converter</a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not</li>
+          </ul>
+        </section>
+        </details>
+    </section>
+      <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small data-i18n="common.footerHome">© 2025 stateless tools · Static site for Cloudflare Pages deployment</small>
+    </footer>
+  </div>
+
+  
+</body>
+</html>

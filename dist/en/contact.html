@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Contact and Feedback | Bug Reports and Feature Requests | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script type="module" crossorigin src="/assets/site-Dybl5N3h.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-k6LHJySf.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="How to send bug reports, feature requests, and usage feedback through GitHub Issues and other public channels." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/contact" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/contact" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/contact" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/contact" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="Contact and Feedback | Bug Reports and Feature Requests" />
+  <meta property="og:description" content="How to send bug reports, feature requests, and usage feedback through GitHub Issues and other public channels." />
+  <meta property="og:url" content="https://taxijjang.com/en/contact" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Contact and Feedback | Bug Reports and Feature Requests" />
+  <meta name="twitter:description" content="How to send bug reports, feature requests, and usage feedback through GitHub Issues and other public channels." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/contact#webpage",
+    "name": "문의 안내 | 오류 제보, 기능 요청, 피드백 경로",
+    "url": "https://taxijjang.com/contact",
+    "description": "Stateless Tools의 오류 제보, 기능 요청, 사용 경험 피드백을 보낼 수 있는 GitHub Issue와 공개 연락 경로를 안내합니다.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/contact#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/contact#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "문의 안내 | 오류 제보, 기능 요청, 피드백 경로",
+        "item": "https://taxijjang.com/contact"
+      }
+    ]
+  }
+]
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+
+<body class="layout layout--dev" data-tool="contact" data-allow-ads="true">
+
+  <div class="page page--dev page--content">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/learn" data-chrome-link="learn">Guides</a>
+        <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1 data-i18n="page.contactTitle">Contact and feedback</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p>
+      
+      <div data-locale-block="en" lang="en">
+        <p>Bug reports, feature requests, and usage feedback are easiest to review when they come through a public, trackable channel.</p>
+        <p class="content-note">Do not include sensitive personal data, passwords, API keys, or production tokens in a public report.</p>
+      </div>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Channels</p>
+          <h2 class="section-title">Recommended contact routes</h2>
+          <div class="cta-row">
+            <a class="link-button link-button--primary" href="https://github.com/taxijjang/all-tools-site/issues" target="_blank" rel="noopener noreferrer">GitHub Issue</a>
+            <a class="link-button" href="https://github.com/taxijjang/all-tools-site" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+            <a class="link-button" href="https://taxijjang.tistory.com/" target="_blank" rel="noopener noreferrer">Tistory</a>
+          </div>
+          <p class="content-note">If the issue tracker is unavailable, a public note through the repository or blog route is still better than a vague report with no reproduction details.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Bug Reports</p>
+          <h2 class="section-title">What helps in a bug report</h2>
+          <ul class="content-list">
+            <li>The tool page URL and the exact feature involved</li>
+            <li>A minimal reproducible input or sample</li>
+            <li>The expected result versus the actual result</li>
+            <li>Browser name/version and whether it happened on mobile or desktop</li>
+            <li>A screenshot or console error if available</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <p class="section-kicker">Requests</p>
+          <h2 class="section-title">What makes a feature request useful</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Describe the workflow pain</h3>
+              <p>“Add a tool” is less actionable than explaining which repetitive task you want to shorten.</p>
+            </article>
+            <article class="info-card">
+              <h3>Show expected input and output</h3>
+              <p>Concrete examples help determine scope and implementation feasibility much faster.</p>
+            </article>
+            <article class="info-card">
+              <h3>Note whether browser-only is possible</h3>
+              <p>It helps to know whether the feature can stay client-side or would depend on an external API.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review priority</h3>
+              <p>Issues in frequently used tools, confusing security copy, and mobile layout problems are reviewed first.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/about" data-chrome-link="about">About</a>
+        <a href="/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small>© 2025 stateless tools · feedback and bug reporting guidance</small>
+    </footer>
+  </div>
+
+  
+</body>
+
+</html>
