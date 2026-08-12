@@ -264,7 +264,14 @@ function uxChecks() {
   };
 
   const label = (el) => {
-    const cls = (el.className || '').toString().split(' ')[0].slice(0, 24);
+    // 클래스 없는 요소는 부모 클래스로 어디 있는 건지 알려준다.
+    // 그냥 'a  22px'만 나오면 사이트 어디를 고쳐야 하는지 알 수 없다.
+    let cls = (el.className || '').toString().split(' ')[0].slice(0, 24);
+    if (!cls) {
+      const owner = el.closest('[class]');
+      const parentCls = owner && owner.className.toString().split(' ')[0].slice(0, 24);
+      if (parentCls) cls = '\u2190' + parentCls;
+    }
     const text = (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 24);
     return el.tagName.toLowerCase() + (cls ? '.' + cls : '') + (text ? ' "' + text + '"' : '');
   };
@@ -299,7 +306,13 @@ function uxChecks() {
   if (window.innerWidth <= 720) {
     document.querySelectorAll('button, select, input[type=checkbox], [role=tab], a').forEach((el) => {
       if (!visible(el)) return;
+      if (el.disabled) return; // 비활성 컨트롤은 누를 수 없으니 타깃이 아니다
       if (el.tagName === 'A' && el.closest('p, li, .faq-item, .info-card')) return;
+      // label로 감싼 체크박스는 label을 눌러도 토글된다. 실제 타깃은 label이다.
+      if (el.tagName === 'INPUT') {
+        const owner = el.closest('label');
+        if (owner && owner.getBoundingClientRect().height >= 44) return;
+      }
       const h = el.getBoundingClientRect().height;
       if (h < 44) add('touch-target', label(el), Math.round(h) + 'px < 44px');
     });

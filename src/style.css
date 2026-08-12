@@ -2393,7 +2393,7 @@ button.link-button {
 .file-picker__eyebrow {
   margin: 0;
   color: var(--primary);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -4050,7 +4050,7 @@ button.primary:hover,
   order: -2;
   max-width: 100%;
   color: var(--text-muted);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.02em;
 }
 
@@ -4556,7 +4556,6 @@ summary:focus-visible {
   button,
   select,
   .tool-tab,
-  .utility-links a,
   .locale-switcher select,
   .tool-switcher select,
   .page-controls .pwa-install-btn,
@@ -4568,6 +4567,31 @@ summary:focus-visible {
     min-height: 44px;
     min-width: 44px;
     justify-content: center;
+  }
+
+  /* a는 기본이 inline이라 min-height가 무시된다. 앞서 .utility-links a에
+     min-height만 줬는데 35px 그대로였다. inline-flex여야 높이가 먹는다. */
+  .page-controls .utility-links a,
+  .utility-links a,
+  .footer-links a,
+  .home-guide-strip a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* 클래스 규칙이 button 선택자를 이겨서 위 min-height가 안 닿았다. */
+  .home-query-chip,
+  .page--home .filter-chip,
+  .page--home .home-query-chip {
+    min-height: 44px;
+  }
+
+  /* 체크박스 자체는 13px이지만 실제 타깃은 감싼 label이다.
+     label을 누르면 브라우저가 체크박스를 토글한다. */
+  .field-row:has(input[type='checkbox']) {
+    min-height: 44px;
+    align-items: center;
   }
 
   /* 11px은 본문 최소 기준(12px) 아래다. 배지를 줄이려다 너무 줄였다. */
