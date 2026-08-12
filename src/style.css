@@ -4368,3 +4368,11 @@ button.primary:hover,
     display: none;
   }
 }
+
+/* ponytail: 같은 성격의 입력인데 도구마다 3배씩 차이가 났다.
+   /json 입력창은 276px인데 /hash는 96px로, 375px 패널 안에서 26%만 채우는 띠였다.
+   rows 4 이상(여러 줄을 붙여 넣는 입력)에만 최소 높이를 준다.
+   uuid의 rows=2는 UUID 한 줄을 담는 칸이라 그대로 둬야 한다. */
+.tool__panel textarea:not([rows='1']):not([rows='2']):not([rows='3']) {
+  min-height: 200px;
+}
