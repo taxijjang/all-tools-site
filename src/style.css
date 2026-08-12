@@ -4310,8 +4310,10 @@ button.primary:hover,
   min-width: 0;
 }
 
+/* .tool__column을 쓰는 페이지는 2열 flex로 둔다. jwt 전용이었지만 uuid, hash도
+   같은 문제(패널이 2열 그리드로 흘러 한쪽이 비거나 짝이 대각선으로 떨어짐)라 범용으로 바꿨다. */
 @media (min-width: 980px) {
-  body[data-tool='jwt'] .tool:not(.tool--columns) {
+  .tool:not(.tool--columns):has(> .tool__column) {
     display: flex;
     /* .tool 기본 규칙이 column이라 명시적으로 되돌려야 한다 */
     flex-direction: row;
@@ -4319,14 +4321,50 @@ button.primary:hover,
     gap: 1rem;
   }
 
-  body[data-tool='jwt'] .tool > .tool__panel:first-of-type {
+  .tool:not(.tool--columns):has(> .tool__column) > .tool__panel,
+  .tool:not(.tool--columns):has(> .tool__column) > .tool__column {
     flex: 1 1 0;
     min-width: 0;
+  }
+
+  /* 입력 패널이 하나뿐인 도구는 결과를 읽는 동안 입력이 계속 보이게 고정한다. */
+  body[data-tool='jwt'] .tool > .tool__panel:first-of-type {
     position: sticky;
     top: 1rem;
   }
 
-  body[data-tool='jwt'] .tool > .tool__column {
-    flex: 1 1 0;
+  /* 파일 모드처럼 짝이 없는 패널은 두 열을 다 쓴다. */
+  .tool:not(.tool--columns) > .tool__panel--full {
+    grid-column: 1 / -1;
+  }
+}
+
+/* 좌상단 브랜드. 도구 페이지에서 홈으로 돌아가는 가장 눈에 익은 자리다. */
+.brand-home {
+  order: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.6rem 0.35rem 0.35rem;
+  border-radius: 999px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.brand-home img {
+  display: block;
+}
+
+.brand-home:hover {
+  background: var(--surface-muted);
+  color: var(--primary);
+}
+
+@media (max-width: 720px) {
+  .brand-home span {
+    display: none;
   }
 }

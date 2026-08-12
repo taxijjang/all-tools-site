@@ -516,7 +516,16 @@ ${NAV_TOOLS.map((tool) => {
 ${NAV_UTILITY_LINKS.map((link) => `        <a href="${link.href}" data-chrome-link="${link.key}">${link.labels.ko}</a>`).join('\n')}
       </nav>`;
 
-  return `
+  // ponytail: 상단에 로고도 사이트 이름도 없어서 도구 페이지에서 홈으로 가는 길이
+  // 헤더 안의 작은 "← 도구 목록으로" 하나뿐이었다. 좌상단 브랜드는 어느 사이트에나
+  // 있는 장치라 눈이 먼저 가는 자리다. 이걸 넣으면 헤더의 back-link는 중복이 된다.
+  const brandMarkup = `
+      <a class="brand-home" href="/" aria-label="${escapeAttr(SITE_NAME)}">
+        <img src="${SITE_LOGO_PATH}" alt="" width="22" height="22" />
+        <span>${escapeHtml(SITE_NAME)}</span>
+      </a>`;
+
+  return `${brandMarkup}
       <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
 ${switcherMarkup}
       <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
@@ -558,6 +567,9 @@ function injectFooterLinks(html) {
 
 function injectChromeShell(html, pathname) {
   let nextHtml = html.replace(/<div class="page-controls">/i, (match) => `${match}\n${buildChromeControls(pathname)}`);
+
+  // 좌상단 브랜드가 홈으로 가는 길을 맡으므로 헤더 안의 back-link는 뺀다.
+  nextHtml = nextHtml.replace(/\s*<a class="back-link"[^>]*>[\s\S]*?<\/a>/i, '');
 
   nextHtml = nextHtml.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/i, (match, attrs, text) => {
     if (match.includes('trust-badge')) {

@@ -72,6 +72,7 @@
     </header>
 
     <main class="tool">
+<div class="tool__column">
       <section class="tool__panel">
         <label for="uuidVersion" data-i18n="uuid.random.mode">생성 옵션</label>
         <div class="field-row">
@@ -88,7 +89,18 @@
         </div>
         <div id="uuidInspector" class="tool-inspector" aria-live="polite"></div>
       </section>
+      <section class="tool__panel">
+        <h2 data-i18n="uuid.bulk.title">대량 생성</h2>
+        <div class="field-row">
+          <label for="bulkCount" data-i18n="uuid.bulk.count">개수</label>
+          <input id="bulkCount" type="number" min="1" max="50" value="5" data-persist="bulkCount" />
+          <button id="bulkGenerateBtn" type="button" data-i18n="uuid.bulk.button">생성</button>
+        </div>
+        <textarea id="bulkOutput" rows="6" readonly></textarea>
+      </section>
+      </div>
 
+      <div class="tool__column">
       <section class="tool__panel">
         <h2 data-i18n="uuid.toHex.title">UUID → Hex(binary16)</h2>
         <label for="uuidInput" data-i18n="uuid.toHex.input">UUID 입력</label>
@@ -103,7 +115,6 @@
           <button type="button" data-copy="hexOutput" data-i18n="common.copy">복사</button>
         </div>
       </section>
-
       <section class="tool__panel">
         <h2 data-i18n="uuid.toUuid.title">Hex(binary16) → UUID</h2>
         <label for="hexInput" data-i18n="uuid.toUuid.input">Hex 입력 (32자리)</label>
@@ -118,18 +129,8 @@
           <button type="button" data-copy="uuidOutput" data-i18n="common.copy">복사</button>
         </div>
       </section>
+      </div>
 
-      <p id="uuidMessage" class="message" role="status" aria-live="polite"></p>
-
-      <section class="tool__panel">
-        <h2 data-i18n="uuid.bulk.title">대량 생성</h2>
-        <div class="field-row">
-          <label for="bulkCount" data-i18n="uuid.bulk.count">개수</label>
-          <input id="bulkCount" type="number" min="1" max="50" value="5" data-persist="bulkCount" />
-          <button id="bulkGenerateBtn" type="button" data-i18n="uuid.bulk.button">생성</button>
-        </div>
-        <textarea id="bulkOutput" rows="6" readonly></textarea>
-      </section>
 
     </main>
 
