@@ -4402,3 +4402,32 @@ button.primary:hover,
 .field-row:has(> textarea) > button {
   align-self: flex-end;
 }
+
+.tool-tabs {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.75rem;
+  background: var(--surface-muted);
+  margin-bottom: 0.25rem;
+}
+
+.tool-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.55rem;
+  cursor: pointer;
+}
+
+.tool-tab:hover {
+  color: var(--text-main);
+}
+
+.tool-tab.is-active {
+  background: var(--surface);
+  color: var(--primary);
+}

@@ -1907,6 +1907,51 @@ function setupLiveRun() {
   });
 }
 
+// ponytail: base64는 인코딩과 디코딩을 동시에 볼 일이 거의 없는데 나란히 두느라
+// 각 칸이 547px로 좁았다. 한 번에 하나만 보이면 전체 폭(1180px)을 쓸 수 있다.
+// 마크업 규칙만 맞추면 다른 도구(uuid, json-yaml)에도 그대로 쓸 수 있게 범용으로 둔다.
+function setupToolTabs() {
+  const bar = document.querySelector('[data-tool-tabs]');
+  if (!bar) {
+    return;
+  }
+
+  const tabs = [...bar.querySelectorAll('[data-tab-target]')];
+  const panels = tabs.map((tab) => document.getElementById(tab.dataset.tabTarget)).filter(Boolean);
+  if (tabs.length !== panels.length || !panels.length) {
+    return;
+  }
+
+  const activate = (target) => {
+    tabs.forEach((tab) => {
+      const on = tab.dataset.tabTarget === target;
+      tab.classList.toggle('is-active', on);
+      tab.setAttribute('aria-selected', String(on));
+    });
+    panels.forEach((panel) => {
+      panel.hidden = panel.id !== target;
+    });
+  };
+
+  bar.addEventListener('click', (event) => {
+    const tab = event.target.closest('[data-tab-target]');
+    if (tab) {
+      activate(tab.dataset.tabTarget);
+    }
+  });
+
+  // 좌우 화살표로도 이동할 수 있어야 탭으로서 제 역할을 한다.
+  bar.addEventListener('keydown', (event) => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') {
+      return;
+    }
+    const current = tabs.findIndex((tab) => tab.classList.contains('is-active'));
+    const next = (current + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+    activate(tabs[next].dataset.tabTarget);
+    tabs[next].focus();
+  });
+}
+
 function setupActions() {
   // Share State
   document.querySelectorAll('[data-share-state]').forEach((btn) => {
@@ -1988,6 +2033,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupAnalytics();
   hydratePersistentFields();
   setupActions();
+  setupToolTabs();
   setupLiveRun();
   revealI18n();
 });

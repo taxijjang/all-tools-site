@@ -72,7 +72,16 @@
     </header>
 
     <main class="tool">
-      <section class="tool__panel">
+      <div class="tool-tabs" role="tablist" data-tool-tabs>
+        <button type="button" class="tool-tab is-active" id="tabbtn-encode" role="tab"
+                aria-selected="true" data-tab-target="tab-encode"
+                data-i18n="base64.encode.title">문자열 → Base64</button>
+        <button type="button" class="tool-tab" id="tabbtn-decode" role="tab"
+                aria-selected="false" data-tab-target="tab-decode"
+                data-i18n="base64.decode.title">Base64 → 문자열</button>
+      </div>
+
+      <section class="tool__panel tool__panel--full" id="tab-encode" role="tabpanel" aria-labelledby="tabbtn-encode">
         <h2 data-i18n="base64.encode.title">문자열 → Base64</h2>
         <label for="plainInput" data-i18n="base64.encode.input">문자열 입력</label>
         <textarea id="plainInput" rows="4" placeholder="예: 안녕하세요" data-i18n="base64.encode.placeholder"
@@ -95,7 +104,7 @@
         </div>
       </section>
 
-      <section class="tool__panel">
+      <section class="tool__panel tool__panel--full" id="tab-decode" role="tabpanel" aria-labelledby="tabbtn-decode" hidden>
         <h2 data-i18n="base64.decode.title">Base64 → 문자열</h2>
         <label for="base64Input" data-i18n="base64.decode.input">Base64 입력</label>
         <textarea id="base64Input" rows="4" placeholder="예: 7JWI64WV7ZWY7IS47JqU" data-i18n="base64.decode.placeholder"
