@@ -4516,3 +4516,60 @@ button {
     color: var(--text-main);
   }
 }
+
+/* ---- ui-ux-pro-max 우선순위 1·2 적용 ---- */
+
+/* 우선순위 1 (접근성): 본문 링크에 색 규칙이 없어 브라우저 기본 #0000EE가 그대로
+   나왔다. 어두운 배경에서 대비 2:1로 사실상 안 보인다. 44개 파일 374개 링크가 해당됐다.
+   밑줄도 함께 준다. 색만으로 링크를 구분하게 두면 색각 이상에서 구분이 안 된다. */
+main a:not([class]),
+.content-stack a:not([class]),
+.faq-item a:not([class]),
+.info-card a:not([class]) {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+main a:not([class]):hover,
+.content-stack a:not([class]):hover {
+  color: var(--primary-dark);
+}
+
+/* 키보드 사용자를 위한 포커스 링. :focus-visible이라 마우스 클릭에는 안 뜬다. */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 0.35rem;
+}
+
+/* 우선순위 2 (터치): 모바일에서 버튼·셀렉트가 36~39px로 44px 기준에 못 미쳤다.
+   손가락 접촉면은 대략 44px이고, 그보다 작으면 옆 버튼을 누르게 된다. */
+@media (max-width: 720px) {
+  button,
+  select,
+  .tool-tab,
+  .utility-links a,
+  .locale-switcher select,
+  .tool-switcher select,
+  .page-controls .pwa-install-btn,
+  .layout--dev .page-header .page-actions > * {
+    min-height: 44px;
+  }
+
+  .brand-home {
+    min-height: 44px;
+    min-width: 44px;
+    justify-content: center;
+  }
+
+  /* 11px은 본문 최소 기준(12px) 아래다. 배지를 줄이려다 너무 줄였다. */
+  .layout--dev .page-header .trust-badge {
+    font-size: 0.75rem;
+  }
+}
