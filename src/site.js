@@ -1952,6 +1952,48 @@ function setupToolTabs() {
   });
 }
 
+// ponytail: 26줄짜리 JSON을 넣으면 입력창이 276px로 고정돼 11줄이 잘렸다.
+// 정작 패널은 1805px이라 아래는 비어 있었다. rows를 키우면 짧은 입력에서
+// 빈 칸만 커지므로, 내용에 맞춰 자라되 화면을 넘지 않게 상한을 둔다.
+// rows 3 이하(UUID 한 줄 같은 칸)는 제외한다.
+function setupAutoGrow() {
+  const areas = [...document.querySelectorAll('.tool__panel textarea')].filter((el) => {
+    const rows = Number(el.getAttribute('rows') || 0);
+    return rows >= 4;
+  });
+
+  if (!areas.length) {
+    return;
+  }
+
+  const cap = () => Math.max(240, Math.round(window.innerHeight * 0.7));
+
+  const grow = (el) => {
+    el.style.height = 'auto';
+    el.style.height = `${Math.min(el.scrollHeight, cap())}px`;
+  };
+
+  areas.forEach((el) => {
+    grow(el);
+    el.addEventListener('input', () => grow(el));
+  });
+
+  // 출력은 textarea.value로 채워진다. value 대입은 MutationObserver가 못 잡으므로
+  // 도구가 결과를 쓸 시점(입력 디바운스 250ms 뒤, 버튼 클릭 뒤)에 맞춰 다시 잰다.
+  const outputs = areas.filter((el) => el.readOnly);
+  if (outputs.length) {
+    const regrowOutputs = () => outputs.forEach(grow);
+    const schedule = () => {
+      setTimeout(regrowOutputs, 400);
+      setTimeout(regrowOutputs, 900);
+    };
+    document.addEventListener('input', schedule);
+    document.addEventListener('click', schedule);
+  }
+
+  window.addEventListener('resize', () => areas.forEach(grow));
+}
+
 function setupActions() {
   // Share State
   document.querySelectorAll('[data-share-state]').forEach((btn) => {
@@ -2035,6 +2077,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setupActions();
   setupToolTabs();
   setupLiveRun();
+  setupAutoGrow();
   revealI18n();
 });
 
