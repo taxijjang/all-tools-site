@@ -25,6 +25,9 @@ import { translations } from './src/i18n-dict.js';
 
 const ADSENSE_PUBLISHER_ID = 'ca-pub-4324902308911757';
 const ADSENSE_ENABLED = true;
+// ponytail: GA4가 43개 소스 파일 중 36개에만 복붙돼 있어 7개 도구가 측정 밖이었다.
+// 광고 코드와 같은 방식으로 빌드에서 넣는다. 복붙은 언젠가 또 빠진다.
+const GA_MEASUREMENT_ID = 'G-WZJ5247NQK';
 
 const pageInputs = {
   main: resolve(__dirname, 'index.html'),
@@ -423,6 +426,9 @@ function removeHeadArtifacts(html) {
     /<link\s+rel=["']icon["'][^>]*>\s*/gi,
     /<script\s+type=["']application\/ld\+json["']\s+data-seo-schema[^>]*>[\s\S]*?<\/script>\s*/gi,
     /<script\b[^>]*pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js[^<]*<\/script>\s*/gi,
+    /<!--\s*Google tag \(gtag\.js\)\s*-->\s*/gi,
+    /<script\b[^>]*googletagmanager\.com\/gtag\/js[^<]*<\/script>\s*/gi,
+    /<script>\s*window\.dataLayer = window\.dataLayer \|\| \[\];[\s\S]*?gtag\('config'[^)]*\);\s*<\/script>\s*/gi,
     /<script\b[^>]*data-client-boot[^>]*>[\s\S]*?<\/script>\s*/gi,
     /<style\b[^>]*data-client-boot[^>]*>[\s\S]*?<\/style>\s*/gi,
     /<script>\s*\(\s*function\s*\(\)\s*\{\s*var supported = \['ko', 'en'\][\s\S]*?window\.__preferredLocale = locale;\s*\}\)\(\);\s*<\/script>\s*/gi,
@@ -1180,6 +1186,16 @@ function seoMetadataPlugin() {
         `  <meta name="twitter:image" content="${SITE_ORIGIN}${SITE_LOGO_PATH}" />`,
         `  <script type="application/ld+json" data-seo-schema>\n${structuredDataJson}\n  </script>`,
       ];
+
+      headTags.push(
+        `  <script async src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"></script>`,
+        `  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_MEASUREMENT_ID}');
+  </script>`,
+      );
 
       if (ADSENSE_ENABLED && !meta.noindex) {
         headTags.push(
