@@ -4458,3 +4458,61 @@ button.primary:hover,
 .tool:has(> .tool-tabs) > * {
   grid-column: 1 / -1;
 }
+
+/* ---- apple-design 스킬 적용 (이 사이트에 해당하는 부분만) ---- */
+
+/* §1 응답성: button에 transition: all 0.2s가 걸려 있어 누름 피드백(translateY)이
+   200ms 늦게 나왔다. 색은 천천히 바뀌어도 되지만 눌린 느낌은 즉시여야 한다. */
+button {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.08s ease-out;
+}
+
+/* §15 타이포: 트래킹은 크기에 따라 달라야 한다. 제목에 letter-spacing: 0을
+   박아두면 큰 글자에서 자간이 벌어져 보인다. 본문은 0 근처로 둔다. */
+.page-header h1,
+.layout--dev .page-header h1 {
+  letter-spacing: -0.02em;
+}
+
+.section-title {
+  letter-spacing: -0.01em;
+}
+
+/* §14 접근성: 세 신호를 모두 존중한다. 모션을 줄이라는 건 피드백을 없애라는 뜻이
+   아니라, 전정기관을 자극하지 않는 형태로 바꾸라는 뜻이다. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .trust-badge,
+  .tool-tabs {
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .tool__panel,
+  .info-card,
+  .faq-item,
+  .example-item,
+  .content-section--highlight {
+    border: 1px solid var(--text-muted);
+  }
+
+  .brand-home,
+  .tool-tab {
+    color: var(--text-main);
+  }
+}
