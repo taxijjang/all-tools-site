@@ -12,7 +12,8 @@
     "audit:layout": "node scripts/layout-audit.mjs",
     "audit:uploads": "node scripts/upload-audit.mjs",
     "verify": "npm run build && npm run test:smoke",
-    "verify:full": "npm run build && npm run test:smoke && npm run audit:i18n && npm run audit:layout && npm run audit:uploads"
+    "verify:full": "npm run build && npm run test:smoke && npm run audit:i18n && npm run audit:layout && npm run audit:uploads && npm run audit:ux",
+    "audit:ux": "node scripts/ux-audit.mjs"
   },
   "devDependencies": {
     "vite": "^5.0.12"
