@@ -4376,3 +4376,29 @@ button.primary:hover,
 .tool__panel textarea:not([rows='1']):not([rows='2']):not([rows='3']) {
   min-height: 200px;
 }
+
+/* ponytail: 붙여 넣은 원문을 읽으면서 작업하는 도구는 입력이 주다.
+   50:50으로 나누면 1180px 페이지에서 입력이 547px밖에 안 돼 JSON 중첩이 금방 접힌다.
+   출력은 하이라이트·트리 뷰가 따로 있어 조금 좁아도 읽는 데 지장이 적다. */
+@media (min-width: 980px) {
+  /* 이 도구들은 .tool--columns를 쓰므로 그쪽 규칙을 덮어야 한다. */
+  body[data-tool='json'] .tool,
+  body[data-tool='markdown'] .tool,
+  body[data-tool='regex'] .tool {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  }
+}
+
+/* ponytail: 복사 버튼이 출력창 옆에 붙어 55px를 먹어 입력 547px / 출력 483px로 어긋났다.
+   base64decode.org, jwt.io 모두 버튼을 위에 두고 텍스트 영역은 전체 폭을 쓴다.
+   textarea를 품은 field-row만 세로로 세우고 버튼을 위 오른쪽에 붙인다.
+   input을 품은 field-row(단위 선택, 복사 버튼 등)는 가로가 맞으므로 건드리지 않는다. */
+.field-row:has(> textarea) {
+  flex-direction: column-reverse;
+  align-items: stretch;
+  gap: 0.4rem;
+}
+
+.field-row:has(> textarea) > button {
+  align-self: flex-end;
+}

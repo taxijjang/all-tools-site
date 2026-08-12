@@ -2,6 +2,7 @@ const SUPPORTED_LOCALES = ['ko', 'en'];
 
 const translations = {
   ko: {
+    'common.moreContent': '사용법, 예시, 자주 만나는 오류 더 보기',
     'page.aboutTitle': '사이트 소개',
     'page.privacyTitle': '개인정보 처리 안내',
     'page.contactTitle': '문의 안내',
@@ -584,6 +585,7 @@ const translations = {
     'jwt.verify.failed': 'JWT 서명 검증 실패: {message}',
   },
   en: {
+    'common.moreContent': 'More: how to use it, examples, and common errors',
     'page.aboutTitle': 'About this site',
     'page.privacyTitle': 'Privacy and data handling',
     'page.contactTitle': 'Contact and feedback',

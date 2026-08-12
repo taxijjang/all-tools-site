@@ -772,6 +772,45 @@ ${relatedMarkup}
     </section>`;
 }
 
+// ponytail: 손으로 쓴 콘텐츠 페이지는 접기가 안 걸려 있었다. /json은 도구가 528px인데
+// 그 아래 설명이 1,884px로 페이지의 61%를 차지했다. 자동생성분과 같은 규칙을 적용한다.
+// 첫 섹션은 펼친 채로 남겨 접힌 상태에서도 페이지가 비어 보이지 않게 한다.
+function collapseAuthoredContent(html) {
+  const stackOpen = html.search(/<section class="content-stack">/);
+  if (stackOpen === -1 || /content-stack--generated/.test(html.slice(stackOpen, stackOpen + 60))) {
+    return html;
+  }
+
+  const stackEnd = findMatchingClose(html, 'section', html.indexOf('>', stackOpen) + 1);
+  if (stackEnd === -1) {
+    return html;
+  }
+
+  const inner = html.slice(html.indexOf('>', stackOpen) + 1, stackEnd - '</section>'.length);
+  const marker = /<section class="content-section[^"]*">/g;
+  const starts = [];
+  let match;
+  while ((match = marker.exec(inner))) {
+    starts.push(match.index);
+  }
+
+  if (starts.length < 2) {
+    return html;
+  }
+
+  const cut = starts[1];
+  const kept = inner.slice(0, cut);
+  const rest = inner.slice(cut);
+  const collapsed = `${kept}
+        <details class="content-more">
+          <summary data-i18n="common.moreContent">사용법, 예시, 자주 만나는 오류 더 보기</summary>
+${rest}
+        </details>
+      `;
+
+  return html.slice(0, html.indexOf('>', stackOpen) + 1) + collapsed + html.slice(stackEnd - '</section>'.length);
+}
+
 function injectGeneratedToolContent(html, meta, pageTitle, description) {
   // 가이드 문서(kind: content)도 예시/오류 섹션을 받을 수 있게 허용한다.
   // 전체 생성 블록은 kind가 tool이고 자체 콘텐츠가 없을 때만 들어간다.
@@ -953,6 +992,7 @@ function seoMetadataPlugin() {
       );
       nextHtml = nextHtml.replace(/<footer class="footer([^"]*)">/i, '<footer class="footer$1" data-nosnippet>');
       nextHtml = nextHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(fullTitle)}</title>`);
+      nextHtml = collapseAuthoredContent(nextHtml);
       nextHtml = extractHiddenLocaleBlocks(nextHtml);
       nextHtml = upsertBodyAttribute(
         nextHtml,
