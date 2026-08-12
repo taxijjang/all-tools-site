@@ -1,5 +1,6 @@
 import { bindLocaleSwitcher, initI18n, onLocaleChange, revealI18n, t } from './i18n.js';
 import { CONTENT_PAGES, NAV_TOOLS, NAV_UTILITY_LINKS, UTILITY_LINKS } from './chrome-meta.js';
+import { PAGE_META_EN } from './seo-meta-en.js';
 import {
   FILE_PICKER_META,
   HOME_DISCOVERY_COPY,
@@ -1448,6 +1449,56 @@ function setupGlobalNavigation() {
   updateChromeText();
 }
 
+// ponytail: <head>는 빌드 타임에 한국어로 박히고 런타임 번역 대상이 아니었다.
+// 그래서 영어로 바꿔도 탭 제목과 OG 태그가 한글로 남았다. i18n 감사도 body만 봐서 못 잡았다.
+// 한국어로 돌아올 때 되살릴 수 있게 초기값을 먼저 기억해둔다.
+const HEAD_META_TARGETS = [
+  ['title', null],
+  ['description', 'meta[name="description"]'],
+  ['ogTitle', 'meta[property="og:title"]'],
+  ['ogDescription', 'meta[property="og:description"]'],
+  ['twitterTitle', 'meta[name="twitter:title"]'],
+  ['twitterDescription', 'meta[name="twitter:description"]'],
+];
+
+const initialHeadMeta = (() => {
+  const snapshot = { title: document.title };
+  HEAD_META_TARGETS.forEach(([key, selector]) => {
+    if (!selector) return;
+    snapshot[key] = document.querySelector(selector)?.getAttribute('content') || '';
+  });
+  return snapshot;
+})();
+
+function setMetaContent(selector, value) {
+  const el = document.querySelector(selector);
+  if (el && typeof value === 'string') {
+    el.setAttribute('content', value);
+  }
+}
+
+function updateHeadMeta(locale = document.documentElement.getAttribute('lang')) {
+  const path = window.location.pathname.replace(/\.html$/i, '').replace(/\/$/, '') || '/';
+  const en = PAGE_META_EN[path];
+
+  if (locale === 'en' && en) {
+    document.title = `${en.title} | Stateless Tools`;
+    setMetaContent('meta[name="description"]', en.description);
+    setMetaContent('meta[property="og:title"]', en.title);
+    setMetaContent('meta[property="og:description"]', en.description);
+    setMetaContent('meta[name="twitter:title"]', en.title);
+    setMetaContent('meta[name="twitter:description"]', en.description);
+    return;
+  }
+
+  document.title = initialHeadMeta.title;
+  setMetaContent('meta[name="description"]', initialHeadMeta.description);
+  setMetaContent('meta[property="og:title"]', initialHeadMeta.ogTitle);
+  setMetaContent('meta[property="og:description"]', initialHeadMeta.ogDescription);
+  setMetaContent('meta[name="twitter:title"]', initialHeadMeta.twitterTitle);
+  setMetaContent('meta[name="twitter:description"]', initialHeadMeta.twitterDescription);
+}
+
 function updateChromeText(locale = document.documentElement.getAttribute('lang')) {
   const copy = getChromeCopy(locale);
   const relatedCopy = getRelatedCopy(locale);
@@ -1920,9 +1971,11 @@ window.addEventListener('DOMContentLoaded', () => {
   // 크롤러도 읽고 언어 전환도 되는데, 런타임 버전은 제목이 생성 시점 언어로 굳어
   // 영어로 바꿔도 한글이 남았다. 중복이면서 버그라 런타임 쪽을 뺀다.
   syncLocaleBlocks(currentLocale);
+  updateHeadMeta(currentLocale);
   onLocaleChange((locale) => {
     syncLocaleBlocks(locale);
     updateChromeText(locale);
+    updateHeadMeta(locale);
     refreshFilePickers(locale);
     refreshHomeDiscovery(locale);
     refreshCommandReferences(locale);

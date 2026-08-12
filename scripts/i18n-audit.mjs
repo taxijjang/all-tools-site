@@ -193,7 +193,20 @@ async function auditRoute(send, route) {
           return rect.width > 0 && rect.height > 0;
         };
 
-        return Array.from(document.querySelectorAll('body *'))
+        // <head>도 검사한다. 탭 제목과 OG 태그가 영어 모드에서 한글로 남는 버그를
+        // body만 훑던 이전 버전이 통째로 놓쳤다.
+        const headLeaks = [
+          ['title', document.title],
+          ['meta[name=description]', document.querySelector('meta[name="description"]')?.content],
+          ['og:title', document.querySelector('meta[property="og:title"]')?.content],
+          ['og:description', document.querySelector('meta[property="og:description"]')?.content],
+          ['twitter:title', document.querySelector('meta[name="twitter:title"]')?.content],
+          ['twitter:description', document.querySelector('meta[name="twitter:description"]')?.content],
+        ]
+          .filter(([, value]) => value && /[가-힣]/.test(value))
+          .map(([where, value]) => ({ tag: 'head', id: where, cls: null, text: value }));
+
+        return headLeaks.concat(Array.from(document.querySelectorAll('body *'))
           .filter((el) => isVisible(el))
           .filter((el) => {
             if (el.id === 'localeSelect') return false;
@@ -217,7 +230,7 @@ async function auditRoute(send, route) {
               text,
             };
           })
-          .filter(Boolean);
+          .filter(Boolean));
       })()
     `,
   });
