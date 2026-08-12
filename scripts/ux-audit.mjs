@@ -287,7 +287,12 @@ function uxChecks() {
     const size = parseFloat(cs.fontSize);
     const large = size >= 24 || (size >= 18.66 && Number(cs.fontWeight) >= 700);
     const need = large ? 3 : 4.5;
-    if (ratio < need) add('contrast', label(el), ratio.toFixed(2) + ':1 < ' + need + ':1');
+    if (ratio < need) {
+      // 실제 합성 결과를 같이 찍는다. 비율만 보면 어느 쪽을 손대야 하는지 모른다.
+      const hex = (c) => '#' + [c.r, c.g, c.b].map((v) => Math.round(v).toString(16).padStart(2, '0')).join('');
+      const detail = `${ratio.toFixed(2)}:1 < ${need}:1  fg=${cs.color} on bg=${hex(bgColor)}`;
+      add('contrast', label(el), detail);
+    }
   });
 
   // 2. 터치 타깃 44px. 문단 속 인라인 링크는 제외 - 키우면 줄 간격이 깨진다.
