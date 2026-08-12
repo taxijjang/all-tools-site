@@ -72,7 +72,19 @@
     </header>
 
     <main class="tool">
-<div class="tool__column">
+      <div class="tool-tabs" role="tablist" data-tool-tabs>
+        <button type="button" class="tool-tab is-active" id="tabbtn-generate" role="tab"
+                aria-selected="true" data-tab-target="tab-generate"
+                data-i18n="uuid.tab.generate">생성</button>
+        <button type="button" class="tool-tab" id="tabbtn-tohex" role="tab"
+                aria-selected="false" data-tab-target="tab-tohex"
+                data-i18n="uuid.toHex.title">UUID → Hex(binary16)</button>
+        <button type="button" class="tool-tab" id="tabbtn-touuid" role="tab"
+                aria-selected="false" data-tab-target="tab-touuid"
+                data-i18n="uuid.toUuid.title">Hex(binary16) → UUID</button>
+      </div>
+
+<div class="tool__stack" id="tab-generate" role="tabpanel" aria-labelledby="tabbtn-generate">
       <section class="tool__panel">
         <label for="uuidVersion" data-i18n="uuid.random.mode">생성 옵션</label>
         <div class="field-row">
@@ -100,8 +112,7 @@
       </section>
       </div>
 
-      <div class="tool__column">
-      <section class="tool__panel">
+            <section class="tool__panel" id="tab-tohex" role="tabpanel" aria-labelledby="tabbtn-tohex" hidden>
         <h2 data-i18n="uuid.toHex.title">UUID → Hex(binary16)</h2>
         <label for="uuidInput" data-i18n="uuid.toHex.input">UUID 입력</label>
         <textarea id="uuidInput" rows="2" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -115,7 +126,7 @@
           <button type="button" data-copy="hexOutput" data-i18n="common.copy">복사</button>
         </div>
       </section>
-      <section class="tool__panel">
+      <section class="tool__panel" id="tab-touuid" role="tabpanel" aria-labelledby="tabbtn-touuid" hidden>
         <h2 data-i18n="uuid.toUuid.title">Hex(binary16) → UUID</h2>
         <label for="hexInput" data-i18n="uuid.toUuid.input">Hex 입력 (32자리)</label>
         <textarea id="hexInput" rows="2" placeholder="32자리 16진수" data-i18n="uuid.toUuid.placeholder"
@@ -129,7 +140,7 @@
           <button type="button" data-copy="uuidOutput" data-i18n="common.copy">복사</button>
         </div>
       </section>
-      </div>
+      
 
 
     </main>

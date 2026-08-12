@@ -4383,6 +4383,7 @@ button.primary:hover,
 @media (min-width: 980px) {
   /* 이 도구들은 .tool--columns를 쓰므로 그쪽 규칙을 덮어야 한다. */
   body[data-tool='json'] .tool,
+  body[data-tool='json-yaml'] .tool,
   body[data-tool='markdown'] .tool,
   body[data-tool='regex'] .tool {
     grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
@@ -4430,4 +4431,30 @@ button.primary:hover,
 .tool-tab.is-active {
   background: var(--surface);
   color: var(--primary);
+}
+
+/* ponytail: .tool__panel의 display: block이 hidden 속성을 이겨서 탭이 안 숨겨졌다.
+   author의 display 선언은 UA의 [hidden] 규칙보다 강하다. 리셋에 흔히 들어가는 이유다. */
+[hidden] {
+  display: none !important;
+}
+
+/* 탭 패널 안에서 패널 여러 개를 세로로 쌓을 때. .tool__column과 달리 2열 배치를 유발하지 않는다. */
+.tool__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+/* 탭 바는 항상 한 줄을 다 차지한다. */
+.tool .tool-tabs {
+  grid-column: 1 / -1;
+  align-self: start;
+}
+
+/* 탭을 쓰는 도구는 한 번에 하나만 보이므로 모든 칸이 전체 폭을 쓴다.
+   (탭으로 바꾼 이유 자체가 좁은 칸을 없애는 것이었다) */
+.tool:has(> .tool-tabs) > * {
+  grid-column: 1 / -1;
 }
