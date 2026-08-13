@@ -7,9 +7,9 @@
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/queryBuilder-Dpn2_7Ie.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BjGK8eLY.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-DR9TlRBC.css">
+  <script type="module" crossorigin src="/assets/queryBuilder-D7GayibO.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Sb-bpcCQ.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-DHvEFEMq.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -209,12 +209,9 @@
           <option value="/color">Color Converter</option>
           <option value="/markdown">Markdown</option>
           <option value="/convert">Unit Converter</option>
-          <option value="/file-hash">File Hash</option>
-          <option value="/image-base64">Image Base64</option>
-          <option value="/uuidv7">UUID v7</option>
           <option value="/case-convert">Case Converter</option>
           <option value="/json-yaml">JSON YAML</option>
-          <option value="/query-builder" selected>URL Query Builder</option>
+          <option value="/query-builder" selected>URL Query Workbench</option>
           <option value="/ip-ua">IP / User-Agent</option>
           <option value="/ip-cidr">CIDR Calculator</option>
           <option value="/text-stats">Text Stats</option>
@@ -222,7 +219,6 @@
           <option value="/image-optimize">Image Optimizer</option>
           <option value="/ocr">OCR Extractor</option>
           <option value="/seo-check">SEO Meta Check</option>
-          <option value="/utm-builder">UTM Builder</option>
           <option value="/text-cleaner">Text Cleaner</option>
           <option value="/api-tester">API Request Tester</option>
         </select>
@@ -233,8 +229,8 @@
         <a href="/learn" data-chrome-link="learn">Guides</a>
         <a href="/ai-tools" data-chrome-link="aiTools">AI Commands</a>
       </nav><label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label><div class="locale-switcher"><select id="localeSelect"><option value="ko" data-i18n="common.languageKorean">한국어</option><option value="en" data-i18n="common.languageEnglish">English</option></select></div></div>
-    <header class="page-header"><h1 data-i18n="query.title">URL Query Builder</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p><p data-i18n="query.description">Build encoded query strings and shareable URLs from key-value pairs.</p></header>
-    <main class="tool"><section class="tool__panel tool__panel--stack"><label for="qbBaseUrl" data-i18n="query.base">Base URL</label><input id="qbBaseUrl" type="text" value="https://example.com" data-persist="base" /><div id="qbRows" class="tool__panel--stack"></div><div class="toolbar"><button id="qbAddRowBtn" type="button" data-i18n="query.add">Add parameter</button><button id="qbBuildBtn" class="primary" type="button" data-i18n="query.build">Build URL</button></div></section><section class="tool__panel tool__panel--stack"><div class="panel-header"><label for="qbOutput" data-i18n="query.output">Output URL</label><button type="button" data-copy="qbOutput" data-i18n="common.copy">Copy</button></div><textarea id="qbOutput" rows="5" readonly></textarea></section></main>
+    <header class="page-header"><h1 data-i18n="query.title">URL Query Workbench</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet>🔒 Browser-side processing</p><p data-i18n="query.description">Build general parameters and campaign UTM URLs in one place.</p></header>
+    <main class="tool"><section class="tool__panel tool__panel--stack"><div class="query-presets" aria-label="URL presets"><button id="qbPresetGeneral" type="button" class="ghost">일반 쿼리</button><button id="qbPresetUtm" type="button">UTM 캠페인</button></div><label for="qbBaseUrl" data-i18n="query.base">Base URL</label><input id="qbBaseUrl" type="text" value="https://example.com" data-persist="base" /><div id="qbRows" class="tool__panel--stack"></div><div class="toolbar"><button id="qbAddRowBtn" type="button" data-i18n="query.add">Add parameter</button><button id="qbBuildBtn" class="primary" type="button" data-i18n="query.build">Build URL</button></div></section><section class="tool__panel tool__panel--stack"><div class="panel-header"><label for="qbOutput" data-i18n="query.output">Output URL</label><button type="button" data-copy="qbOutput" data-i18n="common.copy">Copy</button></div><textarea id="qbOutput" rows="5" readonly></textarea></section></main>
     <p id="qbMessage" class="message"></p>
 
 

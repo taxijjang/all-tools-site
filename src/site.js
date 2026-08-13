@@ -12,6 +12,7 @@ import {
   TOOL_CATEGORY_MAP,
 } from './ux-meta.js';
 import './style.css';
+import './quiet-workbench.css';
 
 // --- State & DOM Elements ---
 const root = document.body;
@@ -623,22 +624,26 @@ function injectRelatedToolsSection() {
 }
 
 function setupHomeDiscovery() {
-  const grid = document.querySelector('[data-home-grid]');
-  const searchInput = document.querySelector('[data-home-search]');
-  const filtersHost = document.querySelector('[data-home-filters]');
-  const resultsEl = document.querySelector('[data-home-results]');
-  const accessGrid = document.querySelector('[data-home-access-grid]');
-  const spotlightsHost = document.querySelector('[data-home-spotlights]');
-  const workflowsHost = document.querySelector('[data-home-workflows]');
+const grid = document.querySelector('[data-home-grid]');
+const searchInput = document.querySelector('[data-home-search]');
+const filtersHost = document.querySelector('[data-home-filters]');
+const resultsEl = document.querySelector('[data-home-results]');
+  const catalogHeadingEl = document.querySelector('[data-home-catalog-heading]');
+  const expandButton = document.querySelector('[data-home-expand]');
+const accessGrid = document.querySelector('[data-home-access-grid]');
+const spotlightsHost = document.querySelector('[data-home-spotlights]');
+const workflowsHost = document.querySelector('[data-home-workflows]');
   if (!grid || !searchInput || !filtersHost || !resultsEl) {
     return () => {};
   }
 
-  const cards = Array.from(grid.querySelectorAll('.card[href]'));
-  const originalOrder = new Map(cards.map((card, index) => [card, index]));
-  let activeFilter = 'all';
+const cards = Array.from(grid.querySelectorAll('.card[href]'));
+const originalOrder = new Map(cards.map((card, index) => [card, index]));
+let activeFilter = 'all';
+  let catalogExpanded = false;
+  const featuredLimit = 8;
 
-  cards.forEach((card) => {
+cards.forEach((card) => {
     const path = getToolPath(card.getAttribute('href'));
     card.dataset.category = TOOL_CATEGORY_MAP[path] || 'ops';
     card.dataset.searchTerms = HOME_SEARCH_KEYWORDS[path] || '';
@@ -731,11 +736,12 @@ function setupHomeDiscovery() {
   function setActiveFilter(nextFilter, locale = getHomeLocale()) {
     if (!HOME_FILTERS.some((filter) => filter.key === nextFilter)) {
       return;
-    }
+}
 
-    activeFilter = nextFilter;
-    render(locale);
-  }
+activeFilter = nextFilter;
+    if (nextFilter !== 'all') catalogExpanded = true;
+render(locale);
+}
 
   function renderAccessItem(path, locale) {
     const tool = TOOL_LOOKUP.get(path);
@@ -883,25 +889,29 @@ function setupHomeDiscovery() {
 
   function applyFilters(locale = document.documentElement.getAttribute('lang') || currentLocale) {
     const copy = HOME_DISCOVERY_COPY[locale] || HOME_DISCOVERY_COPY.en;
-    const rawQuery = searchInput.value.trim();
-    const query = rawQuery.toLowerCase();
-    let visibleCount = 0;
-    let firstVisibleCard = null;
+const rawQuery = searchInput.value.trim();
+const query = rawQuery.toLowerCase();
+let visibleCount = 0;
+    let shownCount = 0;
+let firstVisibleCard = null;
 
-    cards.forEach((card) => {
+cards.forEach((card) => {
       const cardText = `${card.textContent || ''} ${card.getAttribute('href') || ''} ${
         card.dataset.searchTerms || ''
       }`.toLowerCase();
-      const matchesFilter = activeFilter === 'all' || card.dataset.category === activeFilter;
-      const matchesQuery = !query || cardText.includes(query);
-      const isVisible = matchesFilter && matchesQuery;
-      card.hidden = !isVisible;
-      card.classList.toggle('card--hidden', !isVisible);
-      if (isVisible) {
-        visibleCount += 1;
-        firstVisibleCard ||= card;
-      }
-    });
+const matchesFilter = activeFilter === 'all' || card.dataset.category === activeFilter;
+const matchesQuery = !query || cardText.includes(query);
+const isVisible = matchesFilter && matchesQuery;
+      const shouldLimit = !catalogExpanded && !query && activeFilter === 'all';
+      const isWithinFeaturedSet = !shouldLimit || shownCount < featuredLimit;
+      card.hidden = !isVisible || !isWithinFeaturedSet;
+      card.classList.toggle('card--hidden', !isVisible || !isWithinFeaturedSet);
+if (isVisible) {
+visibleCount += 1;
+firstVisibleCard ||= card;
+        if (isWithinFeaturedSet) shownCount += 1;
+}
+});
 
     cards.forEach((card) => {
       card.classList.toggle('card--top-result', card === firstVisibleCard && (Boolean(query) || activeFilter !== 'all'));
@@ -923,12 +933,30 @@ function setupHomeDiscovery() {
       return;
     }
 
+    if (!catalogExpanded && !query && activeFilter === 'all' && visibleCount > featuredLimit) {
+      message = copy.resultsFeatured;
+    }
+
     resultsEl.textContent = applyTemplate(message, {
       count: String(visibleCount),
       filter: filterLabel,
       query: rawQuery,
+      shown: String(shownCount),
+      total: String(visibleCount),
     });
     resultsEl.classList.remove('is-empty');
+    if (catalogHeadingEl) {
+      catalogHeadingEl.textContent = catalogExpanded || query || activeFilter !== 'all'
+        ? copy.catalogAllHeading
+        : copy.catalogHeading;
+    }
+    if (expandButton) {
+      const canExpand = !query && activeFilter === 'all' && visibleCount > featuredLimit;
+      expandButton.hidden = !canExpand;
+      expandButton.textContent = catalogExpanded
+        ? copy.collapseCatalog
+        : applyTemplate(copy.expandCatalog, { count: String(visibleCount) });
+    }
   }
 
   function render(locale = document.documentElement.getAttribute('lang') || currentLocale) {
@@ -946,7 +974,6 @@ function setupHomeDiscovery() {
     const spotlightHeadingEl = document.querySelector('[data-home-spotlight-heading]');
     const spotlightLeadEl = document.querySelector('[data-home-spotlight-lead]');
     const catalogKickerEl = document.querySelector('[data-home-catalog-kicker]');
-    const catalogHeadingEl = document.querySelector('[data-home-catalog-heading]');
     const catalogLinkEl = document.querySelector('[data-home-catalog-link]');
 
     if (kickerEl) kickerEl.textContent = copy.kicker;
@@ -960,7 +987,6 @@ function setupHomeDiscovery() {
     if (spotlightHeadingEl) spotlightHeadingEl.textContent = copy.spotlightHeading;
     if (spotlightLeadEl) spotlightLeadEl.textContent = copy.spotlightLead;
     if (catalogKickerEl) catalogKickerEl.textContent = copy.catalogKicker;
-    if (catalogHeadingEl) catalogHeadingEl.textContent = copy.catalogHeading;
     if (catalogLinkEl) catalogLinkEl.textContent = copy.catalogLink;
     searchInput.placeholder = copy.searchPlaceholder;
 
@@ -1038,6 +1064,11 @@ function setupHomeDiscovery() {
       setActiveFilter('all', getHomeLocale());
       focusSearch();
     });
+  });
+
+  expandButton?.addEventListener('click', () => {
+    catalogExpanded = !catalogExpanded;
+    applyFilters(getHomeLocale());
   });
 
   document.addEventListener('keydown', (event) => {

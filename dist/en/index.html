@@ -1,3 +1,4 @@
+<!-- Quiet Workbench: 검색을 첫 행동으로, 추천 도구를 두 번째 행동으로 둔다. -->
 <!doctype html>
 <html lang="en">
 
@@ -7,8 +8,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-BjGK8eLY.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DR9TlRBC.css">
+  <script type="module" crossorigin src="/assets/site-Sb-bpcCQ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-DHvEFEMq.css">
   <script data-client-boot>
     (function () {
       var supported = ['ko', 'en'];
@@ -250,12 +251,9 @@
           <option value="/color">Color Converter</option>
           <option value="/markdown">Markdown</option>
           <option value="/convert">Unit Converter</option>
-          <option value="/file-hash">File Hash</option>
-          <option value="/image-base64">Image Base64</option>
-          <option value="/uuidv7">UUID v7</option>
           <option value="/case-convert">Case Converter</option>
           <option value="/json-yaml">JSON YAML</option>
-          <option value="/query-builder">URL Query Builder</option>
+          <option value="/query-builder">URL Query Workbench</option>
           <option value="/ip-ua">IP / User-Agent</option>
           <option value="/ip-cidr">CIDR Calculator</option>
           <option value="/text-stats">Text Stats</option>
@@ -263,7 +261,6 @@
           <option value="/image-optimize">Image Optimizer</option>
           <option value="/ocr">OCR Extractor</option>
           <option value="/seo-check">SEO Meta Check</option>
-          <option value="/utm-builder">UTM Builder</option>
           <option value="/text-cleaner">Text Cleaner</option>
           <option value="/api-tester">API Request Tester</option>
         </select>
@@ -312,14 +309,6 @@
               <kbd>Ctrl K</kbd>
             </span>
           </div>
-          <div class="home-query-row" aria-label="Quick searches">
-            <button type="button" class="home-query-chip" data-home-query="json">json</button>
-            <button type="button" class="home-query-chip" data-home-query="jwt">jwt</button>
-            <button type="button" class="home-query-chip" data-home-query="uuid">uuid</button>
-            <button type="button" class="home-query-chip" data-home-query="base64">base64</button>
-            <button type="button" class="home-query-chip" data-home-query="pdf">pdf</button>
-            <button type="button" class="home-query-chip" data-home-query="regex">regex</button>
-          </div>
           <div class="home-filter-bar" data-home-filters></div>
           <div class="home-command-footer">
             <p class="home-results" data-home-results>도구를 불러오는 중...</p>
@@ -332,9 +321,12 @@
       <div class="home-catalog__header">
         <div>
           <p class="section-kicker" data-home-catalog-kicker>Tool Catalog</p>
-          <h2 id="toolCatalogTitle" class="section-title" data-home-catalog-heading>전체 도구</h2>
+          <h2 id="toolCatalogTitle" class="section-title" data-home-catalog-heading>추천 도구</h2>
         </div>
-        <a class="link-button" href="/learn" data-home-catalog-link>가이드 보기</a>
+        <div class="home-catalog__actions">
+          <button type="button" class="link-button" data-home-expand>전체 도구 보기</button>
+          <a class="link-button link-button--quiet" href="/learn" data-home-catalog-link>가이드 보기</a>
+        </div>
       </div>
 
       <main class="card-grid" data-home-grid>
@@ -433,16 +425,6 @@
           <p data-i18n="home.card.filehash.desc">Compute SHA hashes in your browser.</p>
           <span class="pill">/file-hash</span>
         </a>
-        <a class="card" href="/image-base64">
-          <h2 data-i18n="home.card.imagebase64.title">Image Base64 Converter</h2>
-          <p data-i18n="home.card.imagebase64.desc">Convert image files to/from data URLs.</p>
-          <span class="pill">/image-base64</span>
-        </a>
-        <a class="card" href="/uuidv7">
-          <h2 data-i18n="home.card.uuidv7.title">UUID v7 Generator</h2>
-          <p data-i18n="home.card.uuidv7.desc">Generate time-sortable UUID v7 values.</p>
-          <span class="pill">/uuidv7</span>
-        </a>
         <a class="card" href="/case-convert">
           <h2 data-i18n="home.card.case.title">Case Converter</h2>
           <p data-i18n="home.card.case.desc">Convert camelCase, snake_case, kebab-case, and PascalCase.</p>
@@ -454,8 +436,8 @@
           <span class="pill">/json-yaml</span>
         </a>
         <a class="card" href="/query-builder">
-          <h2 data-i18n="home.card.query.title">URL Query Builder</h2>
-          <p data-i18n="home.card.query.desc">Build query strings with key/value rows.</p>
+          <h2>URL 쿼리 작업대</h2>
+          <p>일반 파라미터와 UTM 캠페인 URL을 한 곳에서 생성.</p>
           <span class="pill">/query-builder</span>
         </a>
         <a class="card" href="/ip-ua">
@@ -482,11 +464,6 @@
           <h2 data-i18n="home.card.seocheck.title">SEO Meta Tag Checker</h2>
           <p data-i18n="home.card.seocheck.desc">Audit title, description, OG, and canonical tags.</p>
           <span class="pill">/seo-check</span>
-        </a>
-        <a class="card" href="/utm-builder">
-          <h2 data-i18n="home.card.utm.title">UTM Generator</h2>
-          <p data-i18n="home.card.utm.desc">Build campaign URLs and test short-code style parameters.</p>
-          <span class="pill">/utm-builder</span>
         </a>
         <a class="card" href="/text-cleaner">
           <h2 data-i18n="home.card.textcleaner.title">Text Cleaner</h2>

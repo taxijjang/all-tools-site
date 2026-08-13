@@ -8,6 +8,8 @@ const dom = {
   build: document.getElementById('qbBuildBtn'),
   output: document.getElementById('qbOutput'),
   message: document.getElementById('qbMessage'),
+  presetGeneral: document.getElementById('qbPresetGeneral'),
+  presetUtm: document.getElementById('qbPresetUtm'),
 };
 
 function row(key = '', value = '') {
@@ -42,8 +44,28 @@ function build() {
   }
 }
 
+function setPreset(kind) {
+  dom.rows.innerHTML = '';
+  if (kind === 'utm') {
+    [
+      ['utm_source', 'google'],
+      ['utm_medium', 'cpc'],
+      ['utm_campaign', ''],
+      ['utm_term', ''],
+      ['utm_content', ''],
+    ].forEach(([key, value]) => dom.rows.appendChild(row(key, value)));
+  } else {
+    dom.rows.appendChild(row());
+  }
+  dom.presetGeneral?.classList.toggle('is-active', kind !== 'utm');
+  dom.presetUtm?.classList.toggle('is-active', kind === 'utm');
+  build();
+}
+
 dom.add.addEventListener('click', () => dom.rows.appendChild(row()));
 dom.build.addEventListener('click', build);
+dom.presetGeneral?.addEventListener('click', () => setPreset('general'));
+dom.presetUtm?.addEventListener('click', () => setPreset('utm'));
 
 document.querySelectorAll('button[data-copy]').forEach((btn) => {
   btn.addEventListener('click', async () => {
@@ -54,6 +76,4 @@ document.querySelectorAll('button[data-copy]').forEach((btn) => {
   });
 });
 
-dom.rows.appendChild(row('utm_source', 'google'));
-dom.rows.appendChild(row('utm_medium', 'cpc'));
-build();
+setPreset(new URLSearchParams(window.location.search).get('preset') === 'utm' ? 'utm' : 'general');
