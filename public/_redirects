@@ -1,6 +1,7 @@
 /csv-tools /json-yaml 301
-/csv-tools.html /json-yaml 301
 /jwt-verify /jwt 301
-/jwt-verify.html /jwt 301
 /qr-advanced /qr 301
-/qr-advanced.html /qr 301
+/uuidv7 /uuid?mode=v7 301
+/file-hash /hash 301
+/utm-builder /query-builder?preset=utm 301
+/image-base64 /base64 301

@@ -1,0 +1,23 @@
+/* Quiet Workbench home: a calm searchable index with restrained surfaces and deliberate whitespace. */
+.page--home { max-width: 1120px; }
+.page--home .home-command-panel { padding: clamp(1.3rem, 3vw, 2.4rem); border: 1px solid color-mix(in srgb, var(--border) 84%, transparent); border-top: 4px solid var(--primary); border-radius: 0.35rem; background: linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, white), var(--surface-alt)); box-shadow: 0 18px 42px color-mix(in srgb, var(--shadow-color) 30%, transparent); }
+.page--home .home-command-panel__intro { max-width: 48rem; margin-bottom: 1.35rem; }
+.page--home .home-command-panel .section-title { max-width: 18ch; font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.03; letter-spacing: -0.065em; }
+.page--home .home-search-wrap { min-height: 3.7rem; border-radius: 0.35rem; background: var(--surface-muted); box-shadow: none; }
+.page--home .home-filter-bar { gap: 0.4rem; }
+.page--home .filter-chip { flex: 0 0 auto; min-height: 2rem; padding: 0.35rem 0.65rem; border-radius: 0.25rem; background: transparent; font-size: 0.78rem; }
+.page--home .home-catalog { margin-top: 2.5rem; }
+.home-catalog__actions { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.page--home .link-button { min-height: 2.45rem; padding: 0.5rem 0.8rem; border-radius: 0.25rem; font-size: 0.82rem; }
+.page--home .link-button--quiet { color: var(--text-muted); background: transparent; }
+.page--home .card-grid { grid-template-columns: repeat(auto-fill, minmax(236px, 1fr)); gap: 0.7rem; }
+.page--home .card { min-height: 9.4rem; padding: 0.95rem 1rem; gap: 0.45rem; border-radius: 0.3rem; border-left: 3px solid color-mix(in srgb, var(--primary) 46%, var(--border)); box-shadow: none; }
+.page--home .card:hover, .page--home .card--top-result { transform: translateY(-1px); box-shadow: 0 8px 18px color-mix(in srgb, var(--shadow-color) 24%, transparent); }
+.page--home .card__meta { color: var(--text-muted); font-family: var(--font-code); letter-spacing: 0.04em; }
+.page--home .card h2 { font-size: 1rem; }
+.page--home .card p { -webkit-line-clamp: 2; color: var(--text-muted); }
+.page--home .pill { display: none; }
+.hash-file-row, .query-presets { display: grid; gap: 0.45rem; padding: 0.8rem; border-left: 2px solid color-mix(in srgb, var(--primary) 48%, var(--border)); background: color-mix(in srgb, var(--surface-muted) 66%, transparent); }
+.query-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.query-presets button.is-active { border-color: var(--primary); color: var(--primary); }
+@media (max-width: 720px) { .page--home .home-command-panel { padding: 1rem; } .page--home .home-catalog__header { align-items: flex-start; } .page--home .card-grid { grid-template-columns: 1fr; } }

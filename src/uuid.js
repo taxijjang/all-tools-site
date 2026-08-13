@@ -53,10 +53,11 @@ function renderInspector(value = randomUuidInput.value, kind = lastGeneratedKind
   if (!uuidInspector || !value) return;
   const copy = getInspectorCopy();
   const isUlid = kind === 'ulid';
+  const isV7 = kind === 'v7';
   const entries = [
-    [copy.kind, isUlid ? 'ULID' : 'UUID v4'],
+    [copy.kind, isUlid ? 'ULID' : isV7 ? 'UUID v7' : 'UUID v4'],
     [copy.length, `${value.length}`],
-    [copy.sortable, isUlid ? copy.timeOrdered : copy.random, isUlid ? 'ok' : ''],
+    [copy.sortable, isUlid || isV7 ? copy.timeOrdered : copy.random, isUlid || isV7 ? 'ok' : ''],
     [copy.storage, isUlid ? copy.text : copy.binary16],
   ];
 
@@ -124,10 +125,33 @@ function generateUlid() {
   return `${timestamp}${randomPart}`;
 }
 
+function generateUuidV7() {
+  const bytes = new Uint8Array(16);
+  const random = new Uint8Array(10);
+  crypto.getRandomValues(random);
+  const timestamp = BigInt(Date.now());
+
+  bytes[0] = Number((timestamp >> 40n) & 0xffn);
+  bytes[1] = Number((timestamp >> 32n) & 0xffn);
+  bytes[2] = Number((timestamp >> 24n) & 0xffn);
+  bytes[3] = Number((timestamp >> 16n) & 0xffn);
+  bytes[4] = Number((timestamp >> 8n) & 0xffn);
+  bytes[5] = Number(timestamp & 0xffn);
+  bytes[6] = 0x70 | (random[0] & 0x0f);
+  bytes[7] = random[1];
+  bytes[8] = 0x80 | (random[2] & 0x3f);
+  bytes.set(random.slice(3), 9);
+
+  return formatUuid(Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join(''));
+}
+
 function generateIdentifier() {
   const mode = uuidVersionSelect?.value || 'v4';
   if (mode === 'ulid') {
     return generateUlid();
+  }
+  if (mode === 'v7') {
+    return generateUuidV7();
   }
   return crypto.randomUUID();
 }
@@ -175,6 +199,10 @@ bulkGenerateBtn?.addEventListener('click', () => {
 });
 
 // 초기 UUID 준비
+const requestedMode = new URLSearchParams(window.location.search).get('mode');
+if (requestedMode === 'v7' && uuidVersionSelect) {
+  uuidVersionSelect.value = 'v7';
+}
 lastGeneratedKind = uuidVersionSelect?.value || 'v4';
 randomUuidInput.value = generateIdentifier();
 renderInspector(randomUuidInput.value, lastGeneratedKind);

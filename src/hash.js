@@ -7,6 +7,8 @@ const uppercaseToggle = document.getElementById('hashUppercase');
 const hexOutput = document.getElementById('hashHex');
 const base64Output = document.getElementById('hashBase64');
 const messageEl = document.getElementById('hashMessage');
+const fileInput = document.getElementById('hashFileInput');
+const fileName = document.getElementById('hashFileName');
 
 function showMessage(text, isError = false) {
   messageEl.textContent = text;
@@ -29,6 +31,12 @@ function arrayBufferToBase64(buffer) {
   return btoa(binary);
 }
 
+function renderDigest(digest, algorithm) {
+  hexOutput.value = arrayBufferToHex(digest, uppercaseToggle.checked);
+  base64Output.value = arrayBufferToBase64(digest);
+  showMessage(t('hash.success', { algorithm }));
+}
+
 async function computeHash() {
   try {
     const value = input.value;
@@ -40,19 +48,33 @@ async function computeHash() {
     const data = encoder.encode(value);
     const algorithm = algorithmSelect.value || 'SHA-256';
     const digest = await crypto.subtle.digest(algorithm, data);
-    hexOutput.value = arrayBufferToHex(digest, uppercaseToggle.checked);
-    base64Output.value = arrayBufferToBase64(digest);
-    showMessage(t('hash.success', { algorithm }));
+    renderDigest(digest, algorithm);
   } catch (err) {
     showMessage(t('hash.error.unsupported'), true);
   }
 }
+
+fileInput?.addEventListener('change', async () => {
+  const file = fileInput.files?.[0];
+  if (!file) return;
+  try {
+    const algorithm = algorithmSelect.value || 'SHA-256';
+    const digest = await crypto.subtle.digest(algorithm, await file.arrayBuffer());
+    input.value = '';
+    if (fileName) fileName.textContent = `${file.name} · ${(file.size / 1024).toFixed(1)} KB`;
+    renderDigest(digest, algorithm);
+  } catch (err) {
+    showMessage(t('hash.error.unsupported'), true);
+  }
+});
 
 document.getElementById('hashComputeBtn').addEventListener('click', computeHash);
 document.getElementById('hashClearBtn').addEventListener('click', () => {
   input.value = '';
   hexOutput.value = '';
   base64Output.value = '';
+  if (fileInput) fileInput.value = '';
+  if (fileName) fileName.textContent = '파일을 선택하면 같은 알고리즘으로 바로 계산합니다.';
   showMessage('');
 });
 
