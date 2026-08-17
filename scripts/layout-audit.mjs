@@ -201,7 +201,19 @@ async function auditLayout(send, route, viewport) {
             if (style.display === 'none' || style.visibility === 'hidden') return false;
             const rect = el.getBoundingClientRect();
             if (rect.width <= 0 || rect.height <= 0) return false;
-            return rect.right > viewportWidth + 2 || rect.left < -2;
+            if (!(rect.right > viewportWidth + 2 || rect.left < -2)) return false;
+
+            // 가로 스크롤 컨테이너 안에서는 뷰포트를 넘는 게 정상이다.
+            // 홈 필터칩 레일이 overflow-x: auto + flex-wrap: nowrap인데
+            // 그 안의 칩을 넘침으로 잡아 경고 6건이 상시로 떠 있었다.
+            // 컨테이너 자체가 뷰포트 안에 들어와 있을 때만 면제한다.
+            for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) {
+              const ox = window.getComputedStyle(a).overflowX;
+              if (ox !== 'auto' && ox !== 'scroll') continue;
+              const ar = a.getBoundingClientRect();
+              if (ar.right <= viewportWidth + 2 && ar.left >= -2) return false;
+            }
+            return true;
           })
           .slice(0, 10)
           .map((el) => {

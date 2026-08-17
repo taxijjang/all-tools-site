@@ -5,9 +5,10 @@ import { join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 
 const HOST = '127.0.0.1';
-const PORT = 4177;
+// 4173 smoke / 4176 i18n / 4177 layout / 4178 upload 와 겹치면 안 된다.
+const PORT = 4179;
 const BASE = `http://${HOST}:${PORT}`;
-const CHROME_PORT = 9225;
+const CHROME_PORT = 9226;
 const USER_DATA_DIR = join(process.cwd(), '.tmp', `chrome-ux-audit-${Date.now()}`);
 const CHROME_PATHS = [
   process.env.CHROME_PATH,
