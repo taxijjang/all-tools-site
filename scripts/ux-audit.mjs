@@ -344,8 +344,12 @@ function uxChecks() {
   });
 
   // 5. 첫 화면에서 도구가 시작하는 위치. 껍데기가 절반을 넘으면 도구가 묻힌다.
-  const firstField = document.querySelector('main textarea, main input:not([type=hidden]), main select');
-  if (firstField && window.innerWidth > 720) {
+  // 라벨은 그 컨트롤의 일부다. /password는 range 입력이 자기 라벨보다 88px
+  // 아래 있어서, 입력만 보면 도구가 실제보다 늦게 시작하는 것처럼 나왔다.
+  const firstField = document.querySelector(
+    'main .tool-tabs, main [role=tablist], main label, main textarea, main input:not([type=hidden]), main select',
+  );
+  if (firstField) { // 모바일에서도 잰다. 헤더가 여러 줄로 쌓이는 건 모바일이다
     const top = firstField.getBoundingClientRect().top + window.scrollY;
     const pct = Math.round((top / window.innerHeight) * 100);
     if (pct > 50) add('chrome-ratio', label(firstField), 'tool starts at ' + pct + '%');
@@ -381,6 +385,16 @@ async function auditUx(send, route, viewport, theme) {
   await waitForLoad(send);
   await send('Runtime.evaluate', {
     expression: `document.documentElement.setAttribute('data-theme', '${theme}');`,
+  });
+  // 제목용 웹폰트가 swap되기 전에 재면 폴백 메트릭으로 높이가 달라진다.
+  // 같은 라우트가 테마마다 다른 값으로 나오던 원인이 이거였다.
+  // 단, --disable-background-networking으로 폰트 요청이 막히면 fonts.ready가
+  // 영원히 안 풀린다(실제로 감사가 멈췄다). 타임아웃과 경쟁시킨다.
+  await send('Runtime.evaluate', {
+    awaitPromise: true,
+    expression:
+      'Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))])' +
+      '.then(() => document.fonts.status)',
   });
   await delay(400);
   const result = await send('Runtime.evaluate', {

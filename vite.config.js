@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { ICON_LOCK, ICON_MOON } from './src/icons.js';
 import { basename, dirname, resolve } from 'node:path';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import {
@@ -328,7 +329,6 @@ function buildLocaleToolContent(meta, pageTitle, description, locale, { hidden =
   return `
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="${locale}" lang="${locale}"${hiddenAttrs}>
         <section class="content-section content-section--highlight">
-          <p class="section-kicker">${escapeHtml(labels.featureKicker)}</p>
           <h2 class="section-title">${escapeHtml(heading)}</h2>
           <p class="section-lead">${escapeHtml(support.lead || description)}</p>
           <div class="content-grid">
@@ -340,7 +340,6 @@ ${buildCardMarkup(support.cards)}
           <summary>${escapeHtml(labels.moreSummary)}</summary>
 
         <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.stepsKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.stepsTitle)}</h2>
           <ol class="content-list">
 ${buildListMarkup(support.steps)}
@@ -351,7 +350,6 @@ ${
   support.examples?.length
     ? `
         <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.examplesKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
           <div class="example-list">
 ${buildExamplesMarkup(support.examples, labels)}
@@ -363,7 +361,6 @@ ${buildExamplesMarkup(support.examples, labels)}
   support.troubles?.length
     ? `
         <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.troublesKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.troublesTitle)}</h2>
           <div class="content-grid">
 ${buildCardMarkup(support.troubles)}
@@ -373,7 +370,6 @@ ${buildCardMarkup(support.troubles)}
     : ''
 }
         <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.notesKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.notesTitle)}</h2>
           <div class="content-grid">
 ${buildCardMarkup(support.notes)}
@@ -384,7 +380,6 @@ ${
   faqItems.length
     ? `
         <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.faqKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.faqTitle)}</h2>
           <div class="faq-list">
 ${buildCardMarkup(faqItems, 'faq-item')}
@@ -395,7 +390,6 @@ ${buildCardMarkup(faqItems, 'faq-item')}
   relatedMarkup
     ? `
         <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.relatedKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.relatedTitle)}</h2>
           <ul class="related-list">
 ${relatedMarkup}
@@ -538,7 +532,7 @@ ${NAV_UTILITY_LINKS.map((link) => `        <a href="${link.href}" data-chrome-li
   return `${brandMarkup}
       <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">설치</button>
 ${switcherMarkup}
-      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">🌙</button>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환">${ICON_MOON}</button>
 ${utilityMarkup}`;
 }
 
@@ -564,7 +558,7 @@ function injectFooterLinks(html) {
   // 링크만 있는 푸터는 맥락이 없다. 기존 푸터들처럼 사이트 표기를 함께 넣는다.
   const footer =
     `    <footer class="footer footer--dev">\n${nav}\n` +
-    `      <small data-i18n="common.footerHome">© 2025 stateless tools · Cloudflare Pages 배포용 정적 사이트</small>\n` +
+    `      <small data-i18n="common.footerHome">© ${new Date().getFullYear()} stateless tools · Cloudflare Pages 배포용 정적 사이트</small>\n` +
     `    </footer>\n`;
   const closeIndex = html.lastIndexOf('</div>');
 
@@ -585,7 +579,7 @@ function injectChromeShell(html, pathname) {
     if (match.includes('trust-badge')) {
       return match;
     }
-    return `<h1${attrs}>${text}<span class="trust-badge" data-chrome-badge="trust">🔒 브라우저 내부 처리</span></h1>`;
+    return `<h1${attrs}>${text}<span class="trust-badge" data-chrome-badge="trust">${ICON_LOCK}<span>브라우저 내부 처리</span></span></h1>`;
   });
 
   return nextHtml;
@@ -748,7 +742,6 @@ function buildExtraOnlyContent(meta, locale, { hidden = false } = {}) {
 ${
   extra?.examples?.length
     ? `        <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.examplesKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
           <div class="example-list">
 ${buildExamplesMarkup(extra.examples, labels)}
@@ -759,7 +752,6 @@ ${buildExamplesMarkup(extra.examples, labels)}
 }${
   extra?.troubles?.length
     ? `        <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.troublesKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.troublesTitle)}</h2>
           <div class="content-grid">
 ${buildCardMarkup(extra.troubles)}
@@ -770,7 +762,6 @@ ${buildCardMarkup(extra.troubles)}
 }${
   relatedMarkup
     ? `        <section class="content-section">
-          <p class="section-kicker">${escapeHtml(labels.relatedKicker)}</p>
           <h2 class="section-title">${escapeHtml(labels.relatedTitle)}</h2>
           <ul class="related-list">
 ${relatedMarkup}
@@ -1106,6 +1097,8 @@ function seoMetadataPlugin() {
   return {
     name: 'seo-metadata',
     transformIndexHtml(html, ctx) {
+      // 소스 HTML 21곳에 © 2025가 박혀 있었다. 배포마다 빌드하므로 여기서 덮으면 안 낡는다.
+      html = html.replace(/©\s*20\d\d/g, `© ${new Date().getFullYear()}`);
       const fileName = basename(ctx.filename);
       const pageKey = toPageKey(fileName);
       const meta = PAGE_META[pageKey];
@@ -1163,6 +1156,8 @@ function seoMetadataPlugin() {
       );
 
       const headTags = [
+        '  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>',
+        '  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">',
         buildClientBootScript(),
         buildClientBootStyle(),
         `  <meta name="google-adsense-account" content="${ADSENSE_PUBLISHER_ID}" />`,

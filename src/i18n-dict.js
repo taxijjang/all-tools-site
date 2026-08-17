@@ -1,4 +1,7 @@
 // UI 문자열 사전. DOM을 건드리지 않으므로 빌드(Node)에서도 그대로 import할 수 있다.
+// 저작권 연도를 박아두면 해가 바뀔 때마다 낡는다. 실제로 2025로 굳어 있었다.
+const YEAR = new Date().getFullYear();
+
 export const translations = {
   ko: {
     'uuid.tab.generate': '생성',
@@ -18,13 +21,13 @@ export const translations = {
     'common.shareState': '상태 공유 링크',
     'common.snippetTitle': 'CLI · 코드 스니펫',
     'common.snippetSubtitle': 'Node.js · shell',
-    'common.footerHome': '© 2025 stateless tools · Cloudflare Pages 배포용 정적 사이트',
+    'common.footerHome': `© ${YEAR} stateless tools · Cloudflare Pages 배포용 정적 사이트`,
     'common.footerBase64':
-      '© 2025 stateless tools · 모든 변환은 브라우저에서만 처리되며 파일/쿠키를 서버로 전송하지 않습니다.',
-    'common.footerUuid': '© 2025 stateless tools · Cloudflare Pages 배포용 정적 사이트',
-    'common.footerJson': '© 2025 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.',
-    'common.footerJwt': '© 2025 stateless tools · JWT 디코딩과 JWKS 검증은 브라우저에서 처리됩니다.',
-    'common.footerSeo': '© 2025 stateless tools · SEO 점검은 브라우저에서 URL 또는 HTML 소스로 실행됩니다.',
+      `© ${YEAR} stateless tools · 모든 변환은 브라우저에서만 처리되며 파일/쿠키를 서버로 전송하지 않습니다.`,
+    'common.footerUuid': `© ${YEAR} stateless tools · Cloudflare Pages 배포용 정적 사이트`,
+    'common.footerJson': `© ${YEAR} stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.`,
+    'common.footerJwt': `© ${YEAR} stateless tools · JWT 디코딩과 JWKS 검증은 브라우저에서 처리됩니다.`,
+    'common.footerSeo': `© ${YEAR} stateless tools · SEO 점검은 브라우저에서 URL 또는 HTML 소스로 실행됩니다.`,
     'common.yes': '예',
     'common.no': '아니요',
     'upload.eyebrow': 'Upload',
@@ -602,12 +605,12 @@ export const translations = {
     'common.shareState': 'Copy shareable link',
     'common.snippetTitle': 'CLI · Code Snippet',
     'common.snippetSubtitle': 'Node.js · shell',
-    'common.footerHome': '© 2025 stateless tools · Static site for Cloudflare Pages deployment',
-    'common.footerBase64': '© 2025 stateless tools · All conversion stays inside your browser. No files/cookies sent.',
-    'common.footerUuid': '© 2025 stateless tools · Static site for Cloudflare Pages deployment',
-    'common.footerJson': '© 2025 stateless tools · JSON stays entirely in browser memory.',
-    'common.footerJwt': '© 2025 stateless tools · JWT decoding and JWKS checks run in your browser.',
-    'common.footerSeo': '© 2025 stateless tools · SEO checks run from a URL or pasted HTML in your browser.',
+    'common.footerHome': `© ${YEAR} stateless tools · Static site for Cloudflare Pages deployment`,
+    'common.footerBase64': `© ${YEAR} stateless tools · All conversion stays inside your browser. No files/cookies sent.`,
+    'common.footerUuid': `© ${YEAR} stateless tools · Static site for Cloudflare Pages deployment`,
+    'common.footerJson': `© ${YEAR} stateless tools · JSON stays entirely in browser memory.`,
+    'common.footerJwt': `© ${YEAR} stateless tools · JWT decoding and JWKS checks run in your browser.`,
+    'common.footerSeo': `© ${YEAR} stateless tools · SEO checks run from a URL or pasted HTML in your browser.`,
     'common.yes': 'Yes',
     'common.no': 'No',
     'upload.eyebrow': 'Upload',

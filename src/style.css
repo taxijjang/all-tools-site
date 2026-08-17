@@ -1,6 +1,14 @@
 :root {
-  font-family: "Pretendard Variable", "Pretendard", "Noto Sans KR", "SUIT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  /* 본문 Pretendard + 제목 Wanted Sans. 한 폰트로 제목·본문을 다 쓰면
+     템플릿처럼 읽힌다. Wanted Sans는 unicode-range로 쪼개져 있어서
+     제목에 실제로 쓰인 글자 범위만 내려받는다(font-display: swap). */
+  --font-body: "Pretendard Variable", "Pretendard", "Noto Sans KR", "SUIT", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Wanted Sans Variable", var(--font-body);
+  font-family: var(--font-body);
   line-height: 1.6;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-short: 0.2s;
+  --dur-instant: 0.08s;
   --font-code: "JetBrains Mono", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
 
   --bg-body: #0b0f14;
@@ -30,7 +38,7 @@
 [data-theme="light"] {
   --bg-body: #f7f9fb;
   --bg-page:
-    linear-gradient(180deg, #ffffff 0%, #f3f6fa 52%, #f7f9fb 100%);
+    linear-gradient(180deg, #fbfcfd 0%, #f3f6fa 52%, #f7f9fb 100%);
   --text-main: #15202b;
   --text-muted: #4d5c6b;
   --primary: #0f766e;
@@ -150,7 +158,10 @@ body {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.85rem;
-  transition: all 0.2s ease;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out);
 }
 
 .utility-links a:hover {
@@ -171,7 +182,10 @@ body {
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  transition: all 0.2s ease;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out);
 }
 
 .theme-toggle:hover {
@@ -277,7 +291,6 @@ body {
   align-items: end;
   padding: 1.25rem 1.5rem;
   background:
-    radial-gradient(circle at top right, rgb(56 189 248 / 0.12), transparent 38%),
     linear-gradient(145deg, var(--surface), var(--surface-alt));
   border: 1px solid var(--border);
   border-radius: 1.25rem;
@@ -388,7 +401,6 @@ body {
   border-radius: 1rem;
   border: 1px solid rgb(56 189 248 / 0.2);
   background:
-    radial-gradient(circle at top right, rgb(56 189 248 / 0.12), transparent 42%),
     linear-gradient(145deg, var(--surface-muted), var(--surface-alt));
   box-shadow: 0 16px 32px var(--shadow-color);
 }
@@ -442,7 +454,10 @@ body {
   color: var(--text-main);
   text-decoration: none;
   font-size: 0.84rem;
-  transition: all 0.2s ease;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out);
 }
 
 .page--home .home-spotlight__link {
@@ -722,15 +737,6 @@ body {
   padding: 1.25rem;
   border-radius: 0.75rem;
   background: var(--surface);
-}
-
-.section-kicker {
-  margin: 0 0 0.4rem;
-  color: var(--primary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .section-title {
@@ -1198,7 +1204,10 @@ body {
   color: var(--text-main);
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.2s ease;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out);
 }
 
 .link-button:hover {
@@ -1337,7 +1346,6 @@ body {
 .card--featured {
   border-color: rgb(56 189 248 / 0.24);
   background:
-    radial-gradient(circle at top right, rgb(56 189 248 / 0.14), transparent 40%),
     linear-gradient(145deg, var(--surface), var(--surface-alt));
 }
 
@@ -1456,20 +1464,6 @@ body {
   pointer-events: none;
 }
 
-.home-brand {
-  width: fit-content;
-  margin: 0 0 1rem;
-  padding: 0.42rem 0.78rem;
-  border: 1px solid color-mix(in srgb, var(--primary) 38%, var(--border));
-  border-radius: 999px;
-  color: var(--primary);
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
-  font-size: 0.78rem;
-  font-weight: 850;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
 .home-hero-copy h1 {
   margin: 0;
   max-width: 13ch;
@@ -1525,7 +1519,6 @@ body {
   padding: clamp(1.15rem, 2.6vw, 1.75rem);
   border-radius: 2rem;
   background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--primary) 18%, transparent), transparent 42%),
     color-mix(in srgb, var(--surface) 92%, transparent);
   box-shadow: 0 26px 70px var(--shadow-color);
 }
@@ -1644,7 +1637,6 @@ body {
 .page--home .card--featured {
   border-color: color-mix(in srgb, var(--primary) 34%, var(--border));
   background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--primary) 18%, transparent), transparent 46%),
     linear-gradient(145deg, color-mix(in srgb, var(--surface) 96%, transparent), color-mix(in srgb, var(--surface-alt) 88%, transparent));
 }
 
@@ -1769,19 +1761,6 @@ body {
   align-content: center;
   gap: 0.65rem;
   min-width: 0;
-}
-
-.home-command-panel .home-brand {
-  margin: 0 0 0.15rem;
-  font-family: var(--font-code);
-}
-
-.home-command-panel .section-kicker {
-  margin: 0;
-  color: var(--accent);
-  font-family: var(--font-code);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
 }
 
 .home-command-panel .section-title {
@@ -2042,7 +2021,6 @@ kbd {
 .page--home .card--reference {
   border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
   background:
-    radial-gradient(circle at top right, color-mix(in srgb, var(--primary) 18%, transparent), transparent 44%),
     var(--surface);
 }
 
@@ -2186,7 +2164,6 @@ kbd {
   border-radius: 1.25rem;
   border: 1px solid var(--border);
   background:
-    radial-gradient(circle at top right, rgb(56 189 248 / 0.14), transparent 40%),
     linear-gradient(145deg, var(--surface), var(--surface-alt));
   box-shadow: 0 18px 36px var(--shadow-color);
 }
@@ -2488,7 +2465,10 @@ button.link-button {
   background: var(--surface);
   padding: 1rem;
   margin: 0.1rem 0 0.3rem;
-  transition: all 0.2s ease;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out);
 }
 
 .file-drop-zone--active {
@@ -2678,7 +2658,10 @@ button {
   cursor: pointer;
   background: var(--surface-alt);
   color: var(--text-main);
-  transition: all 0.2s ease;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out);
   border-color: var(--border);
 }
 
@@ -3321,6 +3304,13 @@ button:active {
 }
 
 /* Trust Badge */
+/* 이모지 대신 인라인 SVG. 글자 크기를 따라가고 currentColor를 쓴다. */
+.icon {
+  width: 1em;
+  height: 1em;
+  flex: none;
+}
+
 .trust-badge {
   display: inline-flex;
   align-items: center;
@@ -3726,11 +3716,6 @@ button.primary:hover,
     linear-gradient(180deg, var(--surface), var(--surface-alt));
 }
 
-.home-command-panel .home-brand {
-  border-radius: 0.45rem;
-  letter-spacing: 0.1em;
-}
-
 .home-command-panel .section-title {
   max-width: 13ch;
   font-size: clamp(2rem, 3.8vw, 3.35rem);
@@ -3892,21 +3877,6 @@ button.primary:hover,
   margin-bottom: 0.95rem;
   gap: 0.4rem;
   align-content: start;
-}
-
-.home-command-panel .home-brand {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 0.78rem;
-  line-height: 1.35;
-  letter-spacing: 0.12em;
-}
-
-.home-command-panel .section-kicker {
-  display: none;
 }
 
 .page--home .home-command-panel .trust-badge {
@@ -4463,14 +4433,13 @@ button.primary:hover,
 
 /* ---- apple-design 스킬 적용 (이 사이트에 해당하는 부분만) ---- */
 
-/* §1 응답성: button에 transition: all 0.2s가 걸려 있어 누름 피드백(translateY)이
-   200ms 늦게 나왔다. 색은 천천히 바뀌어도 되지만 눌린 느낌은 즉시여야 한다. */
+/* §1 응답성: 색은 천천히 바뀌어도 되지만 눌린 느낌(translateY)은 즉시여야 한다. */
 button {
   transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.08s ease-out;
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    color var(--dur-short) var(--ease-out),
+    transform var(--dur-instant) var(--ease-out);
 }
 
 /* §15 타이포: 트래킹은 크기에 따라 달라야 한다. 제목에 letter-spacing: 0을
@@ -4597,5 +4566,97 @@ summary:focus-visible {
   /* 11px은 본문 최소 기준(12px) 아래다. 배지를 줄이려다 너무 줄였다. */
   .layout--dev .page-header .trust-badge {
     font-size: 0.75rem;
+  }
+}
+
+/* 제목 계열만 display 얼굴을 쓴다. 본문까지 바꾸면 내려받는 범위가 커진다. */
+h1,
+h2,
+.section-title,
+.page-header h1 {
+  font-family: var(--font-display);
+}
+
+/* 모바일 첫 화면: 도구가 화면 52% 지점에서야 시작했다. 헤더 껍데기가 3줄로
+   쌓이고(로고+도구선택 / 가이드+AI / 테마+언어) 각 줄의 절반이 비어 있었다.
+
+   flex로 폭을 깎아 한 줄에 밀어넣어 봤는데 간신히 들어가는 수준이라
+   폰트 메트릭이 몇 px만 달라져도 다시 3줄이 됐다(헤드리스에서 재현).
+   grid-template-areas로 줄 수를 못박는다 - 내용 폭과 무관하게 항상 2줄이다. */
+@media (max-width: 720px) {
+  .page-controls {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "brand switcher theme locale"
+      "links links links links";
+    align-items: center;
+  }
+
+  .page-controls .brand-home {
+    grid-area: brand;
+  }
+
+  .page-controls .tool-switcher {
+    grid-area: switcher;
+    min-width: 0;
+    margin-right: 0;
+  }
+
+  .page-controls .tool-switcher select {
+    width: 100%;
+  }
+
+  .page-controls .theme-toggle {
+    grid-area: theme;
+    margin-left: 0;
+  }
+
+  .page-controls .locale-switcher {
+    grid-area: locale;
+  }
+
+  .page-controls .utility-links {
+    grid-area: links;
+    justify-content: flex-start;
+  }
+
+  /* 설치 버튼은 평소 display:none이라 grid가 무시한다. 뜰 때만 제 줄을 쓴다. */
+  .page-controls .pwa-install-btn {
+    grid-column: 1 / -1;
+  }
+
+  /* 제목 카드가 157px이었다. 여백과 행간을 조인다. 글자를 숨기지는 않는다 -
+     숨긴 텍스트는 애드센스에서 걷어냈던 문제라 되돌리지 않는다. */
+  .page-header {
+    padding: 0.65rem 0.9rem;
+    gap: 0.25rem;
+  }
+
+  .page-header > p {
+    line-height: 1.5;
+  }
+
+  /* 헤더가 1fr auto 그리드인데 자동 배치라 공유 버튼이 제 줄을 하나 먹었다.
+     [제목 | 배지] / [설명 | 공유] 두 줄로 못박는다. */
+  .layout--dev .page-header > h1 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .layout--dev .page-header > .trust-badge {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .layout--dev .page-header > p:not(.trust-badge) {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .layout--dev .page-header > .page-actions {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
   }
 }

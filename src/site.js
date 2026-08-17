@@ -1,6 +1,7 @@
 import { bindLocaleSwitcher, initI18n, onLocaleChange, revealI18n, t } from './i18n.js';
 import { CONTENT_PAGES, NAV_TOOLS, NAV_UTILITY_LINKS, UTILITY_LINKS } from './chrome-meta.js';
 import { PAGE_META_EN } from './seo-meta-en.js';
+import { ICON_LOCK, ICON_MOON, ICON_SUN } from './icons.js';
 import {
   FILE_PICKER_META,
   HOME_DISCOVERY_COPY,
@@ -600,7 +601,6 @@ function injectRelatedToolsSection() {
   const section = document.createElement('section');
   section.className = 'content-section related-tools';
   section.innerHTML = `
-    <p class="section-kicker">Explore</p>
     <h2 class="section-title" data-related-heading>${copy.heading}</h2>
     <p class="section-lead" data-related-lead>${copy.lead}</p>
     <div class="related-tools__grid"></div>
@@ -935,31 +935,25 @@ function setupHomeDiscovery() {
     const copy = HOME_DISCOVERY_COPY[locale] || HOME_DISCOVERY_COPY.en;
     const accessCopy = getLibraryCopy(locale);
 
-    const kickerEl = document.querySelector('[data-home-kicker]');
     const headingEl = document.querySelector('[data-home-heading]');
     const leadEl = document.querySelector('[data-home-lead]');
-    const accessKickerEl = document.querySelector('[data-home-access-kicker]');
     const accessHeadingEl = document.querySelector('[data-home-access-heading]');
     const accessLeadEl = document.querySelector('[data-home-access-lead]');
     const searchLabelEl = document.querySelector('[data-home-search-label]');
     const spotlightKickerEl = document.querySelector('[data-home-spotlight-kicker]');
     const spotlightHeadingEl = document.querySelector('[data-home-spotlight-heading]');
     const spotlightLeadEl = document.querySelector('[data-home-spotlight-lead]');
-    const catalogKickerEl = document.querySelector('[data-home-catalog-kicker]');
     const catalogHeadingEl = document.querySelector('[data-home-catalog-heading]');
     const catalogLinkEl = document.querySelector('[data-home-catalog-link]');
 
-    if (kickerEl) kickerEl.textContent = copy.kicker;
     if (headingEl) headingEl.textContent = copy.heading;
     if (leadEl) leadEl.textContent = copy.lead;
-    if (accessKickerEl) accessKickerEl.textContent = accessCopy.accessKicker;
     if (accessHeadingEl) accessHeadingEl.textContent = accessCopy.accessHeading;
     if (accessLeadEl) accessLeadEl.textContent = accessCopy.accessLead;
     if (searchLabelEl) searchLabelEl.textContent = copy.searchLabel;
     if (spotlightKickerEl) spotlightKickerEl.textContent = copy.spotlightKicker;
     if (spotlightHeadingEl) spotlightHeadingEl.textContent = copy.spotlightHeading;
     if (spotlightLeadEl) spotlightLeadEl.textContent = copy.spotlightLead;
-    if (catalogKickerEl) catalogKickerEl.textContent = copy.catalogKicker;
     if (catalogHeadingEl) catalogHeadingEl.textContent = copy.catalogHeading;
     if (catalogLinkEl) catalogLinkEl.textContent = copy.catalogLink;
     searchInput.placeholder = copy.searchPlaceholder;
@@ -1306,7 +1300,6 @@ function setupQuickStartPanel() {
 
     panel.innerHTML = `
       <div class="quick-start__intro">
-        <p class="section-kicker">${escapeHtml(copy.kicker)}</p>
         <h2 class="section-title">${escapeHtml(copy.title)}</h2>
         <p class="section-lead">${escapeHtml(copy.lead)}</p>
       </div>
@@ -1346,7 +1339,7 @@ function toggleTheme() {
 function updateThemeIcon(theme) {
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
-  btn.textContent = theme === 'light' ? '☀️' : '🌙';
+  btn.innerHTML = theme === 'light' ? ICON_SUN : ICON_MOON;
   const copy = getChromeCopy();
   btn.setAttribute('aria-label', theme === 'light' ? copy.themeDark : copy.themeLight);
 }
@@ -1431,7 +1424,7 @@ function setupGlobalNavigation() {
       badge = document.createElement('p');
       badge.className = 'trust-badge';
       badge.dataset.chromeBadge = 'trust';
-      badge.textContent = '🔒';
+      badge.innerHTML = ICON_LOCK;
       header.insertAdjacentElement('afterend', badge);
     } else if (badge.previousElementSibling !== header) {
       header.insertAdjacentElement('afterend', badge);
@@ -1545,7 +1538,7 @@ function updateChromeText(locale = document.documentElement.getAttribute('lang')
 
   const badge = document.querySelector('[data-chrome-badge="trust"]');
   if (badge) {
-    badge.innerHTML = `🔒 ${copy.trustBadge}`;
+    badge.innerHTML = `${ICON_LOCK}<span>${copy.trustBadge}</span>`;
   }
 
   const theme = document.documentElement.getAttribute('data-theme') || 'dark';
