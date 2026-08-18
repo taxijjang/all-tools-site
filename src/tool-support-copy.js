@@ -1,4 +1,82 @@
 export const TOOL_SUPPORT_COPY = {
+  '/date-calc': {
+    ko: {
+      heading: '만 나이 계산 실무 활용',
+      lead: '2023년 6월부터 법령과 계약의 나이는 만 나이가 기준입니다. 세는 나이와 연 나이가 섞여 쓰이던 서류를 확인하거나, 근무일·정산일·기념일 같은 날짜 계산을 함께 처리할 때 씁니다.',
+      cards: [
+        {
+          title: '세 가지 나이 구분',
+          body: '만 나이는 생일이 지나야 오르고, 세는 나이는 해가 바뀌면 오르며, 연 나이는 올해에서 태어난 해를 뺀 값으로 병역법과 청소년보호법에서 씁니다. 같은 사람도 시기에 따라 세 값이 최대 두 살까지 벌어집니다.',
+        },
+        {
+          title: '당일 포함 여부',
+          body: '숙박 일수, 근무일, 대회 기간처럼 시작일도 하루로 세는 경우가 많아 차이 일수와 당일 포함 일수를 같이 보여줍니다. 계약서 문구가 어느 쪽인지 먼저 확인하세요.',
+        },
+        {
+          title: '브라우저 안 계산',
+          body: '생년월일과 날짜는 현재 브라우저에서만 계산하며 서버로 보내거나 저장하지 않습니다. 개인정보가 들어가는 값이라 화면을 닫으면 남지 않습니다.',
+        },
+      ],
+      steps: [
+        '만 나이 탭에 생년월일을 넣고 만 나이·세는 나이·연 나이를 함께 확인합니다.',
+        '기준일을 바꾸면 과거나 미래 시점의 나이를 볼 수 있습니다. 비워 두면 오늘이 기준입니다.',
+        '날짜 차이 탭에서 두 날짜를 넣어 일수, 당일 포함 일수, 주말을 뺀 평일 수를 확인합니다.',
+        '디데이 탭은 목표일까지 남은 일수를, 더하기 탭은 기준일에 기간을 더하거나 뺀 날짜를 냅니다.',
+      ],
+      notes: [
+        {
+          title: '말일은 넘기지 않습니다',
+          body: '1월 31일에 1개월을 더하면 3월 3일이 아니라 2월 28일이 됩니다. 민법의 기간 계산과 같게 그 달의 말일에서 자릅니다. 날짜 차이의 개월 계산도 같은 규칙을 씁니다.',
+        },
+        {
+          title: '영업일에 공휴일은 빠져 있습니다',
+          body: '영업일 계산은 토요일과 일요일만 제외합니다. 설·추석 같은 공휴일은 해마다 달라 반영하지 않으므로 실제 근무일과 다를 수 있습니다.',
+        },
+        {
+          title: '기준 시간대',
+          body: '오늘 날짜는 접속한 기기의 시간대를 그대로 씁니다. 해외에서 접속하면 한국 날짜와 하루 차이가 날 수 있으니 기준일을 직접 지정하세요.',
+        },
+      ],
+    },
+    en: {
+      heading: 'Working with ages and date spans',
+      lead: 'Korea switched to international age for laws and contracts in June 2023, so documents often mix three different age counts. This page resolves all three and handles the surrounding date math.',
+      cards: [
+        {
+          title: 'Three age counts',
+          body: 'Exact age increases on the birthday. Korean counting age increases when the calendar year changes. Year age is simply the current year minus the birth year, used in conscription and youth protection law. The same person can differ by up to two years across the three.',
+        },
+        {
+          title: 'Inclusive or exclusive days',
+          body: 'Hotel nights, working days and event spans usually count the first day too, so both the plain difference and the inclusive count are shown. Check which one the contract wording means.',
+        },
+        {
+          title: 'Everything stays local',
+          body: 'Birth dates and target dates are calculated in the current browser and never sent to a server or stored. Nothing remains once the tab is closed.',
+        },
+      ],
+      steps: [
+        'Enter a birth date on the Age tab to see exact, Korean counting and year ages side by side.',
+        'Change the reference date to view an age at a past or future point. Leave it blank to use today.',
+        'On the Date difference tab, enter two dates to get days, inclusive days and weekdays excluding weekends.',
+        'The D-day tab counts toward a target date; the Add tab shifts a base date by years, months, weeks, days or business days.',
+      ],
+      notes: [
+        {
+          title: 'Month math clamps to the last day',
+          body: 'Adding one month to January 31 gives February 28, not March 3. The same clamping rule is used for the month portion of a date difference so the two features agree.',
+        },
+        {
+          title: 'Business days skip weekends only',
+          body: 'Only Saturday and Sunday are excluded. Public holidays change every year and are not applied, so the result can differ from an actual working calendar.',
+        },
+        {
+          title: 'Time zone',
+          body: "Today's date follows the device time zone. Away from Korea it can be a day off, so set the reference date explicitly when that matters.",
+        },
+      ],
+    },
+  },
   '/cron': {
     ko: {
       heading: 'Cron 표현식 파서 실무 활용',

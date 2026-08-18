@@ -60,6 +60,7 @@ const pageInputs = {
   convert: resolve(__dirname, 'convert.html'),
   fileHash: resolve(__dirname, 'file-hash.html'),
   imageBase64: resolve(__dirname, 'image-base64.html'),
+  dateCalc: resolve(__dirname, 'date-calc.html'),
   caseConvert: resolve(__dirname, 'case-convert.html'),
   jsonYaml: resolve(__dirname, 'json-yaml.html'),
   ipUa: resolve(__dirname, 'ip-ua.html'),
@@ -1063,6 +1064,21 @@ function buildEnglishPage(html, meta) {
   out = out.replace(/(<meta name="twitter:title" content=")[^"]*(")/i, `$1${escapeAttr(en.title)}$2`);
   out = out.replace(/(<meta name="twitter:description" content=")[^"]*(")/i, `$1${escapeAttr(en.description)}$2`);
   out = out.replace(/(<link rel="canonical" href=")[^"]*(")/i, `$1${enUrl}$2`);
+
+  // JSON-LD 는 여태 한국어 그대로였다. 이름·설명이 한국어인 건 물론이고
+  // url/@id 가 한국어 주소를 가리켜 이 페이지의 canonical(/en/...)과 어긋났다.
+  // 구글이 우리 canonical 을 무시하고 pages.dev 를 정본으로 고른 전례가 있어
+  // 서로 모순되는 신호를 남겨두지 않는다.
+  const enSchema = buildStructuredData(
+    { ...meta, canonicalPath: `/en${meta.path === '/' ? '/' : meta.path}` },
+    fullTitle,
+    en.description,
+    enUrl,
+  );
+  out = out.replace(
+    /(<script type="application\/ld\+json" data-seo-schema>)[\s\S]*?(<\/script>)/i,
+    `$1\n${JSON.stringify(enSchema, null, 2)}\n  $2`,
+  );
   out = out.replace(/(<meta property="og:url" content=")[^"]*(")/i, `$1${enUrl}$2`);
 
   // 저장된 언어 설정이 ko여도 이 페이지는 영어로 시작해야 한다.

@@ -144,6 +144,11 @@ export const PAGE_META_EN = {
     description:
       'Compare two blocks of text line by line to see exactly what was added, removed, or changed.',
   },
+  '/date-calc': {
+    title: 'Age Calculator | Date Difference, D-day, Date Math',
+    description:
+      'Calculate an exact age from a birth date, count days between two dates, track a D-day and add or subtract days, weeks, months and business days.',
+  },
   '/case-convert': {
     title: 'Case Converter | camelCase, snake_case, kebab-case',
     description:

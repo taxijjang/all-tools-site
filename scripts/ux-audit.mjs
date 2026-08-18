@@ -38,6 +38,7 @@ const ROUTES = [
   '/url',
   '/hash',
   '/timestamp',
+  '/date-calc',
   '/password',
   '/regex',
   '/qr',

@@ -401,6 +401,7 @@ const RELATED_TOOL_MAP = {
   convert: ['/timestamp', '/color', '/url'],
   'file-hash': ['/hash', '/image-optimize', '/pdf-toolkit'],
   'image-base64': ['/base64', '/image-optimize', '/ocr'],
+  'date-calc': ['/timestamp', '/cron', '/text-stats'],
   'case-convert': ['/text-cleaner', '/json', '/diff'],
   'json-yaml': ['/json', '/diff', '/api-tester'],
   'ip-ua': ['/api-tester', '/seo-check', '/ip-cidr'],

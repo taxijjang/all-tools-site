@@ -76,6 +76,7 @@ export const NAV_TOOLS = [
   { value: '/url', labels: { ko: 'URL 인코더/디코더', en: 'URL Encoder/Decoder' } },
   { value: '/hash', labels: { ko: 'SHA 해시 계산기', en: 'SHA Hash' } },
   { value: '/timestamp', labels: { ko: '타임스탬프 변환', en: 'Timestamp Converter' } },
+  { value: '/date-calc', labels: { ko: '만 나이 계산기', en: 'Age Calculator' } },
   { value: '/password', labels: { ko: '비밀번호 생성기', en: 'Password' } },
   { value: '/regex', labels: { ko: '정규식 테스트기', en: 'Regex Tester' } },
   { value: '/qr', labels: { ko: 'QR 코드 생성기', en: 'QR Code' } },

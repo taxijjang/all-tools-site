@@ -4736,3 +4736,14 @@ details.faq-item > summary:focus-visible {
   color: var(--accent);
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
 }
+
+/* 탭이 4개면 모바일에서 한 칸이 80px 밖에 안 돼 "날짜 차이"가 두 줄로 깨진다.
+   누를 수 있는 글자가 두 줄이면 의도한 줄바꿈인지 오류인지 구분이 안 된다.
+   여백과 글자를 조여 한 줄을 지킨다(높이 44px는 유지). */
+@media (max-width: 720px) {
+  .tool-tabs:has(> .tool-tab:nth-child(4)) .tool-tab {
+    padding-inline: 0.4rem;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+}

@@ -313,6 +313,14 @@ export const PAGE_META = {
       '이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
   },
+  'date-calc': {
+    path: '/date-calc',
+    kind: 'tool',
+    title: '만 나이 계산기 | 세는 나이, 날짜 차이, 디데이 계산',
+    description:
+      '생년월일로 만 나이·세는 나이·연 나이를 한 번에 계산합니다. 두 날짜 사이 일수, 디데이, 날짜 더하기·빼기까지 브라우저에서 바로 처리합니다.',
+    applicationCategory: 'UtilitiesApplication',
+  },
   'case-convert': {
     path: '/case-convert',
     kind: 'tool',
