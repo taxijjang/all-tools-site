@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/uuid-pCCZi7IB.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
+  <script type="module" crossorigin src="/assets/uuid-DwffYfHz.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CxVblQoB.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-BO2yG5bi.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -385,18 +385,12 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Questions that come up in practice</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>Why use hex(binary16)?</h3>
-              <p>It removes hyphens and can fit more naturally into compact binary storage strategies than a plain UUID string.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Should I use UUID v7 instead?</h3>
-              <p>If you need time-sortable identifiers, the dedicated <a href="/en/uuidv7">UUID v7 generator</a> is the better fit. This page is focused on conversion workflows.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Does this page upload UUIDs anywhere?</h3>
-              <p>Generation and conversion happen in the browser. You should still account for browser extensions or your own security policies when handling sensitive identifiers.</p>
-            </article>
+            <details class="faq-item"><summary><h3>Why use hex(binary16)?</h3></summary><p>It removes hyphens and can fit more naturally into compact binary storage strategies than a plain UUID string.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Should I use UUID v7 instead?</h3></summary><p>If you need time-sortable identifiers, the dedicated <a href="/en/uuidv7">UUID v7 generator</a> is the better fit. This page is focused on conversion workflows.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Does this page upload UUIDs anywhere?</h3></summary><p>Generation and conversion happen in the browser. You should still account for browser extensions or your own security policies when handling sensitive identifiers.</p>
+            </details>
           </div>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/en/uuid-v4-v7">Open UUID v4 vs v7 guide</a>

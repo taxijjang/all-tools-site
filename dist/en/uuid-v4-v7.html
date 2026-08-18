@@ -6,8 +6,8 @@
   <title>UUID v4 vs v7 Guide | Which UUID Should You Use | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-Bi1Nl3EU.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
+  <script type="module" crossorigin src="/assets/site-CxVblQoB.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-BO2yG5bi.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -224,18 +224,12 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">The practical issues that matter most</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>Ordering and index locality</h3>
-              <p>UUID v4 inserts are effectively random. UUID v7 can improve ordering behavior in some storage engines because time information is encoded near the front.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Readability and debugging</h3>
-              <p>Neither version is pleasant for humans. Teams still need conversion helpers for standard strings, compact binary forms, and log-friendly outputs.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Mixed-format operations</h3>
-              <p>If older services stay on v4 while newer ones move to v7, filters, tracing docs, and operational scripts often need more cleanup than expected.</p>
-            </article>
+            <details class="faq-item"><summary><h3>Ordering and index locality</h3></summary><p>UUID v4 inserts are effectively random. UUID v7 can improve ordering behavior in some storage engines because time information is encoded near the front.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Readability and debugging</h3></summary><p>Neither version is pleasant for humans. Teams still need conversion helpers for standard strings, compact binary forms, and log-friendly outputs.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Mixed-format operations</h3></summary><p>If older services stay on v4 while newer ones move to v7, filters, tracing docs, and operational scripts often need more cleanup than expected.</p>
+            </details>
           </div>
         </div>
       </section>

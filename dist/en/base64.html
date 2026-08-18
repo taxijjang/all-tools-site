@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/base64-D8_Sx-gU.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
+  <script type="module" crossorigin src="/assets/base64-B2NrqYRo.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CxVblQoB.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-BO2yG5bi.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -391,25 +391,19 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">When each option actually helps</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>URL-safe output</h3>
-              <p>
+            <details class="faq-item"><summary><h3>URL-safe output</h3></summary><p>
                 Use this when standard Base64 characters such as <code>+</code>, <code>/</code>, and <code>=</code> are likely to break in query strings,
                 callback URLs, or compact tokens.
               </p>
-            </article>
-            <article class="faq-item">
-              <h3>Whitespace cleanup</h3>
-              <p>
+            </details>
+            <details class="faq-item"><summary><h3>Whitespace cleanup</h3></summary><p>
                 Turn it on when the payload came from logs, docs, or multiline email content. It quickly tells you whether the value is invalid or the copy step is the real problem.
               </p>
-            </article>
-            <article class="faq-item">
-              <h3>Custom download filename</h3>
-              <p>
+            </details>
+            <details class="faq-item"><summary><h3>Custom download filename</h3></summary><p>
                 Naming the decoded result up front makes it easier to keep track of fixtures and test outputs, especially when you export many files in one debugging session.
               </p>
-            </article>
+            </details>
           </div>
         </div>
       </section>
@@ -419,18 +413,12 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">When this page is especially handy</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>Inspect encoded API payloads</h3>
-              <p>Useful for response bodies, image data URLs, or embedded file fields that arrive in Base64 form.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Create quick file samples</h3>
-              <p>Dropping a file into the page gives you a copyable Base64 string without using a separate desktop tool.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Check transport overhead</h3>
-              <p>Base64 expands payload size, so it is worth checking before sending values through channels with strict limits.</p>
-            </article>
+            <details class="faq-item"><summary><h3>Inspect encoded API payloads</h3></summary><p>Useful for response bodies, image data URLs, or embedded file fields that arrive in Base64 form.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Create quick file samples</h3></summary><p>Dropping a file into the page gives you a copyable Base64 string without using a separate desktop tool.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Check transport overhead</h3></summary><p>Base64 expands payload size, so it is worth checking before sending values through channels with strict limits.</p>
+            </details>
           </div>
         </div>
       </section>
@@ -440,22 +428,14 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Common questions that come up with Base64</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>Is Base64 a security layer?</h3>
-              <p>No. It changes representation, but anyone can decode it again. Sensitive data still needs real encryption and proper access control.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Why is the output longer than the original?</h3>
-              <p>Base64 turns every 3 bytes into 4 printable characters, which makes transport easier but increases size by roughly one third.</p>
-            </article>
-            <article class="faq-item">
-              <h3>What if the decoded text looks broken?</h3>
-              <p>The payload may be invalid, or it may not be text at all. In that case, exporting the value as a file is often the fastest way to inspect the real bytes.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Which tools pair well with this one?</h3>
-              <p>Use the URL tool for query-safe values, the Image Base64 page for data URLs, and JSON Formatter when the Base64 field sits inside an API response.</p>
-            </article>
+            <details class="faq-item"><summary><h3>Is Base64 a security layer?</h3></summary><p>No. It changes representation, but anyone can decode it again. Sensitive data still needs real encryption and proper access control.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Why is the output longer than the original?</h3></summary><p>Base64 turns every 3 bytes into 4 printable characters, which makes transport easier but increases size by roughly one third.</p>
+            </details>
+            <details class="faq-item"><summary><h3>What if the decoded text looks broken?</h3></summary><p>The payload may be invalid, or it may not be text at all. In that case, exporting the value as a file is often the fastest way to inspect the real bytes.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Which tools pair well with this one?</h3></summary><p>Use the URL tool for query-safe values, the Image Base64 page for data URLs, and JSON Formatter when the Base64 field sits inside an API response.</p>
+            </details>
           </div>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/en/base64-vs-url-encoding">Open Base64 vs URL encoding guide</a>

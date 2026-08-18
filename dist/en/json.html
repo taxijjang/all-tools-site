@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/json-BZUs2J9L.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
+  <script type="module" crossorigin src="/assets/json-zlnfNdhU.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-CxVblQoB.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-BO2yG5bi.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -360,18 +360,12 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">JSON mistakes that show up all the time</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>Missing double quotes</h3>
-              <p>JSON requires double quotes around keys and string values. JavaScript object syntax often causes confusion here.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Trailing commas</h3>
-              <p>A trailing comma may look harmless, but standard JSON parsers reject it in both arrays and objects.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Sensitive payloads</h3>
-              <p>This page runs in browser memory, but production secrets and personal data should still be masked before review when your internal policy requires it.</p>
-            </article>
+            <details class="faq-item"><summary><h3>Missing double quotes</h3></summary><p>JSON requires double quotes around keys and string values. JavaScript object syntax often causes confusion here.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Trailing commas</h3></summary><p>A trailing comma may look harmless, but standard JSON parsers reject it in both arrays and objects.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Sensitive payloads</h3></summary><p>This page runs in browser memory, but production secrets and personal data should still be masked before review when your internal policy requires it.</p>
+            </details>
           </div>
         </div>
       </section>
@@ -381,22 +375,14 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Common JSON formatter questions</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>How is JSON different from a JavaScript object?</h3>
-              <p>JSON is a data exchange format. Keys and string values need double quotes, and comments or trailing commas are not valid.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Should I format or minify?</h3>
-              <p>Format when humans need to read and review the payload. Minify when you need a compact one-line body or fixture.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Can large JSON payloads be handled in the browser?</h3>
-              <p>Most API responses are fine, but very large files can affect browser memory and rendering. For huge logs, inspect the relevant slice first.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Which tools pair well with JSON Formatter?</h3>
-              <p>Use <a href="/en/jwt">JWT Decoder</a> for token payloads, <a href="/en/json-yaml">JSON YAML Converter</a> for format handoff, and <a href="/en/api-tester">API Request Tester</a> for reproducing requests.</p>
-            </article>
+            <details class="faq-item"><summary><h3>How is JSON different from a JavaScript object?</h3></summary><p>JSON is a data exchange format. Keys and string values need double quotes, and comments or trailing commas are not valid.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Should I format or minify?</h3></summary><p>Format when humans need to read and review the payload. Minify when you need a compact one-line body or fixture.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Can large JSON payloads be handled in the browser?</h3></summary><p>Most API responses are fine, but very large files can affect browser memory and rendering. For huge logs, inspect the relevant slice first.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Which tools pair well with JSON Formatter?</h3></summary><p>Use <a href="/en/jwt">JWT Decoder</a> for token payloads, <a href="/en/json-yaml">JSON YAML Converter</a> for format handoff, and <a href="/en/api-tester">API Request Tester</a> for reproducing requests.</p>
+            </details>
           </div>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/en/json-yaml">Open JSON YAML</a>

@@ -6,8 +6,8 @@
   <title>JWT exp and nbf Guide | Reading Expiry and Not Before | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-Bi1Nl3EU.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
+  <script type="module" crossorigin src="/assets/site-CxVblQoB.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-BO2yG5bi.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -224,18 +224,12 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">What shows up in real incidents</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>Seconds vs milliseconds</h3>
-              <p>JWTs usually use Unix seconds. When frontend code or logs treat them as milliseconds, the resulting timestamps look completely wrong.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Decoding without verification</h3>
-              <p>Readable tokens are not automatically trustworthy. External issuer setups still need signature validation through JWKS or an equivalent check.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Ignoring environment drift</h3>
-              <p>Even a small time difference between application and auth servers can create repeated boundary failures. Teams should document acceptable skew explicitly.</p>
-            </article>
+            <details class="faq-item"><summary><h3>Seconds vs milliseconds</h3></summary><p>JWTs usually use Unix seconds. When frontend code or logs treat them as milliseconds, the resulting timestamps look completely wrong.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Decoding without verification</h3></summary><p>Readable tokens are not automatically trustworthy. External issuer setups still need signature validation through JWKS or an equivalent check.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Ignoring environment drift</h3></summary><p>Even a small time difference between application and auth servers can create repeated boundary failures. Teams should document acceptable skew explicitly.</p>
+            </details>
           </div>
         </div>
       </section>

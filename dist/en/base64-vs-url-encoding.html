@@ -6,8 +6,8 @@
   <title>Base64 vs URL Encoding Guide | Which One and When | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-Bi1Nl3EU.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
+  <script type="module" crossorigin src="/assets/site-CxVblQoB.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-BO2yG5bi.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -224,18 +224,12 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">When to use which one</h2>
           <div class="faq-list">
-            <article class="faq-item">
-              <h3>JWTs, cookies, header payloads</h3>
-              <p>Base64 shows up often when structured or binary data needs to travel as text. If it later moves through a URL, URL-safe variants may still matter.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Query params and redirects</h3>
-              <p>URL encoding comes first when spaces, Korean text, or reserved characters can break a callback or redirect chain.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Stacks that use both</h3>
-              <p>Some systems Base64-encode a value first and then place it in a query parameter. Debugging gets easier when you identify which layer transformed the value.</p>
-            </article>
+            <details class="faq-item"><summary><h3>JWTs, cookies, header payloads</h3></summary><p>Base64 shows up often when structured or binary data needs to travel as text. If it later moves through a URL, URL-safe variants may still matter.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Query params and redirects</h3></summary><p>URL encoding comes first when spaces, Korean text, or reserved characters can break a callback or redirect chain.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Stacks that use both</h3></summary><p>Some systems Base64-encode a value first and then place it in a query parameter. Debugging gets easier when you identify which layer transformed the value.</p>
+            </details>
           </div>
         </div>
       </section>
