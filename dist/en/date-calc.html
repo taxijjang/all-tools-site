@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Age Calculator | Date Difference, D-day, Date Math | Stateless Tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <script type="module" crossorigin src="/assets/dateCalc-CvWSYDw5.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-DuZQtb0R.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-DJLRb4EM.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
+  <script data-client-boot>
+    (function () {
+      var supported = ['ko', 'en'];
+      function safeGet(key) {
+        try {
+          return localStorage.getItem(key);
+        } catch (err) {
+          return null;
+        }
+      }
+      function pickLocale() {
+        var stored = safeGet('stateless-tools-locale');
+        if (stored && supported.indexOf(stored) !== -1) {
+          return stored;
+        }
+        var lang = (navigator.language || '').slice(0, 2);
+        if (supported.indexOf(lang) !== -1) {
+          return lang;
+        }
+        return 'ko';
+      }
+      function pickTheme() {
+        var stored = safeGet('stateless-theme');
+        if (stored === 'light' || stored === 'dark') {
+          return stored;
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      var doc = document.documentElement;
+      var locale = 'en';
+      doc.setAttribute('lang', locale);
+      doc.setAttribute('data-theme', pickTheme());
+      doc.setAttribute('data-preferred-locale', locale);
+      doc.classList.add('i18n-pending');
+      window.__preferredLocale = locale;
+    })();
+  </script>
+  <style data-client-boot>
+    html.i18n-pending[data-preferred-locale="en"] .page {
+      visibility: hidden;
+    }
+
+    html.i18n-pending .page-controls,
+    html.i18n-pending .trust-badge {
+      visibility: hidden;
+    }
+
+    html.i18n-pending[data-preferred-locale="en"] body {
+      overflow: hidden;
+    }
+  </style>
+  <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
+  <meta name="description" content="Calculate an exact age from a birth date, count days between two dates, track a D-day and add or subtract days, weeks, months and business days." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="taxijjang" />
+  <meta name="theme-color" content="#020817" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="canonical" href="https://taxijjang.com/en/date-calc" />
+  <link rel="alternate" hreflang="ko" href="https://taxijjang.com/date-calc" />
+  <link rel="alternate" hreflang="en" href="https://taxijjang.com/en/date-calc" />
+  <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/date-calc" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Stateless Tools" />
+  <meta property="og:title" content="Age Calculator | Date Difference, D-day, Date Math" />
+  <meta property="og:description" content="Calculate an exact age from a birth date, count days between two dates, track a D-day and add or subtract days, weeks, months and business days." />
+  <meta property="og:url" content="https://taxijjang.com/en/date-calc" />
+  <meta property="og:image" content="https://taxijjang.com/icon.svg" />
+  <meta property="og:image:alt" content="Stateless Tools logo" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Age Calculator | Date Difference, D-day, Date Math" />
+  <meta name="twitter:description" content="Calculate an exact age from a birth date, count days between two dates, track a D-day and add or subtract days, weeks, months and business days." />
+  <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
+  <script type="application/ld+json" data-seo-schema>
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://taxijjang.com/#website",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    },
+    "inLanguage": [
+      "ko",
+      "en"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://taxijjang.com/#organization",
+    "name": "Stateless Tools",
+    "alternateName": "stateless dev tools",
+    "url": "https://taxijjang.com",
+    "logo": "https://taxijjang.com/icon.svg",
+    "sameAs": [
+      "https://github.com/taxijjang/all-tools-site",
+      "https://taxijjang.tistory.com/"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://taxijjang.com/en/date-calc#webpage",
+    "name": "Age Calculator | Date Difference, D-day, Date Math | Stateless Tools",
+    "url": "https://taxijjang.com/en/date-calc",
+    "description": "Calculate an exact age from a birth date, count days between two dates, track a D-day and add or subtract days, weeks, months and business days.",
+    "isPartOf": {
+      "@id": "https://taxijjang.com/#website"
+    },
+    "breadcrumb": {
+      "@id": "https://taxijjang.com/en/date-calc#breadcrumb"
+    },
+    "primaryImageOfPage": "https://taxijjang.com/icon.svg"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": "https://taxijjang.com/en/date-calc#breadcrumb",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://taxijjang.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Age Calculator | Date Difference, D-day, Date Math | Stateless Tools",
+        "item": "https://taxijjang.com/en/date-calc"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://taxijjang.com/en/date-calc#app",
+    "name": "Age Calculator | Date Difference, D-day, Date Math | Stateless Tools",
+    "url": "https://taxijjang.com/en/date-calc",
+    "description": "Calculate an exact age from a birth date, count days between two dates, track a D-day and add or subtract days, weeks, months and business days.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript and a modern browser",
+    "isAccessibleForFree": true,
+    "image": "https://taxijjang.com/icon.svg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@id": "https://taxijjang.com/#organization"
+    }
+  }
+]
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WZJ5247NQK');
+  </script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
+</head>
+<body class="layout layout--dev" data-tool="date-calc" data-allow-ads="true">
+  <div class="page page--dev">
+    <div class="page-controls" data-nosnippet>
+
+      <a class="brand-home" href="/en/" aria-label="Stateless Tools">
+        <img src="/icon.svg" alt="" width="22" height="22" />
+        <span>Stateless Tools</span>
+      </a>
+      <button id="pwaInstallBtn" class="pwa-install-btn" type="button" aria-hidden="true" tabindex="-1">Install</button>
+
+      <div class="tool-switcher" data-chrome-preload="tool-switcher">
+        <select id="toolSelect" aria-label="기능 이동">
+          <option value="/">Home</option>
+          <option value="/uuid">UUID Converter</option>
+          <option value="/base64">Base64 Encoder/Decoder</option>
+          <option value="/json">JSON Formatter</option>
+          <option value="/jwt">JWT Decoder</option>
+          <option value="/cron">Cron Parser</option>
+          <option value="/url">URL Encoder/Decoder</option>
+          <option value="/hash">SHA Hash</option>
+          <option value="/timestamp">Timestamp Converter</option>
+          <option value="/date-calc" selected>Age Calculator</option>
+          <option value="/password">Password</option>
+          <option value="/regex">Regex Tester</option>
+          <option value="/qr">QR Code</option>
+          <option value="/diff">Text Diff</option>
+          <option value="/color">Color Converter</option>
+          <option value="/markdown">Markdown</option>
+          <option value="/convert">Unit Converter</option>
+          <option value="/file-hash">File Hash</option>
+          <option value="/image-base64">Image Base64</option>
+          <option value="/case-convert">Case Converter</option>
+          <option value="/json-yaml">JSON YAML</option>
+          <option value="/ip-ua">IP / User-Agent</option>
+          <option value="/ip-cidr">CIDR Calculator</option>
+          <option value="/text-stats">Character Counter</option>
+          <option value="/pdf-toolkit">PDF Merge/Split</option>
+          <option value="/image-optimize">Image Optimizer</option>
+          <option value="/ocr">OCR Extractor</option>
+          <option value="/seo-check">SEO Meta Check</option>
+          <option value="/utm-builder">UTM Builder</option>
+          <option value="/text-cleaner">Text Cleaner</option>
+          <option value="/api-tester">API Request Tester</option>
+        </select>
+      </div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="테마 전환"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></button>
+
+      <nav class="utility-links" data-chrome-preload="utility-links" aria-label="사이트 링크">
+        <a href="/en/learn" data-chrome-link="learn">Guides</a>
+        <a href="/en/ai-tools" data-chrome-link="aiTools">AI Commands</a>
+      </nav>
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">Language</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <h1 data-i18n="dateCalc.title">Age Calculator</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>브라우저 내부 처리</span></p>
+      <p data-i18n="dateCalc.description">Get an exact age from a birth date, plus date differences, D-day countdowns and date arithmetic on one screen.</p>
+    </header>
+
+    <main class="tool">
+      <div class="tool-tabs" role="tablist" data-tool-tabs>
+        <button type="button" class="tool-tab is-active" id="tabbtn-age" role="tab"
+                aria-selected="true" data-tab-target="tab-age" data-i18n="dateCalc.tab.age">Age</button>
+        <button type="button" class="tool-tab" id="tabbtn-diff" role="tab"
+                aria-selected="false" data-tab-target="tab-diff" data-i18n="dateCalc.tab.diff">Date difference</button>
+        <button type="button" class="tool-tab" id="tabbtn-dday" role="tab"
+                aria-selected="false" data-tab-target="tab-dday" data-i18n="dateCalc.tab.dday">D-day</button>
+        <button type="button" class="tool-tab" id="tabbtn-add" role="tab"
+                aria-selected="false" data-tab-target="tab-add" data-i18n="dateCalc.tab.add">Add</button>
+      </div>
+
+      <div class="tool__stack" id="tab-age" role="tabpanel" aria-labelledby="tabbtn-age">
+        <section class="tool__panel tool__panel--stack">
+          <label for="dcBirth" data-i18n="dateCalc.age.birth">Birth date</label>
+          <input id="dcBirth" type="date" data-persist="birth" />
+          <label for="dcAgeBase" data-i18n="dateCalc.age.base">As of (defaults to today)</label>
+          <input id="dcAgeBase" type="date" data-persist="ageBase" />
+        </section>
+        <section class="tool__panel tool__panel--stack tool__panel--summary">
+          <label data-i18n="dateCalc.age.resultTitle">Age result</label>
+          <div class="tool-grid-3">
+            <div><label for="dcMan" data-i18n="dateCalc.age.man">Exact age</label><input id="dcMan" type="text" readonly /></div>
+            <div><label for="dcSe" data-i18n="dateCalc.age.se">Korean age (counting)</label><input id="dcSe" type="text" readonly /></div>
+            <div><label for="dcYeon" data-i18n="dateCalc.age.yeon">Year age</label><input id="dcYeon" type="text" readonly /></div>
+            <div><label for="dcLived" data-i18n="dateCalc.age.lived">Time lived</label><input id="dcLived" type="text" readonly /></div>
+            <div><label for="dcLivedDays" data-i18n="dateCalc.age.livedDays">Days lived</label><input id="dcLivedDays" type="text" readonly /></div>
+            <div><label for="dcNextBirthday" data-i18n="dateCalc.age.nextBirthday">Next birthday in</label><input id="dcNextBirthday" type="text" readonly /></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="tool__stack" id="tab-diff" role="tabpanel" aria-labelledby="tabbtn-diff" hidden>
+        <section class="tool__panel tool__panel--stack">
+          <label for="dcFrom" data-i18n="dateCalc.diff.from">Start date</label>
+          <input id="dcFrom" type="date" data-persist="from" />
+          <label for="dcTo" data-i18n="dateCalc.diff.to">End date</label>
+          <input id="dcTo" type="date" data-persist="to" />
+        </section>
+        <section class="tool__panel tool__panel--stack tool__panel--summary">
+          <label data-i18n="dateCalc.diff.resultTitle">Difference</label>
+          <div class="tool-grid-3">
+            <div><label for="dcDiffDays" data-i18n="dateCalc.diff.days">Days between</label><input id="dcDiffDays" type="text" readonly /></div>
+            <div><label for="dcDiffInclusive" data-i18n="dateCalc.diff.inclusive">Including both days</label><input id="dcDiffInclusive" type="text" readonly /></div>
+            <div><label for="dcDiffWeeks" data-i18n="dateCalc.diff.weeks">In weeks</label><input id="dcDiffWeeks" type="text" readonly /></div>
+            <div><label for="dcDiffYmd" data-i18n="dateCalc.diff.ymd">Years / months / days</label><input id="dcDiffYmd" type="text" readonly /></div>
+            <div><label for="dcDiffWeekdays" data-i18n="dateCalc.diff.weekdays">Weekdays (no weekends)</label><input id="dcDiffWeekdays" type="text" readonly /></div>
+            <div><label for="dcDiffMonths" data-i18n="dateCalc.diff.months">Total months</label><input id="dcDiffMonths" type="text" readonly /></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="tool__stack" id="tab-dday" role="tabpanel" aria-labelledby="tabbtn-dday" hidden>
+        <section class="tool__panel tool__panel--stack">
+          <label for="dcTarget" data-i18n="dateCalc.dday.target">Target date</label>
+          <input id="dcTarget" type="date" data-persist="target" />
+          <label for="dcDdayBase" data-i18n="dateCalc.dday.base">As of (defaults to today)</label>
+          <input id="dcDdayBase" type="date" data-persist="ddayBase" />
+        </section>
+        <section class="tool__panel tool__panel--stack tool__panel--summary">
+          <label data-i18n="dateCalc.dday.resultTitle">D-day result</label>
+          <div class="tool-grid-3">
+            <div><label for="dcDdayLabel" data-i18n="dateCalc.dday.label">D-day</label><input id="dcDdayLabel" type="text" readonly /></div>
+            <div><label for="dcDdayDays" data-i18n="dateCalc.dday.days">Days remaining / past</label><input id="dcDdayDays" type="text" readonly /></div>
+            <div><label for="dcDdayCountUp" data-i18n="dateCalc.dday.countUp">Day number since start</label><input id="dcDdayCountUp" type="text" readonly /></div>
+            <div><label for="dcDdayWeekday" data-i18n="dateCalc.dday.weekday">Target weekday</label><input id="dcDdayWeekday" type="text" readonly /></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="tool__stack" id="tab-add" role="tabpanel" aria-labelledby="tabbtn-add" hidden>
+        <section class="tool__panel tool__panel--stack">
+          <label for="dcAddBase" data-i18n="dateCalc.add.base">Base date</label>
+          <input id="dcAddBase" type="date" data-persist="addBase" />
+          <div class="tool-grid-3">
+            <div><label for="dcAddYears" data-i18n="dateCalc.add.years">Years</label><input id="dcAddYears" type="number" value="0" step="1" data-persist="addYears" /></div>
+            <div><label for="dcAddMonths" data-i18n="dateCalc.add.months">Months</label><input id="dcAddMonths" type="number" value="0" step="1" data-persist="addMonths" /></div>
+            <div><label for="dcAddWeeks" data-i18n="dateCalc.add.weeks">Weeks</label><input id="dcAddWeeks" type="number" value="0" step="1" data-persist="addWeeks" /></div>
+            <div><label for="dcAddDays" data-i18n="dateCalc.add.days">Days</label><input id="dcAddDays" type="number" value="100" step="1" data-persist="addDays" /></div>
+            <div><label for="dcAddBusiness" data-i18n="dateCalc.add.business">Business days</label><input id="dcAddBusiness" type="number" value="0" step="1" data-persist="addBusiness" /></div>
+          </div>
+          <p class="panel-subtitle" data-i18n="dateCalc.add.hint">Negative values move backwards. Business days skip weekends only, not public holidays.</p>
+        </section>
+        <section class="tool__panel tool__panel--stack tool__panel--summary">
+          <label data-i18n="dateCalc.add.resultTitle">Result</label>
+          <div class="tool-grid-3">
+            <div><label for="dcAddResult" data-i18n="dateCalc.add.result">Result date</label><input id="dcAddResult" type="text" readonly /></div>
+            <div><label for="dcAddWeekday" data-i18n="dateCalc.add.weekday">Weekday</label><input id="dcAddWeekday" type="text" readonly /></div>
+            <div><label for="dcAddFromToday" data-i18n="dateCalc.add.fromToday">From today</label><input id="dcAddFromToday" type="text" readonly /></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <p id="dcMessage" class="message" role="status" aria-live="polite"></p>
+
+
+    
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section content-section--highlight">
+          <h2 class="section-title">Working with ages and date spans</h2>
+          <p class="section-lead">Korea switched to international age for laws and contracts in June 2023, so documents often mix three different age counts. This page resolves all three and handles the surrounding date math.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Three age counts</h3>
+              <p>Exact age increases on the birthday. Korean counting age increases when the calendar year changes. Year age is simply the current year minus the birth year, used in conscription and youth protection law. The same person can differ by up to two years across the three.</p>
+            </article>
+            <article class="info-card">
+              <h3>Inclusive or exclusive days</h3>
+              <p>Hotel nights, working days and event spans usually count the first day too, so both the plain difference and the inclusive count are shown. Check which one the contract wording means.</p>
+            </article>
+            <article class="info-card">
+              <h3>Everything stays local</h3>
+              <p>Birth dates and target dates are calculated in the current browser and never sent to a server or stored. Nothing remains once the tab is closed.</p>
+            </article>
+          </div>
+        </section>
+
+
+        <section class="content-section">
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Month math clamps to the last day</h3>
+              <p>Adding one month to January 31 gives February 28, not March 3. The same clamping rule is used for the month portion of a date difference so the two features agree.</p>
+            </article>
+            <article class="info-card">
+              <h3>Business days skip weekends only</h3>
+              <p>Only Saturday and Sunday are excluded. Public holidays change every year and are not applied, so the result can differ from an actual working calendar.</p>
+            </article>
+            <article class="info-card">
+              <h3>Time zone</h3>
+              <p>Today's date follows the device time zone. Away from Korea it can be a day off, so set the reference date explicitly when that matters.</p>
+            </article>
+          </div>
+        </section>
+
+
+        <details class="content-more">
+          <summary>More: step-by-step usage and worked examples</summary>
+
+        <section class="content-section">
+          <h2 class="section-title">How to use it</h2>
+          <ol class="content-list">
+          <li>Enter a birth date on the Age tab to see exact, Korean counting and year ages side by side.</li>
+          <li>Change the reference date to view an age at a past or future point. Leave it blank to use today.</li>
+          <li>On the Date difference tab, enter two dates to get days, inclusive days and weekdays excluding weekends.</li>
+          <li>The D-day tab counts toward a target date; the Add tab shifts a base date by years, months, weeks, days or business days.</li>
+          </ol>
+        </section>
+
+
+        </details>
+
+        <section class="content-section">
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/en/ip-ua">IP / User-Agent</a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.</li>
+            <li><a href="/en/ip-cidr">CIDR Calculator</a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s</li>
+            <li><a href="/en/cron">Cron Parser</a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin</li>
+            <li><a href="/en/timestamp">Timestamp Converter</a></li>
+            <li><a href="/en/hash">SHA Hash</a></li>
+            <li><a href="/en/password">Password</a></li>
+          </ul>
+        </section>
+        </details>
+    </section>
+      <footer class="footer footer--dev" data-nosnippet>
+      <nav class="footer-links" aria-label="사이트 정보">
+        <a href="/en/about" data-chrome-link="about">About</a>
+        <a href="/en/privacy" data-chrome-link="privacy">Privacy</a>
+        <a href="/en/contact" data-chrome-link="contact">Contact</a>
+      </nav>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
+    </footer>
+  </div>
+
+  
+</body>
+</html>
