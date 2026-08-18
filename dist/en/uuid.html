@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/uuid-DwffYfHz.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CxVblQoB.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-BO2yG5bi.css">
+  <script type="module" crossorigin src="/assets/uuid-BOAuEm38.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-DCfOdt87.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Dlp5W7EE.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -246,10 +246,8 @@
           <option value="/convert">Unit Converter</option>
           <option value="/file-hash">File Hash</option>
           <option value="/image-base64">Image Base64</option>
-          <option value="/uuidv7">UUID v7</option>
           <option value="/case-convert">Case Converter</option>
           <option value="/json-yaml">JSON YAML</option>
-          <option value="/query-builder">URL Query Builder</option>
           <option value="/ip-ua">IP / User-Agent</option>
           <option value="/ip-cidr">CIDR Calculator</option>
           <option value="/text-stats">Character Counter</option>
@@ -303,6 +301,7 @@
         <div class="field-row">
           <select id="uuidVersion" data-persist="version">
             <option value="v4" data-i18n="uuid.random.v4">UUID v4</option>
+            <option value="v7" data-i18n="uuid.random.v7">UUID v7 (time ordered)</option>
             <option value="ulid" data-i18n="uuid.random.ulid">ULID (readable)</option>
           </select>
           <button id="generateBtn" type="button" class="primary" data-i18n="uuid.random.button">Generate</button>
@@ -387,14 +386,13 @@
           <div class="faq-list">
             <details class="faq-item"><summary><h3>Why use hex(binary16)?</h3></summary><p>It removes hyphens and can fit more naturally into compact binary storage strategies than a plain UUID string.</p>
             </details>
-            <details class="faq-item"><summary><h3>Should I use UUID v7 instead?</h3></summary><p>If you need time-sortable identifiers, the dedicated <a href="/en/uuidv7">UUID v7 generator</a> is the better fit. This page is focused on conversion workflows.</p>
+            <details class="faq-item"><summary><h3>Should I use UUID v7 instead?</h3></summary><p>If you need time-sortable identifiers, pick <strong>UUID v7</strong> in the generation mode above. Its first 48 bits are a millisecond timestamp, so values sort by creation order. Use v4 when you want pure randomness, or ULID when string readability matters.</p>
             </details>
             <details class="faq-item"><summary><h3>Does this page upload UUIDs anywhere?</h3></summary><p>Generation and conversion happen in the browser. You should still account for browser extensions or your own security policies when handling sensitive identifiers.</p>
             </details>
           </div>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/en/uuid-v4-v7">Open UUID v4 vs v7 guide</a>
-            <a class="link-button" href="/en/uuidv7">Open UUID v7 tool</a>
           </div>
         </div>
       </section>
@@ -417,7 +415,7 @@
             </article>
             <article class="info-card">
               <h3>3. Move to UUID v7 when ordering matters</h3>
-              <p>If the real question is about time-ordered identifiers, continue into the <a href="/en/uuidv7">UUID v7 generator</a> instead of stopping at plain conversion.</p>
+              <p>If the real question is about time-ordered identifiers, switch the generation mode to <strong>UUID v7</strong> and compare it with v4 on this same screen. The <a href="/en/uuid-v4-v7">v4 vs v7 guide</a> covers the trade-offs.</p>
             </article>
           </div>
         </div>
@@ -437,7 +435,7 @@
             <li><a href="/en/jwt">JWT Decoder</a></li>
             <li><a href="/en/url">URL Encoder/Decoder</a></li>
             <li><a href="/en/json-yaml">JSON YAML</a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out</li>
-            <li><a href="/en/query-builder">URL Query Builder</a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.</li>
+            <li><a href="/en/api-tester">API Request Tester</a> — Build HTTP requests in the browser, inspect responses, and export cURL commands for reproducible API debugging</li>
           </ul>
         </section>
     </section>

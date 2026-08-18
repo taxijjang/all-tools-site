@@ -4,3 +4,9 @@
 /jwt-verify.html /jwt 301
 /qr-advanced /qr 301
 /qr-advanced.html /qr 301
+/uuidv7 /uuid 301
+/uuidv7.html /uuid 301
+/query-builder /url 301
+/query-builder.html /url 301
+/en/uuidv7 /en/uuid 301
+/en/query-builder /en/url 301

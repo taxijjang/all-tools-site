@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/url-DhHhvzgj.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CxVblQoB.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-BO2yG5bi.css">
+  <script type="module" crossorigin src="/assets/url-Cd9Qdd3p.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-DCfOdt87.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-Dlp5W7EE.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -215,10 +215,8 @@
           <option value="/convert">Unit Converter</option>
           <option value="/file-hash">File Hash</option>
           <option value="/image-base64">Image Base64</option>
-          <option value="/uuidv7">UUID v7</option>
           <option value="/case-convert">Case Converter</option>
           <option value="/json-yaml">JSON YAML</option>
-          <option value="/query-builder">URL Query Builder</option>
           <option value="/ip-ua">IP / User-Agent</option>
           <option value="/ip-cidr">CIDR Calculator</option>
           <option value="/text-stats">Character Counter</option>
@@ -254,7 +252,17 @@
     </header>
 
     <main class="tool">
-      <section class="tool__panel tool__panel--stack">
+      <div class="tool-tabs" role="tablist" data-tool-tabs>
+        <button type="button" class="tool-tab is-active" id="tabbtn-url-convert" role="tab"
+                aria-selected="true" data-tab-target="tab-url-convert"
+                data-i18n="url.tab.convert">Encode / Decode</button>
+        <button type="button" class="tool-tab" id="tabbtn-url-build" role="tab"
+                aria-selected="false" data-tab-target="tab-url-build"
+                data-i18n="url.tab.build">Query builder</button>
+      </div>
+
+      <div class="tool__stack" id="tab-url-convert" role="tabpanel" aria-labelledby="tabbtn-url-convert">
+<section class="tool__panel tool__panel--stack">
         <label for="urlInput" data-i18n="url.input">Original string/URL</label>
         <textarea id="urlInput" rows="4" placeholder="https://example.com?q=안녕하세요" data-i18n="url.placeholder"
           data-i18n-attr="placeholder" data-persist="input">https://example.com?q=Hello</textarea>
@@ -280,7 +288,26 @@
           <div id="urlParams" class="param-table" aria-live="polite"></div>
         </div>
       </section>
+      </div>
 
+      <div class="tool__stack" id="tab-url-build" role="tabpanel" aria-labelledby="tabbtn-url-build" hidden>
+        <section class="tool__panel tool__panel--stack">
+          <label for="qbBaseUrl" data-i18n="query.base">Base URL</label>
+          <input id="qbBaseUrl" type="text" value="https://example.com" data-persist="base" />
+          <div id="qbRows" class="tool__panel--stack"></div>
+          <div class="toolbar">
+            <button id="qbBuildBtn" class="primary" type="button" data-i18n="query.build">Build URL</button>
+            <button id="qbAddRowBtn" type="button" data-i18n="query.add">Add parameter</button>
+          </div>
+        </section>
+        <section class="tool__panel tool__panel--stack">
+          <div class="panel-header">
+            <label for="qbOutput" data-i18n="query.output">Output URL</label>
+            <button type="button" data-copy="qbOutput" data-i18n="common.copy">Copy</button>
+          </div>
+          <textarea id="qbOutput" rows="5" readonly></textarea>
+        </section>
+      </div>
     </main>
     <p id="urlMessage" class="message" role="status" aria-live="polite"></p>
 
@@ -313,7 +340,7 @@
           <div class="faq-list">
             <details class="faq-item"><summary><h3>Redirect and callback debugging</h3></summary><p>Helpful for reviewing login redirects, OAuth callbacks, and payment return URLs that carry long parameter chains.</p>
             </details>
-            <details class="faq-item"><summary><h3>Marketing link QA</h3></summary><p>It pairs well with the <a href="/en/utm-builder">UTM Generator</a> and <a href="/en/query-builder">URL Query Builder</a> when campaign URLs need a final validation pass.</p>
+            <details class="faq-item"><summary><h3>Marketing link QA</h3></summary><p>It pairs well with the <a href="/en/utm-builder">UTM Generator</a> when campaign URLs need a final validation pass. Use the <strong>Query builder</strong> tab above to assemble key-value pairs, then switch to the encode tab to verify the result.</p>
             </details>
             <details class="faq-item"><summary><h3>Reproducing API requests</h3></summary><p>When a request URL is long or full of reserved characters, checking it alongside <a href="/en/api-tester">API Request Tester</a> makes encoding issues easier to isolate.</p>
             </details>
@@ -374,7 +401,7 @@ encodeURIComponent https%3A%2F%2Fa.com%2Fb%3Fnext%3D...</code></pre>
             <li><a href="/en/json">JSON Formatter</a></li>
             <li><a href="/en/jwt">JWT Decoder</a></li>
             <li><a href="/en/json-yaml">JSON YAML</a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out</li>
-            <li><a href="/en/query-builder">URL Query Builder</a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.</li>
+            <li><a href="/en/api-tester">API Request Tester</a> — Build HTTP requests in the browser, inspect responses, and export cURL commands for reproducible API debugging</li>
           </ul>
         </section>
     </section>

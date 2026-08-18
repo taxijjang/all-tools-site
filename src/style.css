@@ -4729,3 +4729,10 @@ details.faq-item > summary:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
+
+/* 외부 조회가 있는 페이지의 배지. 초록(안심)이 아니라 강조색으로 구분한다. */
+.trust-badge--external {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}

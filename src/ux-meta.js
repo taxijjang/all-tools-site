@@ -53,9 +53,7 @@ export const TOOL_CATEGORY_MAP = {
   '/jwt': 'api',
   '/url': 'api',
   '/json-yaml': 'api',
-  '/query-builder': 'api',
   '/api-tester': 'api',
-  '/uuidv7': 'api',
   '/ip-ua': 'ops',
   '/ip-cidr': 'ops',
   '/cron': 'ops',
@@ -103,10 +101,8 @@ export const HOME_SEARCH_KEYWORDS = {
   '/convert': 'unit converter length weight temperature',
   '/file-hash': 'file hash sha256 checksum integrity download verify',
   '/image-base64': 'image base64 data url encode decode png jpg webp svg',
-  '/uuidv7': 'uuid v7 uuidv7 time ordered sortable id database index',
   '/case-convert': 'case convert camel snake kebab pascal title slug',
   '/json-yaml': 'json yaml yml convert csv config kubernetes',
-  '/query-builder': 'query builder url params search params encode utm',
   '/ip-ua': 'ip user agent ua browser locale timezone',
   '/ip-cidr': 'cidr ip subnet netmask broadcast host range ipv4',
   '/text-stats': 'text stats count words characters lines reading time',
@@ -252,10 +248,6 @@ export const HOME_WORKFLOWS = [
         href: '/url',
         labels: { ko: 'URL', en: 'URL' },
       },
-      {
-        href: '/query-builder',
-        labels: { ko: 'URL 쿼리 생성기', en: 'URL Query Builder' },
-      },
     ],
   },
   {
@@ -368,10 +360,6 @@ export const HOME_SPOTLIGHTS = [
         labels: { ko: 'URL', en: 'URL' },
       },
       {
-        href: '/query-builder',
-        labels: { ko: 'URL 쿼리 생성기', en: 'URL Query Builder' },
-      },
-      {
         href: '/regex',
         labels: { ko: '정규식 테스트기', en: 'Regex Tester' },
       },
@@ -442,14 +430,6 @@ export const QUICK_START_META = {
         labels: {
           ko: '샘플 UUID → hex',
           en: 'Sample UUID → hex',
-        },
-      },
-      {
-        kind: 'link',
-        href: '/uuidv7',
-        labels: {
-          ko: 'UUID v7 열기',
-          en: 'Open UUID v7',
         },
       },
     ],

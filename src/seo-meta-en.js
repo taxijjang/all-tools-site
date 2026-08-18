@@ -69,11 +69,6 @@ export const PAGE_META_EN = {
     description:
       'Generate UUID v4 and ULID values, and convert a UUID to hex(binary16) or back, entirely in the browser.',
   },
-  '/uuidv7': {
-    title: 'UUID v7 Generator | Time Ordered Identifiers',
-    description:
-      'Generate UUID v7 values that sort by creation time, which keeps database index inserts sequential.',
-  },
   '/base64': {
     title: 'Base64 Encoder and Decoder | URL-safe, File Encoding',
     description:
@@ -98,11 +93,6 @@ export const PAGE_META_EN = {
     title: 'URL Encoder and Decoder | Percent Encoding, Query Parser',
     description:
       'Encode or decode URLs, parse query strings, and check which characters are safe to place in a URL.',
-  },
-  '/query-builder': {
-    title: 'URL Query Builder | Build Encoded Query Strings',
-    description:
-      'Build a query string from key-value pairs and get a correctly encoded URL ready to share or test.',
   },
   '/hash': {
     title: 'SHA Hash Calculator | SHA-256, SHA-1, SHA-384, SHA-512',

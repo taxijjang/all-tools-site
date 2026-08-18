@@ -50,7 +50,17 @@
     </header>
 
     <main class="tool">
-      <section class="tool__panel tool__panel--stack">
+      <div class="tool-tabs" role="tablist" data-tool-tabs>
+        <button type="button" class="tool-tab is-active" id="tabbtn-url-convert" role="tab"
+                aria-selected="true" data-tab-target="tab-url-convert"
+                data-i18n="url.tab.convert">인코딩 / 디코딩</button>
+        <button type="button" class="tool-tab" id="tabbtn-url-build" role="tab"
+                aria-selected="false" data-tab-target="tab-url-build"
+                data-i18n="url.tab.build">쿼리 생성</button>
+      </div>
+
+      <div class="tool__stack" id="tab-url-convert" role="tabpanel" aria-labelledby="tabbtn-url-convert">
+<section class="tool__panel tool__panel--stack">
         <label for="urlInput" data-i18n="url.input">원본 문자열/URL</label>
         <textarea id="urlInput" rows="4" placeholder="https://example.com?q=안녕하세요" data-i18n="url.placeholder"
           data-i18n-attr="placeholder" data-persist="input"></textarea>
@@ -76,7 +86,26 @@
           <div id="urlParams" class="param-table" aria-live="polite"></div>
         </div>
       </section>
+      </div>
 
+      <div class="tool__stack" id="tab-url-build" role="tabpanel" aria-labelledby="tabbtn-url-build" hidden>
+        <section class="tool__panel tool__panel--stack">
+          <label for="qbBaseUrl" data-i18n="query.base">Base URL</label>
+          <input id="qbBaseUrl" type="text" value="https://example.com" data-persist="base" />
+          <div id="qbRows" class="tool__panel--stack"></div>
+          <div class="toolbar">
+            <button id="qbBuildBtn" class="primary" type="button" data-i18n="query.build">URL 생성</button>
+            <button id="qbAddRowBtn" type="button" data-i18n="query.add">파라미터 추가</button>
+          </div>
+        </section>
+        <section class="tool__panel tool__panel--stack">
+          <div class="panel-header">
+            <label for="qbOutput" data-i18n="query.output">결과 URL</label>
+            <button type="button" data-copy="qbOutput" data-i18n="common.copy">복사</button>
+          </div>
+          <textarea id="qbOutput" rows="5" readonly></textarea>
+        </section>
+      </div>
     </main>
     <p id="urlMessage" class="message" role="status" aria-live="polite"></p>
 
@@ -128,7 +157,7 @@
             </article>
             <article class="faq-item">
               <h3>마케팅 링크 검수</h3>
-              <p><a href="/utm-builder">UTM 빌더</a>에서 만든 링크를 다시 확인하거나, <a href="/query-builder">쿼리 빌더</a>로 정리한 값을 검증할 때 잘 맞습니다.</p>
+              <p><a href="/utm-builder">UTM 빌더</a>에서 만든 링크를 다시 확인할 때 잘 맞습니다. 위 <strong>쿼리 생성</strong> 탭에서 키-값으로 조립한 URL을 인코딩 탭으로 옮겨 바로 검증할 수 있습니다.</p>
             </article>
             <article class="faq-item">
               <h3>API 호출 재현</h3>
@@ -145,7 +174,7 @@
             </article>
             <article class="faq-item">
               <h3>Marketing link QA</h3>
-              <p>It pairs well with the <a href="/utm-builder">UTM Generator</a> and <a href="/query-builder">URL Query Builder</a> when campaign URLs need a final validation pass.</p>
+              <p>It pairs well with the <a href="/utm-builder">UTM Generator</a> when campaign URLs need a final validation pass. Use the <strong>Query builder</strong> tab above to assemble key-value pairs, then switch to the encode tab to verify the result.</p>
             </article>
             <article class="faq-item">
               <h3>Reproducing API requests</h3>

@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { ICON_LOCK, ICON_MOON } from './src/icons.js';
+import { ICON_GLOBE, ICON_LOCK, ICON_MOON } from './src/icons.js';
 import { basename, dirname, resolve } from 'node:path';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import {
@@ -60,10 +60,8 @@ const pageInputs = {
   convert: resolve(__dirname, 'convert.html'),
   fileHash: resolve(__dirname, 'file-hash.html'),
   imageBase64: resolve(__dirname, 'image-base64.html'),
-  uuidv7: resolve(__dirname, 'uuidv7.html'),
   caseConvert: resolve(__dirname, 'case-convert.html'),
   jsonYaml: resolve(__dirname, 'json-yaml.html'),
-  queryBuilder: resolve(__dirname, 'query-builder.html'),
   ipUa: resolve(__dirname, 'ip-ua.html'),
   ipCidr: resolve(__dirname, 'ip-cidr.html'),
   pdfToolkit: resolve(__dirname, 'pdf-toolkit.html'),
@@ -572,6 +570,9 @@ function injectFooterLinks(html) {
   return `${html.slice(0, closeIndex)}${footer}  ${html.slice(closeIndex)}`;
 }
 
+// 외부 서비스를 호출하는 페이지. 여기만 신뢰 배지 문구가 다르다.
+const EXTERNAL_LOOKUP_PATHS = new Set(['/ip-ua']);
+
 function injectChromeShell(html, pathname) {
   let nextHtml = html.replace(/<div class="page-controls">/i, (match) => `${match}\n${buildChromeControls(pathname)}`);
 
@@ -581,6 +582,12 @@ function injectChromeShell(html, pathname) {
   nextHtml = nextHtml.replace(/<h1([^>]*)>([\s\S]*?)<\/h1>/i, (match, attrs, text) => {
     if (match.includes('trust-badge')) {
       return match;
+    }
+    // /ip-ua 는 공인 IP를 알아내려면 외부 서비스(api.ipify.org)를 불러야 한다.
+    // 31개 중 유일하게 제3자 요청이 나가는데 나머지와 같은 배지를 달고 있었다.
+    // 사이트의 핵심 약속이라 여기서만 문구를 바꾼다.
+    if (EXTERNAL_LOOKUP_PATHS.has(pathname)) {
+      return `<h1${attrs}>${text}<span class="trust-badge trust-badge--external" data-chrome-badge="trust">${ICON_GLOBE}<span>외부 IP 조회 포함</span></span></h1>`;
     }
     return `<h1${attrs}>${text}<span class="trust-badge" data-chrome-badge="trust">${ICON_LOCK}<span>브라우저 내부 처리</span></span></h1>`;
   });

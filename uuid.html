@@ -90,6 +90,7 @@
         <div class="field-row">
           <select id="uuidVersion" data-persist="version">
             <option value="v4" data-i18n="uuid.random.v4">UUID v4</option>
+            <option value="v7" data-i18n="uuid.random.v7">UUID v7 (시간순)</option>
             <option value="ulid" data-i18n="uuid.random.ulid">ULID</option>
           </select>
           <button id="generateBtn" type="button" class="primary" data-i18n="uuid.random.button">새로 생성</button>
@@ -193,7 +194,7 @@
             </article>
             <article class="faq-item">
               <h3>UUID v7이 더 나은가요?</h3>
-              <p>정렬 친화적인 식별자가 필요하면 별도의 <a href="/uuidv7">UUID v7 생성기</a>가 더 적합합니다. 이 페이지는 범용 UUID와 hex 상호 변환에 초점을 둡니다.</p>
+              <p>정렬 친화적인 식별자가 필요하면 위 생성 옵션에서 <strong>UUID v7</strong>을 고르세요. v7은 앞 48비트가 밀리초 타임스탬프라 생성 순서대로 정렬됩니다. 무작위여야 하면 v4, 문자열 가독성이 중요하면 ULID를 씁니다.</p>
             </article>
             <article class="faq-item">
               <h3>입력값이 서버로 전송되나요?</h3>
@@ -202,7 +203,6 @@
           </div>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/uuid-v4-v7">UUID v4 vs v7 가이드</a>
-            <a class="link-button" href="/uuidv7">UUID v7 생성기</a>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden>
@@ -214,7 +214,7 @@
             </article>
             <article class="faq-item">
               <h3>Should I use UUID v7 instead?</h3>
-              <p>If you need time-sortable identifiers, the dedicated <a href="/uuidv7">UUID v7 generator</a> is the better fit. This page is focused on conversion workflows.</p>
+              <p>If you need time-sortable identifiers, pick <strong>UUID v7</strong> in the generation mode above. Its first 48 bits are a millisecond timestamp, so values sort by creation order. Use v4 when you want pure randomness, or ULID when string readability matters.</p>
             </article>
             <article class="faq-item">
               <h3>Does this page upload UUIDs anywhere?</h3>
@@ -223,7 +223,6 @@
           </div>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/uuid-v4-v7">Open UUID v4 vs v7 guide</a>
-            <a class="link-button" href="/uuidv7">Open UUID v7 tool</a>
           </div>
         </div>
       </section>
@@ -242,7 +241,7 @@
             </article>
             <article class="info-card">
               <h3>3. 시간 정렬이 중요하면 UUID v7로 이어가기</h3>
-              <p>정렬 가능한 식별자 전략이 목적이라면 이 페이지에서 바로 끝내지 말고 <a href="/uuidv7">UUID v7 generator</a>로 넘어가 비교해보는 흐름이 더 맞습니다.</p>
+              <p>정렬 가능한 식별자가 목적이라면 생성 옵션을 <strong>UUID v7</strong>로 바꿔 같은 화면에서 v4와 비교해보세요. 개념 차이는 <a href="/uuid-v4-v7">UUID v4 vs v7 가이드</a>에 정리해 두었습니다.</p>
             </article>
           </div>
         </div>
@@ -259,7 +258,7 @@
             </article>
             <article class="info-card">
               <h3>3. Move to UUID v7 when ordering matters</h3>
-              <p>If the real question is about time-ordered identifiers, continue into the <a href="/uuidv7">UUID v7 generator</a> instead of stopping at plain conversion.</p>
+              <p>If the real question is about time-ordered identifiers, switch the generation mode to <strong>UUID v7</strong> and compare it with v4 on this same screen. The <a href="/uuid-v4-v7">v4 vs v7 guide</a> covers the trade-offs.</p>
             </article>
           </div>
         </div>

@@ -384,11 +384,11 @@ function setupFilePickers() {
 }
 
 const RELATED_TOOL_MAP = {
-  uuid: ['/uuidv7', '/base64', '/json'],
+  uuid: ['/timestamp', '/base64', '/json'],
   base64: ['/url', '/image-base64', '/json'],
   json: ['/json-yaml', '/diff', '/api-tester'],
   jwt: ['/base64', '/timestamp', '/api-tester'],
-  url: ['/query-builder', '/utm-builder', '/base64'],
+  url: ['/utm-builder', '/base64', '/json'],
   hash: ['/file-hash', '/password', '/base64'],
   cron: ['/timestamp', '/seo-check', '/api-tester'],
   timestamp: ['/jwt', '/url', '/utm-builder'],
@@ -401,20 +401,18 @@ const RELATED_TOOL_MAP = {
   convert: ['/timestamp', '/color', '/url'],
   'file-hash': ['/hash', '/image-optimize', '/pdf-toolkit'],
   'image-base64': ['/base64', '/image-optimize', '/ocr'],
-  uuidv7: ['/uuid', '/timestamp', '/json'],
-  'case-convert': ['/text-cleaner', '/json', '/query-builder'],
+  'case-convert': ['/text-cleaner', '/json', '/diff'],
   'json-yaml': ['/json', '/diff', '/api-tester'],
-  'query-builder': ['/url', '/utm-builder', '/seo-check'],
   'ip-ua': ['/api-tester', '/seo-check', '/ip-cidr'],
   'ip-cidr': ['/ip-ua', '/api-tester', '/seo-check'],
   'text-stats': ['/text-cleaner', '/markdown', '/seo-check'],
   'pdf-toolkit': ['/image-optimize', '/ocr', '/file-hash'],
   'image-optimize': ['/ocr', '/pdf-toolkit', '/image-base64'],
   ocr: ['/image-optimize', '/pdf-toolkit', '/text-cleaner'],
-  'seo-check': ['/utm-builder', '/query-builder', '/api-tester'],
-  'utm-builder': ['/query-builder', '/seo-check', '/url'],
+  'seo-check': ['/utm-builder', '/url', '/api-tester'],
+  'utm-builder': ['/url', '/seo-check', '/qr'],
   'text-cleaner': ['/text-stats', '/markdown', '/diff'],
-  'api-tester': ['/json', '/seo-check', '/query-builder'],
+  'api-tester': ['/json', '/seo-check', '/url'],
 };
 
 const TOOL_LOOKUP = new Map(
@@ -1860,7 +1858,7 @@ function hydratePersistentFields() {
 // 목록에 없는 도구는 자동 실행하면 안 되는 이유가 각각 있다.
 //   api-tester, seo-check  실제 네트워크 요청이 나간다
 //   ocr, pdf-*, image-*, file-hash  파일을 다루거나 무겁다
-//   password, uuid, uuidv7, qr  누를 때마다 새 값을 만든다. 타이핑마다 바뀌면 못 쓴다
+//   password, uuid, qr  누를 때마다 새 값을 만든다. 타이핑마다 바뀌면 못 쓴다
 //   base64, url, json-yaml  인코딩/디코딩 방향이 둘이라 한쪽을 자동으로 고르면 틀린 결과가 된다
 const LIVE_RUN_TOOLS = new Set([
   'case-convert',
@@ -1870,7 +1868,6 @@ const LIVE_RUN_TOOLS = new Set([
   'json',
   'jwt',
   'markdown',
-  'query-builder',
   'regex',
   'text-cleaner',
   'timestamp',

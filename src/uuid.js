@@ -52,12 +52,14 @@ function getInspectorCopy(locale = document.documentElement.getAttribute('lang')
 function renderInspector(value = randomUuidInput.value, kind = lastGeneratedKind) {
   if (!uuidInspector || !value) return;
   const copy = getInspectorCopy();
-  const isUlid = kind === 'ulid';
+  // v4/ULID 이분법이었다. v7은 시간순 정렬되지만 형식은 UUID다.
+  const timeOrdered = kind === 'ulid' || kind === 'v7';
+  const kindLabel = kind === 'ulid' ? 'ULID' : kind === 'v7' ? 'UUID v7' : 'UUID v4';
   const entries = [
-    [copy.kind, isUlid ? 'ULID' : 'UUID v4'],
+    [copy.kind, kindLabel],
     [copy.length, `${value.length}`],
-    [copy.sortable, isUlid ? copy.timeOrdered : copy.random, isUlid ? 'ok' : ''],
-    [copy.storage, isUlid ? copy.text : copy.binary16],
+    [copy.sortable, timeOrdered ? copy.timeOrdered : copy.random, timeOrdered ? 'ok' : ''],
+    [copy.storage, kind === 'ulid' ? copy.text : copy.binary16],
   ];
 
   uuidInspector.innerHTML = entries
@@ -124,10 +126,32 @@ function generateUlid() {
   return `${timestamp}${randomPart}`;
 }
 
+function generateUuidV7() {
+  // 앞 48비트가 밀리초 타임스탬프라 생성 순서대로 정렬된다.
+  // ULID와 같은 성질을 UUID 형식으로 갖는 것이 v7의 요지다.
+  const bytes = new Uint8Array(16);
+  const rand = crypto.getRandomValues(new Uint8Array(10));
+  const ts = BigInt(Date.now());
+  for (let i = 0; i < 6; i += 1) {
+    bytes[i] = Number((ts >> BigInt(40 - i * 8)) & 0xffn);
+  }
+  bytes[6] = 0x70 | (rand[0] & 0x0f);
+  bytes[7] = rand[1];
+  bytes[8] = 0x80 | (rand[2] & 0x3f);
+  for (let i = 9; i < 16; i += 1) {
+    bytes[i] = rand[i - 6];
+  }
+  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
 function generateIdentifier() {
   const mode = uuidVersionSelect?.value || 'v4';
   if (mode === 'ulid') {
     return generateUlid();
+  }
+  if (mode === 'v7') {
+    return generateUuidV7();
   }
   return crypto.randomUUID();
 }

@@ -313,14 +313,6 @@ export const PAGE_META = {
       '이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
   },
-  uuidv7: {
-    path: '/uuidv7',
-    kind: 'tool',
-    title: 'UUID v7 생성기 | Time Ordered UUID',
-    description:
-      '시간순 정렬에 유리한 UUID v7 값을 브라우저에서 바로 생성할 수 있습니다.',
-    applicationCategory: 'DeveloperApplication',
-  },
   'case-convert': {
     path: '/case-convert',
     kind: 'tool',
@@ -335,14 +327,6 @@ export const PAGE_META = {
     title: 'JSON YAML 변환기 | JSON to YAML, YAML to JSON, CSV',
     description:
       'JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.',
-    applicationCategory: 'DeveloperApplication',
-  },
-  'query-builder': {
-    path: '/query-builder',
-    kind: 'tool',
-    title: 'URL 쿼리 생성기 | Query String Builder',
-    description:
-      '키-값 쌍으로 쿼리 스트링을 만들고 인코딩된 공유 URL을 빠르게 생성할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
   },
   'ip-ua': {
