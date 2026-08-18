@@ -118,7 +118,7 @@ const TOOL_SUPPORT_LABELS = {
     stepsTitle: '사용 순서',
     notesTitle: '확인할 점',
     faqTitle: '자주 묻는 질문',
-    moreSummary: '사용법, 예시, 자주 만나는 오류 더 보기',
+    moreSummary: '사용 순서와 입력 예시 더 보기',
     examplesKicker: 'Examples',
     examplesTitle: '실제 입력과 결과',
     troublesKicker: 'Troubleshooting',
@@ -137,7 +137,7 @@ const TOOL_SUPPORT_LABELS = {
     stepsTitle: 'How to use it',
     notesTitle: 'Things to check',
     faqTitle: 'Common questions',
-    moreSummary: 'More: how to use it, examples, and common errors',
+    moreSummary: 'More: step-by-step usage and worked examples',
     examplesKicker: 'Examples',
     examplesTitle: 'Real input and output',
     troublesKicker: 'Troubleshooting',
@@ -336,28 +336,7 @@ ${buildCardMarkup(support.cards)}
           </div>
         </section>
 
-        <details class="content-more">
-          <summary>${escapeHtml(labels.moreSummary)}</summary>
-
-        <section class="content-section">
-          <h2 class="section-title">${escapeHtml(labels.stepsTitle)}</h2>
-          <ol class="content-list">
-${buildListMarkup(support.steps)}
-          </ol>
-        </section>
-
 ${
-  support.examples?.length
-    ? `
-        <section class="content-section">
-          <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
-          <div class="example-list">
-${buildExamplesMarkup(support.examples, labels)}
-          </div>
-        </section>
-`
-    : ''
-}${
   support.troubles?.length
     ? `
         <section class="content-section">
@@ -386,7 +365,31 @@ ${buildCardMarkup(faqItems, 'faq-item')}
           </div>
         </section>`
     : ''
-}${
+}
+        <details class="content-more">
+          <summary>${escapeHtml(labels.moreSummary)}</summary>
+
+        <section class="content-section">
+          <h2 class="section-title">${escapeHtml(labels.stepsTitle)}</h2>
+          <ol class="content-list">
+${buildListMarkup(support.steps)}
+          </ol>
+        </section>
+
+${
+  support.examples?.length
+    ? `
+        <section class="content-section">
+          <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
+          <div class="example-list">
+${buildExamplesMarkup(support.examples, labels)}
+          </div>
+        </section>
+`
+    : ''
+}
+        </details>
+${
   relatedMarkup
     ? `
         <section class="content-section">
@@ -737,19 +740,7 @@ function buildExtraOnlyContent(meta, locale, { hidden = false } = {}) {
 
   return `
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="${locale}" lang="${locale}"${hiddenAttrs}>
-        <details class="content-more">
-          <summary>${escapeHtml(labels.moreSummary)}</summary>
 ${
-  extra?.examples?.length
-    ? `        <section class="content-section">
-          <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
-          <div class="example-list">
-${buildExamplesMarkup(extra.examples, labels)}
-          </div>
-        </section>
-`
-    : ''
-}${
   extra?.troubles?.length
     ? `        <section class="content-section">
           <h2 class="section-title">${escapeHtml(labels.troublesTitle)}</h2>
@@ -757,6 +748,19 @@ ${buildExamplesMarkup(extra.examples, labels)}
 ${buildCardMarkup(extra.troubles)}
           </div>
         </section>
+`
+    : ''
+}${
+  extra?.examples?.length
+    ? `        <details class="content-more">
+          <summary>${escapeHtml(labels.moreSummary)}</summary>
+        <section class="content-section">
+          <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
+          <div class="example-list">
+${buildExamplesMarkup(extra.examples, labels)}
+          </div>
+        </section>
+        </details>
 `
     : ''
 }${
@@ -769,8 +773,7 @@ ${relatedMarkup}
         </section>
 `
     : ''
-}        </details>
-    </section>`;
+}    </section>`;
 }
 
 // ponytail: 손으로 쓴 콘텐츠 페이지는 접기가 안 걸려 있었다. /json은 도구가 528px인데
@@ -799,17 +802,31 @@ function collapseAuthoredContent(html) {
     return html;
   }
 
-  const cut = starts[1];
-  const kept = inner.slice(0, cut);
-  const rest = inner.slice(cut);
-  const collapsed = `${kept}
+  // 섹션을 통째로 잘라낸다. 첫 섹션과 FAQ성 섹션(.faq-list)은 펼친 채로 두고
+  // 사용 순서·예시처럼 긴 것만 접는다. 자주 묻는 질문이 토글 뒤에 있으면
+  // 답을 찾으러 온 사람이 답을 못 본다.
+  const sections = starts.map((from, i) => {
+    const to = i + 1 < starts.length ? starts[i + 1] : inner.length;
+    return inner.slice(from, to);
+  });
+  const lead = inner.slice(0, starts[0]);
+
+  const isFaq = (section) => /class="faq-list"/.test(section);
+  const kept = sections.filter((section, i) => i === 0 || isFaq(section));
+  const collapsed = sections.filter((section, i) => i !== 0 && !isFaq(section));
+
+  if (!collapsed.length) {
+    return html;
+  }
+
+  const rebuilt = `${lead}${kept.join('')}
         <details class="content-more">
-          <summary data-i18n="common.moreContent">사용법, 예시, 자주 만나는 오류 더 보기</summary>
-${rest}
+          <summary data-i18n="common.moreContent">사용 순서와 입력 예시 더 보기</summary>
+${collapsed.join('')}
         </details>
       `;
 
-  return html.slice(0, html.indexOf('>', stackOpen) + 1) + collapsed + html.slice(stackEnd - '</section>'.length);
+  return html.slice(0, html.indexOf('>', stackOpen) + 1) + rebuilt + html.slice(stackEnd - '</section>'.length);
 }
 
 function injectGeneratedToolContent(html, meta, pageTitle, description) {
@@ -821,7 +838,19 @@ function injectGeneratedToolContent(html, meta, pageTitle, description) {
 
   if (meta.kind === 'content' || /data-seo-support|class=["'][^"']*\bcontent-section\b/i.test(html)) {
     const extras = `${buildExtraOnlyContent(meta, 'ko')}\n${buildExtraOnlyContent(meta, 'en', { hidden: true })}`;
-    return extras.trim() ? html.replace(/<\/main>/i, `</main>\n${extras}`) : html;
+    if (!extras.trim()) {
+      return html;
+    }
+    // </main> 바로 뒤에 넣으면 손으로 쓴 본문보다 앞에 온다. 실제로
+    // "함께 쓰면 좋은 도구"가 설명보다 먼저 나왔다. 본문 뒤에 붙인다.
+    const stackOpen = html.search(/<section class="content-stack">/);
+    if (stackOpen !== -1) {
+      const stackEnd = findMatchingClose(html, 'section', html.indexOf('>', stackOpen) + 1);
+      if (stackEnd !== -1) {
+        return `${html.slice(0, stackEnd)}\n${extras}${html.slice(stackEnd)}`;
+      }
+    }
+    return html.replace(/<\/main>/i, `</main>\n${extras}`);
   }
 
   const content = buildGeneratedToolContent(meta, pageTitle, description);

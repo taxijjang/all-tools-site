@@ -5,7 +5,7 @@ const YEAR = new Date().getFullYear();
 export const translations = {
   ko: {
     'uuid.tab.generate': '생성',
-    'common.moreContent': '사용법, 예시, 자주 만나는 오류 더 보기',
+    'common.moreContent': '사용 순서와 입력 예시 더 보기',
     'page.aboutTitle': '사이트 소개',
     'page.privacyTitle': '개인정보 처리 안내',
     'page.contactTitle': '문의 안내',
@@ -590,7 +590,7 @@ export const translations = {
   },
   en: {
     'uuid.tab.generate': 'Generate',
-    'common.moreContent': 'More: how to use it, examples, and common errors',
+    'common.moreContent': 'More: step-by-step usage and worked examples',
     'page.aboutTitle': 'About this site',
     'page.privacyTitle': 'Privacy and data handling',
     'page.contactTitle': 'Contact and feedback',
