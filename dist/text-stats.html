@@ -2,12 +2,12 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>텍스트 통계 계산기 | 글자 수, 단어 수, 읽기 시간 | Stateless Tools</title>
+  <title>글자수 세기 | 공백 포함·제외, 단어·문장·원고지 분량 | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/textStats-DsPY4VOn.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BUsWimmG.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-CDWZMVDZ.css">
+  <script type="module" crossorigin src="/assets/textStats-BnFsOBoA.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -65,7 +65,7 @@
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
-  <meta name="description" content="글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다." />
+  <meta name="description" content="자기소개서·리포트 글자수 제한을 맞출 때 쓰는 글자수 세기입니다. 공백 포함/제외 글자수, 단어·문장·문단 수, 원고지 분량, 바이트를 입력하는 즉시 계산합니다." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <meta name="author" content="taxijjang" />
   <meta name="theme-color" content="#020817" />
@@ -76,14 +76,14 @@
   <link rel="alternate" hreflang="x-default" href="https://taxijjang.com/text-stats" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Stateless Tools" />
-  <meta property="og:title" content="텍스트 통계 계산기 | 글자 수, 단어 수, 읽기 시간" />
-  <meta property="og:description" content="글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다." />
+  <meta property="og:title" content="글자수 세기 | 공백 포함·제외, 단어·문장·원고지 분량" />
+  <meta property="og:description" content="자기소개서·리포트 글자수 제한을 맞출 때 쓰는 글자수 세기입니다. 공백 포함/제외 글자수, 단어·문장·문단 수, 원고지 분량, 바이트를 입력하는 즉시 계산합니다." />
   <meta property="og:url" content="https://taxijjang.com/text-stats" />
   <meta property="og:image" content="https://taxijjang.com/icon.svg" />
   <meta property="og:image:alt" content="Stateless Tools logo" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="텍스트 통계 계산기 | 글자 수, 단어 수, 읽기 시간" />
-  <meta name="twitter:description" content="글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다." />
+  <meta name="twitter:title" content="글자수 세기 | 공백 포함·제외, 단어·문장·원고지 분량" />
+  <meta name="twitter:description" content="자기소개서·리포트 글자수 제한을 맞출 때 쓰는 글자수 세기입니다. 공백 포함/제외 글자수, 단어·문장·문단 수, 원고지 분량, 바이트를 입력하는 즉시 계산합니다." />
   <meta name="twitter:image" content="https://taxijjang.com/icon.svg" />
   <script type="application/ld+json" data-seo-schema>
 [
@@ -119,9 +119,9 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": "https://taxijjang.com/text-stats#webpage",
-    "name": "텍스트 통계 계산기 | 글자 수, 단어 수, 읽기 시간",
+    "name": "글자수 세기 | 공백 포함·제외, 단어·문장·원고지 분량",
     "url": "https://taxijjang.com/text-stats",
-    "description": "글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다.",
+    "description": "자기소개서·리포트 글자수 제한을 맞출 때 쓰는 글자수 세기입니다. 공백 포함/제외 글자수, 단어·문장·문단 수, 원고지 분량, 바이트를 입력하는 즉시 계산합니다.",
     "isPartOf": {
       "@id": "https://taxijjang.com/#website"
     },
@@ -144,7 +144,7 @@
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "텍스트 통계 계산기 | 글자 수, 단어 수, 읽기 시간",
+        "name": "글자수 세기 | 공백 포함·제외, 단어·문장·원고지 분량",
         "item": "https://taxijjang.com/text-stats"
       }
     ]
@@ -153,9 +153,9 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "@id": "https://taxijjang.com/text-stats#app",
-    "name": "텍스트 통계 계산기 | 글자 수, 단어 수, 읽기 시간",
+    "name": "글자수 세기 | 공백 포함·제외, 단어·문장·원고지 분량",
     "url": "https://taxijjang.com/text-stats",
-    "description": "글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다.",
+    "description": "자기소개서·리포트 글자수 제한을 맞출 때 쓰는 글자수 세기입니다. 공백 포함/제외 글자수, 단어·문장·문단 수, 원고지 분량, 바이트를 입력하는 즉시 계산합니다.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
     "browserRequirements": "Requires JavaScript and a modern browser",
@@ -217,7 +217,7 @@
           <option value="/query-builder">URL 쿼리 생성기</option>
           <option value="/ip-ua">IP / User-Agent</option>
           <option value="/ip-cidr">CIDR 계산기</option>
-          <option value="/text-stats" selected>텍스트 통계</option>
+          <option value="/text-stats" selected>글자수 세기</option>
           <option value="/pdf-toolkit">PDF 병합/분할</option>
           <option value="/image-optimize">이미지 최적화</option>
           <option value="/ocr">OCR 텍스트 추출</option>
@@ -243,8 +243,8 @@
     </div>
 
     <header class="page-header">
-      <h1 data-i18n="textStats.title">텍스트 통계 계산기</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>브라우저 내부 처리</span></p>
-      <p data-i18n="textStats.description">문자, 단어, 줄, 문단, 읽기 시간 등을 즉시 계산합니다.</p>
+      <h1 data-i18n="textStats.title">글자수 세기</h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>브라우저 내부 처리</span></p>
+      <p data-i18n="textStats.description">공백 포함/제외 글자수와 단어·문장·문단 수, 원고지 분량을 입력하는 즉시 계산합니다.</p>
     </header>
 
     <main class="tool tool--columns">
@@ -252,13 +252,12 @@
         <label for="tsInput" data-i18n="textStats.input">입력 텍스트</label>
         <textarea id="tsInput" rows="15" data-persist="text" data-i18n="textStats.placeholder" data-i18n-attr="placeholder" placeholder="여기에 텍스트를 붙여넣으세요."></textarea>
         <div class="toolbar">
-          <button id="tsRunBtn" class="primary" type="button" data-i18n="textStats.run">통계 계산</button>
           <button id="tsClearBtn" class="ghost" type="button" data-i18n="common.clear">지우기</button>
           <button id="tsSampleBtn" type="button" data-i18n="textStats.sample">샘플</button>
         </div>
       </section>
 
-      <section class="tool__panel tool__panel--stack">
+      <section class="tool__panel tool__panel--stack tool__panel--summary">
         <label data-i18n="textStats.resultTitle">통계 결과</label>
         <div class="tool-grid-3">
           <div><label for="tsCharsWithSpaces" data-i18n="textStats.charsWithSpaces">문자(공백 포함)</label><input id="tsCharsWithSpaces" type="text" readonly /></div>
@@ -268,6 +267,7 @@
           <div><label for="tsParagraphs" data-i18n="textStats.paragraphs">문단 수</label><input id="tsParagraphs" type="text" readonly /></div>
           <div><label for="tsSentences" data-i18n="textStats.sentences">문장 수(간이)</label><input id="tsSentences" type="text" readonly /></div>
           <div><label for="tsReadingTime" data-i18n="textStats.readingTime">예상 읽기 시간</label><input id="tsReadingTime" type="text" readonly /></div>
+          <div><label for="tsManuscript" data-i18n="textStats.manuscript">원고지(200자)</label><input id="tsManuscript" type="text" readonly /></div>
           <div><label for="tsBytes" data-i18n="textStats.bytes">바이트</label><input id="tsBytes" type="text" readonly /></div>
           <div><label for="tsUniqueWords" data-i18n="textStats.uniqueWords">고유 단어</label><input id="tsUniqueWords" type="text" readonly /></div>
         </div>
@@ -279,8 +279,8 @@
 
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="ko" lang="ko">
         <section class="content-section content-section--highlight">
-          <h2 class="section-title">텍스트 통계 계산 활용</h2>
-          <p class="section-lead">글자 수, 단어 수, 줄 수, 예상 읽기 시간을 확인해 입력 제한, 원고 분량, UX 문구 길이를 맞춥니다.</p>
+          <h2 class="section-title">글자수 세기 활용</h2>
+          <p class="section-lead">자기소개서·리포트처럼 글자수 제한이 있는 글을 쓸 때 공백 포함/제외 글자수와 원고지 분량을 확인해 분량을 맞춥니다.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>입력 제한 검토</h3>
