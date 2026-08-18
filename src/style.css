@@ -4693,3 +4693,39 @@ h2,
     flex: 1 1 auto;
   }
 }
+
+/* FAQ 아코디언. 질문은 항상 보이고 답만 펼친다. */
+details.faq-item > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  min-height: 44px;
+}
+
+details.faq-item > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.faq-item > summary::after {
+  content: '+';
+  margin-left: auto;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+details.faq-item[open] > summary::after {
+  content: '\2212';
+}
+
+details.faq-item > summary > h3 {
+  margin: 0;
+}
+
+details.faq-item > summary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

@@ -779,6 +779,19 @@ ${relatedMarkup}
 // ponytail: 손으로 쓴 콘텐츠 페이지는 접기가 안 걸려 있었다. /json은 도구가 528px인데
 // 그 아래 설명이 1,884px로 페이지의 61%를 차지했다. 자동생성분과 같은 규칙을 적용한다.
 // 첫 섹션은 펼친 채로 남겨 접힌 상태에서도 페이지가 비어 보이지 않게 한다.
+// FAQ 7개가 /json에서 1,586px를 차지했다. 항목당 189px 중 여백은 32px뿐이고
+// 나머지는 글자라 줄일 여백이 없었다(처음엔 여백 탓이라고 잘못 짚었다).
+// 질문은 전부 보이게 두고 답만 펼치는 아코디언으로 바꾼다.
+// 하나의 "더 보기" 토글과는 다르다 - 질문 목록이 그대로 보이므로
+// 읽는 사람이 자기 질문을 찾아 누른다. 답은 DOM에 남아 색인된다.
+function faqToAccordion(html) {
+  return html.replace(
+    /<article class="faq-item">\s*<h3>([\s\S]*?)<\/h3>\s*([\s\S]*?)<\/article>/g,
+    (match, question, body) =>
+      `<details class="faq-item"><summary><h3>${question}</h3></summary>${body}</details>`,
+  );
+}
+
 function collapseAuthoredContent(html) {
   const stackOpen = html.search(/<section class="content-stack">/);
   if (stackOpen === -1 || /content-stack--generated/.test(html.slice(stackOpen, stackOpen + 60))) {
@@ -1190,6 +1203,7 @@ function seoMetadataPlugin() {
       nextHtml = nextHtml.replace(/<footer class="footer([^"]*)">/i, '<footer class="footer$1" data-nosnippet>');
       nextHtml = nextHtml.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(fullTitle)}</title>`);
       nextHtml = collapseAuthoredContent(nextHtml);
+      nextHtml = faqToAccordion(nextHtml);
       nextHtml = extractHiddenLocaleBlocks(nextHtml);
       nextHtml = upsertBodyAttribute(
         nextHtml,
