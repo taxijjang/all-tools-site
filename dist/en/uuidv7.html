@@ -7,8 +7,8 @@
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/uuidv7-DCVnGD99.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/uuidv7-BfUdIud1.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -283,35 +283,6 @@
           </div>
         </section>
 
-        <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
-
-        <section class="content-section">
-          <h2 class="section-title">How to use it</h2>
-          <ol class="content-list">
-          <li>Generate a new UUID v7 value.</li>
-          <li>Decide whether sortable IDs fit your table keys, event IDs, or correlation IDs.</li>
-          <li>For public IDs, design authorization and exposure rules separately.</li>
-          <li>Choose string or binary storage based on your database and operational conventions.</li>
-          </ol>
-        </section>
-
-
-        <section class="content-section">
-          <h2 class="section-title">Real input and output</h2>
-          <div class="example-list">
-            <article class="example-item">
-              <h3>Sort order across sequential IDs</h3>
-              <p class="example-item__label">Input</p>
-              <pre class="example-item__code"><code>Generate three in a row</code></pre>
-              <p class="example-item__label">Output</p>
-              <pre class="example-item__code"><code>01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a
-01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b
-01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f</code></pre>
-              <p class="example-item__note">The first 12 hex digits are a millisecond timestamp, so plain string sorting preserves creation order.</p>
-            </article>
-          </div>
-        </section>
 
         <section class="content-section">
           <h2 class="section-title">Errors you will hit</h2>
@@ -341,6 +312,38 @@
           </div>
         </section>
 
+
+        <details class="content-more">
+          <summary>More: step-by-step usage and worked examples</summary>
+
+        <section class="content-section">
+          <h2 class="section-title">How to use it</h2>
+          <ol class="content-list">
+          <li>Generate a new UUID v7 value.</li>
+          <li>Decide whether sortable IDs fit your table keys, event IDs, or correlation IDs.</li>
+          <li>For public IDs, design authorization and exposure rules separately.</li>
+          <li>Choose string or binary storage based on your database and operational conventions.</li>
+          </ol>
+        </section>
+
+
+        <section class="content-section">
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>Sort order across sequential IDs</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>Generate three in a row</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a
+01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b
+01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f</code></pre>
+              <p class="example-item__note">The first 12 hex digits are a millisecond timestamp, so plain string sorting preserves creation order.</p>
+            </article>
+          </div>
+        </section>
+
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

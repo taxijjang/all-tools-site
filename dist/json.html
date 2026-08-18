@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/json-2Oud5Pdm.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/json-BZUs2J9L.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -333,25 +333,6 @@
       </section>
     </main>
 
-    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="ko" lang="ko">
-        <details class="content-more">
-          <summary>사용법, 예시, 자주 만나는 오류 더 보기</summary>
-        <section class="content-section">
-          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
-          <ul class="related-list">
-            <li><a href="/uuid">UUID 변환기</a> — UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.</li>
-            <li><a href="/base64">Base64 인코더/디코더</a> — 문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.</li>
-            <li><a href="/jwt">JWT 디코더/검사기</a> — JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.</li>
-            <li><a href="/url">URL 인코더/디코더</a> — URL 인코딩/디코딩, 쿼리 스트링 파싱, URL-safe 문자열 확인을 브라우저에서 바로 처리할 수 있습니다.</li>
-            <li><a href="/json-yaml">JSON YAML 변환기</a> — JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.</li>
-            <li><a href="/query-builder">URL 쿼리 생성기</a> — 키-값 쌍으로 쿼리 스트링을 만들고 인코딩된 공유 URL을 빠르게 생성할 수 있습니다.</li>
-          </ul>
-        </section>
-        </details>
-    </section>
-
-    <div data-locale-slot="en" data-locale-index="0"></div>
-
     <p id="jsonMessage" class="message" role="status" aria-live="polite"></p>
 
     <section class="content-stack">
@@ -373,13 +354,10 @@
             </article>
           </div>
         </div>
-        <div data-locale-slot="en" data-locale-index="1"></div>
+        <div data-locale-slot="en" data-locale-index="0"></div>
       </section>
 
-      
-        <details class="content-more">
-          <summary data-i18n="common.moreContent">사용법, 예시, 자주 만나는 오류 더 보기</summary>
-<section class="content-section">
+      <section class="content-section">
         <div data-locale-block="ko" lang="ko">
           <h2 class="section-title">자주 만나는 JSON 오류</h2>
           <div class="faq-list">
@@ -397,30 +375,7 @@
             </article>
           </div>
         </div>
-        <div data-locale-slot="en" data-locale-index="2"></div>
-      </section>
-
-      <section class="content-section content-section--highlight">
-        <div data-locale-block="ko" lang="ko">
-          <h2 class="section-title">실제로 가장 많이 붙여 넣는 JSON 예시</h2>
-          <p class="section-lead">API 응답, 설정 파일, 로그에 남은 payload를 점검할 때는 먼저 “표준 JSON인지”와 “필드 구조가 기대와 맞는지”를 분리해서 보는 게 빠릅니다.</p>
-          <div class="content-columns">
-            <article class="info-card">
-              <h3>API 응답 포맷 확인</h3>
-              <p>압축된 응답을 보기 좋게 펼친 뒤 상태값, pagination, nested data 위치를 확인합니다.</p>
-              <pre class="code-block">{"ok":true,"data":{"user":{"id":42,"role":"admin"}}}</pre>
-            </article>
-            <article class="info-card">
-              <h3>설정 값 검증</h3>
-              <p>작은따옴표, 마지막 쉼표, 주석이 섞인 값은 JSON이 아니라 JavaScript 객체에 가까워서 배포 전에 반드시 정리해야 합니다.</p>
-              <pre class="code-block">{
-  "env": "prod",
-  "featureFlags": ["search", "export"]
-}</pre>
-            </article>
-          </div>
-        </div>
-        <div data-locale-slot="en" data-locale-index="3"></div>
+        <div data-locale-slot="en" data-locale-index="1"></div>
       </section>
 
       <section class="content-section">
@@ -450,11 +405,53 @@
             <a class="link-button" href="/api-tester">API 요청 테스트</a>
           </div>
         </div>
-        <div data-locale-slot="en" data-locale-index="4"></div>
+        <div data-locale-slot="en" data-locale-index="2"></div>
       </section>
     
+        <details class="content-more">
+          <summary data-i18n="common.moreContent">사용 순서와 입력 예시 더 보기</summary>
+<section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">실제로 가장 많이 붙여 넣는 JSON 예시</h2>
+          <p class="section-lead">API 응답, 설정 파일, 로그에 남은 payload를 점검할 때는 먼저 “표준 JSON인지”와 “필드 구조가 기대와 맞는지”를 분리해서 보는 게 빠릅니다.</p>
+          <div class="content-columns">
+            <article class="info-card">
+              <h3>API 응답 포맷 확인</h3>
+              <p>압축된 응답을 보기 좋게 펼친 뒤 상태값, pagination, nested data 위치를 확인합니다.</p>
+              <pre class="code-block">{"ok":true,"data":{"user":{"id":42,"role":"admin"}}}</pre>
+            </article>
+            <article class="info-card">
+              <h3>설정 값 검증</h3>
+              <p>작은따옴표, 마지막 쉼표, 주석이 섞인 값은 JSON이 아니라 JavaScript 객체에 가까워서 배포 전에 반드시 정리해야 합니다.</p>
+              <pre class="code-block">{
+  "env": "prod",
+  "featureFlags": ["search", "export"]
+}</pre>
+            </article>
+          </div>
+        </div>
+        <div data-locale-slot="en" data-locale-index="3"></div>
+      </section>
+
+      
         </details>
       </section>
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="ko" lang="ko">
+        <section class="content-section">
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/uuid">UUID 변환기</a> — UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/base64">Base64 인코더/디코더</a> — 문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.</li>
+            <li><a href="/jwt">JWT 디코더/검사기</a> — JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.</li>
+            <li><a href="/url">URL 인코더/디코더</a> — URL 인코딩/디코딩, 쿼리 스트링 파싱, URL-safe 문자열 확인을 브라우저에서 바로 처리할 수 있습니다.</li>
+            <li><a href="/json-yaml">JSON YAML 변환기</a> — JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.</li>
+            <li><a href="/query-builder">URL 쿼리 생성기</a> — 키-값 쌍으로 쿼리 스트링을 만들고 인코딩된 공유 URL을 빠르게 생성할 수 있습니다.</li>
+          </ul>
+        </section>
+    </section>
+
+    <div data-locale-slot="en" data-locale-index="4"></div>
 
     <footer class="footer footer--dev" data-nosnippet>
       <nav class="footer-links" aria-label="사이트 정보">
@@ -465,7 +462,7 @@
       <small data-i18n="common.footerJson">© 2026 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
     </footer>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: how to use it, examples, and common errors\u003c/summary>\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/uuid\">UUID Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/url\">URL Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json-yaml\">JSON YAML\u003c/a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out\u003c/li>\n            \u003cli>\u003ca href=\"/query-builder\">URL Query Builder\u003c/a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">A practical way to use this JSON page\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>1. Format first\u003c/h3>\n              \u003cp>Start by pretty-printing compressed payloads or log fragments so the structure and nesting become obvious.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>2. Search for the critical field\u003c/h3>\n              \u003cp>Search helps narrow large payloads down to a user ID, status flag, or nested key without scanning the whole response manually.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>3. Use the tree for depth\u003c/h3>\n              \u003cp>The tree view is especially helpful when arrays and nested objects make plain formatted text harder to explain or screenshot.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">JSON mistakes that show up all the time\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Missing double quotes\u003c/h3>\n              \u003cp>JSON requires double quotes around keys and string values. JavaScript object syntax often causes confusion here.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Trailing commas\u003c/h3>\n              \u003cp>A trailing comma may look harmless, but standard JSON parsers reject it in both arrays and objects.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Sensitive payloads\u003c/h3>\n              \u003cp>This page runs in browser memory, but production secrets and personal data should still be masked before review when your internal policy requires it.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">JSON examples people paste most often\u003c/h2>\n          \u003cp class=\"section-lead\">When you inspect API responses, config snippets, or logged payloads, separate “is this valid JSON?” from “does the shape match what I expected?” first.\u003c/p>\n          \u003cdiv class=\"content-columns\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>API response formatting\u003c/h3>\n              \u003cp>Pretty-print compressed responses, then inspect status fields, pagination, and nested data positions.\u003c/p>\n              \u003cpre class=\"code-block\">{\"ok\":true,\"data\":{\"user\":{\"id\":42,\"role\":\"admin\"}}}\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Config validation\u003c/h3>\n              \u003cp>Single quotes, trailing commas, and comments belong to JavaScript-like objects, not strict JSON.\u003c/p>\n              \u003cpre class=\"code-block\">{\n  \"env\": \"prod\",\n  \"featureFlags\": [\"search\", \"export\"]\n}\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Common JSON formatter questions\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>How is JSON different from a JavaScript object?\u003c/h3>\n              \u003cp>JSON is a data exchange format. Keys and string values need double quotes, and comments or trailing commas are not valid.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Should I format or minify?\u003c/h3>\n              \u003cp>Format when humans need to read and review the payload. Minify when you need a compact one-line body or fixture.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Can large JSON payloads be handled in the browser?\u003c/h3>\n              \u003cp>Most API responses are fine, but very large files can affect browser memory and rendering. For huge logs, inspect the relevant slice first.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Which tools pair well with JSON Formatter?\u003c/h3>\n              \u003cp>Use \u003ca href=\"/jwt\">JWT Decoder\u003c/a> for token payloads, \u003ca href=\"/json-yaml\">JSON YAML Converter\u003c/a> for format handoff, and \u003ca href=\"/api-tester\">API Request Tester\u003c/a> for reproducing requests.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/json-yaml\">Open JSON YAML\u003c/a>\n            \u003ca class=\"link-button\" href=\"/jwt\">Open JWT Decoder\u003c/a>\n            \u003ca class=\"link-button\" href=\"/api-tester\">Open API Request Tester\u003c/a>\n          \u003c/div>\n        \u003c/div>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">A practical way to use this JSON page\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>1. Format first\u003c/h3>\n              \u003cp>Start by pretty-printing compressed payloads or log fragments so the structure and nesting become obvious.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>2. Search for the critical field\u003c/h3>\n              \u003cp>Search helps narrow large payloads down to a user ID, status flag, or nested key without scanning the whole response manually.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>3. Use the tree for depth\u003c/h3>\n              \u003cp>The tree view is especially helpful when arrays and nested objects make plain formatted text harder to explain or screenshot.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">JSON mistakes that show up all the time\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Missing double quotes\u003c/h3>\n              \u003cp>JSON requires double quotes around keys and string values. JavaScript object syntax often causes confusion here.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Trailing commas\u003c/h3>\n              \u003cp>A trailing comma may look harmless, but standard JSON parsers reject it in both arrays and objects.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Sensitive payloads\u003c/h3>\n              \u003cp>This page runs in browser memory, but production secrets and personal data should still be masked before review when your internal policy requires it.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Common JSON formatter questions\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>How is JSON different from a JavaScript object?\u003c/h3>\n              \u003cp>JSON is a data exchange format. Keys and string values need double quotes, and comments or trailing commas are not valid.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Should I format or minify?\u003c/h3>\n              \u003cp>Format when humans need to read and review the payload. Minify when you need a compact one-line body or fixture.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Can large JSON payloads be handled in the browser?\u003c/h3>\n              \u003cp>Most API responses are fine, but very large files can affect browser memory and rendering. For huge logs, inspect the relevant slice first.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Which tools pair well with JSON Formatter?\u003c/h3>\n              \u003cp>Use \u003ca href=\"/jwt\">JWT Decoder\u003c/a> for token payloads, \u003ca href=\"/json-yaml\">JSON YAML Converter\u003c/a> for format handoff, and \u003ca href=\"/api-tester\">API Request Tester\u003c/a> for reproducing requests.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/json-yaml\">Open JSON YAML\u003c/a>\n            \u003ca class=\"link-button\" href=\"/jwt\">Open JWT Decoder\u003c/a>\n            \u003ca class=\"link-button\" href=\"/api-tester\">Open API Request Tester\u003c/a>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">JSON examples people paste most often\u003c/h2>\n          \u003cp class=\"section-lead\">When you inspect API responses, config snippets, or logged payloads, separate “is this valid JSON?” from “does the shape match what I expected?” first.\u003c/p>\n          \u003cdiv class=\"content-columns\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>API response formatting\u003c/h3>\n              \u003cp>Pretty-print compressed responses, then inspect status fields, pagination, and nested data positions.\u003c/p>\n              \u003cpre class=\"code-block\">{\"ok\":true,\"data\":{\"user\":{\"id\":42,\"role\":\"admin\"}}}\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Config validation\u003c/h3>\n              \u003cp>Single quotes, trailing commas, and comments belong to JavaScript-like objects, not strict JSON.\u003c/p>\n              \u003cpre class=\"code-block\">{\n  \"env\": \"prod\",\n  \"featureFlags\": [\"search\", \"export\"]\n}\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/uuid\">UUID Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/url\">URL Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json-yaml\">JSON YAML\u003c/a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out\u003c/li>\n            \u003cli>\u003ca href=\"/query-builder\">URL Query Builder\u003c/a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 
 </html>

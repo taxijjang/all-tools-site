@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/regex-Bf6LiCr6.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/regex-CBgDi-pN.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -286,11 +286,74 @@
       </section>
     </main>
 
+    <p id="reMessage" class="message" role="status" aria-live="polite"></p>
+
+    <section class="content-stack">
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Where a regex tester saves real time</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Validate input rules</h3>
+              <p>Test patterns for emails, slugs, employee IDs, or order references before you wire them into app validation logic.</p>
+            </article>
+            <article class="info-card">
+              <h3>Extract values from logs</h3>
+              <p>Build patterns that pull UUIDs, request IDs, paths, or token-like strings out of noisy incident logs.</p>
+            </article>
+            <article class="info-card">
+              <h3>Preview replacements safely</h3>
+              <p>Check what a pattern really matches before doing large-scale replacements or text cleanup in another tool or codebase.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Things that trip people up a lot</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>What do <code>g</code>, <code>i</code>, and <code>m</code> change?</h3>
+              <p><code>g</code> searches globally, <code>i</code> ignores case, and <code>m</code> changes how line anchors behave across multiple lines.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Why do regex syntax errors happen so often?</h3>
+              <p>Missing escapes, unbalanced groups, or unsupported syntax are the common causes. Testing a smaller fragment first is usually the fastest fix.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Which regex engine does this page use?</h3>
+              <p>It uses the browser JavaScript regex engine. That means behavior can differ from PCRE or some server runtimes, so production checks still matter.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
+
     
 
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>A dot swallows everything</h3>
+              <p>. matches any character except a newline. Combined with * it runs past your intended stop. Switch to .*? or narrow the class, for example [^&lt;]*.</p>
+            </article>
+            <article class="info-card">
+              <h3>Matching a literal special character</h3>
+              <p>. + * ? ( ) [ ] { } | ^ $ \ are syntax characters. Prefix a backslash to match them literally — a literal period is \.</p>
+            </article>
+            <article class="info-card">
+              <h3>The same regex fails on the second call</h3>
+              <p>In JavaScript a regex object with the g flag remembers lastIndex, so repeated test or exec calls resume from the previous position. Recreate the regex each time or reset lastIndex to 0.</p>
+            </article>
+          </div>
+        </section>
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
         <section class="content-section">
           <h2 class="section-title">Real input and output</h2>
           <div class="example-list">
@@ -316,23 +379,7 @@ B  &lt;b&gt;one&lt;/b&gt;            (shortest match)</code></pre>
             </article>
           </div>
         </section>
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>A dot swallows everything</h3>
-              <p>. matches any character except a newline. Combined with * it runs past your intended stop. Switch to .*? or narrow the class, for example [^&lt;]*.</p>
-            </article>
-            <article class="info-card">
-              <h3>Matching a literal special character</h3>
-              <p>. + * ? ( ) [ ] { } | ^ $ \ are syntax characters. Prefix a backslash to match them literally — a literal period is \.</p>
-            </article>
-            <article class="info-card">
-              <h3>The same regex fails on the second call</h3>
-              <p>In JavaScript a regex object with the g flag remembers lastIndex, so repeated test or exec calls resume from the previous position. Recreate the regex each time or reset lastIndex to 0.</p>
-            </article>
-          </div>
-        </section>
+        </details>
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>
           <ul class="related-list">
@@ -343,59 +390,7 @@ B  &lt;b&gt;one&lt;/b&gt;            (shortest match)</code></pre>
             <li><a href="/en/text-stats">Character Counter</a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.</li>
           </ul>
         </section>
-        </details>
     </section>
-
-    <p id="reMessage" class="message" role="status" aria-live="polite"></p>
-
-    <section class="content-stack">
-      <section class="content-section">
-        
-        <div data-locale-block="en" lang="en">
-          <h2 class="section-title">Where a regex tester saves real time</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Validate input rules</h3>
-              <p>Test patterns for emails, slugs, employee IDs, or order references before you wire them into app validation logic.</p>
-            </article>
-            <article class="info-card">
-              <h3>Extract values from logs</h3>
-              <p>Build patterns that pull UUIDs, request IDs, paths, or token-like strings out of noisy incident logs.</p>
-            </article>
-            <article class="info-card">
-              <h3>Preview replacements safely</h3>
-              <p>Check what a pattern really matches before doing large-scale replacements or text cleanup in another tool or codebase.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      
-        <details class="content-more">
-          <summary data-i18n="common.moreContent">More: how to use it, examples, and common errors</summary>
-<section class="content-section">
-        
-        <div data-locale-block="en" lang="en">
-          <h2 class="section-title">Things that trip people up a lot</h2>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>What do <code>g</code>, <code>i</code>, and <code>m</code> change?</h3>
-              <p><code>g</code> searches globally, <code>i</code> ignores case, and <code>m</code> changes how line anchors behave across multiple lines.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Why do regex syntax errors happen so often?</h3>
-              <p>Missing escapes, unbalanced groups, or unsupported syntax are the common causes. Testing a smaller fragment first is usually the fastest fix.</p>
-            </article>
-            <article class="faq-item">
-              <h3>Which regex engine does this page use?</h3>
-              <p>It uses the browser JavaScript regex engine. That means behavior can differ from PCRE or some server runtimes, so production checks still matter.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-    
-        </details>
-      </section>
 
     <footer class="footer footer--dev" data-nosnippet>
       <nav class="footer-links" aria-label="사이트 정보">

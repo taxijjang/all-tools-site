@@ -7,8 +7,8 @@
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/caseConvert-aVhBlRRW.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/caseConvert-_Li9xHQN.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -290,8 +290,38 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Acronyms split in odd places</h3>
+              <p>Runs of capitals like HTTP, ID, or URL are hard to segment. Some tools turn getHTTPResponse into get_h_t_t_p_response. Check acronyms by eye after converting.</p>
+            </article>
+            <article class="info-card">
+              <h3>Digit boundaries</h3>
+              <p>Tools disagree on whether the digits in user2Name form a word boundary. Verify before using the result somewhere irreversible, like a database column name.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Acronyms are team-specific</h3>
+              <p>Terms like URL, ID, and API can be written as url, Url, or URL depending on convention. Adjust after conversion.</p>
+            </article>
+            <article class="info-card">
+              <h3>Meaning can shift</h3>
+              <p>Combining words can change readability or meaning, so public URLs and API field names deserve a final review.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">
           <h2 class="section-title">How to use it</h2>
@@ -330,34 +360,7 @@ kebab-case  get-http-response-code</code></pre>
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Acronyms split in odd places</h3>
-              <p>Runs of capitals like HTTP, ID, or URL are hard to segment. Some tools turn getHTTPResponse into get_h_t_t_p_response. Check acronyms by eye after converting.</p>
-            </article>
-            <article class="info-card">
-              <h3>Digit boundaries</h3>
-              <p>Tools disagree on whether the digits in user2Name form a word boundary. Verify before using the result somewhere irreversible, like a database column name.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">Things to check</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Acronyms are team-specific</h3>
-              <p>Terms like URL, ID, and API can be written as url, Url, or URL depending on convention. Adjust after conversion.</p>
-            </article>
-            <article class="info-card">
-              <h3>Meaning can shift</h3>
-              <p>Combining words can change readability or meaning, so public URLs and API field names deserve a final review.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

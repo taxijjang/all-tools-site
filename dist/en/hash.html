@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/hash-BoLbsml5.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/hash-CMKxCeoO.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -297,63 +297,6 @@
       </div>
 
     </main>
-
-    
-
-    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
-        <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
-        <section class="content-section">
-          <h2 class="section-title">Real input and output</h2>
-          <div class="example-list">
-            <article class="example-item">
-              <h3>SHA-256 of a string</h3>
-              <p class="example-item__label">Input</p>
-              <pre class="example-item__code"><code>hello</code></pre>
-              <p class="example-item__label">Output</p>
-              <pre class="example-item__code"><code>2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</code></pre>
-            </article>
-            <article class="example-item">
-              <h3>HEX versus Base64 output</h3>
-              <p class="example-item__label">Input</p>
-              <pre class="example-item__code"><code>hello (SHA-256)</code></pre>
-              <p class="example-item__label">Output</p>
-              <pre class="example-item__code"><code>HEX     2cf24dba5fb0a3...938b9824
-Base64  LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=</code></pre>
-              <p class="example-item__note">Same digest, different notation. Match whatever the verifying side expects.</p>
-            </article>
-          </div>
-        </section>
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Trying to reverse a hash</h3>
-              <p>Hashing is a one-way function, not encryption. There is no decryption. The only way back is guessing candidates and comparing digests.</p>
-            </article>
-            <article class="info-card">
-              <h3>Storing passwords with SHA-256</h3>
-              <p>SHA functions are deliberately fast, which makes brute force cheap. Use bcrypt, scrypt, or Argon2, which add salting and a tunable work factor.</p>
-            </article>
-            <article class="info-card">
-              <h3>Same text, different digest</h3>
-              <p>Check for a trailing newline. Copying from a file or editor often carries the final line break, producing a completely different hash.</p>
-            </article>
-          </div>
-        </section>
-        <section class="content-section">
-          <h2 class="section-title">Tools that pair well</h2>
-          <ul class="related-list">
-            <li><a href="/en/ip-ua">IP / User-Agent</a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.</li>
-            <li><a href="/en/ip-cidr">CIDR Calculator</a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s</li>
-            <li><a href="/en/cron">Cron Parser</a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin</li>
-            <li><a href="/en/timestamp">Timestamp Converter</a></li>
-            <li><a href="/en/password">Password</a></li>
-            <li><a href="/en/convert">Unit Converter</a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not</li>
-          </ul>
-        </section>
-        </details>
-    </section>
     <p id="hashMessage" class="message" role="status" aria-live="polite"></p>
 
     <section class="content-stack">
@@ -378,10 +321,7 @@ Base64  LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=</code></pre>
         </div>
       </section>
 
-      
-        <details class="content-more">
-          <summary data-i18n="common.moreContent">More: how to use it, examples, and common errors</summary>
-<section class="content-section">
+      <section class="content-section">
         
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Questions that come up often</h2>
@@ -401,9 +341,64 @@ Base64  LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=</code></pre>
           </div>
         </div>
       </section>
+    </section>
+
     
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Trying to reverse a hash</h3>
+              <p>Hashing is a one-way function, not encryption. There is no decryption. The only way back is guessing candidates and comparing digests.</p>
+            </article>
+            <article class="info-card">
+              <h3>Storing passwords with SHA-256</h3>
+              <p>SHA functions are deliberately fast, which makes brute force cheap. Use bcrypt, scrypt, or Argon2, which add salting and a tunable work factor.</p>
+            </article>
+            <article class="info-card">
+              <h3>Same text, different digest</h3>
+              <p>Check for a trailing newline. Copying from a file or editor often carries the final line break, producing a completely different hash.</p>
+            </article>
+          </div>
+        </section>
+        <details class="content-more">
+          <summary>More: step-by-step usage and worked examples</summary>
+        <section class="content-section">
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>SHA-256 of a string</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>hello</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>HEX versus Base64 output</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>hello (SHA-256)</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>HEX     2cf24dba5fb0a3...938b9824
+Base64  LPJNul+wow4m6DsqxbninhsWHlwfp0JecwQzYpOLmCQ=</code></pre>
+              <p class="example-item__note">Same digest, different notation. Match whatever the verifying side expects.</p>
+            </article>
+          </div>
+        </section>
         </details>
-      </section>
+        <section class="content-section">
+          <h2 class="section-title">Tools that pair well</h2>
+          <ul class="related-list">
+            <li><a href="/en/ip-ua">IP / User-Agent</a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.</li>
+            <li><a href="/en/ip-cidr">CIDR Calculator</a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s</li>
+            <li><a href="/en/cron">Cron Parser</a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin</li>
+            <li><a href="/en/timestamp">Timestamp Converter</a></li>
+            <li><a href="/en/password">Password</a></li>
+            <li><a href="/en/convert">Unit Converter</a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not</li>
+          </ul>
+        </section>
+    </section>
 
     <footer class="footer footer--dev" data-nosnippet>
       <nav class="footer-links" aria-label="사이트 정보">

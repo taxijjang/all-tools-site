@@ -7,8 +7,8 @@
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/color-CzaS1yHS.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/color-DQ6umOjb.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -283,8 +283,38 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>디자인은 예쁜데 접근성 검사에서 걸릴 때</h3>
+              <p>밝은 배경의 연회색 텍스트가 가장 흔한 탈락 사례입니다. 4.5:1을 못 넘기면 명도를 낮추거나 글자 크기를 키워 큰 텍스트 기준(3:1)으로 맞추세요.</p>
+            </article>
+            <article class="info-card">
+              <h3>투명도가 계산에 안 들어갈 때</h3>
+              <p>대비비는 최종적으로 눈에 보이는 색으로 계산해야 합니다. 반투명 색은 배경과 합성된 뒤의 실제 색을 넣어야 정확합니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">확인할 점</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>대비는 맥락과 함께 보기</h3>
+              <p>계산된 대비 비율은 빠른 기준점입니다. 실제 접근성 판단은 글자 크기, 굵기, 상태 색상, 주변 배경을 같이 봐야 합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>HSL 조정</h3>
+              <p>HSL은 색조를 유지한 채 명도와 채도를 조절하기 좋아 hover, disabled, border 색상을 만들 때 유용합니다.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>사용법, 예시, 자주 만나는 오류 더 보기</summary>
+          <summary>사용 순서와 입력 예시 더 보기</summary>
 
         <section class="content-section">
           <h2 class="section-title">사용 순서</h2>
@@ -321,34 +351,7 @@ HSL  hsl(173, 66%, 50%)</code></pre>
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">자주 만나는 오류</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>디자인은 예쁜데 접근성 검사에서 걸릴 때</h3>
-              <p>밝은 배경의 연회색 텍스트가 가장 흔한 탈락 사례입니다. 4.5:1을 못 넘기면 명도를 낮추거나 글자 크기를 키워 큰 텍스트 기준(3:1)으로 맞추세요.</p>
-            </article>
-            <article class="info-card">
-              <h3>투명도가 계산에 안 들어갈 때</h3>
-              <p>대비비는 최종적으로 눈에 보이는 색으로 계산해야 합니다. 반투명 색은 배경과 합성된 뒤의 실제 색을 넣어야 정확합니다.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">확인할 점</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>대비는 맥락과 함께 보기</h3>
-              <p>계산된 대비 비율은 빠른 기준점입니다. 실제 접근성 판단은 글자 크기, 굵기, 상태 색상, 주변 배경을 같이 봐야 합니다.</p>
-            </article>
-            <article class="info-card">
-              <h3>HSL 조정</h3>
-              <p>HSL은 색조를 유지한 채 명도와 채도를 조절하기 좋아 hover, disabled, border 색상을 만들 때 유용합니다.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">함께 쓰면 좋은 도구</h2>
@@ -374,6 +377,6 @@ HSL  hsl(173, 66%, 50%)</code></pre>
       <small data-i18n="common.footerHome">© 2026 stateless tools · Cloudflare Pages 배포용 정적 사이트</small>
     </footer>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003ch2 class=\"section-title\">Color conversion and contrast review\u003c/h2>\n          \u003cp class=\"section-lead\">Convert HEX, RGB, and HSL values from the same color and check contrast against white and black backgrounds.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Normalize design tokens\u003c/h3>\n              \u003cp>Convert HEX values from design tools into RGB and HSL formats for CSS, JavaScript, and documentation.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Check readable contrast\u003c/h3>\n              \u003cp>See how the selected color performs against light and dark backgrounds before using it for UI text or icons.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Copy-ready output\u003c/h3>\n              \u003cp>Copy each color format directly into theme variables, component styles, or design notes.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: how to use it, examples, and common errors\u003c/summary>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Choose a base color with the picker or inspect the current HEX value.\u003c/li>\n          \u003cli>Copy the RGB or HSL output that matches the code format you need.\u003c/li>\n          \u003cli>Review contrast against white and black before using the color for text or icons.\u003c/li>\n          \u003cli>Do a final check in the real UI with the actual background, font size, and weight.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>One color in three notations\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>#2DD4BF\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>HEX  #2DD4BF\nRGB  rgb(45, 212, 191)\nHSL  hsl(173, 66%, 50%)\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Body text contrast check\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Foreground #64748B on background #FFFFFF\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Contrast ratio 4.76:1\nPasses AA for body text, fails AAA\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">WCAG asks for 4.5:1 (AA) and 7:1 (AAA) on body text, and 3:1 for large text.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>It looks fine but fails the audit\u003c/h3>\n              \u003cp>Light grey text on a light background is the most common failure. If you cannot reach 4.5:1, darken the text or increase the size to qualify for the 3:1 large-text threshold.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Transparency is not accounted for\u003c/h3>\n              \u003cp>Contrast must be computed on the color the eye actually sees. For semi-transparent colors, enter the composited result rather than the source value.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Contrast needs context\u003c/h3>\n              \u003cp>The ratio is a fast signal, but final accessibility depends on text size, font weight, state color, and surrounding background.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Use HSL for variants\u003c/h3>\n              \u003cp>HSL is useful when you want to keep hue stable while adjusting lightness or saturation for hover, disabled, and border states.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/ip-ua\">IP / User-Agent\u003c/a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/li>\n            \u003cli>\u003ca href=\"/ip-cidr\">CIDR Calculator\u003c/a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s\u003c/li>\n            \u003cli>\u003ca href=\"/cron\">Cron Parser\u003c/a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin\u003c/li>\n            \u003cli>\u003ca href=\"/timestamp\">Timestamp Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/hash\">SHA Hash\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/password\">Password\u003c/a>\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003ch2 class=\"section-title\">Color conversion and contrast review\u003c/h2>\n          \u003cp class=\"section-lead\">Convert HEX, RGB, and HSL values from the same color and check contrast against white and black backgrounds.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Normalize design tokens\u003c/h3>\n              \u003cp>Convert HEX values from design tools into RGB and HSL formats for CSS, JavaScript, and documentation.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Check readable contrast\u003c/h3>\n              \u003cp>See how the selected color performs against light and dark backgrounds before using it for UI text or icons.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Copy-ready output\u003c/h3>\n              \u003cp>Copy each color format directly into theme variables, component styles, or design notes.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>It looks fine but fails the audit\u003c/h3>\n              \u003cp>Light grey text on a light background is the most common failure. If you cannot reach 4.5:1, darken the text or increase the size to qualify for the 3:1 large-text threshold.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Transparency is not accounted for\u003c/h3>\n              \u003cp>Contrast must be computed on the color the eye actually sees. For semi-transparent colors, enter the composited result rather than the source value.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Contrast needs context\u003c/h3>\n              \u003cp>The ratio is a fast signal, but final accessibility depends on text size, font weight, state color, and surrounding background.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Use HSL for variants\u003c/h3>\n              \u003cp>HSL is useful when you want to keep hue stable while adjusting lightness or saturation for hover, disabled, and border states.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: step-by-step usage and worked examples\u003c/summary>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Choose a base color with the picker or inspect the current HEX value.\u003c/li>\n          \u003cli>Copy the RGB or HSL output that matches the code format you need.\u003c/li>\n          \u003cli>Review contrast against white and black before using the color for text or icons.\u003c/li>\n          \u003cli>Do a final check in the real UI with the actual background, font size, and weight.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>One color in three notations\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>#2DD4BF\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>HEX  #2DD4BF\nRGB  rgb(45, 212, 191)\nHSL  hsl(173, 66%, 50%)\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Body text contrast check\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Foreground #64748B on background #FFFFFF\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Contrast ratio 4.76:1\nPasses AA for body text, fails AAA\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">WCAG asks for 4.5:1 (AA) and 7:1 (AAA) on body text, and 3:1 for large text.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003c/details>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/ip-ua\">IP / User-Agent\u003c/a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/li>\n            \u003cli>\u003ca href=\"/ip-cidr\">CIDR Calculator\u003c/a> — Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet s\u003c/li>\n            \u003cli>\u003ca href=\"/cron\">Cron Parser\u003c/a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin\u003c/li>\n            \u003cli>\u003ca href=\"/timestamp\">Timestamp Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/hash\">SHA Hash\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/password\">Password\u003c/a>\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>"]</script>
 </body>
 </html>

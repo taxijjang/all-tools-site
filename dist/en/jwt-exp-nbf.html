@@ -6,7 +6,7 @@
   <title>JWT exp and nbf Guide | Reading Expiry and Not Before | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-BAfutnil.js"></script>
+  <script type="module" crossorigin src="/assets/site-Bi1Nl3EU.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -261,8 +261,25 @@
     
 
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>A valid token is rejected as expired</h3>
+              <p>Clock drift between servers is the usual cause. If the issuer runs slightly ahead, nbf is still in the future for the receiver. Most libraries expose a clock skew tolerance, commonly 30 to 60 seconds — check that first.</p>
+            </article>
+            <article class="info-card">
+              <h3>exp set in milliseconds</h3>
+              <p>RFC 7519 time claims are in seconds. Passing Date.now() directly inflates the value by 1000 and issues a token that never expires. This is a security incident waiting to happen, so audit the issuing code.</p>
+            </article>
+            <article class="info-card">
+              <h3>Decoding is not verifying</h3>
+              <p>A JWT header and payload are Base64URL encoded, not encrypted. Anyone can read them and re-encode modified content. Only a passing signature check makes a token trustworthy, and secrets must never go in the payload.</p>
+            </article>
+          </div>
+        </section>
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
         <section class="content-section">
           <h2 class="section-title">Real input and output</h2>
           <div class="example-list">
@@ -288,23 +305,6 @@ Lifetime 1 hour</code></pre>
               <pre class="example-item__code"><code>now 1767225600, nbf 1767229200</code></pre>
               <p class="example-item__label">Output</p>
               <pre class="example-item__code"><code>Not yet usable — valid one hour from now</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>A valid token is rejected as expired</h3>
-              <p>Clock drift between servers is the usual cause. If the issuer runs slightly ahead, nbf is still in the future for the receiver. Most libraries expose a clock skew tolerance, commonly 30 to 60 seconds — check that first.</p>
-            </article>
-            <article class="info-card">
-              <h3>exp set in milliseconds</h3>
-              <p>RFC 7519 time claims are in seconds. Passing Date.now() directly inflates the value by 1000 and issues a token that never expires. This is a security incident waiting to happen, so audit the issuing code.</p>
-            </article>
-            <article class="info-card">
-              <h3>Decoding is not verifying</h3>
-              <p>A JWT header and payload are Base64URL encoded, not encrypted. Anyone can read them and re-encode modified content. Only a passing signature check makes a token trustworthy, and secrets must never go in the payload.</p>
             </article>
           </div>
         </section>

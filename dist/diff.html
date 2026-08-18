@@ -7,8 +7,8 @@
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/diff-Dz55JdSx.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/diff-D9c8y8Ib.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -284,40 +284,6 @@ line4</textarea>
           </div>
         </section>
 
-        <details class="content-more">
-          <summary>사용법, 예시, 자주 만나는 오류 더 보기</summary>
-
-        <section class="content-section">
-          <h2 class="section-title">사용 순서</h2>
-          <ol class="content-list">
-          <li>원본 텍스트와 비교 대상 텍스트를 각각 붙여 넣습니다.</li>
-          <li>줄바꿈, 공백, 들여쓰기 차이가 실제 의미 있는 변경인지 함께 확인합니다.</li>
-          <li>결과 영역에서 추가, 삭제, 변경 줄을 확인합니다.</li>
-          <li>공유가 필요하면 민감 값을 마스킹한 뒤 diff 결과를 복사합니다.</li>
-          </ol>
-        </section>
-
-
-        <section class="content-section">
-          <h2 class="section-title">실제 입력과 결과</h2>
-          <div class="example-list">
-            <article class="example-item">
-              <h3>설정 값 변경 확인</h3>
-              <p class="example-item__label">입력</p>
-              <pre class="example-item__code"><code>왼쪽
-timeout: 30
-retries: 3
-
-오른쪽
-timeout: 60
-retries: 3</code></pre>
-              <p class="example-item__label">결과</p>
-              <pre class="example-item__code"><code>- timeout: 30
-+ timeout: 60
-  retries: 3</code></pre>
-            </article>
-          </div>
-        </section>
 
         <section class="content-section">
           <h2 class="section-title">자주 만나는 오류</h2>
@@ -351,6 +317,43 @@ retries: 3</code></pre>
           </div>
         </section>
 
+
+        <details class="content-more">
+          <summary>사용 순서와 입력 예시 더 보기</summary>
+
+        <section class="content-section">
+          <h2 class="section-title">사용 순서</h2>
+          <ol class="content-list">
+          <li>원본 텍스트와 비교 대상 텍스트를 각각 붙여 넣습니다.</li>
+          <li>줄바꿈, 공백, 들여쓰기 차이가 실제 의미 있는 변경인지 함께 확인합니다.</li>
+          <li>결과 영역에서 추가, 삭제, 변경 줄을 확인합니다.</li>
+          <li>공유가 필요하면 민감 값을 마스킹한 뒤 diff 결과를 복사합니다.</li>
+          </ol>
+        </section>
+
+
+        <section class="content-section">
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>설정 값 변경 확인</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>왼쪽
+timeout: 30
+retries: 3
+
+오른쪽
+timeout: 60
+retries: 3</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>- timeout: 30
++ timeout: 60
+  retries: 3</code></pre>
+            </article>
+          </div>
+        </section>
+
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">함께 쓰면 좋은 도구</h2>
@@ -391,6 +394,6 @@ retries: 3</code></pre>
       <small data-i18n="common.footerHome">© 2026 stateless tools · Cloudflare Pages 배포용 정적 사이트</small>
     </footer>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003ch2 class=\"section-title\">Text diff workflow notes\u003c/h2>\n          \u003cp class=\"section-lead\">Compare two similar text blocks such as config files, drafts, or API responses and focus on the changed lines.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Find changed lines\u003c/h3>\n              \u003cp>Isolate the lines that changed so deployment config and document edits are easier to review.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Copyable diff output\u003c/h3>\n              \u003cp>Review changes in a unified diff style that is easy to paste into issues, pull requests, or team chat.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Compare sensitive text locally\u003c/h3>\n              \u003cp>The comparison runs in the browser, reducing the need to paste internal values into external diff services.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: how to use it, examples, and common errors\u003c/summary>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Paste the original text and the revised text into the two input areas.\u003c/li>\n          \u003cli>Check whether line endings, spacing, or indentation are part of the meaningful change.\u003c/li>\n          \u003cli>Review added, removed, and changed lines in the result area.\u003c/li>\n          \u003cli>Mask sensitive values before copying the diff for sharing.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Spotting a config change\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Left\ntimeout: 30\nretries: 3\n\nRight\ntimeout: 60\nretries: 3\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>- timeout: 30\n+ timeout: 60\n  retries: 3\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Everything differs but you changed nothing\u003c/h3>\n              \u003cp>The line endings differ. Windows uses CRLF while macOS and Linux use LF. Mismatched editor or git settings mark every line as changed.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>One character changed but the whole line is flagged\u003c/h3>\n              \u003cp>Comparison is line based. To find the exact character on a long line, split it into shorter lines before comparing.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Tabs mixed with spaces\u003c/h3>\n              \u003cp>They render at the same width but are different characters. If you see a wall of indentation-only differences, normalize whitespace first.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Whitespace can matter\u003c/h3>\n              \u003cp>JSON, YAML, and Markdown can be affected by indentation and spacing, so inspect formatting changes deliberately.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Large inputs\u003c/h3>\n              \u003cp>Very large logs or files can use a lot of browser memory. Compare only the relevant section when possible.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/regex\">Regex Tester\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/markdown\">Markdown\u003c/a> — Review Markdown documents such as READMEs, release notes, and issue templates as rendered output and generated\u003c/li>\n            \u003cli>\u003ca href=\"/case-convert\">Case Converter\u003c/a> — Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-ca\u003c/li>\n            \u003cli>\u003ca href=\"/text-cleaner\">Text Cleaner\u003c/a> — Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying te\u003c/li>\n            \u003cli>\u003ca href=\"/text-stats\">Character Counter\u003c/a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003ch2 class=\"section-title\">Text diff workflow notes\u003c/h2>\n          \u003cp class=\"section-lead\">Compare two similar text blocks such as config files, drafts, or API responses and focus on the changed lines.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Find changed lines\u003c/h3>\n              \u003cp>Isolate the lines that changed so deployment config and document edits are easier to review.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Copyable diff output\u003c/h3>\n              \u003cp>Review changes in a unified diff style that is easy to paste into issues, pull requests, or team chat.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Compare sensitive text locally\u003c/h3>\n              \u003cp>The comparison runs in the browser, reducing the need to paste internal values into external diff services.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Everything differs but you changed nothing\u003c/h3>\n              \u003cp>The line endings differ. Windows uses CRLF while macOS and Linux use LF. Mismatched editor or git settings mark every line as changed.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>One character changed but the whole line is flagged\u003c/h3>\n              \u003cp>Comparison is line based. To find the exact character on a long line, split it into shorter lines before comparing.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Tabs mixed with spaces\u003c/h3>\n              \u003cp>They render at the same width but are different characters. If you see a wall of indentation-only differences, normalize whitespace first.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Whitespace can matter\u003c/h3>\n              \u003cp>JSON, YAML, and Markdown can be affected by indentation and spacing, so inspect formatting changes deliberately.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Large inputs\u003c/h3>\n              \u003cp>Very large logs or files can use a lot of browser memory. Compare only the relevant section when possible.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: step-by-step usage and worked examples\u003c/summary>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Paste the original text and the revised text into the two input areas.\u003c/li>\n          \u003cli>Check whether line endings, spacing, or indentation are part of the meaningful change.\u003c/li>\n          \u003cli>Review added, removed, and changed lines in the result area.\u003c/li>\n          \u003cli>Mask sensitive values before copying the diff for sharing.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>Spotting a config change\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Left\ntimeout: 30\nretries: 3\n\nRight\ntimeout: 60\nretries: 3\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>- timeout: 30\n+ timeout: 60\n  retries: 3\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003c/details>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/regex\">Regex Tester\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/markdown\">Markdown\u003c/a> — Review Markdown documents such as READMEs, release notes, and issue templates as rendered output and generated\u003c/li>\n            \u003cli>\u003ca href=\"/case-convert\">Case Converter\u003c/a> — Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-ca\u003c/li>\n            \u003cli>\u003ca href=\"/text-cleaner\">Text Cleaner\u003c/a> — Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying te\u003c/li>\n            \u003cli>\u003ca href=\"/text-stats\">Character Counter\u003c/a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>"]</script>
 </body>
 </html>

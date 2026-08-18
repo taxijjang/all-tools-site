@@ -7,8 +7,8 @@
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/queryBuilder-7xcX7kvy.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/queryBuilder-oS6ZQZ5S.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -262,8 +262,38 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Is a space + or %20?</h3>
+              <p>Both usually decode to a space in a query string, but in a path a + is a literal plus. Servers differ, so %20 is the safer choice.</p>
+            </article>
+            <article class="info-card">
+              <h3>Array parameter styles</h3>
+              <p>tags=a&amp;tags=b, tags[]=a&amp;tags[]=b, and tags=a,b are all in use. Which one works depends on the server framework — check the API docs first.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Repeated keys vary</h3>
+              <p>Servers can interpret repeated keys differently. Match array parameter rules with the API documentation.</p>
+            </article>
+            <article class="info-card">
+              <h3>Avoid sensitive data</h3>
+              <p>URLs can appear in browser history, logs, and previews. Avoid putting tokens or personal data in query strings.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">
           <h2 class="section-title">How to use it</h2>
@@ -299,34 +329,7 @@ page   2</code></pre>
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Is a space + or %20?</h3>
-              <p>Both usually decode to a space in a query string, but in a path a + is a literal plus. Servers differ, so %20 is the safer choice.</p>
-            </article>
-            <article class="info-card">
-              <h3>Array parameter styles</h3>
-              <p>tags=a&amp;tags=b, tags[]=a&amp;tags[]=b, and tags=a,b are all in use. Which one works depends on the server framework — check the API docs first.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">Things to check</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Repeated keys vary</h3>
-              <p>Servers can interpret repeated keys differently. Match array parameter rules with the API documentation.</p>
-            </article>
-            <article class="info-card">
-              <h3>Avoid sensitive data</h3>
-              <p>URLs can appear in browser history, logs, and previews. Avoid putting tokens or personal data in query strings.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

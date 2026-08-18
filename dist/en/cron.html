@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <script type="module" crossorigin src="/assets/cron-CjBUfuH_.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+    <script type="module" crossorigin src="/assets/cron-BnuN2jhU.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="modulepreload" crossorigin href="/assets/_commonjsHelpers-BosuxZz1.js">
   <link rel="modulepreload" crossorigin href="/assets/luxon-CGv2xrGI.js">
   <link rel="modulepreload" crossorigin href="/assets/__vite-browser-external-D7Ct-6yo.js">
@@ -308,8 +308,42 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Is Sunday 0 or 7?</h3>
+              <p>Standard cron accepts both, but some implementations reject 7. Using 0 is the safer choice.</p>
+            </article>
+            <article class="info-card">
+              <h3>Five fields or six?</h3>
+              <p>Unix cron uses five fields: minute, hour, day, month, weekday. Spring and Quartz prepend a seconds field for six. A five-field expression pasted into Quartz shifts every value by one position.</p>
+            </article>
+            <article class="info-card">
+              <h3>The next run time looks wrong</h3>
+              <p>When both day-of-month and day-of-week are set, most implementations run if either matches — an OR, not an AND. Check the server timezone and daylight saving as well.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Day fields can differ</h3>
+              <p>Schedulers can interpret day-of-month and day-of-week combinations differently, so verify critical jobs against the target runtime.</p>
+            </article>
+            <article class="info-card">
+              <h3>Seconds are runtime-specific</h3>
+              <p>Some systems support a seconds field, while traditional crontab uses five fields. Match the format expected by your scheduler.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">
           <h2 class="section-title">How to use it</h2>
@@ -350,38 +384,7 @@
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Is Sunday 0 or 7?</h3>
-              <p>Standard cron accepts both, but some implementations reject 7. Using 0 is the safer choice.</p>
-            </article>
-            <article class="info-card">
-              <h3>Five fields or six?</h3>
-              <p>Unix cron uses five fields: minute, hour, day, month, weekday. Spring and Quartz prepend a seconds field for six. A five-field expression pasted into Quartz shifts every value by one position.</p>
-            </article>
-            <article class="info-card">
-              <h3>The next run time looks wrong</h3>
-              <p>When both day-of-month and day-of-week are set, most implementations run if either matches — an OR, not an AND. Check the server timezone and daylight saving as well.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">Things to check</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Day fields can differ</h3>
-              <p>Schedulers can interpret day-of-month and day-of-week combinations differently, so verify critical jobs against the target runtime.</p>
-            </article>
-            <article class="info-card">
-              <h3>Seconds are runtime-specific</h3>
-              <p>Some systems support a seconds field, while traditional crontab uses five fields. Match the format expected by your scheduler.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

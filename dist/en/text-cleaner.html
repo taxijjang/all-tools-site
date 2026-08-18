@@ -5,8 +5,8 @@
   <title>Text Cleaner | Dedupe, Trim Whitespace, Sort, Slugify | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/textCleaner-Bm9w9mYz.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/textCleaner-DCmU36cA.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -290,8 +290,38 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Invisible whitespace survives</h3>
+              <p>Text copied from the web often carries non-breaking spaces (U+00A0) or zero-width characters. They look identical but compare and sort differently.</p>
+            </article>
+            <article class="info-card">
+              <h3>Non-ASCII titles vanish in a slug</h3>
+              <p>Slugs usually keep ASCII only, so a Korean or Japanese title can be stripped entirely. If you plan to use non-ASCII URLs, keep the encoded original instead.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Keep the original</h3>
+              <p>Duplicate removal and sorting can change order. Preserve the source when sequence matters.</p>
+            </article>
+            <article class="info-card">
+              <h3>Review slugs</h3>
+              <p>Automatic slugs are drafts. Before publishing URLs, adjust brand names, acronyms, and search intent manually.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">
           <h2 class="section-title">How to use it</h2>
@@ -330,34 +360,7 @@ cherry</code></pre>
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Invisible whitespace survives</h3>
-              <p>Text copied from the web often carries non-breaking spaces (U+00A0) or zero-width characters. They look identical but compare and sort differently.</p>
-            </article>
-            <article class="info-card">
-              <h3>Non-ASCII titles vanish in a slug</h3>
-              <p>Slugs usually keep ASCII only, so a Korean or Japanese title can be stripped entirely. If you plan to use non-ASCII URLs, keep the encoded original instead.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">Things to check</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Keep the original</h3>
-              <p>Duplicate removal and sorting can change order. Preserve the source when sequence matters.</p>
-            </article>
-            <article class="info-card">
-              <h3>Review slugs</h3>
-              <p>Automatic slugs are drafts. Before publishing URLs, adjust brand names, acronyms, and search intent manually.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/url-D0ctSLOQ.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/url-D97qvR4o.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -284,63 +284,6 @@
       </section>
 
     </main>
-
-    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="ko" lang="ko">
-        <details class="content-more">
-          <summary>사용법, 예시, 자주 만나는 오류 더 보기</summary>
-        <section class="content-section">
-          <h2 class="section-title">실제 입력과 결과</h2>
-          <div class="example-list">
-            <article class="example-item">
-              <h3>한글이 든 쿼리</h3>
-              <p class="example-item__label">입력</p>
-              <pre class="example-item__code"><code>https://example.com/search?q=개발자 도구</code></pre>
-              <p class="example-item__label">결과</p>
-              <pre class="example-item__code"><code>https://example.com/search?q=%EA%B0%9C%EB%B0%9C%EC%9E%90%20%EB%8F%84%EA%B5%AC</code></pre>
-            </article>
-            <article class="example-item">
-              <h3>전체 URL과 파라미터 값의 차이</h3>
-              <p class="example-item__label">입력</p>
-              <pre class="example-item__code"><code>https://a.com/b?next=https://c.com/d</code></pre>
-              <p class="example-item__label">결과</p>
-              <pre class="example-item__code"><code>encodeURI          https://a.com/b?next=https://c.com/d
-encodeURIComponent https%3A%2F%2Fa.com%2Fb%3Fnext%3D...</code></pre>
-              <p class="example-item__note">encodeURI는 :와 /를 남겨 URL 전체를 인코딩할 때 쓰고, 파라미터 값 하나를 넣을 때는 encodeURIComponent를 써야 합니다.</p>
-            </article>
-          </div>
-        </section>
-        <section class="content-section">
-          <h2 class="section-title">자주 만나는 오류</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>%2520처럼 %25가 끼어 있을 때</h3>
-              <p>이중 인코딩입니다. 이미 인코딩된 문자열을 한 번 더 인코딩하면 %가 %25로 바뀝니다. 디코딩을 두 번 해야 원문이 나오고, 원인은 대개 코드에서 인코딩을 두 곳에서 하고 있는 것입니다.</p>
-            </article>
-            <article class="info-card">
-              <h3>+가 공백으로 안 바뀔 때</h3>
-              <p>+를 공백으로 해석하는 것은 form 전송(application/x-www-form-urlencoded) 규칙입니다. 일반 URL 디코딩에서는 +가 플러스 그대로 남습니다.</p>
-            </article>
-            <article class="info-card">
-              <h3>슬래시를 인코딩해야 할지</h3>
-              <p>경로 구분자로 쓰이는 /는 그대로 두고, 파라미터 값 안에 들어가는 /는 %2F로 인코딩해야 합니다. 리다이렉트 URL을 파라미터로 넘길 때 자주 문제가 됩니다.</p>
-            </article>
-          </div>
-        </section>
-        <section class="content-section">
-          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
-          <ul class="related-list">
-            <li><a href="/uuid">UUID 변환기</a> — UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.</li>
-            <li><a href="/base64">Base64 인코더/디코더</a> — 문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.</li>
-            <li><a href="/json">JSON 포매터/검증기</a> — JSON 유효성 검사, 포맷/압축, 키 검색, 트리 뷰 확인까지 한 번에 할 수 있는 브라우저 도구입니다.</li>
-            <li><a href="/jwt">JWT 디코더/검사기</a> — JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.</li>
-            <li><a href="/json-yaml">JSON YAML 변환기</a> — JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.</li>
-            <li><a href="/query-builder">URL 쿼리 생성기</a> — 키-값 쌍으로 쿼리 스트링을 만들고 인코딩된 공유 URL을 빠르게 생성할 수 있습니다.</li>
-          </ul>
-        </section>
-        </details>
-    </section>
-
-    <div data-locale-slot="en" data-locale-index="0"></div>
     <p id="urlMessage" class="message" role="status" aria-live="polite"></p>
 
     <section class="content-stack">
@@ -362,13 +305,10 @@ encodeURIComponent https%3A%2F%2Fa.com%2Fb%3Fnext%3D...</code></pre>
             </article>
           </div>
         </div>
-        <div data-locale-slot="en" data-locale-index="1"></div>
+        <div data-locale-slot="en" data-locale-index="0"></div>
       </section>
 
-      
-        <details class="content-more">
-          <summary data-i18n="common.moreContent">사용법, 예시, 자주 만나는 오류 더 보기</summary>
-<section class="content-section">
+      <section class="content-section">
         <div data-locale-block="ko" lang="ko">
           <h2 class="section-title">이 도구가 특히 도움이 되는 상황</h2>
           <div class="faq-list">
@@ -386,11 +326,66 @@ encodeURIComponent https%3A%2F%2Fa.com%2Fb%3Fnext%3D...</code></pre>
             </article>
           </div>
         </div>
-        <div data-locale-slot="en" data-locale-index="2"></div>
+        <div data-locale-slot="en" data-locale-index="1"></div>
       </section>
-    
+    </section>
+
+    <section class="content-stack content-stack--generated" data-seo-support data-locale-block="ko" lang="ko">
+        <section class="content-section">
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>%2520처럼 %25가 끼어 있을 때</h3>
+              <p>이중 인코딩입니다. 이미 인코딩된 문자열을 한 번 더 인코딩하면 %가 %25로 바뀝니다. 디코딩을 두 번 해야 원문이 나오고, 원인은 대개 코드에서 인코딩을 두 곳에서 하고 있는 것입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>+가 공백으로 안 바뀔 때</h3>
+              <p>+를 공백으로 해석하는 것은 form 전송(application/x-www-form-urlencoded) 규칙입니다. 일반 URL 디코딩에서는 +가 플러스 그대로 남습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>슬래시를 인코딩해야 할지</h3>
+              <p>경로 구분자로 쓰이는 /는 그대로 두고, 파라미터 값 안에 들어가는 /는 %2F로 인코딩해야 합니다. 리다이렉트 URL을 파라미터로 넘길 때 자주 문제가 됩니다.</p>
+            </article>
+          </div>
+        </section>
+        <details class="content-more">
+          <summary>사용 순서와 입력 예시 더 보기</summary>
+        <section class="content-section">
+          <h2 class="section-title">실제 입력과 결과</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>한글이 든 쿼리</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>https://example.com/search?q=개발자 도구</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>https://example.com/search?q=%EA%B0%9C%EB%B0%9C%EC%9E%90%20%EB%8F%84%EA%B5%AC</code></pre>
+            </article>
+            <article class="example-item">
+              <h3>전체 URL과 파라미터 값의 차이</h3>
+              <p class="example-item__label">입력</p>
+              <pre class="example-item__code"><code>https://a.com/b?next=https://c.com/d</code></pre>
+              <p class="example-item__label">결과</p>
+              <pre class="example-item__code"><code>encodeURI          https://a.com/b?next=https://c.com/d
+encodeURIComponent https%3A%2F%2Fa.com%2Fb%3Fnext%3D...</code></pre>
+              <p class="example-item__note">encodeURI는 :와 /를 남겨 URL 전체를 인코딩할 때 쓰고, 파라미터 값 하나를 넣을 때는 encodeURIComponent를 써야 합니다.</p>
+            </article>
+          </div>
+        </section>
         </details>
-      </section>
+        <section class="content-section">
+          <h2 class="section-title">함께 쓰면 좋은 도구</h2>
+          <ul class="related-list">
+            <li><a href="/uuid">UUID 변환기</a> — UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/base64">Base64 인코더/디코더</a> — 문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.</li>
+            <li><a href="/json">JSON 포매터/검증기</a> — JSON 유효성 검사, 포맷/압축, 키 검색, 트리 뷰 확인까지 한 번에 할 수 있는 브라우저 도구입니다.</li>
+            <li><a href="/jwt">JWT 디코더/검사기</a> — JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.</li>
+            <li><a href="/json-yaml">JSON YAML 변환기</a> — JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.</li>
+            <li><a href="/query-builder">URL 쿼리 생성기</a> — 키-값 쌍으로 쿼리 스트링을 만들고 인코딩된 공유 URL을 빠르게 생성할 수 있습니다.</li>
+          </ul>
+        </section>
+    </section>
+
+    <div data-locale-slot="en" data-locale-index="2"></div>
 
     <footer class="footer footer--dev" data-nosnippet>
       <nav class="footer-links" aria-label="사이트 정보">
@@ -401,7 +396,7 @@ encodeURIComponent https%3A%2F%2Fa.com%2Fb%3Fnext%3D...</code></pre>
       <small data-i18n="common.footerJson">© 2026 stateless tools · JSON 처리는 브라우저 메모리에서만 수행됩니다.</small>
     </footer>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: how to use it, examples, and common errors\u003c/summary>\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>A query with non-ASCII characters\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>https://example.com/search?q=developer tools\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>https://example.com/search?q=developer%20tools\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Whole URL versus a single parameter value\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>https://a.com/b?next=https://c.com/d\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>encodeURI          https://a.com/b?next=https://c.com/d\nencodeURIComponent https%3A%2F%2Fa.com%2Fb%3Fnext%3D...\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">encodeURI keeps : and / for encoding a full URL. Use encodeURIComponent when the string goes inside one parameter value.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>You see %2520 or a stray %25\u003c/h3>\n              \u003cp>That is double encoding. Encoding an already-encoded string turns % into %25. You need two decode passes, and the cause is usually code that encodes in two places.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>A + does not decode to a space\u003c/h3>\n              \u003cp>Treating + as a space is a form-encoding rule (application/x-www-form-urlencoded). Plain URL decoding leaves + as a literal plus.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Should slashes be encoded?\u003c/h3>\n              \u003cp>Leave / alone when it separates path segments, but encode it as %2F inside a parameter value. This bites most often when passing a redirect URL as a parameter.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/uuid\">UUID Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json\">JSON Formatter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json-yaml\">JSON YAML\u003c/a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out\u003c/li>\n            \u003cli>\u003ca href=\"/query-builder\">URL Query Builder\u003c/a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Common URL encoding mistakes\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Know whether you are encoding the whole URL or one value\u003c/h3>\n              \u003cp>A full URL and a single query parameter should not always be encoded the same way. Mixing those cases is a common source of broken links.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Double encoding\u003c/h3>\n              \u003cp>Encoding an already encoded value can turn spaces into patterns like \u003ccode>%2520\u003c/code> and break callback or redirect logic.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Inspect the parsed query table\u003c/h3>\n              \u003cp>After encoding or decoding, review the query parameter table so you can confirm the structure instead of trusting the raw string alone.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Where this tool is most useful\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Redirect and callback debugging\u003c/h3>\n              \u003cp>Helpful for reviewing login redirects, OAuth callbacks, and payment return URLs that carry long parameter chains.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Marketing link QA\u003c/h3>\n              \u003cp>It pairs well with the \u003ca href=\"/utm-builder\">UTM Generator\u003c/a> and \u003ca href=\"/query-builder\">URL Query Builder\u003c/a> when campaign URLs need a final validation pass.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Reproducing API requests\u003c/h3>\n              \u003cp>When a request URL is long or full of reserved characters, checking it alongside \u003ca href=\"/api-tester\">API Request Tester\u003c/a> makes encoding issues easier to isolate.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Common URL encoding mistakes\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Know whether you are encoding the whole URL or one value\u003c/h3>\n              \u003cp>A full URL and a single query parameter should not always be encoded the same way. Mixing those cases is a common source of broken links.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Double encoding\u003c/h3>\n              \u003cp>Encoding an already encoded value can turn spaces into patterns like \u003ccode>%2520\u003c/code> and break callback or redirect logic.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Inspect the parsed query table\u003c/h3>\n              \u003cp>After encoding or decoding, review the query parameter table so you can confirm the structure instead of trusting the raw string alone.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Where this tool is most useful\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Redirect and callback debugging\u003c/h3>\n              \u003cp>Helpful for reviewing login redirects, OAuth callbacks, and payment return URLs that carry long parameter chains.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Marketing link QA\u003c/h3>\n              \u003cp>It pairs well with the \u003ca href=\"/utm-builder\">UTM Generator\u003c/a> and \u003ca href=\"/query-builder\">URL Query Builder\u003c/a> when campaign URLs need a final validation pass.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"faq-item\">\n              \u003ch3>Reproducing API requests\u003c/h3>\n              \u003cp>When a request URL is long or full of reserved characters, checking it alongside \u003ca href=\"/api-tester\">API Request Tester\u003c/a> makes encoding issues easier to isolate.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>You see %2520 or a stray %25\u003c/h3>\n              \u003cp>That is double encoding. Encoding an already-encoded string turns % into %25. You need two decode passes, and the cause is usually code that encodes in two places.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>A + does not decode to a space\u003c/h3>\n              \u003cp>Treating + as a space is a form-encoding rule (application/x-www-form-urlencoded). Plain URL decoding leaves + as a literal plus.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Should slashes be encoded?\u003c/h3>\n              \u003cp>Leave / alone when it separates path segments, but encode it as %2F inside a parameter value. This bites most often when passing a redirect URL as a parameter.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: step-by-step usage and worked examples\u003c/summary>\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>A query with non-ASCII characters\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>https://example.com/search?q=developer tools\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>https://example.com/search?q=developer%20tools\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Whole URL versus a single parameter value\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>https://a.com/b?next=https://c.com/d\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>encodeURI          https://a.com/b?next=https://c.com/d\nencodeURIComponent https%3A%2F%2Fa.com%2Fb%3Fnext%3D...\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">encodeURI keeps : and / for encoding a full URL. Use encodeURIComponent when the string goes inside one parameter value.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003c/details>\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/uuid\">UUID Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json\">JSON Formatter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json-yaml\">JSON YAML\u003c/a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out\u003c/li>\n            \u003cli>\u003ca href=\"/query-builder\">URL Query Builder\u003c/a> — Encode key-value pairs safely for search URLs, share links, and API test query strings.\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 
 </html>

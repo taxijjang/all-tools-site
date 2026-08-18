@@ -7,8 +7,8 @@
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/diff-Dz55JdSx.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/diff-D9c8y8Ib.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -286,40 +286,6 @@ line4</textarea>
           </div>
         </section>
 
-        <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
-
-        <section class="content-section">
-          <h2 class="section-title">How to use it</h2>
-          <ol class="content-list">
-          <li>Paste the original text and the revised text into the two input areas.</li>
-          <li>Check whether line endings, spacing, or indentation are part of the meaningful change.</li>
-          <li>Review added, removed, and changed lines in the result area.</li>
-          <li>Mask sensitive values before copying the diff for sharing.</li>
-          </ol>
-        </section>
-
-
-        <section class="content-section">
-          <h2 class="section-title">Real input and output</h2>
-          <div class="example-list">
-            <article class="example-item">
-              <h3>Spotting a config change</h3>
-              <p class="example-item__label">Input</p>
-              <pre class="example-item__code"><code>Left
-timeout: 30
-retries: 3
-
-Right
-timeout: 60
-retries: 3</code></pre>
-              <p class="example-item__label">Output</p>
-              <pre class="example-item__code"><code>- timeout: 30
-+ timeout: 60
-  retries: 3</code></pre>
-            </article>
-          </div>
-        </section>
 
         <section class="content-section">
           <h2 class="section-title">Errors you will hit</h2>
@@ -353,6 +319,43 @@ retries: 3</code></pre>
           </div>
         </section>
 
+
+        <details class="content-more">
+          <summary>More: step-by-step usage and worked examples</summary>
+
+        <section class="content-section">
+          <h2 class="section-title">How to use it</h2>
+          <ol class="content-list">
+          <li>Paste the original text and the revised text into the two input areas.</li>
+          <li>Check whether line endings, spacing, or indentation are part of the meaningful change.</li>
+          <li>Review added, removed, and changed lines in the result area.</li>
+          <li>Mask sensitive values before copying the diff for sharing.</li>
+          </ol>
+        </section>
+
+
+        <section class="content-section">
+          <h2 class="section-title">Real input and output</h2>
+          <div class="example-list">
+            <article class="example-item">
+              <h3>Spotting a config change</h3>
+              <p class="example-item__label">Input</p>
+              <pre class="example-item__code"><code>Left
+timeout: 30
+retries: 3
+
+Right
+timeout: 60
+retries: 3</code></pre>
+              <p class="example-item__label">Output</p>
+              <pre class="example-item__code"><code>- timeout: 30
++ timeout: 60
+  retries: 3</code></pre>
+            </article>
+          </div>
+        </section>
+
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

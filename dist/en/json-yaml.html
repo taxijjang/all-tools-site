@@ -8,8 +8,8 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
   <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
-  <script type="module" crossorigin src="/assets/jsonYaml-nzhfray0.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/jsonYaml-qKFVyFjX.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -269,8 +269,42 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Unquoted "no" turns into false</h3>
+              <p>YAML 1.1 reads no, yes, on, and off as booleans. The country code NO becoming false is known as the Norway problem. Quote the value to keep it a string.</p>
+            </article>
+            <article class="info-card">
+              <h3>Indentation breaks</h3>
+              <p>YAML does not accept tabs for indentation. Use spaces and keep the width consistent across the file.</p>
+            </article>
+            <article class="info-card">
+              <h3>Leading zeros disappear</h3>
+              <p>Values like 08 or a phone number can be parsed as octal or numeric. Quote phone numbers, postal codes, and version strings.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>YAML infers types</h3>
+              <p>YAML can interpret values that look like yes, no, or dates. Quote sensitive string values when exact text matters.</p>
+            </article>
+            <article class="info-card">
+              <h3>Comments may not survive</h3>
+              <p>JSON has no comments, and YAML comments or original formatting may be lost during conversion. Keep the original config separately.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">
           <h2 class="section-title">How to use it</h2>
@@ -309,38 +343,7 @@ debug: false</code></pre>
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Unquoted "no" turns into false</h3>
-              <p>YAML 1.1 reads no, yes, on, and off as booleans. The country code NO becoming false is known as the Norway problem. Quote the value to keep it a string.</p>
-            </article>
-            <article class="info-card">
-              <h3>Indentation breaks</h3>
-              <p>YAML does not accept tabs for indentation. Use spaces and keep the width consistent across the file.</p>
-            </article>
-            <article class="info-card">
-              <h3>Leading zeros disappear</h3>
-              <p>Values like 08 or a phone number can be parsed as octal or numeric. Quote phone numbers, postal codes, and version strings.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">Things to check</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>YAML infers types</h3>
-              <p>YAML can interpret values that look like yes, no, or dates. Quote sensitive string values when exact text matters.</p>
-            </article>
-            <article class="info-card">
-              <h3>Comments may not survive</h3>
-              <p>JSON has no comments, and YAML comments or original formatting may be lost during conversion. Keep the original config separately.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

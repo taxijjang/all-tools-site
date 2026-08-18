@@ -7,8 +7,8 @@
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
-  <script type="module" crossorigin src="/assets/color-CzaS1yHS.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/color-DQ6umOjb.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -285,8 +285,38 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>It looks fine but fails the audit</h3>
+              <p>Light grey text on a light background is the most common failure. If you cannot reach 4.5:1, darken the text or increase the size to qualify for the 3:1 large-text threshold.</p>
+            </article>
+            <article class="info-card">
+              <h3>Transparency is not accounted for</h3>
+              <p>Contrast must be computed on the color the eye actually sees. For semi-transparent colors, enter the composited result rather than the source value.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Contrast needs context</h3>
+              <p>The ratio is a fast signal, but final accessibility depends on text size, font weight, state color, and surrounding background.</p>
+            </article>
+            <article class="info-card">
+              <h3>Use HSL for variants</h3>
+              <p>HSL is useful when you want to keep hue stable while adjusting lightness or saturation for hover, disabled, and border states.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">
           <h2 class="section-title">How to use it</h2>
@@ -323,34 +353,7 @@ Passes AA for body text, fails AAA</code></pre>
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>It looks fine but fails the audit</h3>
-              <p>Light grey text on a light background is the most common failure. If you cannot reach 4.5:1, darken the text or increase the size to qualify for the 3:1 large-text threshold.</p>
-            </article>
-            <article class="info-card">
-              <h3>Transparency is not accounted for</h3>
-              <p>Contrast must be computed on the color the eye actually sees. For semi-transparent colors, enter the composited result rather than the source value.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">Things to check</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Contrast needs context</h3>
-              <p>The ratio is a fast signal, but final accessibility depends on text size, font weight, state color, and surrounding background.</p>
-            </article>
-            <article class="info-card">
-              <h3>Use HSL for variants</h3>
-              <p>HSL is useful when you want to keep hue stable while adjusting lightness or saturation for hover, disabled, and border states.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

@@ -6,7 +6,7 @@
   <title>Base64 vs URL Encoding Guide | Which One and When | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-BAfutnil.js"></script>
+  <script type="module" crossorigin src="/assets/site-Bi1Nl3EU.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -261,8 +261,25 @@
     
 
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Which one should you use?</h3>
+              <p>Use Base64 when non-text data (an image, a certificate, any binary) has to travel through a text-only channel. Use percent encoding when special characters must sit safely in a URL path or query. They are not interchangeable.</p>
+            </article>
+            <article class="info-card">
+              <h3>A Base64 string breaks inside a URL</h3>
+              <p>Standard Base64 uses + which decodes as a space, and / which reads as a path separator. Switch to URL-safe Base64, or percent-encode the Base64 output — in which case remember to decode in the reverse order.</p>
+            </article>
+            <article class="info-card">
+              <h3>Mistaking Base64 for encryption</h3>
+              <p>Base64 is reversible by anyone and hides nothing. Basic authentication headers use it for transport compatibility, not for security.</p>
+            </article>
+          </div>
+        </section>
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
         <section class="content-section">
           <h2 class="section-title">Real input and output</h2>
           <div class="example-list">
@@ -283,23 +300,6 @@ Percent encoding  hello%20world%3F</code></pre>
               <pre class="example-item__code"><code>a-b_c   (URL-safe Base64)
 + becomes -, / becomes _, padding dropped</code></pre>
               <p class="example-item__note">The + and / of standard Base64 mean something else in a URL. That is why JWT uses the URL-safe variant.</p>
-            </article>
-          </div>
-        </section>
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Which one should you use?</h3>
-              <p>Use Base64 when non-text data (an image, a certificate, any binary) has to travel through a text-only channel. Use percent encoding when special characters must sit safely in a URL path or query. They are not interchangeable.</p>
-            </article>
-            <article class="info-card">
-              <h3>A Base64 string breaks inside a URL</h3>
-              <p>Standard Base64 uses + which decodes as a space, and / which reads as a path separator. Switch to URL-safe Base64, or percent-encode the Base64 output — in which case remember to decode in the reverse order.</p>
-            </article>
-            <article class="info-card">
-              <h3>Mistaking Base64 for encryption</h3>
-              <p>Base64 is reversible by anyone and hides nothing. Basic authentication headers use it for transport compatibility, not for security.</p>
             </article>
           </div>
         </section>

@@ -5,8 +5,8 @@
   <title>CIDR Calculator | IPv4 Subnet, Broadcast, Host Range | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/ipCidr-BY1FPWre.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/ipCidr-Bp0sF9bI.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -305,8 +305,42 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>The host count is two short</h3>
+              <p>Usable hosts exclude the network address and the broadcast address. A /24 gives 254 usable hosts, not 256.</p>
+            </article>
+            <article class="info-card">
+              <h3>/31 and /32 behave differently</h3>
+              <p>A /32 identifies a single host. A /31 is used for point-to-point router links and uses both addresses with no broadcast (RFC 3021).</p>
+            </article>
+            <article class="info-card">
+              <h3>A bigger prefix means a smaller network</h3>
+              <p>A /26 is smaller than a /24. As the number grows the host count shrinks — a common inversion when writing firewall or security group rules.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">Things to check</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>IPv4 focused</h3>
+              <p>This tool focuses on IPv4 CIDR calculation. IPv6 uses different notation and sizing rules.</p>
+            </article>
+            <article class="info-card">
+              <h3>Reserved addresses vary</h3>
+              <p>Cloud networks may reserve some addresses in every subnet. Confirm usable host counts with the platform documentation.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">
           <h2 class="section-title">How to use it</h2>
@@ -345,38 +379,7 @@ Usable hosts 1,022</code></pre>
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>The host count is two short</h3>
-              <p>Usable hosts exclude the network address and the broadcast address. A /24 gives 254 usable hosts, not 256.</p>
-            </article>
-            <article class="info-card">
-              <h3>/31 and /32 behave differently</h3>
-              <p>A /32 identifies a single host. A /31 is used for point-to-point router links and uses both addresses with no broadcast (RFC 3021).</p>
-            </article>
-            <article class="info-card">
-              <h3>A bigger prefix means a smaller network</h3>
-              <p>A /26 is smaller than a /24. As the number grows the host count shrinks — a common inversion when writing firewall or security group rules.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">Things to check</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>IPv4 focused</h3>
-              <p>This tool focuses on IPv4 CIDR calculation. IPv6 uses different notation and sizing rules.</p>
-            </article>
-            <article class="info-card">
-              <h3>Reserved addresses vary</h3>
-              <p>Cloud networks may reserve some addresses in every subnet. Confirm usable host counts with the platform documentation.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">Tools that pair well</h2>

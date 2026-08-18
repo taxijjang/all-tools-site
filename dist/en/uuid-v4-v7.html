@@ -6,7 +6,7 @@
   <title>UUID v4 vs v7 Guide | Which UUID Should You Use | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-BAfutnil.js"></script>
+  <script type="module" crossorigin src="/assets/site-Bi1Nl3EU.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -261,8 +261,25 @@
     
 
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
+        <section class="content-section">
+          <h2 class="section-title">Errors you will hit</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Index bloat after using v4 as a primary key</h3>
+              <p>Because v4 is fully random, rows land all over a B-tree index, splitting pages often and hurting cache hit rate. The cost only becomes visible at millions of rows, which is why it slips past early design reviews. v7 appends sequentially and avoids most of it.</p>
+            </article>
+            <article class="info-card">
+              <h3>v7 in a public URL leaks timing</h3>
+              <p>A v7 value embeds its creation millisecond, so signup or order times can be derived — and a competitor could estimate your growth rate. Use v4 for identifiers exposed outside your system.</p>
+            </article>
+            <article class="info-card">
+              <h3>Can both versions share a column?</h3>
+              <p>Storage is fine since the format is identical, but the sort guarantee breaks. v7 values stay time-ordered while interleaved v4 values land randomly. Before migrating, check for queries that rely on ordering.</p>
+            </article>
+          </div>
+        </section>
         <details class="content-more">
-          <summary>More: how to use it, examples, and common errors</summary>
+          <summary>More: step-by-step usage and worked examples</summary>
         <section class="content-section">
           <h2 class="section-title">Real input and output</h2>
           <div class="example-list">
@@ -288,23 +305,6 @@ v7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f</code></pre>
               <pre class="example-item__code"><code>The first digit of the third group is the version
 7000 -&gt; v7
 4372 -&gt; v4</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="content-section">
-          <h2 class="section-title">Errors you will hit</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>Index bloat after using v4 as a primary key</h3>
-              <p>Because v4 is fully random, rows land all over a B-tree index, splitting pages often and hurting cache hit rate. The cost only becomes visible at millions of rows, which is why it slips past early design reviews. v7 appends sequentially and avoids most of it.</p>
-            </article>
-            <article class="info-card">
-              <h3>v7 in a public URL leaks timing</h3>
-              <p>A v7 value embeds its creation millisecond, so signup or order times can be derived — and a competitor could estimate your growth rate. Use v4 for identifiers exposed outside your system.</p>
-            </article>
-            <article class="info-card">
-              <h3>Can both versions share a column?</h3>
-              <p>Storage is fine since the format is identical, but the sort guarantee breaks. v7 values stay time-ordered while interleaved v4 values land randomly. Before migrating, check for queries that rely on ordering.</p>
             </article>
           </div>
         </section>

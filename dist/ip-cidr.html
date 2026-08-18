@@ -5,8 +5,8 @@
   <title>CIDR 계산기 | IPv4 서브넷, 브로드캐스트, 호스트 범위 | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/ipCidr-BY1FPWre.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-BAfutnil.js">
+  <script type="module" crossorigin src="/assets/ipCidr-Bp0sF9bI.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-Bi1Nl3EU.js">
   <link rel="stylesheet" crossorigin href="/assets/site-B5CJKhiH.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -303,8 +303,42 @@
           </div>
         </section>
 
+
+        <section class="content-section">
+          <h2 class="section-title">자주 만나는 오류</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>호스트 수가 2개 모자랄 때</h3>
+              <p>주소 총량에서 네트워크 주소와 브로드캐스트 주소를 뺀 값이 실제 사용 가능 호스트입니다. /24는 256개가 아니라 254개입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>/31과 /32는 계산이 다릅니다</h3>
+              <p>/32는 호스트 하나를 가리키고, /31은 라우터 간 point-to-point 링크용으로 브로드캐스트 없이 주소 2개를 모두 씁니다(RFC 3021).</p>
+            </article>
+            <article class="info-card">
+              <h3>prefix가 클수록 네트워크는 작습니다</h3>
+              <p>/24보다 /26이 더 작은 네트워크입니다. 숫자가 커질수록 호스트 수는 줄어듭니다. 보안 그룹이나 방화벽 규칙을 쓸 때 자주 뒤집혀 나가는 부분입니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <h2 class="section-title">확인할 점</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>IPv4 기준</h3>
+              <p>이 도구는 IPv4 CIDR 계산에 초점을 둡니다. IPv6 네트워크는 다른 계산 기준과 표기법을 사용합니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>예약 주소</h3>
+              <p>클라우드 네트워크는 각 서브넷에서 일부 주소를 예약할 수 있습니다. 사용 가능 호스트 수는 플랫폼 문서를 함께 확인하세요.</p>
+            </article>
+          </div>
+        </section>
+
+
         <details class="content-more">
-          <summary>사용법, 예시, 자주 만나는 오류 더 보기</summary>
+          <summary>사용 순서와 입력 예시 더 보기</summary>
 
         <section class="content-section">
           <h2 class="section-title">사용 순서</h2>
@@ -343,38 +377,7 @@
           </div>
         </section>
 
-        <section class="content-section">
-          <h2 class="section-title">자주 만나는 오류</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>호스트 수가 2개 모자랄 때</h3>
-              <p>주소 총량에서 네트워크 주소와 브로드캐스트 주소를 뺀 값이 실제 사용 가능 호스트입니다. /24는 256개가 아니라 254개입니다.</p>
-            </article>
-            <article class="info-card">
-              <h3>/31과 /32는 계산이 다릅니다</h3>
-              <p>/32는 호스트 하나를 가리키고, /31은 라우터 간 point-to-point 링크용으로 브로드캐스트 없이 주소 2개를 모두 씁니다(RFC 3021).</p>
-            </article>
-            <article class="info-card">
-              <h3>prefix가 클수록 네트워크는 작습니다</h3>
-              <p>/24보다 /26이 더 작은 네트워크입니다. 숫자가 커질수록 호스트 수는 줄어듭니다. 보안 그룹이나 방화벽 규칙을 쓸 때 자주 뒤집혀 나가는 부분입니다.</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="content-section">
-          <h2 class="section-title">확인할 점</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3>IPv4 기준</h3>
-              <p>이 도구는 IPv4 CIDR 계산에 초점을 둡니다. IPv6 네트워크는 다른 계산 기준과 표기법을 사용합니다.</p>
-            </article>
-            <article class="info-card">
-              <h3>예약 주소</h3>
-              <p>클라우드 네트워크는 각 서브넷에서 일부 주소를 예약할 수 있습니다. 사용 가능 호스트 수는 플랫폼 문서를 함께 확인하세요.</p>
-            </article>
-          </div>
-        </section>
-
+        </details>
 
         <section class="content-section">
           <h2 class="section-title">함께 쓰면 좋은 도구</h2>
@@ -401,6 +404,6 @@
     </footer>
   </div>
 
-  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003ch2 class=\"section-title\">CIDR calculation checklist\u003c/h2>\n          \u003cp class=\"section-lead\">Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet settings.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Inspect subnet ranges\u003c/h3>\n              \u003cp>See the actual start and end addresses for CIDR blocks such as 10.0.0.0/24.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review access rules\u003c/h3>\n              \u003cp>Check whether a firewall, allowlist, or VPN range is broader or narrower than intended before deployment.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Document network values\u003c/h3>\n              \u003cp>Record network address, broadcast address, and host count to make infrastructure notes clearer.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: how to use it, examples, and common errors\u003c/summary>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Enter the IPv4 address and prefix length in CIDR notation.\u003c/li>\n          \u003cli>Review the calculated network, broadcast, and host range values.\u003c/li>\n          \u003cli>Compare the result with the range needed by your allowlist or route rule.\u003c/li>\n          \u003cli>Apply cloud-provider reserved-address rules separately when relevant.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>A common private subnet\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>192.168.0.0/24\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Network 192.168.0.0\nBroadcast 192.168.0.255\nHost range 192.168.0.1 - 192.168.0.254\nUsable hosts 254\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>A larger block\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>10.0.8.0/22\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Network 10.0.8.0\nBroadcast 10.0.11.255\nHost range 10.0.8.1 - 10.0.11.254\nUsable hosts 1,022\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>The host count is two short\u003c/h3>\n              \u003cp>Usable hosts exclude the network address and the broadcast address. A /24 gives 254 usable hosts, not 256.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>/31 and /32 behave differently\u003c/h3>\n              \u003cp>A /32 identifies a single host. A /31 is used for point-to-point router links and uses both addresses with no broadcast (RFC 3021).\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>A bigger prefix means a smaller network\u003c/h3>\n              \u003cp>A /26 is smaller than a /24. As the number grows the host count shrinks — a common inversion when writing firewall or security group rules.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>IPv4 focused\u003c/h3>\n              \u003cp>This tool focuses on IPv4 CIDR calculation. IPv6 uses different notation and sizing rules.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Reserved addresses vary\u003c/h3>\n              \u003cp>Cloud networks may reserve some addresses in every subnet. Confirm usable host counts with the platform documentation.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/ip-ua\">IP / User-Agent\u003c/a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/li>\n            \u003cli>\u003ca href=\"/cron\">Cron Parser\u003c/a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin\u003c/li>\n            \u003cli>\u003ca href=\"/timestamp\">Timestamp Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/hash\">SHA Hash\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/password\">Password\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/convert\">Unit Converter\u003c/a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section content-section--highlight\">\n          \u003ch2 class=\"section-title\">CIDR calculation checklist\u003c/h2>\n          \u003cp class=\"section-lead\">Calculate network address, broadcast address, and usable IPv4 host ranges before changing firewall or subnet settings.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Inspect subnet ranges\u003c/h3>\n              \u003cp>See the actual start and end addresses for CIDR blocks such as 10.0.0.0/24.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review access rules\u003c/h3>\n              \u003cp>Check whether a firewall, allowlist, or VPN range is broader or narrower than intended before deployment.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Document network values\u003c/h3>\n              \u003cp>Record network address, broadcast address, and host count to make infrastructure notes clearer.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>The host count is two short\u003c/h3>\n              \u003cp>Usable hosts exclude the network address and the broadcast address. A /24 gives 254 usable hosts, not 256.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>/31 and /32 behave differently\u003c/h3>\n              \u003cp>A /32 identifies a single host. A /31 is used for point-to-point router links and uses both addresses with no broadcast (RFC 3021).\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>A bigger prefix means a smaller network\u003c/h3>\n              \u003cp>A /26 is smaller than a /24. As the number grows the host count shrinks — a common inversion when writing firewall or security group rules.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Things to check\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>IPv4 focused\u003c/h3>\n              \u003cp>This tool focuses on IPv4 CIDR calculation. IPv6 uses different notation and sizing rules.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Reserved addresses vary\u003c/h3>\n              \u003cp>Cloud networks may reserve some addresses in every subnet. Confirm usable host counts with the platform documentation.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: step-by-step usage and worked examples\u003c/summary>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">How to use it\u003c/h2>\n          \u003col class=\"content-list\">\n          \u003cli>Enter the IPv4 address and prefix length in CIDR notation.\u003c/li>\n          \u003cli>Review the calculated network, broadcast, and host range values.\u003c/li>\n          \u003cli>Compare the result with the range needed by your allowlist or route rule.\u003c/li>\n          \u003cli>Apply cloud-provider reserved-address rules separately when relevant.\u003c/li>\n          \u003c/ol>\n        \u003c/section>\n\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>A common private subnet\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>192.168.0.0/24\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Network 192.168.0.0\nBroadcast 192.168.0.255\nHost range 192.168.0.1 - 192.168.0.254\nUsable hosts 254\u003c/code>\u003c/pre>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>A larger block\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>10.0.8.0/22\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Network 10.0.8.0\nBroadcast 10.0.11.255\nHost range 10.0.8.1 - 10.0.11.254\nUsable hosts 1,022\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n\n        \u003c/details>\n\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/ip-ua\">IP / User-Agent\u003c/a> — Review current browser IP, User-Agent, language, and timezone values to reproduce environment-specific issues.\u003c/li>\n            \u003cli>\u003ca href=\"/cron\">Cron Parser\u003c/a> — Check server jobs, worker schedules, and alert timing as readable text plus upcoming run times before deployin\u003c/li>\n            \u003cli>\u003ca href=\"/timestamp\">Timestamp Converter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/hash\">SHA Hash\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/password\">Password\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/convert\">Unit Converter\u003c/a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>"]</script>
 </body>
 </html>
