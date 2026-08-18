@@ -388,9 +388,9 @@ export const PAGE_META = {
   'text-stats': {
     path: '/text-stats',
     kind: 'tool',
-    title: '텍스트 통계 계산기 | 글자 수, 단어 수, 읽기 시간',
+    title: '글자수 세기 | 공백 포함·제외, 단어·문장·원고지 분량',
     description:
-      '글자 수, 단어 수, 줄 수, 예상 읽기 시간을 한 번에 계산합니다.',
+      '자기소개서·리포트 글자수 제한을 맞출 때 쓰는 글자수 세기입니다. 공백 포함/제외 글자수, 단어·문장·문단 수, 원고지 분량, 바이트를 입력하는 즉시 계산합니다.',
     applicationCategory: 'UtilitiesApplication',
   },
   'seo-check': {

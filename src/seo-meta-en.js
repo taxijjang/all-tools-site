@@ -165,9 +165,9 @@ export const PAGE_META_EN = {
       'Remove duplicate lines, clean up whitespace, sort, and turn a title into a URL slug.',
   },
   '/text-stats': {
-    title: 'Text Statistics | Character, Word, Line, Reading Time',
+    title: 'Character Counter | Count Characters, Words, Sentences',
     description:
-      'Count characters, words, and lines, and estimate reading time for a block of text.',
+      'Count characters with and without spaces, plus words, sentences, paragraphs, lines and bytes. Updates as you type.',
   },
   '/markdown': {
     title: 'Markdown Preview | Render Markdown and Export HTML',

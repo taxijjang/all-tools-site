@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8" />
-  <title>텍스트 통계</title>
+  <title>글자수 세기</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="텍스트 글자 수·단어 수·줄 수 등을 즉시 계산해 마케팅/문서 작업을 도와줍니다." />
+  <meta name="description" content="공백 포함/제외 글자수, 단어·문장·문단 수, 원고지 분량을 입력하는 즉시 계산합니다." />
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="stylesheet" href="/src/style.css" />
@@ -31,8 +31,8 @@
 
     <header class="page-header">
       <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
-      <h1 data-i18n="textStats.title">텍스트 통계</h1>
-      <p data-i18n="textStats.description">문자, 단어, 줄, 문단, 읽기 시간 등을 즉시 계산합니다.</p>
+      <h1 data-i18n="textStats.title">글자수 세기</h1>
+      <p data-i18n="textStats.description">공백 포함/제외 글자수와 단어·문장·문단 수, 원고지 분량을 입력하는 즉시 계산합니다.</p>
     </header>
 
     <main class="tool tool--columns">
@@ -40,13 +40,12 @@
         <label for="tsInput" data-i18n="textStats.input">입력 텍스트</label>
         <textarea id="tsInput" rows="15" data-persist="text" data-i18n="textStats.placeholder" data-i18n-attr="placeholder" placeholder="여기에 텍스트를 붙여넣으세요."></textarea>
         <div class="toolbar">
-          <button id="tsRunBtn" class="primary" type="button" data-i18n="textStats.run">통계 계산</button>
           <button id="tsClearBtn" class="ghost" type="button" data-i18n="common.clear">지우기</button>
           <button id="tsSampleBtn" type="button" data-i18n="textStats.sample">샘플</button>
         </div>
       </section>
 
-      <section class="tool__panel tool__panel--stack">
+      <section class="tool__panel tool__panel--stack tool__panel--summary">
         <label data-i18n="textStats.resultTitle">통계 결과</label>
         <div class="tool-grid-3">
           <div><label for="tsCharsWithSpaces" data-i18n="textStats.charsWithSpaces">문자(공백 포함)</label><input id="tsCharsWithSpaces" type="text" readonly /></div>
@@ -56,6 +55,7 @@
           <div><label for="tsParagraphs" data-i18n="textStats.paragraphs">문단 수</label><input id="tsParagraphs" type="text" readonly /></div>
           <div><label for="tsSentences" data-i18n="textStats.sentences">문장 수(간이)</label><input id="tsSentences" type="text" readonly /></div>
           <div><label for="tsReadingTime" data-i18n="textStats.readingTime">예상 읽기 시간</label><input id="tsReadingTime" type="text" readonly /></div>
+          <div><label for="tsManuscript" data-i18n="textStats.manuscript">원고지(200자)</label><input id="tsManuscript" type="text" readonly /></div>
           <div><label for="tsBytes" data-i18n="textStats.bytes">바이트</label><input id="tsBytes" type="text" readonly /></div>
           <div><label for="tsUniqueWords" data-i18n="textStats.uniqueWords">고유 단어</label><input id="tsUniqueWords" type="text" readonly /></div>
         </div>

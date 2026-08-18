@@ -91,7 +91,7 @@ export const NAV_TOOLS = [
   { value: '/query-builder', labels: { ko: 'URL 쿼리 생성기', en: 'URL Query Builder' } },
   { value: '/ip-ua', labels: { ko: 'IP / User-Agent', en: 'IP / User-Agent' } },
   { value: '/ip-cidr', labels: { ko: 'CIDR 계산기', en: 'CIDR Calculator' } },
-  { value: '/text-stats', labels: { ko: '텍스트 통계', en: 'Text Stats' } },
+  { value: '/text-stats', labels: { ko: '글자수 세기', en: 'Character Counter' } },
   { value: '/pdf-toolkit', labels: { ko: 'PDF 병합/분할', en: 'PDF Merge/Split' } },
   { value: '/image-optimize', labels: { ko: '이미지 최적화', en: 'Image Optimizer' } },
   { value: '/ocr', labels: { ko: 'OCR 텍스트 추출', en: 'OCR Extractor' } },

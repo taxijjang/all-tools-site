@@ -1873,7 +1873,6 @@ const LIVE_RUN_TOOLS = new Set([
   'query-builder',
   'regex',
   'text-cleaner',
-  'text-stats',
   'timestamp',
   'utm-builder',
 ]);

@@ -3,7 +3,6 @@ import { t } from './i18n.js';
 
 const dom = {
   input: document.getElementById('tsInput'),
-  runBtn: document.getElementById('tsRunBtn'),
   clearBtn: document.getElementById('tsClearBtn'),
   sampleBtn: document.getElementById('tsSampleBtn'),
   charsWithSpaces: document.getElementById('tsCharsWithSpaces'),
@@ -13,6 +12,7 @@ const dom = {
   paragraphs: document.getElementById('tsParagraphs'),
   sentences: document.getElementById('tsSentences'),
   readingTime: document.getElementById('tsReadingTime'),
+  manuscript: document.getElementById('tsManuscript'),
   bytes: document.getElementById('tsBytes'),
   uniqueWords: document.getElementById('tsUniqueWords'),
   message: document.getElementById('tsMessage'),
@@ -51,6 +51,8 @@ function calculate() {
     : 0;
   const uniqueCount = new Set(words).size;
   const bytes = new TextEncoder().encode(value).length;
+  // 원고지 한 장은 200자. 공백 포함으로 세는 게 통례다.
+  const manuscript = charsWithSpaces === 0 ? 0 : Math.ceil(charsWithSpaces / 200);
   const readingMinutes = value.trim() ? (charsNoSpaces / 5) / 200 : 0;
   const seconds = Math.max(0, Math.round(readingMinutes * 60));
   const minutes = value.trim() ? Math.max(1, Math.floor(seconds / 60)) : 0;
@@ -63,6 +65,7 @@ function calculate() {
   dom.paragraphs.value = String(paragraphCount);
   dom.sentences.value = String(sentenceCount);
   dom.readingTime.value = t('textStats.readingTimeValue', { minutes, seconds: restSeconds });
+  dom.manuscript.value = String(manuscript);
   dom.bytes.value = String(bytes);
   dom.uniqueWords.value = String(uniqueCount);
 
@@ -79,7 +82,6 @@ function fillSample() {
   calculate();
 }
 
-dom.runBtn.addEventListener('click', calculate);
 dom.clearBtn.addEventListener('click', clearText);
 dom.sampleBtn.addEventListener('click', fillSample);
 dom.input.addEventListener('input', calculate);
