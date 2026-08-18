@@ -183,9 +183,23 @@ async function connectToTarget(url) {
   return { socket, send, targetId: target.id };
 }
 
+// readyState 결과를 버리고 400ms만 기다리고 있었다. 로케일 적용은 load 이후
+// JS가 하므로, 다른 감사와 같이 돌아 부하가 걸리면 제목이 아직 한국어인 채로
+// 샘플링됐다(verify:full 안에서만 / 라우트가 새는 것처럼 보였다).
 async function waitForLoad(send) {
-  await send('Runtime.evaluate', { expression: 'document.readyState', returnByValue: true });
-  await delay(400);
+  for (let i = 0; i < 60; i += 1) {
+    const r = await send('Runtime.evaluate', { expression: 'document.readyState', returnByValue: true });
+    if (r.result.value === 'complete') break;
+    await delay(50);
+  }
+  // 제목이 두 번 연속 같으면 로케일 적용이 끝난 것으로 본다.
+  let prev = null;
+  for (let i = 0; i < 60; i += 1) {
+    const r = await send('Runtime.evaluate', { expression: 'document.title', returnByValue: true });
+    if (r.result.value && r.result.value === prev) return;
+    prev = r.result.value;
+    await delay(50);
+  }
 }
 
 async function auditRoute(send, route) {

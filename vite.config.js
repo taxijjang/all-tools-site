@@ -897,7 +897,7 @@ function extractHiddenLocaleBlocks(html) {
 // 지정 언어의 로케일 블록을 통째로 제거한다. 중첩 태그가 있어 균형 스캔이 필요하다.
 function removeLocaleBlocks(html, locale) {
   const marker = new RegExp(`<([a-z]+)\\b[^>]*data-locale-block="${locale}"[^>]*>`, 'i');
-  let out = html;
+  let out = rewriteLinksToEnglish(html);
   let guard = 0;
 
   while (guard < 200) {
@@ -915,6 +915,20 @@ function removeLocaleBlocks(html, locale) {
   }
 
   return out;
+}
+
+// 영어판의 내부 링크가 전부 한국어 URL을 가리키고 있었다.
+// /en/json에서 JWT를 누르면 한국어 /jwt로 떨어졌고, 서치콘솔에는
+// "발견됨 - 색인 생성되지 않음"으로 43개가 통째로 잡혔다.
+// 내부 링크 1121개 중 /en/ 로 가는 게 0개였으니 크롤 경로 자체가 없었다.
+function rewriteLinksToEnglish(html) {
+  const englishPaths = new Set(Object.keys(PAGE_META_EN));
+  return html.replace(/href="(\/[^"#?]*)"/g, (match, href) => {
+    if (href === '/en' || href.startsWith('/en/')) return match;
+    if (href === '/') return 'href="/en/"';
+    const path = href.replace(/\/$/, '');
+    return englishPaths.has(path) ? `href="/en${path}"` : match;
+  });
 }
 
 function buildEnglishPage(html, meta) {
