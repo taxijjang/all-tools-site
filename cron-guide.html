@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>크론탭 실전 가이드</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="cron 표현식 문법부터 요일·일자 동시 지정의 OR 함정, 서버 타임존, 실행 겹침, 배포 후 중복 실행까지 실제로 장애가 나는 지점을 정리했습니다." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="layout layout--dev" data-tool="cron-guide">
+  <div class="page page--dev">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1>
+        <span data-locale-block="ko" lang="ko">크론탭 실전 가이드</span>
+        <span data-locale-block="en" lang="en" hidden>Crontab in Practice</span>
+      </h1>
+      <p data-locale-block="ko" lang="ko">표현식 문법은 5분이면 익힙니다. 문제는 문법이 맞는데도 안 도는 경우입니다. 스케줄러를 운영하면서 실제로 장애가 났던 지점을 순서대로 정리했습니다.</p>
+      <p data-locale-block="en" lang="en" hidden>Cron syntax takes five minutes to learn. The hard part is a schedule that is syntactically correct and still does not run when you expect. These are the failure points in the order you tend to hit them.</p>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">필드 다섯 칸이 전부입니다</h2>
+          <p class="section-lead">왼쪽부터 분, 시, 일, 월, 요일입니다. 이 순서를 외우는 것보다 <strong>각 칸이 "언제"가 아니라 "어떤 값일 때"를 뜻한다</strong>는 걸 이해하는 게 빠릅니다. cron은 매분 깨어나서 지금 시각이 다섯 칸의 조건에 모두 맞는지 확인하고, 맞으면 실행합니다.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>* 는 "아무 값이나"</h3>
+              <p><code>30 * * * *</code>는 "분이 30일 때"만 조건이고 나머지는 무조건 통과라 매시 30분에 돕니다. 매시간이라는 뜻이 아니라 <em>분 조건만 걸었다</em>는 뜻입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>*/n 은 나머지 연산</h3>
+              <p><code>*/15</code>는 "15로 나눈 나머지가 0"이라 0, 15, 30, 45분입니다. 15분 간격이 아니라 <strong>정해진 시각</strong>입니다. <code>7 */3 * * *</code>는 3시간마다가 아니라 0·3·6·9·12·15·18·21시 7분입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>범위와 목록은 섞어 쓸 수 있습니다</h3>
+              <p><code>0 9-18/2 * * 1-5</code>는 평일 9시부터 18시까지 두 시간 간격 정시입니다. <code>0 0,12 * * *</code>처럼 콤마로 개별 값을 나열해도 됩니다.</p>
+            </article>
+          </div>
+          <p>여기까지가 문법이고, 아래부터가 실제로 사고가 나는 지점입니다. <a href="/cron">Cron 표현식 파서</a>에 표현식을 넣어보면 다음 실행 시각이 나오니 읽으면서 같이 확인하시면 빠릅니다.</p>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Five fields, and that is all</h2>
+          <p class="section-lead">Minute, hour, day of month, month, day of week. Rather than memorising the order, it helps to understand that each field is not "when" but "which values match". Cron wakes up every minute, checks whether the current time satisfies all five fields, and runs the job if it does.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>An asterisk means "any value"</h3>
+              <p><code>30 * * * *</code> only constrains the minute, so it runs at :30 of every hour. It does not mean "hourly" — it means you only set a minute condition.</p>
+            </article>
+            <article class="info-card">
+              <h3>Step values are modulo, not intervals</h3>
+              <p><code>*/15</code> matches minutes divisible by 15, so 0, 15, 30 and 45. <code>7 */3 * * *</code> is not "every three hours from now" but 00:07, 03:07, 06:07 and so on.</p>
+            </article>
+            <article class="info-card">
+              <h3>Ranges and lists combine</h3>
+              <p><code>0 9-18/2 * * 1-5</code> means weekdays, on the hour, every two hours from 09:00 to 18:00. Commas list individual values, as in <code>0 0,12 * * *</code>.</p>
+            </article>
+          </div>
+          <p>That is the syntax. Everything below is where real incidents come from. Paste an expression into the <a href="/cron">cron expression parser</a> as you read to see the upcoming run times.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">일자와 요일을 같이 쓰면 AND가 아니라 OR입니다</h2>
+          <p class="section-lead">이게 cron에서 가장 많이 틀리는 지점이고, 문법 오류가 아니라 조용히 다르게 도니까 배포 후에야 발견됩니다.</p>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>무슨 일이 벌어지나요?</h3>
+              <p>세 번째 칸(일)과 다섯 번째 칸(요일)을 <strong>둘 다 * 이 아닌 값으로</strong> 지정하면, 대부분의 cron 구현은 두 조건을 AND가 아니라 <strong>OR</strong>로 평가합니다. <code>0 0 1 * 1</code>은 "매월 1일이면서 월요일"이 아니라 "매월 1일 <em>또는</em> 매주 월요일"입니다. 한 달에 한 번 돌 줄 알았던 작업이 다섯 번 돕니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>왜 이렇게 만들어졌나요?</h3>
+              <p>원래 Vixie cron의 의도된 동작이고 POSIX 규격에도 그렇게 적혀 있습니다. "매월 1일과 매주 금요일에 백업"처럼 두 일정을 한 줄로 쓰려는 용도였습니다. 지금은 대부분 이 동작을 모른 채로 AND를 기대해서 문제가 됩니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>그래서 어떻게 해야 하나요?</h3>
+              <p>둘 중 하나는 반드시 <code>*</code>로 두세요. "매월 1일"이면 <code>0 0 1 * *</code>, "매주 월요일"이면 <code>0 0 * * 1</code>입니다. AND가 정말 필요하면 cron은 넓게 걸고 스크립트 첫 줄에서 날짜를 확인해 빠져나오는 방식이 안전합니다. 스케줄러 구현마다 다른 걸 믿는 것보다 코드에 조건을 두는 편이 낫습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>구현마다 다른가요?</h3>
+              <p>Vixie cron, cronie 계열은 OR입니다. 반면 Quartz(Java)나 일부 클라우드 스케줄러는 아예 문법이 달라 요일 칸에 <code>?</code>를 요구하며 동시 지정을 금지합니다. 그래서 표현식을 다른 런타임으로 옮길 때는 문자열만 복사하지 말고 그 런타임 문서에서 한 번 더 확인해야 합니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Day-of-month and day-of-week are OR, not AND</h2>
+          <p class="section-lead">This is the most common cron mistake, and because it is not a syntax error the job simply runs on a different schedule than you expected.</p>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>What actually happens</h3>
+              <p>When both the day-of-month and day-of-week fields are set to something other than <code>*</code>, most cron implementations combine them with <strong>OR</strong>. So <code>0 0 1 * 1</code> is not "the 1st, when it is a Monday" but "the 1st <em>or</em> any Monday". A job you expected to run monthly runs about five times a month.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Why it works that way</h3>
+              <p>It is the intended behaviour of Vixie cron and it is specified in POSIX. The purpose was to express two schedules on one line, such as "back up on the 1st and every Friday". The problem today is that most people expect AND without knowing this rule.</p>
+            </article>
+            <article class="faq-item">
+              <h3>What to do instead</h3>
+              <p>Keep one of the two fields as <code>*</code>. Use <code>0 0 1 * *</code> for monthly and <code>0 0 * * 1</code> for weekly. If you genuinely need AND, schedule broadly in cron and exit early in the script after checking the date. A condition in your own code is safer than relying on scheduler-specific behaviour.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Does it differ between implementations?</h3>
+              <p>Vixie cron and cronie use OR. Quartz and some cloud schedulers use a different syntax entirely, requiring <code>?</code> in one of the two fields and forbidding both at once. So when moving an expression to another runtime, verify it against that runtime's documentation instead of copying the string.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">타임존: 표현식은 맞는데 시각이 다릅니다</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>컨테이너는 대개 UTC입니다</h3>
+              <p>공식 리눅스 이미지 대부분이 UTC로 뜹니다. <code>0 9 * * *</code>를 "아침 9시"로 쓰면 한국 기준 오후 6시에 돕니다. 로컬에서 맞던 스케줄이 배포 후 아홉 시간 밀리는 전형적인 경로입니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>확인은 한 줄로</h3>
+              <p><code>date</code>를 그 환경에서 직접 찍어보는 게 가장 확실합니다. 파일의 <code>TZ=</code>나 <code>CRON_TZ=</code> 지원 여부는 구현마다 다르고, 지원해도 그 줄 이후에만 적용되는 경우가 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>서머타임이 있는 지역은 더 복잡합니다</h3>
+              <p>한국은 서머타임이 없어 이 문제를 피하지만, 미국·유럽 리전에 배포하면 전환일에 특정 시각이 아예 없거나 두 번 옵니다. 새벽 2~3시대 스케줄은 그래서 피하는 게 관행입니다.</p>
+            </article>
+          </div>
+          <p>표현식이 의도한 시각과 맞는지는 <a href="/cron">Cron 표현식 파서</a>의 다음 실행 목록으로 확인하고, epoch와 지역 시각을 대조해야 할 때는 <a href="/timestamp">Unix 타임스탬프 변환기</a>를 같이 쓰면 편합니다.</p>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Time zones: the expression is right but the clock is not</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Containers usually run in UTC</h3>
+              <p>Most official Linux images start in UTC. If you write <code>0 9 * * *</code> meaning "9am", it fires at 18:00 Korean time. A schedule that was correct locally slips by nine hours after deployment.</p>
+            </article>
+            <article class="info-card">
+              <h3>Check it with one command</h3>
+              <p>Run <code>date</code> inside that environment. Support for <code>TZ=</code> or <code>CRON_TZ=</code> in the crontab varies by implementation, and where it exists it often applies only to lines after the declaration.</p>
+            </article>
+            <article class="info-card">
+              <h3>Daylight saving makes it worse</h3>
+              <p>Korea has no daylight saving, but in US or EU regions a given wall-clock time can be skipped or repeated on transition days. That is why scheduling between 02:00 and 03:00 is usually avoided.</p>
+            </article>
+          </div>
+          <p>Verify the intended times with the upcoming-run list in the <a href="/cron">cron expression parser</a>, and use the <a href="/timestamp">Unix timestamp converter</a> when you need to line up epoch values with local time.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">겹침, 중복, 그리고 조용한 실패</h2>
+          <p class="section-lead">문법과 시각이 맞아도 운영에서 깨지는 세 가지입니다. 크롤링이나 정산처럼 주기가 짧고 실행이 긴 작업에서 특히 자주 만납니다.</p>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>이전 실행이 끝나기 전에 다음이 시작됩니다</h3>
+              <p>cron은 이전 프로세스가 살아 있는지 보지 않습니다. <code>*/5</code>로 걸어둔 작업이 7분 걸리기 시작하면 계속 겹쳐 쌓이고, DB 커넥션이나 메모리가 먼저 터집니다. <code>flock -n</code>으로 락 파일을 잡거나 스크립트 안에서 PID 파일을 확인해 이미 돌고 있으면 그냥 종료하세요. 재시도보다 건너뛰기가 안전한 경우가 많습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>인스턴스를 늘리면 실행도 늘어납니다</h3>
+              <p>같은 crontab이 들어간 컨테이너를 3개로 스케일하면 작업이 세 번 돕니다. 알림이 세 번 가고 정산이 세 번 반영됩니다. 스케줄러는 인스턴스 수와 무관한 곳(전용 워커 하나, 또는 관리형 스케줄러)에 두고, 그게 어려우면 작업 자체를 멱등하게 만들어야 합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>실패해도 아무 일도 안 일어납니다</h3>
+              <p>cron은 표준 출력과 오류를 메일로 보내려 하고, 메일이 설정되지 않은 서버에서는 그대로 사라집니다. <code>&gt;&gt; /var/log/작업.log 2&gt;&amp;1</code>로 리다이렉트하지 않으면 실패를 알 방법이 없습니다. 더 나은 방법은 작업 끝에 헬스체크 신호를 보내고, 그 신호가 오지 않을 때 알림이 오게 하는 것입니다. 실행 실패보다 <strong>실행되지 않은 것</strong>을 알아채기가 훨씬 어렵습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>PATH와 환경변수가 로그인 셸과 다릅니다</h3>
+              <p>cron은 최소한의 환경으로 실행합니다. 터미널에서 되던 명령이 cron에서 "command not found"가 나는 이유가 대부분 이것입니다. 절대 경로를 쓰거나 스크립트 첫 줄에서 필요한 환경을 직접 불러오세요. 파이썬 가상환경은 특히 자주 걸립니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Overlap, duplication and silent failure</h2>
+          <p class="section-lead">Three ways a correct schedule still breaks in production, most often on jobs whose runtime approaches their interval.</p>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>The next run starts before the last one finished</h3>
+              <p>Cron does not check whether the previous process is still alive. A job scheduled <code>*/5</code> that starts taking seven minutes will pile up until connections or memory run out. Take a lock with <code>flock -n</code>, or check a PID file and exit if the job is already running. Skipping is usually safer than retrying.</p>
+            </article>
+            <article class="faq-item">
+              <h3>More instances means more runs</h3>
+              <p>Scaling a container that ships the same crontab to three replicas runs the job three times: three notifications, three settlement writes. Put the scheduler somewhere independent of replica count — a single dedicated worker or a managed scheduler — or make the job idempotent.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Failures produce nothing at all</h3>
+              <p>Cron tries to mail stdout and stderr, and on a server without mail configured that output simply disappears. Without <code>&gt;&gt; /var/log/job.log 2&gt;&amp;1</code> you have no way to see a failure. Better still, emit a heartbeat at the end of the job and alert when it stops arriving — a job that never ran is far harder to notice than one that errored.</p>
+            </article>
+            <article class="faq-item">
+              <h3>PATH and environment differ from your shell</h3>
+              <p>Cron runs with a minimal environment, which is why a command that works in your terminal reports "command not found" under cron. Use absolute paths or load the environment explicitly at the top of the script. Python virtual environments are a frequent offender.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">배포 전에 훑는 체크리스트</h2>
+          <ol class="content-list">
+            <li>표현식을 <a href="/cron">파서</a>에 넣어 다음 실행 시각 다섯 개가 의도와 맞는지 봅니다.</li>
+            <li>일 칸과 요일 칸 중 하나가 <code>*</code>인지 확인합니다. 둘 다 값이면 OR로 돕니다.</li>
+            <li>배포 환경에서 <code>date</code>를 찍어 타임존을 확인합니다.</li>
+            <li>작업의 최대 실행 시간이 주기보다 짧은지 봅니다. 아니면 락을 겁니다.</li>
+            <li>인스턴스가 여러 개로 늘어날 여지가 있는지 확인합니다.</li>
+            <li>출력을 로그로 리다이렉트했는지, 실행되지 않았을 때 알림이 오는지 확인합니다.</li>
+            <li>절대 경로와 필요한 환경변수를 스크립트 안에 명시했는지 봅니다.</li>
+          </ol>
+          <p>이어서 볼 페이지: <a href="/cron">Cron 표현식 파서</a>로 표현식을 검산하고, <a href="/timestamp">Unix 타임스탬프 변환기</a>로 로그의 epoch를 읽고, <a href="/date-calc">날짜 계산기</a>로 주기와 다음 정산일을 맞춥니다.</p>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">A checklist before you deploy</h2>
+          <ol class="content-list">
+            <li>Paste the expression into the <a href="/cron">parser</a> and confirm the next five run times match your intent.</li>
+            <li>Check that one of the day-of-month and day-of-week fields is <code>*</code>. If both are set, the schedule is an OR.</li>
+            <li>Run <code>date</code> in the deployment environment to confirm the time zone.</li>
+            <li>Confirm the job's worst-case runtime is shorter than its interval, or take a lock.</li>
+            <li>Consider whether the number of instances could grow.</li>
+            <li>Redirect output to a log, and make sure you are alerted when the job does <em>not</em> run.</li>
+            <li>Use absolute paths and load required environment variables inside the script.</li>
+          </ol>
+          <p>Next: verify expressions with the <a href="/cron">cron expression parser</a>, read epoch values from logs with the <a href="/timestamp">Unix timestamp converter</a>, and line up intervals and settlement dates with the <a href="/date-calc">date calculator</a>.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/src/site.js"></script>
+</body>
+</html>

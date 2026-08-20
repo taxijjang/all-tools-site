@@ -144,6 +144,11 @@ export const PAGE_META_EN = {
     description:
       'Compare two blocks of text line by line to see exactly what was added, removed, or changed.',
   },
+  '/cron-guide': {
+    title: 'Crontab in Practice | The OR Trap, Time Zones, Overlapping Runs',
+    description:
+      'Cron syntax takes five minutes. This covers why a correct expression still misfires: day-of-month and day-of-week evaluating as OR, container UTC time zones, overlapping runs and silent failures.',
+  },
   '/date-calc': {
     title: 'Age Calculator | Date Difference, D-day, Date Math',
     description:

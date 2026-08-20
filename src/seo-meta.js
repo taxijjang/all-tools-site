@@ -313,6 +313,14 @@ export const PAGE_META = {
       '이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
   },
+  'cron-guide': {
+    path: '/cron-guide',
+    kind: 'content',
+    title: '크론탭 실전 가이드 | 요일·일자 OR 함정, 타임존, 실행 겹침',
+    description:
+      'cron 표현식 문법은 5분이면 익힙니다. 문법이 맞는데도 안 도는 이유 - 일자와 요일 동시 지정이 OR로 평가되는 규칙, 컨테이너 UTC 타임존, 실행 겹침과 조용한 실패를 정리했습니다.',
+    applicationCategory: 'DeveloperApplication',
+  },
   'date-calc': {
     path: '/date-calc',
     kind: 'tool',
