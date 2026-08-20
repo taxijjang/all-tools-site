@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <title>Base64 vs URL Encoding Guide | Which One and When | Stateless Tools</title>
@@ -160,9 +159,8 @@
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
-
 <body class="layout layout--dev" data-tool="base64-vs-url-encoding" data-allow-ads="true">
-  <div class="page page--dev page--content">
+  <div class="page page--dev">
     <div class="page-controls" data-nosnippet>
 
       <a class="brand-home" href="/en/" aria-label="Stateless Tools">
@@ -189,46 +187,48 @@
     <header class="page-header">
       <h1>
         
-        <span data-locale-block="en" lang="en">Base64 vs URL encoding guide</span>
+        <span data-locale-block="en" lang="en">Base64 vs URL Encoding</span>
       </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>브라우저 내부 처리</span></p>
       
-      <div data-locale-block="en" lang="en">
-        <p>Both can make strings feel safer, but Base64 and URL encoding solve different transport problems and fail in different places.</p>
-      </div>
+      <p data-locale-block="en" lang="en">They only share the surface trait of turning characters into other characters. They exist for different reasons, so picking the wrong one silently corrupts your value. This focuses on the failures that actually happen.</p>
     </header>
 
     <main class="content-stack">
       <section class="content-section content-section--highlight">
         
         <div data-locale-block="en" lang="en">
-          <h2 class="section-title">The shortest way to distinguish them</h2>
+          <h2 class="section-title">They exist for different reasons</h2>
           <div class="content-grid">
             <article class="info-card">
-              <h3>Base64</h3>
-              <p>Turns binary or text into a transport-friendly character sequence. It is mainly a representation change.</p>
+              <h3>Base64 carries binary through text</h3>
+              <p>It exists to move <strong>non-character data</strong> — images, encrypted bytes — through channels that only handle text, such as mail bodies, JSON strings and HTTP headers. Three bytes become four characters, so the result grows by about 33%.</p>
             </article>
             <article class="info-card">
-              <h3>URL encoding</h3>
-              <p>Escapes characters that would break URL parsing. It preserves meaning inside a URL rather than transforming the data model itself.</p>
+              <h3>URL encoding protects delimiters</h3>
+              <p>In a URL, <code>?</code>, <code>&amp;</code>, <code>=</code> and <code>/</code> are structural. When a value contains them the structure breaks, so they become forms like <code>%26</code> to mark them as data. Only the substituted characters grow.</p>
             </article>
             <article class="info-card">
-              <h3>Not interchangeable</h3>
-              <p>Encoding query params with Base64 alone is not the same as making them URL-safe, and URL encoding is not a substitute for binary-to-text transport.</p>
+              <h3>Neither substitutes for the other</h3>
+              <p>Base64 output contains <code>+</code> and <code>/</code>, both meaningful in URLs. Conversely URL encoding cannot turn binary into text. Their purposes do not overlap, so you choose by situation — and sometimes you need both.</p>
             </article>
           </div>
+          <p>Keep the <a href="/en/base64">Base64 encoder/decoder</a> and <a href="/en/url">URL encoder/decoder</a> open if you want to try values as you read.</p>
         </div>
       </section>
 
       <section class="content-section">
         
         <div data-locale-block="en" lang="en">
-          <h2 class="section-title">When to use which one</h2>
+          <h2 class="section-title">The classic failure: plus becomes space</h2>
+          <p class="section-lead">This happens when a Base64 value goes straight into a URL query. It reproduces inconsistently, which makes it slow to diagnose.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>JWTs, cookies, header payloads</h3></summary><p>Base64 shows up often when structured or binary data needs to travel as text. If it later moves through a URL, URL-safe variants may still matter.</p>
+            <details class="faq-item"><summary><h3>What happens</h3></summary><p>In HTML form encoding (<code>application/x-www-form-urlencoded</code>), <strong><code>+</code> means space.</strong> So when a server parses <code>?token=aGVsbG8+d29ybGQ=</code>, the plus becomes a space, yielding <code>aGVsbG8 d29ybGQ=</code>. Base64 decoding then fails — or worse, returns the wrong bytes.</p>
             </details>
-            <details class="faq-item"><summary><h3>Query params and redirects</h3></summary><p>URL encoding comes first when spaces, Korean text, or reserved characters can break a callback or redirect chain.</p>
+            <details class="faq-item"><summary><h3>Why only some values break</h3></summary><p>If the Base64 output happens to contain no <code>+</code>, nothing goes wrong. It only breaks when the input data produces one. Hence "it worked in testing but fails for certain users in production". <code>/</code> and <code>=</code> can likewise be mistaken for a path separator and a query delimiter.</p>
             </details>
-            <details class="faq-item"><summary><h3>Stacks that use both</h3></summary><p>Some systems Base64-encode a value first and then place it in a query parameter. Debugging gets easier when you identify which layer transformed the value.</p>
+            <details class="faq-item"><summary><h3>URL-safe Base64 is the fix</h3></summary><p>A variant replacing <code>+</code> with <code>-</code> and <code>/</code> with <code>_</code> (RFC 4648), usually dropping the <code>=</code> padding. This is exactly what JWT uses. Enable the URL-safe option in the <a href="/en/base64">Base64 tool</a> to produce it.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Or URL-encode the Base64 once more</h3></summary><p>If you must keep standard Base64, URL-encode its output so <code>+</code> becomes <code>%2B</code>. The receiver must then URL-decode first and Base64-decode second — and if that order is not written down, the next person will get it wrong.</p>
             </details>
           </div>
         </div>
@@ -237,16 +237,58 @@
       <section class="content-section">
         
         <div data-locale-block="en" lang="en">
-          <h2 class="section-title">The pages to open next</h2>
+          <h2 class="section-title">Double encoding and %25</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Seeing %25 means it was encoded twice</h3>
+              <p><code>%</code> itself URL-encodes to <code>%25</code>, so encoding an already-encoded <code>%20</code> again produces <code>%2520</code>. A <code>%25</code> in a URL usually means the framework and your own code <strong>both</strong> encoded it.</p>
+            </article>
+            <article class="info-card">
+              <h3>Redirect parameters are the usual site</h3>
+              <p>As in <code>?next=/login?from=home</code>, where a URL contains a URL. The inner URL must be encoded exactly once and not again. This is a common cause of broken post-login redirects. Paste it into the parameter table of the <a href="/en/url">URL tool</a> to see how far it has been decoded.</p>
+            </article>
+            <article class="info-card">
+              <h3>Decode exactly once</h3>
+              <p>"It did not decode, so decode again" is dangerous. If user input deliberately contains a double-encoded value such as <code>%2527</code>, code that decodes twice produces a quote character after the filter has already run. A mismatch between filtering and decode count is itself a vulnerability.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Why non-Latin text and emoji get so long</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>You get three chunks like %EC%95%88</h3></summary><p>URL encoding encodes <strong>bytes</strong>, not characters. The Korean syllable "안" is three bytes in UTF-8 (<code>EC 95 88</code>), so it becomes <code>%EC%95%88</code> — one character expanding to nine. Emoji are four bytes, giving twelve characters such as <code>%F0%9F%98%80</code>.</p>
+            </details>
+            <details class="faq-item"><summary><h3>A different pre-encoding charset breaks it</h3></summary><p>The same syllable in EUC-KR is two bytes, giving <code>%BE%C8</code>. If the sender assumes UTF-8 and the receiver assumes EUC-KR, the text is corrupted. This arises when integrating with older systems, and it is a problem in the <em>preceding</em> step, not in URL encoding itself.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Base64 works the same way</h3></summary><p>Base64 also operates on bytes. To Base64 a string you must first convert it to bytes, and the charset you choose changes the result. Defaults differ by language, so when exchanging values between systems, specify "UTF-8, then Base64" explicitly.</p>
+            </details>
+            <details class="faq-item"><summary><h3>encodeURI versus encodeURIComponent</h3></summary><p>A frequent JavaScript mistake. <code>encodeURI</code> assumes you are encoding a whole URL and leaves <code>?</code>, <code>&amp;</code> and <code>/</code> alone. <code>encodeURIComponent</code> assumes a single value and encodes everything. <strong>Always use the latter for query parameter values</strong>, or an <code>&amp;</code> inside the value will be read as a parameter separator.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">In summary</h2>
           <ol class="content-list">
-            <li>Open the <a href="/en/base64">Base64 converter</a> when the value itself needs representation changes.</li>
-            <li>Use the <a href="/en/url">URL encoder/decoder</a> when the string is traveling through a query, redirect, or callback.</li>
-            <li>When you need to assemble a final shareable link, move into the <a href="/en/url">URL Query Builder</a>.</li>
+            <li>Base64 to carry binary through a text channel; URL encoding to preserve URL structure.</li>
+            <li>Putting Base64 in a URL means using the URL-safe variant or URL-encoding it once. Pasted raw, <code>+</code> becomes a space.</li>
+            <li><code>%25</code> means double encoding. Encode once, decode once.</li>
+            <li>Both operate on bytes, so the charset you converted to beforehand changes the result.</li>
+            <li>In JavaScript, use <code>encodeURIComponent</code> for query values.</li>
+            <li>Neither is <strong>encryption.</strong> Anyone can reverse them.</li>
           </ol>
+          <p>Next: try the URL-safe option in the <a href="/en/base64">Base64 encoder/decoder</a>, use the parameter table in the <a href="/en/url">URL encoder/decoder</a> to see how far a value is decoded, and see URL-safe Base64 in practice in the <a href="/en/jwt">JWT decoder</a>.</p>
           <div class="cta-row">
-            <a class="link-button link-button--primary" href="/en/base64">Open Base64 converter</a>
-            <a class="link-button" href="/en/url">Open URL encoder/decoder</a>
-            <a class="link-button" href="/en/url">Open URL Query Builder</a>
+            <a class="link-button link-button--primary" href="/en/base64">Open Base64 tool</a>
+            <a class="link-button" href="/en/url">Open URL tool</a>
+            <a class="link-button" href="/en/learn">Back to guide hub</a>
           </div>
         </div>
       </section>
@@ -299,19 +341,17 @@ Percent encoding  hello%20world%3F</code></pre>
         </section>
         </details>
     </section>
-
-    <footer class="footer footer--dev" data-nosnippet>
+      <footer class="footer footer--dev" data-nosnippet>
       <nav class="footer-links" aria-label="사이트 정보">
         <a href="/en/about" data-chrome-link="about">About</a>
         <a href="/en/privacy" data-chrome-link="privacy">Privacy</a>
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
         <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small>© 2026 stateless tools · browser-first utility guides</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
     </footer>
   </div>
 
   
 </body>
-
 </html>

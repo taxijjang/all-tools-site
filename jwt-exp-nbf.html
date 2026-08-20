@@ -1,49 +1,15 @@
 <!doctype html>
 <html lang="ko">
-
 <head>
   <meta charset="utf-8" />
   <title>JWT exp nbf 가이드</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="JWT exp, nbf, iat 클레임을 읽는 법과 clock skew 이슈를 정리한 가이드입니다." />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="JWT exp nbf 가이드" />
-  <meta property="og:description" content="만료 시간, not-before, 발급 시각을 운영에서 어떻게 해석해야 하는지 정리했습니다." />
+  <meta name="description" content="JWT의 exp, nbf, iat를 어떻게 읽고 검증해야 하는지. 초와 밀리초 혼동, 디코딩과 검증의 차이, 서버 시간 차이(clock skew), alg=none과 알고리즘 혼동 공격까지 정리했습니다." />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script>
-    (function () {
-      var supported = ['ko', 'en'];
-      function pickLocale() {
-        try {
-          var stored = localStorage.getItem('stateless-tools-locale');
-          if (stored && supported.indexOf(stored) !== -1) {
-            return stored;
-          }
-        } catch (err) { }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
-      }
-      var locale = pickLocale();
-      document.documentElement.setAttribute('lang', locale);
-      document.documentElement.classList.add('i18n-pending');
-      window.__preferredLocale = locale;
-    })();
-  </script>
   <link rel="stylesheet" href="/src/style.css" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZJ5247NQK"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WZJ5247NQK');
-  </script>
 </head>
-
-<body class="layout layout--dev" data-tool="jwt-exp-nbf" data-allow-ads="false">
-  <div class="page page--dev page--content">
+<body class="layout layout--dev" data-tool="jwt-exp-nbf">
+  <div class="page page--dev">
     <div class="page-controls">
       <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
       <div class="locale-switcher">
@@ -55,52 +21,99 @@
     </div>
 
     <header class="page-header">
-      <a class="back-link" href="/learn" data-i18n="common.back">도구 목록으로</a>
+      <a class="back-link" href="/learn" data-i18n="common.back">가이드 허브로</a>
       <h1>
         <span data-locale-block="ko" lang="ko">JWT exp nbf 가이드</span>
-        <span data-locale-block="en" lang="en" hidden>JWT exp nbf guide</span>
+        <span data-locale-block="en" lang="en" hidden>JWT exp and nbf</span>
       </h1>
-      <div data-locale-block="ko" lang="ko">
-        <p>JWT의 <code>exp</code>, <code>nbf</code>, <code>iat</code> 클레임을 어떻게 읽어야 하는지와, clock skew 때문에 자주 생기는 장애 패턴을 정리했습니다.</p>
-      </div>
-      <div data-locale-block="en" lang="en" hidden>
-        <p>A practical guide to reading JWT <code>exp</code>, <code>nbf</code>, and <code>iat</code> claims, including the incidents that come from clock skew and bad assumptions.</p>
-      </div>
+      <p data-locale-block="ko" lang="ko">"토큰이 만료됐다"는 로그는 대개 만료가 아닙니다. 숫자를 잘못 읽었거나, 검증을 안 했거나, 두 서버의 시계가 다른 것입니다. 셋을 구분하는 방법을 정리했습니다.</p>
+      <p data-locale-block="en" lang="en" hidden>A "token expired" log usually is not an expiry. It is a misread number, a missing verification step, or two servers whose clocks disagree. Here is how to tell them apart.</p>
     </header>
 
     <main class="content-stack">
       <section class="content-section content-section--highlight">
         <div data-locale-block="ko" lang="ko">
-          <h2 class="section-title">가장 많이 틀리는 건 숫자가 아니라 해석 순서</h2>
+          <h2 class="section-title">세 개의 시간 클레임</h2>
+          <p class="section-lead">JWT에는 시간을 다루는 클레임이 세 개 있고 셋 다 <strong>Unix epoch 초</strong>입니다. 밀리초가 아닙니다. 이 한 줄이 실무 오류의 절반을 설명합니다.</p>
           <div class="content-grid">
             <article class="info-card">
-              <h3><code>exp</code></h3>
-              <p>이 시각 이후에는 토큰을 거부해야 한다는 뜻입니다. 문제는 서버 시간, 프록시 시간, 사용자의 로컬 시간이 모두 다를 수 있다는 점입니다.</p>
+              <h3>exp (expiration)</h3>
+              <p>이 시각 <em>이후</em>에는 받아들이면 안 됩니다. 현재 시각이 exp와 정확히 같으면 아직 유효합니다. 필수 클레임이 아니라서 없으면 만료가 없는 토큰이 되는데, 이건 대개 실수입니다.</p>
             </article>
             <article class="info-card">
-              <h3><code>nbf</code></h3>
-              <p>이 시각 이전에는 토큰을 아직 쓰면 안 된다는 의미입니다. 발급 직후 호출에서 바로 실패하는 상황은 이 값과 clock skew를 먼저 의심해야 합니다.</p>
+              <h3>nbf (not before)</h3>
+              <p>이 시각 <em>전</em>에는 받아들이면 안 됩니다. 미래 시점부터 유효한 토큰을 미리 발급할 때 씁니다. 자주 쓰이지 않지만, 발급 서버 시계가 조금 빠르면 방금 만든 토큰이 "아직 유효하지 않음"으로 거절되는 원인이 됩니다.</p>
             </article>
             <article class="info-card">
-              <h3><code>iat</code></h3>
-              <p>언제 발급되었는지를 뜻하지만, 검증에 직접 쓰이지 않는 경우도 많습니다. 다만 디버깅할 때는 세 클레임을 같이 봐야 흐름이 맞습니다.</p>
+              <h3>iat (issued at)</h3>
+              <p>발급 시각입니다. 유효성 판단에 직접 쓰이지 않고 "토큰이 너무 오래됐는지" 같은 자체 정책이나 감사 로그에 씁니다. iat를 만료 계산에 쓰면 exp가 있는데도 이중 기준이 생겨 혼란해집니다.</p>
+            </article>
+          </div>
+          <p>값을 직접 확인하려면 <a href="/jwt">JWT 디코더/검사기</a>에 토큰을 붙여넣으세요. epoch 숫자를 사람이 읽는 시각으로 바꿀 때는 <a href="/timestamp">Unix 타임스탬프 변환기</a>를 같이 씁니다.</p>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Three time claims</h2>
+          <p class="section-lead">JWT has three time-related claims and all three are <strong>Unix epoch seconds</strong>, not milliseconds. That single line explains half of the bugs in practice.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>exp (expiration)</h3>
+              <p>Must not be accepted <em>after</em> this instant. If the current time equals exp exactly, the token is still valid. It is not a required claim, so its absence yields a token that never expires — usually by mistake.</p>
+            </article>
+            <article class="info-card">
+              <h3>nbf (not before)</h3>
+              <p>Must not be accepted <em>before</em> this instant. Used to issue a token that becomes valid later. Rarely needed, but if the issuing server's clock runs slightly fast, a freshly minted token gets rejected as "not yet valid".</p>
+            </article>
+            <article class="info-card">
+              <h3>iat (issued at)</h3>
+              <p>When the token was issued. Not used for validity directly, but for your own policies such as "is this token too old" and for audit logs. Using iat for expiry alongside exp creates two competing rules.</p>
+            </article>
+          </div>
+          <p>Paste a token into the <a href="/jwt">JWT decoder</a> to inspect the values, and use the <a href="/timestamp">Unix timestamp converter</a> to turn epoch numbers into readable times.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">디코딩과 검증은 완전히 다른 일입니다</h2>
+          <p class="section-lead">이 구분을 놓치면 보안이 없는데 있는 것처럼 보입니다. JWT 관련 사고에서 가장 비중이 큰 항목입니다.</p>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>디코딩은 그냥 Base64 풀기입니다</h3>
+              <p>JWT의 헤더와 페이로드는 <strong>암호화가 아니라 Base64URL 인코딩</strong>입니다. 누구나 풀어서 내용을 볼 수 있습니다. 이 사이트의 디코더도, 브라우저 콘솔 한 줄도 할 수 있습니다. 그래서 <em>JWT 페이로드에 비밀을 담으면 안 됩니다.</em> 주민번호, 내부 식별자, 권한 상세를 넣어둔 토큰은 그 자체로 정보 노출입니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>검증은 서명을 확인하는 일입니다</h3>
+              <p>세 번째 조각인 서명을 비밀키나 공개키로 확인해야 "이 토큰이 우리가 발급한 것이고 내용이 바뀌지 않았다"가 성립합니다. 검증을 건너뛰고 페이로드만 읽어 쓰면, 공격자가 <code>{"role":"admin"}</code>으로 바꾼 토큰을 그대로 신뢰하게 됩니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>라이브러리 함수 이름을 확인하세요</h3>
+              <p>많은 JWT 라이브러리가 <code>decode()</code>와 <code>verify()</code>를 둘 다 제공합니다. <code>decode()</code>는 서명을 확인하지 않습니다. 이름이 짧아서 자동완성으로 먼저 잡히고, 로컬 테스트에서는 잘 돌기 때문에 그대로 배포되는 경로가 흔합니다. 코드 리뷰에서 <code>decode</code>를 검색해보는 것만으로 걸러지는 경우가 많습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>서버 로그에 토큰을 남기지 마세요</h3>
+              <p>디코딩이 누구나 가능하므로 로그에 남은 토큰은 그대로 쓸 수 있는 자격증명입니다. 만료 전까지는 유효합니다. 요청 헤더를 통째로 로깅하는 설정이 있으면 <code>Authorization</code> 헤더를 마스킹하세요.</p>
             </article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden>
-          <h2 class="section-title">Most JWT timing bugs come from interpretation, not the raw numbers</h2>
-          <div class="content-grid">
-            <article class="info-card">
-              <h3><code>exp</code></h3>
-              <p>This marks when the token should stop being accepted. The problem is that server time, proxy time, and the operator's local view can all differ.</p>
+          <h2 class="section-title">Decoding and verifying are different operations</h2>
+          <p class="section-lead">Missing this distinction produces security that looks present but is not. It accounts for the largest share of JWT incidents.</p>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Decoding is just Base64</h3>
+              <p>A JWT's header and payload are <strong>Base64URL encoded, not encrypted</strong>. Anyone can read them — this site's decoder can, and so can one line in a browser console. Therefore <em>never put secrets in a JWT payload.</em> National ID numbers, internal identifiers or detailed permissions in a token are a disclosure by themselves.</p>
             </article>
-            <article class="info-card">
-              <h3><code>nbf</code></h3>
-              <p>This marks when the token should start being accepted. Immediate failures right after issue time often point here first.</p>
+            <article class="faq-item">
+              <h3>Verifying means checking the signature</h3>
+              <p>Only by checking the third segment against a secret or public key can you conclude "we issued this and it has not been altered". Skip verification and read the payload, and an attacker's token with <code>{"role":"admin"}</code> is trusted as-is.</p>
             </article>
-            <article class="info-card">
-              <h3><code>iat</code></h3>
-              <p>It tracks issue time and is not always enforced directly, but it becomes useful when you compare all timing claims together.</p>
+            <article class="faq-item">
+              <h3>Check which library function you called</h3>
+              <p>Most JWT libraries expose both <code>decode()</code> and <code>verify()</code>. <code>decode()</code> does not check the signature. The shorter name surfaces first in autocomplete and works fine in local tests, which is how it reaches production. Grepping for <code>decode</code> in review often catches it.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Do not log tokens</h3>
+              <p>Because decoding is trivial, a token in a log file is a usable credential until it expires. If you log whole request headers, mask <code>Authorization</code>.</p>
             </article>
           </div>
         </div>
@@ -108,36 +121,36 @@
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
-          <h2 class="section-title">실제 장애에서 자주 보이는 패턴</h2>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>초와 밀리초를 섞어 읽음</h3>
-              <p>JWT는 보통 Unix 초 단위를 쓰는데, 프런트엔드 코드나 로그 뷰어가 밀리초로 착각하면 시간이 완전히 다르게 보입니다.</p>
+          <h2 class="section-title">헤더의 alg를 믿으면 안 되는 이유</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>alg=none</h3>
+              <p>JWT 규격에는 서명 없음을 뜻하는 <code>none</code> 알고리즘이 있습니다. 검증 코드가 헤더의 alg를 그대로 따르면, 공격자가 alg를 none으로 바꾸고 서명을 지운 토큰을 보내 통과시킬 수 있습니다. 오래된 라이브러리에서 실제로 났던 취약점입니다.</p>
             </article>
-            <article class="faq-item">
-              <h3>검증보다 디코딩만 함</h3>
-              <p>내용을 읽을 수 있다고 해서 유효한 토큰은 아닙니다. 외부 issuer 환경이라면 JWKS 기반 서명 검증이 별도로 필요합니다.</p>
+            <article class="info-card">
+              <h3>알고리즘 혼동 (RS256 → HS256)</h3>
+              <p>RS256은 개인키로 서명하고 <strong>공개키</strong>로 검증합니다. 공격자가 alg를 HS256으로 바꾸면, 검증 코드가 그 공개키를 <em>HMAC 비밀키</em>로 쓰게 됩니다. 공개키는 공개되어 있으므로 누구나 유효한 서명을 만들 수 있습니다.</p>
             </article>
-            <article class="faq-item">
-              <h3>환경 시간 차이를 무시함</h3>
-              <p>애플리케이션 서버와 인증 서버의 시간이 몇 초만 달라도 경계 구간에서 실패가 반복될 수 있습니다. 운영 문서에 허용 clock skew 기준을 적어두는 편이 좋습니다.</p>
+            <article class="info-card">
+              <h3>대응은 한 줄입니다</h3>
+              <p>검증할 때 <strong>기대하는 알고리즘을 코드에 못박습니다.</strong> 대부분의 라이브러리가 <code>algorithms: ['RS256']</code> 같은 인자를 받습니다. 헤더가 무엇이라고 주장하든 그것만 허용합니다. 토큰의 헤더는 입력값이지 설정이 아닙니다.</p>
             </article>
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden>
-          <h2 class="section-title">What shows up in real incidents</h2>
-          <div class="faq-list">
-            <article class="faq-item">
-              <h3>Seconds vs milliseconds</h3>
-              <p>JWTs usually use Unix seconds. When frontend code or logs treat them as milliseconds, the resulting timestamps look completely wrong.</p>
+          <h2 class="section-title">Why you cannot trust the header's alg</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>alg=none</h3>
+              <p>The JWT spec includes a <code>none</code> algorithm meaning "unsigned". If verification follows the header's alg, an attacker can set it to none, strip the signature, and pass. This was a real vulnerability in older libraries.</p>
             </article>
-            <article class="faq-item">
-              <h3>Decoding without verification</h3>
-              <p>Readable tokens are not automatically trustworthy. External issuer setups still need signature validation through JWKS or an equivalent check.</p>
+            <article class="info-card">
+              <h3>Algorithm confusion (RS256 to HS256)</h3>
+              <p>RS256 signs with a private key and verifies with the <strong>public</strong> key. If an attacker switches alg to HS256, the verifier uses that public key as an <em>HMAC secret</em>. The public key is public, so anyone can forge a valid signature.</p>
             </article>
-            <article class="faq-item">
-              <h3>Ignoring environment drift</h3>
-              <p>Even a small time difference between application and auth servers can create repeated boundary failures. Teams should document acceptable skew explicitly.</p>
+            <article class="info-card">
+              <h3>The fix is one line</h3>
+              <p><strong>Pin the expected algorithm in code.</strong> Most libraries accept an argument like <code>algorithms: ['RS256']</code>. Allow only that, whatever the header claims. A token's header is input, not configuration.</p>
             </article>
           </div>
         </div>
@@ -145,12 +158,61 @@
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
-          <h2 class="section-title">이 사이트에서 바로 같이 볼 페이지</h2>
+          <h2 class="section-title">시계가 다른 문제 (clock skew)</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>방금 만든 토큰이 거절됩니다</h3>
+              <p>발급 서버 시계가 검증 서버보다 몇 초 빠르면, 검증 시점에서 볼 때 iat와 nbf가 <em>미래</em>입니다. 그래서 "아직 유효하지 않음"으로 막힙니다. 컨테이너나 가상 머신에서 NTP 동기가 느슨하면 몇 초 차이는 흔합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>만료 직전 요청이 간헐적으로 실패합니다</h3>
+              <p>반대로 검증 서버가 빠르면 아직 유효한 토큰이 만료로 보입니다. 재현이 안 되는 간헐적 401의 흔한 원인입니다. 특정 인스턴스에서만 발생한다면 시계를 먼저 보세요.</p>
+            </article>
+            <article class="faq-item">
+              <h3>허용 오차를 두되 크게 두지 마세요</h3>
+              <p>대부분의 라이브러리가 <code>clockTolerance</code> 또는 <code>leeway</code> 옵션을 제공합니다. 30~60초 정도가 관행입니다. 이걸 몇 분으로 키우면 만료된 토큰이 그만큼 더 살아 있게 되므로 근본 해결(NTP)을 대신할 수는 없습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>수명은 짧게, 갱신은 리프레시 토큰으로</h3>
+              <p>액세스 토큰 exp를 길게 잡으면 탈취됐을 때 그만큼 오래 쓰입니다. JWT는 서버가 상태를 갖지 않으므로 <strong>발급된 토큰을 취소할 방법이 기본적으로 없습니다.</strong> 그래서 수명을 짧게 두고 리프레시 토큰으로 갱신하는 구조를 씁니다. "로그아웃했는데 토큰이 여전히 유효하다"는 문제가 여기서 나옵니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Clock skew</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>A brand-new token is rejected</h3>
+              <p>If the issuing server's clock runs a few seconds ahead, iat and nbf are in the <em>future</em> from the verifier's perspective, so the token is refused as "not yet valid". A few seconds of drift is common when NTP sync is loose in containers or VMs.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Requests near expiry fail intermittently</h3>
+              <p>Conversely, a fast verifier sees a still-valid token as expired. This is a frequent cause of intermittent 401s that will not reproduce. If it only happens on certain instances, check the clocks first.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Allow tolerance, but not much</h3>
+              <p>Most libraries offer <code>clockTolerance</code> or <code>leeway</code>; 30–60 seconds is conventional. Raising it to minutes keeps expired tokens alive that much longer, so it is no substitute for fixing NTP.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Short lifetimes, refresh tokens for renewal</h3>
+              <p>A long access-token exp means a stolen token is usable for that long. Because JWT verification is stateless, <strong>there is no built-in way to revoke an issued token.</strong> Hence short lifetimes plus refresh tokens. This is also the source of "I logged out but the token still works".</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">"토큰 만료" 로그를 만났을 때 순서</h2>
           <ol class="content-list">
-            <li><a href="/jwt">JWT 디코더</a>에서 헤더와 페이로드를 먼저 확인합니다.</li>
-            <li><a href="/timestamp">타임스탬프 변환기</a>로 <code>exp</code>, <code>nbf</code>, <code>iat</code>를 사람이 읽는 시각으로 다시 봅니다.</li>
-            <li>응답 전체 흐름을 재현해야 하면 <a href="/api-tester">API 요청 테스트</a>를 같이 열어 요청과 응답을 함께 봅니다.</li>
+            <li>토큰을 <a href="/jwt">JWT 디코더</a>에 넣고 exp, nbf, iat 값을 봅니다.</li>
+            <li>그 숫자의 자릿수를 확인합니다. 10자리면 초, 13자리면 밀리초입니다. 밀리초를 초로 읽으면 1970년대가 나오고, 초를 밀리초로 읽으면 수만 년 뒤가 나옵니다.</li>
+            <li><a href="/timestamp">타임스탬프 변환기</a>로 사람이 읽는 시각으로 바꿔 정말 지난 시각인지 봅니다.</li>
+            <li>지나지 않았다면 검증 서버의 시계를 확인합니다. <code>date</code> 한 줄이면 됩니다.</li>
+            <li>여전히 이상하면 검증 코드가 <code>verify</code>가 아니라 <code>decode</code>를 쓰고 있는지, 허용 알고리즘을 못박았는지 봅니다.</li>
+            <li>간헐적이라면 특정 인스턴스에서만 나는지 확인합니다. 대개 시계 문제입니다.</li>
           </ol>
+          <p>이어서 볼 페이지: <a href="/jwt">JWT 디코더/검사기</a>로 클레임을 읽고, <a href="/timestamp">타임스탬프 변환기</a>로 시각을 대조하고, 페이로드가 Base64일 뿐이라는 점은 <a href="/base64">Base64 인코더/디코더</a>로 직접 확인할 수 있습니다.</p>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/jwt">JWT 디코더 열기</a>
             <a class="link-button" href="/timestamp">타임스탬프 변환기</a>
@@ -158,27 +220,26 @@
           </div>
         </div>
         <div data-locale-block="en" lang="en" hidden>
-          <h2 class="section-title">The pages to pair with this guide</h2>
+          <h2 class="section-title">What to do when you see "token expired"</h2>
           <ol class="content-list">
-            <li>Start on the <a href="/jwt">JWT decoder</a> to inspect the header and payload quickly.</li>
-            <li>Use the <a href="/timestamp">timestamp converter</a> to translate <code>exp</code>, <code>nbf</code>, and <code>iat</code> into human time.</li>
-            <li>When you need the full request flow, open the <a href="/api-tester">API Request Tester</a> alongside it.</li>
+            <li>Paste the token into the <a href="/jwt">JWT decoder</a> and read exp, nbf and iat.</li>
+            <li>Count the digits. Ten means seconds, thirteen means milliseconds. Reading milliseconds as seconds lands in the 1970s; reading seconds as milliseconds lands tens of thousands of years out.</li>
+            <li>Convert with the <a href="/timestamp">timestamp converter</a> and confirm whether the instant has actually passed.</li>
+            <li>If it has not, check the verifier's clock. One <code>date</code> command is enough.</li>
+            <li>If it still looks wrong, check whether the code calls <code>decode</code> instead of <code>verify</code>, and whether the allowed algorithm is pinned.</li>
+            <li>If it is intermittent, see whether it only happens on certain instances. That is usually the clock.</li>
           </ol>
+          <p>Next: read claims in the <a href="/jwt">JWT decoder</a>, cross-check times with the <a href="/timestamp">timestamp converter</a>, and confirm for yourself that the payload is merely Base64 using the <a href="/base64">Base64 encoder/decoder</a>.</p>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/jwt">Open JWT decoder</a>
-            <a class="link-button" href="/timestamp">Open timestamp converter</a>
+            <a class="link-button" href="/timestamp">Timestamp converter</a>
             <a class="link-button" href="/learn">Back to guide hub</a>
           </div>
         </div>
       </section>
     </main>
-
-    <footer class="footer footer--dev">
-      <small>© 2025 stateless tools · browser-first utility guides</small>
-    </footer>
   </div>
 
   <script type="module" src="/src/site.js"></script>
 </body>
-
 </html>
