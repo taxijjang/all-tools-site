@@ -313,6 +313,14 @@ export const PAGE_META = {
       '이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
   },
+  terms: {
+    path: '/terms',
+    kind: 'content',
+    title: '이용약관 | 브라우저 처리 한계와 책임 범위',
+    description:
+      'stateless tools 이용 조건, 브라우저 안에서만 처리되는 방식의 한계, 계산 결과에 대한 책임 범위, 지식재산권과 약관 변경 안내입니다.',
+    applicationCategory: 'UtilitiesApplication',
+  },
   'cron-guide': {
     path: '/cron-guide',
     kind: 'content',

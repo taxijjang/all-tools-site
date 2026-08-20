@@ -24,6 +24,7 @@ const ASSETS = [
   '/convert.html',
   '/file-hash.html',
   '/image-base64.html',
+  '/terms.html',
   '/cron-guide.html',
   '/date-calc.html',
   '/case-convert.html',

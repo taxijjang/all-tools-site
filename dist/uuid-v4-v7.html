@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="ko">
-
 <head>
   <meta charset="utf-8" />
   <title>UUID v4 vs v7 가이드 | 언제 어떤 UUID를 써야 할까 | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-BiWl1dAR.js"></script>
+  <script type="module" crossorigin src="/assets/site-C7GdLHdA.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-DJLRb4EM.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -160,9 +159,8 @@
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
-
 <body class="layout layout--dev" data-tool="uuid-v4-v7" data-allow-ads="true">
-  <div class="page page--dev page--content">
+  <div class="page page--dev">
     <div class="page-controls" data-nosnippet>
 
       <a class="brand-home" href="/" aria-label="Stateless Tools">
@@ -191,9 +189,7 @@
         <span data-locale-block="ko" lang="ko">UUID v4 vs v7 가이드</span>
         <div data-locale-slot="en" data-locale-index="0"></div>
       </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>브라우저 내부 처리</span></p>
-      <div data-locale-block="ko" lang="ko">
-        <p>랜덤 UUID와 시간 정렬형 UUID를 언제 고르는지, 데이터베이스 저장 전략과 운영 편의성까지 포함해서 정리한 실무 가이드입니다.</p>
-      </div>
+      <p data-locale-block="ko" lang="ko">"v7이 더 좋다"로 끝나는 글은 많습니다. 여기서는 비트가 어떻게 다른지, 그 차이가 데이터베이스에서 정확히 무엇을 바꾸는지, 그리고 v7이 대신 내주는 것이 무엇인지를 봅니다.</p>
       <div data-locale-slot="en" data-locale-index="1"></div>
     </header>
 
@@ -203,31 +199,35 @@
           <h2 class="section-title">먼저 결론부터</h2>
           <div class="content-grid">
             <article class="info-card">
-              <h3>UUID v4가 맞는 경우</h3>
-              <p>대부분의 웹앱, 일반 API, 추적용 식별자처럼 예측 불가능한 ID만 있으면 되는 경우엔 UUID v4가 기본값으로 충분합니다.</p>
+              <h3>v4가 맞는 경우</h3>
+              <p>공개 URL에 노출되는 식별자, 비밀 토큰에 가까운 값, 그리고 정렬이 아무 의미 없는 데이터입니다. 예측 불가능성 자체가 요구사항이면 v4가 정답이고 바꿀 이유가 없습니다.</p>
             </article>
             <article class="info-card">
-              <h3>UUID v7이 맞는 경우</h3>
-              <p>이벤트 로그, 메시지 큐, 시계열성 레코드처럼 생성 순서와 정렬 효율이 중요한 워크로드라면 UUID v7이 더 매력적일 수 있습니다.</p>
+              <h3>v7이 맞는 경우</h3>
+              <p>행이 계속 추가되는 대용량 테이블의 기본키, 이벤트 로그, 메시지 큐 레코드입니다. 삽입 순서와 정렬 순서가 같아야 이득이 생기는 워크로드입니다.</p>
             </article>
             <article class="info-card">
-              <h3>무조건 v7이 더 좋은 건 아님</h3>
-              <p>라이브러리 호환성, DB 컬럼 타입, 기존 운영 도구, 로그 포맷까지 함께 바뀌는 경우가 많아서 전환 비용도 같이 봐야 합니다.</p>
+              <h3>바꾸지 않아도 되는 경우</h3>
+              <p>테이블이 수십만 행 규모거나, 기본키가 UUID가 아니거나, 삽입이 드물다면 v4를 v7로 바꿔서 체감되는 변화는 거의 없습니다. 이득은 규모에서 나옵니다.</p>
             </article>
           </div>
+          <p>아래에서 이 판단의 근거를 하나씩 봅니다. 값을 직접 뽑아 비교하려면 <a href="/uuid">UUID 변환기</a>의 생성 옵션에서 v4·v7·ULID를 바꿔가며 확인할 수 있습니다.</p>
         </div>
         <div data-locale-slot="en" data-locale-index="2"></div>
       </section>
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
-          <h2 class="section-title">실무에서 가장 크게 갈리는 포인트</h2>
+          <h2 class="section-title">비트를 뜯어보면 차이가 분명합니다</h2>
+          <p class="section-lead">둘 다 128비트이고 문자열 형태도 같습니다. 다른 건 그 128비트를 무엇으로 채우는지입니다. v7은 RFC 9562로 표준화되면서 앞부분을 시간에 내주었습니다.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>정렬과 인덱스</h3></summary><p>UUID v4는 난수 기반이라 삽입 순서가 뒤섞입니다. UUID v7은 시간 기반 비트를 앞에 두기 때문에 일부 저장소에서는 정렬과 인덱스 지역성이 더 나아질 수 있습니다.</p>
+            <details class="faq-item"><summary><h3>v4는 거의 전부가 난수입니다</h3></summary><p>버전 4비트와 variant 2비트를 뺀 <strong>122비트가 난수</strong>입니다. 그래서 같은 값이 두 번 나올 확률을 걱정할 필요가 없고, 값을 보고 언제 만들어졌는지 알 수 없습니다. 문자열 14번째 자리가 항상 <code>4</code>인 것이 버전 표시입니다.</p>
             </details>
-            <details class="faq-item"><summary><h3>가독성과 디버깅</h3></summary><p>사람이 읽기엔 둘 다 어렵습니다. 그래서 실무에선 표준 UUID 문자열, hex(binary16), 로그용 표시 형식을 함께 다루는 변환 도구가 계속 필요합니다.</p>
+            <details class="faq-item"><summary><h3>v7은 앞 48비트가 밀리초 타임스탬프입니다</h3></summary><p>Unix epoch 밀리초가 그대로 앞에 오고, 버전 4비트(<code>0111</code>, 즉 문자열 14번째 자리가 <code>7</code>), variant 2비트, 나머지 <strong>74비트가 난수</strong>입니다. 앞부분이 시간이라 <em>문자열을 그냥 사전순으로 정렬하면 생성 순서대로 정렬됩니다.</em> 이게 v7의 전부입니다.</p>
             </details>
-            <details class="faq-item"><summary><h3>운영 중 혼합 상태</h3></summary><p>기존 시스템이 UUID v4를 쓰고 있는데 일부 서비스만 v7로 넘어가면, 검색 쿼리, 필터, 추적 문서까지 함께 업데이트해야 해서 혼합 상태 관리가 생각보다 까다롭습니다.</p>
+            <details class="faq-item"><summary><h3>그래서 값이 이렇게 보입니다</h3></summary><p><code>01a013ab-09ca-7958-88e4-7f9866134ad6</code>와 <code>01a013ab-09d0-7ec6-ac2e-079d51b83123</code>는 같은 밀리초대에 연속 생성된 v7 두 개입니다. 앞 8자리가 같고 그다음이 조금 늘어난 것이 보입니다. v4를 두 번 뽑으면 앞부터 전혀 다릅니다.</p>
+            </details>
+            <details class="faq-item"><summary><h3>같은 밀리초에 여러 개를 만들면요?</h3></summary><p>타임스탬프가 같으므로 남은 74비트 난수로 갈립니다. 같은 밀리초 안에서의 순서는 보장되지 않습니다. "완전한 단조 증가"가 필요하면 RFC가 허용하는 카운터 방식을 쓰는 구현을 골라야 하고, 대부분의 애플리케이션에는 밀리초 단위 정렬로 충분합니다.</p>
             </details>
           </div>
         </div>
@@ -236,19 +236,101 @@
 
       <section class="content-section">
         <div data-locale-block="ko" lang="ko">
-          <h2 class="section-title">이 사이트에서 바로 이어서 보는 흐름</h2>
+          <h2 class="section-title">데이터베이스에서 실제로 느려지는 것</h2>
+          <p class="section-lead">"v4는 인덱스에 안 좋다"는 말은 자주 들리는데 무엇이 어떻게 안 좋은지는 잘 설명되지 않습니다. B-tree가 어떻게 동작하는지 보면 이유가 하나로 정리됩니다.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>페이지 분할</h3>
+              <p>B-tree는 정렬된 페이지에 값을 담습니다. 순차적인 키는 항상 맨 오른쪽 페이지 끝에 붙어서 그 페이지가 꽉 차면 새 페이지를 하나 더 만들면 됩니다. 반면 난수 키는 이미 꽉 찬 중간 페이지 아무 데나 꽂히므로 <strong>페이지를 반으로 쪼개는 일이 계속 발생</strong>합니다. 쪼개진 페이지는 절반만 채워진 채 남아 인덱스가 부풀고 디스크 읽기가 늘어납니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>버퍼 풀 지역성</h3>
+              <p>순차 키로 삽입하면 방금 쓴 페이지가 메모리에 남아 있어 다음 삽입도 그 페이지를 씁니다. 난수 키는 매번 다른 페이지를 건드리므로 캐시에 없는 페이지를 디스크에서 읽어옵니다. 테이블이 메모리보다 커지는 순간부터 이 차이가 급격히 벌어집니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>MySQL은 특히 더합니다</h3>
+              <p>InnoDB는 기본키가 클러스터드 인덱스라서 <strong>기본키 순서가 곧 행의 물리적 배치</strong>입니다. 난수 기본키는 행 자체를 테이블 전체에 흩뿌립니다. 게다가 모든 세컨더리 인덱스가 기본키를 함께 저장하므로 기본키가 크면 인덱스 전부가 커집니다.</p>
+            </article>
+          </div>
+          <p>여기서 중요한 건 이 모든 것이 <strong>규모의 문제</strong>라는 점입니다. 테이블이 메모리에 다 들어가는 동안에는 페이지 분할이든 캐시 미스든 체감되지 않습니다. v4에서 v7로 바꿔서 눈에 보이는 개선이 있었다는 이야기는 대개 수천만 행 이상에서 나옵니다.</p>
+        </div>
+        <div data-locale-slot="en" data-locale-index="4"></div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">v7이 대신 내주는 것: 생성 시각이 보입니다</h2>
+          <p class="section-lead">정렬 이득에는 대가가 있습니다. 이 부분이 v7 소개 글에서 가장 자주 빠지는 내용입니다.</p>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>값만 보면 언제 만들어졌는지 알 수 있습니다</h3></summary><p>앞 48비트가 밀리초 타임스탬프이므로 누구든 v7 값에서 생성 시각을 밀리초 단위로 복원할 수 있습니다. 사용자 ID가 v7이고 그것이 공개 프로필 URL에 들어간다면, 그 사람의 <strong>가입 시각이 공개</strong>되는 것입니다. 주문 ID라면 주문 시각이, 문서 ID라면 작성 시각이 노출됩니다.</p>
+            </details>
+            <details class="faq-item"><summary><h3>순서가 보이는 것도 정보입니다</h3></summary><p>v7 값 두 개를 비교하면 어느 것이 먼저 만들어졌는지 알 수 있습니다. 경쟁사가 자사 서비스에 가입해 받은 ID와 다른 ID를 비교해 <strong>그 사이에 몇 건이 생성됐는지 추정</strong>하는 것도 가능합니다. 난수 74비트가 있어 정확한 카운트는 아니지만 시각 범위는 확실히 드러납니다.</p>
+            </details>
+            <details class="faq-item"><summary><h3>그래서 어떻게 나누나요?</h3></summary><p>실무에서 흔한 절충은 <strong>내부용과 외부용을 분리</strong>하는 것입니다. 데이터베이스 기본키는 v7로 두어 인덱스 이득을 챘고, 외부에 노출되는 URL에는 별도의 v4나 짧은 슬러그를 씁니다. 컬럼 하나가 늘지만 정렬 이득과 비노출을 동시에 가질 수 있습니다.</p>
+            </details>
+            <details class="faq-item"><summary><h3>v4를 쓰면 안전한가요?</h3></summary><p>시각이 노출되지 않는다는 점에서는 안전합니다. 다만 v4도 <em>비밀</em>은 아닙니다. 추측하기 어려울 뿐이므로 접근 제어를 대신할 수 없습니다. "URL을 아는 사람만 볼 수 있다"는 설계는 UUID 버전과 무관하게 취약합니다.</p>
+            </details>
+          </div>
+        </div>
+        <div data-locale-slot="en" data-locale-index="5"></div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">저장 방식과 ULID</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>36자 문자열 vs 16바이트</h3>
+              <p>UUID를 <code>CHAR(36)</code>으로 저장하면 하이픈까지 36바이트를 씁니다. 같은 값을 <code>BINARY(16)</code>로 저장하면 16바이트입니다. 기본키에서 20바이트 차이는 모든 세컨더리 인덱스에 그대로 곱해집니다. 다만 사람이 눈으로 읽거나 로그에서 grep 하기 어려워지는 대가가 있습니다. <a href="/uuid">UUID 변환기</a>의 hex 변환 탭으로 두 형태를 서로 바꿔볼 수 있습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>ULID는 무엇이 다른가요</h3>
+              <p>ULID도 앞 48비트가 타임스탬프이고 나머지 80비트가 난수라 정렬 성질은 v7과 같습니다. 차이는 표현입니다. Crockford base32로 26자 문자열이 되어 UUID의 36자보다 짧고, 대소문자 혼동이 적은 문자만 씁니다. 대신 UUID 타입을 지원하는 데이터베이스 컬럼에 그대로 넣을 수 없습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>무엇을 고르나</h3>
+              <p>데이터베이스가 UUID 타입을 지원하고 기존 코드가 UUID를 다루고 있다면 v7이 자연스럽습니다. 반면 URL이나 로그에 사람이 자주 보는 값이고 짧을수록 좋다면 ULID가 낫습니다. 둘을 섞어 쓰는 것은 권하지 않습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-slot="en" data-locale-index="6"></div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">전환할 때 실제로 걸리는 것들</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>기존 데이터를 마이그레이션할 수 없습니다</h3></summary><p>이미 저장된 v4 값을 v7로 바꿀 방법은 없습니다. 그 값에는 생성 시각 정보가 애초에 없습니다. 그래서 전환은 항상 "지금부터 새로 만드는 것만 v7"이 되고, 테이블에는 두 버전이 섞여 남습니다.</p>
+            </details>
+            <details class="faq-item"><summary><h3>섞이면 정렬 가정이 깨집니다</h3></summary><p>"기본키로 정렬하면 시간순"이라는 가정으로 쿼리나 페이지네이션을 짜면, v4 시절 행들이 무작위 위치에 끼어 있어 결과가 이상해집니다. 전환 시점을 기록해 두고 그 이전 데이터는 별도의 <code>created_at</code> 컬럼으로 정렬하는 편이 안전합니다. 애초에 시간 정렬이 필요하면 인덱스된 타임스탬프 컬럼을 두는 것이 UUID 버전에 의존하는 것보다 명시적입니다.</p>
+            </details>
+            <details class="faq-item"><summary><h3>라이브러리와 런타임 지원을 확인하세요</h3></summary><p>v7은 비교적 최근 표준이라 언어와 라이브러리 버전에 따라 지원이 갈립니다. 데이터베이스 드라이버, ORM, 그리고 값을 검증하는 스키마(예: JSON Schema의 <code>format: uuid</code>) 모두가 버전 7을 받아들이는지 봐야 합니다. 브라우저 <code>crypto.randomUUID()</code>는 v4만 만듭니다.</p>
+            </details>
+            <details class="faq-item"><summary><h3>기본키 말고도 UUID를 쓰는 곳이 있습니다</h3></summary><p>요청 추적 ID, 멱등성 키, 파일명 등에도 UUID가 쓰입니다. 이 자리에서는 정렬이 이득이 아니고 오히려 시각 노출만 생기는 경우가 많습니다. "전부 v7로 통일"보다 자리별로 판단하는 편이 낫습니다.</p>
+            </details>
+          </div>
+        </div>
+        <div data-locale-slot="en" data-locale-index="7"></div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">정리하면</h2>
           <ol class="content-list">
-            <li>기존 UUID 문자열을 비교하거나 hex(binary16) 저장 방식을 확인할 때는 <a href="/uuid">UUID 변환기</a>를 엽니다.</li>
-            <li>시간 정렬형 식별자를 직접 생성해 보고 싶다면 <a href="/uuidv7">UUID v7 생성기</a>에서 값을 뽑아봅니다.</li>
-            <li>정렬 기준을 실제 시간으로 다시 확인하려면 <a href="/timestamp">타임스탬프 변환기</a>와 같이 보는 편이 좋습니다.</li>
+            <li>둘 다 128비트입니다. v4는 122비트가 난수, v7은 앞 48비트가 밀리초 시각이고 74비트가 난수입니다.</li>
+            <li>v7의 이득은 B-tree 페이지 분할과 캐시 미스가 줄어드는 것이고, 이 이득은 테이블이 메모리보다 커진 뒤에 나타납니다.</li>
+            <li>v7의 대가는 생성 시각과 순서가 값에 드러나는 것입니다. 공개되는 식별자에는 v4를 따로 두는 편이 안전합니다.</li>
+            <li>저장은 <code>BINARY(16)</code>이 <code>CHAR(36)</code>보다 작고, 기본키라면 그 차이가 모든 인덱스에 곱해집니다.</li>
+            <li>이미 있는 v4를 v7로 바꿀 수는 없으므로 전환은 섞인 상태를 전제로 계획해야 합니다.</li>
           </ol>
+          <p>값을 직접 만들어 비교하려면 <a href="/uuid">UUID 변환기</a>에서 생성 옵션을 v4·v7·ULID로 바꿔보고, hex 변환 탭으로 16바이트 형태를 확인하세요. v7의 앞부분이 실제로 어떤 시각인지 대조할 때는 <a href="/timestamp">Unix 타임스탬프 변환기</a>가 편합니다.</p>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/uuid">UUID 변환기 열기</a>
-            <a class="link-button" href="/uuidv7">UUID v7 생성기</a>
+            <a class="link-button" href="/timestamp">타임스탬프 변환기</a>
             <a class="link-button" href="/learn">가이드 허브</a>
           </div>
         </div>
-        <div data-locale-slot="en" data-locale-index="4"></div>
+        <div data-locale-slot="en" data-locale-index="8"></div>
       </section>
     </main>
 
@@ -303,19 +385,18 @@ v7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f</code></pre>
         </details>
     </section>
 
-    <div data-locale-slot="en" data-locale-index="5"></div>
-
-    <footer class="footer footer--dev" data-nosnippet>
+    <div data-locale-slot="en" data-locale-index="9"></div>
+      <footer class="footer footer--dev" data-nosnippet>
       <nav class="footer-links" aria-label="사이트 정보">
         <a href="/about" data-chrome-link="about">소개</a>
         <a href="/privacy" data-chrome-link="privacy">개인정보 처리</a>
         <a href="/contact" data-chrome-link="contact">문의</a>
+        <a href="/terms" data-chrome-link="terms">이용약관</a>
       </nav>
-      <small>© 2026 stateless tools · browser-first utility guides</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Cloudflare Pages 배포용 정적 사이트</small>
     </footer>
   </div>
 
-  <script type="application/json" data-locale-payload="en">["\u003cspan data-locale-block=\"en\" lang=\"en\" hidden>UUID v4 vs v7 guide\u003c/span>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n        \u003cp>A practical guide to choosing between random UUIDs and time-ordered UUIDs, including storage and operational trade-offs.\u003c/p>\n      \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">The short answer first\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Choose UUID v4 when\u003c/h3>\n              \u003cp>Most web apps, APIs, and trace IDs only need non-guessable identifiers. In that case UUID v4 stays the practical default.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Choose UUID v7 when\u003c/h3>\n              \u003cp>Logs, queue records, or time-oriented datasets benefit from IDs that sort more naturally as they are created.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>v7 is not automatically better\u003c/h3>\n              \u003cp>Migration cost, library support, database layout, and existing operational tooling still matter before you switch identifier formats.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">The practical issues that matter most\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Ordering and index locality\u003c/h3>\u003c/summary>\u003cp>UUID v4 inserts are effectively random. UUID v7 can improve ordering behavior in some storage engines because time information is encoded near the front.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Readability and debugging\u003c/h3>\u003c/summary>\u003cp>Neither version is pleasant for humans. Teams still need conversion helpers for standard strings, compact binary forms, and log-friendly outputs.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Mixed-format operations\u003c/h3>\u003c/summary>\u003cp>If older services stay on v4 while newer ones move to v7, filters, tracing docs, and operational scripts often need more cleanup than expected.\u003c/p>\n            \u003c/details>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">The related pages to open next\u003c/h2>\n          \u003col class=\"content-list\">\n            \u003cli>Use the \u003ca href=\"/uuid\">UUID converter\u003c/a> when you need to compare standard UUID strings and compact hex(binary16) storage forms.\u003c/li>\n            \u003cli>Open the \u003ca href=\"/uuidv7\">UUID v7 generator\u003c/a> when you want to test time-ordered IDs directly.\u003c/li>\n            \u003cli>Pair that with the \u003ca href=\"/timestamp\">timestamp converter\u003c/a> if you need to reason about ordering against real time.\u003c/li>\n          \u003c/ol>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/uuid\">Open UUID converter\u003c/a>\n            \u003ca class=\"link-button\" href=\"/uuidv7\">Open UUID v7 generator\u003c/a>\n            \u003ca class=\"link-button\" href=\"/learn\">Back to guide hub\u003c/a>\n          \u003c/div>\n        \u003c/div>","\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Index bloat after using v4 as a primary key\u003c/h3>\n              \u003cp>Because v4 is fully random, rows land all over a B-tree index, splitting pages often and hurting cache hit rate. The cost only becomes visible at millions of rows, which is why it slips past early design reviews. v7 appends sequentially and avoids most of it.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>v7 in a public URL leaks timing\u003c/h3>\n              \u003cp>A v7 value embeds its creation millisecond, so signup or order times can be derived — and a competitor could estimate your growth rate. Use v4 for identifiers exposed outside your system.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Can both versions share a column?\u003c/h3>\n              \u003cp>Storage is fine since the format is identical, but the sort guarantee breaks. v7 values stay time-ordered while interleaved v4 values land randomly. Before migrating, check for queries that rely on ordering.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: step-by-step usage and worked examples\u003c/summary>\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>v4 and v7 side by side\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Three of each, generated at the same moment\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>v4  f47ac10b-58cc-4372-a567-0e02b2c3d479\nv4  1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed\nv4  7c9e6679-7425-40de-944b-e07fc1f90ae7\n\nv7  01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a\nv7  01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b\nv7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">The v7 values share a prefix because it encodes a millisecond timestamp, so string sorting preserves creation order. v4 is random from the first digit.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Reading the version digit\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>The first digit of the third group is the version\n7000 -&gt; v7\n4372 -&gt; v4\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003cspan data-locale-block=\"en\" lang=\"en\" hidden>UUID v4 vs v7\u003c/span>","\u003cp data-locale-block=\"en\" lang=\"en\" hidden>Plenty of articles stop at \"v7 is better\". This one looks at how the bits differ, what that changes inside a database, and what v7 gives up in return.\u003c/p>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">The short answer first\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Choose v4 when\u003c/h3>\n              \u003cp>The identifier appears in public URLs, behaves like a secret token, or belongs to data where ordering is meaningless. If unpredictability is itself the requirement, v4 is correct and there is no reason to change.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Choose v7 when\u003c/h3>\n              \u003cp>It is the primary key of a large, append-heavy table, an event log, or queue records — workloads where insert order and sort order being the same is what pays off.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Do not bother when\u003c/h3>\n              \u003cp>If the table holds a few hundred thousand rows, the primary key is not a UUID, or inserts are rare, switching from v4 to v7 changes little you can measure. The benefit comes from scale.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n          \u003cp>The reasoning follows. To compare actual values, switch between v4, v7 and ULID in the generation mode of the \u003ca href=\"/uuid\">UUID converter\u003c/a>.\u003c/p>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">The difference is clear at the bit level\u003c/h2>\n          \u003cp class=\"section-lead\">Both are 128 bits and share the same string form. What differs is what fills those bits. Standardised in RFC 9562, v7 hands the leading bits over to time.\u003c/p>\n          \u003cdiv class=\"faq-list\">\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>v4 is almost entirely random\u003c/h3>\u003c/summary>\u003cp>Excluding four version bits and two variant bits, \u003cstrong>122 bits are random\u003c/strong>. Collisions are not a practical concern, and the value reveals nothing about when it was created. The \u003ccode>4\u003c/code> at the 14th character of the string is the version marker.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>v7 puts a millisecond timestamp in the first 48 bits\u003c/h3>\u003c/summary>\u003cp>Unix epoch milliseconds come first, then four version bits (\u003ccode>0111\u003c/code>, so a \u003ccode>7\u003c/code> at the 14th character), two variant bits, and \u003cstrong>74 random bits\u003c/strong>. Because time leads, \u003cem>sorting the strings lexicographically sorts them by creation order.\u003c/em> That is the whole idea.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>What that looks like\u003c/h3>\u003c/summary>\u003cp>\u003ccode>01a013ab-09ca-7958-88e4-7f9866134ad6\u003c/code> and \u003ccode>01a013ab-09d0-7ec6-ac2e-079d51b83123\u003c/code> are two v7 values generated moments apart. The first eight characters match and the next segment ticks up. Two v4 values differ from the very first character.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>What about several in the same millisecond?\u003c/h3>\u003c/summary>\u003cp>The timestamp is identical, so the remaining 74 random bits decide. Order within a single millisecond is not guaranteed. If you need strict monotonicity, choose an implementation using the counter method the RFC permits; millisecond-level ordering is enough for most applications.\u003c/p>\n            \u003c/details>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">What actually slows down in a database\u003c/h2>\n          \u003cp class=\"section-lead\">\"v4 is bad for indexes\" is repeated often but rarely explained. Looking at how a B-tree works reduces it to a single cause.\u003c/p>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Page splits\u003c/h3>\n              \u003cp>A B-tree stores values in sorted pages. Sequential keys always append to the rightmost page, so a full page simply gets a new sibling. Random keys land in the middle of already-full pages, which forces \u003cstrong>repeated page splits\u003c/strong>. Split pages stay half empty, inflating the index and increasing disk reads.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Buffer pool locality\u003c/h3>\n              \u003cp>With sequential keys the page you just wrote is still in memory, so the next insert reuses it. Random keys touch a different page every time, pulling pages in from disk. The gap widens sharply once the table outgrows memory.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>MySQL feels it most\u003c/h3>\n              \u003cp>In InnoDB the primary key is the clustered index, so \u003cstrong>primary key order is the physical row order\u003c/strong>. A random primary key scatters the rows themselves. Every secondary index also stores the primary key, so a large key inflates all of them.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n          \u003cp>The important part is that all of this is a \u003cstrong>question of scale\u003c/strong>. While the table fits in memory, neither page splits nor cache misses are noticeable. Reports of a visible improvement from switching to v7 generally come from tables of tens of millions of rows and up.\u003c/p>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">What v7 gives up: creation time is visible\u003c/h2>\n          \u003cp class=\"section-lead\">The sorting benefit has a price, and this is the part most v7 introductions omit.\u003c/p>\n          \u003cdiv class=\"faq-list\">\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>The value reveals when it was created\u003c/h3>\u003c/summary>\u003cp>Since the first 48 bits are a millisecond timestamp, anyone can recover the creation time from a v7 value. If a user ID is v7 and appears in a public profile URL, that person's \u003cstrong>sign-up time becomes public\u003c/strong>. For an order ID it is the order time; for a document ID, the authoring time.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Ordering is information too\u003c/h3>\u003c/summary>\u003cp>Comparing two v7 values tells you which came first. A competitor can sign up, compare their own ID with another, and \u003cstrong>estimate how many records were created in between\u003c/strong>. The 74 random bits prevent an exact count, but the time range is fully exposed.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>How to split it\u003c/h3>\u003c/summary>\u003cp>A common compromise is to \u003cstrong>separate internal and external identifiers\u003c/strong>. Keep a v7 primary key for the index benefit and expose a separate v4 or short slug in public URLs. It costs one extra column and gives you both properties.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Is v4 therefore safe?\u003c/h3>\u003c/summary>\u003cp>Safe in the sense that it leaks no timestamp. But v4 is not a \u003cem>secret\u003c/em> either — it is merely hard to guess, and cannot replace access control. A design where \"anyone with the URL can view it\" is weak regardless of UUID version.\u003c/p>\n            \u003c/details>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Storage form and ULID\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>36 characters versus 16 bytes\u003c/h3>\n              \u003cp>Storing a UUID as \u003ccode>CHAR(36)\u003c/code> uses 36 bytes including hyphens; \u003ccode>BINARY(16)\u003c/code> stores the same value in 16. On a primary key, that 20-byte difference multiplies across every secondary index. The cost is that humans can no longer read it or grep it out of a log. The hex tabs in the \u003ca href=\"/uuid\">UUID converter\u003c/a> convert between the two forms.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>How ULID differs\u003c/h3>\n              \u003cp>ULID also puts a 48-bit timestamp first, followed by 80 random bits, so its ordering property matches v7. The difference is representation: Crockford base32 yields a 26-character string, shorter than UUID's 36, using characters chosen to avoid visual confusion. In exchange it does not drop into a native UUID column.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Which to pick\u003c/h3>\n              \u003cp>If your database has a UUID type and your code already handles UUIDs, v7 is the natural fit. If the value is read by people in URLs or logs and shorter is better, ULID wins. Mixing both is not advisable.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">What actually bites during migration\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Existing data cannot be migrated\u003c/h3>\u003c/summary>\u003cp>There is no way to convert stored v4 values into v7 — the creation time was never in them. So a switch always means \"only new values are v7\", and the table keeps both versions side by side.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Mixed versions break the sorting assumption\u003c/h3>\u003c/summary>\u003cp>If queries or pagination assume \"ordering by primary key means chronological\", rows from the v4 era sit at random positions and results look wrong. Record the cut-over point and sort older data by an explicit \u003ccode>created_at\u003c/code> column. If you need time ordering at all, an indexed timestamp column is more explicit than relying on a UUID version.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Check library and runtime support\u003c/h3>\u003c/summary>\u003cp>v7 is a relatively recent standard, so support varies by language and library version. Verify that your database driver, ORM and any validating schema (for example JSON Schema's \u003ccode>format: uuid\u003c/code>) accept version 7. The browser's \u003ccode>crypto.randomUUID()\u003c/code> produces v4 only.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>UUIDs live outside primary keys too\u003c/h3>\u003c/summary>\u003cp>Request trace IDs, idempotency keys and filenames also use UUIDs. In those positions ordering is not a benefit and the exposed timestamp is pure downside. Decide per use site rather than standardising everything on v7.\u003c/p>\n            \u003c/details>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">In summary\u003c/h2>\n          \u003col class=\"content-list\">\n            \u003cli>Both are 128 bits. v4 is 122 random bits; v7 is a 48-bit millisecond timestamp followed by 74 random bits.\u003c/li>\n            \u003cli>v7's benefit is fewer B-tree page splits and cache misses, and it only shows once the table outgrows memory.\u003c/li>\n            \u003cli>v7's cost is that creation time and ordering are visible in the value. Keep a separate v4 for publicly exposed identifiers.\u003c/li>\n            \u003cli>\u003ccode>BINARY(16)\u003c/code> storage beats \u003ccode>CHAR(36)\u003c/code>, and on a primary key that difference multiplies across every index.\u003c/li>\n            \u003cli>Existing v4 values cannot become v7, so plan any switch around a permanently mixed table.\u003c/li>\n          \u003c/ol>\n          \u003cp>Generate and compare values in the \u003ca href=\"/uuid\">UUID converter\u003c/a> by switching the generation mode between v4, v7 and ULID, and use the hex tabs to see the 16-byte form. The \u003ca href=\"/timestamp\">Unix timestamp converter\u003c/a> helps when you want to check what time a v7 prefix actually encodes.\u003c/p>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/uuid\">Open UUID converter\u003c/a>\n            \u003ca class=\"link-button\" href=\"/timestamp\">Timestamp converter\u003c/a>\n            \u003ca class=\"link-button\" href=\"/learn\">Back to guide hub\u003c/a>\n          \u003c/div>\n        \u003c/div>","\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Errors you will hit\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Index bloat after using v4 as a primary key\u003c/h3>\n              \u003cp>Because v4 is fully random, rows land all over a B-tree index, splitting pages often and hurting cache hit rate. The cost only becomes visible at millions of rows, which is why it slips past early design reviews. v7 appends sequentially and avoids most of it.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>v7 in a public URL leaks timing\u003c/h3>\n              \u003cp>A v7 value embeds its creation millisecond, so signup or order times can be derived — and a competitor could estimate your growth rate. Use v4 for identifiers exposed outside your system.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Can both versions share a column?\u003c/h3>\n              \u003cp>Storage is fine since the format is identical, but the sort guarantee breaks. v7 values stay time-ordered while interleaved v4 values land randomly. Before migrating, check for queries that rely on ordering.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003cdetails class=\"content-more\">\n          \u003csummary>More: step-by-step usage and worked examples\u003c/summary>\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Real input and output\u003c/h2>\n          \u003cdiv class=\"example-list\">\n            \u003carticle class=\"example-item\">\n              \u003ch3>v4 and v7 side by side\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>Three of each, generated at the same moment\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>v4  f47ac10b-58cc-4372-a567-0e02b2c3d479\nv4  1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed\nv4  7c9e6679-7425-40de-944b-e07fc1f90ae7\n\nv7  01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a\nv7  01923f8a-1c51-7000-8a3b-2c7d9e4f1a3b\nv7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__note\">The v7 values share a prefix because it encodes a millisecond timestamp, so string sorting preserves creation order. v4 is random from the first digit.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"example-item\">\n              \u003ch3>Reading the version digit\u003c/h3>\n              \u003cp class=\"example-item__label\">Input\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>01923f8a-1c4d-7000-8a3b-9f2e1d4c5b6a\u003c/code>\u003c/pre>\n              \u003cp class=\"example-item__label\">Output\u003c/p>\n              \u003cpre class=\"example-item__code\">\u003ccode>The first digit of the third group is the version\n7000 -&gt; v7\n4372 -&gt; v4\u003c/code>\u003c/pre>\n            \u003c/article>\n          \u003c/div>\n        \u003c/section>\n        \u003c/details>\n    \u003c/section>"]</script>
 </body>
-
 </html>

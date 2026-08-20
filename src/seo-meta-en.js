@@ -144,6 +144,11 @@ export const PAGE_META_EN = {
     description:
       'Compare two blocks of text line by line to see exactly what was added, removed, or changed.',
   },
+  '/terms': {
+    title: 'Terms of Use | Browser-side Limits and Liability',
+    description:
+      'Conditions of use for stateless tools, the limits of browser-only processing, liability for results, intellectual property and how changes are handled.',
+  },
   '/cron-guide': {
     title: 'Crontab in Practice | The OR Trap, Time Zones, Overlapping Runs',
     description:

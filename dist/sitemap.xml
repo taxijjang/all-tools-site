@@ -349,6 +349,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://taxijjang.com/terms</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://taxijjang.com/en/terms</loc>
+    <lastmod>2026-08-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://taxijjang.com/cron-guide</loc>
     <lastmod>2026-08-20</lastmod>
     <changefreq>monthly</changefreq>

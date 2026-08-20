@@ -61,6 +61,15 @@ export const UTILITY_LINKS = [
       en: 'Contact',
     },
   },
+  {
+    key: 'terms',
+    href: '/terms',
+    placement: 'footer',
+    labels: {
+      ko: '이용약관',
+      en: 'Terms',
+    },
+  },
 ];
 
 export const NAV_UTILITY_LINKS = UTILITY_LINKS.filter((link) => link.placement !== 'footer');

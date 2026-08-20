@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>이용약관 | stateless tools</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="stateless tools 이용 조건, 브라우저 처리 방식의 한계, 계산 결과의 책임 범위, 지식재산권과 약관 변경 안내." />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body class="layout layout--dev" data-tool="terms">
+  <div class="page page--dev">
+    <div class="page-controls">
+      <label class="sr-only" for="localeSelect" data-i18n="common.languageLabel">언어</label>
+      <div class="locale-switcher">
+        <select id="localeSelect" aria-label="Language">
+          <option value="ko" data-i18n="common.languageKorean">한국어</option>
+          <option value="en" data-i18n="common.languageEnglish">English</option>
+        </select>
+      </div>
+    </div>
+
+    <header class="page-header">
+      <a class="back-link" href="/" data-i18n="common.back">← 도구 목록으로</a>
+      <h1>
+        <span data-locale-block="ko" lang="ko">이용약관</span>
+        <span data-locale-block="en" lang="en" hidden>Terms of Use</span>
+      </h1>
+      <p data-locale-block="ko" lang="ko">이 사이트를 쓰실 때 알아두셔야 할 조건입니다. 도구가 브라우저 안에서만 동작한다는 점이 아래 내용 대부분의 이유입니다.</p>
+      <p data-locale-block="en" lang="en" hidden>The conditions that apply when you use this site. Most of what follows stems from one fact: the tools run entirely inside your browser.</p>
+    </header>
+
+    <main class="content-stack">
+      <section class="content-section content-section--highlight">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">핵심 요약</h2>
+          <ul class="content-list">
+            <li>무료로 제공되며 회원가입이 없습니다. 계정도 결제도 없습니다.</li>
+            <li>대부분의 변환·계산은 브라우저 안에서 처리되며 입력값을 서버로 보내지 않습니다. 예외는 <a href="/ip-ua">IP / User-Agent 확인</a> 한 곳이며 해당 페이지에 표시해 두었습니다.</li>
+            <li>결과의 정확성을 보증하지 않습니다. 업무·법률·금전에 영향을 주는 판단은 반드시 별도로 검증하세요.</li>
+            <li>사이트는 예고 없이 변경되거나 중단될 수 있습니다.</li>
+          </ul>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Summary</h2>
+          <ul class="content-list">
+            <li>The site is free and requires no account. There is no sign-up and no payment.</li>
+            <li>Most conversions and calculations happen inside your browser; your input is not sent to a server. The one exception is <a href="/ip-ua">IP / User-Agent</a>, which is marked on that page.</li>
+            <li>Results are provided without warranty of accuracy. Verify independently before relying on them for work, legal or financial decisions.</li>
+            <li>The site may change or be discontinued without notice.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">이용 조건</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>누구나 쓸 수 있나요?</h3>
+              <p>네. 가입이나 로그인 없이 누구나 무료로 쓸 수 있습니다. 개인적 용도와 업무 용도를 구분하지 않으며 결과물을 상업적으로 활용하는 것도 제한하지 않습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>하지 말아야 할 것이 있나요?</h3>
+              <p>자동화된 대량 요청으로 서비스에 부담을 주는 행위, 사이트를 그대로 복제해 다른 도메인에서 자기 것처럼 제공하는 행위, 타인의 권리를 침해하거나 법을 위반하는 목적으로 도구를 쓰는 행위는 하지 마세요. 도구 자체는 브라우저에서 도는 코드지만 그 결과로 무엇을 하는지는 이용자 책임입니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>업무용 데이터를 넣어도 되나요?</h3>
+              <p>기술적으로는 입력값이 브라우저를 벗어나지 않으므로 가능합니다. 다만 소속 조직의 정책이 외부 웹사이트에 사내 데이터를 붙여넣는 것을 금지할 수 있고, 브라우저 확장 프로그램이 페이지 내용을 읽을 수도 있습니다. 민감한 값이라면 조직 정책과 브라우저 환경을 먼저 확인하세요.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Conditions of use</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Who can use it?</h3>
+              <p>Anyone, free of charge, without an account. Personal and commercial use are treated the same, and there is no restriction on using the output commercially.</p>
+            </article>
+            <article class="faq-item">
+              <h3>What is not allowed?</h3>
+              <p>Do not place a burden on the service through automated bulk requests, do not clone the site and present it as your own on another domain, and do not use the tools to infringe others' rights or break the law. The tools are code running in your browser, but what you do with the results is your responsibility.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Can I paste work data?</h3>
+              <p>Technically yes, since input does not leave your browser. However, your organisation's policy may forbid pasting internal data into external websites, and browser extensions can read page contents. For sensitive values, check your policy and browser environment first.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">결과에 대한 책임</h2>
+          <p class="section-lead">도구는 "있는 그대로" 제공됩니다. 아래는 형식적인 면책 문구가 아니라 실제로 한계가 있는 지점들입니다.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>계산과 변환</h3>
+              <p>해시, 인코딩, 날짜 계산 같은 결과는 브라우저와 라이브러리 버전에 따라 달라질 수 있습니다. 예를 들어 영업일 계산은 주말만 제외하고 공휴일을 반영하지 않으며, 이런 한계는 각 도구 페이지에 적어 두었습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>보안 용도</h3>
+              <p>비밀번호 생성기는 브라우저의 암호학적 난수를 쓰지만, 생성된 값을 어디에 어떻게 보관하는지는 이용자 몫입니다. 실제 인증 체계의 안전성을 이 사이트가 보증할 수는 없습니다.</p>
+            </article>
+            <article class="info-card">
+              <h3>손해에 대한 책임</h3>
+              <p>도구 사용이나 사용 불가로 인해 발생한 직접·간접 손해에 대해 책임을 지지 않습니다. 중요한 판단 전에는 결과를 다른 방법으로 한 번 더 확인하시기를 권합니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Responsibility for results</h2>
+          <p class="section-lead">The tools are provided "as is". What follows is not boilerplate but a list of real limits.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Calculations and conversions</h3>
+              <p>Results such as hashes, encodings and date arithmetic can vary with browser and library versions. Business-day calculations, for example, exclude weekends only and ignore public holidays; limits like this are stated on each tool page.</p>
+            </article>
+            <article class="info-card">
+              <h3>Security use</h3>
+              <p>The password generator uses the browser's cryptographic random source, but how you store and handle the generated value is up to you. This site cannot vouch for the security of your actual authentication system.</p>
+            </article>
+            <article class="info-card">
+              <h3>Liability</h3>
+              <p>No liability is accepted for direct or indirect loss arising from use of, or inability to use, the tools. Verify results by another means before making decisions that matter.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">지식재산권과 약관 변경</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>사이트의 코드와 글은 누구 것인가요?</h3>
+              <p>사이트의 소스 코드, 문서, 디자인은 운영자에게 귀속됩니다. 도구를 쓰면서 입력한 값과 그 결과물은 이용자 것이며 이 사이트가 어떤 권리도 주장하지 않습니다. 애초에 서버에 남지 않으므로 보관하지도 않습니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>외부 라이브러리는요?</h3>
+              <p>PDF, OCR, QR 같은 기능은 공개 오픈소스 라이브러리를 사용하며 각 라이브러리의 라이선스가 적용됩니다. 제목용 서체는 SIL Open Font License로 배포되는 Wanted Sans를 씁니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>약관이 바뀌면 알려주나요?</h3>
+              <p>내용이 바뀌면 이 페이지가 갱신됩니다. 회원 정보를 수집하지 않아 개별 통지 수단이 없으므로 중요한 변경은 이 페이지에서 확인해 주세요. 변경 이후에도 사이트를 계속 이용하시면 변경된 약관에 동의한 것으로 봅니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>문의는 어디로 하나요?</h3>
+              <p>오류 제보나 문의는 <a href="/contact">문의 안내</a> 페이지의 경로를 이용해 주세요. 개인정보 처리에 관한 내용은 <a href="/privacy">개인정보 처리 안내</a>에 따로 정리해 두었습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Intellectual property and changes</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Who owns the code and the writing?</h3>
+              <p>The source code, documentation and design belong to the operator. Whatever you type into a tool, and whatever it produces, belongs to you; this site claims no rights over it and does not retain it, since it never reaches a server.</p>
+            </article>
+            <article class="faq-item">
+              <h3>What about third-party libraries?</h3>
+              <p>Features such as PDF, OCR and QR use public open-source libraries under their respective licences. The display typeface is Wanted Sans, distributed under the SIL Open Font License.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Will I be notified of changes?</h3>
+              <p>This page is updated when the terms change. Because no account information is collected there is no way to notify you individually, so please check here for material changes. Continued use after a change constitutes acceptance.</p>
+            </article>
+            <article class="faq-item">
+              <h3>How do I get in touch?</h3>
+              <p>Use the routes on the <a href="/contact">contact</a> page for bug reports and questions. Data handling is covered separately in the <a href="/privacy">privacy notice</a>.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/src/site.js"></script>
+</body>
+</html>

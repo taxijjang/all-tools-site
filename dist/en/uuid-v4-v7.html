@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <title>UUID v4 vs v7 Guide | Which UUID Should You Use | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-BiWl1dAR.js"></script>
+  <script type="module" crossorigin src="/assets/site-C7GdLHdA.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/site-DJLRb4EM.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
@@ -160,9 +159,8 @@
   </script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
-
 <body class="layout layout--dev" data-tool="uuid-v4-v7" data-allow-ads="true">
-  <div class="page page--dev page--content">
+  <div class="page page--dev">
     <div class="page-controls" data-nosnippet>
 
       <a class="brand-home" href="/en/" aria-label="Stateless Tools">
@@ -189,12 +187,10 @@
     <header class="page-header">
       <h1>
         
-        <span data-locale-block="en" lang="en">UUID v4 vs v7 guide</span>
+        <span data-locale-block="en" lang="en">UUID v4 vs v7</span>
       </h1><p class="trust-badge" data-chrome-badge="trust" data-nosnippet><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><span>브라우저 내부 처리</span></p>
       
-      <div data-locale-block="en" lang="en">
-        <p>A practical guide to choosing between random UUIDs and time-ordered UUIDs, including storage and operational trade-offs.</p>
-      </div>
+      <p data-locale-block="en" lang="en">Plenty of articles stop at "v7 is better". This one looks at how the bits differ, what that changes inside a database, and what v7 gives up in return.</p>
     </header>
 
     <main class="content-stack">
@@ -204,31 +200,35 @@
           <h2 class="section-title">The short answer first</h2>
           <div class="content-grid">
             <article class="info-card">
-              <h3>Choose UUID v4 when</h3>
-              <p>Most web apps, APIs, and trace IDs only need non-guessable identifiers. In that case UUID v4 stays the practical default.</p>
+              <h3>Choose v4 when</h3>
+              <p>The identifier appears in public URLs, behaves like a secret token, or belongs to data where ordering is meaningless. If unpredictability is itself the requirement, v4 is correct and there is no reason to change.</p>
             </article>
             <article class="info-card">
-              <h3>Choose UUID v7 when</h3>
-              <p>Logs, queue records, or time-oriented datasets benefit from IDs that sort more naturally as they are created.</p>
+              <h3>Choose v7 when</h3>
+              <p>It is the primary key of a large, append-heavy table, an event log, or queue records — workloads where insert order and sort order being the same is what pays off.</p>
             </article>
             <article class="info-card">
-              <h3>v7 is not automatically better</h3>
-              <p>Migration cost, library support, database layout, and existing operational tooling still matter before you switch identifier formats.</p>
+              <h3>Do not bother when</h3>
+              <p>If the table holds a few hundred thousand rows, the primary key is not a UUID, or inserts are rare, switching from v4 to v7 changes little you can measure. The benefit comes from scale.</p>
             </article>
           </div>
+          <p>The reasoning follows. To compare actual values, switch between v4, v7 and ULID in the generation mode of the <a href="/en/uuid">UUID converter</a>.</p>
         </div>
       </section>
 
       <section class="content-section">
         
         <div data-locale-block="en" lang="en">
-          <h2 class="section-title">The practical issues that matter most</h2>
+          <h2 class="section-title">The difference is clear at the bit level</h2>
+          <p class="section-lead">Both are 128 bits and share the same string form. What differs is what fills those bits. Standardised in RFC 9562, v7 hands the leading bits over to time.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Ordering and index locality</h3></summary><p>UUID v4 inserts are effectively random. UUID v7 can improve ordering behavior in some storage engines because time information is encoded near the front.</p>
+            <details class="faq-item"><summary><h3>v4 is almost entirely random</h3></summary><p>Excluding four version bits and two variant bits, <strong>122 bits are random</strong>. Collisions are not a practical concern, and the value reveals nothing about when it was created. The <code>4</code> at the 14th character of the string is the version marker.</p>
             </details>
-            <details class="faq-item"><summary><h3>Readability and debugging</h3></summary><p>Neither version is pleasant for humans. Teams still need conversion helpers for standard strings, compact binary forms, and log-friendly outputs.</p>
+            <details class="faq-item"><summary><h3>v7 puts a millisecond timestamp in the first 48 bits</h3></summary><p>Unix epoch milliseconds come first, then four version bits (<code>0111</code>, so a <code>7</code> at the 14th character), two variant bits, and <strong>74 random bits</strong>. Because time leads, <em>sorting the strings lexicographically sorts them by creation order.</em> That is the whole idea.</p>
             </details>
-            <details class="faq-item"><summary><h3>Mixed-format operations</h3></summary><p>If older services stay on v4 while newer ones move to v7, filters, tracing docs, and operational scripts often need more cleanup than expected.</p>
+            <details class="faq-item"><summary><h3>What that looks like</h3></summary><p><code>01a013ab-09ca-7958-88e4-7f9866134ad6</code> and <code>01a013ab-09d0-7ec6-ac2e-079d51b83123</code> are two v7 values generated moments apart. The first eight characters match and the next segment ticks up. Two v4 values differ from the very first character.</p>
+            </details>
+            <details class="faq-item"><summary><h3>What about several in the same millisecond?</h3></summary><p>The timestamp is identical, so the remaining 74 random bits decide. Order within a single millisecond is not guaranteed. If you need strict monotonicity, choose an implementation using the counter method the RFC permits; millisecond-level ordering is enough for most applications.</p>
             </details>
           </div>
         </div>
@@ -237,15 +237,97 @@
       <section class="content-section">
         
         <div data-locale-block="en" lang="en">
-          <h2 class="section-title">The related pages to open next</h2>
+          <h2 class="section-title">What actually slows down in a database</h2>
+          <p class="section-lead">"v4 is bad for indexes" is repeated often but rarely explained. Looking at how a B-tree works reduces it to a single cause.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Page splits</h3>
+              <p>A B-tree stores values in sorted pages. Sequential keys always append to the rightmost page, so a full page simply gets a new sibling. Random keys land in the middle of already-full pages, which forces <strong>repeated page splits</strong>. Split pages stay half empty, inflating the index and increasing disk reads.</p>
+            </article>
+            <article class="info-card">
+              <h3>Buffer pool locality</h3>
+              <p>With sequential keys the page you just wrote is still in memory, so the next insert reuses it. Random keys touch a different page every time, pulling pages in from disk. The gap widens sharply once the table outgrows memory.</p>
+            </article>
+            <article class="info-card">
+              <h3>MySQL feels it most</h3>
+              <p>In InnoDB the primary key is the clustered index, so <strong>primary key order is the physical row order</strong>. A random primary key scatters the rows themselves. Every secondary index also stores the primary key, so a large key inflates all of them.</p>
+            </article>
+          </div>
+          <p>The important part is that all of this is a <strong>question of scale</strong>. While the table fits in memory, neither page splits nor cache misses are noticeable. Reports of a visible improvement from switching to v7 generally come from tables of tens of millions of rows and up.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">What v7 gives up: creation time is visible</h2>
+          <p class="section-lead">The sorting benefit has a price, and this is the part most v7 introductions omit.</p>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>The value reveals when it was created</h3></summary><p>Since the first 48 bits are a millisecond timestamp, anyone can recover the creation time from a v7 value. If a user ID is v7 and appears in a public profile URL, that person's <strong>sign-up time becomes public</strong>. For an order ID it is the order time; for a document ID, the authoring time.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Ordering is information too</h3></summary><p>Comparing two v7 values tells you which came first. A competitor can sign up, compare their own ID with another, and <strong>estimate how many records were created in between</strong>. The 74 random bits prevent an exact count, but the time range is fully exposed.</p>
+            </details>
+            <details class="faq-item"><summary><h3>How to split it</h3></summary><p>A common compromise is to <strong>separate internal and external identifiers</strong>. Keep a v7 primary key for the index benefit and expose a separate v4 or short slug in public URLs. It costs one extra column and gives you both properties.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Is v4 therefore safe?</h3></summary><p>Safe in the sense that it leaks no timestamp. But v4 is not a <em>secret</em> either — it is merely hard to guess, and cannot replace access control. A design where "anyone with the URL can view it" is weak regardless of UUID version.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Storage form and ULID</h2>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>36 characters versus 16 bytes</h3>
+              <p>Storing a UUID as <code>CHAR(36)</code> uses 36 bytes including hyphens; <code>BINARY(16)</code> stores the same value in 16. On a primary key, that 20-byte difference multiplies across every secondary index. The cost is that humans can no longer read it or grep it out of a log. The hex tabs in the <a href="/en/uuid">UUID converter</a> convert between the two forms.</p>
+            </article>
+            <article class="info-card">
+              <h3>How ULID differs</h3>
+              <p>ULID also puts a 48-bit timestamp first, followed by 80 random bits, so its ordering property matches v7. The difference is representation: Crockford base32 yields a 26-character string, shorter than UUID's 36, using characters chosen to avoid visual confusion. In exchange it does not drop into a native UUID column.</p>
+            </article>
+            <article class="info-card">
+              <h3>Which to pick</h3>
+              <p>If your database has a UUID type and your code already handles UUIDs, v7 is the natural fit. If the value is read by people in URLs or logs and shorter is better, ULID wins. Mixing both is not advisable.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">What actually bites during migration</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>Existing data cannot be migrated</h3></summary><p>There is no way to convert stored v4 values into v7 — the creation time was never in them. So a switch always means "only new values are v7", and the table keeps both versions side by side.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Mixed versions break the sorting assumption</h3></summary><p>If queries or pagination assume "ordering by primary key means chronological", rows from the v4 era sit at random positions and results look wrong. Record the cut-over point and sort older data by an explicit <code>created_at</code> column. If you need time ordering at all, an indexed timestamp column is more explicit than relying on a UUID version.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Check library and runtime support</h3></summary><p>v7 is a relatively recent standard, so support varies by language and library version. Verify that your database driver, ORM and any validating schema (for example JSON Schema's <code>format: uuid</code>) accept version 7. The browser's <code>crypto.randomUUID()</code> produces v4 only.</p>
+            </details>
+            <details class="faq-item"><summary><h3>UUIDs live outside primary keys too</h3></summary><p>Request trace IDs, idempotency keys and filenames also use UUIDs. In those positions ordering is not a benefit and the exposed timestamp is pure downside. Decide per use site rather than standardising everything on v7.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">In summary</h2>
           <ol class="content-list">
-            <li>Use the <a href="/en/uuid">UUID converter</a> when you need to compare standard UUID strings and compact hex(binary16) storage forms.</li>
-            <li>Open the <a href="/uuidv7">UUID v7 generator</a> when you want to test time-ordered IDs directly.</li>
-            <li>Pair that with the <a href="/en/timestamp">timestamp converter</a> if you need to reason about ordering against real time.</li>
+            <li>Both are 128 bits. v4 is 122 random bits; v7 is a 48-bit millisecond timestamp followed by 74 random bits.</li>
+            <li>v7's benefit is fewer B-tree page splits and cache misses, and it only shows once the table outgrows memory.</li>
+            <li>v7's cost is that creation time and ordering are visible in the value. Keep a separate v4 for publicly exposed identifiers.</li>
+            <li><code>BINARY(16)</code> storage beats <code>CHAR(36)</code>, and on a primary key that difference multiplies across every index.</li>
+            <li>Existing v4 values cannot become v7, so plan any switch around a permanently mixed table.</li>
           </ol>
+          <p>Generate and compare values in the <a href="/en/uuid">UUID converter</a> by switching the generation mode between v4, v7 and ULID, and use the hex tabs to see the 16-byte form. The <a href="/en/timestamp">Unix timestamp converter</a> helps when you want to check what time a v7 prefix actually encodes.</p>
           <div class="cta-row">
             <a class="link-button link-button--primary" href="/en/uuid">Open UUID converter</a>
-            <a class="link-button" href="/uuidv7">Open UUID v7 generator</a>
+            <a class="link-button" href="/en/timestamp">Timestamp converter</a>
             <a class="link-button" href="/en/learn">Back to guide hub</a>
           </div>
         </div>
@@ -304,18 +386,17 @@ v7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f</code></pre>
         </section>
         </details>
     </section>
-
-    <footer class="footer footer--dev" data-nosnippet>
+      <footer class="footer footer--dev" data-nosnippet>
       <nav class="footer-links" aria-label="사이트 정보">
         <a href="/en/about" data-chrome-link="about">About</a>
         <a href="/en/privacy" data-chrome-link="privacy">Privacy</a>
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
+        <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small>© 2026 stateless tools · browser-first utility guides</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
     </footer>
   </div>
 
   
 </body>
-
 </html>
