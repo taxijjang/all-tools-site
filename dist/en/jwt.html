@@ -370,7 +370,21 @@
         </div>
       </section>
 
-      
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">What to check when verifying</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>Decoding is not verifying</h3></summary><p>The header and payload are Base64URL encoded, not encrypted, so anyone can read them. Reading the payload without checking the signature means trusting a token whose role an attacker changed to admin. A library's decode() does not verify.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Do not trust the header's alg</h3></summary><p>Attacks include switching alg to none and stripping the signature, or switching RS256 to HS256 so the public key is used as an HMAC secret. Pin the allowed algorithm in code — a token header is input, not configuration.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Keep secrets out of the payload</h3></summary><p>Since anyone can decode it, a token carrying national ID numbers, internal identifiers or detailed permissions is a disclosure by itself. A token in a server log is a usable credential until it expires.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    
         <details class="content-more">
           <summary data-i18n="common.moreContent">More: step-by-step usage and worked examples</summary>
 <section class="content-section">
@@ -393,7 +407,7 @@
           </div>
         </div>
       </section>
-    
+      
         </details>
       </section>
 

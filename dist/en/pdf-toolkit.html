@@ -350,6 +350,20 @@
           </div>
         </div>
       </section>
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Things to know first</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>Do not merge PDFs containing form fields</h3></summary><p>AcroForm fields are identified by name. Merging two documents from the same template makes the names collide, so in many viewers typing into one field fills the same-named field on other pages. This is a real hazard when combining forms for submission. Fill each one, flatten it, then merge.</p>
+            </details>
+            <details class="faq-item"><summary><h3>One added page invalidates a signature</h3></summary><p>A signature covers the exact bytes of the document at signing time. Merging or splitting changes them, so the signature reports the file as modified. Signed PDFs are attached, not merged.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Covering is not deleting</h3></summary><p>A PDF with black rectangles drawn over text still contains that text; copying reveals it. This has caused repeated public incidents. If information must be removed, extract a range that excludes the page entirely.</p>
+            </details>
+          </div>
+        </div>
+      </section>
     
         <details class="content-more">
           <summary data-i18n="common.moreContent">More: step-by-step usage and worked examples</summary>

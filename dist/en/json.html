@@ -390,6 +390,20 @@
           </div>
         </div>
       </section>
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Working with JSON</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>Large integers lose precision</h3></summary><p>JavaScript numbers are double-precision floats, so the safe integer range ends around 9 quadrillion. Snowflake IDs and 64-bit integers passed through JSON lose their last digits. Sending them as strings is the standard fix.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Comments and trailing commas are syntax errors</h3></summary><p>JSON has no comments and does not permit a trailing comma. Confusion with JavaScript object syntax is the usual cause. If a config file needs comments, use JSON5 or YAML, or add a dedicated description key.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Key order is not guaranteed</h3></summary><p>Object key order carries no meaning in the spec and can change through parse and serialise cycles. Data where order matters belongs in an array. Code comparing two JSON documents as strings fails for the same reason.</p>
+            </details>
+          </div>
+        </div>
+      </section>
     
         <details class="content-more">
           <summary data-i18n="common.moreContent">More: step-by-step usage and worked examples</summary>

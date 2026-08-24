@@ -398,7 +398,21 @@
         </div>
       </section>
 
-      
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Choosing an identifier</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>v7 exposes creation time</h3></summary><p>The first 48 bits of a UUID v7 are a millisecond timestamp, so the value reveals when it was created. If a user ID is v7 and appears in a public profile URL, that person's sign-up time is public. Keep a separate v4 for publicly exposed identifiers.</p>
+            </details>
+            <details class="faq-item"><summary><h3>A UUID is not a secret</h3></summary><p>Even v4 is merely hard to guess, not confidential. A design where "anyone with the URL can view it" is weak regardless of version. Access control belongs elsewhere.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Storage form drives index size</h3></summary><p>CHAR(36) uses 36 bytes including hyphens; BINARY(16) uses 16. On a primary key that 20-byte gap multiplies across every secondary index — at the cost of no longer being readable in logs.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    
         <details class="content-more">
           <summary data-i18n="common.moreContent">More: step-by-step usage and worked examples</summary>
 <section class="content-section">
@@ -421,7 +435,7 @@
           </div>
         </div>
       </section>
-    
+      
         </details>
       </section>
 

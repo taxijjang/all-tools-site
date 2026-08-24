@@ -183,6 +183,42 @@
           </div>
         </div>
       </section>
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">인코딩할 때 확인할 점</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>encodeURI와 encodeURIComponent는 다릅니다</h3>
+              <p>encodeURI는 URL 전체를 인코딩한다고 보고 ?, &, /를 남깁니다. encodeURIComponent는 값 하나로 보고 전부 바꿉니다. 쿼리 파라미터 값에는 항상 후자를 씁니다. 전자를 쓰면 값에 든 &가 파라미터 구분자로 해석됩니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>%25가 보이면 두 번 인코딩됐습니다</h3>
+              <p>% 자체의 인코딩이 %25이므로 이미 인코딩된 값을 다시 인코딩하면 %2520 같은 형태가 됩니다. 프레임워크와 직접 쓴 코드가 둘 다 인코딩할 때 나옵니다. 디코딩도 한 번만 해야 하며, 두 번 하면 필터를 통과한 뒤 특수문자가 생기는 취약점이 됩니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>한글은 바이트 단위로 늘어납니다</h3>
+              <p>URL 인코딩은 문자가 아니라 바이트를 인코딩합니다. UTF-8에서 한글 한 글자는 3바이트라 %EC%95%88처럼 9자가 됩니다. 인코딩 전에 어떤 문자 집합으로 바꿨는지가 결과를 바꾸므로 레거시 시스템과 연동할 때는 이 단계를 먼저 확인하세요.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Encoding checks</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>encodeURI and encodeURIComponent differ</h3>
+              <p>encodeURI treats the input as a whole URL and leaves ?, & and / alone; encodeURIComponent treats it as one value and encodes everything. Always use the latter for query values, or an & inside the value becomes a separator.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Seeing %25 means double encoding</h3>
+              <p>% encodes to %25, so re-encoding an already-encoded value produces forms like %2520. It happens when a framework and your own code both encode. Decode exactly once — decoding twice creates special characters after your filter has run.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Non-Latin text expands per byte</h3>
+              <p>URL encoding encodes bytes, not characters. A Korean syllable is three UTF-8 bytes, so it becomes nine characters such as %EC%95%88. The charset used before encoding changes the result, so check that step first when integrating with legacy systems.</p>
+            </article>
+          </div>
+        </div>
+      </section>
     </section>
 
     <footer class="footer footer--dev">

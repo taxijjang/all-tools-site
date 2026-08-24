@@ -348,6 +348,20 @@
           </div>
         </div>
       </section>
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Encoding checks</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>encodeURI and encodeURIComponent differ</h3></summary><p>encodeURI treats the input as a whole URL and leaves ?, & and / alone; encodeURIComponent treats it as one value and encodes everything. Always use the latter for query values, or an & inside the value becomes a separator.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Seeing %25 means double encoding</h3></summary><p>% encodes to %25, so re-encoding an already-encoded value produces forms like %2520. It happens when a framework and your own code both encode. Decode exactly once — decoding twice creates special characters after your filter has run.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Non-Latin text expands per byte</h3></summary><p>URL encoding encodes bytes, not characters. A Korean syllable is three UTF-8 bytes, so it becomes nine characters such as %EC%95%88. The charset used before encoding changes the result, so check that step first when integrating with legacy systems.</p>
+            </details>
+          </div>
+        </div>
+      </section>
     </section>
 
     

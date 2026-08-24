@@ -365,7 +365,21 @@
                     </div>
                 </div>
             </section>
-        </section>
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Working with timestamps</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>Tell seconds from milliseconds by digit count</h3></summary><p>A ten-digit Unix timestamp is seconds; thirteen digits is milliseconds. Reading milliseconds as seconds lands in the 1970s, and the reverse lands tens of thousands of years out. An absurd result usually means the wrong unit, not bad arithmetic.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Epoch values are always UTC</h3></summary><p>A Unix timestamp carries no time zone. The same number displays as 18:00 in Seoul and 09:00 in London. When comparing logs from servers with different display zones, one event appears at two different times.</p>
+            </details>
+            <details class="faq-item"><summary><h3>The 2038 problem has not gone away</h3></summary><p>Systems storing seconds in a signed 32-bit integer overflow in January 2038. It still turns up in older embedded devices and legacy database columns. If you handle expiry or future dates, check the column type.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </section>
 
     
 

@@ -263,6 +263,42 @@
           </div>
         </div>
       </section>
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">식별자를 고를 때 확인할 점</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>v7은 생성 시각을 값에 드러냅니다</h3>
+              <p>UUID v7의 앞 48비트는 밀리초 타임스탬프이므로 값만 보고 언제 만들어졌는지 알 수 있습니다. 사용자 ID가 v7이고 공개 프로필 URL에 들어간다면 그 사람의 가입 시각이 공개됩니다. 공개되는 식별자에는 v4를 따로 두는 편이 안전합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>UUID는 비밀이 아닙니다</h3>
+              <p>v4도 추측하기 어려울 뿐이고 비밀 토큰이 아닙니다. "URL을 아는 사람만 볼 수 있다"는 설계는 UUID 버전과 무관하게 취약합니다. 접근 제어는 별도로 두어야 합니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>저장 형식이 인덱스 크기를 좌우합니다</h3>
+              <p>CHAR(36)으로 저장하면 하이픈까지 36바이트, BINARY(16)이면 16바이트입니다. 기본키에서 이 20바이트 차이는 모든 세컨더리 인덱스에 곱해집니다. 대신 로그에서 눈으로 읽기 어려워지는 대가가 있습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Choosing an identifier</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>v7 exposes creation time</h3>
+              <p>The first 48 bits of a UUID v7 are a millisecond timestamp, so the value reveals when it was created. If a user ID is v7 and appears in a public profile URL, that person's sign-up time is public. Keep a separate v4 for publicly exposed identifiers.</p>
+            </article>
+            <article class="faq-item">
+              <h3>A UUID is not a secret</h3>
+              <p>Even v4 is merely hard to guess, not confidential. A design where "anyone with the URL can view it" is weak regardless of version. Access control belongs elsewhere.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Storage form drives index size</h3>
+              <p>CHAR(36) uses 36 bytes including hyphens; BINARY(16) uses 16. On a primary key that 20-byte gap multiplies across every secondary index — at the cost of no longer being readable in logs.</p>
+            </article>
+          </div>
+        </div>
+      </section>
     </section>
 
     <footer class="footer">

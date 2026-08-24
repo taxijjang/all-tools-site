@@ -222,7 +222,43 @@
                     </div>
                 </div>
             </section>
-        </section>
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">타임스탬프를 다룰 때</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>초와 밀리초를 자릿수로 구분하세요</h3>
+              <p>Unix 타임스탬프가 10자리면 초, 13자리면 밀리초입니다. 밀리초를 초로 읽으면 1970년대가 나오고, 초를 밀리초로 읽으면 수만 년 뒤가 나옵니다. 값이 터무니없으면 계산이 틀린 게 아니라 단위를 잘못 읽은 것입니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>epoch는 항상 UTC입니다</h3>
+              <p>Unix 타임스탬프 자체에는 시간대 정보가 없습니다. 그래서 같은 숫자가 서울에서는 오후 6시, 런던에서는 오전 9시로 표시됩니다. 로그를 비교할 때 두 서버의 표시 시간대가 다르면 같은 사건이 다른 시각으로 보입니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>2038년 문제는 아직 남아 있습니다</h3>
+              <p>32비트 부호 있는 정수로 초를 저장하는 시스템은 2038년 1월에 넘칩니다. 오래된 임베디드 장비나 레거시 데이터베이스 컬럼에서 여전히 발견됩니다. 만료일이나 미래 날짜를 다루는 곳이라면 컬럼 타입을 확인해두는 편이 좋습니다.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Working with timestamps</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Tell seconds from milliseconds by digit count</h3>
+              <p>A ten-digit Unix timestamp is seconds; thirteen digits is milliseconds. Reading milliseconds as seconds lands in the 1970s, and the reverse lands tens of thousands of years out. An absurd result usually means the wrong unit, not bad arithmetic.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Epoch values are always UTC</h3>
+              <p>A Unix timestamp carries no time zone. The same number displays as 18:00 in Seoul and 09:00 in London. When comparing logs from servers with different display zones, one event appears at two different times.</p>
+            </article>
+            <article class="faq-item">
+              <h3>The 2038 problem has not gone away</h3>
+              <p>Systems storing seconds in a signed 32-bit integer overflow in January 2038. It still turns up in older embedded devices and legacy database columns. If you handle expiry or future dates, check the column type.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </section>
 
         <footer class="footer">
             <small data-i18n="common.footerHome">© 2025 stateless tools</small>

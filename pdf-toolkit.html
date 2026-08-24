@@ -212,6 +212,42 @@
           </div>
         </div>
       </section>
+      <section class="content-section">
+        <div data-locale-block="ko" lang="ko">
+          <h2 class="section-title">작업 전 알아둘 점</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>입력 양식이 든 PDF는 합치지 마세요</h3>
+              <p>PDF 양식의 입력 칸은 이름으로 구분됩니다. 같은 템플릿으로 만든 문서 두 개를 합치면 필드 이름이 겹쳐서, 뷰어에 따라 한 칸에 입력한 값이 다른 페이지의 같은 이름 칸에도 들어갑니다. 서류 여러 장을 합쳐 제출할 때 실제로 사고가 나는 지점입니다. 각각 채운 뒤 평면화해서 합치세요.</p>
+            </article>
+            <article class="faq-item">
+              <h3>전자서명은 페이지 하나만 추가해도 깨집니다</h3>
+              <p>서명은 그 시점 문서의 바이트 전체를 대상으로 합니다. 병합이나 분할로 내용이 바뀌면 서명이 "문서 변경됨"으로 표시됩니다. 서명된 PDF는 합치는 대상이 아니라 따로 첨부하는 대상입니다.</p>
+            </article>
+            <article class="faq-item">
+              <h3>가린 것은 지운 것이 아닙니다</h3>
+              <p>편집기에서 검은 사각형을 덧그려 가린 PDF는 그 아래 텍스트가 그대로 남아 있어 복사하면 나옵니다. 언론 보도로 여러 번 사고가 난 방식입니다. 빼야 할 정보가 있으면 그 페이지를 아예 제외하는 범위 추출을 쓰세요.</p>
+            </article>
+          </div>
+        </div>
+        <div data-locale-block="en" lang="en" hidden>
+          <h2 class="section-title">Things to know first</h2>
+          <div class="faq-list">
+            <article class="faq-item">
+              <h3>Do not merge PDFs containing form fields</h3>
+              <p>AcroForm fields are identified by name. Merging two documents from the same template makes the names collide, so in many viewers typing into one field fills the same-named field on other pages. This is a real hazard when combining forms for submission. Fill each one, flatten it, then merge.</p>
+            </article>
+            <article class="faq-item">
+              <h3>One added page invalidates a signature</h3>
+              <p>A signature covers the exact bytes of the document at signing time. Merging or splitting changes them, so the signature reports the file as modified. Signed PDFs are attached, not merged.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Covering is not deleting</h3>
+              <p>A PDF with black rectangles drawn over text still contains that text; copying reveals it. This has caused repeated public incidents. If information must be removed, extract a range that excludes the page entirely.</p>
+            </article>
+          </div>
+        </div>
+      </section>
     </section>
 
     <footer class="footer footer--dev">

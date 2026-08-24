@@ -323,6 +323,20 @@
           </div>
         </div>
       </section>
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Working with regular expressions</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>Greedy quantifiers take more than you expect</h3></summary><p>.* matches as much as possible, so <a>.*</a> spans the whole string rather than one tag. Use .*? to match minimally. When results look wrong on tags or quotes, check this first.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Syntax differs between engines</h3></summary><p>JavaScript, Python, PCRE and POSIX diverge on lookbehind and Unicode property support. An expression that works here may not work in your server language. Re-test it in that runtime when you move it.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Large input can hang the engine</h3></summary><p>Nested quantifiers such as (a+)+ cause catastrophic backtracking and stall on short input. In code validating user input this becomes a denial of service. Splitting complex patterns into string operations is safer.</p>
+            </details>
+          </div>
+        </div>
+      </section>
     </section>
 
     
