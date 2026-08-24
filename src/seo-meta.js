@@ -77,9 +77,9 @@ export const PAGE_META = {
   index: {
     path: '/',
     kind: 'home',
-    title: '개발자 도구 런처 | UUID, JSON, Base64, PDF, SEO',
+    title: '파일을 업로드하지 않는 브라우저 도구 모음',
     description:
-      'UUID, JSON, Base64, JWT, PDF, 이미지, SEO 등 자주 쓰는 브라우저 기반 개발자 도구를 검색하고 바로 실행하세요.',
+      'PDF 병합, OCR, 이미지 압축, JSON·JWT 검사, 해시 계산까지 파일과 입력값을 서버로 보내지 않고 브라우저에서 끝냅니다. 사내 문서나 개인정보가 든 파일도 그대로 넣을 수 있습니다.',
   },
   learn: {
     path: '/learn',

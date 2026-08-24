@@ -4,9 +4,9 @@
 // /en/ URL을 따로 만들 때 빌드 타임 소스로도 그대로 쓸 수 있게 명시적으로 적어둔다.
 export const PAGE_META_EN = {
   '/': {
-    title: 'Developer Tool Launcher | UUID, JSON, Base64, PDF, SEO',
+    title: 'Browser Tools That Never Upload Your Files',
     description:
-      'Search and run browser-based developer tools for UUID, JSON, Base64, JWT, PDF, images, and SEO checks.',
+      'Merge PDFs, run OCR, compress images, inspect JSON and JWT, compute hashes — all without sending files or input to a server. Safe for internal documents and personal data.',
   },
   '/learn': {
     title: 'Developer Utility Guides | UUID, JWT, Base64',

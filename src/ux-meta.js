@@ -167,8 +167,8 @@ export const FILE_PICKER_META = {
 export const HOME_DISCOVERY_COPY = {
   ko: {
     kicker: 'Tool Search',
-    heading: '필요한 도구만 빠르게 찾기',
-    lead: '키워드를 입력하거나 카테고리를 고르면 바로 쓸 도구만 남습니다.',
+    heading: '파일을 업로드하지 않는 도구만 모았습니다',
+    lead: 'PDF 병합, OCR, 이미지 압축까지 전부 브라우저 안에서 끝납니다. 사내 문서나 개인정보가 든 파일을 외부 서버에 올리지 않아도 됩니다.',
     spotlightKicker: 'Start Here',
     spotlightHeading: '많이 여는 조합을 먼저 보여드립니다',
     spotlightLead: '자주 이어서 쓰는 도구를 작업 흐름별로 묶어 뒀습니다. 급하면 여기서 바로 들어가면 됩니다.',
@@ -186,8 +186,8 @@ export const HOME_DISCOVERY_COPY = {
   },
   en: {
     kicker: 'Tool Search',
-    heading: 'Find the tool you need',
-    lead: 'Search by keyword or choose a category to narrow the catalog quickly.',
+    heading: 'Tools that never upload your files',
+    lead: 'Merging PDFs, running OCR and compressing images all happen inside your browser. Internal documents and personal data never leave your device.',
     spotlightKicker: 'Start Here',
     spotlightHeading: 'Open the combinations people reach for most',
     spotlightLead: 'These clusters bundle the tools that are commonly used back-to-back, so you can move faster without scanning the full catalog first.',
