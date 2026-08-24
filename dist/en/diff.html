@@ -268,7 +268,7 @@ line4</textarea>
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">Text diff workflow notes</h2>
-          <p class="section-lead">Compare two similar text blocks such as config files, drafts, or API responses and focus on the changed lines.</p>
+          <p class="section-lead">Spotting what changed between two similar texts — config files, API responses — is something the eye always misses. A line-by-line comparison marking additions and removals speeds up pre-deploy checks and incident tracing. Note that changed line endings or indentation flag everything, so keep formatting and content changes separate.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Find changed lines</h3>
@@ -315,6 +315,18 @@ line4</textarea>
               <h3>Large inputs</h3>
               <p>Very large logs or files can use a lot of browser memory. Compare only the relevant section when possible.</p>
             </article>
+            <article class="info-card">
+              <h3>Whitespace changes show up as diffs</h3>
+              <p>Switching indentation from tabs to spaces, or trimming trailing spaces, marks every line as changed even when the content is identical. Run a formatter first so formatting and logic changes stay separate.</p>
+            </article>
+            <article class="info-card">
+              <h3>The limits of line-based comparison</h3>
+              <p>Changing one word marks the whole line as removed and added. In long prose or minified code that hides what actually changed. Splitting into shorter lines before comparing makes it readable.</p>
+            </article>
+            <article class="info-card">
+              <h3>Different line endings mark everything changed</h3>
+              <p>Windows uses CRLF while Linux and macOS use LF. Comparing files from different environments flags every line even when the content matches. Check your git autocrlf setting or the editor line-ending indicator first.</p>
+            </article>
           </div>
         </section>
 
@@ -360,10 +372,10 @@ retries: 3</code></pre>
           <h2 class="section-title">Tools that pair well</h2>
           <ul class="related-list">
             <li><a href="/en/regex">Regex Tester</a></li>
-            <li><a href="/en/markdown">Markdown</a> — Review Markdown documents such as READMEs, release notes, and issue templates as rendered output and generated</li>
+            <li><a href="/en/markdown">Markdown</a> — The awkward part of writing a README, release note or issue template is not seeing the result until you commit</li>
             <li><a href="/en/case-convert">Case Converter</a> — Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-ca</li>
-            <li><a href="/en/text-cleaner">Text Cleaner</a> — Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying te</li>
-            <li><a href="/en/text-stats">Character Counter</a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.</li>
+            <li><a href="/en/text-cleaner">Text Cleaner</a> — Text copied from the web or a PDF carries invisible whitespace and zero-width characters.</li>
+            <li><a href="/en/text-stats">Character Counter</a> — Application essays and reports usually come with a character limit, and organisations differ on whether spaces</li>
           </ul>
         </section>
         </details>

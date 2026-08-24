@@ -272,7 +272,7 @@
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">Text cleaning workflow</h2>
-          <p class="section-lead">Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying text in the browser.</p>
+          <p class="section-lead">Text copied from the web or a PDF carries invisible whitespace and zero-width characters. Passed straight into code or data, they break string comparison and search. Deduplication, whitespace cleanup, sorting and slugify in one place get pasted text into a usable state.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Remove paste artifacts</h3>
@@ -314,6 +314,18 @@
             <article class="info-card">
               <h3>Review slugs</h3>
               <p>Automatic slugs are drafts. Before publishing URLs, adjust brand names, acronyms, and search intent manually.</p>
+            </article>
+            <article class="info-card">
+              <h3>Invisible characters survive copying</h3>
+              <p>Text copied from the web or a PDF carries non-breaking spaces (U+00A0), zero-width spaces (U+200B) and directional marks. They look like spaces but break string comparison and search. That is why whitespace cleanup comes first.</p>
+            </article>
+            <article class="info-card">
+              <h3>Slugify results depend on the language</h3>
+              <p>Turning non-Latin text into a slug gives different output per tool: transliteration, removal, or percent-encoding. Pick one convention for URLs and keep the team consistent, or links will diverge later.</p>
+            </article>
+            <article class="info-card">
+              <h3>Deduplication changes order</h3>
+              <p>Removing duplicate lines keeps only the first occurrence, discarding some ordering information. For data where order matters, such as logs, keep the original before deduplicating. Sorting then deduplicating loses the order entirely.</p>
             </article>
           </div>
         </section>
@@ -365,10 +377,10 @@ cherry</code></pre>
           <h2 class="section-title">Tools that pair well</h2>
           <ul class="related-list">
             <li><a href="/en/regex">Regex Tester</a></li>
-            <li><a href="/en/diff">Text Diff</a> — Compare two similar text blocks such as config files, drafts, or API responses and focus on the changed lines.</li>
-            <li><a href="/en/markdown">Markdown</a> — Review Markdown documents such as READMEs, release notes, and issue templates as rendered output and generated</li>
+            <li><a href="/en/diff">Text Diff</a> — Spotting what changed between two similar texts — config files, API responses — is something the eye always mi</li>
+            <li><a href="/en/markdown">Markdown</a> — The awkward part of writing a README, release note or issue template is not seeing the result until you commit</li>
             <li><a href="/en/case-convert">Case Converter</a> — Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-ca</li>
-            <li><a href="/en/text-stats">Character Counter</a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.</li>
+            <li><a href="/en/text-stats">Character Counter</a> — Application essays and reports usually come with a character limit, and organisations differ on whether spaces</li>
           </ul>
         </section>
         </details>

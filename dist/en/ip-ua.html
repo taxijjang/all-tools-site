@@ -287,6 +287,18 @@
               <h3>User-Agent is reduced</h3>
               <p>Modern browsers may reduce or freeze User-Agent details for privacy. Feature detection is more reliable for capability checks.</p>
             </article>
+            <article class="info-card">
+              <h3>Public and private IPs differ</h3>
+              <p>The value shown is your public IP as seen from the internet. A browser cannot read the 192.168 address behind your router. For a firewall allowlist this is the right value; for finding a device on the LAN it is not.</p>
+            </article>
+            <article class="info-card">
+              <h3>User-Agent is no longer reliable</h3>
+              <p>Browsers are freezing and reducing the UA string to limit fingerprinting. Code that parses UA for version or platform will increasingly be wrong. Use feature detection instead.</p>
+            </article>
+            <article class="info-card">
+              <h3>VPNs and proxies show a different value</h3>
+              <p>Behind a corporate VPN or proxy, the IP shown is that exit server's address. This is how people end up allowlisting the office IP when they meant their home one. Disconnect and check again.</p>
+            </article>
           </div>
         </section>
 
@@ -330,7 +342,7 @@ Engine WebKit/Blink</code></pre>
             <li><a href="/en/timestamp">Timestamp Converter</a></li>
             <li><a href="/en/hash">SHA Hash</a></li>
             <li><a href="/en/password">Password</a></li>
-            <li><a href="/en/convert">Unit Converter</a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not</li>
+            <li><a href="/en/convert">Unit Converter</a> — Unit conversion is not hard arithmetic; the difficulty is which standard applies.</li>
           </ul>
         </section>
         </details>

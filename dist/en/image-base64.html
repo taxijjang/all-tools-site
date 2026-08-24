@@ -272,7 +272,7 @@
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">Image Base64 conversion guidance</h2>
-          <p class="section-lead">Move small icons, test images, and data URLs between files and strings for CSS, HTML, and API samples.</p>
+          <p class="section-lead">Converting a small icon or test image to a data URL lets you inline it in code. It saves a request, but the result is about 33% larger and cannot be cached separately, so it suits only genuinely tiny images. In the other direction, decoding a data URL back to a file shows you what you were sent.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Create data URLs</h3>
@@ -315,6 +315,18 @@
               <h3>Check the MIME type</h3>
               <p>A prefix such as data:image/png;base64 should match the actual image format to avoid unexpected browser or API behavior.</p>
             </article>
+            <article class="info-card">
+              <h3>A data URL is about 33% larger</h3>
+              <p>Base64 turns three bytes into four characters, so the result grows by roughly a third. For tiny icons, saving a request wins; for large images, a cacheable file is faster.</p>
+            </article>
+            <article class="info-card">
+              <h3>Inlining into CSS defeats caching</h3>
+              <p>A data URL inside CSS makes the image part of the stylesheet. Changing one image invalidates the whole file, and the browser cannot cache the image separately. Do not inline images that change often.</p>
+            </article>
+            <article class="info-card">
+              <h3>Data URLs ruin logs and diffs</h3>
+              <p>A single line of tens of thousands of characters makes git diffs unreadable and code review impractical. In an error log it drowns out everything else. Inline only genuinely tiny images.</p>
+            </article>
           </div>
         </section>
 
@@ -353,10 +365,10 @@
           <h2 class="section-title">Tools that pair well</h2>
           <ul class="related-list">
             <li><a href="/en/pdf-toolkit">PDF Merge/Split</a></li>
-            <li><a href="/en/image-optimize">Image Optimizer</a> — Resize images, adjust quality, and compare output formats in the browser before uploading them to a website or</li>
-            <li><a href="/en/ocr">OCR Extractor</a> — Extract Korean and English text from screenshots, scans, and captured documents into copyable text.</li>
-            <li><a href="/en/qr">QR Code</a> — Create QR codes for URLs, short text, and Wi-Fi details, then decode QR images in the browser before opening o</li>
-            <li><a href="/en/file-hash">File Hash</a> — Calculate SHA hashes for downloads, release artifacts, and shared files in the browser to verify integrity.</li>
+            <li><a href="/en/image-optimize">Image Optimizer</a> — Before uploading an image you have to decide how far you can compress before the quality shows.</li>
+            <li><a href="/en/ocr">OCR Extractor</a> — Text extraction returns nothing from a scanned PDF or a photographed document, because the page is a single im</li>
+            <li><a href="/en/qr">QR Code</a> — Turn a URL or Wi-Fi details into a QR code for mobile testing or printed notices.</li>
+            <li><a href="/en/file-hash">File Hash</a> — Comparing hashes is the reliable way to confirm a build artefact or received file was not corrupted in transit</li>
           </ul>
         </section>
         </details>

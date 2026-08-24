@@ -267,7 +267,7 @@
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">Color conversion and contrast review</h2>
-          <p class="section-lead">Convert HEX, RGB, and HSL values from the same color and check contrast against white and black backgrounds.</p>
+          <p class="section-lead">Choosing UI colours means moving between HEX, RGB and HSL and checking they describe the same colour. All three notations line up here, alongside contrast against white and black backgrounds. Because contrast is determined by luminance rather than hue, raising saturation alone will not make text readable.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Normalize design tokens</h3>
@@ -309,6 +309,18 @@
             <article class="info-card">
               <h3>Use HSL for variants</h3>
               <p>HSL is useful when you want to keep hue stable while adjusting lightness or saturation for hover, disabled, and border states.</p>
+            </article>
+            <article class="info-card">
+              <h3>Contrast is luminance, not hue</h3>
+              <p>Contrast ratios use relative luminance only. Two vivid colours of similar brightness score badly no matter how different the hues are. Widen the lightness gap, not just the colour.</p>
+            </article>
+            <article class="info-card">
+              <h3>Alpha changes the calculation</h3>
+              <p>Text on a semi-transparent background is actually rendered against whatever is behind it. Computing contrast from the declared colour alone gives the wrong answer; check the composited colour instead.</p>
+            </article>
+            <article class="info-card">
+              <h3>HEX and HSL drift on round trips</h3>
+              <p>HEX has 256 steps per channel while HSL uses degrees and percentages, so conversion rounds. Going HEX to HSL and back can shift a step or two. Keep design tokens in one canonical format and edit only that.</p>
             </article>
           </div>
         </section>

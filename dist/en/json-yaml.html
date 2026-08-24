@@ -298,6 +298,18 @@
               <h3>Comments may not survive</h3>
               <p>JSON has no comments, and YAML comments or original formatting may be lost during conversion. Keep the original config separately.</p>
             </article>
+            <article class="info-card">
+              <h3>Unquoted YAML values are risky</h3>
+              <p>Bare yes, no, on, off and null parse as booleans or null rather than strings. The country code NO becoming false is the classic example. Quote anything that must stay a string.</p>
+            </article>
+            <article class="info-card">
+              <h3>Tabs are not allowed for indentation</h3>
+              <p>The YAML spec permits only spaces for indentation. An editor inserting tabs causes a parse error that looks fine on screen. Enable tab-to-space conversion for YAML files.</p>
+            </article>
+            <article class="info-card">
+              <h3>YAML anchors do not survive JSON</h3>
+              <p>YAML anchors and aliases reuse a block, and JSON has no equivalent. Converting expands every reference, inflating the file, and the original structure cannot be restored on the way back. Avoid anchors if you need a round trip.</p>
+            </article>
           </div>
         </section>
 
@@ -352,7 +364,7 @@ debug: false</code></pre>
             <li><a href="/en/json">JSON Formatter</a></li>
             <li><a href="/en/jwt">JWT Decoder</a></li>
             <li><a href="/en/url">URL Encoder/Decoder</a></li>
-            <li><a href="/en/api-tester">API Request Tester</a> — Build HTTP requests in the browser, inspect responses, and export cURL commands for reproducible API debugging</li>
+            <li><a href="/en/api-tester">API Request Tester</a> — Reproducing an API response for documentation or a bug report means being able to write the request down exact</li>
           </ul>
         </section>
         </details>

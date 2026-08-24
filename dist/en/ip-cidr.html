@@ -334,6 +334,18 @@
               <h3>Reserved addresses vary</h3>
               <p>Cloud networks may reserve some addresses in every subnet. Confirm usable host counts with the platform documentation.</p>
             </article>
+            <article class="info-card">
+              <h3>Two addresses are not usable</h3>
+              <p>The first address in an IPv4 subnet is the network address and the last is the broadcast address. A /24 gives 254 usable hosts, not 256. /31 and /32 are exceptions, used for point-to-point links and single hosts.</p>
+            </article>
+            <article class="info-card">
+              <h3>Keep private ranges from overlapping</h3>
+              <p>The private ranges are 10.0.0.0/8, 172.16.0.0/12 and 192.168.0.0/16. If both sides of a VPN use the same block, routing collides and the link fails. When picking a new range, avoid the very common 192.168.0.0/24.</p>
+            </article>
+            <article class="info-card">
+              <h3>A subnet mask and a prefix are the same thing</h3>
+              <p>255.255.255.0 and /24 are two notations for one value. Device UIs tend to use masks while cloud consoles and docs use prefixes. Since you move between them often, remember that each step halves: /24 is 256, /25 is 128.</p>
+            </article>
           </div>
         </section>
 
@@ -388,7 +400,7 @@ Usable hosts 1,022</code></pre>
             <li><a href="/en/timestamp">Timestamp Converter</a></li>
             <li><a href="/en/hash">SHA Hash</a></li>
             <li><a href="/en/password">Password</a></li>
-            <li><a href="/en/convert">Unit Converter</a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not</li>
+            <li><a href="/en/convert">Unit Converter</a> — Unit conversion is not hard arithmetic; the difficulty is which standard applies.</li>
           </ul>
         </section>
         </details>

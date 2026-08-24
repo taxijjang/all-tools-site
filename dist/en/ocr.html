@@ -273,7 +273,7 @@
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">OCR text extraction guidance</h2>
-          <p class="section-lead">Extract Korean and English text from screenshots, scans, and captured documents into copyable text.</p>
+          <p class="section-lead">Text extraction returns nothing from a scanned PDF or a photographed document, because the page is a single image with no character data inside. OCR finds the characters in that image and turns them into copyable text. Accuracy depends on resolution, so use the original rather than a downscaled screenshot.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Copy text from images</h3>
@@ -320,6 +320,18 @@
               <h3>Review important text</h3>
               <p>OCR is an assistant, not a source of truth. Compare contracts, amounts, and account numbers with the original image.</p>
             </article>
+            <article class="info-card">
+              <h3>Resolution drives accuracy</h3>
+              <p>Recognition drops sharply once character height falls below about 20 pixels. Recapturing at native resolution beats a downscaled screenshot. Straighten skewed photos before running OCR.</p>
+            </article>
+            <article class="info-card">
+              <h3>Tables and columns come out interleaved</h3>
+              <p>OCR finds characters; it does not understand document structure. Tables lose their cell boundaries and two-column layouts alternate left and right. Plan a cleanup step rather than using the raw output.</p>
+            </article>
+            <article class="info-card">
+              <h3>Watch for lookalike characters</h3>
+              <p>0 and O, 1 and l and I, 5 and S are frequently confused. Values where one character matters — account numbers, order IDs, serials — need a visual check. Put validation in any pipeline that forwards OCR output automatically.</p>
+            </article>
           </div>
         </section>
 
@@ -358,10 +370,10 @@
           <h2 class="section-title">Tools that pair well</h2>
           <ul class="related-list">
             <li><a href="/en/pdf-toolkit">PDF Merge/Split</a></li>
-            <li><a href="/en/image-optimize">Image Optimizer</a> — Resize images, adjust quality, and compare output formats in the browser before uploading them to a website or</li>
-            <li><a href="/en/image-base64">Image Base64</a> — Move small icons, test images, and data URLs between files and strings for CSS, HTML, and API samples.</li>
-            <li><a href="/en/qr">QR Code</a> — Create QR codes for URLs, short text, and Wi-Fi details, then decode QR images in the browser before opening o</li>
-            <li><a href="/en/file-hash">File Hash</a> — Calculate SHA hashes for downloads, release artifacts, and shared files in the browser to verify integrity.</li>
+            <li><a href="/en/image-optimize">Image Optimizer</a> — Before uploading an image you have to decide how far you can compress before the quality shows.</li>
+            <li><a href="/en/image-base64">Image Base64</a> — Converting a small icon or test image to a data URL lets you inline it in code.</li>
+            <li><a href="/en/qr">QR Code</a> — Turn a URL or Wi-Fi details into a QR code for mobile testing or printed notices.</li>
+            <li><a href="/en/file-hash">File Hash</a> — Comparing hashes is the reliable way to confirm a build artefact or received file was not corrupted in transit</li>
           </ul>
         </section>
         </details>

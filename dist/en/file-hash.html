@@ -275,7 +275,7 @@
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">File hash verification workflow</h2>
-          <p class="section-lead">Calculate SHA hashes for downloads, release artifacts, and shared files in the browser to verify integrity.</p>
+          <p class="section-lead">Comparing hashes is the reliable way to confirm a build artefact or received file was not corrupted in transit. Check the value computed here against the published checksum. The whole file is read in the browser and never uploaded, which makes it usable for internal files too.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Compare checksums</h3>
@@ -322,6 +322,18 @@
               <h3>Large files take time</h3>
               <p>Very large files can use more browser memory and processing time. Wait briefly before assuming the calculation failed.</p>
             </article>
+            <article class="info-card">
+              <h3>Different hashes mean different files, not the reverse</h3>
+              <p>Matching hashes effectively mean identical files, but a slightly corrupted download produces a completely different hash. So a hash cannot tell you how much changed — that is a diff tool's job.</p>
+            </article>
+            <article class="info-card">
+              <h3>Large files take time</h3>
+              <p>The hash is computed in your browser, so the whole file must be read. Multi-gigabyte files can be slow or hit memory limits. In exchange nothing is uploaded, which is what makes it safe for internal files.</p>
+            </article>
+            <article class="info-card">
+              <h3>SHA-1 is for integrity only now</h3>
+              <p>Collisions in SHA-1 can be constructed deliberately, so it is unsuitable for signatures or security verification. It is still fine for checking whether a transfer corrupted a file. Use SHA-256 or stronger where security matters.</p>
+            </article>
           </div>
         </section>
 
@@ -361,10 +373,10 @@
           <h2 class="section-title">Tools that pair well</h2>
           <ul class="related-list">
             <li><a href="/en/pdf-toolkit">PDF Merge/Split</a></li>
-            <li><a href="/en/image-optimize">Image Optimizer</a> — Resize images, adjust quality, and compare output formats in the browser before uploading them to a website or</li>
-            <li><a href="/en/image-base64">Image Base64</a> — Move small icons, test images, and data URLs between files and strings for CSS, HTML, and API samples.</li>
-            <li><a href="/en/ocr">OCR Extractor</a> — Extract Korean and English text from screenshots, scans, and captured documents into copyable text.</li>
-            <li><a href="/en/qr">QR Code</a> — Create QR codes for URLs, short text, and Wi-Fi details, then decode QR images in the browser before opening o</li>
+            <li><a href="/en/image-optimize">Image Optimizer</a> — Before uploading an image you have to decide how far you can compress before the quality shows.</li>
+            <li><a href="/en/image-base64">Image Base64</a> — Converting a small icon or test image to a data URL lets you inline it in code.</li>
+            <li><a href="/en/ocr">OCR Extractor</a> — Text extraction returns nothing from a scanned PDF or a photographed document, because the page is a single im</li>
+            <li><a href="/en/qr">QR Code</a> — Turn a URL or Wi-Fi details into a QR code for mobile testing or printed notices.</li>
           </ul>
         </section>
         </details>

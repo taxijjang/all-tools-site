@@ -337,6 +337,18 @@
               <h3>Seconds are runtime-specific</h3>
               <p>Some systems support a seconds field, while traditional crontab uses five fields. Match the format expected by your scheduler.</p>
             </article>
+            <article class="info-card">
+              <h3>Day-of-month and day-of-week are OR</h3>
+              <p>Setting both the third and fifth fields makes most implementations combine them with OR, not AND. The crontab guide explains this and how to work around it.</p>
+            </article>
+            <article class="info-card">
+              <h3>Step values are modulo, not intervals</h3>
+              <p>*/15 matches minutes divisible by 15 rather than "every 15 minutes from now". So 7 */3 * * * fires at 00:07, 03:07, 06:07 and so on, not three hours from the current time.</p>
+            </article>
+            <article class="info-card">
+              <h3>The environment differs from your shell</h3>
+              <p>Cron runs with a minimal environment, so a command that works in your terminal reports command not found. Use absolute paths or load the environment at the top of the script. Python virtualenvs and Node version managers are frequent offenders.</p>
+            </article>
           </div>
         </section>
 
@@ -393,7 +405,7 @@
             <li><a href="/en/timestamp">Timestamp Converter</a></li>
             <li><a href="/en/hash">SHA Hash</a></li>
             <li><a href="/en/password">Password</a></li>
-            <li><a href="/en/convert">Unit Converter</a> — Convert common length, weight, and temperature units to reduce unit mistakes in docs, code, and operations not</li>
+            <li><a href="/en/convert">Unit Converter</a> — Unit conversion is not hard arithmetic; the difficulty is which standard applies.</li>
           </ul>
         </section>
         </details>

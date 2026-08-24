@@ -285,7 +285,7 @@
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">Safe API request testing</h2>
-          <p class="section-lead">Build HTTP requests in the browser, inspect responses, and export cURL commands for reproducible API debugging.</p>
+          <p class="section-lead">Reproducing an API response for documentation or a bug report means being able to write the request down exactly. Filling in method, headers and body and seeing both the response and the cURL form shortens that. Note that requests originate in the browser, so a server that does not permit CORS will block reading the response.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Reproduce requests</h3>
@@ -327,6 +327,18 @@
             <article class="info-card">
               <h3>Browser policy differs</h3>
               <p>A healthy server can still be blocked by CORS, auth-cookie rules, or mixed content policy. Browser results can differ from server-to-server calls.</p>
+            </article>
+            <article class="info-card">
+              <h3>CORS is the server's decision</h3>
+              <p>A cross-origin request from a browser cannot be read unless that server sends permitting headers. This is the browser security model, not a tool limitation. APIs that do not allow it must be called from a terminal or your own server.</p>
+            </article>
+            <article class="info-card">
+              <h3>When you paste a token in a header</h3>
+              <p>Values entered here stay in your browser, but they remain visible on screen and extensions can read them. Prefer a short-lived test token over a production access token.</p>
+            </article>
+            <article class="info-card">
+              <h3>GET and HEAD have no body</h3>
+              <p>The spec technically allows a body on GET, but most servers and proxies ignore or reject it. Complex queries work better as query parameters or as a POST. If a response is empty, check this first.</p>
             </article>
           </div>
         </section>

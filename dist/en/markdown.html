@@ -275,7 +275,7 @@
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">Markdown preview workflow</h2>
-          <p class="section-lead">Review Markdown documents such as READMEs, release notes, and issue templates as rendered output and generated HTML.</p>
+          <p class="section-lead">The awkward part of writing a README, release note or issue template is not seeing the result until you commit. Checking the rendered output and the generated HTML side by side catches broken tables and unclosed code fences beforehand. The converted HTML is also handy for pasting into mail or a wiki.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Review drafts quickly</h3>
@@ -317,6 +317,18 @@
             <article class="info-card">
               <h3>Be careful with HTML</h3>
               <p>Published HTML depends on the target sanitizer and script restrictions. Do not publish untrusted HTML as-is.</p>
+            </article>
+            <article class="info-card">
+              <h3>Preview and final rendering differ</h3>
+              <p>GitHub, Notion and blog platforms each use a different Markdown dialect. Tables, footnotes, checkboxes and line-break handling vary most. Matching here does not guarantee the same result where you publish.</p>
+            </article>
+            <article class="info-card">
+              <h3>Single line breaks are ignored</h3>
+              <p>Standard Markdown joins a single newline into the same paragraph. To keep a break, end the line with two spaces or separate paragraphs with a blank line. This is why pasted text collapses into one block.</p>
+            </article>
+            <article class="info-card">
+              <h3>Markdown stops inside code fences</h3>
+              <p>Asterisks and underscores inside a triple-backtick block render literally. Conversely, a missing closing fence renders the rest of the document as code — if the preview suddenly turns into one grey block, check the fence pairing first.</p>
             </article>
           </div>
         </section>
@@ -361,10 +373,10 @@ const a = 1;
           <h2 class="section-title">Tools that pair well</h2>
           <ul class="related-list">
             <li><a href="/en/regex">Regex Tester</a></li>
-            <li><a href="/en/diff">Text Diff</a> — Compare two similar text blocks such as config files, drafts, or API responses and focus on the changed lines.</li>
+            <li><a href="/en/diff">Text Diff</a> — Spotting what changed between two similar texts — config files, API responses — is something the eye always mi</li>
             <li><a href="/en/case-convert">Case Converter</a> — Convert API fields, environment variables, filenames, and document titles into camelCase, snake_case, kebab-ca</li>
-            <li><a href="/en/text-cleaner">Text Cleaner</a> — Clean repeated editing tasks such as trimming whitespace, removing duplicate lines, sorting, and slugifying te</li>
-            <li><a href="/en/text-stats">Character Counter</a> — Check characters, words, lines, and estimated reading time for input limits, draft length, and UX copy sizing.</li>
+            <li><a href="/en/text-cleaner">Text Cleaner</a> — Text copied from the web or a PDF carries invisible whitespace and zero-width characters.</li>
+            <li><a href="/en/text-stats">Character Counter</a> — Application essays and reports usually come with a character limit, and organisations differ on whether spaces</li>
           </ul>
         </section>
         </details>

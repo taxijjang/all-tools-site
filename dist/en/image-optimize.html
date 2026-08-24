@@ -280,7 +280,7 @@
     <section class="content-stack content-stack--generated" data-seo-support data-locale-block="en" lang="en" aria-hidden="true">
         <section class="content-section content-section--highlight">
           <h2 class="section-title">Image optimization workflow</h2>
-          <p class="section-lead">Resize images, adjust quality, and compare output formats in the browser before uploading them to a website or document.</p>
+          <p class="section-lead">Before uploading an image you have to decide how far you can compress before the quality shows. Adjusting dimensions, quality and output format while comparing results lets you find that point by eye. Files are processed in the browser rather than uploaded, so unreleased or internal images are fine to drop in.</p>
           <div class="content-grid">
             <article class="info-card">
               <h3>Reduce upload weight</h3>
@@ -327,6 +327,18 @@
               <h3>Metadata may be removed</h3>
               <p>Canvas-based conversion may not preserve EXIF metadata. Keep the original when photo metadata matters.</p>
             </article>
+            <article class="info-card">
+              <h3>WebP is not always smaller</h3>
+              <p>WebP beats JPEG on photographs, but a flat-colour logo or screenshot can be smaller as PNG. If transparency is required, JPEG is out. Exporting all three and comparing sizes is the reliable check.</p>
+            </article>
+            <article class="info-card">
+              <h3>Metadata and orientation</h3>
+              <p>Phone photos carry EXIF location and orientation. Stripping EXIF during compression can leave a portrait photo sideways; keeping it publishes the location. For public images, stripping is the right default.</p>
+            </article>
+            <article class="info-card">
+              <h3>Lost quality does not come back</h3>
+              <p>JPEG and WebP are lossy, so each save discards information. Recompressing an already-compressed file degrades it in steps. Keep the original and export fresh from it each time.</p>
+            </article>
           </div>
         </section>
 
@@ -365,10 +377,10 @@ about 87% smaller</code></pre>
           <h2 class="section-title">Tools that pair well</h2>
           <ul class="related-list">
             <li><a href="/en/pdf-toolkit">PDF Merge/Split</a></li>
-            <li><a href="/en/image-base64">Image Base64</a> — Move small icons, test images, and data URLs between files and strings for CSS, HTML, and API samples.</li>
-            <li><a href="/en/ocr">OCR Extractor</a> — Extract Korean and English text from screenshots, scans, and captured documents into copyable text.</li>
-            <li><a href="/en/qr">QR Code</a> — Create QR codes for URLs, short text, and Wi-Fi details, then decode QR images in the browser before opening o</li>
-            <li><a href="/en/file-hash">File Hash</a> — Calculate SHA hashes for downloads, release artifacts, and shared files in the browser to verify integrity.</li>
+            <li><a href="/en/image-base64">Image Base64</a> — Converting a small icon or test image to a data URL lets you inline it in code.</li>
+            <li><a href="/en/ocr">OCR Extractor</a> — Text extraction returns nothing from a scanned PDF or a photographed document, because the page is a single im</li>
+            <li><a href="/en/qr">QR Code</a> — Turn a URL or Wi-Fi details into a QR code for mobile testing or printed notices.</li>
+            <li><a href="/en/file-hash">File Hash</a> — Comparing hashes is the reliable way to confirm a build artefact or received file was not corrupted in transit</li>
           </ul>
         </section>
         </details>
