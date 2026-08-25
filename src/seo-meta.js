@@ -112,7 +112,7 @@ export const PAGE_META = {
   uuid: {
     path: '/uuid',
     kind: 'tool',
-    title: 'UUID 변환기 | UUID 생성기, UUID v4, ULID, Hex 변환',
+    title: 'UUID 생성기 | v4·v7·ULID, Hex 변환',
     description:
       'UUID v4와 ULID를 생성하고 UUID를 hex(binary16)으로 변환하거나 다시 UUID로 복구할 수 있는 브라우저 도구입니다.',
     applicationCategory: 'DeveloperApplication',
@@ -137,7 +137,7 @@ export const PAGE_META = {
   base64: {
     path: '/base64',
     kind: 'tool',
-    title: 'Base64 인코더/디코더 | Base64 변환, URL-safe, 파일 인코딩',
+    title: 'Base64 인코딩 디코딩 | 파일 변환',
     description:
       '문자열과 파일을 Base64로 인코딩하거나 디코딩하고, URL-safe와 공백 정리 옵션까지 브라우저에서 처리할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -162,7 +162,7 @@ export const PAGE_META = {
   json: {
     path: '/json',
     kind: 'tool',
-    title: 'JSON 포매터/검증기 | Formatter, Validator, Tree View',
+    title: 'JSON 포맷터 | JSON 정렬·검증·압축',
     description:
       'JSON 유효성 검사, 포맷/압축, 키 검색, 트리 뷰 확인까지 한 번에 할 수 있는 브라우저 도구입니다.',
     applicationCategory: 'DeveloperApplication',
@@ -187,7 +187,7 @@ export const PAGE_META = {
   jwt: {
     path: '/jwt',
     kind: 'tool',
-    title: 'JWT 디코더/검사기 | Decoder, Claims, Expiry, JWKS',
+    title: 'JWT 디코더 | 토큰 내용 확인, 만료 검사',
     description:
       'JWT 헤더와 페이로드를 디코딩하고 exp, nbf, claims를 확인할 수 있는 브라우저용 JWT 검사 도구입니다.',
     applicationCategory: 'DeveloperApplication',
@@ -212,7 +212,7 @@ export const PAGE_META = {
   url: {
     path: '/url',
     kind: 'tool',
-    title: 'URL 인코더/디코더 | URL Decode, Query String Parser',
+    title: 'URL 인코딩 디코딩 | 한글 주소 변환',
     description:
       'URL 인코딩/디코딩, 쿼리 스트링 파싱, URL-safe 문자열 확인을 브라우저에서 바로 처리할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -220,7 +220,7 @@ export const PAGE_META = {
   hash: {
     path: '/hash',
     kind: 'tool',
-    title: 'SHA 해시 계산기 | SHA-256, SHA-1, SHA-384, SHA-512',
+    title: 'SHA256 해시 계산기 | 온라인 해시 생성',
     description:
       'SHA-1, SHA-256, SHA-384, SHA-512 해시를 계산하고 HEX 또는 Base64로 바로 복사할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -228,7 +228,7 @@ export const PAGE_META = {
   cron: {
     path: '/cron',
     kind: 'tool',
-    title: 'Cron 표현식 파서 | Cron 해석, 다음 실행 시간',
+    title: '크론탭 표현식 확인 | 다음 실행 시간 계산',
     description:
       'Cron 표현식을 사람이 읽기 쉬운 문장으로 해석하고 다음 실행 시간을 계산할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -236,7 +236,7 @@ export const PAGE_META = {
   timestamp: {
     path: '/timestamp',
     kind: 'tool',
-    title: 'Unix 타임스탬프 변환기 | Epoch 변환, 날짜 변환',
+    title: '유닉스 타임스탬프 변환 | epoch 날짜 변환',
     description:
       '유닉스 타임스탬프를 날짜로 변환하고 날짜를 epoch 초 또는 밀리초로 다시 바꿀 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -244,7 +244,7 @@ export const PAGE_META = {
   password: {
     path: '/password',
     kind: 'tool',
-    title: '비밀번호 생성기 | 랜덤 비밀번호, 강도 확인',
+    title: '비밀번호 생성기 | 랜덤 암호 만들기',
     description:
       '길이와 문자셋 옵션으로 랜덤 비밀번호를 생성하고 강도를 바로 확인할 수 있습니다.',
     applicationCategory: 'SecurityApplication',
@@ -252,7 +252,7 @@ export const PAGE_META = {
   regex: {
     path: '/regex',
     kind: 'tool',
-    title: '정규식 테스트기 | Regex Tester, Flags, Replace',
+    title: '정규식 테스트 | 정규표현식 검사·치환',
     description:
       '정규식 패턴과 플래그를 테스트하고 매치 결과와 치환 결과를 빠르게 확인할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -260,7 +260,7 @@ export const PAGE_META = {
   qr: {
     path: '/qr',
     kind: 'tool',
-    title: 'QR 코드 생성기/스캐너 | QR 생성, QR 읽기, Wi-Fi QR',
+    title: 'QR코드 만들기 | QR 생성·읽기, 와이파이 QR',
     description:
       '텍스트, URL, Wi-Fi 정보를 QR 코드로 만들고 업로드한 QR 이미지를 바로 읽을 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -268,7 +268,7 @@ export const PAGE_META = {
   diff: {
     path: '/diff',
     kind: 'tool',
-    title: '텍스트 비교기 | Diff Checker, Unified Diff',
+    title: '텍스트 비교 | 두 문서 다른 부분 찾기',
     description:
       '두 텍스트를 줄 단위로 비교하고 변경 내용을 unified diff 형태로 확인할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -276,7 +276,7 @@ export const PAGE_META = {
   color: {
     path: '/color',
     kind: 'tool',
-    title: '색상 변환기/대비 검사기 | HEX, RGB, HSL',
+    title: '색상 코드 변환 | HEX RGB HSL, 대비 검사',
     description:
       'HEX, RGB, HSL 색상 코드를 서로 변환하고 대비 비율을 계산할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -284,7 +284,7 @@ export const PAGE_META = {
   markdown: {
     path: '/markdown',
     kind: 'tool',
-    title: 'Markdown 미리보기 | Markdown HTML 변환',
+    title: '마크다운 미리보기 | HTML 변환',
     description:
       'Markdown을 실시간으로 렌더링하고 HTML 출력까지 함께 확인할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -292,7 +292,7 @@ export const PAGE_META = {
   convert: {
     path: '/convert',
     kind: 'tool',
-    title: '단위 변환기 | 길이, 무게, 온도 변환',
+    title: '단위 변환기 | 길이·무게·온도·평수 변환',
     description:
       '길이, 무게, 온도 등 자주 쓰는 단위를 브라우저에서 빠르게 변환합니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -300,7 +300,7 @@ export const PAGE_META = {
   'file-hash': {
     path: '/file-hash',
     kind: 'tool',
-    title: '파일 해시 계산기 | SHA-256, SHA-512',
+    title: '파일 해시 확인 | 무결성 검사, SHA256',
     description:
       '업로드한 파일의 SHA 해시를 로컬에서 계산해 무결성을 빠르게 점검할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -308,7 +308,7 @@ export const PAGE_META = {
   'image-base64': {
     path: '/image-base64',
     kind: 'tool',
-    title: '이미지 Base64 변환기 | Data URL 인코딩/디코딩',
+    title: '이미지 Base64 변환 | Data URL 만들기',
     description:
       '이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -332,7 +332,7 @@ export const PAGE_META = {
   'date-calc': {
     path: '/date-calc',
     kind: 'tool',
-    title: '만 나이 계산기 | 세는 나이, 날짜 차이, 디데이 계산',
+    title: '만나이 계산기 | 디데이, 날짜 계산',
     description:
       '생년월일로 만 나이·세는 나이·연 나이를 한 번에 계산합니다. 두 날짜 사이 일수, 디데이, 날짜 더하기·빼기까지 브라우저에서 바로 처리합니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -340,7 +340,7 @@ export const PAGE_META = {
   'case-convert': {
     path: '/case-convert',
     kind: 'tool',
-    title: '텍스트 케이스 변환기 | camelCase, snake_case, kebab-case',
+    title: '텍스트 케이스 변환 | 카멜·스네이크·케밥',
     description:
       'camelCase, snake_case, kebab-case, PascalCase를 서로 변환할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -348,7 +348,7 @@ export const PAGE_META = {
   'json-yaml': {
     path: '/json-yaml',
     kind: 'tool',
-    title: 'JSON YAML 변환기 | JSON to YAML, YAML to JSON, CSV',
+    title: 'JSON YAML 변환 | CSV 변환',
     description:
       'JSON과 YAML을 서로 변환하고 구조화된 데이터를 CSV 형태로 정리할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -356,7 +356,7 @@ export const PAGE_META = {
   'ip-ua': {
     path: '/ip-ua',
     kind: 'tool',
-    title: 'IP/User-Agent 확인 | 브라우저 네트워크 정보',
+    title: '내 아이피 확인 | 브라우저 정보 보기',
     description:
       'IP 주소, User-Agent, 언어, 타임존 같은 브라우저 환경 정보를 빠르게 확인할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -364,7 +364,7 @@ export const PAGE_META = {
   'ip-cidr': {
     path: '/ip-cidr',
     kind: 'tool',
-    title: 'CIDR 계산기 | IPv4 서브넷, 브로드캐스트, 호스트 범위',
+    title: '서브넷 계산기 | CIDR, IP 대역 계산',
     description:
       'IPv4 CIDR 블록에서 서브넷, 브로드캐스트 주소, 호스트 범위를 계산할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -372,7 +372,7 @@ export const PAGE_META = {
   'pdf-toolkit': {
     path: '/pdf-toolkit',
     kind: 'tool',
-    title: 'PDF 병합/분할 툴 | PDF 병합, 분할, 페이지 추출, 워터마크',
+    title: 'PDF 합치기 나누기 | 페이지 추출·워터마크',
     description:
       'PDF 병합, 분할, 페이지 추출, 워터마크 작업을 파일 업로드 없이 브라우저에서 처리할 수 있습니다.',
     applicationCategory: 'BusinessApplication',
@@ -380,7 +380,7 @@ export const PAGE_META = {
   'image-optimize': {
     path: '/image-optimize',
     kind: 'tool',
-    title: '이미지 최적화 | 이미지 압축, 리사이즈, WEBP 변환',
+    title: '이미지 용량 줄이기 | 사진 압축·리사이즈',
     description:
       '이미지를 압축하고 리사이즈한 뒤 WEBP, JPEG, PNG로 변환할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -388,7 +388,7 @@ export const PAGE_META = {
   ocr: {
     path: '/ocr',
     kind: 'tool',
-    title: 'OCR 텍스트 추출 | 이미지 글자 인식, Image to Text',
+    title: '이미지 글자 추출 | 사진 텍스트 인식 OCR',
     description:
       '이미지에서 한글과 영어 텍스트를 추출해 복사, 검색, 정리에 활용할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -396,7 +396,7 @@ export const PAGE_META = {
   'text-stats': {
     path: '/text-stats',
     kind: 'tool',
-    title: '글자수 세기 | 공백 포함·제외, 단어·문장·원고지 분량',
+    title: '글자수 세기 | 공백 포함·제외, 원고지',
     description:
       '자기소개서·리포트 글자수 제한을 맞출 때 쓰는 글자수 세기입니다. 공백 포함/제외 글자수, 단어·문장·문단 수, 원고지 분량, 바이트를 입력하는 즉시 계산합니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -404,7 +404,7 @@ export const PAGE_META = {
   'seo-check': {
     path: '/seo-check',
     kind: 'tool',
-    title: 'SEO 메타 태그 검사기 | Title, Description, OG, Canonical',
+    title: 'SEO 메타태그 검사 | 제목·설명·OG 확인',
     description:
       '페이지 제목, 설명, Open Graph, canonical 태그를 점검해 자주 놓치는 SEO 문제를 빠르게 확인할 수 있습니다.',
     applicationCategory: 'DeveloperApplication',
@@ -429,7 +429,7 @@ export const PAGE_META = {
   'utm-builder': {
     path: '/utm-builder',
     kind: 'tool',
-    title: 'UTM 생성기 | Campaign URL Builder',
+    title: 'UTM 생성기 | 캠페인 링크 만들기',
     description:
       '광고, 소셜, 뉴스레터용 UTM 파라미터 URL을 만들어 추적 링크를 빠르게 생성합니다.',
     applicationCategory: 'BusinessApplication',
@@ -437,7 +437,7 @@ export const PAGE_META = {
   'text-cleaner': {
     path: '/text-cleaner',
     kind: 'tool',
-    title: '텍스트 정리기 | 공백 제거, 중복 제거, slugify',
+    title: '텍스트 정리 | 공백·중복 제거, slugify',
     description:
       '공백 정리, 줄 중복 제거, 정렬, slugify 작업을 한 번에 처리합니다.',
     applicationCategory: 'UtilitiesApplication',
@@ -445,7 +445,7 @@ export const PAGE_META = {
   'api-tester': {
     path: '/api-tester',
     kind: 'tool',
-    title: 'API 요청 테스트 | HTTP Request Builder, cURL',
+    title: 'API 요청 테스트 | HTTP 응답 확인, cURL',
     description:
       'HTTP 요청을 보내고 응답을 확인한 뒤 cURL 명령으로 내보낼 수 있습니다.',
     applicationCategory: 'DeveloperApplication',

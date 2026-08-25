@@ -97,8 +97,13 @@ function extractMatch(html, regex) {
   return match?.[1]?.trim() || '';
 }
 
-function withSiteSuffix(title) {
-  return /stateless tools/i.test(title) ? title : `${title} | ${SITE_NAME}`;
+// 브랜드 접미사가 18자를 먹는다. 검색결과에서 구글이 한국어 기준 30자 안팎에서
+// 자르므로, 인지도 없는 브랜드명이 정작 검색어를 밀어내고 있었다.
+// 도구 페이지는 검색어로 들어오는 자리라 접미사를 빼고, 홈과 가이드는 남긴다.
+function withSiteSuffix(title, kind) {
+  if (/stateless tools/i.test(title)) return title;
+  if (kind === 'tool') return title;
+  return `${title} | ${SITE_NAME}`;
 }
 
 function cleanTitle(title) {
@@ -1193,7 +1198,7 @@ function seoMetadataPlugin() {
         extractMatch(html, /<meta\s+name=["']description["']\s+content=["']([^"]*)["'][^>]*>/i) ||
         extractMatch(html, /<meta\s+name=["']description["']\s+content=['"]([^']*)['"][^>]*>/i);
 
-      const fullTitle = withSiteSuffix(meta.title || existingTitle);
+      const fullTitle = withSiteSuffix(meta.title || existingTitle, meta.kind);
       const pageTitle = cleanTitle(fullTitle);
       const description = meta.description || existingDescription || pageTitle;
       const canonicalPath = meta.canonicalPath || meta.path;
