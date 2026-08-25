@@ -51,6 +51,7 @@ const ROUTES = [
   '/image-base64',
   '/date-calc',
   '/cron-guide',
+  '/age-guide',
   '/terms',
   '/case-convert',
   '/json-yaml',

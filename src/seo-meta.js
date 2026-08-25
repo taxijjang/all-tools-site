@@ -313,6 +313,14 @@ export const PAGE_META = {
       '이미지 파일을 Base64 data URL로 변환하거나 data URL을 다시 이미지로 복원할 수 있습니다.',
     applicationCategory: 'UtilitiesApplication',
   },
+  'age-guide': {
+    path: '/age-guide',
+    kind: 'content',
+    title: '만나이 계산법 | 세는 나이·연 나이 차이',
+    description:
+      '만나이 세는 법과 2023년 만 나이 통일이 실제로 바꾼 범위. 병역법·청소년보호법이 여전히 연 나이를 쓰는 이유, 술·담배 기준이 생일과 무관한 이유, 2월 29일생과 개월 계산 규칙까지 정리했습니다.',
+    applicationCategory: 'UtilitiesApplication',
+  },
   terms: {
     path: '/terms',
     kind: 'content',

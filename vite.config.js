@@ -60,6 +60,7 @@ const pageInputs = {
   convert: resolve(__dirname, 'convert.html'),
   fileHash: resolve(__dirname, 'file-hash.html'),
   imageBase64: resolve(__dirname, 'image-base64.html'),
+  ageGuide: resolve(__dirname, 'age-guide.html'),
   terms: resolve(__dirname, 'terms.html'),
   cronGuide: resolve(__dirname, 'cron-guide.html'),
   dateCalc: resolve(__dirname, 'date-calc.html'),

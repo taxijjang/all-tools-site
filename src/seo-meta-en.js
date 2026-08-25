@@ -144,6 +144,11 @@ export const PAGE_META_EN = {
     description:
       'Compare two blocks of text line by line to see exactly what was added, removed, or changed.',
   },
+  '/age-guide': {
+    title: 'How Korean Ages Work | Three Counts Explained',
+    description:
+      'What the 2023 shift to international age actually changed, why conscription and youth-protection law still use year age, and the conventions for counting days and months.',
+  },
   '/terms': {
     title: 'Terms of Use | Browser-side Limits and Liability',
     description:
