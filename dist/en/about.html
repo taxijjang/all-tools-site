@@ -162,7 +162,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="about" data-allow-ads="true">
+<body class="layout layout--dev" data-tool="about" data-allow-ads="false">
 
   <div class="page page--dev page--content">
     <div class="page-controls" data-nosnippet>
@@ -257,6 +257,58 @@
             </article>
           </div>
           <p class="content-note">The project is currently maintained by <strong>taxijjang</strong> as an evolving personal toolkit.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Who builds this, and how?</h2>
+          <p class="section-lead">This is a one-person project. With a single pair of hands, eyeballing thirty-plus tools does not scale, so nothing ships unless it passes an automated check first.</p>
+          <div class="content-grid">
+            <article class="info-card">
+              <h3>Checked in a real browser</h3>
+              <p>Not static analysis: a headless Chrome renders every page and the checks read computed values off the screen. Because it sees colours and sizes after CSS actually applies, it catches rules that were written but never took effect.</p>
+            </article>
+            <article class="info-card">
+              <h3>Contrast and touch targets</h3>
+              <p>Every text colour is composited against its real background and measured against WCAG thresholds. Buttons and inputs are checked for a 44px minimum. Light and dark themes are audited separately.</p>
+            </article>
+            <article class="info-card">
+              <h3>Horizontal overflow</h3>
+              <p>Elements that spill outside the viewport are flagged across three widths, with deliberate horizontal scrollers exempted so the check does not cry wolf.</p>
+            </article>
+            <article class="info-card">
+              <h3>Proof that nothing uploads</h3>
+              <p>File-handling tools are driven with a real file while network traffic is watched. The claim that processing stays in the browser is verified by behaviour, not by reading the source.</p>
+            </article>
+            <article class="info-card">
+              <h3>Date maths under unit test</h3>
+              <p>Leap years, end-of-month clamping and daylight-saving boundaries are pinned by 49 assertions. That suite caught a real bug in the month-and-day difference between 31 January and 1 March.</p>
+            </article>
+            <article class="info-card">
+              <h3>Untranslated strings</h3>
+              <p>Every page is scanned in English mode for leftover Korean. A missed translation blocks the release.</p>
+            </article>
+          </div>
+          <p class="content-note">The source is public. You can verify the browser-only claim yourself through the repository and your browser's network tab.</p>
+        </div>
+      </section>
+
+      <section class="content-section">
+        
+        <div data-locale-block="en" lang="en">
+          <h2 class="section-title">Costs and advertising</h2>
+          <div class="faq-list">
+            <details class="faq-item"><summary><h3>Why is it free?</h3></summary><p>The tools run in your browser on a static site, so there is no server compute cost. The outgoings are a domain and static hosting, and they do not scale with visitors. There is nothing to charge for.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Will there be ads?</h3></summary><p>Enough advertising to cover running costs is planned. What will not appear: ads over the working area of a tool, ads that push the result out of view, or anything styled to look like a download button. The contact, privacy and terms pages carry no ads.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Can advertisers see my data?</h3></summary><p>No. What you type into a tool never leaves the page, so there is nothing for an ad script to read. Cookie details and how to turn off personalised ads are in the <a href="/en/privacy">privacy notice</a>.</p>
+            </details>
+            <details class="faq-item"><summary><h3>Will there be paid features?</h3></summary><p>Not planned. Adding features that need a server would remove the reason this site exists, so anything a browser cannot do is left out instead.</p>
+            </details>
+          </div>
         </div>
       </section>
 

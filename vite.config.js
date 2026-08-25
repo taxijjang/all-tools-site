@@ -101,6 +101,8 @@ function extractMatch(html, regex) {
 // 브랜드 접미사가 18자를 먹는다. 검색결과에서 구글이 한국어 기준 30자 안팎에서
 // 자르므로, 인지도 없는 브랜드명이 정작 검색어를 밀어내고 있었다.
 // 도구 페이지는 검색어로 들어오는 자리라 접미사를 빼고, 홈과 가이드는 남긴다.
+const AD_FREE_ROUTES = new Set(['/about', '/contact', '/privacy', '/terms']);
+
 function withSiteSuffix(title, kind) {
   if (/stateless tools/i.test(title)) return title;
   if (kind === 'tool') return title;
@@ -1240,7 +1242,8 @@ function seoMetadataPlugin() {
         nextHtml,
         'data-allow-ads',
         // ponytail: meta.allowAds는 어느 PAGE_META에도 없어서 항상 undefined였음. noindex 페이지만 제외.
-        ADSENSE_ENABLED && !meta.noindex ? 'true' : 'false',
+        // 소개/문의/개인정보/약관은 광고를 넣지 않는다 — about 페이지에 그렇게 공개해 뒀다.
+        ADSENSE_ENABLED && !meta.noindex && !AD_FREE_ROUTES.has(canonicalPath) ? 'true' : 'false',
       );
 
       const headTags = [
