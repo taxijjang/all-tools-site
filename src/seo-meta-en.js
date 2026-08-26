@@ -215,9 +215,9 @@ export const PAGE_META_EN = {
       'Extract text from a screenshot or scan so you can search and paste it instead of retyping.',
   },
   '/seo-check': {
-    title: 'SEO Meta Tag Checker | Title, Description, OG Tags',
+    title: 'SEO Title Tag Checker | Pixel Width & SERP Preview',
     description:
-      'Check the title, description, H1, canonical, and Open Graph tags of a page or a pasted HTML source.',
+      'Check title tag and meta description length in pixels — the way Google actually truncates — with a live SERP preview for desktop and mobile. Full HTML meta check included.',
   },
   '/utm-builder': {
     title: 'UTM Builder | Campaign Tracking URLs',

@@ -4747,3 +4747,91 @@ details.faq-item > summary:focus-visible {
     white-space: nowrap;
   }
 }
+
+/* --- SERP 미리보기 (seo-check) --- */
+.serp-preview {
+  display: grid;
+  gap: 12px;
+}
+
+.serp-preview__empty {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.serp-card {
+  display: grid;
+  gap: 2px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  /* 구글이 실제로 쓰는 폰트로 재고 그리므로 여기서도 Arial로 고정한다. */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 모바일 미리보기는 폭이 좁다는 점 자체가 정보다. */
+.serp-card--mobile {
+  max-width: 360px;
+}
+
+.serp-card__view {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.serp-card__url {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.serp-card__title {
+  /* 20px Arial bold — 측정에 쓴 값과 같아야 미리보기가 거짓말을 하지 않는다. */
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--serp-link, #1a0dab);
+}
+
+.serp-card__desc {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text-main);
+}
+
+.serp-bar {
+  display: inline-block;
+  width: 88px;
+  height: 6px;
+  margin-inline-end: 8px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.serp-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--success);
+}
+
+.serp-bar.is-near > span { background: var(--accent); }
+.serp-bar.is-over > span { background: var(--error); }
+
+:root { --serp-link: #1a0dab; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) { --serp-link: #8ab4f8; }
+}
+:root[data-theme='dark'] { --serp-link: #8ab4f8; }
+
+/* .tool-inspector는 auto-fit 그리드라 안내문까지 칸으로 쪼갠다. 문장은 한 줄로 펴야 읽힌다. */
+.tool-inspector > .content-note {
+  grid-column: 1 / -1;
+  margin: 0;
+}

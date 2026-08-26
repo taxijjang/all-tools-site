@@ -412,9 +412,9 @@ export const PAGE_META = {
   'seo-check': {
     path: '/seo-check',
     kind: 'tool',
-    title: 'SEO 메타태그 검사 | 제목·설명·OG 확인',
+    title: 'SEO 제목 길이 검사 | 픽셀 폭·검색결과 미리보기',
     description:
-      '페이지 제목, 설명, Open Graph, canonical 태그를 점검해 자주 놓치는 SEO 문제를 빠르게 확인할 수 있습니다.',
+      '구글이 실제로 자르는 기준인 픽셀 폭으로 제목과 설명 길이를 검사하고, 데스크톱·모바일 검색결과 미리보기로 잘리는 지점을 확인합니다. HTML 메타태그 전체 점검도 지원합니다.',
     applicationCategory: 'DeveloperApplication',
     faq: [
       {

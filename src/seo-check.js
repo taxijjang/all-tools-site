@@ -1,5 +1,6 @@
 import './style.css';
 import { onLocaleChange, t } from './i18n.js';
+import { SERP_LIMITS, analyzeField, cjkRatio } from './serp-pixel.js';
 
 const dom = {
   url: document.getElementById('seoUrl'),
@@ -332,3 +333,135 @@ onLocaleChange(() => {
   }
   renderInspector(lastResult);
 });
+
+// --- 제목·설명 픽셀 검사 (검색어 "title tag check"가 실제로 원하는 것) ---
+
+const serpCopy = {
+  ko: {
+    title: '제목',
+    description: '설명',
+    desktop: '데스크톱',
+    mobile: '모바일',
+    px: 'px',
+    chars: '자',
+    fits: '전체 표시',
+    cut: '잘림',
+    empty: '제목을 입력하면 검색결과에 어떻게 보일지 계산합니다.',
+    cjkNote: (pct) =>
+      `한글 비중 ${pct}% — 한글 한 자는 Arial 20px 기준 약 17px, 영문 소문자는 약 10px입니다. 1.6배 넘게 차이 나므로 글자 수만 세는 도구는 한국어 제목에서 크게 틀립니다.`,
+    approxNote:
+      '측정 기준: 제목 Arial 20px, 설명 Arial 14px. 한글은 Arial에 글리프가 없어 브라우저가 대체한 폰트로 재므로 근사치입니다. 구글이 제목을 다시 쓸지 여부는 폭과 별개로 결정됩니다.',
+  },
+  en: {
+    title: 'Title',
+    description: 'Description',
+    desktop: 'Desktop',
+    mobile: 'Mobile',
+    px: 'px',
+    chars: 'chars',
+    fits: 'fits',
+    cut: 'truncated',
+    empty: 'Enter a title to see how it renders in search results.',
+    cjkNote: (pct) =>
+      `${pct}% CJK characters — one Korean glyph measures about 17px at Arial 20px against about 10px for a Latin lowercase letter. That is over 1.6x, so character-count tools are badly wrong for CJK titles.`,
+    approxNote:
+      'Measured at Arial 20px for titles and Arial 14px for descriptions. Korean text has no Arial glyphs, so the browser substitutes a font and the width is an approximation. Whether Google rewrites a title is decided separately from its width.',
+  },
+};
+
+function serpLocale() {
+  return document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'ko';
+}
+
+function widthBar(width, limit) {
+  const pct = Math.min(100, Math.round((width / limit) * 100));
+  const state = width > limit ? 'is-over' : width > limit * 0.9 ? 'is-near' : 'is-ok';
+  return `<div class="serp-bar ${state}"><span style="width:${pct}%"></span></div>`;
+}
+
+function renderSerp() {
+  const preview = document.getElementById('serpPreview');
+  const metrics = document.getElementById('serpMetrics');
+  if (!preview || !metrics) return;
+
+  const c = serpCopy[serpLocale()];
+  const rawTitle = document.getElementById('serpTitle')?.value || '';
+  const rawDesc = document.getElementById('serpDesc')?.value || '';
+  const url = (document.getElementById('serpUrl')?.value || 'example.com').trim();
+
+  if (!rawTitle.trim() && !rawDesc.trim()) {
+    preview.innerHTML = `<p class="serp-preview__empty">${c.empty}</p>`;
+    metrics.innerHTML = '';
+    return;
+  }
+
+  const t = analyzeField(rawTitle, 'title');
+  const d = analyzeField(rawDesc, 'description');
+
+  preview.innerHTML = ['desktop', 'mobile']
+    .map(
+      (view) => `
+      <div class="serp-card serp-card--${view}">
+        <span class="serp-card__view">${view === 'desktop' ? c.desktop : c.mobile}</span>
+        <span class="serp-card__url">${escapeText(url)}</span>
+        <span class="serp-card__title">${escapeText(t[view].text) || '&nbsp;'}</span>
+        <span class="serp-card__desc">${escapeText(d[view].text)}</span>
+      </div>`,
+    )
+    .join('');
+
+  const rows = [];
+  for (const [field, a, label] of [
+    ['title', t, c.title],
+    ['description', d, c.description],
+  ]) {
+    if (!a.value) continue;
+    const lim = SERP_LIMITS[field];
+    rows.push(`
+      <div class="tool-inspector__row">
+        <span class="tool-inspector__label">${label}</span>
+        <span class="tool-inspector__value">${a.width}${c.px} · ${a.chars}${c.chars}</span>
+      </div>
+      <div class="tool-inspector__row">
+        <span class="tool-inspector__label">${c.desktop} (${lim.desktop}${c.px})</span>
+        <span class="tool-inspector__value">${widthBar(a.width, lim.desktop)} ${
+          a.desktop.truncated ? c.cut : c.fits
+        }</span>
+      </div>
+      <div class="tool-inspector__row">
+        <span class="tool-inspector__label">${c.mobile} (${lim.mobile}${c.px})</span>
+        <span class="tool-inspector__value">${widthBar(a.width, lim.mobile)} ${
+          a.mobile.truncated ? c.cut : c.fits
+        }</span>
+      </div>`);
+  }
+
+  const ratio = cjkRatio(rawTitle + rawDesc);
+  if (ratio > 0.2) {
+    rows.push(`<p class="content-note">${c.cjkNote(Math.round(ratio * 100))}</p>`);
+  }
+  rows.push(`<p class="content-note">${c.approxNote}</p>`);
+  metrics.innerHTML = rows.join('');
+}
+
+function escapeText(value) {
+  return String(value).replace(/[&<>"]/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[ch]);
+}
+
+function initSerp() {
+  const ids = ['serpTitle', 'serpDesc', 'serpUrl'];
+  const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
+  if (!els.length) return;
+  els.forEach((el) => el.addEventListener('input', renderSerp));
+  document.getElementById('serpSampleBtn')?.addEventListener('click', () => {
+    document.getElementById('serpTitle').value = '만나이 계산법 | 세는 나이·연 나이 차이';
+    document.getElementById('serpDesc').value =
+      '만나이 세는 법과 2023년 만 나이 통일이 실제로 바꾼 범위. 병역법·청소년보호법이 여전히 연 나이를 쓰는 이유를 정리했습니다.';
+    document.getElementById('serpUrl').value = 'taxijjang.com › age-guide';
+    renderSerp();
+  });
+  onLocaleChange(renderSerp);
+  renderSerp();
+}
+
+initSerp();
