@@ -5,8 +5,8 @@
   <title>Crontab in Practice | The OR Trap, Time Zones, Overlapping Runs | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-CM67rKKC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/site-lbtKuhHH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -20,15 +20,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -50,17 +43,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -258,13 +243,13 @@
           <h2 class="section-title">Day-of-month and day-of-week are OR, not AND</h2>
           <p class="section-lead">This is the most common cron mistake, and because it is not a syntax error the job simply runs on a different schedule than you expected.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>What actually happens</h3></summary><p>When both the day-of-month and day-of-week fields are set to something other than <code>*</code>, most cron implementations combine them with <strong>OR</strong>. So <code>0 0 1 * 1</code> is not "the 1st, when it is a Monday" but "the 1st <em>or</em> any Monday". A job you expected to run monthly runs about five times a month.</p>
+            <details class="faq-item" open><summary><h3>What actually happens</h3></summary><p>When both the day-of-month and day-of-week fields are set to something other than <code>*</code>, most cron implementations combine them with <strong>OR</strong>. So <code>0 0 1 * 1</code> is not "the 1st, when it is a Monday" but "the 1st <em>or</em> any Monday". A job you expected to run monthly runs about five times a month.</p>
             </details>
-            <details class="faq-item"><summary><h3>Why it works that way</h3></summary><p>It is the intended behaviour of Vixie cron and it is specified in POSIX. The purpose was to express two schedules on one line, such as "back up on the 1st and every Friday". The problem today is that most people expect AND without knowing this rule.</p>
+            <details class="faq-item" open><summary><h3>Why it works that way</h3></summary><p>It is the intended behaviour of Vixie cron and it is specified in POSIX. The purpose was to express two schedules on one line, such as "back up on the 1st and every Friday". The problem today is that most people expect AND without knowing this rule.</p>
             </details>
-            <details class="faq-item"><summary><h3>What to do instead</h3></summary><p>Keep one of the two fields as <code>*</code>. Use <code>0 0 1 * *</code> for monthly and <code>0 0 * * 1</code> for weekly. If you genuinely need AND, schedule broadly in cron and exit early in the script after checking the date. A condition in your own code is safer than relying on scheduler-specific behaviour.</p>
+            <details class="faq-item" open><summary><h3>What to do instead</h3></summary><p>Keep one of the two fields as <code>*</code>. Use <code>0 0 1 * *</code> for monthly and <code>0 0 * * 1</code> for weekly. If you genuinely need AND, schedule broadly in cron and exit early in the script after checking the date. A condition in your own code is safer than relying on scheduler-specific behaviour.</p>
             </details>
-            <details class="faq-item"><summary><h3>Does it differ between implementations?</h3></summary><p>Vixie cron and cronie use OR. Quartz and some cloud schedulers use a different syntax entirely, requiring <code>?</code> in one of the two fields and forbidding both at once. So when moving an expression to another runtime, verify it against that runtime's documentation instead of copying the string.</p>
+            <details class="faq-item" open><summary><h3>Does it differ between implementations?</h3></summary><p>Vixie cron and cronie use OR. Quartz and some cloud schedulers use a different syntax entirely, requiring <code>?</code> in one of the two fields and forbidding both at once. So when moving an expression to another runtime, verify it against that runtime's documentation instead of copying the string.</p>
             </details>
           </div>
         </div>
@@ -298,13 +283,13 @@
           <h2 class="section-title">Overlap, duplication and silent failure</h2>
           <p class="section-lead">Three ways a correct schedule still breaks in production, most often on jobs whose runtime approaches their interval.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>The next run starts before the last one finished</h3></summary><p>Cron does not check whether the previous process is still alive. A job scheduled <code>*/5</code> that starts taking seven minutes will pile up until connections or memory run out. Take a lock with <code>flock -n</code>, or check a PID file and exit if the job is already running. Skipping is usually safer than retrying.</p>
+            <details class="faq-item" open><summary><h3>The next run starts before the last one finished</h3></summary><p>Cron does not check whether the previous process is still alive. A job scheduled <code>*/5</code> that starts taking seven minutes will pile up until connections or memory run out. Take a lock with <code>flock -n</code>, or check a PID file and exit if the job is already running. Skipping is usually safer than retrying.</p>
             </details>
-            <details class="faq-item"><summary><h3>More instances means more runs</h3></summary><p>Scaling a container that ships the same crontab to three replicas runs the job three times: three notifications, three settlement writes. Put the scheduler somewhere independent of replica count — a single dedicated worker or a managed scheduler — or make the job idempotent.</p>
+            <details class="faq-item" open><summary><h3>More instances means more runs</h3></summary><p>Scaling a container that ships the same crontab to three replicas runs the job three times: three notifications, three settlement writes. Put the scheduler somewhere independent of replica count — a single dedicated worker or a managed scheduler — or make the job idempotent.</p>
             </details>
-            <details class="faq-item"><summary><h3>Failures produce nothing at all</h3></summary><p>Cron tries to mail stdout and stderr, and on a server without mail configured that output simply disappears. Without <code>&gt;&gt; /var/log/job.log 2&gt;&amp;1</code> you have no way to see a failure. Better still, emit a heartbeat at the end of the job and alert when it stops arriving — a job that never ran is far harder to notice than one that errored.</p>
+            <details class="faq-item" open><summary><h3>Failures produce nothing at all</h3></summary><p>Cron tries to mail stdout and stderr, and on a server without mail configured that output simply disappears. Without <code>&gt;&gt; /var/log/job.log 2&gt;&amp;1</code> you have no way to see a failure. Better still, emit a heartbeat at the end of the job and alert when it stops arriving — a job that never ran is far harder to notice than one that errored.</p>
             </details>
-            <details class="faq-item"><summary><h3>PATH and environment differ from your shell</h3></summary><p>Cron runs with a minimal environment, which is why a command that works in your terminal reports "command not found" under cron. Use absolute paths or load the environment explicitly at the top of the script. Python virtual environments are a frequent offender.</p>
+            <details class="faq-item" open><summary><h3>PATH and environment differ from your shell</h3></summary><p>Cron runs with a minimal environment, which is why a command that works in your terminal reports "command not found" under cron. Use absolute paths or load the environment explicitly at the top of the script. Python virtual environments are a frequent offender.</p>
             </details>
           </div>
         </div>
@@ -350,7 +335,7 @@
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
         <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Browser tools that never upload your files</small>
     </footer>
   </div>
 

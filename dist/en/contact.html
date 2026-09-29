@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-CM67rKKC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/site-lbtKuhHH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -22,15 +22,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -52,17 +45,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -256,13 +241,13 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">What to expect from a reply</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>How long does it take?</h3></summary><p>There is a day job, so immediate replies are not realistic. Tools producing wrong results and layouts breaking on mobile are looked at first. Feature requests are read, but implementation is not promised.</p>
+            <details class="faq-item" open><summary><h3>How long does it take?</h3></summary><p>There is a day job, so immediate replies are not realistic. Tools producing wrong results and layouts breaking on mobile are looked at first. Feature requests are read, but implementation is not promised.</p>
             </details>
-            <details class="faq-item"><summary><h3>What is out of scope?</h3></summary><p>Technical support for your own code, custom tool development, and consulting on building a commercial service from this source are not covered. They fall outside what the tools do, so an answer would not actually help.</p>
+            <details class="faq-item" open><summary><h3>What is out of scope?</h3></summary><p>Technical support for your own code, custom tool development, and consulting on building a commercial service from this source are not covered. They fall outside what the tools do, so an answer would not actually help.</p>
             </details>
-            <details class="faq-item"><summary><h3>Found a security problem?</h3></summary><p>If it could affect other users, describe the impact first rather than posting full reproduction steps publicly. Fixing before disclosing is the safer order.</p>
+            <details class="faq-item" open><summary><h3>Found a security problem?</h3></summary><p>If it could affect other users, describe the impact first rather than posting full reproduction steps publicly. Fixing before disclosing is the safer order.</p>
             </details>
-            <details class="faq-item"><summary><h3>What not to send</h3></summary><p>Never include real passwords, API keys, production tokens or customer data, even as a reproduction case. Public issues are indexed by search engines and a posted value is hard to take back. Keep the shape of the value and change the contents.</p>
+            <details class="faq-item" open><summary><h3>What not to send</h3></summary><p>Never include real passwords, API keys, production tokens or customer data, even as a reproduction case. Public issues are indexed by search engines and a posted value is hard to take back. Keep the shape of the value and change the contents.</p>
             </details>
           </div>
         </div>

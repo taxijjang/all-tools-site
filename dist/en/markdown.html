@@ -8,9 +8,9 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZJ5247NQK');</script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script type="module" crossorigin src="/assets/markdown-avP7qj2W.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CM67rKKC.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/markdown-WTlc9Dfr.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lbtKuhHH.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -24,15 +24,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -54,17 +47,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -334,7 +319,7 @@
         </section>
 
 
-        <details class="content-more">
+        <details class="content-more" open>
           <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">
@@ -388,7 +373,7 @@ const a = 1;
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
         <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Browser tools that never upload your files</small>
     </footer>
   </div>
   

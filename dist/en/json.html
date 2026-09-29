@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/json-Bzqz5H68.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CM67rKKC.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/json-kNqdjqu3.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lbtKuhHH.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -23,15 +23,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -53,17 +46,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -359,11 +344,11 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">JSON mistakes that show up all the time</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Missing double quotes</h3></summary><p>JSON requires double quotes around keys and string values. JavaScript object syntax often causes confusion here.</p>
+            <details class="faq-item" open><summary><h3>Missing double quotes</h3></summary><p>JSON requires double quotes around keys and string values. JavaScript object syntax often causes confusion here.</p>
             </details>
-            <details class="faq-item"><summary><h3>Trailing commas</h3></summary><p>A trailing comma may look harmless, but standard JSON parsers reject it in both arrays and objects.</p>
+            <details class="faq-item" open><summary><h3>Trailing commas</h3></summary><p>A trailing comma may look harmless, but standard JSON parsers reject it in both arrays and objects.</p>
             </details>
-            <details class="faq-item"><summary><h3>Sensitive payloads</h3></summary><p>This page runs in browser memory, but production secrets and personal data should still be masked before review when your internal policy requires it.</p>
+            <details class="faq-item" open><summary><h3>Sensitive payloads</h3></summary><p>This page runs in browser memory, but production secrets and personal data should still be masked before review when your internal policy requires it.</p>
             </details>
           </div>
         </div>
@@ -374,13 +359,13 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Common JSON formatter questions</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>How is JSON different from a JavaScript object?</h3></summary><p>JSON is a data exchange format. Keys and string values need double quotes, and comments or trailing commas are not valid.</p>
+            <details class="faq-item" open><summary><h3>How is JSON different from a JavaScript object?</h3></summary><p>JSON is a data exchange format. Keys and string values need double quotes, and comments or trailing commas are not valid.</p>
             </details>
-            <details class="faq-item"><summary><h3>Should I format or minify?</h3></summary><p>Format when humans need to read and review the payload. Minify when you need a compact one-line body or fixture.</p>
+            <details class="faq-item" open><summary><h3>Should I format or minify?</h3></summary><p>Format when humans need to read and review the payload. Minify when you need a compact one-line body or fixture.</p>
             </details>
-            <details class="faq-item"><summary><h3>Can large JSON payloads be handled in the browser?</h3></summary><p>Most API responses are fine, but very large files can affect browser memory and rendering. For huge logs, inspect the relevant slice first.</p>
+            <details class="faq-item" open><summary><h3>Can large JSON payloads be handled in the browser?</h3></summary><p>Most API responses are fine, but very large files can affect browser memory and rendering. For huge logs, inspect the relevant slice first.</p>
             </details>
-            <details class="faq-item"><summary><h3>Which tools pair well with JSON Formatter?</h3></summary><p>Use <a href="/en/jwt">JWT Decoder</a> for token payloads, <a href="/en/json-yaml">JSON YAML Converter</a> for format handoff, and <a href="/en/api-tester">API Request Tester</a> for reproducing requests.</p>
+            <details class="faq-item" open><summary><h3>Which tools pair well with JSON Formatter?</h3></summary><p>Use <a href="/en/jwt">JWT Decoder</a> for token payloads, <a href="/en/json-yaml">JSON YAML Converter</a> for format handoff, and <a href="/en/api-tester">API Request Tester</a> for reproducing requests.</p>
             </details>
           </div>
           <div class="cta-row">
@@ -395,17 +380,17 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Working with JSON</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Large integers lose precision</h3></summary><p>JavaScript numbers are double-precision floats, so the safe integer range ends around 9 quadrillion. Snowflake IDs and 64-bit integers passed through JSON lose their last digits. Sending them as strings is the standard fix.</p>
+            <details class="faq-item" open><summary><h3>Large integers lose precision</h3></summary><p>JavaScript numbers are double-precision floats, so the safe integer range ends around 9 quadrillion. Snowflake IDs and 64-bit integers passed through JSON lose their last digits. Sending them as strings is the standard fix.</p>
             </details>
-            <details class="faq-item"><summary><h3>Comments and trailing commas are syntax errors</h3></summary><p>JSON has no comments and does not permit a trailing comma. Confusion with JavaScript object syntax is the usual cause. If a config file needs comments, use JSON5 or YAML, or add a dedicated description key.</p>
+            <details class="faq-item" open><summary><h3>Comments and trailing commas are syntax errors</h3></summary><p>JSON has no comments and does not permit a trailing comma. Confusion with JavaScript object syntax is the usual cause. If a config file needs comments, use JSON5 or YAML, or add a dedicated description key.</p>
             </details>
-            <details class="faq-item"><summary><h3>Key order is not guaranteed</h3></summary><p>Object key order carries no meaning in the spec and can change through parse and serialise cycles. Data where order matters belongs in an array. Code comparing two JSON documents as strings fails for the same reason.</p>
+            <details class="faq-item" open><summary><h3>Key order is not guaranteed</h3></summary><p>Object key order carries no meaning in the spec and can change through parse and serialise cycles. Data where order matters belongs in an array. Code comparing two JSON documents as strings fails for the same reason.</p>
             </details>
           </div>
         </div>
       </section>
     
-        <details class="content-more">
+        <details class="content-more" open>
           <summary data-i18n="common.moreContent">More: step-by-step usage and worked examples</summary>
 <section class="content-section content-section--highlight">
         

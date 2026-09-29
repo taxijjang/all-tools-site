@@ -5,8 +5,8 @@
   <title>JWT exp and nbf Guide | Reading Expiry and Not Before | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-CM67rKKC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/site-lbtKuhHH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -20,15 +20,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -50,17 +43,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -223,13 +208,13 @@
           <h2 class="section-title">Decoding and verifying are different operations</h2>
           <p class="section-lead">Missing this distinction produces security that looks present but is not. It accounts for the largest share of JWT incidents.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Decoding is just Base64</h3></summary><p>A JWT's header and payload are <strong>Base64URL encoded, not encrypted</strong>. Anyone can read them — this site's decoder can, and so can one line in a browser console. Therefore <em>never put secrets in a JWT payload.</em> National ID numbers, internal identifiers or detailed permissions in a token are a disclosure by themselves.</p>
+            <details class="faq-item" open><summary><h3>Decoding is just Base64</h3></summary><p>A JWT's header and payload are <strong>Base64URL encoded, not encrypted</strong>. Anyone can read them — this site's decoder can, and so can one line in a browser console. Therefore <em>never put secrets in a JWT payload.</em> National ID numbers, internal identifiers or detailed permissions in a token are a disclosure by themselves.</p>
             </details>
-            <details class="faq-item"><summary><h3>Verifying means checking the signature</h3></summary><p>Only by checking the third segment against a secret or public key can you conclude "we issued this and it has not been altered". Skip verification and read the payload, and an attacker's token with <code>{"role":"admin"}</code> is trusted as-is.</p>
+            <details class="faq-item" open><summary><h3>Verifying means checking the signature</h3></summary><p>Only by checking the third segment against a secret or public key can you conclude "we issued this and it has not been altered". Skip verification and read the payload, and an attacker's token with <code>{"role":"admin"}</code> is trusted as-is.</p>
             </details>
-            <details class="faq-item"><summary><h3>Check which library function you called</h3></summary><p>Most JWT libraries expose both <code>decode()</code> and <code>verify()</code>. <code>decode()</code> does not check the signature. The shorter name surfaces first in autocomplete and works fine in local tests, which is how it reaches production. Grepping for <code>decode</code> in review often catches it.</p>
+            <details class="faq-item" open><summary><h3>Check which library function you called</h3></summary><p>Most JWT libraries expose both <code>decode()</code> and <code>verify()</code>. <code>decode()</code> does not check the signature. The shorter name surfaces first in autocomplete and works fine in local tests, which is how it reaches production. Grepping for <code>decode</code> in review often catches it.</p>
             </details>
-            <details class="faq-item"><summary><h3>Do not log tokens</h3></summary><p>Because decoding is trivial, a token in a log file is a usable credential until it expires. If you log whole request headers, mask <code>Authorization</code>.</p>
+            <details class="faq-item" open><summary><h3>Do not log tokens</h3></summary><p>Because decoding is trivial, a token in a log file is a usable credential until it expires. If you log whole request headers, mask <code>Authorization</code>.</p>
             </details>
           </div>
         </div>
@@ -261,13 +246,13 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Clock skew</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>A brand-new token is rejected</h3></summary><p>If the issuing server's clock runs a few seconds ahead, iat and nbf are in the <em>future</em> from the verifier's perspective, so the token is refused as "not yet valid". A few seconds of drift is common when NTP sync is loose in containers or VMs.</p>
+            <details class="faq-item" open><summary><h3>A brand-new token is rejected</h3></summary><p>If the issuing server's clock runs a few seconds ahead, iat and nbf are in the <em>future</em> from the verifier's perspective, so the token is refused as "not yet valid". A few seconds of drift is common when NTP sync is loose in containers or VMs.</p>
             </details>
-            <details class="faq-item"><summary><h3>Requests near expiry fail intermittently</h3></summary><p>Conversely, a fast verifier sees a still-valid token as expired. This is a frequent cause of intermittent 401s that will not reproduce. If it only happens on certain instances, check the clocks first.</p>
+            <details class="faq-item" open><summary><h3>Requests near expiry fail intermittently</h3></summary><p>Conversely, a fast verifier sees a still-valid token as expired. This is a frequent cause of intermittent 401s that will not reproduce. If it only happens on certain instances, check the clocks first.</p>
             </details>
-            <details class="faq-item"><summary><h3>Allow tolerance, but not much</h3></summary><p>Most libraries offer <code>clockTolerance</code> or <code>leeway</code>; 30–60 seconds is conventional. Raising it to minutes keeps expired tokens alive that much longer, so it is no substitute for fixing NTP.</p>
+            <details class="faq-item" open><summary><h3>Allow tolerance, but not much</h3></summary><p>Most libraries offer <code>clockTolerance</code> or <code>leeway</code>; 30–60 seconds is conventional. Raising it to minutes keeps expired tokens alive that much longer, so it is no substitute for fixing NTP.</p>
             </details>
-            <details class="faq-item"><summary><h3>Short lifetimes, refresh tokens for renewal</h3></summary><p>A long access-token exp means a stolen token is usable for that long. Because JWT verification is stateless, <strong>there is no built-in way to revoke an issued token.</strong> Hence short lifetimes plus refresh tokens. This is also the source of "I logged out but the token still works".</p>
+            <details class="faq-item" open><summary><h3>Short lifetimes, refresh tokens for renewal</h3></summary><p>A long access-token exp means a stolen token is usable for that long. Because JWT verification is stateless, <strong>there is no built-in way to revoke an issued token.</strong> Hence short lifetimes plus refresh tokens. This is also the source of "I logged out but the token still works".</p>
             </details>
           </div>
         </div>
@@ -315,7 +300,7 @@
             </article>
           </div>
         </section>
-        <details class="content-more">
+        <details class="content-more" open>
           <summary>More: step-by-step usage and worked examples</summary>
         <section class="content-section">
           <h2 class="section-title">Real input and output</h2>
@@ -354,7 +339,7 @@ Lifetime 1 hour</code></pre>
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
         <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Browser tools that never upload your files</small>
     </footer>
   </div>
 

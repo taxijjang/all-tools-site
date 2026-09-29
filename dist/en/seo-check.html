@@ -5,9 +5,9 @@
   <title>SEO Title Tag Checker | Pixel Width &amp; SERP Preview | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/seoCheck-CGxWbjK1.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CM67rKKC.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/seoCheck-CepDi_EZ.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lbtKuhHH.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -21,15 +21,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -51,17 +44,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -351,17 +336,17 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Questions that come up in practice</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Can this tool always fetch an external page?</h3></summary><p>No. It runs in the browser, so many third-party pages will block direct fetches with CORS. That is why the pasted HTML route is built in.</p>
+            <details class="faq-item" open><summary><h3>Can this tool always fetch an external page?</h3></summary><p>No. It runs in the browser, so many third-party pages will block direct fetches with CORS. That is why the pasted HTML route is built in.</p>
             </details>
-            <details class="faq-item"><summary><h3>Does it give a final SEO score?</h3></summary><p>No. This page is for rapid diagnosis and prioritization. Real SEO still depends on the body content, search intent, internal linking, and trust signals.</p>
+            <details class="faq-item" open><summary><h3>Does it give a final SEO score?</h3></summary><p>No. This page is for rapid diagnosis and prioritization. Real SEO still depends on the body content, search intent, internal linking, and trust signals.</p>
             </details>
-            <details class="faq-item"><summary><h3>Which tools pair well with this one?</h3></summary><p>The <a href="/en/utm-builder">UTM Generator</a>, <a href="/en/url">URL Query Builder</a>, and <a href="/en/api-tester">API Request Tester</a> often help when you need to trace campaign links or reproduce response markup.</p>
+            <details class="faq-item" open><summary><h3>Which tools pair well with this one?</h3></summary><p>The <a href="/en/utm-builder">UTM Generator</a>, <a href="/en/url">URL Query Builder</a>, and <a href="/en/api-tester">API Request Tester</a> often help when you need to trace campaign links or reproduce response markup.</p>
             </details>
           </div>
         </div>
       </section>
     
-        <details class="content-more">
+        <details class="content-more" open>
           <summary data-i18n="common.moreContent">More: step-by-step usage and worked examples</summary>
 <section class="content-section content-section--highlight">
         

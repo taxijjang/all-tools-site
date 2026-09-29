@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-CM67rKKC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/site-lbtKuhHH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -22,15 +22,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -52,17 +45,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -252,8 +237,8 @@
               <p>Bugs and improvement ideas are reviewed through public channels tied to the repository and site owner.</p>
             </article>
             <article class="info-card">
-              <h3>4. Reviewable site information</h3>
-              <p>About, privacy, and contact pages are kept public so visitors and reviewers can understand ownership and policies.</p>
+              <h3>4. Policies in the open</h3>
+              <p>About, privacy, terms, and contact pages are public, and each one is updated when its content changes.</p>
             </article>
           </div>
           <p class="content-note">The project is currently maintained by <strong>taxijjang</strong> as an evolving personal toolkit.</p>
@@ -300,13 +285,13 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Costs and advertising</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Why is it free?</h3></summary><p>The tools run in your browser on a static site, so there is no server compute cost. The outgoings are a domain and static hosting, and they do not scale with visitors. There is nothing to charge for.</p>
+            <details class="faq-item" open><summary><h3>Why is it free?</h3></summary><p>The tools run in your browser on a static site, so there is no server compute cost. The outgoings are a domain and static hosting, and they do not scale with visitors. There is nothing to charge for.</p>
             </details>
-            <details class="faq-item"><summary><h3>Will there be ads?</h3></summary><p>Enough advertising to cover running costs is planned. What will not appear: ads over the working area of a tool, ads that push the result out of view, or anything styled to look like a download button. The contact, privacy and terms pages carry no ads.</p>
+            <details class="faq-item" open><summary><h3>Will there be ads?</h3></summary><p>Enough advertising to cover running costs is planned. What will not appear: ads over the working area of a tool, ads that push the result out of view, or anything styled to look like a download button. The contact, privacy and terms pages carry no ads.</p>
             </details>
-            <details class="faq-item"><summary><h3>Can advertisers see my data?</h3></summary><p>No. What you type into a tool never leaves the page, so there is nothing for an ad script to read. Cookie details and how to turn off personalised ads are in the <a href="/en/privacy">privacy notice</a>.</p>
+            <details class="faq-item" open><summary><h3>Can advertisers see my data?</h3></summary><p>No. What you type into a tool never leaves the page, so there is nothing for an ad script to read. Cookie details and how to turn off personalised ads are in the <a href="/en/privacy">privacy notice</a>.</p>
             </details>
-            <details class="faq-item"><summary><h3>Will there be paid features?</h3></summary><p>Not planned. Adding features that need a server would remove the reason this site exists, so anything a browser cannot do is left out instead.</p>
+            <details class="faq-item" open><summary><h3>Will there be paid features?</h3></summary><p>Not planned. Adding features that need a server would remove the reason this site exists, so anything a browser cannot do is left out instead.</p>
             </details>
           </div>
         </div>
