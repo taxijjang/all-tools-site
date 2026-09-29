@@ -102,6 +102,9 @@ function extractMatch(html, regex) {
 // 자르므로, 인지도 없는 브랜드명이 정작 검색어를 밀어내고 있었다.
 // 도구 페이지는 검색어로 들어오는 자리라 접미사를 빼고, 홈과 가이드는 남긴다.
 const AD_FREE_ROUTES = new Set(['/about', '/contact', '/privacy', '/terms']);
+// 홈과 허브(/learn, /ai-tools)는 다른 페이지로 가는 링크 모음이다. 애드센스 정책상
+// 탐색용 화면에는 광고를 두지 않는다. head의 애드센스 스크립트와 확인 메타 태그는 그대로 둔다.
+const NAVIGATION_ROUTES = new Set(['/', '/learn', '/ai-tools']);
 
 function withSiteSuffix(title, kind) {
   if (/stateless tools/i.test(title)) return title;
@@ -375,7 +378,7 @@ ${buildCardMarkup(faqItems, 'faq-item')}
         </section>`
     : ''
 }
-        <details class="content-more">
+        <details class="content-more" open>
           <summary>${escapeHtml(labels.moreSummary)}</summary>
 
         <section class="content-section">
@@ -443,6 +446,9 @@ function removeHeadArtifacts(html) {
   return patterns.reduce((current, pattern) => current.replace(pattern, ''), html);
 }
 
+// 언어는 주소로만 정한다(pickLocale). /en/... 은 영어, 나머지는 한국어.
+// 예전에는 브라우저 언어가 영어면 한국어 주소를 영어로 바꿔 보여줬고,
+// 영어 환경의 크롤러에게 /x 가 /en/x 와 같은 페이지로 보였다(애드센스 중복·혼합 언어 신호).
 function buildClientBootScript() {
   return `  <script data-client-boot>
     (function () {
@@ -455,15 +461,8 @@ function buildClientBootScript() {
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -487,18 +486,12 @@ function buildClientBootScript() {
 }
 
 function buildClientBootStyle() {
+  // 페이지 언어가 주소로 정해지고 본문은 빌드 때 그 언어로 박히므로,
+  // 스크립트가 돌기 전까지 본문을 숨길 이유가 없다. 상단 컨트롤만 가린다.
   return `  <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>`;
 }
@@ -570,7 +563,7 @@ function injectFooterLinks(html) {
   // 링크만 있는 푸터는 맥락이 없다. 기존 푸터들처럼 사이트 표기를 함께 넣는다.
   const footer =
     `    <footer class="footer footer--dev">\n${nav}\n` +
-    `      <small data-i18n="common.footerHome">© ${new Date().getFullYear()} stateless tools · Cloudflare Pages 배포용 정적 사이트</small>\n` +
+    `      <small data-i18n="common.footerHome">© ${new Date().getFullYear()} stateless tools · 파일을 서버로 보내지 않는 브라우저 도구</small>\n` +
     `    </footer>\n`;
   const closeIndex = html.lastIndexOf('</div>');
 
@@ -770,7 +763,7 @@ ${buildCardMarkup(extra.troubles)}
     : ''
 }${
   extra?.examples?.length
-    ? `        <details class="content-more">
+    ? `        <details class="content-more" open>
           <summary>${escapeHtml(labels.moreSummary)}</summary>
         <section class="content-section">
           <h2 class="section-title">${escapeHtml(labels.examplesTitle)}</h2>
@@ -800,13 +793,15 @@ ${relatedMarkup}
 // FAQ 7개가 /json에서 1,586px를 차지했다. 항목당 189px 중 여백은 32px뿐이고
 // 나머지는 글자라 줄일 여백이 없었다(처음엔 여백 탓이라고 잘못 짚었다).
 // 질문은 전부 보이게 두고 답만 펼치는 아코디언으로 바꾼다.
+// 기본값은 펼침(open)이다. 접어 두면 본문 대부분이 토글 뒤에 숨어 얇은 페이지로 보인다.
+// 읽은 항목은 사용자가 직접 접을 수 있다.
 // 하나의 "더 보기" 토글과는 다르다 - 질문 목록이 그대로 보이므로
 // 읽는 사람이 자기 질문을 찾아 누른다. 답은 DOM에 남아 색인된다.
 function faqToAccordion(html) {
   return html.replace(
     /<article class="faq-item">\s*<h3>([\s\S]*?)<\/h3>\s*([\s\S]*?)<\/article>/g,
     (match, question, body) =>
-      `<details class="faq-item"><summary><h3>${question}</h3></summary>${body}</details>`,
+      `<details class="faq-item" open><summary><h3>${question}</h3></summary>${body}</details>`,
   );
 }
 
@@ -851,7 +846,7 @@ function collapseAuthoredContent(html) {
   }
 
   const rebuilt = `${lead}${kept.join('')}
-        <details class="content-more">
+        <details class="content-more" open>
           <summary data-i18n="common.moreContent">사용 순서와 입력 예시 더 보기</summary>
 ${collapsed.join('')}
         </details>
@@ -1243,7 +1238,9 @@ function seoMetadataPlugin() {
         'data-allow-ads',
         // ponytail: meta.allowAds는 어느 PAGE_META에도 없어서 항상 undefined였음. noindex 페이지만 제외.
         // 소개/문의/개인정보/약관은 광고를 넣지 않는다 — about 페이지에 그렇게 공개해 뒀다.
-        ADSENSE_ENABLED && !meta.noindex && !AD_FREE_ROUTES.has(canonicalPath) ? 'true' : 'false',
+        ADSENSE_ENABLED && !meta.noindex && !AD_FREE_ROUTES.has(canonicalPath) && !NAVIGATION_ROUTES.has(canonicalPath)
+          ? 'true'
+          : 'false',
       );
 
       const headTags = [
