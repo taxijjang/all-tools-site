@@ -147,8 +147,9 @@ async function evaluate(send, expression) {
   return result.result.value;
 }
 
+// 언어는 주소로만 정해진다. 영어 문구를 확인하는 감사라 /en/ 판에서 돈다.
 async function navigate(send, route) {
-  await send('Page.navigate', { url: `${BASE}${route}` });
+  await send('Page.navigate', { url: `${BASE}/en${route}` });
   for (let i = 0; i < 50; i += 1) {
     const readyState = await evaluate(send, 'document.readyState');
     if (readyState === 'complete') {

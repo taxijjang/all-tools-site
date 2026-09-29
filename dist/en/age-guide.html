@@ -5,8 +5,8 @@
   <title>How Korean Ages Work | Three Counts Explained | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-CM67rKKC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/site-lbtKuhHH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -20,15 +20,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -50,17 +43,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -257,13 +242,13 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">What the 2023 change actually did</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>What changed</h3></summary><p>From 28 June 2023, the Framework Act on Administration and the Civil Act state that age is counted as international age. Where a law or contract simply says "age N", it is <strong>read as international age</strong>. This settled a long-standing source of disputes.</p>
+            <details class="faq-item" open><summary><h3>What changed</h3></summary><p>From 28 June 2023, the Framework Act on Administration and the Civil Act state that age is counted as international age. Where a law or contract simply says "age N", it is <strong>read as international age</strong>. This settled a long-standing source of disputes.</p>
             </details>
-            <details class="faq-item"><summary><h3>Why is it still confusing?</h3></summary><p>What was unified is the <em>default reading</em>, not every statute. Where an individual law specifies year age, that law wins. Conscription and youth-protection law are the notable cases, and because those are the age rules people meet most often, it can feel as though nothing changed.</p>
+            <details class="faq-item" open><summary><h3>Why is it still confusing?</h3></summary><p>What was unified is the <em>default reading</em>, not every statute. Where an individual law specifies year age, that law wins. Conscription and youth-protection law are the notable cases, and because those are the age rules people meet most often, it can feel as though nothing changed.</p>
             </details>
-            <details class="faq-item"><summary><h3>Why do alcohol and tobacco limits ignore birthdays?</h3></summary><p>Youth-protection law uses year age: eligibility starts on 1 January of the year you turn 19, regardless of your birthday. Everyone born in the same year gains it <strong>on the same day</strong>, so a December-born person is treated as an adult eleven months earlier than a January-born one.</p>
+            <details class="faq-item" open><summary><h3>Why do alcohol and tobacco limits ignore birthdays?</h3></summary><p>Youth-protection law uses year age: eligibility starts on 1 January of the year you turn 19, regardless of your birthday. Everyone born in the same year gains it <strong>on the same day</strong>, so a December-born person is treated as an adult eleven months earlier than a January-born one.</p>
             </details>
-            <details class="faq-item"><summary><h3>What about school years?</h3></summary><p>School entry is grouped by birth year, so classmates share a birth year regardless of how age is counted. The 2023 change does not affect it.</p>
+            <details class="faq-item" open><summary><h3>What about school years?</h3></summary><p>School entry is grouped by birth year, so classmates share a birth year regardless of how age is counted. The 2023 change does not affect it.</p>
             </details>
           </div>
         </div>
@@ -296,13 +281,13 @@
           <h2 class="section-title">Conventions for counting days</h2>
           <p class="section-lead">Beyond age, plenty of situations ask "how many days", and whether the first day counts varies by context.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Does the first day count?</h3></summary><p>Hotel nights, working days, event spans and training hours usually count the <strong>start day too</strong>. A "how many days left" calculation counts only the difference. From 1 March to 3 March is two days by difference and three inclusive. Check which the contract means.</p>
+            <details class="faq-item" open><summary><h3>Does the first day count?</h3></summary><p>Hotel nights, working days, event spans and training hours usually count the <strong>start day too</strong>. A "how many days left" calculation counts only the difference. From 1 March to 3 March is two days by difference and three inclusive. Check which the contract means.</p>
             </details>
-            <details class="faq-item"><summary><h3>How is D-day counted?</h3></summary><p>The target date is <strong>D-DAY</strong>, the day before is D-1 and the day after is D+1. Counting elapsed days instead — "how many days since" — treats the first day as day one, so the same date is both D-DAY and day one.</p>
+            <details class="faq-item" open><summary><h3>How is D-day counted?</h3></summary><p>The target date is <strong>D-DAY</strong>, the day before is D-1 and the day after is D+1. Counting elapsed days instead — "how many days since" — treats the first day as day one, so the same date is both D-DAY and day one.</p>
             </details>
-            <details class="faq-item"><summary><h3>Business days and holidays</h3></summary><p>A deadline "in business days" excludes Saturday and Sunday. Lunar holidays move each year and substitute-holiday rules change, so they resist automatic calculation. The business-day feature in the <a href="/en/date-calc">calculator</a> excludes weekends only — cross-check the official calendar.</p>
+            <details class="faq-item" open><summary><h3>Business days and holidays</h3></summary><p>A deadline "in business days" excludes Saturday and Sunday. Lunar holidays move each year and substitute-holiday rules change, so they resist automatic calculation. The business-day feature in the <a href="/en/date-calc">calculator</a> excludes weekends only — cross-check the official calendar.</p>
             </details>
-            <details class="faq-item"><summary><h3>Adding months</h3></summary><p>Adding one month to 31 January gives <strong>28 February</strong>, since 31 February does not exist. Civil-law period calculation clamps to the last day the same way. A calculator that rolls over to 3 March is not following this rule, which matters for contractual deadlines.</p>
+            <details class="faq-item" open><summary><h3>Adding months</h3></summary><p>Adding one month to 31 January gives <strong>28 February</strong>, since 31 February does not exist. Civil-law period calculation clamps to the last day the same way. A calculator that rolls over to 3 March is not following this rule, which matters for contractual deadlines.</p>
             </details>
           </div>
         </div>
@@ -314,13 +299,13 @@
           <h2 class="section-title">Building age conditions into a service</h2>
           <p class="section-lead">Age limits and adult verification raise real questions about how to store the value and when to compute it.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Why you should not store an age</h3></summary><p>An age stored as a number at sign-up is wrong on the next birthday. <strong>Store the birth date and compute the age at read time</strong> — it is the only correct approach. A schema with an age column is usually a trace of this mistake.</p>
+            <details class="faq-item" open><summary><h3>Why you should not store an age</h3></summary><p>An age stored as a number at sign-up is wrong on the next birthday. <strong>Store the birth date and compute the age at read time</strong> — it is the only correct approach. A schema with an age column is usually a trace of this mistake.</p>
             </details>
-            <details class="faq-item"><summary><h3>Which time zone applies?</h3></summary><p>A server on UTC is still on yesterday before 9am Korean time. For a feature that flips on a birthday, users appear a year younger during those nine hours. Decide age in the <strong>user's local time</strong>, or at minimum pin an explicit service time zone.</p>
+            <details class="faq-item" open><summary><h3>Which time zone applies?</h3></summary><p>A server on UTC is still on yesterday before 9am Korean time. For a feature that flips on a birthday, users appear a year younger during those nine hours. Decide age in the <strong>user's local time</strong>, or at minimum pin an explicit service time zone.</p>
             </details>
-            <details class="faq-item"><summary><h3>Which age does a limit refer to?</h3></summary><p>Writing "14 or older (international age)" in the terms removes the ambiguity. Conversely, content covered by youth-protection law uses year age, so eligibility follows the birth year rather than the birthday. Mixing the two gives the same user different rights on different screens.</p>
+            <details class="faq-item" open><summary><h3>Which age does a limit refer to?</h3></summary><p>Writing "14 or older (international age)" in the terms removes the ambiguity. Conversely, content covered by youth-protection law uses year age, so eligibility follows the birth year rather than the birthday. Mixing the two gives the same user different rights on different screens.</p>
             </details>
-            <details class="faq-item"><summary><h3>How should the date be entered?</h3></summary><p><code>&lt;input type="date"&gt;</code> lets the browser handle locale formatting and the calendar UI, and the value always arrives as <code>YYYY-MM-DD</code>. Three hand-rolled select boxes will happily accept 31 February and need separate validation.</p>
+            <details class="faq-item" open><summary><h3>How should the date be entered?</h3></summary><p><code>&lt;input type="date"&gt;</code> lets the browser handle locale formatting and the calendar UI, and the value always arrives as <code>YYYY-MM-DD</code>. Three hand-rolled select boxes will happily accept 31 February and need separate validation.</p>
             </details>
           </div>
         </div>
@@ -369,7 +354,7 @@
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
         <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Browser tools that never upload your files</small>
     </footer>
   </div>
 

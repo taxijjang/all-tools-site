@@ -1645,17 +1645,14 @@ function injectContentAds() {
   const footer = page?.querySelector('.footer');
   if (!page || page.querySelector('.content-ad')) return;
 
-  const contentStack = page.querySelector('.content-stack');
-  const anchor =
-    contentStack?.querySelector('.content-section') ||
-    page.querySelector('.quick-start') ||
-    page.querySelector('.tool') ||
-    footer;
-
-  if (!anchor) return;
-
+  // 광고는 본문(도구, 설명, FAQ, 관련 도구)을 모두 지난 뒤 푸터 바로 앞에 둔다.
+  // 본문 첫 섹션 뒤에 두면 승인 전에는 빈 "Sponsored" 상자가 본문보다 먼저 보였다.
   const ad = createContentAdSlot();
-  anchor.after(ad);
+  if (footer) {
+    footer.before(ad);
+  } else {
+    page.append(ad);
+  }
 
   try {
     (window.adsbygoogle = window.adsbygoogle || []).push({});

@@ -2130,10 +2130,12 @@ kbd {
 }
 
 .content-ad__slot {
-  min-height: 190px;
   border-radius: 0.9rem;
-  background: color-mix(in srgb, var(--surface-muted) 88%, transparent);
-  border: 1px dashed color-mix(in srgb, var(--border) 74%, var(--primary) 26%);
+}
+
+/* 채워지지 않은 광고 자리는 통째로 숨긴다. 빈 상자가 콘텐츠처럼 보이지 않게 한다. */
+.content-ad:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none;
 }
 
 .content-ad__note {

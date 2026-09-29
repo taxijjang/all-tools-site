@@ -9,16 +9,27 @@ const initialLocale = window.__preferredLocale || getInitialLocale();
 let currentLocale = initialLocale;
 const listeners = new Set();
 
+// 언어는 주소로만 정한다. /en/... 은 영어, 나머지는 한국어.
+// 브라우저 언어나 저장된 설정으로 한국어 주소를 영어로 바꾸지 않는다.
+function getPathLocale(pathname = window.location.pathname) {
+  return pathname === '/en' || pathname.startsWith('/en/') ? 'en' : 'ko';
+}
+
 function getInitialLocale() {
-  const stored = safeStorage('get', 'stateless-tools-locale');
-  if (stored && SUPPORTED_LOCALES.includes(stored)) {
-    return stored;
+  return getPathLocale();
+}
+
+// 다른 언어판 주소. 빌드가 넣은 hreflang 링크를 먼저 쓰고, 없으면 경로 규칙으로 만든다.
+function getAlternateUrl(locale) {
+  const link = document.querySelector(`link[rel="alternate"][hreflang="${locale}"]`);
+  if (link?.href) {
+    return link.href;
   }
-  const browser = navigator.language?.slice(0, 2);
-  if (browser && SUPPORTED_LOCALES.includes(browser)) {
-    return browser;
+  const path = window.location.pathname;
+  if (locale === 'en') {
+    return path === '/' ? '/en/' : `/en${path}`;
   }
-  return 'ko';
+  return path.replace(/^\/en(?=\/|$)/, '') || '/';
 }
 
 function safeStorage(action, key, value) {
@@ -93,8 +104,17 @@ export function revealI18n() {
 export function bindLocaleSwitcher(selectEl, { root = document } = {}) {
   if (!selectEl) return;
   selectEl.value = currentLocale;
+  // 언어 전환은 같은 페이지를 바꿔 쓰지 않고 다른 언어판 주소로 이동한다.
   selectEl.addEventListener('change', (event) => {
-    setLocale(event.target.value, { root });
+    const nextLocale = event.target.value;
+    if (!SUPPORTED_LOCALES.includes(nextLocale) || nextLocale === currentLocale) return;
+    safeStorage('set', 'stateless-tools-locale', nextLocale);
+    const target = getAlternateUrl(nextLocale);
+    if (target) {
+      window.location.href = target;
+    } else {
+      setLocale(nextLocale, { root });
+    }
   });
   listeners.add((locale) => {
     selectEl.value = locale;

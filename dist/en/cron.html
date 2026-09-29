@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
     <link rel="manifest" href="/manifest.webmanifest" />
-    <script type="module" crossorigin src="/assets/cron-CY_3joqP.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CM67rKKC.js">
+    <script type="module" crossorigin src="/assets/cron-DahaaJiQ.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lbtKuhHH.js">
   <link rel="modulepreload" crossorigin href="/assets/_commonjsHelpers-BosuxZz1.js">
   <link rel="modulepreload" crossorigin href="/assets/luxon-CGv2xrGI.js">
   <link rel="modulepreload" crossorigin href="/assets/__vite-browser-external-D7Ct-6yo.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -26,15 +26,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -56,17 +49,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -353,7 +338,7 @@
         </section>
 
 
-        <details class="content-more">
+        <details class="content-more" open>
           <summary>More: step-by-step usage and worked examples</summary>
 
         <section class="content-section">

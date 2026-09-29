@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/regex-Bf00FASe.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CM67rKKC.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/regex-k8fZAVoM.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lbtKuhHH.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -23,15 +23,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -53,17 +46,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -314,11 +299,11 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Things that trip people up a lot</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>What do <code>g</code>, <code>i</code>, and <code>m</code> change?</h3></summary><p><code>g</code> searches globally, <code>i</code> ignores case, and <code>m</code> changes how line anchors behave across multiple lines.</p>
+            <details class="faq-item" open><summary><h3>What do <code>g</code>, <code>i</code>, and <code>m</code> change?</h3></summary><p><code>g</code> searches globally, <code>i</code> ignores case, and <code>m</code> changes how line anchors behave across multiple lines.</p>
             </details>
-            <details class="faq-item"><summary><h3>Why do regex syntax errors happen so often?</h3></summary><p>Missing escapes, unbalanced groups, or unsupported syntax are the common causes. Testing a smaller fragment first is usually the fastest fix.</p>
+            <details class="faq-item" open><summary><h3>Why do regex syntax errors happen so often?</h3></summary><p>Missing escapes, unbalanced groups, or unsupported syntax are the common causes. Testing a smaller fragment first is usually the fastest fix.</p>
             </details>
-            <details class="faq-item"><summary><h3>Which regex engine does this page use?</h3></summary><p>It uses the browser JavaScript regex engine. That means behavior can differ from PCRE or some server runtimes, so production checks still matter.</p>
+            <details class="faq-item" open><summary><h3>Which regex engine does this page use?</h3></summary><p>It uses the browser JavaScript regex engine. That means behavior can differ from PCRE or some server runtimes, so production checks still matter.</p>
             </details>
           </div>
         </div>
@@ -328,11 +313,11 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Working with regular expressions</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Greedy quantifiers take more than you expect</h3></summary><p>.* matches as much as possible, so <a>.*</a> spans the whole string rather than one tag. Use .*? to match minimally. When results look wrong on tags or quotes, check this first.</p>
+            <details class="faq-item" open><summary><h3>Greedy quantifiers take more than you expect</h3></summary><p>.* matches as much as possible, so <a>.*</a> spans the whole string rather than one tag. Use .*? to match minimally. When results look wrong on tags or quotes, check this first.</p>
             </details>
-            <details class="faq-item"><summary><h3>Syntax differs between engines</h3></summary><p>JavaScript, Python, PCRE and POSIX diverge on lookbehind and Unicode property support. An expression that works here may not work in your server language. Re-test it in that runtime when you move it.</p>
+            <details class="faq-item" open><summary><h3>Syntax differs between engines</h3></summary><p>JavaScript, Python, PCRE and POSIX diverge on lookbehind and Unicode property support. An expression that works here may not work in your server language. Re-test it in that runtime when you move it.</p>
             </details>
-            <details class="faq-item"><summary><h3>Large input can hang the engine</h3></summary><p>Nested quantifiers such as (a+)+ cause catastrophic backtracking and stall on short input. In code validating user input this becomes a denial of service. Splitting complex patterns into string operations is safer.</p>
+            <details class="faq-item" open><summary><h3>Large input can hang the engine</h3></summary><p>Nested quantifiers such as (a+)+ cause catastrophic backtracking and stall on short input. In code validating user input this becomes a denial of service. Splitting complex patterns into string operations is safer.</p>
             </details>
           </div>
         </div>
@@ -359,7 +344,7 @@
             </article>
           </div>
         </section>
-        <details class="content-more">
+        <details class="content-more" open>
           <summary>More: step-by-step usage and worked examples</summary>
         <section class="content-section">
           <h2 class="section-title">Real input and output</h2>

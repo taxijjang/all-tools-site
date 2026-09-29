@@ -5,8 +5,8 @@
   <title>UUID v4 vs v7 Guide | Which UUID Should You Use | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-CM67rKKC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/site-lbtKuhHH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -20,15 +20,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -50,17 +43,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -222,13 +207,13 @@
           <h2 class="section-title">The difference is clear at the bit level</h2>
           <p class="section-lead">Both are 128 bits and share the same string form. What differs is what fills those bits. Standardised in RFC 9562, v7 hands the leading bits over to time.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>v4 is almost entirely random</h3></summary><p>Excluding four version bits and two variant bits, <strong>122 bits are random</strong>. Collisions are not a practical concern, and the value reveals nothing about when it was created. The <code>4</code> at the 14th character of the string is the version marker.</p>
+            <details class="faq-item" open><summary><h3>v4 is almost entirely random</h3></summary><p>Excluding four version bits and two variant bits, <strong>122 bits are random</strong>. Collisions are not a practical concern, and the value reveals nothing about when it was created. The <code>4</code> at the 14th character of the string is the version marker.</p>
             </details>
-            <details class="faq-item"><summary><h3>v7 puts a millisecond timestamp in the first 48 bits</h3></summary><p>Unix epoch milliseconds come first, then four version bits (<code>0111</code>, so a <code>7</code> at the 14th character), two variant bits, and <strong>74 random bits</strong>. Because time leads, <em>sorting the strings lexicographically sorts them by creation order.</em> That is the whole idea.</p>
+            <details class="faq-item" open><summary><h3>v7 puts a millisecond timestamp in the first 48 bits</h3></summary><p>Unix epoch milliseconds come first, then four version bits (<code>0111</code>, so a <code>7</code> at the 14th character), two variant bits, and <strong>74 random bits</strong>. Because time leads, <em>sorting the strings lexicographically sorts them by creation order.</em> That is the whole idea.</p>
             </details>
-            <details class="faq-item"><summary><h3>What that looks like</h3></summary><p><code>01a013ab-09ca-7958-88e4-7f9866134ad6</code> and <code>01a013ab-09d0-7ec6-ac2e-079d51b83123</code> are two v7 values generated moments apart. The first eight characters match and the next segment ticks up. Two v4 values differ from the very first character.</p>
+            <details class="faq-item" open><summary><h3>What that looks like</h3></summary><p><code>01a013ab-09ca-7958-88e4-7f9866134ad6</code> and <code>01a013ab-09d0-7ec6-ac2e-079d51b83123</code> are two v7 values generated moments apart. The first eight characters match and the next segment ticks up. Two v4 values differ from the very first character.</p>
             </details>
-            <details class="faq-item"><summary><h3>What about several in the same millisecond?</h3></summary><p>The timestamp is identical, so the remaining 74 random bits decide. Order within a single millisecond is not guaranteed. If you need strict monotonicity, choose an implementation using the counter method the RFC permits; millisecond-level ordering is enough for most applications.</p>
+            <details class="faq-item" open><summary><h3>What about several in the same millisecond?</h3></summary><p>The timestamp is identical, so the remaining 74 random bits decide. Order within a single millisecond is not guaranteed. If you need strict monotonicity, choose an implementation using the counter method the RFC permits; millisecond-level ordering is enough for most applications.</p>
             </details>
           </div>
         </div>
@@ -263,13 +248,13 @@
           <h2 class="section-title">What v7 gives up: creation time is visible</h2>
           <p class="section-lead">The sorting benefit has a price, and this is the part most v7 introductions omit.</p>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>The value reveals when it was created</h3></summary><p>Since the first 48 bits are a millisecond timestamp, anyone can recover the creation time from a v7 value. If a user ID is v7 and appears in a public profile URL, that person's <strong>sign-up time becomes public</strong>. For an order ID it is the order time; for a document ID, the authoring time.</p>
+            <details class="faq-item" open><summary><h3>The value reveals when it was created</h3></summary><p>Since the first 48 bits are a millisecond timestamp, anyone can recover the creation time from a v7 value. If a user ID is v7 and appears in a public profile URL, that person's <strong>sign-up time becomes public</strong>. For an order ID it is the order time; for a document ID, the authoring time.</p>
             </details>
-            <details class="faq-item"><summary><h3>Ordering is information too</h3></summary><p>Comparing two v7 values tells you which came first. A competitor can sign up, compare their own ID with another, and <strong>estimate how many records were created in between</strong>. The 74 random bits prevent an exact count, but the time range is fully exposed.</p>
+            <details class="faq-item" open><summary><h3>Ordering is information too</h3></summary><p>Comparing two v7 values tells you which came first. A competitor can sign up, compare their own ID with another, and <strong>estimate how many records were created in between</strong>. The 74 random bits prevent an exact count, but the time range is fully exposed.</p>
             </details>
-            <details class="faq-item"><summary><h3>How to split it</h3></summary><p>A common compromise is to <strong>separate internal and external identifiers</strong>. Keep a v7 primary key for the index benefit and expose a separate v4 or short slug in public URLs. It costs one extra column and gives you both properties.</p>
+            <details class="faq-item" open><summary><h3>How to split it</h3></summary><p>A common compromise is to <strong>separate internal and external identifiers</strong>. Keep a v7 primary key for the index benefit and expose a separate v4 or short slug in public URLs. It costs one extra column and gives you both properties.</p>
             </details>
-            <details class="faq-item"><summary><h3>Is v4 therefore safe?</h3></summary><p>Safe in the sense that it leaks no timestamp. But v4 is not a <em>secret</em> either — it is merely hard to guess, and cannot replace access control. A design where "anyone with the URL can view it" is weak regardless of UUID version.</p>
+            <details class="faq-item" open><summary><h3>Is v4 therefore safe?</h3></summary><p>Safe in the sense that it leaks no timestamp. But v4 is not a <em>secret</em> either — it is merely hard to guess, and cannot replace access control. A design where "anyone with the URL can view it" is weak regardless of UUID version.</p>
             </details>
           </div>
         </div>
@@ -301,13 +286,13 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">What actually bites during migration</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Existing data cannot be migrated</h3></summary><p>There is no way to convert stored v4 values into v7 — the creation time was never in them. So a switch always means "only new values are v7", and the table keeps both versions side by side.</p>
+            <details class="faq-item" open><summary><h3>Existing data cannot be migrated</h3></summary><p>There is no way to convert stored v4 values into v7 — the creation time was never in them. So a switch always means "only new values are v7", and the table keeps both versions side by side.</p>
             </details>
-            <details class="faq-item"><summary><h3>Mixed versions break the sorting assumption</h3></summary><p>If queries or pagination assume "ordering by primary key means chronological", rows from the v4 era sit at random positions and results look wrong. Record the cut-over point and sort older data by an explicit <code>created_at</code> column. If you need time ordering at all, an indexed timestamp column is more explicit than relying on a UUID version.</p>
+            <details class="faq-item" open><summary><h3>Mixed versions break the sorting assumption</h3></summary><p>If queries or pagination assume "ordering by primary key means chronological", rows from the v4 era sit at random positions and results look wrong. Record the cut-over point and sort older data by an explicit <code>created_at</code> column. If you need time ordering at all, an indexed timestamp column is more explicit than relying on a UUID version.</p>
             </details>
-            <details class="faq-item"><summary><h3>Check library and runtime support</h3></summary><p>v7 is a relatively recent standard, so support varies by language and library version. Verify that your database driver, ORM and any validating schema (for example JSON Schema's <code>format: uuid</code>) accept version 7. The browser's <code>crypto.randomUUID()</code> produces v4 only.</p>
+            <details class="faq-item" open><summary><h3>Check library and runtime support</h3></summary><p>v7 is a relatively recent standard, so support varies by language and library version. Verify that your database driver, ORM and any validating schema (for example JSON Schema's <code>format: uuid</code>) accept version 7. The browser's <code>crypto.randomUUID()</code> produces v4 only.</p>
             </details>
-            <details class="faq-item"><summary><h3>UUIDs live outside primary keys too</h3></summary><p>Request trace IDs, idempotency keys and filenames also use UUIDs. In those positions ordering is not a benefit and the exposed timestamp is pure downside. Decide per use site rather than standardising everything on v7.</p>
+            <details class="faq-item" open><summary><h3>UUIDs live outside primary keys too</h3></summary><p>Request trace IDs, idempotency keys and filenames also use UUIDs. In those positions ordering is not a benefit and the exposed timestamp is pure downside. Decide per use site rather than standardising everything on v7.</p>
             </details>
           </div>
         </div>
@@ -354,7 +339,7 @@
             </article>
           </div>
         </section>
-        <details class="content-more">
+        <details class="content-more" open>
           <summary>More: step-by-step usage and worked examples</summary>
         <section class="content-section">
           <h2 class="section-title">Real input and output</h2>
@@ -393,7 +378,7 @@ v7  01923f8a-1c55-7000-8a3b-6b1a8c2d7e9f</code></pre>
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
         <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Browser tools that never upload your files</small>
     </footer>
   </div>
 

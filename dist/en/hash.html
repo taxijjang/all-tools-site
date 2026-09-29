@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/hash-DIc0IiGm.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CM67rKKC.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/hash-058QWwTB.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lbtKuhHH.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -23,15 +23,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -53,17 +46,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -325,11 +310,11 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Questions that come up often</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Is hashing the same as encryption?</h3></summary><p>No. Hashing is a one-way digest used for comparison or integrity checks, while encryption is designed for later decryption.</p>
+            <details class="faq-item" open><summary><h3>Is hashing the same as encryption?</h3></summary><p>No. Hashing is a one-way digest used for comparison or integrity checks, while encryption is designed for later decryption.</p>
             </details>
-            <details class="faq-item"><summary><h3>Should I use SHA-256 or SHA-512?</h3></summary><p>SHA-256 is usually the practical default for integrity checks. Use SHA-512 when your policy, ecosystem, or output-length requirements call for it.</p>
+            <details class="faq-item" open><summary><h3>Should I use SHA-256 or SHA-512?</h3></summary><p>SHA-256 is usually the practical default for integrity checks. Use SHA-512 when your policy, ecosystem, or output-length requirements call for it.</p>
             </details>
-            <details class="faq-item"><summary><h3>Does the page upload my input?</h3></summary><p>The digest is computed with the browser Web Crypto API. You should still account for extensions, device security, and your own operating environment.</p>
+            <details class="faq-item" open><summary><h3>Does the page upload my input?</h3></summary><p>The digest is computed with the browser Web Crypto API. You should still account for extensions, device security, and your own operating environment.</p>
             </details>
           </div>
         </div>
@@ -339,11 +324,11 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Using hashes</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>SHA-1 is out for security use</h3></summary><p>Collisions in SHA-1 can be constructed deliberately, so it is unsuitable for signatures or authentication. It remains fine for checking transfer corruption. Use SHA-256 or stronger where security matters.</p>
+            <details class="faq-item" open><summary><h3>SHA-1 is out for security use</h3></summary><p>Collisions in SHA-1 can be constructed deliberately, so it is unsuitable for signatures or authentication. It remains fine for checking transfer corruption. Use SHA-256 or stronger where security matters.</p>
             </details>
-            <details class="faq-item"><summary><h3>Do not store passwords with SHA</h3></summary><p>SHA is designed to be fast, which helps bulk guessing. Password storage needs a deliberately slow function such as bcrypt, scrypt or Argon2. An unsalted SHA table, once leaked, is largely recoverable with rainbow tables.</p>
+            <details class="faq-item" open><summary><h3>Do not store passwords with SHA</h3></summary><p>SHA is designed to be fast, which helps bulk guessing. Password storage needs a deliberately slow function such as bcrypt, scrypt or Argon2. An unsalted SHA table, once leaked, is largely recoverable with rainbow tables.</p>
             </details>
-            <details class="faq-item"><summary><h3>Equal hashes mean equal files, not the reverse</h3></summary><p>Matching hashes effectively mean identical content, but a single differing byte changes the hash entirely. How much changed cannot be read from a hash — that needs a diff tool.</p>
+            <details class="faq-item" open><summary><h3>Equal hashes mean equal files, not the reverse</h3></summary><p>Matching hashes effectively mean identical content, but a single differing byte changes the hash entirely. How much changed cannot be read from a hash — that needs a diff tool.</p>
             </details>
           </div>
         </div>
@@ -370,7 +355,7 @@
             </article>
           </div>
         </section>
-        <details class="content-more">
+        <details class="content-more" open>
           <summary>More: step-by-step usage and worked examples</summary>
         <section class="content-section">
           <h2 class="section-title">Real input and output</h2>

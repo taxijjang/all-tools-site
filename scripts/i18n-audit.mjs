@@ -19,7 +19,9 @@ const CHROME_PATHS = [
   'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe',
 ].filter(Boolean);
 
-const ROUTES = [
+// 한국어 주소. 언어는 주소로만 정하므로, 영어 환경(저장값 en, navigator 영어)에서
+// 열어도 한국어로 남아야 한다. 영어 누수 검사는 각 주소의 /en/ 판에서 한다.
+const KO_ROUTES = [
   '/',
   '/learn',
   '/ai-tools',
@@ -65,7 +67,13 @@ const ROUTES = [
   '/utm-builder',
   '/text-cleaner',
   '/api-tester',
+];
+
+const toEnglishRoute = (route) => (route === '/' ? '/en/' : `/en${route}`);
+
+const ROUTES = [
   // /en/ 정적 영어 판. 여기가 깨지면 영어권 유입 자체가 막힌다.
+  ...KO_ROUTES.map(toEnglishRoute),
   '/en/',
   '/en/json',
   '/en/base64',
@@ -244,6 +252,12 @@ async function auditRoute(send, route) {
           .map((el) => {
             const text = (el.innerText || '').replace(/\\s+/g, ' ').trim();
             if (!text || !/[가-힣]/.test(text)) return null;
+            // 본문 예시로 일부러 쓴 한글은 lang="ko"로 표시해 둔다(예: 인코딩 가이드의 "안").
+            // FAQ가 기본으로 펼쳐지면서 그 예시가 보이는 텍스트가 됐다. 표시된 한글은 누수가 아니다.
+            if (el.closest('[lang="ko"]')) return null;
+            const clone = el.cloneNode(true);
+            clone.querySelectorAll('[lang="ko"]').forEach((node) => node.remove());
+            if (!/[가-힣]/.test(clone.textContent || '')) return null;
             if (text === '한국어 English') return null;
             const childHasSame = Array.from(el.children).some((child) => {
               const childText = (child.innerText || '').replace(/\\s+/g, ' ').trim();
@@ -276,7 +290,15 @@ async function main() {
 
   try {
     const findings = [];
-    for (const route of ROUTES) {
+    for (const route of KO_ROUTES) {
+      await send('Page.navigate', { url: `${BASE}${route}` });
+      await waitForLoad(send);
+      const r = await send('Runtime.evaluate', { expression: 'document.documentElement.lang', returnByValue: true });
+      if (r.result.value !== 'ko') {
+        findings.push({ route, leaks: [{ tag: 'html', id: 'lang', cls: null, text: `lang=${r.result.value} (한국어 주소가 영어로 바뀜)` }] });
+      }
+    }
+    for (const route of [...new Set(ROUTES)]) {
       const leaks = await auditRoute(send, route);
       if (leaks.length) {
         findings.push({ route, leaks });
@@ -289,7 +311,7 @@ async function main() {
       return;
     }
 
-    console.log(`I18N AUDIT PASS: ${ROUTES.length} routes clean in English mode`);
+    console.log(`I18N AUDIT PASS: ${new Set(ROUTES).size} English routes clean, ${KO_ROUTES.length} Korean routes stay Korean in an English browser`);
   } finally {
     await closeTarget(socket, targetId).catch(() => {});
     chrome.kill('SIGTERM');

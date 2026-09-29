@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-CM67rKKC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/site-lbtKuhHH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -22,15 +22,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -52,17 +45,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -162,7 +147,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4324902308911757" crossorigin="anonymous"></script>
 </head>
 
-<body class="layout layout--dev" data-tool="learn" data-allow-ads="true">
+<body class="layout layout--dev" data-tool="learn" data-allow-ads="false">
   <div class="page page--dev page--content">
     <div class="page-controls" data-nosnippet>
 
@@ -203,19 +188,15 @@
         
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Why this hub exists</h2>
-          <p class="section-lead">Search engines and reviewers respond better to pages that explain real decisions and trade-offs, not just blank forms. This hub routes traffic into focused guide URLs and then back into working tools.</p>
+          <p class="section-lead">A tool screen alone rarely tells you which option fits your situation or how to read the result. The topics people most often get wrong have their own guides here.</p>
           <div class="content-grid">
             <article class="info-card">
-              <h3>Searchable guide pages</h3>
-              <p>High-interest topics like UUIDs, JWTs, Base64, and PDF handling live on their own indexable pages with tighter keyword focus.</p>
+              <h3>Guides by topic</h3>
+              <p>UUIDs, JWTs, Base64, and PDF handling each get a page of their own covering the decision points and common mistakes.</p>
             </article>
             <article class="info-card">
               <h3>Bridge guides and tools</h3>
               <p>Every guide links into an actual utility page so explanation still leads straight into action.</p>
-            </article>
-            <article class="info-card">
-              <h3>Quality before ads</h3>
-              <p>For now, the site prioritizes useful content and crawl quality over ad loading, which is the safer direction while review status is still sensitive.</p>
             </article>
           </div>
         </div>
@@ -309,9 +290,8 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Current operating direction</h2>
           <ul class="content-list">
-            <li>Until ad approval is cleared, the live site favors crawl quality and useful content over loading ad scripts.</li>
-            <li>Tool pages stay fast and compact, while search-friendly topics get their own explanation pages.</li>
-            <li>The hub, the standalone guides, the cheatsheets, and the tool pages all link into each other so indexed pages can still drive real usage.</li>
+            <li>Tool pages stay fast and compact; topics that need a longer explanation get their own guide page.</li>
+            <li>Guides, cheatsheets, and tool pages link to each other so you can go straight from reading to the tool.</li>
           </ul>
         </div>
       </section>
@@ -324,7 +304,7 @@
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
         <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small>(c) 2025 stateless tools · practical utility guide hub</small>
+      <small>© 2026 stateless tools · practical utility guide hub</small>
     </footer>
   </div>
 

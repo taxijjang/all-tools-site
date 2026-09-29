@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="google-site-verification" content="eCwQJEP4tspgZW0lXTGZft7lj_BsBPVJbaMXO2nyrg4" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/uuid-MJFP2yC0.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/site-CM67rKKC.js">
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/uuid-DLkIo4BX.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/site-lbtKuhHH.js">
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -23,15 +23,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -53,17 +46,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -386,11 +371,11 @@
         <div data-locale-block="ko" lang="ko">
           <h2 class="section-title">실무에서 자주 묻는 점</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>hex(binary16)은 왜 쓰나요?</h3></summary><p>하이픈이 포함된 UUID 문자열보다 더 짧고, 일부 데이터베이스에서는 이진 컬럼으로 저장할 때 인덱스나 저장 공간 측면에서 유리할 수 있습니다.</p>
+            <details class="faq-item" open><summary><h3>hex(binary16)은 왜 쓰나요?</h3></summary><p>하이픈이 포함된 UUID 문자열보다 더 짧고, 일부 데이터베이스에서는 이진 컬럼으로 저장할 때 인덱스나 저장 공간 측면에서 유리할 수 있습니다.</p>
             </details>
-            <details class="faq-item"><summary><h3>UUID v7이 더 나은가요?</h3></summary><p>정렬 친화적인 식별자가 필요하면 위 생성 옵션에서 <strong>UUID v7</strong>을 고르세요. v7은 앞 48비트가 밀리초 타임스탬프라 생성 순서대로 정렬됩니다. 무작위여야 하면 v4, 문자열 가독성이 중요하면 ULID를 씁니다.</p>
+            <details class="faq-item" open><summary><h3>UUID v7이 더 나은가요?</h3></summary><p>정렬 친화적인 식별자가 필요하면 위 생성 옵션에서 <strong>UUID v7</strong>을 고르세요. v7은 앞 48비트가 밀리초 타임스탬프라 생성 순서대로 정렬됩니다. 무작위여야 하면 v4, 문자열 가독성이 중요하면 ULID를 씁니다.</p>
             </details>
-            <details class="faq-item"><summary><h3>입력값이 서버로 전송되나요?</h3></summary><p>이 페이지의 UUID 생성과 형식 변환은 브라우저 안에서 수행됩니다. 민감한 값 검증 전에 브라우저 확장이나 외부 스크립트 정책은 별도로 점검하세요.</p>
+            <details class="faq-item" open><summary><h3>입력값이 서버로 전송되나요?</h3></summary><p>이 페이지의 UUID 생성과 형식 변환은 브라우저 안에서 수행됩니다. 민감한 값 검증 전에 브라우저 확장이나 외부 스크립트 정책은 별도로 점검하세요.</p>
             </details>
           </div>
           <div class="cta-row">
@@ -404,18 +389,18 @@
         <div data-locale-block="ko" lang="ko">
           <h2 class="section-title">식별자를 고를 때 확인할 점</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>v7은 생성 시각을 값에 드러냅니다</h3></summary><p>UUID v7의 앞 48비트는 밀리초 타임스탬프이므로 값만 보고 언제 만들어졌는지 알 수 있습니다. 사용자 ID가 v7이고 공개 프로필 URL에 들어간다면 그 사람의 가입 시각이 공개됩니다. 공개되는 식별자에는 v4를 따로 두는 편이 안전합니다.</p>
+            <details class="faq-item" open><summary><h3>v7은 생성 시각을 값에 드러냅니다</h3></summary><p>UUID v7의 앞 48비트는 밀리초 타임스탬프이므로 값만 보고 언제 만들어졌는지 알 수 있습니다. 사용자 ID가 v7이고 공개 프로필 URL에 들어간다면 그 사람의 가입 시각이 공개됩니다. 공개되는 식별자에는 v4를 따로 두는 편이 안전합니다.</p>
             </details>
-            <details class="faq-item"><summary><h3>UUID는 비밀이 아닙니다</h3></summary><p>v4도 추측하기 어려울 뿐이고 비밀 토큰이 아닙니다. "URL을 아는 사람만 볼 수 있다"는 설계는 UUID 버전과 무관하게 취약합니다. 접근 제어는 별도로 두어야 합니다.</p>
+            <details class="faq-item" open><summary><h3>UUID는 비밀이 아닙니다</h3></summary><p>v4도 추측하기 어려울 뿐이고 비밀 토큰이 아닙니다. "URL을 아는 사람만 볼 수 있다"는 설계는 UUID 버전과 무관하게 취약합니다. 접근 제어는 별도로 두어야 합니다.</p>
             </details>
-            <details class="faq-item"><summary><h3>저장 형식이 인덱스 크기를 좌우합니다</h3></summary><p>CHAR(36)으로 저장하면 하이픈까지 36바이트, BINARY(16)이면 16바이트입니다. 기본키에서 이 20바이트 차이는 모든 세컨더리 인덱스에 곱해집니다. 대신 로그에서 눈으로 읽기 어려워지는 대가가 있습니다.</p>
+            <details class="faq-item" open><summary><h3>저장 형식이 인덱스 크기를 좌우합니다</h3></summary><p>CHAR(36)으로 저장하면 하이픈까지 36바이트, BINARY(16)이면 16바이트입니다. 기본키에서 이 20바이트 차이는 모든 세컨더리 인덱스에 곱해집니다. 대신 로그에서 눈으로 읽기 어려워지는 대가가 있습니다.</p>
             </details>
           </div>
         </div>
         <div data-locale-slot="en" data-locale-index="2"></div>
       </section>
     
-        <details class="content-more">
+        <details class="content-more" open>
           <summary data-i18n="common.moreContent">사용 순서와 입력 예시 더 보기</summary>
 <section class="content-section">
         <div data-locale-block="ko" lang="ko">
@@ -464,10 +449,10 @@
         <a href="/contact" data-chrome-link="contact">문의</a>
         <a href="/terms" data-chrome-link="terms">이용약관</a>
       </nav>
-      <small data-i18n="common.footerUuid">© 2026 stateless tools · Cloudflare Pages 배포용 정적 사이트</small>
+      <small data-i18n="common.footerUuid">© 2026 stateless tools · 파일을 서버로 보내지 않는 브라우저 도구</small>
     </footer>
   </div>
-  <script type="application/json" data-locale-payload="en">["\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Common reasons to use this UUID converter\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Generate tracing IDs\u003c/h3>\n              \u003cp>Create a fresh UUID quickly when you need a request, session, or incident reference while debugging.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review database storage formats\u003c/h3>\n              \u003cp>Convert string UUIDs into hex(binary16) when comparing storage strategies for binary columns or compact transport formats.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Restore legacy values\u003c/h3>\n              \u003cp>Turn raw 32-character hex values back into standard UUID form so they are easier to inspect and compare.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Questions that come up in practice\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Why use hex(binary16)?\u003c/h3>\u003c/summary>\u003cp>It removes hyphens and can fit more naturally into compact binary storage strategies than a plain UUID string.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Should I use UUID v7 instead?\u003c/h3>\u003c/summary>\u003cp>If you need time-sortable identifiers, pick \u003cstrong>UUID v7\u003c/strong> in the generation mode above. Its first 48 bits are a millisecond timestamp, so values sort by creation order. Use v4 when you want pure randomness, or ULID when string readability matters.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Does this page upload UUIDs anywhere?\u003c/h3>\u003c/summary>\u003cp>Generation and conversion happen in the browser. You should still account for browser extensions or your own security policies when handling sensitive identifiers.\u003c/p>\n            \u003c/details>\n          \u003c/div>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/uuid-v4-v7\">Open UUID v4 vs v7 guide\u003c/a>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Choosing an identifier\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>v7 exposes creation time\u003c/h3>\u003c/summary>\u003cp>The first 48 bits of a UUID v7 are a millisecond timestamp, so the value reveals when it was created. If a user ID is v7 and appears in a public profile URL, that person's sign-up time is public. Keep a separate v4 for publicly exposed identifiers.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>A UUID is not a secret\u003c/h3>\u003c/summary>\u003cp>Even v4 is merely hard to guess, not confidential. A design where \"anyone with the URL can view it\" is weak regardless of version. Access control belongs elsewhere.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\">\u003csummary>\u003ch3>Storage form drives index size\u003c/h3>\u003c/summary>\u003cp>CHAR(36) uses 36 bytes including hyphens; BINARY(16) uses 16. On a primary key that 20-byte gap multiplies across every secondary index — at the cost of no longer being readable in logs.\u003c/p>\n            \u003c/details>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">The most practical order for using this page\u003c/h2>\n          \u003cdiv class=\"content-columns\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>1. Generate first when you need a fresh identifier\u003c/h3>\n              \u003cp>Start with UUID v4 or ULID when you need a tracing ID, a temporary reference, or a clean test value right away.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>2. Compare storage formats through round-trip conversion\u003c/h3>\n              \u003cp>When logs, binary columns, or legacy datasets hold the same value in a different format, convert both ways before assuming they differ.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>3. Move to UUID v7 when ordering matters\u003c/h3>\n              \u003cp>If the real question is about time-ordered identifiers, switch the generation mode to \u003cstrong>UUID v7\u003c/strong> and compare it with v4 on this same screen. The \u003ca href=\"/uuid-v4-v7\">v4 vs v7 guide\u003c/a> covers the trade-offs.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json\">JSON Formatter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/url\">URL Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json-yaml\">JSON YAML\u003c/a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out\u003c/li>\n            \u003cli>\u003ca href=\"/api-tester\">API Request Tester\u003c/a> — Reproducing an API response for documentation or a bug report means being able to write the request down exact\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
+  <script type="application/json" data-locale-payload="en">["\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Common reasons to use this UUID converter\u003c/h2>\n          \u003cdiv class=\"content-grid\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>Generate tracing IDs\u003c/h3>\n              \u003cp>Create a fresh UUID quickly when you need a request, session, or incident reference while debugging.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Review database storage formats\u003c/h3>\n              \u003cp>Convert string UUIDs into hex(binary16) when comparing storage strategies for binary columns or compact transport formats.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>Restore legacy values\u003c/h3>\n              \u003cp>Turn raw 32-character hex values back into standard UUID form so they are easier to inspect and compare.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Questions that come up in practice\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003cdetails class=\"faq-item\" open>\u003csummary>\u003ch3>Why use hex(binary16)?\u003c/h3>\u003c/summary>\u003cp>It removes hyphens and can fit more naturally into compact binary storage strategies than a plain UUID string.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\" open>\u003csummary>\u003ch3>Should I use UUID v7 instead?\u003c/h3>\u003c/summary>\u003cp>If you need time-sortable identifiers, pick \u003cstrong>UUID v7\u003c/strong> in the generation mode above. Its first 48 bits are a millisecond timestamp, so values sort by creation order. Use v4 when you want pure randomness, or ULID when string readability matters.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\" open>\u003csummary>\u003ch3>Does this page upload UUIDs anywhere?\u003c/h3>\u003c/summary>\u003cp>Generation and conversion happen in the browser. You should still account for browser extensions or your own security policies when handling sensitive identifiers.\u003c/p>\n            \u003c/details>\n          \u003c/div>\n          \u003cdiv class=\"cta-row\">\n            \u003ca class=\"link-button link-button--primary\" href=\"/uuid-v4-v7\">Open UUID v4 vs v7 guide\u003c/a>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">Choosing an identifier\u003c/h2>\n          \u003cdiv class=\"faq-list\">\n            \u003cdetails class=\"faq-item\" open>\u003csummary>\u003ch3>v7 exposes creation time\u003c/h3>\u003c/summary>\u003cp>The first 48 bits of a UUID v7 are a millisecond timestamp, so the value reveals when it was created. If a user ID is v7 and appears in a public profile URL, that person's sign-up time is public. Keep a separate v4 for publicly exposed identifiers.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\" open>\u003csummary>\u003ch3>A UUID is not a secret\u003c/h3>\u003c/summary>\u003cp>Even v4 is merely hard to guess, not confidential. A design where \"anyone with the URL can view it\" is weak regardless of version. Access control belongs elsewhere.\u003c/p>\n            \u003c/details>\n            \u003cdetails class=\"faq-item\" open>\u003csummary>\u003ch3>Storage form drives index size\u003c/h3>\u003c/summary>\u003cp>CHAR(36) uses 36 bytes including hyphens; BINARY(16) uses 16. On a primary key that 20-byte gap multiplies across every secondary index — at the cost of no longer being readable in logs.\u003c/p>\n            \u003c/details>\n          \u003c/div>\n        \u003c/div>","\u003cdiv data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet>\n          \u003ch2 class=\"section-title\">The most practical order for using this page\u003c/h2>\n          \u003cdiv class=\"content-columns\">\n            \u003carticle class=\"info-card\">\n              \u003ch3>1. Generate first when you need a fresh identifier\u003c/h3>\n              \u003cp>Start with UUID v4 or ULID when you need a tracing ID, a temporary reference, or a clean test value right away.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>2. Compare storage formats through round-trip conversion\u003c/h3>\n              \u003cp>When logs, binary columns, or legacy datasets hold the same value in a different format, convert both ways before assuming they differ.\u003c/p>\n            \u003c/article>\n            \u003carticle class=\"info-card\">\n              \u003ch3>3. Move to UUID v7 when ordering matters\u003c/h3>\n              \u003cp>If the real question is about time-ordered identifiers, switch the generation mode to \u003cstrong>UUID v7\u003c/strong> and compare it with v4 on this same screen. The \u003ca href=\"/uuid-v4-v7\">v4 vs v7 guide\u003c/a> covers the trade-offs.\u003c/p>\n            \u003c/article>\n          \u003c/div>\n        \u003c/div>","\u003csection class=\"content-stack content-stack--generated\" data-seo-support data-locale-block=\"en\" lang=\"en\" hidden data-nosnippet aria-hidden=\"true\">\n        \u003csection class=\"content-section\">\n          \u003ch2 class=\"section-title\">Tools that pair well\u003c/h2>\n          \u003cul class=\"related-list\">\n            \u003cli>\u003ca href=\"/base64\">Base64 Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json\">JSON Formatter\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/jwt\">JWT Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/url\">URL Encoder/Decoder\u003c/a>\u003c/li>\n            \u003cli>\u003ca href=\"/json-yaml\">JSON YAML\u003c/a> — Move structured data such as API responses, config files, and manifests between JSON, YAML, and simple CSV out\u003c/li>\n            \u003cli>\u003ca href=\"/api-tester\">API Request Tester\u003c/a> — Reproducing an API response for documentation or a bug report means being able to write the request down exact\u003c/li>\n          \u003c/ul>\n        \u003c/section>\n    \u003c/section>"]</script>
 </body>
 
 </html>

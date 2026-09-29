@@ -5,8 +5,8 @@
   <title>Terms of Use | Browser-side Limits and Liability | Stateless Tools</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <script type="module" crossorigin src="/assets/site-CM67rKKC.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/site-DyQtkoGw.css">
+  <script type="module" crossorigin src="/assets/site-lbtKuhHH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/site-D0378ODY.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wanteddev/wanted-sans@main/packages/wanted-sans/fonts/webfonts/variable/split/WantedSansVariable.css">
   <script data-client-boot>
@@ -20,15 +20,8 @@
         }
       }
       function pickLocale() {
-        var stored = safeGet('stateless-tools-locale');
-        if (stored && supported.indexOf(stored) !== -1) {
-          return stored;
-        }
-        var lang = (navigator.language || '').slice(0, 2);
-        if (supported.indexOf(lang) !== -1) {
-          return lang;
-        }
-        return 'ko';
+        var path = window.location.pathname;
+        return path === '/en' || path.indexOf('/en/') === 0 ? 'en' : 'ko';
       }
       function pickTheme() {
         var stored = safeGet('stateless-theme');
@@ -50,17 +43,9 @@
     })();
   </script>
   <style data-client-boot>
-    html.i18n-pending[data-preferred-locale="en"] .page {
-      visibility: hidden;
-    }
-
     html.i18n-pending .page-controls,
     html.i18n-pending .trust-badge {
       visibility: hidden;
-    }
-
-    html.i18n-pending[data-preferred-locale="en"] body {
-      overflow: hidden;
     }
   </style>
   <meta name="google-adsense-account" content="ca-pub-4324902308911757" />
@@ -247,11 +232,11 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Conditions of use</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Who can use it?</h3></summary><p>Anyone, free of charge, without an account. Personal and commercial use are treated the same, and there is no restriction on using the output commercially.</p>
+            <details class="faq-item" open><summary><h3>Who can use it?</h3></summary><p>Anyone, free of charge, without an account. Personal and commercial use are treated the same, and there is no restriction on using the output commercially.</p>
             </details>
-            <details class="faq-item"><summary><h3>What is not allowed?</h3></summary><p>Do not place a burden on the service through automated bulk requests, do not clone the site and present it as your own on another domain, and do not use the tools to infringe others' rights or break the law. The tools are code running in your browser, but what you do with the results is your responsibility.</p>
+            <details class="faq-item" open><summary><h3>What is not allowed?</h3></summary><p>Do not place a burden on the service through automated bulk requests, do not clone the site and present it as your own on another domain, and do not use the tools to infringe others' rights or break the law. The tools are code running in your browser, but what you do with the results is your responsibility.</p>
             </details>
-            <details class="faq-item"><summary><h3>Can I paste work data?</h3></summary><p>Technically yes, since input does not leave your browser. However, your organisation's policy may forbid pasting internal data into external websites, and browser extensions can read page contents. For sensitive values, check your policy and browser environment first.</p>
+            <details class="faq-item" open><summary><h3>Can I paste work data?</h3></summary><p>Technically yes, since input does not leave your browser. However, your organisation's policy may forbid pasting internal data into external websites, and browser extensions can read page contents. For sensitive values, check your policy and browser environment first.</p>
             </details>
           </div>
         </div>
@@ -284,13 +269,13 @@
         <div data-locale-block="en" lang="en">
           <h2 class="section-title">Intellectual property and changes</h2>
           <div class="faq-list">
-            <details class="faq-item"><summary><h3>Who owns the code and the writing?</h3></summary><p>The source code, documentation and design belong to the operator. Whatever you type into a tool, and whatever it produces, belongs to you; this site claims no rights over it and does not retain it, since it never reaches a server.</p>
+            <details class="faq-item" open><summary><h3>Who owns the code and the writing?</h3></summary><p>The source code, documentation and design belong to the operator. Whatever you type into a tool, and whatever it produces, belongs to you; this site claims no rights over it and does not retain it, since it never reaches a server.</p>
             </details>
-            <details class="faq-item"><summary><h3>What about third-party libraries?</h3></summary><p>Features such as PDF, OCR and QR use public open-source libraries under their respective licences. The display typeface is Wanted Sans, distributed under the SIL Open Font License.</p>
+            <details class="faq-item" open><summary><h3>What about third-party libraries?</h3></summary><p>Features such as PDF, OCR and QR use public open-source libraries under their respective licences. The display typeface is Wanted Sans, distributed under the SIL Open Font License.</p>
             </details>
-            <details class="faq-item"><summary><h3>Will I be notified of changes?</h3></summary><p>This page is updated when the terms change. Because no account information is collected there is no way to notify you individually, so please check here for material changes. Continued use after a change constitutes acceptance.</p>
+            <details class="faq-item" open><summary><h3>Will I be notified of changes?</h3></summary><p>This page is updated when the terms change. Because no account information is collected there is no way to notify you individually, so please check here for material changes. Continued use after a change constitutes acceptance.</p>
             </details>
-            <details class="faq-item"><summary><h3>How do I get in touch?</h3></summary><p>Use the routes on the <a href="/en/contact">contact</a> page for bug reports and questions. Data handling is covered separately in the <a href="/en/privacy">privacy notice</a>.</p>
+            <details class="faq-item" open><summary><h3>How do I get in touch?</h3></summary><p>Use the routes on the <a href="/en/contact">contact</a> page for bug reports and questions. Data handling is covered separately in the <a href="/en/privacy">privacy notice</a>.</p>
             </details>
           </div>
         </div>
@@ -303,7 +288,7 @@
         <a href="/en/contact" data-chrome-link="contact">Contact</a>
         <a href="/en/terms" data-chrome-link="terms">Terms</a>
       </nav>
-      <small data-i18n="common.footerHome">© 2026 stateless tools · Static site for Cloudflare Pages deployment</small>
+      <small data-i18n="common.footerHome">© 2026 stateless tools · Browser tools that never upload your files</small>
     </footer>
   </div>
 
